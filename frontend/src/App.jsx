@@ -14,6 +14,7 @@ import GuestbookPage from './pages/GuestbookPage';
 import AdminProjectsPage from './pages/admin/AdminProjectsPage';
 import AdminResumePage from './pages/admin/AdminResumePage';
 import AdminPostsPage from './pages/admin/AdminPostsPage';
+import AdminSettingsPage from './pages/admin/AdminSettingsPage';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/admin/projects" element={<ProtectedRoute><Layout><AdminProjectsPage /></Layout></ProtectedRoute>} />
           <Route path="/admin/resume" element={<ProtectedRoute><Layout><AdminResumePage /></Layout></ProtectedRoute>} />
           <Route path="/admin/posts" element={<ProtectedRoute><Layout><AdminPostsPage /></Layout></ProtectedRoute>} />
+          <Route path="/admin/settings" element={<ProtectedRoute><Layout><AdminSettingsPage /></Layout></ProtectedRoute>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

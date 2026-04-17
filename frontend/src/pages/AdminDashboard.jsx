@@ -59,6 +59,7 @@ export default function AdminDashboard() {
         <DashboardCard title="Projects" description="Manage portfolio projects" to="/admin/projects" />
         <DashboardCard title="Journal" description="Write and manage blog posts" to="/admin/posts" />
         <DashboardCard title="Resume" description="Edit resume sections" to="/admin/resume" />
+        <DashboardCard title="Settings" description="Change password, TOTP setup" to="/admin/settings" />
       </div>
     </div>
   );
