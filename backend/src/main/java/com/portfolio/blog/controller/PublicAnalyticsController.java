@@ -17,6 +17,14 @@ public class PublicAnalyticsController {
         this.pageViewRepository = pageViewRepository;
     }
 
+    @GetMapping("/stats")
+    public ResponseEntity<Map<String, Long>> getPublicStats() {
+        return ResponseEntity.ok(Map.of(
+                "total", pageViewRepository.count(),
+                "today", pageViewRepository.countToday()
+        ));
+    }
+
     @PostMapping("/pageview")
     public ResponseEntity<Void> trackPageView(@RequestBody Map<String, String> body) {
         String path = body.get("path");

@@ -10,11 +10,13 @@ export default function HomePage() {
   const [projects, setProjects] = useState([]);
   const [posts, setPosts] = useState([]);
   const [sections, setSections] = useState([]);
+  const [stats, setStats] = useState(null);
 
   useEffect(() => {
     api.get('/public/projects').then(setProjects).catch(() => {});
     api.get('/public/posts?page=0&size=5').then(d => setPosts(d.content || [])).catch(() => {});
     api.get('/public/resume').then(setSections).catch(() => {});
+    fetch('/api/public/analytics/stats').then(r => r.ok ? r.json() : null).then(setStats).catch(() => {});
   }, []);
 
   const grouped = {};
@@ -156,7 +158,12 @@ export default function HomePage() {
 
         {/* Footer */}
         <footer className="py-10 text-center text-[12px]" style={{ color: 'var(--text-tertiary)' }}>
-          © 2026 JuHyeon Lee · Vantaa, Finland
+          <p>© 2026 JuHyeon Lee · Vantaa, Finland</p>
+          {stats && (
+            <p className="font-mono mt-2" style={{ color: 'var(--text-tertiary)', opacity: 0.6 }}>
+              {stats.total.toLocaleString()} views · {stats.today} today
+            </p>
+          )}
         </footer>
       </div>
     </div>
