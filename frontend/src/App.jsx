@@ -16,6 +16,7 @@ import AdminResumePage from './pages/admin/AdminResumePage';
 import AdminPostsPage from './pages/admin/AdminPostsPage';
 import AdminSettingsPage from './pages/admin/AdminSettingsPage';
 import PageLayout from './components/PageLayout';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
@@ -45,6 +46,9 @@ function App() {
           <Route path="/admin/resume" element={<ProtectedRoute><PageLayout><AdminResumePage /></PageLayout></ProtectedRoute>} />
           <Route path="/admin/posts" element={<ProtectedRoute><PageLayout><AdminPostsPage /></PageLayout></ProtectedRoute>} />
           <Route path="/admin/settings" element={<ProtectedRoute><PageLayout><AdminSettingsPage /></PageLayout></ProtectedRoute>} />
+
+          {/* 404 */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </AuthProvider>
       </ThemeProvider>
