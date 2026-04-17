@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
-import characterImg from '../assets/my.png';
+import resumePic from '../assets/resume_pic.png';
 
 export default function ProfilePage() {
   const [sections, setSections] = useState([]);
@@ -26,7 +26,7 @@ export default function ProfilePage() {
 
       {/* Header card */}
       <div className="bg-gray-800 border-2 border-gray-600 rounded p-6 flex flex-col md:flex-row items-center gap-6">
-        <img src={characterImg} alt="JuHyeon" className="w-24 h-auto shrink-0" />
+        <img src={resumePic} alt="JuHyeon Lee" className="w-24 h-24 rounded-full object-cover border-4 border-gray-500 shrink-0" />
         <div className="text-center md:text-left">
           <h2 className="text-2xl font-bold text-white">JuHyeon Lee</h2>
           <p className="text-gray-400 text-sm mt-1">Vantaa, Finland</p>
@@ -46,35 +46,20 @@ export default function ProfilePage() {
         </div>
       )}
 
-      {/* Experience */}
+      {/* Experience - accordion cards */}
       {grouped['experience'] && (
-        <div className="bg-gray-800 border-2 border-gray-600 rounded p-5">
-          <h3 className="text-lg font-bold text-white mb-4">Experience</h3>
-          <div className="space-y-4">
-            {grouped['experience'].map(item => {
-              const lines = item.content.split('\n');
-              const role = lines[0];
-              const bullets = lines.filter(l => l.trim().startsWith('-'));
-              return (
-                <div key={item.id} className="border-l-2 border-gray-600 pl-4">
-                  <h4 className="text-white font-semibold text-sm">{item.title}</h4>
-                  <p className="text-gray-500 text-xs mb-2">{role}</p>
-                  {bullets.map((b, i) => (
-                    <p key={i} className="text-gray-400 text-xs leading-relaxed pl-2 before:content-['•'] before:mr-2 before:text-gray-600">
-                      {b.replace(/^-\s*/, '')}
-                    </p>
-                  ))}
-                </div>
-              );
-            })}
+        <div>
+          <h3 className="text-lg font-bold text-white mb-3">Experience</h3>
+          <div className="space-y-3">
+            {grouped['experience'].map(item => (
+              <ExperienceCard key={item.id} item={item} />
+            ))}
           </div>
         </div>
       )}
 
       {/* Education & Skills side by side */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-        {/* Education */}
         <div className="bg-gray-800 border-2 border-gray-600 rounded p-5">
           <h3 className="text-lg font-bold text-white mb-3">Education</h3>
           {grouped['education'] && (
@@ -92,7 +77,6 @@ export default function ProfilePage() {
           )}
         </div>
 
-        {/* Skills */}
         <div className="bg-gray-800 border-2 border-gray-600 rounded p-5">
           <h3 className="text-lg font-bold text-white mb-3">Skills</h3>
           {grouped['skills'] && (
@@ -140,6 +124,40 @@ export default function ProfilePage() {
           Print / Download PDF
         </button>
       </div>
+    </div>
+  );
+}
+
+function ExperienceCard({ item }) {
+  const [open, setOpen] = useState(false);
+  const lines = item.content.split('\n');
+  const role = lines[0];
+  const bullets = lines.filter(l => l.trim().startsWith('-'));
+
+  return (
+    <div
+      className="bg-gray-800 border-2 border-gray-600 rounded overflow-hidden cursor-pointer hover:border-gray-400 transition-all"
+      onClick={() => setOpen(!open)}
+    >
+      <div className="p-4 flex items-center justify-between">
+        <div>
+          <h4 className="text-white font-semibold text-sm">{item.title}</h4>
+          <p className="text-gray-500 text-xs mt-0.5">{role}</p>
+        </div>
+        <span className={`text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`}>
+          ▼
+        </span>
+      </div>
+      {open && (
+        <div className="px-4 pb-4 border-t border-gray-700 pt-3 space-y-1.5">
+          {bullets.map((b, i) => (
+            <p key={i} className="text-gray-300 text-sm leading-relaxed">
+              <span className="text-gray-500 mr-2">•</span>
+              {b.replace(/^-\s*/, '')}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
