@@ -51,7 +51,7 @@ export default function ProjectDetailPage() {
       <div className="max-w-[720px] mx-auto px-10 pt-12 pb-20">
         <Link to="/projects" className="text-[13px] no-underline mb-8 inline-block" style={{ color: 'var(--text-tertiary)' }}>← Back</Link>
 
-        <div className="flex gap-3 mb-8">
+        <div className="flex gap-3 mb-8 items-center">
           {project.githubUrl && (
             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
               className="text-[13px] no-underline px-3 py-1.5 rounded-md transition-colors" style={{ border: '0.5px solid var(--border)', color: 'var(--text-secondary)' }}>
@@ -60,8 +60,8 @@ export default function ProjectDetailPage() {
           )}
           {project.githubUrl && (
             <button onClick={handleCopy}
-              className="text-[13px] px-3 py-1.5 rounded-md cursor-pointer transition-colors" style={{ border: '0.5px solid var(--border)', background: 'transparent', color: 'var(--text-secondary)' }}>
-              {cloneCopied ? 'Copied!' : 'Clone'}
+              className="font-mono text-[12px] px-3 py-1.5 rounded-md cursor-pointer transition-colors" style={{ border: '0.5px solid var(--border)', background: 'transparent', color: cloneCopied ? 'var(--accent)' : 'var(--text-tertiary)' }}>
+              {cloneCopied ? '✓ Copied!' : `git clone ${project.githubUrl.replace('https://github.com/', 'git@github.com:')}.git`}
             </button>
           )}
         </div>
