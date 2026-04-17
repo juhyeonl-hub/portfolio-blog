@@ -1,13 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-import ShowcasePage from './pages/ShowcasePage';
-import ProfilePage from './pages/ProfilePage';
+import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
-import JournalPage from './pages/JournalPage';
-import PostDetailPage from './pages/PostDetailPage';
+import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
+import AboutPage from './pages/AboutPage';
 import GuestbookPage from './pages/GuestbookPage';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminProjectsPage from './pages/admin/AdminProjectsPage';
@@ -19,16 +20,24 @@ import PageLayout from './components/PageLayout';
 function App() {
   return (
     <BrowserRouter>
+      <ThemeProvider>
       <AuthProvider>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/showcase" element={<PageLayout title="Showcase"><ShowcasePage /></PageLayout>} />
-          <Route path="/showcase/:slug" element={<PageLayout><ProjectDetailPage /></PageLayout>} />
-          <Route path="/profile" element={<PageLayout title="Profile"><ProfilePage /></PageLayout>} />
-          <Route path="/journal" element={<PageLayout title="Journal"><JournalPage /></PageLayout>} />
-          <Route path="/journal/:slug" element={<PageLayout><PostDetailPage /></PageLayout>} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/guestbook" element={<PageLayout title="Guestbook"><GuestbookPage /></PageLayout>} />
+
+          {/* Legacy routes redirect */}
+          <Route path="/showcase" element={<ProjectsPage />} />
+          <Route path="/showcase/:slug" element={<ProjectDetailPage />} />
+          <Route path="/profile" element={<AboutPage />} />
+          <Route path="/journal" element={<BlogPage />} />
+          <Route path="/journal/:slug" element={<BlogPostPage />} />
 
           {/* Admin */}
           <Route path="/admin" element={<ProtectedRoute><PageLayout><AdminDashboard /></PageLayout></ProtectedRoute>} />
@@ -38,6 +47,7 @@ function App() {
           <Route path="/admin/settings" element={<ProtectedRoute><PageLayout><AdminSettingsPage /></PageLayout></ProtectedRoute>} />
         </Routes>
       </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

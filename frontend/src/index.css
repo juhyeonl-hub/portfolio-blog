@@ -1,16 +1,51 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
-/* Dark mode only - minimal developer aesthetic */
 :root {
+  --bg: #0a0a0a;
+  --bg-card: #141414;
+  --bg-hover: #1a1a1a;
+  --border: rgba(255,255,255,0.08);
+  --text-primary: #fafafa;
+  --text-secondary: rgba(255,255,255,0.6);
+  --text-tertiary: rgba(255,255,255,0.35);
+  --accent: #00d4ff;
+  --accent-bg: rgba(0,212,255,0.12);
   color-scheme: dark;
 }
 
+[data-theme="light"] {
+  --bg: #fafafa;
+  --bg-card: #ffffff;
+  --bg-hover: #f5f5f5;
+  --border: rgba(0,0,0,0.06);
+  --text-primary: #0a0a0a;
+  --text-secondary: rgba(0,0,0,0.55);
+  --text-tertiary: rgba(0,0,0,0.3);
+  --accent: #0070f3;
+  --accent-bg: rgba(0,112,243,0.08);
+  color-scheme: light;
+}
+
 body {
-  @apply bg-gray-950 text-gray-300 antialiased;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Sora', system-ui, sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
   margin: 0;
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 #root {
   min-height: 100vh;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+::selection {
+  background: var(--accent-bg);
+  color: var(--accent);
 }
