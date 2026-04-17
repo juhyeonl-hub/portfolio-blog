@@ -5,8 +5,7 @@ export default function usePageView() {
   const location = useLocation();
 
   useEffect(() => {
-    const base = import.meta.env.VITE_API_URL || '/api';
-    fetch(`${base}/public/analytics/pageview`, {
+    fetch('/api/public/analytics/pageview', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ path: location.pathname }),

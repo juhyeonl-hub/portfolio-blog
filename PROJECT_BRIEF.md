@@ -183,8 +183,8 @@ portfolio-blog/
 - [x] Step 25: Analytics: page views, popular projects
 
 ### Phase 7: Deployment
-- [ ] Step 26: AWS Lightsail setup (backend + PostgreSQL)
-- [ ] Step 27: Vercel deployment (frontend)
+- [x] Step 26: AWS EC2 setup (backend + PostgreSQL) — 13.50.178.179
+- [x] Step 27: Vercel deployment (frontend)
 - [ ] Step 28: Domain/subdomain configuration, CORS, HTTPS
 
 ### Phase 8: GitHub Sync (Optional)
