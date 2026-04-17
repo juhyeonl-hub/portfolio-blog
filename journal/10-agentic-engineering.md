@@ -1,29 +1,29 @@
 ---
-title: "시스템 프로그래밍을 배운 개발자가 에이전틱 엔지니어링을 하면 뭐가 다른가"
-excerpt: "Unix 프로세스 모델에서 에이전틱 시스템까지. 시리즈 최종편."
+title: "What's Different When a Systems Programmer Does Agentic Engineering"
+excerpt: "From Unix process models to agentic systems. The final post in the series."
 tags: [Dev, AI, Career]
 ---
 
-## 배경
+## Background
 
-에이전틱 엔지니어링. 여러 AI 에이전트가 각자 역할을 수행하고, 결과를 조합해서 더 큰 작업을 완성하는 시스템을 설계하는 것.
+Agentic engineering: designing systems where multiple AI agents each perform their role, combining results to complete larger tasks.
 
-## 해석
+## Analysis
 
-에이전틱 시스템의 구조를 분해하면, 이 블로그에서 다뤄온 개념들이 그대로 나타난다.
+![Systems programming → Agentic mapping](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/10_mapping.png)
 
-![시스템 프로그래밍 → 에이전틱 대응](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/10_mapping.png)
+![Process pipeline vs Agentic pipeline](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/10_pipeline.png)
 
-![프로세스 파이프라인 vs 에이전틱 파이프라인](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/10_pipeline.png)
+What the shell does — create processes, connect with pipes, manage data flow, handle failures — is exactly what an agentic orchestrator does.
 
-셸이 하는 일 — 프로세스를 만들고, 파이프로 연결하고, 데이터 흐름을 관리하고, 실패 시 처리하는 것. 에이전틱 오케스트레이터가 하는 일도 이것과 같다.
+Concurrency applies directly. Multiple agents accessing the same data simultaneously cause collisions. Same problems as Post 5, just with queues instead of mutexes.
 
-동시성도 그대로 적용된다. 여러 에이전트가 동시에 같은 데이터에 접근하면 충돌이 생긴다. mutex 대신 큐나 세마포어를 쓸 뿐이다.
+Parser design connects too. Prompting an LLM is "converting unstructured natural language into structured commands" — the same mindset from Post 6.
 
-## 느낀점
+## Reflection
 
-에이전틱 엔지니어링은 완전히 새로운 분야가 아니다. 시스템 프로그래밍 개념의 추상화 레벨이 올라간 버전이다.
+Agentic engineering isn't an entirely new field. It's systems programming concepts at a higher abstraction level.
 
-프로세스 오케스트레이션을 이해하는 사람이 에이전트 오케스트레이션을 더 잘 설계한다. 동시성 문제를 직접 겪어본 사람이 멀티 에이전트 충돌을 더 잘 방지한다. 메모리 관리를 해본 사람이 컨텍스트 관리를 더 잘 한다.
+Someone who understands process orchestration designs agent orchestration better. Someone who's experienced concurrency problems prevents multi-agent collisions better. Someone who's managed memory handles context management better.
 
-기초가 올라갈수록, 위에서 할 수 있는 것의 범위가 넓어진다. 그게 이 시리즈에서 말하고 싶었던 전부다.
+The stronger the foundation, the wider the range of what you can do on top. That's everything this series wanted to say.

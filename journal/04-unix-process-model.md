@@ -1,22 +1,20 @@
 ---
-title: "fork()와 pipe()로 이해하는 Unix 프로세스 모델"
-excerpt: "ls | grep '.c' 뒤에서 일어나는 일. 프로세스 오케스트레이션의 기본."
+title: "Understanding the Unix Process Model with fork() and pipe()"
+excerpt: "What happens behind ls | grep '.c'. The basics of process orchestration."
 tags: [Dev, TIL]
 ---
 
-## 배경
+## Background
 
-터미널에서 `ls -l | grep ".c" | wc -l`을 입력하면, OS 안에서는 세 개의 프로세스가 생성되고 파이프로 연결된다.
+When you type `ls -l | grep ".c" | wc -l`, three processes are created and connected via pipes inside the OS.
 
-![핵심 시스템 콜](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/04_syscalls.png)
+![Key system calls](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/04_syscalls.png)
 
-## 해석
+## Analysis
 
-`ls | grep ".c"` 가 실행되는 과정을 단계별로 보면:
+![Pipeline execution flow](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/04_pipeline.png)
 
-![파이프라인 실행 과정](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/04_pipeline.png)
-
-핵심 규칙: 사용하지 않는 파이프 끝은 반드시 닫아야 한다. 안 닫으면 파이프가 EOF를 보내지 않아서 grep이 영원히 대기한다.
+Critical rule: unused pipe ends must be closed. Otherwise EOF is never sent and the reading process waits forever.
 
 ```c
 int fd[2];
@@ -46,6 +44,6 @@ waitpid(pid1, NULL, 0);
 waitpid(pid2, NULL, 0);
 ```
 
-## 느낀점
+## Reflection
 
-프로세스를 만들고, 연결하고, 데이터를 넘기고, 종료를 기다리고 회수하는 것. 이 패턴은 여러 AI 에이전트를 조율하는 에이전틱 시스템의 구조와 정확히 대응된다.
+Create processes, connect them, pass data, wait for completion. This pattern maps directly onto agentic systems that coordinate multiple AI agents.

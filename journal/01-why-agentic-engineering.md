@@ -1,27 +1,27 @@
 ---
-title: "Java 백엔드 개발자가 C를 거쳐 에이전틱 엔지니어링으로 간 이유"
-excerpt: "Spring Boot에서 C로, 그리고 에이전틱으로. 왜 아래 레이어를 배우는 게 AI 시대에 더 중요한가."
+title: "Why a Java Backend Developer Went Through C to Agentic Engineering"
+excerpt: "From Spring Boot to C to agentic. Why understanding the layer below matters more in the AI era."
 tags: [Dev, Career]
 ---
 
-## 배경
+## Background
 
-한국 금융권에서 Java/Spring Boot로 약 2년 일했다. 현대캐피탈, 현대커머셜, 경찰청, DB손해보험. 프로젝트마다 도메인은 달랐지만 하는 일은 비슷했다. Spring 위에 API 올리고, Oracle 붙이고, 프론트 연결하는 구조.
+I worked as a Java/Spring Boot developer in Korea's financial sector for about two years. Hyundai Capital, Hyundai Commercial, Korean National Police Agency, DB Insurance. The domains changed per project, but the work was similar — build APIs on Spring, connect Oracle, wire up the frontend.
 
-일을 하면서 AI가 빠르게 발전하는 걸 봤다. 코드를 생성해주는 도구들이 나오고, 에이전트가 알아서 작업을 수행하는 시대가 오고 있었다. 그쪽으로 방향을 잡고 싶었다. 근데 한 가지 문제가 있었다. AI가 만든 코드가 맞는지 틀린지 판단하려면, 프레임워크가 숨기고 있는 아래 레이어를 알아야 한다.
+While working, I watched AI develop rapidly. Code generation tools were emerging, agents were starting to handle tasks autonomously. I wanted to move in that direction. But there was a problem: to judge whether AI-generated code is correct, you need to understand the layers the framework hides from you.
 
-![프레임워크가 대신 해주는 것](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/table_framework_comparison.png)
+![What the framework does for you](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/table_framework_comparison.png)
 
-## 해석
+## Analysis
 
-그래서 Hive Helsinki를 선택했다. CS 기반을 제대로 쌓을 수 있고, 유럽에서 커리어를 시작할 수 있는 곳이었다.
+So I chose Hive Helsinki. A place to build a solid CS foundation and start a career in Europe.
 
-Hive에서 C와 C++로 시스템 프로그래밍을 하면서 달라진 게 있다. minishell에서 파이프라인을 직접 구현하고 나니까, Spring의 비동기 처리가 어떤 원리 위에 있는지가 보이기 시작했다. philo에서 데드락을 직접 겪고 나니까, 동시성이 "돌려보면 되지"가 아니라 설계의 문제라는 걸 체감했다.
+Working with C and C++ in systems programming at Hive changed things. After implementing a pipeline from scratch in minishell, I started seeing what Spring's async processing is actually built on. After experiencing deadlocks firsthand in philo, I realized concurrency isn't "just run it and see" — it's a design problem.
 
-에이전틱 엔지니어링은 결국 여러 AI 에이전트가 각자 역할을 수행하고, 결과를 조합해서 큰 작업을 완성하는 시스템을 설계하는 거다. 이 구조는 Unix 프로세스 모델과 본질적으로 같다.
+Agentic engineering is ultimately about designing systems where multiple AI agents each perform their role and combine results to complete larger tasks. This structure is fundamentally the same as the Unix process model.
 
-![Unix 프로세스 모델 vs 에이전틱 엔지니어링](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/diagram_unix_vs_agentic.png)
+![Unix process model vs Agentic engineering](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/diagram_unix_vs_agentic.png)
 
-## 느낀점
+## Reflection
 
-AI가 빠르게 코드를 만들어주는 시대에, 개발자한테 중요한 건 코드를 타이핑하는 속도가 아니라 그 코드가 맞는지 판단하는 능력이다. 그 판단력은 아래 레이어를 아는 데서 온다. 그래서 이 경로가 맞았다고 생각한다.
+In an era where AI generates code fast, what matters for a developer isn't typing speed — it's the ability to judge whether that code is correct. That judgment comes from knowing the layer below. That's why this path was right.
