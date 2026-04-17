@@ -49,3 +49,139 @@ body {
   background: var(--accent-bg);
   color: var(--accent);
 }
+
+/* GitHub-style README rendering */
+.github-readme {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.github-readme h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 0.5px solid var(--border);
+  letter-spacing: -0.5px;
+}
+
+.github-readme h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 32px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.github-readme h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 24px 0 8px;
+}
+
+.github-readme p {
+  margin: 0 0 12px;
+}
+
+.github-readme a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.github-readme a:hover {
+  text-decoration: underline;
+}
+
+.github-readme img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+
+.github-readme ul, .github-readme ol {
+  padding-left: 20px;
+  margin: 0 0 12px;
+}
+
+.github-readme li {
+  margin: 4px 0;
+}
+
+.github-readme code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  background: var(--bg-card);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--text-primary);
+}
+
+.github-readme pre {
+  background: var(--bg-card);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  margin: 12px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.github-readme pre code {
+  background: none;
+  padding: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.github-readme table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 13px;
+}
+
+.github-readme th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.github-readme td {
+  padding: 8px 12px;
+  border-bottom: 0.5px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.github-readme blockquote {
+  border-left: 3px solid var(--border);
+  margin: 12px 0;
+  padding: 4px 16px;
+  color: var(--text-tertiary);
+}
+
+.github-readme hr {
+  border: none;
+  border-top: 0.5px solid var(--border);
+  margin: 24px 0;
+}
+
+.github-readme strong {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Badge images inline */
+.github-readme p > img {
+  display: inline;
+  margin: 0 4px 0 0;
+  vertical-align: middle;
+  border-radius: 3px;
+}
