@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/portfolio_blog
+    username: ${DB_USERNAME:portfolio}
+    password: ${DB_PASSWORD:portfolio}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+
+server:
+  port: 8080
+
+# Admin settings
+app:
+  admin:
+    username: ${ADMIN_USERNAME:admin}
+    password: ${ADMIN_PASSWORD:changeme}
+  jwt:
+    secret: ${JWT_SECRET:dev-jwt-secret-key-change-in-production-minimum-256-bits-long}
+    expiration-ms: 86400000  # 24 hours
+  api-key: ${API_KEY:dev-api-key-change-in-production}
+  upload-dir: ${UPLOAD_DIR:./uploads}

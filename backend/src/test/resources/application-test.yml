@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+  flyway:
+    enabled: false
+
+app:
+  admin:
+    username: admin
+    password: testpassword
+  jwt:
+    secret: test-jwt-secret-key-for-testing-only-minimum-256-bits-long-string
+    expiration-ms: 86400000
+  api-key: test-api-key
+  upload-dir: ./test-uploads

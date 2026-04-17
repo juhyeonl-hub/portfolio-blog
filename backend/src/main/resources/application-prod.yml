@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/portfolio_blog
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: false
+
+server:
+  port: 8080
+
+# Admin settings - MUST be set via environment variables in production
+app:
+  admin:
+    username: ${ADMIN_USERNAME}
+    password: ${ADMIN_PASSWORD}
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: 86400000
+  api-key: ${API_KEY}
+  upload-dir: ${UPLOAD_DIR:/var/portfolio-blog/uploads}
