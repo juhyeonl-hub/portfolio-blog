@@ -26,7 +26,7 @@ export default function BlogPage() {
     <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Nav />
       <div className="max-w-[720px] mx-auto px-10 pt-12 pb-20">
-        <SectionLabel>Blog</SectionLabel>
+        <SectionLabel>Journal</SectionLabel>
 
         {tag && (
           <div className="mb-6 flex items-center gap-2">
