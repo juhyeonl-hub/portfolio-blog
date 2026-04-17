@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { LangProvider } from './context/LangContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -19,6 +20,7 @@ import PageLayout from './components/PageLayout';
 function App() {
   return (
     <BrowserRouter>
+      <LangProvider>
       <AuthProvider>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -38,6 +40,7 @@ function App() {
           <Route path="/admin/settings" element={<ProtectedRoute><PageLayout><AdminSettingsPage /></PageLayout></ProtectedRoute>} />
         </Routes>
       </AuthProvider>
+      </LangProvider>
     </BrowserRouter>
   );
 }
