@@ -188,5 +188,5 @@ portfolio-blog/
 - [ ] Step 28: Domain/subdomain configuration, CORS, HTTPS
 
 ### Phase 8: GitHub Sync (Optional)
-- [ ] Step 29: GitHub webhook listener for journal .md files
-- [ ] Step 30: Auto-publish synced markdown posts
+- [x] Step 29: GitHub webhook listener for journal .md files
+- [x] Step 30: Auto-publish synced markdown posts
