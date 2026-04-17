@@ -9,11 +9,19 @@ export default function HomePage() {
   usePageView();
   const [projects, setProjects] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [sections, setSections] = useState([]);
 
   useEffect(() => {
     api.get('/public/projects').then(setProjects).catch(() => {});
     api.get('/public/posts?page=0&size=5').then(d => setPosts(d.content || [])).catch(() => {});
+    api.get('/public/resume').then(setSections).catch(() => {});
   }, []);
+
+  const grouped = {};
+  sections.forEach(s => {
+    if (!grouped[s.sectionType]) grouped[s.sectionType] = [];
+    grouped[s.sectionType].push(s);
+  });
 
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
@@ -23,7 +31,7 @@ export default function HomePage() {
         {/* Hero */}
         <section className="pt-20 pb-16" style={{ borderBottom: '0.5px solid var(--border)' }}>
           <p className="font-mono text-[12px] uppercase tracking-[1.5px] font-medium mb-4" style={{ color: 'var(--accent)' }}>
-            backend · agentic engineering
+            agentic engineering · full-stack
           </p>
           <h1 className="text-[42px] font-semibold leading-[1.1] tracking-[-1.5px] mb-1" style={{ color: 'var(--text-primary)' }}>
             JuHyeon Lee
@@ -70,10 +78,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Blog */}
+        {/* Journal */}
         <section className="py-12" style={{ borderBottom: '0.5px solid var(--border)' }}>
           <SectionLabel right={<Link to="/blog" className="text-[12px] no-underline" style={{ color: 'var(--text-tertiary)' }}>All posts →</Link>}>
-            Blog
+            Journal
           </SectionLabel>
           {posts.length === 0 ? (
             <p className="text-[13px]" style={{ color: 'var(--text-tertiary)' }}>No posts yet.</p>
@@ -93,14 +101,40 @@ export default function HomePage() {
           )}
         </section>
 
+        {/* Education */}
+        <section className="py-12" style={{ borderBottom: '0.5px solid var(--border)' }}>
+          <SectionLabel>Education</SectionLabel>
+          <div className="space-y-2">
+            <AccordionCard
+              title="Hive Helsinki (42 Network)"
+              subtitle="Nov 2024 — Present"
+              details="Intensive program in low-level systems programming, algorithms, data structures, and software engineering principles. Expected graduation: July 2026."
+            />
+            <AccordionCard
+              title="Gangdong University"
+              subtitle="Mar 2015 — Feb 2017"
+              details="Associate Degree in Leisure Sports."
+            />
+          </div>
+        </section>
+
         {/* Experience */}
         <section className="py-12" style={{ borderBottom: '0.5px solid var(--border)' }}>
           <SectionLabel>Experience</SectionLabel>
-          <div>
-            <ExpRow period="2024 — now" title="Student — Systems Programming" company="Hive Helsinki (42 Network)" />
-            <ExpRow period="2023" title="Web Operations Engineer" company="DB Insurance Co. Ltd" />
-            <ExpRow period="2022 — 2023" title="Full-Stack Engineer" company="Korean National Police Agency" />
-            <ExpRow period="2021 — 2022" title="Integration Engineer" company="Hyundai Commercial · Hyundai Capital" />
+          <div className="space-y-2">
+            {grouped['experience'] && grouped['experience'].map(item => {
+              const lines = item.content.split('\n');
+              const role = lines[0];
+              const bullets = lines.filter(l => l.trim().startsWith('-')).map(b => b.replace(/^-\s*/, ''));
+              return (
+                <AccordionCard
+                  key={item.id}
+                  title={item.title}
+                  subtitle={role}
+                  details={bullets}
+                />
+              );
+            })}
           </div>
         </section>
 
@@ -139,14 +173,35 @@ function SocialLink({ href, label }) {
   );
 }
 
-function ExpRow({ period, title, company }) {
+function AccordionCard({ title, subtitle, details }) {
+  const [open, setOpen] = useState(false);
+  const bullets = Array.isArray(details) ? details : null;
+  const text = typeof details === 'string' ? details : null;
+
   return (
-    <div className="flex py-3" style={{ borderBottom: '0.5px solid var(--border)' }}>
-      <span className="font-mono text-[11px] w-[120px] shrink-0 pt-0.5" style={{ color: 'var(--text-tertiary)' }}>{period}</span>
-      <div>
-        <span className="text-[14px] font-medium block" style={{ color: 'var(--text-primary)' }}>{title}</span>
-        <span className="text-[13px]" style={{ color: 'var(--text-secondary)' }}>{company}</span>
+    <div
+      className="rounded-lg overflow-hidden cursor-pointer transition-colors"
+      style={{ border: '0.5px solid var(--border)', background: 'var(--bg-card)' }}
+      onClick={() => setOpen(!open)}
+      onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-hover)'}
+      onMouseLeave={e => e.currentTarget.style.background = 'var(--bg-card)'}>
+      <div className="px-5 py-3.5 flex items-center justify-between">
+        <div>
+          <span className="text-[14px] font-medium block" style={{ color: 'var(--text-primary)' }}>{title}</span>
+          <span className="font-mono text-[11px] mt-0.5 block" style={{ color: 'var(--text-tertiary)' }}>{subtitle}</span>
+        </div>
+        <span className="text-[12px] transition-transform" style={{ color: 'var(--text-tertiary)', transform: open ? 'rotate(180deg)' : 'none' }}>▼</span>
       </div>
+      {open && (
+        <div className="px-5 pb-4 pt-1" style={{ borderTop: '0.5px solid var(--border)' }}>
+          {text && <p className="text-[13px] font-light leading-[1.6]" style={{ color: 'var(--text-secondary)' }}>{text}</p>}
+          {bullets && bullets.map((b, i) => (
+            <p key={i} className="text-[13px] font-light leading-[1.6] mb-1" style={{ color: 'var(--text-secondary)' }}>
+              <span style={{ color: 'var(--text-tertiary)' }}>·</span> {b}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
