@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
-import { useLang } from '../context/LangContext';
 import resumePic from '../assets/resume_pic.png';
 
 export default function ProfilePage() {
   const [sections, setSections] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { t } = useLang();
 
   useEffect(() => {
     api.get('/public/resume')
@@ -15,7 +13,7 @@ export default function ProfilePage() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="text-center text-gray-400 py-12">{t('loading')}</div>;
+  if (loading) return <div className="text-center text-gray-400 py-12">Loading...</div>;
 
   const grouped = {};
   sections.forEach(s => {
@@ -30,7 +28,7 @@ export default function ProfilePage() {
         <img src={resumePic} alt="JuHyeon Lee" className="w-24 h-24 rounded-full object-cover border-4 border-gray-500 shrink-0" />
         <div className="text-center md:text-left">
           <h2 className="text-2xl font-bold text-white">JuHyeon Lee</h2>
-          <p className="text-gray-400 text-sm mt-1">{t('location')}</p>
+          <p className="text-gray-400 text-sm mt-1">Vantaa, Finland</p>
           <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-sm text-gray-400 justify-center md:justify-start">
             <span>xx.juon@gmail.com</span>
             <span>044-248-0624</span>
@@ -40,13 +38,13 @@ export default function ProfilePage() {
 
       {/* Summary */}
       <div className="bg-gray-800 border-2 border-gray-600 rounded p-5">
-        <p className="text-gray-300 text-sm leading-relaxed">{t('summary')}</p>
+        <p className="text-gray-300 text-sm leading-relaxed">{grouped['summary']?.[0]?.content}</p>
       </div>
 
       {/* Experience */}
       {grouped['experience'] && (
         <div>
-          <h3 className="text-lg font-bold text-white mb-3">{t('experience')}</h3>
+          <h3 className="text-lg font-bold text-white mb-3">Experience</h3>
           <div className="space-y-3">
             {grouped['experience'].map(item => (
               <ExperienceCard key={item.id} item={item} />
@@ -58,7 +56,7 @@ export default function ProfilePage() {
       {/* Education & Skills */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-gray-800 border-2 border-gray-600 rounded p-5">
-          <h3 className="text-lg font-bold text-white mb-3">{t('education')}</h3>
+          <h3 className="text-lg font-bold text-white mb-3">Education</h3>
           {grouped['education'] && (
             <div className="space-y-3">
               {grouped['education'][0].content.split('\n\n').map((block, i) => {
@@ -75,7 +73,7 @@ export default function ProfilePage() {
         </div>
 
         <div className="bg-gray-800 border-2 border-gray-600 rounded p-5">
-          <h3 className="text-lg font-bold text-white mb-3">{t('skills')}</h3>
+          <h3 className="text-lg font-bold text-white mb-3">Skills</h3>
           {grouped['skills'] && (
             <div className="space-y-2">
               {grouped['skills'][0].content.split('\n').map((line, i) => {
@@ -98,7 +96,7 @@ export default function ProfilePage() {
       {/* Languages */}
       {grouped['languages'] && (
         <div className="bg-gray-800 border-2 border-gray-600 rounded p-5">
-          <h3 className="text-lg font-bold text-white mb-2">{t('languages')}</h3>
+          <h3 className="text-lg font-bold text-white mb-2">Languages</h3>
           <div className="flex gap-6">
             {grouped['languages'][0].content.split('\n').map((line, i) => {
               const [lang, level] = line.split(':').map(s => s.trim());
@@ -117,7 +115,7 @@ export default function ProfilePage() {
       <div className="text-center">
         <button onClick={() => window.print()}
           className="px-6 py-2 bg-gray-800 border-2 border-gray-600 text-white font-bold rounded hover:bg-gray-700 hover:border-gray-400 transition-all print:hidden">
-          {t('printPdf')}
+          Print / Download PDF
         </button>
       </div>
     </div>

@@ -5,7 +5,6 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/github-dark.css';
 import { api } from '../services/api';
-import { useLang } from '../context/LangContext';
 
 export default function ProjectDetailPage() {
   const { slug } = useParams();
@@ -13,7 +12,6 @@ export default function ProjectDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [cloneCopied, setCloneCopied] = useState(false);
-  const { t } = useLang();
 
   useEffect(() => {
     api.get(`/public/projects/${slug}`)
@@ -29,13 +27,13 @@ export default function ProjectDetailPage() {
     setTimeout(() => setCloneCopied(false), 2000);
   };
 
-  if (loading) return <div className="text-center text-gray-400 py-12">{t('loading')}</div>;
+  if (loading) return <div className="text-center text-gray-400 py-12">Loading...</div>;
   if (error) return <div className="text-center text-red-400 py-12">{error}</div>;
   if (!project) return null;
 
   return (
     <div>
-      <Link to="/showcase" className="text-sm text-gray-400 hover:text-white mb-6 inline-block">{t('backToShowcase')}</Link>
+      <Link to="/showcase" className="text-sm text-gray-400 hover:text-white mb-6 inline-block">&larr; Back to Showcase</Link>
 
       <h1 className="text-3xl font-bold text-white mb-4">{project.title}</h1>
 
@@ -57,13 +55,13 @@ export default function ProjectDetailPage() {
         {project.githubUrl && (
           <button onClick={handleCopyClone}
             className="px-4 py-2 text-sm bg-gray-800 border-2 border-gray-600 hover:border-gray-400 text-gray-300 rounded font-bold transition-all">
-            {cloneCopied ? t('copied') : t('clone')}
+            {cloneCopied ? 'Copied!' : 'Clone'}
           </button>
         )}
         {project.demoUrl && (
           <a href={project.demoUrl} target="_blank" rel="noopener noreferrer"
             className="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded font-bold transition-all">
-            {t('liveDemoBtn')}
+            Live Demo
           </a>
         )}
       </div>
@@ -74,7 +72,7 @@ export default function ProjectDetailPage() {
             git clone {project.githubUrl.replace('https://github.com/', 'git@github.com:')}.git
           </code>
           <button onClick={handleCopyClone} className="text-xs text-gray-500 hover:text-white shrink-0">
-            {cloneCopied ? '✓' : t('copy')}
+            {cloneCopied ? '✓' : 'Copy'}
           </button>
         </div>
       )}

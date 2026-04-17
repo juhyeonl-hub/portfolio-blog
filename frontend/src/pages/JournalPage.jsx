@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { api } from '../services/api';
-import { useLang } from '../context/LangContext';
 
 export default function JournalPage() {
   const [posts, setPosts] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { t } = useLang();
 
   const page = parseInt(searchParams.get('page') || '0');
   const tag = searchParams.get('tag') || '';
@@ -33,29 +31,29 @@ export default function JournalPage() {
     setSearchParams(searchInput ? { search: searchInput } : {});
   };
 
-  if (loading) return <div className="text-center text-gray-400 py-12">{t('loading')}</div>;
+  if (loading) return <div className="text-center text-gray-400 py-12">Loading...</div>;
 
   return (
     <div>
       <form onSubmit={handleSearch} className="mb-6 flex gap-2">
         <input type="text" value={searchInput} onChange={(e) => setSearchInput(e.target.value)}
-          placeholder={t('searchPosts')}
+          placeholder="Search posts..."
           className="flex-1 px-3 py-2 bg-gray-800 border-2 border-gray-600 rounded text-white focus:outline-none focus:border-gray-400" />
         <button type="submit" className="px-4 py-2 bg-gray-800 border-2 border-gray-600 hover:bg-gray-700 hover:border-gray-400 text-gray-300 rounded font-bold transition-all">
-          {t('search')}
+          Search
         </button>
       </form>
 
       {tag && (
         <div className="mb-4 flex items-center gap-2">
-          <span className="text-gray-400 text-sm">{t('tag')}:</span>
+          <span className="text-gray-400 text-sm">Tag:</span>
           <span className="px-2 py-0.5 text-xs bg-gray-800 border border-gray-600 text-gray-300 rounded">{tag}</span>
-          <button onClick={() => setSearchParams({})} className="text-xs text-gray-500 hover:text-white">{t('clear')}</button>
+          <button onClick={() => setSearchParams({})} className="text-xs text-gray-500 hover:text-white">Clear</button>
         </div>
       )}
 
       {posts.length === 0 ? (
-        <p className="text-gray-500 text-center py-8">{t('noPostsFound')}</p>
+        <p className="text-gray-500 text-center py-8">No posts found.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {posts.map(post => (
@@ -82,12 +80,12 @@ export default function JournalPage() {
         <div className="flex gap-2 mt-8 justify-center">
           {page > 0 && (
             <button onClick={() => setSearchParams(prev => { const p = new URLSearchParams(prev); p.set('page', String(page - 1)); return p; })}
-              className="px-4 py-2 bg-gray-800 border-2 border-gray-600 text-gray-300 rounded font-bold hover:bg-gray-700 hover:border-gray-400">{t('prev')}</button>
+              className="px-4 py-2 bg-gray-800 border-2 border-gray-600 text-gray-300 rounded font-bold hover:bg-gray-700 hover:border-gray-400">Prev</button>
           )}
           <span className="px-4 py-2 text-gray-400">{page + 1} / {totalPages}</span>
           {page < totalPages - 1 && (
             <button onClick={() => setSearchParams(prev => { const p = new URLSearchParams(prev); p.set('page', String(page + 1)); return p; })}
-              className="px-4 py-2 bg-gray-800 border-2 border-gray-600 text-gray-300 rounded font-bold hover:bg-gray-700 hover:border-gray-400">{t('next')}</button>
+              className="px-4 py-2 bg-gray-800 border-2 border-gray-600 text-gray-300 rounded font-bold hover:bg-gray-700 hover:border-gray-400">Next</button>
           )}
         </div>
       )}

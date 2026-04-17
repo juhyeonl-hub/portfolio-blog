@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
-import { useLang } from '../context/LangContext';
 
 export default function GuestbookPage() {
   const [entries, setEntries] = useState([]);
   const [nickname, setNickname] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
-  const { t } = useLang();
 
   useEffect(() => { load(); }, []);
 
@@ -29,20 +27,20 @@ export default function GuestbookPage() {
     <div>
       <form onSubmit={handleSubmit} className="bg-gray-800 border-2 border-gray-600 rounded p-6 mb-8 space-y-4">
         <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)}
-          placeholder={t('nickname')} maxLength={50} required
+          placeholder="Nickname" maxLength={50} required
           className="w-full px-3 py-2 bg-gray-900 border-2 border-gray-700 rounded text-white focus:outline-none focus:border-gray-500" />
         <textarea value={message} onChange={(e) => setMessage(e.target.value)}
-          placeholder={t('leaveMessage')} rows={3} required
+          placeholder="Leave a message..." rows={3} required
           className="w-full px-3 py-2 bg-gray-900 border-2 border-gray-700 rounded text-white focus:outline-none focus:border-gray-500" />
         <button type="submit" className="px-4 py-2 bg-gray-700 border-2 border-gray-500 hover:bg-gray-600 hover:border-gray-400 text-white rounded font-bold transition-all">
-          {t('post')}
+          Post
         </button>
       </form>
 
       {loading ? (
-        <p className="text-gray-400 text-center">{t('loading')}</p>
+        <p className="text-gray-400 text-center">Loading...</p>
       ) : entries.length === 0 ? (
-        <p className="text-gray-500 text-center">{t('noMessages')}</p>
+        <p className="text-gray-500 text-center">No messages yet. Be the first!</p>
       ) : (
         <div className="space-y-4">
           {entries.map(entry => (

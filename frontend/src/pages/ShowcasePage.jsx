@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../services/api';
-import { useLang } from '../context/LangContext';
 
 export default function ShowcasePage() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { t } = useLang();
 
   useEffect(() => {
     api.get('/public/projects')
@@ -15,7 +13,7 @@ export default function ShowcasePage() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="text-center text-gray-400 py-12">{t('loading')}</div>;
+  if (loading) return <div className="text-center text-gray-400 py-12">Loading...</div>;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

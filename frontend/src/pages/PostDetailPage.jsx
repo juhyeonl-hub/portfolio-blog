@@ -5,13 +5,11 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/github-dark.css';
 import { api } from '../services/api';
-import { useLang } from '../context/LangContext';
 
 export default function PostDetailPage() {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { t } = useLang();
 
   useEffect(() => {
     api.get(`/public/posts/${slug}`)
@@ -20,12 +18,12 @@ export default function PostDetailPage() {
       .finally(() => setLoading(false));
   }, [slug]);
 
-  if (loading) return <div className="px-6 py-20 text-gray-400">{t('loading')}</div>;
+  if (loading) return <div className="px-6 py-20 text-gray-400">Loading...</div>;
   if (!post) return <div className="px-6 py-20 text-red-400">Post not found</div>;
 
   return (
     <div className="px-6 py-12 max-w-3xl">
-      <Link to="/journal" className="text-sm text-gray-400 hover:text-white mb-6 inline-block">{t('backToJournal')}</Link>
+      <Link to="/journal" className="text-sm text-gray-400 hover:text-white mb-6 inline-block">&larr; Back to Journal</Link>
 
       <h1 className="text-3xl font-bold text-white mb-2">{post.title}</h1>
       <p className="text-sm text-gray-500 mb-4">
