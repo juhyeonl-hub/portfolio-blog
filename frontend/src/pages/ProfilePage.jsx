@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
+import characterImg from '../assets/my.png';
 
 export default function ProfilePage() {
   const [sections, setSections] = useState([]);
@@ -25,9 +26,7 @@ export default function ProfilePage() {
       {/* Profile header */}
       <div className="bg-gray-800 border-2 border-gray-600 rounded p-6 mb-6 flex flex-col md:flex-row items-center gap-6">
         {/* Photo */}
-        <div className="w-28 h-28 rounded-full bg-gray-700 border-4 border-gray-500 flex items-center justify-center shrink-0">
-          <span className="text-3xl">🧑‍💻</span>
-        </div>
+        <img src={characterImg} alt="JuHyeon" className="w-28 h-auto shrink-0" />
         {/* Info */}
         <div className="text-center md:text-left">
           <h2 className="text-2xl font-bold text-white mb-1">JuHyeon Lee</h2>

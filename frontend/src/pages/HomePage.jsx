@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import SocialIcons from '../components/SocialIcons';
 import usePageView from '../hooks/usePageView';
+import characterImg from '../assets/my.png';
 
 export default function HomePage() {
   usePageView();
@@ -8,10 +9,8 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center px-6">
       <div className="text-center max-w-lg">
-        {/* Character placeholder */}
-        <div className="w-32 h-32 mx-auto mb-8 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center">
-          <span className="text-4xl">🧑‍💻</span>
-        </div>
+        {/* Character */}
+        <img src={characterImg} alt="JuHyeon" className="w-40 h-auto mx-auto mb-8 drop-shadow-lg" />
 
         {/* Title - Minecraft style */}
         <h1 className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tight">
