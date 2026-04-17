@@ -21,7 +21,7 @@ export default function ProjectDetailPage() {
 
   return (
     <div className="px-6 py-12">
-      <Link to="/portfolio" className="text-sm text-gray-400 hover:text-white mb-6 inline-block">&larr; Back to Portfolio</Link>
+      <Link to="/showcase" className="text-sm text-gray-400 hover:text-white mb-6 inline-block">&larr; Back to Showcase</Link>
 
       <h1 className="text-3xl font-bold text-white mb-4">{project.title}</h1>
 
