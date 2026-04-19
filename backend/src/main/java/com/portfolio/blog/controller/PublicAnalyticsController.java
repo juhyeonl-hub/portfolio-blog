@@ -36,24 +36,12 @@ public class PublicAnalyticsController {
 
         PageView pv = new PageView();
         pv.setPagePath(truncate(path, 500));
-        pv.setIpAddress(truncate(resolveClientIp(request), 45));
         pv.setUserAgent(truncate(request.getHeader("User-Agent"), 500));
         pv.setReferer(truncate(request.getHeader("Referer"), 500));
         pv.setSessionId(truncate(body.get("sessionId"), 64));
         pageViewRepository.save(pv);
 
         return ResponseEntity.ok().build();
-    }
-
-    private String resolveClientIp(HttpServletRequest request) {
-        String xff = request.getHeader("X-Forwarded-For");
-        if (xff != null && !xff.isBlank()) {
-            int comma = xff.indexOf(',');
-            return (comma > 0 ? xff.substring(0, comma) : xff).trim();
-        }
-        String real = request.getHeader("X-Real-IP");
-        if (real != null && !real.isBlank()) return real.trim();
-        return request.getRemoteAddr();
     }
 
     private String truncate(String s, int max) {

@@ -67,9 +67,6 @@ export default function AdminDashboard() {
                   <span>{s.firstSeen} → {s.lastSeen}</span>
                   <span>{s.pageCount} page{s.pageCount > 1 ? 's' : ''}</span>
                 </div>
-                <div className="text-gray-300 text-xs mb-1">
-                  <span className="text-gray-500">IP:</span> {s.ipAddress || '—'}
-                </div>
                 {s.referer && (
                   <div className="text-gray-300 text-xs mb-1 break-all">
                     <span className="text-gray-500">From:</span> {s.referer}

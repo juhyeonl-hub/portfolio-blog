@@ -51,7 +51,7 @@ public class AdminAnalyticsController {
         for (PageView pv : views) {
             String key = pv.getSessionId();
             if (key == null || key.isBlank()) {
-                key = "anon-" + (pv.getIpAddress() == null ? "unknown" : pv.getIpAddress()) + "-" + (fallbackCounter++);
+                key = "anon-" + (fallbackCounter++);
             }
             grouped.computeIfAbsent(key, k -> new ArrayList<>()).add(pv);
         }
@@ -66,7 +66,6 @@ public class AdminAnalyticsController {
             s.put("firstSeen", first.getViewedAt().format(TIME_FMT));
             s.put("lastSeen", last.getViewedAt().format(TIME_FMT));
             s.put("pageCount", list.size());
-            s.put("ipAddress", first.getIpAddress());
             s.put("userAgent", first.getUserAgent());
             s.put("referer", first.getReferer());
             s.put("paths", list.stream().map(PageView::getPagePath).collect(Collectors.toList()));
