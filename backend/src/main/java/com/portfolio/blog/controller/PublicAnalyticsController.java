@@ -2,6 +2,7 @@ package com.portfolio.blog.controller;
 
 import com.portfolio.blog.model.PageView;
 import com.portfolio.blog.repository.PageViewRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,13 +27,37 @@ public class PublicAnalyticsController {
     }
 
     @PostMapping("/pageview")
-    public ResponseEntity<Void> trackPageView(@RequestBody Map<String, String> body) {
+    public ResponseEntity<Void> trackPageView(@RequestBody Map<String, String> body,
+                                              HttpServletRequest request) {
         String path = body.get("path");
-        if (path != null && !path.isBlank()) {
-            PageView pv = new PageView();
-            pv.setPagePath(path);
-            pageViewRepository.save(pv);
+        if (path == null || path.isBlank()) {
+            return ResponseEntity.ok().build();
         }
+
+        PageView pv = new PageView();
+        pv.setPagePath(truncate(path, 500));
+        pv.setIpAddress(truncate(resolveClientIp(request), 45));
+        pv.setUserAgent(truncate(request.getHeader("User-Agent"), 500));
+        pv.setReferer(truncate(request.getHeader("Referer"), 500));
+        pv.setSessionId(truncate(body.get("sessionId"), 64));
+        pageViewRepository.save(pv);
+
         return ResponseEntity.ok().build();
+    }
+
+    private String resolveClientIp(HttpServletRequest request) {
+        String xff = request.getHeader("X-Forwarded-For");
+        if (xff != null && !xff.isBlank()) {
+            int comma = xff.indexOf(',');
+            return (comma > 0 ? xff.substring(0, comma) : xff).trim();
+        }
+        String real = request.getHeader("X-Real-IP");
+        if (real != null && !real.isBlank()) return real.trim();
+        return request.getRemoteAddr();
+    }
+
+    private String truncate(String s, int max) {
+        if (s == null) return null;
+        return s.length() > max ? s.substring(0, max) : s;
     }
 }

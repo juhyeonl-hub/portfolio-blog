@@ -15,4 +15,7 @@ public interface PageViewRepository extends JpaRepository<PageView, Long> {
 
     @Query("SELECT COUNT(pv) FROM PageView pv WHERE pv.viewedAt >= CURRENT_DATE")
     long countToday();
+
+    @Query("SELECT pv FROM PageView pv WHERE pv.viewedAt >= CURRENT_DATE ORDER BY pv.viewedAt ASC")
+    List<PageView> findTodayViews();
 }
