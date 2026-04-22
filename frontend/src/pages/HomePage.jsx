@@ -47,7 +47,7 @@ export default function HomePage() {
           <div className="flex gap-5">
             <SocialLink href="https://github.com/juhyeonl-hub" label="GitHub" />
             <SocialLink href="https://linkedin.com/in/juhyeon-lee-54aa1a223" label="LinkedIn" />
-            <EmailLink address="xx.juon@gmail.com" />
+            <SocialLink href="https://mail.google.com/mail/?view=cm&fs=1&to=xx.juon@gmail.com" label="Email" />
           </div>
         </section>
 
@@ -176,35 +176,6 @@ function SocialLink({ href, label }) {
       className="text-[13px] no-underline transition-colors hover:opacity-70"
       style={{ color: 'var(--text-secondary)' }}>
       {label}
-    </a>
-  );
-}
-
-function EmailLink({ address }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleClick = async (e) => {
-    e.preventDefault();
-    try {
-      await navigator.clipboard.writeText(address);
-    } catch {
-      const ta = document.createElement('textarea');
-      ta.value = address;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-    }
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1800);
-  };
-
-  return (
-    <a href={`mailto:${address}`} onClick={handleClick}
-      className="text-[13px] no-underline transition-colors hover:opacity-70"
-      style={{ color: 'var(--text-secondary)' }}
-      title={copied ? 'Copied!' : address}>
-      {copied ? `Copied · ${address}` : 'Email'}
     </a>
   );
 }
