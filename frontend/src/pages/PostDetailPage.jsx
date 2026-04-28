@@ -38,12 +38,7 @@ export default function PostDetailPage() {
         </div>
       )}
 
-      <article className="prose prose-invert prose-sm max-w-none
-        prose-headings:text-white prose-p:text-gray-300 prose-a:text-blue-400
-        prose-code:text-gray-200 prose-code:bg-gray-800 prose-code:px-1 prose-code:rounded
-        prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-800
-        prose-strong:text-white prose-li:text-gray-300
-        prose-blockquote:border-gray-700 prose-blockquote:text-gray-400">
+      <article className="journal-article">
         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
           {post.content}
         </ReactMarkdown>
