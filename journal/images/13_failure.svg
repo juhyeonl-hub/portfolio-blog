@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" font-family="'IBM Plex Mono', 'Menlo', 'Monaco', monospace">
+  <defs>
+    <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a3c6e"/>
+    </marker>
+    <marker id="arr2red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a04545"/>
+    </marker>
+    <marker id="arr2green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3d7a4f"/>
+    </marker>
+    <pattern id="dotgrid2" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.8" fill="#e6e9ef"/>
+    </pattern>
+  </defs>
+
+  <rect width="900" height="720" fill="#fafbfc"/>
+  <rect width="900" height="720" fill="url(#dotgrid2)"/>
+
+  <text x="40" y="48" font-size="22" font-weight="700" fill="#1a3c6e" letter-spacing="0.5">
+    Failure Handling — Classify Before You Fix
+  </text>
+  <text x="40" y="70" font-size="13" fill="#6b7689" letter-spacing="0.3">
+    What stops the agent from spiraling. Every failure goes through this gate first.
+  </text>
+  <line x1="40" y1="86" x2="860" y2="86" stroke="#1a3c6e" stroke-width="1"/>
+
+  <rect x="350" y="115" width="200" height="50" fill="#a04545" stroke="#a04545" stroke-width="1.5" rx="2"/>
+  <text x="450" y="138" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">FAILURE OCCURS</text>
+  <text x="450" y="154" font-size="10" fill="#f0d6d6" text-anchor="middle">build error, runtime error, test fail</text>
+
+  <line x1="450" y1="165" x2="450" y2="195" stroke="#1a3c6e" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+  <rect x="320" y="195" width="260" height="50" fill="#ffffff" stroke="#1a3c6e" stroke-width="1.5" rx="2"/>
+  <text x="450" y="218" font-size="11" font-weight="700" fill="#1a3c6e" text-anchor="middle">STEP 1 — Re-read PROJECT_BRIEF.md</text>
+  <text x="450" y="234" font-size="10" fill="#4a5568" text-anchor="middle">does this task still align with the goal?</text>
+
+  <line x1="450" y1="245" x2="450" y2="275" stroke="#1a3c6e" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+  <rect x="280" y="275" width="340" height="50" fill="#ffffff" stroke="#1a3c6e" stroke-width="1.5" rx="2"/>
+  <text x="450" y="298" font-size="11" font-weight="700" fill="#1a3c6e" text-anchor="middle">STEP 2 — Look for external signals</text>
+  <text x="450" y="314" font-size="10" fill="#4a5568" text-anchor="middle">network, server, env, deps, model limits, tooling</text>
+
+  <line x1="450" y1="325" x2="450" y2="350" stroke="#1a3c6e" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+  <polygon points="450,355 580,415 450,475 320,415" fill="#ffffff" stroke="#1a3c6e" stroke-width="1.5"/>
+  <text x="450" y="408" font-size="11" font-weight="700" fill="#1a3c6e" text-anchor="middle">external</text>
+  <text x="450" y="424" font-size="11" font-weight="700" fill="#1a3c6e" text-anchor="middle">signal?</text>
+
+  <text x="280" y="410" font-size="10" font-weight="700" fill="#3d7a4f">yes</text>
+  <line x1="320" y1="415" x2="240" y2="415" stroke="#3d7a4f" stroke-width="1.5"/>
+  <line x1="240" y1="415" x2="240" y2="490" stroke="#3d7a4f" stroke-width="1.5" marker-end="url(#arr2green)"/>
+
+  <rect x="100" y="490" width="280" height="60" fill="#ffffff" stroke="#3d7a4f" stroke-width="1.5" rx="2"/>
+  <text x="240" y="513" font-size="11" font-weight="700" fill="#3d7a4f" text-anchor="middle">RETRY ONCE</text>
+  <text x="240" y="529" font-size="10" fill="#4a5568" text-anchor="middle">do not modify code</text>
+  <text x="240" y="543" font-size="10" fill="#4a5568" text-anchor="middle">just run it again</text>
+
+  <line x1="240" y1="550" x2="240" y2="580" stroke="#3d7a4f" stroke-width="1.5"/>
+  <line x1="140" y1="580" x2="340" y2="580" stroke="#3d7a4f" stroke-width="1.5"/>
+  <line x1="140" y1="580" x2="140" y2="610" stroke="#3d7a4f" stroke-width="1.5" marker-end="url(#arr2green)"/>
+  <line x1="340" y1="580" x2="340" y2="610" stroke="#3d7a4f" stroke-width="1.5" marker-end="url(#arr2green)"/>
+
+  <rect x="40" y="610" width="200" height="60" fill="#3d7a4f" stroke="#3d7a4f" stroke-width="1.5" rx="2"/>
+  <text x="140" y="633" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">RESOLVED</text>
+  <text x="140" y="649" font-size="10" fill="#d4e8d8" text-anchor="middle">transient external,</text>
+  <text x="140" y="663" font-size="10" fill="#d4e8d8" text-anchor="middle">log it &amp; continue</text>
+
+  <rect x="240" y="610" width="200" height="60" fill="#ffffff" stroke="#3d7a4f" stroke-width="1.5" rx="2"/>
+  <text x="340" y="633" font-size="11" font-weight="700" fill="#3d7a4f" text-anchor="middle">STILL FAILING</text>
+  <text x="340" y="649" font-size="10" fill="#4a5568" text-anchor="middle">report to user with</text>
+  <text x="340" y="663" font-size="10" fill="#4a5568" text-anchor="middle">current state, wait</text>
+
+  <text x="600" y="410" font-size="10" font-weight="700" fill="#a04545">no</text>
+  <line x1="580" y1="415" x2="660" y2="415" stroke="#a04545" stroke-width="1.5"/>
+  <line x1="660" y1="415" x2="660" y2="490" stroke="#a04545" stroke-width="1.5" marker-end="url(#arr2red)"/>
+
+  <rect x="520" y="490" width="280" height="60" fill="#ffffff" stroke="#a04545" stroke-width="1.5" rx="2"/>
+  <text x="660" y="513" font-size="11" font-weight="700" fill="#a04545" text-anchor="middle">STATE THE CAUSE</text>
+  <text x="660" y="529" font-size="10" fill="#4a5568" text-anchor="middle">one line: "[Failure Cause]: ..."</text>
+  <text x="660" y="543" font-size="10" fill="#4a5568" text-anchor="middle">no diagnosis, no fix yet</text>
+
+  <line x1="660" y1="550" x2="660" y2="610" stroke="#a04545" stroke-width="1.5" marker-end="url(#arr2red)"/>
+
+  <rect x="520" y="610" width="280" height="60" fill="#a04545" stroke="#a04545" stroke-width="1.5" rx="2"/>
+  <text x="660" y="633" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">FIX WITH NEW APPROACH</text>
+  <text x="660" y="649" font-size="10" fill="#f0d6d6" text-anchor="middle">never the same method twice</text>
+  <text x="660" y="663" font-size="10" fill="#f0d6d6" text-anchor="middle">if it failed, the diagnosis is wrong</text>
+
+  <rect x="40" y="115" width="240" height="80" fill="#fafbfc" stroke="#8a9ab0" stroke-width="1" stroke-dasharray="3,3" rx="2"/>
+  <text x="56" y="135" font-size="10" font-weight="700" fill="#8a9ab0" letter-spacing="1">WHY THIS MATTERS</text>
+  <text x="56" y="155" font-size="10" fill="#4a5568">An agent that immediately</text>
+  <text x="56" y="168" font-size="10" fill="#4a5568">tries to fix every failure</text>
+  <text x="56" y="181" font-size="10" fill="#4a5568">spirals. Classification first</text>
+  <text x="56" y="194" font-size="10" fill="#4a5568">stops the spiral.</text>
+
+  <rect x="620" y="115" width="240" height="80" fill="#fafbfc" stroke="#8a9ab0" stroke-width="1" stroke-dasharray="3,3" rx="2"/>
+  <text x="636" y="135" font-size="10" font-weight="700" fill="#8a9ab0" letter-spacing="1">THE RULE</text>
+  <text x="636" y="155" font-size="10" fill="#4a5568">Same fix method twice =</text>
+  <text x="636" y="168" font-size="10" fill="#4a5568">the diagnosis was wrong.</text>
+  <text x="636" y="181" font-size="10" fill="#4a5568">Stop. Re-classify. Or</text>
+  <text x="636" y="194" font-size="10" fill="#4a5568">escalate to the human.</text>
+
+  <text x="450" y="700" font-size="10" fill="#8a9ab0" text-anchor="middle" font-style="italic">
+    The agent never hides a failure or works around it. That rule is non-negotiable.
+  </text>
+</svg>
