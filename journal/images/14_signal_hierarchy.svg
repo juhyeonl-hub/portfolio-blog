@@ -1,0 +1,36 @@
+<svg width="100%" viewBox="0 0 680 460" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>The four signals an LLM uses to understand a tool</title>
+<desc>A vertical hierarchy of four tiers — function name, type hint, docstring, and system prompt — ordered from strongest to most contextual. The function name carries the heaviest visual weight; lower tiers reinforce it like defense in depth.</desc>
+
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<text x="40" y="36" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#5F5E5A">What the LLM sees about a tool, ranked</text>
+
+<rect x="40" y="60" width="600" height="76" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="60" y="84" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#04342C">Function name</text>
+<text x="60" y="102" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#0F6E56">Answers: what is this?</text>
+<text x="60" y="124" dominant-baseline="central" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#04342C">fetch_url</text>
+
+<rect x="40" y="156" width="600" height="64" rx="8" fill="#E1F5EE" fill-opacity="0.55" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="60" y="178" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#04342C">Type hint</text>
+<text x="60" y="196" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#0F6E56">Answers: what argument does it take?</text>
+<text x="380" y="187" dominant-baseline="central" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#04342C">url: str</text>
+
+<rect x="40" y="240" width="600" height="64" rx="8" fill="#E1F5EE" fill-opacity="0.3" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="60" y="262" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#04342C">Docstring</text>
+<text x="60" y="280" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#0F6E56">Answers: when not to use it</text>
+<text x="380" y="271" dominant-baseline="central" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#04342C">"Do NOT call on every URL"</text>
+
+<rect x="40" y="324" width="600" height="64" rx="8" fill="#E1F5EE" fill-opacity="0.15" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="60" y="346" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#04342C">System prompt</text>
+<text x="60" y="364" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#0F6E56">Answers: how tools coordinate</text>
+<text x="380" y="355" dominant-baseline="central" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#04342C">"search → fetch → answer"</text>
+
+<text x="40" y="420" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#5F5E5A">Strongest signal at top. Lower tiers reinforce — defense in depth.</text>
+<text x="538" y="420" text-anchor="end" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#5F5E5A">more contextual</text>
+<line x1="540" y1="412" x2="640" y2="412" stroke="#0F6E56" stroke-width="0.5" marker-end="url(#arrow)"/>
+</svg>
