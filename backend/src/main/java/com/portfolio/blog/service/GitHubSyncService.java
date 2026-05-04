@@ -40,7 +40,12 @@ public class GitHubSyncService {
             filesToProcess.addAll(added);
             filesToProcess.addAll(modified);
 
-            for (String file : filesToProcess) {
+            // English files first so .ko.md never tries to create a post
+            // before its base row exists (title is NOT NULL).
+            List<String> ordered = new ArrayList<>(filesToProcess);
+            ordered.sort(Comparator.comparing(GitHubSyncService::isKoreanFile));
+
+            for (String file : ordered) {
                 if (file.startsWith("journal/") && file.endsWith(".md")) {
                     processMarkdownFile(repoFullName, file);
                 }
@@ -48,8 +53,18 @@ public class GitHubSyncService {
 
             List<String> removed = (List<String>) commit.getOrDefault("removed", List.of());
             for (String file : removed) {
-                if (file.startsWith("journal/") && file.endsWith(".md")) {
-                    String slug = fileToSlug(file);
+                if (!file.startsWith("journal/") || !file.endsWith(".md")) continue;
+                String slug = baseSlug(file);
+                if (isKoreanFile(file)) {
+                    // .ko.md removed: clear Korean fields, keep the post.
+                    postRepository.findBySlug(slug).ifPresent(p -> {
+                        p.setTitleKo(null);
+                        p.setContentKo(null);
+                        p.setExcerptKo(null);
+                        postRepository.save(p);
+                    });
+                } else {
+                    // .en.md (or plain .md) removed: drop the post entirely.
                     postRepository.findBySlug(slug).ifPresent(postRepository::delete);
                 }
             }
@@ -68,23 +83,50 @@ public class GitHubSyncService {
         if (content == null || content.isBlank()) return;
 
         ParsedPost parsed = parseMarkdown(content, filePath);
-        String slug = fileToSlug(filePath);
+        String slug = baseSlug(filePath);
+        boolean isKorean = isKoreanFile(filePath);
 
         Optional<Post> existing = postRepository.findBySlug(slug);
         Post post;
         if (existing.isPresent()) {
             post = existing.get();
+        } else if (isKorean) {
+            // Korean file arriving without an English base: skip rather than
+            // violate the title NOT NULL constraint. The English file in the
+            // same push will create the post; rerunning the webhook syncs Korean.
+            return;
         } else {
             post = new Post();
             post.setSlug(slug);
+            post.setPublished(true);
         }
 
-        post.setTitle(parsed.title);
-        post.setContent(parsed.content);
-        post.setExcerpt(parsed.excerpt);
-        post.setPublished(true);
-        post.setTags(resolveTags(parsed.tags));
+        if (isKorean) {
+            post.setTitleKo(parsed.title);
+            post.setContentKo(parsed.content);
+            post.setExcerptKo(parsed.excerpt);
+        } else {
+            post.setTitle(parsed.title);
+            post.setContent(parsed.content);
+            post.setExcerpt(parsed.excerpt);
+            post.setTags(resolveTags(parsed.tags));
+        }
         postRepository.save(post);
+    }
+
+    private static boolean isKoreanFile(String filePath) {
+        return filePath.endsWith(".ko.md");
+    }
+
+    private String baseSlug(String filePath) {
+        String name = filePath.substring(filePath.lastIndexOf('/') + 1);
+        // Strip language suffix (.en.md / .ko.md) before falling back to plain .md.
+        name = name.replaceAll("\\.(en|ko)\\.md$", "");
+        name = name.replaceAll("\\.md$", "");
+        return name.toLowerCase()
+                .replaceAll("[^a-z0-9\\-]", "-")
+                .replaceAll("-+", "-")
+                .replaceAll("^-|-$", "");
     }
 
     private ParsedPost parseMarkdown(String raw, String filePath) {
@@ -138,17 +180,8 @@ public class GitHubSyncService {
         return result;
     }
 
-    private String fileToSlug(String filePath) {
-        // journal/my-first-post.md -> my-first-post
-        String name = filePath.substring(filePath.lastIndexOf('/') + 1);
-        return name.replace(".md", "").toLowerCase()
-                .replaceAll("[^a-z0-9\\-]", "-")
-                .replaceAll("-+", "-")
-                .replaceAll("^-|-$", "");
-    }
-
     private String fileToTitle(String filePath) {
-        String slug = fileToSlug(filePath);
+        String slug = baseSlug(filePath);
         return Arrays.stream(slug.split("-"))
                 .map(w -> w.substring(0, 1).toUpperCase() + w.substring(1))
                 .reduce((a, b) -> a + " " + b)
