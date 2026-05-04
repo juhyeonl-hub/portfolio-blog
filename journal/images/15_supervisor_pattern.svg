@@ -1,0 +1,49 @@
+<svg width="100%" viewBox="0 0 680 460" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Supervisor pattern with two routing mechanisms</title>
+<desc>Shared supervisor architecture in the center, with two contrasting routing approaches shown on either side: tool call on the left, text classification on the right.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<mask id="imagine-text-gaps" maskUnits="userSpaceOnUse"><rect x="0" y="0" width="680" height="460" fill="white"/><rect x="272.2890625" y="16" width="134.94189453125" height="22" fill="black" rx="2"/><rect x="202.1796875" y="36" width="275.47552490234375" height="19" fill="black" rx="2"/><rect x="298.8359375" y="91" width="82.5699462890625" height="22" fill="black" rx="2"/><rect x="107.6328125" y="187" width="85.97296142578125" height="22" fill="black" rx="2"/><rect x="97.3515625" y="206.5" width="105.12188720703125" height="19" fill="black" rx="2"/><rect x="309.5234375" y="187" width="60.9609375" height="22" fill="black" rx="2"/><rect x="277.6640625" y="206.5" width="125.5018310546875" height="19" fill="black" rx="2"/><rect x="503.609375" y="187" width="53.0159912109375" height="22" fill="black" rx="2"/><rect x="493.234375" y="206.5" width="74.4979248046875" height="19" fill="black" rx="2"/><rect x="209.8359375" y="271" width="260.487548828125" height="19" fill="black" rx="2"/><rect x="97.3203125" y="329" width="144.72586059570312" height="22" fill="black" rx="2"/><rect x="131.40625" y="372.5" width="78.34190368652344" height="19" fill="black" rx="2"/><rect x="94.5234375" y="392.5" width="150.09780883789062" height="19" fill="black" rx="2"/><rect x="75.390625" y="412.5" width="190.36575317382812" height="19" fill="black" rx="2"/><rect x="404.265625" y="329" width="210.98974609375" height="22" fill="black" rx="2"/><rect x="471.40625" y="372.5" width="78.3419189453125" height="19" fill="black" rx="2"/><rect x="469.53125" y="392.5" width="80.04193115234375" height="19" fill="black" rx="2"/><rect x="416.984375" y="412.5" width="185.86572265625" height="19" fill="black" rx="2"/></mask></defs>
+
+<text x="340" y="32" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#FAF9F5">Supervisor pattern</text>
+<text x="340" y="50" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#C2C0B6">Three specialists, one router, two routing styles</text>
+
+<rect x="270" y="80" width="140" height="44" rx="8" fill="#444441" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="340" y="102" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#D3D1C7">Supervisor</text>
+
+<rect x="80" y="180" width="140" height="56" rx="8" fill="#3C3489" stroke="#AFA9EC" stroke-width="0.5"/>
+<text x="150" y="198" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#CECBF6">Researcher</text>
+<text x="150" y="216" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#AFA9EC">Search and fetch</text>
+
+<rect x="270" y="180" width="140" height="56" rx="8" fill="#085041" stroke="#5DCAA5" stroke-width="0.5"/>
+<text x="340" y="198" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#9FE1CB">Analyst</text>
+<text x="340" y="216" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#5DCAA5">Patterns and themes</text>
+
+<rect x="460" y="180" width="140" height="56" rx="8" fill="#712B13" stroke="#F0997B" stroke-width="0.5"/>
+<text x="530" y="198" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#F5C4B3">Writer</text>
+<text x="530" y="216" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#F0997B">Final report</text>
+
+<line x1="290" y1="124" x2="170" y2="178" stroke="#9C9A92" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="340" y1="124" x2="340" y2="178" stroke="#9C9A92" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="390" y1="124" x2="510" y2="178" stroke="#9C9A92" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<path d="M150 236 Q 150 290, 270 110" fill="none" stroke="#9C9A92" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)" mask="url(#imagine-text-gaps)"/>
+<path d="M340 236 Q 340 290, 360 124" fill="none" stroke="#9C9A92" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)" mask="url(#imagine-text-gaps)"/>
+<path d="M530 236 Q 530 290, 410 110" fill="none" stroke="#9C9A92" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)" mask="url(#imagine-text-gaps)"/>
+
+<text x="340" y="285" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#C2C0B6">Solid: dispatch.  Dashed: return to supervisor.</text>
+
+<line x1="40" y1="320" x2="640" y2="320" stroke="rgba(222, 220, 209, 0.15)" stroke-width="0.5"/>
+
+<text x="170" y="345" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#FAF9F5">Version A — tool call</text>
+<rect x="60" y="360" width="220" height="80" rx="8" fill="#0C447C" stroke="#85B7EB" stroke-width="0.5"/>
+<text x="170" y="382" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#85B7EB">LLM output:</text>
+<text x="170" y="402" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#85B7EB">transfer_to_researcher()</text>
+<text x="170" y="422" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#85B7EB">LangGraph routes automatically</text>
+
+<text x="510" y="345" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#FAF9F5">Version B — text classification</text>
+<rect x="400" y="360" width="220" height="80" rx="8" fill="#633806" stroke="#EF9F27" stroke-width="0.5"/>
+<text x="510" y="382" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#EF9F27">LLM output:</text>
+<text x="510" y="402" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#EF9F27">"researcher"</text>
+<text x="510" y="422" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#EF9F27">Our function parses and routes</text>
+</svg>
