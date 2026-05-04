@@ -25,6 +25,15 @@ public class Post {
     @Column(length = 500)
     private String excerpt;
 
+    @Column(name = "title_ko", length = 300)
+    private String titleKo;
+
+    @Column(name = "content_ko", columnDefinition = "TEXT")
+    private String contentKo;
+
+    @Column(name = "excerpt_ko", length = 500)
+    private String excerptKo;
+
     @Column
     private boolean published = false;
 
@@ -52,6 +61,12 @@ public class Post {
     public void setContent(String content) { this.content = content; }
     public String getExcerpt() { return excerpt; }
     public void setExcerpt(String excerpt) { this.excerpt = excerpt; }
+    public String getTitleKo() { return titleKo; }
+    public void setTitleKo(String titleKo) { this.titleKo = titleKo; }
+    public String getContentKo() { return contentKo; }
+    public void setContentKo(String contentKo) { this.contentKo = contentKo; }
+    public String getExcerptKo() { return excerptKo; }
+    public void setExcerptKo(String excerptKo) { this.excerptKo = excerptKo; }
     public boolean isPublished() { return published; }
     public void setPublished(boolean published) { this.published = published; }
     public LocalDateTime getCreatedAt() { return createdAt; }

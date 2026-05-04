@@ -57,6 +57,9 @@ public class PostService {
         post.setSlug(generateSlug(request.getTitle()));
         post.setContent(request.getContent());
         post.setExcerpt(request.getExcerpt());
+        post.setTitleKo(request.getTitleKo());
+        post.setContentKo(request.getContentKo());
+        post.setExcerptKo(request.getExcerptKo());
         post.setPublished(request.isPublished());
         post.setTags(resolveTags(request.getTags()));
         return postRepository.save(post);
@@ -69,6 +72,9 @@ public class PostService {
         post.setTitle(request.getTitle());
         post.setContent(request.getContent());
         post.setExcerpt(request.getExcerpt());
+        post.setTitleKo(request.getTitleKo());
+        post.setContentKo(request.getContentKo());
+        post.setExcerptKo(request.getExcerptKo());
         post.setPublished(request.isPublished());
         post.setTags(resolveTags(request.getTags()));
         return postRepository.save(post);

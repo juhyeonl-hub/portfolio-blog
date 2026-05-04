@@ -12,6 +12,9 @@ public class PostRequest {
     private String content;
 
     private String excerpt;
+    private String titleKo;
+    private String contentKo;
+    private String excerptKo;
     private boolean published = false;
     private List<String> tags;
 
@@ -21,6 +24,12 @@ public class PostRequest {
     public void setContent(String content) { this.content = content; }
     public String getExcerpt() { return excerpt; }
     public void setExcerpt(String excerpt) { this.excerpt = excerpt; }
+    public String getTitleKo() { return titleKo; }
+    public void setTitleKo(String titleKo) { this.titleKo = titleKo; }
+    public String getContentKo() { return contentKo; }
+    public void setContentKo(String contentKo) { this.contentKo = contentKo; }
+    public String getExcerptKo() { return excerptKo; }
+    public void setExcerptKo(String excerptKo) { this.excerptKo = excerptKo; }
     public boolean isPublished() { return published; }
     public void setPublished(boolean published) { this.published = published; }
     public List<String> getTags() { return tags; }
