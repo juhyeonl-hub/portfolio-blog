@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -11,6 +11,7 @@ import { api } from '../services/api';
 export default function BlogPostPage() {
   usePageView();
   const { slug } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -21,17 +22,67 @@ export default function BlogPostPage() {
   if (loading) return <div style={{ background: 'var(--bg)', minHeight: '100vh' }}><Nav /></div>;
   if (!post) return <div style={{ background: 'var(--bg)', minHeight: '100vh' }}><Nav /><div className="max-w-[720px] mx-auto px-10 pt-12" style={{ color: 'var(--text-secondary)' }}>Post not found.</div></div>;
 
+  const hasKorean = Boolean(post.titleKo && post.contentKo);
+  const requestedLang = searchParams.get('lang') === 'ko' ? 'ko' : 'en';
+  const lang = requestedLang === 'ko' && hasKorean ? 'ko' : 'en';
+  const title = lang === 'ko' ? post.titleKo : post.title;
+  const content = lang === 'ko' ? post.contentKo : post.content;
+  const dateLocale = lang === 'ko' ? 'ko-KR' : 'en-US';
+
+  const setLang = (next) => {
+    const params = new URLSearchParams(searchParams);
+    if (next === 'en') {
+      params.delete('lang');
+    } else {
+      params.set('lang', 'ko');
+    }
+    setSearchParams(params, { replace: true });
+  };
+
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Nav />
       <div className="max-w-[720px] mx-auto px-10 pt-12 pb-20">
-        <Link to="/blog" className="text-[13px] no-underline mb-8 inline-block" style={{ color: 'var(--text-tertiary)' }}>← Back</Link>
+        <div className="flex justify-between items-center mb-8">
+          <Link to="/blog" className="text-[13px] no-underline" style={{ color: 'var(--text-tertiary)' }}>← Back</Link>
+          {hasKorean && (
+            <div className="font-mono text-[12px] select-none" aria-label="Language">
+              <button
+                type="button"
+                onClick={() => setLang('en')}
+                className="hover:opacity-100 transition-opacity"
+                style={{
+                  color: lang === 'en' ? 'var(--text-primary)' : 'var(--text-tertiary)',
+                  fontWeight: lang === 'en' ? 600 : 400,
+                  background: 'transparent',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                }}
+              >EN</button>
+              <span className="mx-2" style={{ color: 'var(--text-tertiary)' }}>|</span>
+              <button
+                type="button"
+                onClick={() => setLang('ko')}
+                className="hover:opacity-100 transition-opacity"
+                style={{
+                  color: lang === 'ko' ? 'var(--text-primary)' : 'var(--text-tertiary)',
+                  fontWeight: lang === 'ko' ? 600 : 400,
+                  background: 'transparent',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                }}
+              >KR</button>
+            </div>
+          )}
+        </div>
 
-        <h1 className="text-[32px] font-semibold tracking-[-1px] mb-2" style={{ color: 'var(--text-primary)' }}>{post.title}</h1>
+        <h1 className="text-[32px] font-semibold tracking-[-1px] mb-2" style={{ color: 'var(--text-primary)' }}>{title}</h1>
 
         <div className="flex items-center gap-3 mb-8">
           <span className="font-mono text-[11px]" style={{ color: 'var(--text-tertiary)' }}>
-            {new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            {new Date(post.createdAt).toLocaleDateString(dateLocale, { year: 'numeric', month: 'long', day: 'numeric' })}
           </span>
           {post.tags && post.tags.map(t => (
             <span key={t.id} className="font-mono text-[11px] px-2 py-0.5 rounded" style={{ background: 'var(--accent-bg)', color: 'var(--accent)' }}>{t.name}</span>
@@ -54,7 +105,7 @@ export default function BlogPostPage() {
           [&_pre]:rounded-lg [&_pre]:text-[13px] [&_pre]:my-6"
           style={{ '--tw-prose-body': 'var(--text-secondary)', '--tw-prose-headings': 'var(--text-primary)', '--tw-prose-code': 'var(--text-primary)', '--tw-prose-pre-bg': 'var(--bg-card)' }}>
           <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
-            {post.content}
+            {content}
           </ReactMarkdown>
         </article>
       </div>
