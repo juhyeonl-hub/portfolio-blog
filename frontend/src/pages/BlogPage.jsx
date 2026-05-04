@@ -5,7 +5,7 @@ import SectionLabel from '../components/SectionLabel';
 import usePageView from '../hooks/usePageView';
 import { api } from '../services/api';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 12;
 
 export default function BlogPage() {
   usePageView();
@@ -55,26 +55,43 @@ export default function BlogPage() {
         <SectionLabel>Journal</SectionLabel>
 
         <form onSubmit={submitSearch} className="mb-6 relative">
+          <svg
+            className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+            width="15" height="15" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            style={{ color: 'var(--text-tertiary)' }} aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
           <input
             type="text"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             placeholder="Search journal..."
-            className="w-full font-mono text-[13px] py-2 pr-8 bg-transparent outline-none"
+            className="w-full text-[14px] py-2.5 pl-10 pr-10 rounded-md outline-none transition-colors focus:border-[color:var(--accent)]"
             style={{
-              borderBottom: '0.5px solid var(--border)',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border)',
               color: 'var(--text-primary)',
             }}
             aria-label="Search journal"
           />
-          {search && (
+          {searchInput && (
             <button
               type="button"
               onClick={clearSearch}
-              className="absolute right-0 top-1/2 -translate-y-1/2 font-mono text-[11px] cursor-pointer"
-              style={{ color: 'var(--text-tertiary)', background: 'none', border: 'none' }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full cursor-pointer transition-opacity hover:opacity-100"
+              style={{
+                color: 'var(--text-tertiary)',
+                background: 'transparent',
+                border: 'none',
+                opacity: 0.7,
+                fontSize: '16px',
+                lineHeight: 1,
+              }}
               aria-label="Clear search"
-            >clear</button>
+            >×</button>
           )}
         </form>
 
