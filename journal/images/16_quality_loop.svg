@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Quality loop in a LangGraph supervisor system</title>
+  <desc id="desc">A supervisor routes work through researcher, analyst, writer, and reviewer. Passing review ends the graph. Failing review loops back to research.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#385469"/>
+    </marker>
+    <style>
+      .bg { fill: #f7f3ec; }
+      .box { fill: #ffffff; stroke: #263744; stroke-width: 2; rx: 10; }
+      .gate { fill: #fff7df; stroke: #a66b1f; stroke-width: 2; rx: 10; }
+      .end { fill: #e7f2ec; stroke: #2d6a4f; stroke-width: 2; rx: 10; }
+      .title { font: 700 24px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2933; }
+      .label { font: 700 19px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2933; }
+      .small { font: 500 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #4b5b68; }
+      .edge { fill: none; stroke: #385469; stroke-width: 3; marker-end: url(#arrow); }
+      .edge-fail { fill: none; stroke: #a84b3f; stroke-width: 3; marker-end: url(#arrow); stroke-dasharray: 8 8; }
+      .edge-pass { fill: none; stroke: #2d6a4f; stroke-width: 3; marker-end: url(#arrow); }
+      .pill { fill: #edf2f7; stroke: #c4ccd4; stroke-width: 1.5; rx: 14; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1120" height="520"/>
+  <text class="title" x="56" y="58">Part 5: adding a quality loop</text>
+  <text class="small" x="56" y="86">The graph, not the supervisor's mood, enforces the review gate.</text>
+
+  <rect class="box" x="74" y="185" width="170" height="88"/>
+  <text class="label" x="159" y="222" text-anchor="middle">supervisor</text>
+  <text class="small" x="159" y="247" text-anchor="middle">decides next worker</text>
+
+  <rect class="box" x="318" y="128" width="170" height="88"/>
+  <text class="label" x="403" y="165" text-anchor="middle">researcher</text>
+  <text class="small" x="403" y="190" text-anchor="middle">fills evidence gaps</text>
+
+  <rect class="box" x="318" y="286" width="170" height="88"/>
+  <text class="label" x="403" y="323" text-anchor="middle">analyst</text>
+  <text class="small" x="403" y="348" text-anchor="middle">structures findings</text>
+
+  <rect class="box" x="588" y="286" width="170" height="88"/>
+  <text class="label" x="673" y="323" text-anchor="middle">writer</text>
+  <text class="small" x="673" y="348" text-anchor="middle">produces answer</text>
+
+  <rect class="gate" x="588" y="128" width="170" height="88"/>
+  <text class="label" x="673" y="165" text-anchor="middle">reviewer</text>
+  <text class="small" x="673" y="190" text-anchor="middle">PASS or REVISE</text>
+
+  <rect class="end" x="858" y="128" width="170" height="88"/>
+  <text class="label" x="943" y="165" text-anchor="middle">END</text>
+  <text class="small" x="943" y="190" text-anchor="middle">accepted answer</text>
+
+  <path class="edge" d="M244 229 C280 229 282 172 318 172"/>
+  <path class="edge" d="M403 216 L403 286"/>
+  <path class="edge" d="M488 330 L588 330"/>
+  <path class="edge" d="M673 286 L673 216"/>
+  <path class="edge-pass" d="M758 172 L858 172"/>
+  <path class="edge-fail" d="M588 172 C530 88 386 88 318 144"/>
+
+  <rect class="pill" x="778" y="142" width="56" height="28"/>
+  <text class="small" x="806" y="162" text-anchor="middle">PASS</text>
+
+  <rect class="pill" x="454" y="86" width="72" height="28"/>
+  <text class="small" x="490" y="106" text-anchor="middle">REVISE</text>
+
+  <text class="small" x="74" y="438">State carries messages, review_status, and revision_count.</text>
+  <text class="small" x="74" y="464">MAX_REVISIONS prevents infinite loops when quality never improves.</text>
+</svg>
