@@ -39,8 +39,7 @@ export class RoomChannel {
 
   connectWebSocket() {
     if (!("WebSocket" in window)) return;
-    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const url = `${protocol}//${window.location.host}/ws/block-x-flight?code=${encodeURIComponent(this.code)}&role=${encodeURIComponent(this.role)}`;
+    const url = `${webSocketBaseUrl()}/ws/block-x-flight?code=${encodeURIComponent(this.code)}&role=${encodeURIComponent(this.role)}`;
     try {
       this.ws = new WebSocket(url);
     } catch {
@@ -76,4 +75,12 @@ export class RoomChannel {
     };
     while (this.queue.length) this.channel.postMessage(this.queue.shift());
   }
+}
+
+function webSocketBaseUrl() {
+  if (window.location.hostname === "juhyeonl.dev" || window.location.hostname === "www.juhyeonl.dev") {
+    return "wss://api.juhyeonl.dev";
+  }
+  const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+  return `${protocol}//${window.location.host}`;
 }
