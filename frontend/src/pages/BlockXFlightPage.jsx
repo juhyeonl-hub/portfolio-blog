@@ -12,14 +12,17 @@ export default function BlockXFlightPage() {
   const [scoreName, setScoreName] = useState('Player');
   const [scoreSource, setScoreSource] = useState(null);
   const [savingScore, setSavingScore] = useState(false);
-  const [rankingMode, setRankingMode] = useState('shared');
+  const [rankingError, setRankingError] = useState('');
 
   useEffect(() => {
     api.get('/public/block-x-flight/scores')
-      .then(setScores)
+      .then((next) => {
+        setScores(next);
+        setRankingError('');
+      })
       .catch(() => {
-        setRankingMode('local');
-        setScores(loadLocalScores());
+        setScores([]);
+        setRankingError('Shared ranking is temporarily unavailable. Scores are saved only when the database API is online.');
       });
   }, []);
 
@@ -88,19 +91,14 @@ export default function BlockXFlightPage() {
                   };
                   api.post('/public/block-x-flight/scores', entry)
                     .then((next) => {
-                      setRankingMode('shared');
                       setScores(next);
+                      setRankingError('');
                       scoreSource?.postMessage({ type: 'block-x-flight-score-saved' }, window.location.origin);
                       setPendingScore(null);
                       setScoreSource(null);
                     })
                     .catch(() => {
-                      const next = saveLocalScore(entry);
-                      setRankingMode('local');
-                      setScores(next);
-                      scoreSource?.postMessage({ type: 'block-x-flight-score-saved' }, window.location.origin);
-                      setPendingScore(null);
-                      setScoreSource(null);
+                      setRankingError('Could not save score to the shared database. Please try again after the backend deploy finishes.');
                     })
                     .finally(() => setSavingScore(false));
                 }}
@@ -147,9 +145,9 @@ export default function BlockXFlightPage() {
 
         <section className="mt-8">
           <SectionLabel>Single Mode Ranking</SectionLabel>
-          {rankingMode === 'local' && (
+          {rankingError && (
             <p className="text-[12px] mt-0 mb-3" style={{ color: 'var(--text-tertiary)' }}>
-              Shared ranking is unavailable right now, so scores are saved in this browser.
+              {rankingError}
             </p>
           )}
           <div className="rounded-xl overflow-hidden" style={{ border: '0.5px solid var(--border)' }}>
@@ -174,26 +172,4 @@ export default function BlockXFlightPage() {
       </div>
     </div>
   );
-}
-
-function loadLocalScores() {
-  try {
-    const parsed = JSON.parse(localStorage.getItem('block-x-flight-rankings') || '[]');
-    return Array.isArray(parsed) ? parsed.slice(0, 100) : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveLocalScore(entry) {
-  const next = [...loadLocalScores(), {
-    playerName: entry.name,
-    score: entry.score,
-    lines: entry.lines,
-    createdAt: new Date().toISOString(),
-  }]
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 100);
-  localStorage.setItem('block-x-flight-rankings', JSON.stringify(next));
-  return next;
 }
