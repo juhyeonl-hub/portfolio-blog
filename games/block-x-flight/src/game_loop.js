@@ -17,10 +17,10 @@ const LAYOUT = {
 };
 
 const MODE_BUTTONS = [
-  { mode: "ai", label: "VS AI", x: 230, y: 330, w: 150, h: 58 },
-  { mode: "host", label: "Host", x: 400, y: 330, w: 150, h: 58 },
-  { mode: "join", label: "Join", x: 570, y: 330, w: 150, h: 58 },
-  { mode: "single", label: "Single", x: 740, y: 330, w: 150, h: 58 },
+  { mode: "ai", label: "VS AI", x: 230, y: 360, w: 150, h: 58 },
+  { mode: "host", label: "Host", x: 400, y: 360, w: 150, h: 58 },
+  { mode: "join", label: "Join", x: 570, y: 360, w: 150, h: 58 },
+  { mode: "single", label: "Single", x: 740, y: 360, w: 150, h: 58 },
 ];
 
 const JOIN_CODE_BUTTONS = [
@@ -52,7 +52,7 @@ export class BlockXFlightGame {
     this.level = 1;
     this.time = 0;
     this.finished = false;
-    this.localName = window.localStorage.getItem("block-x-flight-player-name") || "Player";
+    this.localName = window.localStorage.getItem("block-x-flight-player-name") ?? "Player";
     this.remoteName = "Opponent";
     this.localRestartReady = false;
     this.remoteRestartReady = false;
@@ -107,6 +107,7 @@ export class BlockXFlightGame {
   }
 
   selectMode(mode, seed = makeSeed(), roomCode = "") {
+    if (!this.localName.trim()) return;
     if (mode === "join" && !roomCode) {
       this.showJoinCode();
       return;
@@ -440,8 +441,7 @@ export class BlockXFlightGame {
       if (token === "Backspace") this.localName = this.localName.slice(0, -1);
       else if (/^[A-Z0-9]$/.test(token) && this.localName.length < 16) this.localName += token;
     }
-    if (!this.localName.trim()) this.localName = "";
-    window.localStorage.setItem("block-x-flight-player-name", this.localName || "Player");
+    window.localStorage.setItem("block-x-flight-player-name", this.localName);
   }
 
   handleJoinCodeInput() {
@@ -490,7 +490,7 @@ export class BlockXFlightGame {
   snapshot() {
     return {
       seed: this.seed,
-      name: this.localName || "Player",
+      name: this.localName.trim(),
       time: this.time,
       level: this.level,
       lives: this.player.lives,
@@ -512,7 +512,7 @@ export class BlockXFlightGame {
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     if (this.state === "menu") {
-      drawModeSelect(ctx, this.localName || "Player");
+      drawModeSelect(ctx, this.localName);
       return;
     }
     if (this.state === "join-code") {
@@ -649,6 +649,7 @@ function drawOpponentPreview(ctx, rect, game) {
 }
 
 function drawModeSelect(ctx, playerName) {
+  const canStart = Boolean(playerName.trim());
   ctx.fillStyle = "#11181c";
   ctx.fillRect(0, 0, 1120, 640);
   ctx.textAlign = "center";
@@ -670,30 +671,35 @@ function drawModeSelect(ctx, playerName) {
   ctx.fillStyle = "#eef5f2";
   ctx.font = "700 22px sans-serif";
   const displayName = playerName.slice(0, 16);
-  ctx.fillText(displayName, 560, 308);
+  if (displayName) {
+    ctx.fillText(displayName, 560, 308);
+  } else {
+    ctx.fillStyle = "#5f6b70";
+    ctx.fillText("NAME REQUIRED", 560, 308);
+  }
   if (Math.floor(performance.now() / 500) % 2 === 0) {
     const width = ctx.measureText(displayName).width;
-    const caretX = 560 + width / 2 + 7;
+    const caretX = displayName ? 560 + width / 2 + 7 : 560;
     ctx.fillStyle = "#7dfad0";
     ctx.fillRect(caretX, 289, 2, 24);
   }
-  ctx.fillStyle = "#7f8f8a";
+  ctx.fillStyle = canStart ? "#7f8f8a" : "#ff9b4d";
   ctx.font = "12px sans-serif";
-  ctx.fillText("Type to edit. Backspace deletes.", 560, 334);
+  ctx.fillText(canStart ? "Type to edit. Backspace deletes." : "Enter a name to start.", 560, 342);
 
   for (const button of MODE_BUTTONS) {
-    ctx.fillStyle = "#182227";
-    ctx.strokeStyle = "#40545b";
+    ctx.fillStyle = canStart ? "#182227" : "#12191d";
+    ctx.strokeStyle = canStart ? "#40545b" : "#2a3338";
     ctx.lineWidth = 2;
     ctx.fillRect(button.x, button.y, button.w, button.h);
     ctx.strokeRect(button.x, button.y, button.w, button.h);
-    ctx.fillStyle = "#eef5f2";
+    ctx.fillStyle = canStart ? "#eef5f2" : "#657177";
     ctx.font = "700 20px sans-serif";
     ctx.fillText(button.label, button.x + button.w / 2, button.y + 36);
   }
   ctx.fillStyle = "#7dfad0";
   ctx.font = "14px sans-serif";
-  ctx.fillText("Tetris: A/D/S/Space/Q/E/Shift     Shooter: Arrow keys, auto fire", 560, 450);
+  ctx.fillText("Tetris: A/D/S/Space/Q/E/Shift     Shooter: Arrow keys, auto fire", 560, 472);
 }
 
 function drawJoinCode(ctx, code) {
