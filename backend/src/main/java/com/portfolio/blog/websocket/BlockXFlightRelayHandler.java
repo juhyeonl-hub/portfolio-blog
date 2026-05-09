@@ -15,7 +15,6 @@ import java.net.URI;
 import java.time.Instant;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
@@ -24,7 +23,7 @@ public class BlockXFlightRelayHandler extends TextWebSocketHandler {
     private static final int MAX_MESSAGE_BYTES = 16 * 1024;
 
     private final ObjectMapper objectMapper;
-    private final Map<String, Set<WebSocketSession>> rooms = new ConcurrentHashMap<>();
+    private final Map<String, RoomState> rooms = new ConcurrentHashMap<>();
 
     public BlockXFlightRelayHandler(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
@@ -41,8 +40,17 @@ public class BlockXFlightRelayHandler extends TextWebSocketHandler {
 
         session.getAttributes().put("roomCode", roomCode);
         session.getAttributes().put("role", role);
-        rooms.computeIfAbsent(roomCode, ignored -> ConcurrentHashMap.newKeySet()).add(session);
+        RoomState room = rooms.computeIfAbsent(roomCode, ignored -> new RoomState());
+        WebSocketSession existing = room.sessions.putIfAbsent(role, session);
+        if (existing != null) {
+            if (existing.isOpen()) {
+                session.close(new CloseStatus(1008, "Role already connected"));
+                return;
+            }
+            room.sessions.put(role, session);
+        }
         sendSystem(session, "joined", roomCode);
+        broadcastRoomStatus(roomCode);
     }
 
     @Override
@@ -65,8 +73,10 @@ public class BlockXFlightRelayHandler extends TextWebSocketHandler {
         outgoing.put("relayTime", Instant.now().toEpochMilli());
 
         TextMessage relay = new TextMessage(objectMapper.writeValueAsString(outgoing));
-        for (WebSocketSession peer : rooms.getOrDefault(roomCode, Set.of())) {
-            if (peer.isOpen() && !peer.getId().equals(session.getId())) {
+        RoomState room = rooms.get(roomCode);
+        if (room == null) return;
+        for (WebSocketSession peer : room.sessions.values()) {
+            if (peer != null && peer.isOpen() && !peer.getId().equals(session.getId())) {
                 send(peer, relay);
             }
         }
@@ -77,10 +87,14 @@ public class BlockXFlightRelayHandler extends TextWebSocketHandler {
         String roomCode = (String) session.getAttributes().get("roomCode");
         if (roomCode == null) return;
 
-        Set<WebSocketSession> room = rooms.get(roomCode);
+        RoomState room = rooms.get(roomCode);
         if (room == null) return;
-        room.remove(session);
-        if (room.isEmpty()) rooms.remove(roomCode);
+        room.sessions.entrySet().removeIf(entry -> entry.getValue().getId().equals(session.getId()));
+        if (room.sessions.isEmpty()) {
+            rooms.remove(roomCode);
+            return;
+        }
+        broadcastRoomStatus(roomCode);
     }
 
     private void sendSystem(WebSocketSession session, String type, String roomCode) throws IOException {
@@ -89,6 +103,28 @@ public class BlockXFlightRelayHandler extends TextWebSocketHandler {
         message.put("type", type);
         message.put("roomCode", roomCode);
         send(session, new TextMessage(objectMapper.writeValueAsString(message)));
+    }
+
+    private void broadcastRoomStatus(String roomCode) {
+        RoomState room = rooms.get(roomCode);
+        if (room == null) return;
+        ObjectNode message = objectMapper.createObjectNode();
+        message.put("role", "relay");
+        message.put("type", "room-status");
+        message.put("roomCode", roomCode);
+        message.put("hostConnected", room.isConnected("host"));
+        message.put("guestConnected", room.isConnected("guest"));
+        message.put("readyToStart", room.isConnected("host") && room.isConnected("guest"));
+        TextMessage status = new TextMessage(message.toString());
+        for (WebSocketSession session : room.sessions.values()) {
+            if (session != null && session.isOpen()) {
+                try {
+                    send(session, status);
+                } catch (IOException ignored) {
+                    // Connection cleanup is handled by the close callback.
+                }
+            }
+        }
     }
 
     private void send(WebSocketSession session, TextMessage message) throws IOException {
@@ -112,5 +148,14 @@ public class BlockXFlightRelayHandler extends TextWebSocketHandler {
         if (value == null) return "";
         String role = value.toLowerCase(Locale.ROOT);
         return role.equals("host") || role.equals("guest") ? role : "";
+    }
+
+    private static class RoomState {
+        private final Map<String, WebSocketSession> sessions = new ConcurrentHashMap<>();
+
+        private boolean isConnected(String role) {
+            WebSocketSession session = sessions.get(role);
+            return session != null && session.isOpen();
+        }
     }
 }

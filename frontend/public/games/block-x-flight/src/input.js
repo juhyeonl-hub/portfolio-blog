@@ -4,6 +4,7 @@ export class Input {
     this.pressed = new Set();
     this.mouse = { x: 0, y: 0, active: false };
     this.clicks = [];
+    this.text = [];
 
     window.addEventListener("keydown", (event) => {
       const key = normalizeKey(event);
@@ -21,9 +22,14 @@ export class Input {
         "ArrowRight",
         "ArrowUp",
         "ArrowDown",
+        "Backspace",
+        "Enter",
       ].includes(event.code)) {
         event.preventDefault();
       }
+      if (/^[a-z0-9]$/i.test(event.key)) this.text.push(event.key.toUpperCase());
+      if (event.code === "Backspace") this.text.push("Backspace");
+      if (event.code === "Enter") this.text.push("Enter");
       if (!this.keys.has(key)) this.pressed.add(key);
       this.keys.add(key);
     });
@@ -58,6 +64,7 @@ export class Input {
   endFrame() {
     this.pressed.clear();
     this.clicks = [];
+    this.text = [];
   }
 
   snapshot() {

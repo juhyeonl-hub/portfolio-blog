@@ -23,6 +23,13 @@ const MODE_BUTTONS = [
   { mode: "single", label: "Single", x: 740, y: 330, w: 150, h: 58 },
 ];
 
+const JOIN_CODE_BUTTONS = [
+  { action: "back", label: "Back", x: 410, y: 390, w: 130, h: 48 },
+  { action: "join", label: "Join", x: 580, y: 390, w: 130, h: 48 },
+];
+
+const WAIT_BUTTON = { action: "cancel", label: "Cancel", x: 494, y: 470, w: 132, h: 44 };
+
 export class BlockXFlightGame {
   constructor(canvas, input, ui) {
     this.canvas = canvas;
@@ -45,6 +52,11 @@ export class BlockXFlightGame {
     this.time = 0;
     this.finished = false;
     this.roomCode = "";
+    this.joinCode = "";
+    this.waitMessage = "";
+    this.hostConnected = false;
+    this.guestConnected = false;
+    this.seedSynced = true;
     this.remoteState = null;
     this.remoteInput = null;
     this.player = new PlayerState(this.rng, LAYOUT.shooter);
@@ -72,6 +84,10 @@ export class BlockXFlightGame {
     this.winner = "";
     this.scoreSubmitted = false;
     this.roomCode = roomCode;
+    this.waitMessage = "";
+    this.hostConnected = false;
+    this.guestConnected = false;
+    this.seedSynced = mode !== "join";
     this.remoteState = null;
     this.remoteInput = null;
     this.player = new PlayerState(this.rng, LAYOUT.shooter);
@@ -83,7 +99,34 @@ export class BlockXFlightGame {
   }
 
   selectMode(mode, seed = makeSeed(), roomCode = "") {
+    if (mode === "join" && !roomCode) {
+      this.showJoinCode();
+      return;
+    }
     this.restart(mode, seed, roomCode);
+    if (mode === "host" || mode === "join") {
+      this.state = "waiting";
+      this.waitMessage = mode === "host" ? "Waiting for guest..." : "Connecting to host...";
+      return;
+    }
+    this.startCountdown();
+  }
+
+  showJoinCode() {
+    if (this.channel) this.channel.close();
+    this.channel = null;
+    this.paused = false;
+    this.menuOpen = false;
+    this.confirmExit = false;
+    this.state = "join-code";
+    this.joinCode = "";
+    this.roomCode = "";
+    this.waitMessage = "";
+    this.ui.setMode("join", this.seed, "");
+    this.ui.update(this);
+  }
+
+  startCountdown() {
     this.state = "countdown";
     this.countdown = 3;
   }
@@ -91,24 +134,56 @@ export class BlockXFlightGame {
   setupHost() {
     this.roomCode = createRoomCode(this.rng);
     this.channel = new RoomChannel(this.roomCode, "host", (message) => {
+      if (message.type === "room-status") this.handleRoomStatus(message);
       if (message.type === "guest-ready") this.channel.send("seed", { seed: this.seed });
       if (message.type === "guest-lines") this.player.shooter.spawnAttack(attackFromLines(message.payload.lines, this.level), this.rng);
       if (message.type === "guest-input") this.remoteInput = message.payload;
     });
     this.channel.send("seed", { seed: this.seed });
+    this.channel.send("host-ready", { seed: this.seed });
     this.ui.setMode("host", this.seed, this.roomCode);
   }
 
   setupGuest(code) {
     this.roomCode = code.toUpperCase();
     this.channel = new RoomChannel(this.roomCode, "guest", (message) => {
+      if (message.type === "room-status") this.handleRoomStatus(message);
       if (message.type === "seed" && message.payload?.seed && message.payload.seed !== this.seed) {
-        this.restart("join", message.payload.seed, this.roomCode);
+        this.applySeed(message.payload.seed);
       }
       if (message.type === "host-lines") this.player.shooter.spawnAttack(attackFromLines(message.payload.lines, this.level), this.rng);
       if (message.type === "state") this.remoteState = message.payload;
     });
     this.channel.send("guest-ready", {});
+  }
+
+  handleRoomStatus(message) {
+    this.hostConnected = Boolean(message.hostConnected);
+    this.guestConnected = Boolean(message.guestConnected);
+    if (message.readyToStart) {
+      this.waitMessage = "Both players connected. Starting...";
+      if (this.mode === "host") this.channel?.send("seed", { seed: this.seed });
+      if ((this.mode === "host" || this.seedSynced) && this.state === "waiting") this.startCountdown();
+      return;
+    }
+    this.waitMessage = this.mode === "host" ? "Waiting for guest..." : "Waiting for host...";
+  }
+
+  applySeed(seed) {
+    this.seed = seed >>> 0;
+    this.seedSynced = true;
+    this.rng = new RNG(this.seed);
+    this.level = 1;
+    this.time = 0;
+    this.finished = false;
+    this.winner = "";
+    this.scoreSubmitted = false;
+    this.remoteState = null;
+    this.remoteInput = null;
+    this.player = new PlayerState(this.rng, LAYOUT.shooter);
+    this.ui.setMode(this.mode, this.seed, this.roomCode);
+    this.ui.update(this);
+    if (this.state === "waiting" && this.hostConnected && this.guestConnected) this.startCountdown();
   }
 
   togglePause() {
@@ -183,6 +258,15 @@ export class BlockXFlightGame {
       this.handleMenuInput();
       return;
     }
+    if (this.state === "join-code") {
+      this.handleJoinCodeInput();
+      return;
+    }
+    if (this.state === "waiting") {
+      this.handleWaitingInput();
+      this.ui.update(this);
+      return;
+    }
     if (this.state === "countdown") {
       this.countdown -= dt;
       if (this.countdown <= 0) this.state = "playing";
@@ -214,8 +298,13 @@ export class BlockXFlightGame {
     this.state = "menu";
     this.countdown = 0;
     this.roomCode = "";
+    this.joinCode = "";
     this.remoteState = null;
     this.remoteInput = null;
+    this.waitMessage = "";
+    this.hostConnected = false;
+    this.guestConnected = false;
+    this.seedSynced = true;
     this.seed = makeSeed();
     this.rng = new RNG(this.seed);
     this.level = 1;
@@ -237,6 +326,33 @@ export class BlockXFlightGame {
         click.x >= item.x && click.x <= item.x + item.w && click.y >= item.y && click.y <= item.y + item.h
       );
       if (button) this.selectMode(button.mode);
+    }
+  }
+
+  handleJoinCodeInput() {
+    for (const token of this.input.text) {
+      if (token === "Backspace") this.joinCode = this.joinCode.slice(0, -1);
+      else if (token === "Enter" && this.joinCode.length >= 4) this.selectMode("join", makeSeed(), this.joinCode);
+      else if (/^[A-Z0-9]$/.test(token) && this.joinCode.length < 8) this.joinCode += token;
+    }
+    for (const click of this.input.clicks) {
+      const button = JOIN_CODE_BUTTONS.find((item) =>
+        click.x >= item.x && click.x <= item.x + item.w && click.y >= item.y && click.y <= item.y + item.h
+      );
+      if (button?.action === "back") this.showMenu();
+      if (button?.action === "join" && this.joinCode.length >= 4) this.selectMode("join", makeSeed(), this.joinCode);
+    }
+  }
+
+  handleWaitingInput() {
+    if (this.input.consume("Escape")) this.showMenu();
+    for (const click of this.input.clicks) {
+      if (
+        click.x >= WAIT_BUTTON.x && click.x <= WAIT_BUTTON.x + WAIT_BUTTON.w &&
+        click.y >= WAIT_BUTTON.y && click.y <= WAIT_BUTTON.y + WAIT_BUTTON.h
+      ) {
+        this.showMenu();
+      }
     }
   }
 
@@ -280,6 +396,10 @@ export class BlockXFlightGame {
       drawModeSelect(ctx);
       return;
     }
+    if (this.state === "join-code") {
+      drawJoinCode(ctx, this.joinCode);
+      return;
+    }
 
     drawPanelTitle(ctx, "TETRIS", LAYOUT.tetris);
     drawPanelTitle(ctx, "SHOOTER", LAYOUT.shooter);
@@ -293,6 +413,7 @@ export class BlockXFlightGame {
     drawOpponentPreview(ctx, LAYOUT.opponent, this);
 
     if (this.state === "countdown") drawCountdown(ctx, this.countdown);
+    if (this.state === "waiting") drawWaiting(ctx, this);
     if (this.paused || this.finished || this.menuOpen) drawOverlay(ctx, this);
   }
 }
@@ -428,6 +549,78 @@ function drawModeSelect(ctx) {
   ctx.fillStyle = "#7dfad0";
   ctx.font = "14px sans-serif";
   ctx.fillText("Tetris: A/D/S/Space/Q/E/Shift     Shooter: Arrow keys, auto fire", 560, 450);
+}
+
+function drawJoinCode(ctx, code) {
+  ctx.fillStyle = "#11181c";
+  ctx.fillRect(0, 0, 1120, 640);
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#eef5f2";
+  ctx.font = "700 42px sans-serif";
+  ctx.fillText("Join Private Match", 560, 170);
+  ctx.fillStyle = "#aab8b4";
+  ctx.font = "17px sans-serif";
+  ctx.fillText("Enter the host invite code, then press Join or Enter.", 560, 218);
+
+  ctx.fillStyle = "#0b1114";
+  ctx.strokeStyle = "#7dfad0";
+  ctx.lineWidth = 2;
+  ctx.fillRect(390, 270, 340, 64);
+  ctx.strokeRect(390, 270, 340, 64);
+  ctx.fillStyle = code ? "#eef5f2" : "#5f6b70";
+  ctx.font = "700 30px monospace";
+  ctx.fillText(code || "CODE", 560, 311);
+
+  for (const button of JOIN_CODE_BUTTONS) {
+    const disabled = button.action === "join" && code.length < 4;
+    ctx.fillStyle = disabled ? "#151b1f" : "#182227";
+    ctx.strokeStyle = disabled ? "#2a3338" : "#7dfad0";
+    ctx.lineWidth = 2;
+    ctx.fillRect(button.x, button.y, button.w, button.h);
+    ctx.strokeRect(button.x, button.y, button.w, button.h);
+    ctx.fillStyle = disabled ? "#657177" : "#eef5f2";
+    ctx.font = "700 18px sans-serif";
+    ctx.fillText(button.label, button.x + button.w / 2, button.y + 31);
+  }
+}
+
+function drawWaiting(ctx, game) {
+  ctx.fillStyle = "rgba(0,0,0,0.7)";
+  ctx.fillRect(0, 0, 1120, 640);
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#eef5f2";
+  ctx.font = "700 36px sans-serif";
+  ctx.fillText(game.mode === "host" ? "Private Match Ready" : "Joining Match", 560, 230);
+  ctx.font = "18px sans-serif";
+  ctx.fillStyle = "#aab8b4";
+  ctx.fillText(game.waitMessage || "Checking room status...", 560, 276);
+
+  ctx.fillStyle = "#0b1114";
+  ctx.strokeStyle = "#40545b";
+  ctx.lineWidth = 2;
+  ctx.fillRect(410, 318, 300, 70);
+  ctx.strokeRect(410, 318, 300, 70);
+  ctx.fillStyle = "#7dfad0";
+  ctx.font = "700 14px sans-serif";
+  ctx.fillText("INVITE CODE", 560, 344);
+  ctx.fillStyle = "#eef5f2";
+  ctx.font = "700 30px monospace";
+  ctx.fillText(game.roomCode || "--------", 560, 374);
+
+  ctx.font = "15px sans-serif";
+  ctx.fillStyle = game.hostConnected ? "#7dfad0" : "#657177";
+  ctx.fillText(`Host ${game.hostConnected ? "connected" : "waiting"}`, 475, 430);
+  ctx.fillStyle = game.guestConnected ? "#7dfad0" : "#657177";
+  ctx.fillText(`Guest ${game.guestConnected ? "connected" : "waiting"}`, 645, 430);
+
+  ctx.fillStyle = "#182227";
+  ctx.strokeStyle = "#7dfad0";
+  ctx.lineWidth = 1;
+  ctx.fillRect(WAIT_BUTTON.x, WAIT_BUTTON.y, WAIT_BUTTON.w, WAIT_BUTTON.h);
+  ctx.strokeRect(WAIT_BUTTON.x, WAIT_BUTTON.y, WAIT_BUTTON.w, WAIT_BUTTON.h);
+  ctx.fillStyle = "#eef5f2";
+  ctx.font = "700 15px sans-serif";
+  ctx.fillText(WAIT_BUTTON.label, WAIT_BUTTON.x + WAIT_BUTTON.w / 2, WAIT_BUTTON.y + 28);
 }
 
 function drawCountdown(ctx, countdown) {

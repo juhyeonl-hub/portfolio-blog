@@ -13,6 +13,8 @@ export class RoomChannel {
     this.ws = null;
     this.channel = null;
     this.onMessage = onMessage;
+    this.closed = false;
+    this.opened = false;
     this.connectWebSocket();
     if (!this.ws && "BroadcastChannel" in window) {
       this.activateLocalFallback();
@@ -30,6 +32,7 @@ export class RoomChannel {
   }
 
   close() {
+    this.closed = true;
     if (this.ws) this.ws.close();
     if (this.channel) this.channel.close();
   }
@@ -45,6 +48,7 @@ export class RoomChannel {
       return;
     }
     this.ws.onopen = () => {
+      this.opened = true;
       while (this.queue.length) this.ws.send(JSON.stringify(this.queue.shift()));
     };
     this.ws.onmessage = (event) => {
@@ -59,7 +63,7 @@ export class RoomChannel {
       this.activateLocalFallback();
     };
     this.ws.onclose = () => {
-      if (!this.channel) this.activateLocalFallback();
+      if (!this.closed && !this.opened && !this.channel) this.activateLocalFallback();
     };
   }
 
