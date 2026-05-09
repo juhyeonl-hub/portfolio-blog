@@ -9,9 +9,9 @@ import { TetrisField } from "./tetris.js";
 import { RNG, makeSeed } from "./utils/rng.js";
 
 const LAYOUT = {
-  tetris: { x: 42, y: 58, w: 300, h: 600 },
-  shooter: { x: 426, y: 58, w: 360, h: 600 },
-  opponent: { x: 870, y: 58, w: 210, h: 320 },
+  tetris: { x: 54, y: 74, w: 270, h: 540 },
+  shooter: { x: 410, y: 74, w: 360, h: 540 },
+  opponent: { x: 835, y: 74, w: 220, h: 300 },
 };
 
 export class StackFlightGame {
@@ -199,17 +199,17 @@ function drawPanelTitle(ctx, title, rect) {
 
 function drawDivider(ctx) {
   ctx.fillStyle = "#2f3b42";
-  ctx.fillRect(384, 40, 2, 570);
-  ctx.fillRect(828, 40, 2, 570);
+  ctx.fillRect(370, 74, 2, 540);
+  ctx.fillRect(800, 74, 2, 540);
 }
 
 function drawHud(ctx, game) {
   ctx.fillStyle = "#dce7e3";
-  ctx.font = "700 18px sans-serif";
+  ctx.font = "700 16px sans-serif";
   ctx.textAlign = "left";
-  ctx.fillText(`Lives: ${"I".repeat(Math.max(0, game.player.lives))}`, 42, 28);
-  ctx.fillText(`Lines: ${game.player.tetris.lines}`, 232, 28);
-  ctx.fillText(`Level: ${game.level}`, 426, 28);
+  ctx.fillText(`Lives: ${"I".repeat(Math.max(0, game.player.lives))}`, 54, 26);
+  ctx.fillText(`Lines: ${game.player.tetris.lines}`, 230, 26);
+  ctx.fillText(`Level: ${game.level}`, 410, 26);
   if (game.player.recovery > 0) {
     ctx.fillStyle = "rgba(125,250,208,0.18)";
     ctx.fillRect(LAYOUT.tetris.x, LAYOUT.tetris.y, LAYOUT.tetris.w, LAYOUT.tetris.h);
@@ -245,7 +245,7 @@ function drawOpponentPreview(ctx, rect, game) {
 
 function drawOverlay(ctx, game) {
   ctx.fillStyle = "rgba(0,0,0,0.58)";
-  ctx.fillRect(0, 0, 1120, 640);
+  ctx.fillRect(0, 0, game.canvas.width, game.canvas.height);
   ctx.fillStyle = "#ffffff";
   ctx.textAlign = "center";
   ctx.font = "700 34px sans-serif";
