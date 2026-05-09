@@ -132,10 +132,22 @@ export class StackFlightGame {
     if (!this.paused && !this.finished) return;
     for (const click of this.input.clicks) {
       const action = overlayActionAt(click.x, click.y, this);
-      if (action === "menu") this.showMenu();
-      if (action === "restart") this.selectMode(this.mode);
-      if (action === "resume") this.paused = false;
-      if (action === "save") this.submitScore();
+      if (action === "menu") {
+        this.showMenu();
+        return;
+      }
+      if (action === "restart") {
+        this.selectMode(this.mode);
+        return;
+      }
+      if (action === "resume") {
+        this.paused = false;
+        return;
+      }
+      if (action === "save") {
+        this.submitScore();
+        return;
+      }
     }
   }
 
@@ -376,7 +388,7 @@ function drawModeSelect(ctx) {
   }
   ctx.fillStyle = "#7dfad0";
   ctx.font = "14px sans-serif";
-  ctx.fillText("Tetris: A/D/S/Space/Q/E/Shift     Shooter: mouse move, auto fire", 560, 450);
+  ctx.fillText("Tetris: A/D/S/Space/Q/E/Shift     Shooter: Arrow keys, auto fire", 560, 450);
 }
 
 function drawCountdown(ctx, countdown) {

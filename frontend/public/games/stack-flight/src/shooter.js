@@ -20,7 +20,7 @@ export class ShooterField {
   update(dt, input, player, game) {
     for (const key of Object.keys(this.upgrades)) this.upgrades[key] = Math.max(0, this.upgrades[key] - dt);
     this.hitFlash = Math.max(0, this.hitFlash - dt);
-    this.movePlayer(input);
+    this.movePlayer(dt, input);
     this.fireTimer -= dt;
     const fireDelay = this.upgrades.rate > 0 ? 0.115 : 0.19;
     if (this.fireTimer <= 0) {
@@ -32,11 +32,15 @@ export class ShooterField {
     this.updateAttacks(dt, player, game);
   }
 
-  movePlayer(input) {
-    if (!input.mouse.active) return;
+  movePlayer(dt, input) {
     const { x, y, w, h } = this.rect;
-    this.player.x = clamp(input.mouse.x, x + this.player.r, x + w - this.player.r);
-    this.player.y = clamp(input.mouse.y, y + this.player.r, y + h - this.player.r);
+    const dx = (input.keys.has("ArrowRight") ? 1 : 0) - (input.keys.has("ArrowLeft") ? 1 : 0);
+    const dy = (input.keys.has("ArrowDown") ? 1 : 0) - (input.keys.has("ArrowUp") ? 1 : 0);
+    if (dx === 0 && dy === 0) return;
+    const length = Math.hypot(dx, dy) || 1;
+    const speed = 285;
+    this.player.x = clamp(this.player.x + (dx / length) * speed * dt, x + this.player.r, x + w - this.player.r);
+    this.player.y = clamp(this.player.y + (dy / length) * speed * dt, y + this.player.r, y + h - this.player.r);
   }
 
   fire() {

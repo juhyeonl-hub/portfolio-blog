@@ -7,23 +7,19 @@ import usePageView from '../hooks/usePageView';
 export default function StackFlightPage() {
   usePageView();
   const [scores, setScores] = useState(() => loadScores());
+  const [pendingScore, setPendingScore] = useState(null);
+  const [scoreName, setScoreName] = useState('Player');
+  const [scoreSource, setScoreSource] = useState(null);
 
   useEffect(() => {
     const onMessage = (event) => {
       if (event.origin !== window.location.origin || event.data?.type !== 'stack-flight-score') return;
-      const name = window.prompt(`Single mode score: ${event.data.score}. Save a name?`, 'Player');
-      if (!name) return;
-      const next = [...loadScores(), {
-        name: name.trim().slice(0, 18) || 'Player',
+      setPendingScore({
         score: Number(event.data.score) || 0,
         lines: Number(event.data.lines) || 0,
-        date: new Date().toISOString(),
-      }]
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 100);
-      localStorage.setItem('stack-flight-rankings', JSON.stringify(next));
-      setScores(next);
-      event.source?.postMessage({ type: 'stack-flight-score-saved' }, event.origin);
+      });
+      setScoreName('Player');
+      setScoreSource(event.source);
     };
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
@@ -53,7 +49,7 @@ export default function StackFlightPage() {
         </div>
 
         <div
-          className="overflow-hidden rounded-xl"
+          className="relative overflow-hidden rounded-xl"
           style={{ border: '0.5px solid var(--border)', background: 'var(--bg-card)' }}
         >
           <iframe
@@ -64,6 +60,65 @@ export default function StackFlightPage() {
             allow="autoplay"
             scrolling="no"
           />
+          {pendingScore && (
+            <div
+              className="absolute inset-0 flex items-center justify-center px-6"
+              style={{ background: 'rgba(0,0,0,0.72)' }}
+            >
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  const next = [...loadScores(), {
+                    name: scoreName.trim().slice(0, 18) || 'Player',
+                    score: pendingScore.score,
+                    lines: pendingScore.lines,
+                    date: new Date().toISOString(),
+                  }]
+                    .sort((a, b) => b.score - a.score)
+                    .slice(0, 100);
+                  localStorage.setItem('stack-flight-rankings', JSON.stringify(next));
+                  setScores(next);
+                  scoreSource?.postMessage({ type: 'stack-flight-score-saved' }, window.location.origin);
+                  setPendingScore(null);
+                  setScoreSource(null);
+                }}
+                className="w-full max-w-[360px] rounded-xl p-5"
+                style={{ background: 'var(--bg-card)', border: '0.5px solid var(--border)' }}
+              >
+                <div className="text-[13px] font-mono mb-2" style={{ color: 'var(--text-tertiary)' }}>Save Score</div>
+                <div className="text-[24px] font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{pendingScore.score}</div>
+                <div className="text-[13px] mb-4" style={{ color: 'var(--text-secondary)' }}>{pendingScore.lines} lines cleared</div>
+                <input
+                  autoFocus
+                  value={scoreName}
+                  onChange={(event) => setScoreName(event.target.value)}
+                  maxLength={18}
+                  className="w-full text-[14px] px-3 py-2 rounded-md outline-none"
+                  style={{ background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
+                />
+                <div className="flex justify-end gap-2 mt-4">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPendingScore(null);
+                      setScoreSource(null);
+                    }}
+                    className="text-[13px] px-3 py-1.5 rounded-md cursor-pointer"
+                    style={{ background: 'transparent', border: '0.5px solid var(--border)', color: 'var(--text-tertiary)' }}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="text-[13px] px-3 py-1.5 rounded-md cursor-pointer"
+                    style={{ background: 'var(--accent-bg)', border: '0.5px solid var(--accent)', color: 'var(--accent)' }}
+                  >
+                    Save
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
         </div>
 
         <section className="mt-8">
