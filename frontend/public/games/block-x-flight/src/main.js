@@ -1,4 +1,4 @@
-import { StackFlightGame } from "./game_loop.js";
+import { BlockXFlightGame } from "./game_loop.js";
 import { Input } from "./input.js";
 import { UI } from "./ui.js";
 import { makeSeed } from "./utils/rng.js";
@@ -10,7 +10,7 @@ if (new URLSearchParams(window.location.search).get("embed") === "1") {
 const canvas = document.querySelector("#game");
 const input = new Input(canvas);
 const ui = new UI();
-const game = new StackFlightGame(canvas, input, ui);
+const game = new BlockXFlightGame(canvas, input, ui);
 
 document.querySelector("#singleBtn").addEventListener("click", () => game.selectMode("single"));
 document.querySelector("#aiBtn").addEventListener("click", () => game.selectMode("ai"));

@@ -1,4 +1,4 @@
-# Stack Flight
+# Block X Flight
 
 A local-first web prototype for a real-time 1v1 multitasking puzzle shooter.
 
@@ -10,7 +10,7 @@ Open `index.html` directly, or serve the folder:
 python3 -m http.server 5173
 ```
 
-Then visit `http://localhost:5173/stack-flight/` if serving from the workspace root.
+Then visit `http://localhost:5173/games/block-x-flight/index.html` inside the portfolio frontend.
 
 ## Current Build
 
@@ -21,4 +21,4 @@ Then visit `http://localhost:5173/stack-flight/` if serving from the workspace r
 ## Controls
 
 - Tetris: `A` / `D`, `S`, `Space`, `Q` / `E`, `Shift`
-- Shooter: mouse movement inside the shooter field
+- Shooter: arrow keys

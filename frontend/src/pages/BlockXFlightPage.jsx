@@ -3,17 +3,25 @@ import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import SectionLabel from '../components/SectionLabel';
 import usePageView from '../hooks/usePageView';
+import { api } from '../services/api';
 
-export default function StackFlightPage() {
+export default function BlockXFlightPage() {
   usePageView();
-  const [scores, setScores] = useState(() => loadScores());
+  const [scores, setScores] = useState([]);
   const [pendingScore, setPendingScore] = useState(null);
   const [scoreName, setScoreName] = useState('Player');
   const [scoreSource, setScoreSource] = useState(null);
+  const [savingScore, setSavingScore] = useState(false);
+
+  useEffect(() => {
+    api.get('/public/block-x-flight/scores')
+      .then(setScores)
+      .catch(() => setScores([]));
+  }, []);
 
   useEffect(() => {
     const onMessage = (event) => {
-      if (event.origin !== window.location.origin || event.data?.type !== 'stack-flight-score') return;
+      if (event.origin !== window.location.origin || event.data?.type !== 'block-x-flight-score') return;
       setPendingScore({
         score: Number(event.data.score) || 0,
         lines: Number(event.data.lines) || 0,
@@ -30,20 +38,20 @@ export default function StackFlightPage() {
       <Nav />
       <div className="max-w-[1120px] mx-auto px-6 md:px-10 pt-8 pb-16">
         <div className="max-w-[720px] mb-5">
-          <SectionLabel>Interactive Experiment</SectionLabel>
+          <SectionLabel>Lab</SectionLabel>
           <h1 className="text-[28px] md:text-[36px] font-semibold leading-tight m-0" style={{ color: 'var(--text-primary)' }}>
-            Stack Flight
+            Block X Flight
           </h1>
           <p className="text-[14px] mt-3 mb-0" style={{ color: 'var(--text-secondary)' }}>
-            A browser-based real-time interaction prototype exploring multitasking, input design, and lightweight multiplayer systems.
+            Play the current browser build. Choose a mode inside the game window, then survive as long as you can.
           </p>
           <div className="flex gap-3 mt-5">
             <Link
-              to="/experiments"
+              to="/lab"
               className="text-[13px] no-underline px-3 py-1.5 rounded-md transition-colors"
               style={{ border: '0.5px solid var(--border)', color: 'var(--text-tertiary)' }}
             >
-              Back to Experiments
+              Back to Lab
             </Link>
           </div>
         </div>
@@ -53,8 +61,8 @@ export default function StackFlightPage() {
           style={{ border: '0.5px solid var(--border)', background: 'var(--bg-card)' }}
         >
           <iframe
-            src="/games/stack-flight/index.html?embed=1"
-            title="Stack Flight"
+            src="/games/block-x-flight/index.html?embed=1"
+            title="Block X Flight"
             className="block w-full"
             style={{ aspectRatio: '7 / 4', border: 0, minHeight: '420px' }}
             allow="autoplay"
@@ -68,19 +76,19 @@ export default function StackFlightPage() {
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
-                  const next = [...loadScores(), {
+                  setSavingScore(true);
+                  api.post('/public/block-x-flight/scores', {
                     name: scoreName.trim().slice(0, 18) || 'Player',
                     score: pendingScore.score,
                     lines: pendingScore.lines,
-                    date: new Date().toISOString(),
-                  }]
-                    .sort((a, b) => b.score - a.score)
-                    .slice(0, 100);
-                  localStorage.setItem('stack-flight-rankings', JSON.stringify(next));
-                  setScores(next);
-                  scoreSource?.postMessage({ type: 'stack-flight-score-saved' }, window.location.origin);
-                  setPendingScore(null);
-                  setScoreSource(null);
+                  })
+                    .then((next) => {
+                      setScores(next);
+                      scoreSource?.postMessage({ type: 'block-x-flight-score-saved' }, window.location.origin);
+                      setPendingScore(null);
+                      setScoreSource(null);
+                    })
+                    .finally(() => setSavingScore(false));
                 }}
                 className="w-full max-w-[360px] rounded-xl p-5"
                 style={{ background: 'var(--bg-card)', border: '0.5px solid var(--border)' }}
@@ -99,6 +107,7 @@ export default function StackFlightPage() {
                 <div className="flex justify-end gap-2 mt-4">
                   <button
                     type="button"
+                    disabled={savingScore}
                     onClick={() => {
                       setPendingScore(null);
                       setScoreSource(null);
@@ -110,10 +119,11 @@ export default function StackFlightPage() {
                   </button>
                   <button
                     type="submit"
+                    disabled={savingScore}
                     className="text-[13px] px-3 py-1.5 rounded-md cursor-pointer"
                     style={{ background: 'var(--accent-bg)', border: '0.5px solid var(--accent)', color: 'var(--accent)' }}
                   >
-                    Save
+                    {savingScore ? 'Saving...' : 'Save'}
                   </button>
                 </div>
               </form>
@@ -130,12 +140,12 @@ export default function StackFlightPage() {
               </p>
             ) : scores.slice(0, 100).map((entry, index) => (
               <div
-                key={`${entry.name}-${entry.score}-${entry.date}`}
+                key={`${entry.id || entry.createdAt}-${entry.playerName || entry.name}-${entry.score}`}
                 className="grid grid-cols-[48px_1fr_90px_70px] gap-3 px-5 py-3 text-[13px]"
                 style={{ borderTop: index > 0 ? '1px solid var(--border)' : 'none', background: 'var(--bg-card)', color: 'var(--text-secondary)' }}
               >
                 <span className="font-mono" style={{ color: 'var(--text-tertiary)' }}>{index + 1}</span>
-                <span style={{ color: 'var(--text-primary)' }}>{entry.name}</span>
+                <span style={{ color: 'var(--text-primary)' }}>{entry.playerName || entry.name}</span>
                 <span className="font-mono">{entry.score}</span>
                 <span className="font-mono" style={{ color: 'var(--text-tertiary)' }}>{entry.lines} lines</span>
               </div>
@@ -145,13 +155,4 @@ export default function StackFlightPage() {
       </div>
     </div>
   );
-}
-
-function loadScores() {
-  try {
-    const parsed = JSON.parse(localStorage.getItem('stack-flight-rankings') || '[]');
-    return Array.isArray(parsed) ? parsed.slice(0, 100) : [];
-  } catch {
-    return [];
-  }
 }

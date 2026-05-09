@@ -37,7 +37,7 @@ export class RoomChannel {
   connectWebSocket() {
     if (!("WebSocket" in window)) return;
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const url = `${protocol}//${window.location.host}/ws/stack-flight?code=${encodeURIComponent(this.code)}&role=${encodeURIComponent(this.role)}`;
+    const url = `${protocol}//${window.location.host}/ws/block-x-flight?code=${encodeURIComponent(this.code)}&role=${encodeURIComponent(this.role)}`;
     try {
       this.ws = new WebSocket(url);
     } catch {
@@ -66,7 +66,7 @@ export class RoomChannel {
   activateLocalFallback() {
     if (!("BroadcastChannel" in window) || this.channel) return;
     this.ws = null;
-    this.channel = new BroadcastChannel(`stack-flight-${this.code}`);
+    this.channel = new BroadcastChannel(`block-x-flight-${this.code}`);
     this.channel.onmessage = (event) => {
       if (event.data?.role !== this.role) this.onMessage(event.data);
     };

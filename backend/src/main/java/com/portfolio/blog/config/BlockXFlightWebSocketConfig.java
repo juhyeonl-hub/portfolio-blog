@@ -1,6 +1,6 @@
 package com.portfolio.blog.config;
 
-import com.portfolio.blog.websocket.StackFlightRelayHandler;
+import com.portfolio.blog.websocket.BlockXFlightRelayHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
@@ -8,17 +8,17 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 
 @Configuration
 @EnableWebSocket
-public class StackFlightWebSocketConfig implements WebSocketConfigurer {
+public class BlockXFlightWebSocketConfig implements WebSocketConfigurer {
 
-    private final StackFlightRelayHandler relayHandler;
+    private final BlockXFlightRelayHandler relayHandler;
 
-    public StackFlightWebSocketConfig(StackFlightRelayHandler relayHandler) {
+    public BlockXFlightWebSocketConfig(BlockXFlightRelayHandler relayHandler) {
         this.relayHandler = relayHandler;
     }
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(relayHandler, "/ws/stack-flight")
+        registry.addHandler(relayHandler, "/ws/block-x-flight", "/ws/stack-flight")
             .setAllowedOriginPatterns(
                 "http://localhost:*",
                 "https://*.vercel.app",

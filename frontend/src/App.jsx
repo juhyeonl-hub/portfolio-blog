@@ -9,8 +9,8 @@ import ProjectDetailPage from './pages/ProjectDetailPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import AboutPage from './pages/AboutPage';
-import ExperimentsPage from './pages/ExperimentsPage';
-import StackFlightPage from './pages/StackFlightPage';
+import LabPage from './pages/LabPage';
+import BlockXFlightPage from './pages/BlockXFlightPage';
 import GuestbookPage from './pages/GuestbookPage';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminProjectsPage from './pages/admin/AdminProjectsPage';
@@ -33,9 +33,11 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/experiments" element={<ExperimentsPage />} />
-          <Route path="/experiments/stack-flight" element={<StackFlightPage />} />
-          <Route path="/games" element={<Navigate to="/experiments" replace />} />
+          <Route path="/lab" element={<LabPage />} />
+          <Route path="/lab/block-x-flight" element={<BlockXFlightPage />} />
+          <Route path="/experiments" element={<Navigate to="/lab" replace />} />
+          <Route path="/experiments/stack-flight" element={<Navigate to="/lab/block-x-flight" replace />} />
+          <Route path="/games" element={<Navigate to="/lab" replace />} />
           <Route path="/guestbook" element={<PageLayout title="Guestbook"><GuestbookPage /></PageLayout>} />
 
           {/* Legacy routes redirect */}

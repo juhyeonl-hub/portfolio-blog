@@ -23,7 +23,7 @@ const MODE_BUTTONS = [
   { mode: "single", label: "Single", x: 740, y: 330, w: 150, h: 58 },
 ];
 
-export class StackFlightGame {
+export class BlockXFlightGame {
   constructor(canvas, input, ui) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
@@ -48,7 +48,7 @@ export class StackFlightGame {
     this.player = new PlayerState(this.rng, LAYOUT.shooter);
     this.ai = null;
     window.addEventListener("message", (event) => {
-      if (event.origin === window.location.origin && event.data?.type === "stack-flight-score-saved") {
+      if (event.origin === window.location.origin && event.data?.type === "block-x-flight-score-saved") {
         this.scoreSubmitted = true;
       }
     });
@@ -189,7 +189,7 @@ export class StackFlightGame {
 
   submitScore() {
     if (this.mode !== "single" || this.scoreSubmitted) return;
-    window.parent?.postMessage({ type: "stack-flight-score", score: this.score(), lines: this.player.tetris.lines }, window.location.origin);
+    window.parent?.postMessage({ type: "block-x-flight-score", score: this.score(), lines: this.player.tetris.lines }, window.location.origin);
   }
 
   handleMenuInput() {
@@ -371,7 +371,7 @@ function drawModeSelect(ctx) {
   ctx.textAlign = "center";
   ctx.fillStyle = "#eef5f2";
   ctx.font = "700 46px sans-serif";
-  ctx.fillText("Stack Flight", 560, 170);
+  ctx.fillText("Block X Flight", 560, 170);
   ctx.fillStyle = "#aab8b4";
   ctx.font = "18px sans-serif";
   ctx.fillText("Choose a mode. The match starts after a 3 second countdown.", 560, 218);

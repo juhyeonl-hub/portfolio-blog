@@ -5,22 +5,22 @@ import usePageView from '../hooks/usePageView';
 
 const experiments = [
   {
-    slug: 'stack-flight',
-    title: 'Stack Flight',
+    slug: 'block-x-flight',
+    title: 'Block X Flight',
     description: 'Real-time browser interaction prototype for multitasking, input design, and lightweight multiplayer.',
     tags: ['Canvas', 'WebSocket', 'Game Loop'],
     date: '2026.05',
   },
 ];
 
-export default function ExperimentsPage() {
+export default function LabPage() {
   usePageView();
 
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Nav />
       <div className="max-w-[720px] mx-auto px-10 pt-12 pb-20">
-        <SectionLabel>Experiments</SectionLabel>
+        <SectionLabel>Lab</SectionLabel>
         <p className="text-[14px] mt-0 mb-6" style={{ color: 'var(--text-secondary)' }}>
           Small playable prototypes and interaction studies that sit between engineering, systems design, and interface work.
         </p>
@@ -29,7 +29,7 @@ export default function ExperimentsPage() {
           {experiments.map((experiment, i) => (
             <Link
               key={experiment.slug}
-              to={`/experiments/${experiment.slug}`}
+              to={`/lab/${experiment.slug}`}
               className="flex items-center justify-between px-5 py-4 no-underline transition-colors"
               style={{ borderTop: i > 0 ? '1px solid var(--border)' : 'none', background: 'var(--bg-card)' }}
               onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-hover)'}

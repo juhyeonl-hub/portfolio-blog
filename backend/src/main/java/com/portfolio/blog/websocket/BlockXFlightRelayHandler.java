@@ -19,14 +19,14 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-public class StackFlightRelayHandler extends TextWebSocketHandler {
+public class BlockXFlightRelayHandler extends TextWebSocketHandler {
 
     private static final int MAX_MESSAGE_BYTES = 16 * 1024;
 
     private final ObjectMapper objectMapper;
     private final Map<String, Set<WebSocketSession>> rooms = new ConcurrentHashMap<>();
 
-    public StackFlightRelayHandler(ObjectMapper objectMapper) {
+    public BlockXFlightRelayHandler(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
