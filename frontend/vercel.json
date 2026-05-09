@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/ws/:path*", "destination": "http://api.juhyeonl.dev/ws/:path*" },
     { "source": "/api/:path*", "destination": "http://api.juhyeonl.dev/api/:path*" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]

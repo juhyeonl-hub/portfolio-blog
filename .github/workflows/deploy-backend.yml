@@ -1,0 +1,46 @@
+name: Deploy Backend
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "backend/**"
+      - ".github/workflows/deploy-backend.yml"
+
+concurrency:
+  group: deploy-backend
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/portfolio_blog_key
+          chmod 600 ~/.ssh/portfolio_blog_key
+          ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy backend on EC2
+        run: |
+          ssh -i ~/.ssh/portfolio_blog_key "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}" <<'REMOTE'
+            set -euo pipefail
+            cd ~/portfolio-blog
+            git fetch origin main
+            git reset --hard origin/main
+            cd backend
+            mvn -DskipTests clean package
+            sudo systemctl stop portfolio-blog
+            sudo cp /opt/portfolio-blog/blog.jar /opt/portfolio-blog/blog.jar.bak
+            sudo cp ~/portfolio-blog/backend/target/blog-0.0.1-SNAPSHOT.jar /opt/portfolio-blog/blog.jar
+            sudo chown ubuntu:ubuntu /opt/portfolio-blog/blog.jar
+            sudo systemctl start portfolio-blog
+            sudo systemctl status portfolio-blog --no-pager
+          REMOTE
+
+      - name: Verify API
+        run: |
+          curl --fail --retry 12 --retry-delay 5 "http://${{ secrets.EC2_HOST }}:8080/api/health"
