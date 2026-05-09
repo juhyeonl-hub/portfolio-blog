@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -9,6 +9,7 @@ import ProjectDetailPage from './pages/ProjectDetailPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import AboutPage from './pages/AboutPage';
+import ExperimentsPage from './pages/ExperimentsPage';
 import StackFlightPage from './pages/StackFlightPage';
 import GuestbookPage from './pages/GuestbookPage';
 import AdminDashboard from './pages/AdminDashboard';
@@ -32,7 +33,9 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/games" element={<StackFlightPage />} />
+          <Route path="/experiments" element={<ExperimentsPage />} />
+          <Route path="/experiments/stack-flight" element={<StackFlightPage />} />
+          <Route path="/games" element={<Navigate to="/experiments" replace />} />
           <Route path="/guestbook" element={<PageLayout title="Guestbook"><GuestbookPage /></PageLayout>} />
 
           {/* Legacy routes redirect */}

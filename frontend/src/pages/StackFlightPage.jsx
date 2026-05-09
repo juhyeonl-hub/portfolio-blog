@@ -26,14 +26,14 @@ export default function StackFlightPage() {
               className="text-[13px] no-underline px-3 py-1.5 rounded-md transition-colors"
               style={{ border: '0.5px solid var(--border)', color: 'var(--text-secondary)' }}
             >
-              Open Prototype
+              Open Standalone
             </a>
             <Link
-              to="/projects"
+              to="/experiments"
               className="text-[13px] no-underline px-3 py-1.5 rounded-md transition-colors"
               style={{ border: '0.5px solid var(--border)', color: 'var(--text-tertiary)' }}
             >
-              Back to Projects
+              Back to Experiments
             </Link>
           </div>
         </div>
@@ -43,11 +43,12 @@ export default function StackFlightPage() {
           style={{ border: '0.5px solid var(--border)', background: 'var(--bg-card)' }}
         >
           <iframe
-            src="/games/stack-flight/index.html"
+            src="/games/stack-flight/index.html?embed=1"
             title="Stack Flight"
             className="block w-full"
-            style={{ aspectRatio: '7 / 4', border: 0, minHeight: '420px' }}
+            style={{ aspectRatio: '7 / 4', border: 0, minHeight: '420px', maxHeight: 'calc(100vh - 220px)' }}
             allow="autoplay"
+            scrolling="no"
           />
         </div>
       </div>

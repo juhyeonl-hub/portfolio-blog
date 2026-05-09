@@ -3,6 +3,10 @@ import { Input } from "./input.js";
 import { UI } from "./ui.js";
 import { makeSeed } from "./utils/rng.js";
 
+if (new URLSearchParams(window.location.search).get("embed") === "1") {
+  document.body.classList.add("embed");
+}
+
 const canvas = document.querySelector("#game");
 const input = new Input(canvas);
 const ui = new UI();

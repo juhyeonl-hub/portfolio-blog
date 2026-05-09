@@ -170,3 +170,36 @@ dd {
     flex-wrap: wrap;
   }
 }
+
+body.embed {
+  min-height: 100vh;
+  overflow: hidden;
+  background: #11181c;
+}
+
+body.embed .shell {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+}
+
+body.embed .topbar,
+body.embed .side {
+  display: none;
+}
+
+body.embed .stage {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+body.embed canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  max-height: none;
+  aspect-ratio: auto;
+  border: 0;
+  border-radius: 0;
+}
