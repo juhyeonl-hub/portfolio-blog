@@ -669,7 +669,17 @@ function drawModeSelect(ctx, playerName) {
   ctx.fillText("PLAYER NAME", 560, 278);
   ctx.fillStyle = "#eef5f2";
   ctx.font = "700 22px sans-serif";
-  ctx.fillText(playerName.slice(0, 16), 560, 308);
+  const displayName = playerName.slice(0, 16);
+  ctx.fillText(displayName, 560, 308);
+  if (Math.floor(performance.now() / 500) % 2 === 0) {
+    const width = ctx.measureText(displayName).width;
+    const caretX = 560 + width / 2 + 7;
+    ctx.fillStyle = "#7dfad0";
+    ctx.fillRect(caretX, 289, 2, 24);
+  }
+  ctx.fillStyle = "#7f8f8a";
+  ctx.font = "12px sans-serif";
+  ctx.fillText("Type to edit. Backspace deletes.", 560, 334);
 
   for (const button of MODE_BUTTONS) {
     ctx.fillStyle = "#182227";
