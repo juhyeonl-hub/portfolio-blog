@@ -251,6 +251,20 @@ export class TetrisField {
   nextType() {
     return this.queue[0] || null;
   }
+
+  snapshot() {
+    return {
+      grid: this.grid.map((row) => row.map((cell) => cell?.type || null)),
+      current: {
+        type: this.current.type,
+        x: this.current.x,
+        y: this.current.y,
+        blocks: this.current.blocks.map((block) => ({ x: block.x, y: block.y })),
+      },
+      hold: this.hold,
+      next: this.nextType(),
+    };
+  }
 }
 
 function makeGrid() {

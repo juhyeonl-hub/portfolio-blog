@@ -29,6 +29,7 @@ const JOIN_CODE_BUTTONS = [
 ];
 
 const WAIT_BUTTON = { action: "cancel", label: "Cancel", x: 494, y: 470, w: 132, h: 44 };
+const NAME_BOX = { x: 410, y: 260, w: 300, h: 52 };
 
 export class BlockXFlightGame {
   constructor(canvas, input, ui) {
@@ -51,6 +52,10 @@ export class BlockXFlightGame {
     this.level = 1;
     this.time = 0;
     this.finished = false;
+    this.localName = window.localStorage.getItem("block-x-flight-player-name") || "Player";
+    this.remoteName = "Opponent";
+    this.localRestartReady = false;
+    this.remoteRestartReady = false;
     this.roomCode = "";
     this.joinCode = "";
     this.waitMessage = "";
@@ -82,6 +87,9 @@ export class BlockXFlightGame {
     this.time = 0;
     this.finished = false;
     this.winner = "";
+    this.remoteName = "Opponent";
+    this.localRestartReady = false;
+    this.remoteRestartReady = false;
     this.scoreSubmitted = false;
     this.roomCode = roomCode;
     this.waitMessage = "";
@@ -136,11 +144,17 @@ export class BlockXFlightGame {
     this.channel = new RoomChannel(this.roomCode, "host", (message) => {
       if (message.type === "room-status") this.handleRoomStatus(message);
       if (message.type === "guest-ready") this.channel.send("seed", { seed: this.seed });
+      if (message.type === "player-ready") this.handlePlayerReady(message);
       if (message.type === "guest-lines") this.player.shooter.spawnAttack(attackFromLines(message.payload.lines, this.level), this.rng);
       if (message.type === "guest-input") this.remoteInput = message.payload;
+      if (message.type === "state") this.handleRemoteState(message.payload);
+      if (message.type === "game-over") this.handleRemoteGameOver(message.payload);
+      if (message.type === "restart-ready") this.handleRemoteRestartReady();
+      if (message.type === "leave-match") this.showMenu();
     });
     this.channel.send("seed", { seed: this.seed });
     this.channel.send("host-ready", { seed: this.seed });
+    this.sendPlayerReady();
     this.ui.setMode("host", this.seed, this.roomCode);
   }
 
@@ -151,10 +165,16 @@ export class BlockXFlightGame {
       if (message.type === "seed" && message.payload?.seed && message.payload.seed !== this.seed) {
         this.applySeed(message.payload.seed);
       }
+      if (message.type === "player-ready") this.handlePlayerReady(message);
       if (message.type === "host-lines") this.player.shooter.spawnAttack(attackFromLines(message.payload.lines, this.level), this.rng);
-      if (message.type === "state") this.remoteState = message.payload;
+      if (message.type === "state") this.handleRemoteState(message.payload);
+      if (message.type === "game-over") this.handleRemoteGameOver(message.payload);
+      if (message.type === "restart-ready") this.handleRemoteRestartReady();
+      if (message.type === "rematch-start" && message.payload?.seed) this.startRematch(message.payload.seed);
+      if (message.type === "leave-match") this.showMenu();
     });
     this.channel.send("guest-ready", {});
+    this.sendPlayerReady();
   }
 
   handleRoomStatus(message) {
@@ -163,6 +183,7 @@ export class BlockXFlightGame {
     if (message.readyToStart) {
       this.waitMessage = "Both players connected. Starting...";
       if (this.mode === "host") this.channel?.send("seed", { seed: this.seed });
+      this.sendPlayerReady();
       if ((this.mode === "host" || this.seedSynced) && this.state === "waiting") this.startCountdown();
       return;
     }
@@ -184,6 +205,72 @@ export class BlockXFlightGame {
     this.ui.setMode(this.mode, this.seed, this.roomCode);
     this.ui.update(this);
     if (this.state === "waiting" && this.hostConnected && this.guestConnected) this.startCountdown();
+  }
+
+  sendPlayerReady() {
+    if (!this.channel || this.mode === "single" || this.mode === "ai") return;
+    this.channel.send("player-ready", { name: this.localName });
+  }
+
+  handlePlayerReady(message) {
+    const name = String(message.payload?.name || "Opponent").trim().slice(0, 16);
+    this.remoteName = name || "Opponent";
+  }
+
+  handleRemoteState(payload) {
+    this.remoteState = payload;
+    if (payload?.name) this.remoteName = String(payload.name).slice(0, 16);
+    if (!this.finished && payload?.finished) {
+      this.finishMatch("win", payload.name || this.remoteName);
+    }
+  }
+
+  handleRemoteGameOver(payload) {
+    if (payload?.name) this.remoteName = String(payload.name).slice(0, 16);
+    if (!this.finished) this.finishMatch("win", payload?.name || this.remoteName);
+  }
+
+  handleRemoteRestartReady() {
+    this.remoteRestartReady = true;
+    if (this.localRestartReady) this.tryStartRematch();
+  }
+
+  requestRestart() {
+    if (this.mode !== "host" && this.mode !== "join") {
+      this.selectMode(this.mode);
+      return;
+    }
+    this.localRestartReady = true;
+    this.channel?.send("restart-ready", { name: this.localName });
+    this.tryStartRematch();
+  }
+
+  tryStartRematch() {
+    if (!this.localRestartReady || !this.remoteRestartReady) return;
+    if (this.mode !== "host") return;
+    const seed = this.mode === "host" ? makeSeed() : this.seed;
+    this.channel?.send("rematch-start", { seed });
+    this.startRematch(seed);
+  }
+
+  startRematch(seed) {
+    this.seed = seed >>> 0;
+    this.rng = new RNG(this.seed);
+    this.level = 1;
+    this.time = 0;
+    this.finished = false;
+    this.winner = "";
+    this.matchResult = "";
+    this.localRestartReady = false;
+    this.remoteRestartReady = false;
+    this.scoreSubmitted = false;
+    this.remoteState = null;
+    this.remoteInput = null;
+    this.player = new PlayerState(this.rng, LAYOUT.shooter);
+    this.sendPlayerReady();
+    this.startCountdown();
+    this.ui.setMode(this.mode, this.seed, this.roomCode);
+    this.ui.update(this);
   }
 
   togglePause() {
@@ -224,10 +311,14 @@ export class BlockXFlightGame {
       const action = overlayActionAt(click.x, click.y, this);
       if (action === "menu") {
         if (!this.finished && (this.paused || this.menuOpen)) this.confirmExit = true;
-        else this.showMenu();
+        else {
+          if (this.mode === "host" || this.mode === "join") this.channel?.send("leave-match", { name: this.localName });
+          this.showMenu();
+        }
         return true;
       }
       if (action === "confirm-menu") {
+        if (this.mode === "host" || this.mode === "join") this.channel?.send("leave-match", { name: this.localName });
         this.showMenu();
         return true;
       }
@@ -236,7 +327,7 @@ export class BlockXFlightGame {
         return true;
       }
       if (action === "restart") {
-        this.selectMode(this.mode);
+        this.requestRestart();
         return true;
       }
       if (action === "resume") {
@@ -277,13 +368,23 @@ export class BlockXFlightGame {
     this.level = 1 + Math.floor(this.time / 24);
     this.player.update(dt, this.input, this);
     if (this.ai) this.ai.update(dt, this);
-    if (this.channel && this.mode === "host") this.channel.send("state", this.snapshot());
-    if (this.channel && this.mode === "join") this.channel.send("guest-input", this.input.snapshot());
     if (this.player.lives <= 0) {
-      this.finished = true;
-      this.winner = this.mode === "single" ? "Run complete" : "Opponent";
+      this.finishMatch(this.mode === "single" ? "complete" : "lose", this.remoteName);
+    }
+    if (this.channel && this.mode === "host") this.channel.send("state", this.snapshot());
+    if (this.channel && this.mode === "join") {
+      this.channel.send("guest-input", this.input.snapshot());
+      this.channel.send("state", this.snapshot());
     }
     this.ui.update(this);
+  }
+
+  finishMatch(result, opponentName = "Opponent") {
+    if (this.finished) return;
+    this.finished = true;
+    this.matchResult = result;
+    this.winner = result === "complete" ? "Run complete" : result === "win" ? this.localName : opponentName;
+    if (result === "lose") this.channel?.send("game-over", { name: this.localName });
   }
 
   showMenu() {
@@ -294,6 +395,10 @@ export class BlockXFlightGame {
     this.confirmExit = false;
     this.finished = false;
     this.winner = "";
+    this.matchResult = "";
+    this.remoteName = "Opponent";
+    this.localRestartReady = false;
+    this.remoteRestartReady = false;
     this.scoreSubmitted = false;
     this.state = "menu";
     this.countdown = 0;
@@ -321,12 +426,22 @@ export class BlockXFlightGame {
   }
 
   handleMenuInput() {
+    this.handleNameInput();
     for (const click of this.input.clicks) {
       const button = MODE_BUTTONS.find((item) =>
         click.x >= item.x && click.x <= item.x + item.w && click.y >= item.y && click.y <= item.y + item.h
       );
       if (button) this.selectMode(button.mode);
     }
+  }
+
+  handleNameInput() {
+    for (const token of this.input.text) {
+      if (token === "Backspace") this.localName = this.localName.slice(0, -1);
+      else if (/^[A-Z0-9]$/.test(token) && this.localName.length < 16) this.localName += token;
+    }
+    if (!this.localName.trim()) this.localName = "";
+    window.localStorage.setItem("block-x-flight-player-name", this.localName || "Player");
   }
 
   handleJoinCodeInput() {
@@ -375,10 +490,14 @@ export class BlockXFlightGame {
   snapshot() {
     return {
       seed: this.seed,
+      name: this.localName || "Player",
       time: this.time,
       level: this.level,
       lives: this.player.lives,
       lines: this.player.tetris.lines,
+      finished: this.finished,
+      result: this.matchResult,
+      tetris: this.player.tetris.snapshot(),
     };
   }
 
@@ -393,7 +512,7 @@ export class BlockXFlightGame {
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     if (this.state === "menu") {
-      drawModeSelect(ctx);
+      drawModeSelect(ctx, this.localName || "Player");
       return;
     }
     if (this.state === "join-code") {
@@ -445,7 +564,7 @@ class PlayerState {
     }
     this.lives -= 1;
     this.recovery = 1.2;
-    if (this.lives <= 0) game.finished = true;
+    if (this.lives <= 0) game.finishMatch(game.mode === "single" ? "complete" : "lose", game.remoteName);
     game.audio.play("hit");
   }
 
@@ -500,7 +619,7 @@ function drawOpponentPreview(ctx, rect, game) {
   ctx.strokeRect(rect.x, rect.y, rect.w, rect.h);
   ctx.fillStyle = "#dce7e3";
   ctx.font = "700 15px sans-serif";
-  ctx.fillText(game.mode === "single" ? "SCORE RUN" : game.mode === "ai" ? "AI OPPONENT" : "REMOTE", rect.x, rect.y - 22);
+  ctx.fillText(game.mode === "single" ? "SCORE RUN" : game.mode === "ai" ? "AI OPPONENT" : game.remoteName.toUpperCase(), rect.x, rect.y - 22);
   ctx.font = "14px sans-serif";
   ctx.fillStyle = "#aab8b4";
   const lines = game.mode === "single"
@@ -515,17 +634,21 @@ function drawOpponentPreview(ctx, rect, game) {
       ]
     : [
         game.mode === "host" ? `Room ${game.roomCode}` : `Seed ${game.seed}`,
-        game.remoteState ? `Remote lives ${game.remoteState.lives}` : "Private match sync is",
-        game.remoteState ? `Remote lines ${game.remoteState.lines}` : "host based for local",
-        game.remoteInput ? `Guest keys ${game.remoteInput.keys.length}` : "invite-code testing.",
+        game.remoteState ? `${game.remoteName} lives ${game.remoteState.lives}` : "Private match sync is",
+        game.remoteState ? `${game.remoteName} lines ${game.remoteState.lines}` : "host based for local",
+        game.remoteRestartReady ? `${game.remoteName} ready` : game.localRestartReady ? "Waiting for rematch" : "Connected match.",
         "",
         "Clear lines to send",
         "attack bars across.",
       ];
   lines.forEach((line, i) => ctx.fillText(line, rect.x + 18, rect.y + 34 + i * 24));
+
+  if (game.remoteState?.tetris) {
+    drawMiniTetris(ctx, game.remoteState.tetris, { x: rect.x, y: 390, w: rect.w, h: 205 }, game.remoteName);
+  }
 }
 
-function drawModeSelect(ctx) {
+function drawModeSelect(ctx, playerName) {
   ctx.fillStyle = "#11181c";
   ctx.fillRect(0, 0, 1120, 640);
   ctx.textAlign = "center";
@@ -535,6 +658,18 @@ function drawModeSelect(ctx) {
   ctx.fillStyle = "#aab8b4";
   ctx.font = "18px sans-serif";
   ctx.fillText("Choose a mode. The match starts after a 3 second countdown.", 560, 218);
+
+  ctx.fillStyle = "#0b1114";
+  ctx.strokeStyle = "#40545b";
+  ctx.lineWidth = 2;
+  ctx.fillRect(NAME_BOX.x, NAME_BOX.y, NAME_BOX.w, NAME_BOX.h);
+  ctx.strokeRect(NAME_BOX.x, NAME_BOX.y, NAME_BOX.w, NAME_BOX.h);
+  ctx.fillStyle = "#7dfad0";
+  ctx.font = "700 12px sans-serif";
+  ctx.fillText("PLAYER NAME", 560, 278);
+  ctx.fillStyle = "#eef5f2";
+  ctx.font = "700 22px sans-serif";
+  ctx.fillText(playerName.slice(0, 16), 560, 308);
 
   for (const button of MODE_BUTTONS) {
     ctx.fillStyle = "#182227";
@@ -632,6 +767,43 @@ function drawCountdown(ctx, countdown) {
   ctx.fillText(String(Math.max(1, Math.ceil(countdown))), 560, 330);
 }
 
+function drawMiniTetris(ctx, snapshot, rect, label) {
+  ctx.fillStyle = "#141d22";
+  ctx.fillRect(rect.x, rect.y, rect.w, rect.h);
+  ctx.strokeStyle = "#2f3b42";
+  ctx.strokeRect(rect.x, rect.y, rect.w, rect.h);
+  ctx.fillStyle = "#dce7e3";
+  ctx.font = "700 12px sans-serif";
+  ctx.textAlign = "left";
+  ctx.fillText(`${label} FIELD`, rect.x + 12, rect.y + 18);
+
+  const board = { x: rect.x + 58, y: rect.y + 28, w: 104, h: 168 };
+  const cell = Math.min(board.w / 10, board.h / 20);
+  const startX = board.x + (board.w - cell * 10) / 2;
+  const startY = board.y + (board.h - cell * 20) / 2;
+  ctx.fillStyle = "#0b1114";
+  ctx.fillRect(startX, startY, cell * 10, cell * 20);
+  ctx.strokeStyle = "rgba(255,255,255,0.05)";
+  ctx.lineWidth = 1;
+  for (let y = 0; y < 20; y += 1) {
+    for (let x = 0; x < 10; x += 1) {
+      const type = snapshot.grid?.[y]?.[x];
+      if (type) {
+        ctx.fillStyle = COLORS[type] || "#dce7e3";
+        ctx.fillRect(startX + x * cell + 1, startY + y * cell + 1, cell - 1, cell - 1);
+      }
+    }
+  }
+  for (const block of snapshot.current?.blocks || []) {
+    const x = snapshot.current.x + block.x;
+    const y = snapshot.current.y + block.y;
+    if (x >= 0 && x < 10 && y >= 0 && y < 20) {
+      ctx.fillStyle = COLORS[snapshot.current.type] || "#dce7e3";
+      ctx.fillRect(startX + x * cell + 1, startY + y * cell + 1, cell - 1, cell - 1);
+    }
+  }
+}
+
 function drawPiecePreview(ctx, label, type, rect) {
   ctx.fillStyle = "#aab8b4";
   ctx.font = "700 12px sans-serif";
@@ -685,7 +857,7 @@ function drawOverlay(ctx, game) {
   const title = game.confirmExit
     ? "Leave match?"
     : game.finished
-    ? game.mode === "single" ? "Run complete" : `${game.winner || "Opponent"} wins`
+    ? game.mode === "single" ? "Run complete" : game.matchResult === "win" ? "You win" : "You lose"
     : game.menuOpen ? "Menu" : "Paused";
   ctx.fillText(title, 560, 286);
   ctx.font = "16px sans-serif";
@@ -693,6 +865,18 @@ function drawOverlay(ctx, game) {
     ctx.fillText("Your current run will be forfeited.", 560, 322);
   } else if (game.mode === "single") {
     ctx.fillText(`Score ${game.score()}  /  Lines ${game.player.tetris.lines}`, 560, 322);
+  } else if (game.finished) {
+    const detail = game.matchResult === "win"
+      ? `${game.remoteName} was defeated.`
+      : `${game.remoteName} wins.`;
+    ctx.fillText(detail, 560, 322);
+    if (game.localRestartReady || game.remoteRestartReady) {
+      const ready = [
+        game.localRestartReady ? "You ready" : "You not ready",
+        game.remoteRestartReady ? `${game.remoteName} ready` : `${game.remoteName} not ready`,
+      ].join("  /  ");
+      ctx.fillText(ready, 560, 426);
+    }
   } else if (game.menuOpen) {
     ctx.fillText("Match continues in the background.", 560, 322);
   }
