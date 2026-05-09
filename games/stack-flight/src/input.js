@@ -3,6 +3,7 @@ export class Input {
     this.keys = new Set();
     this.pressed = new Set();
     this.mouse = { x: 0, y: 0, active: false };
+    this.clicks = [];
 
     window.addEventListener("keydown", (event) => {
       const key = normalizeKey(event);
@@ -18,11 +19,20 @@ export class Input {
     });
 
     canvas.addEventListener("mousemove", (event) => {
+      this.setMouse(canvas, event);
+    });
+
+    canvas.addEventListener("click", (event) => {
+      this.setMouse(canvas, event);
+      this.clicks.push({ x: this.mouse.x, y: this.mouse.y });
+    });
+  }
+
+  setMouse(canvas, event) {
       const rect = canvas.getBoundingClientRect();
       this.mouse.x = ((event.clientX - rect.left) / rect.width) * canvas.width;
       this.mouse.y = ((event.clientY - rect.top) / rect.height) * canvas.height;
       this.mouse.active = true;
-    });
   }
 
   consume(key) {
@@ -33,6 +43,7 @@ export class Input {
 
   endFrame() {
     this.pressed.clear();
+    this.clicks = [];
   }
 
   snapshot() {

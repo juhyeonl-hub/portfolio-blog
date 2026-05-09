@@ -8,7 +8,7 @@ export class UI {
     this.levelOut = document.querySelector("#levelOut");
     this.seedOut = document.querySelector("#seedOut");
     this.buttons = {
-      prototype: document.querySelector("#prototypeBtn"),
+      single: document.querySelector("#singleBtn"),
       ai: document.querySelector("#aiBtn"),
       host: document.querySelector("#hostBtn"),
       join: document.querySelector("#joinBtn"),
@@ -16,7 +16,7 @@ export class UI {
   }
 
   setMode(mode, seed, roomCode) {
-    const labels = { prototype: "Prototype", ai: "Vs AI", host: "Host", join: "Join" };
+    const labels = { single: "Single", ai: "VS AI", host: "Host", join: "Join" };
     this.modeLabel.textContent = labels[mode] || mode;
     this.roomLabel.textContent = roomCode || "Local";
     this.inviteInput.value = roomCode || "";

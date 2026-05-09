@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import SectionLabel from '../components/SectionLabel';
@@ -5,6 +6,27 @@ import usePageView from '../hooks/usePageView';
 
 export default function StackFlightPage() {
   usePageView();
+  const [scores, setScores] = useState(() => loadScores());
+
+  useEffect(() => {
+    const onMessage = (event) => {
+      if (event.origin !== window.location.origin || event.data?.type !== 'stack-flight-score') return;
+      const name = window.prompt(`Single mode score: ${event.data.score}. Save a name?`, 'Player');
+      if (!name) return;
+      const next = [...loadScores(), {
+        name: name.trim().slice(0, 18) || 'Player',
+        score: Number(event.data.score) || 0,
+        lines: Number(event.data.lines) || 0,
+        date: new Date().toISOString(),
+      }]
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 100);
+      localStorage.setItem('stack-flight-rankings', JSON.stringify(next));
+      setScores(next);
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
 
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
@@ -42,7 +64,38 @@ export default function StackFlightPage() {
             scrolling="no"
           />
         </div>
+
+        <section className="mt-8">
+          <SectionLabel>Single Mode Ranking</SectionLabel>
+          <div className="rounded-xl overflow-hidden" style={{ border: '0.5px solid var(--border)' }}>
+            {scores.length === 0 ? (
+              <p className="text-[13px] px-5 py-4 m-0" style={{ color: 'var(--text-tertiary)', background: 'var(--bg-card)' }}>
+                No saved scores yet. Finish a Single run to register a score.
+              </p>
+            ) : scores.slice(0, 100).map((entry, index) => (
+              <div
+                key={`${entry.name}-${entry.score}-${entry.date}`}
+                className="grid grid-cols-[48px_1fr_90px_70px] gap-3 px-5 py-3 text-[13px]"
+                style={{ borderTop: index > 0 ? '1px solid var(--border)' : 'none', background: 'var(--bg-card)', color: 'var(--text-secondary)' }}
+              >
+                <span className="font-mono" style={{ color: 'var(--text-tertiary)' }}>{index + 1}</span>
+                <span style={{ color: 'var(--text-primary)' }}>{entry.name}</span>
+                <span className="font-mono">{entry.score}</span>
+                <span className="font-mono" style={{ color: 'var(--text-tertiary)' }}>{entry.lines} lines</span>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
+}
+
+function loadScores() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem('stack-flight-rankings') || '[]');
+    return Array.isArray(parsed) ? parsed.slice(0, 100) : [];
+  } catch {
+    return [];
+  }
 }

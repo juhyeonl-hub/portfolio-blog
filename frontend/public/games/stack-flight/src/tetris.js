@@ -2,7 +2,7 @@ import { maybeCreateItem } from "./items.js";
 
 const W = 10;
 const H = 20;
-const COLORS = {
+export const COLORS = {
   I: "#4dd8ff",
   O: "#ffd04d",
   T: "#b985ff",
@@ -12,7 +12,7 @@ const COLORS = {
   L: "#ff9b4d",
 };
 
-const SHAPES = {
+export const SHAPES = {
   I: [[0, 1], [1, 1], [2, 1], [3, 1]],
   O: [[1, 0], [2, 0], [1, 1], [2, 1]],
   T: [[1, 0], [0, 1], [1, 1], [2, 1]],
@@ -34,6 +34,7 @@ export class TetrisField {
     this.spawnDelay = 0;
     this.lines = 0;
     this.lastClearItems = [];
+    this.moveState = { dir: 0, held: 0, repeat: 0 };
     this.refillBag();
     this.spawn(1);
   }
@@ -45,8 +46,7 @@ export class TetrisField {
     }
 
     const moveDelay = input.keys.has("KeyS") ? 0.035 : getFallDelay(game.level, player.debuffs.speedTime > 0);
-    if (input.consume("KeyA")) this.tryMove(-1, 0);
-    if (input.consume("KeyD")) this.tryMove(1, 0);
+    this.updateHorizontalMove(dt, input);
     if (input.consume("KeyQ")) this.rotate(-1);
     if (input.consume("KeyE")) this.rotate(1);
     if (input.consume("Shift")) this.swapHold(game.level);
@@ -58,6 +58,29 @@ export class TetrisField {
       if (!this.tryMove(0, 1)) this.lockTimer += moveDelay;
     }
     if (this.lockTimer >= 0.32) this.lock(player, game);
+  }
+
+  updateHorizontalMove(dt, input) {
+    const left = input.keys.has("KeyA");
+    const right = input.keys.has("KeyD");
+    const dir = left === right ? 0 : left ? -1 : 1;
+    if (dir === 0) {
+      this.moveState = { dir: 0, held: 0, repeat: 0 };
+      return;
+    }
+    if (this.moveState.dir !== dir) {
+      this.moveState = { dir, held: 0, repeat: 0 };
+      this.tryMove(dir, 0);
+      return;
+    }
+
+    this.moveState.held += dt;
+    this.moveState.repeat += dt;
+    if (this.moveState.held < 0.15) return;
+    if (this.moveState.repeat >= 0.055) {
+      this.moveState.repeat = 0;
+      this.tryMove(dir, 0);
+    }
   }
 
   spawn(level) {
@@ -223,6 +246,10 @@ export class TetrisField {
       const y = this.current.y + block.y;
       if (y >= 0) drawCell(ctx, rect.x + x * cell, rect.y + y * cell, cell, { type: this.current.type, item: block.item }, debuffs);
     }
+  }
+
+  nextType() {
+    return this.queue[0] || null;
   }
 }
 

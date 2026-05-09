@@ -5,14 +5,23 @@ import { DebuffState } from "./debuffs.js";
 import { applyItem } from "./items.js";
 import { RoomChannel, createRoomCode } from "./network.js";
 import { ShooterField } from "./shooter.js";
-import { TetrisField } from "./tetris.js";
+import { COLORS, SHAPES, TetrisField } from "./tetris.js";
 import { RNG, makeSeed } from "./utils/rng.js";
 
 const LAYOUT = {
   tetris: { x: 54, y: 74, w: 270, h: 540 },
   shooter: { x: 410, y: 74, w: 360, h: 540 },
   opponent: { x: 835, y: 74, w: 220, h: 300 },
+  hold: { x: 54, y: 24, w: 112, h: 42 },
+  next: { x: 212, y: 24, w: 112, h: 42 },
 };
+
+const MODE_BUTTONS = [
+  { mode: "ai", label: "VS AI", x: 230, y: 330, w: 150, h: 58 },
+  { mode: "host", label: "Host", x: 400, y: 330, w: 150, h: 58 },
+  { mode: "join", label: "Join", x: 570, y: 330, w: 150, h: 58 },
+  { mode: "single", label: "Single", x: 740, y: 330, w: 150, h: 58 },
+];
 
 export class StackFlightGame {
   constructor(canvas, input, ui) {
@@ -23,9 +32,23 @@ export class StackFlightGame {
     this.audio = new AudioSystem();
     this.last = 0;
     this.paused = false;
-    this.mode = "prototype";
+    this.mode = "single";
     this.channel = null;
-    this.restart("prototype");
+    this.state = "menu";
+    this.countdown = 0;
+    this.scoreSubmitted = false;
+    this.seed = makeSeed();
+    this.rng = new RNG(this.seed);
+    this.level = 1;
+    this.time = 0;
+    this.finished = false;
+    this.roomCode = "";
+    this.remoteState = null;
+    this.remoteInput = null;
+    this.player = new PlayerState(this.rng, LAYOUT.shooter);
+    this.ai = null;
+    this.ui.setMode(this.mode, this.seed, this.roomCode);
+    this.ui.update(this);
   }
 
   restart(mode = this.mode, seed = makeSeed(), roomCode = "") {
@@ -37,15 +60,22 @@ export class StackFlightGame {
     this.time = 0;
     this.finished = false;
     this.winner = "";
+    this.scoreSubmitted = false;
     this.roomCode = roomCode;
     this.remoteState = null;
     this.remoteInput = null;
     this.player = new PlayerState(this.rng, LAYOUT.shooter);
-    this.ai = mode === "prototype" || mode === "ai" ? new AIOpponent(this.rng) : null;
+    this.ai = mode === "single" || mode === "ai" ? new AIOpponent(this.rng) : null;
     if (mode === "host") this.setupHost();
     if (mode === "join") this.setupGuest(roomCode || "LOCAL1");
     this.ui.setMode(mode, this.seed, this.roomCode);
     this.ui.update(this);
+  }
+
+  selectMode(mode, seed = makeSeed(), roomCode = "") {
+    this.restart(mode, seed, roomCode);
+    this.state = "countdown";
+    this.countdown = 3;
   }
 
   setupHost() {
@@ -89,6 +119,15 @@ export class StackFlightGame {
   }
 
   update(dt) {
+    if (this.state === "menu") {
+      this.handleMenuInput();
+      return;
+    }
+    if (this.state === "countdown") {
+      this.countdown -= dt;
+      if (this.countdown <= 0) this.state = "playing";
+      return;
+    }
     if (this.finished) return;
     this.time += dt;
     this.level = 1 + Math.floor(this.time / 24);
@@ -98,9 +137,22 @@ export class StackFlightGame {
     if (this.channel && this.mode === "join") this.channel.send("guest-input", this.input.snapshot());
     if (this.player.lives <= 0) {
       this.finished = true;
-      this.winner = "Opponent";
+      this.winner = this.mode === "single" ? "Run complete" : "Opponent";
+    }
+    if (this.finished && this.mode === "single" && !this.scoreSubmitted) {
+      this.scoreSubmitted = true;
+      window.parent?.postMessage({ type: "stack-flight-score", score: this.score(), lines: this.player.tetris.lines }, window.location.origin);
     }
     this.ui.update(this);
+  }
+
+  handleMenuInput() {
+    for (const click of this.input.clicks) {
+      const button = MODE_BUTTONS.find((item) =>
+        click.x >= item.x && click.x <= item.x + item.w && click.y >= item.y && click.y <= item.y + item.h
+      );
+      if (button) this.selectMode(button.mode);
+    }
   }
 
   onLineClear(lines, items) {
@@ -129,20 +181,33 @@ export class StackFlightGame {
     };
   }
 
+  score() {
+    return Math.floor(this.player.tetris.lines * 120 + this.time * 8 + this.level * 75);
+  }
+
   draw() {
     const ctx = this.ctx;
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     ctx.fillStyle = "#11181c";
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
+    if (this.state === "menu") {
+      drawModeSelect(ctx);
+      return;
+    }
+
     drawPanelTitle(ctx, "TETRIS", LAYOUT.tetris);
     drawPanelTitle(ctx, "SHOOTER", LAYOUT.shooter);
     this.player.tetris.draw(ctx, LAYOUT.tetris, this.player.debuffs);
     this.player.shooter.draw(ctx, this.player);
+    drawPiecePreview(ctx, "HOLD", this.player.tetris.hold, LAYOUT.hold);
+    drawPiecePreview(ctx, "NEXT", this.player.tetris.nextType(), LAYOUT.next);
     drawDivider(ctx);
     drawHud(ctx, this);
+    drawStatusTimers(ctx, this);
     drawOpponentPreview(ctx, LAYOUT.opponent, this);
 
+    if (this.state === "countdown") drawCountdown(ctx, this.countdown);
     if (this.paused || this.finished) drawOverlay(ctx, this);
   }
 }
@@ -207,9 +272,10 @@ function drawHud(ctx, game) {
   ctx.fillStyle = "#dce7e3";
   ctx.font = "700 16px sans-serif";
   ctx.textAlign = "left";
-  ctx.fillText(`Lives: ${"I".repeat(Math.max(0, game.player.lives))}`, 54, 26);
-  ctx.fillText(`Lines: ${game.player.tetris.lines}`, 230, 26);
-  ctx.fillText(`Level: ${game.level}`, 410, 26);
+  ctx.fillText(`Lives: ${"I".repeat(Math.max(0, game.player.lives))}`, 350, 28);
+  ctx.fillText(`Lines: ${game.player.tetris.lines}`, 465, 28);
+  ctx.fillText(`Level: ${game.level}`, 570, 28);
+  if (game.mode === "single") ctx.fillText(`Score: ${game.score()}`, 675, 28);
   if (game.player.recovery > 0) {
     ctx.fillStyle = "rgba(125,250,208,0.18)";
     ctx.fillRect(LAYOUT.tetris.x, LAYOUT.tetris.y, LAYOUT.tetris.w, LAYOUT.tetris.h);
@@ -228,7 +294,7 @@ function drawOpponentPreview(ctx, rect, game) {
   ctx.strokeRect(rect.x, rect.y, rect.w, rect.h);
   ctx.fillStyle = "#dce7e3";
   ctx.font = "700 15px sans-serif";
-  ctx.fillText(game.mode === "prototype" ? "SIM OPPONENT" : "REMOTE / AI", rect.x, rect.y - 22);
+  ctx.fillText(game.mode === "single" ? "SCORE RUN" : game.mode === "ai" ? "AI OPPONENT" : "REMOTE", rect.x, rect.y - 22);
   ctx.font = "14px sans-serif";
   ctx.fillStyle = "#aab8b4";
   const lines = [
@@ -243,13 +309,95 @@ function drawOpponentPreview(ctx, rect, game) {
   lines.forEach((line, i) => ctx.fillText(line, rect.x + 18, rect.y + 34 + i * 24));
 }
 
+function drawModeSelect(ctx) {
+  ctx.fillStyle = "#11181c";
+  ctx.fillRect(0, 0, 1120, 640);
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#eef5f2";
+  ctx.font = "700 46px sans-serif";
+  ctx.fillText("Stack Flight", 560, 170);
+  ctx.fillStyle = "#aab8b4";
+  ctx.font = "18px sans-serif";
+  ctx.fillText("Choose a mode. The match starts after a 3 second countdown.", 560, 218);
+
+  for (const button of MODE_BUTTONS) {
+    ctx.fillStyle = "#182227";
+    ctx.strokeStyle = "#40545b";
+    ctx.lineWidth = 2;
+    ctx.fillRect(button.x, button.y, button.w, button.h);
+    ctx.strokeRect(button.x, button.y, button.w, button.h);
+    ctx.fillStyle = "#eef5f2";
+    ctx.font = "700 20px sans-serif";
+    ctx.fillText(button.label, button.x + button.w / 2, button.y + 36);
+  }
+  ctx.fillStyle = "#7dfad0";
+  ctx.font = "14px sans-serif";
+  ctx.fillText("Tetris: A/D/S/Space/Q/E/Shift     Shooter: mouse move, auto fire", 560, 450);
+}
+
+function drawCountdown(ctx, countdown) {
+  ctx.fillStyle = "rgba(0,0,0,0.46)";
+  ctx.fillRect(0, 0, 1120, 640);
+  ctx.fillStyle = "#ffffff";
+  ctx.textAlign = "center";
+  ctx.font = "700 84px sans-serif";
+  ctx.fillText(String(Math.max(1, Math.ceil(countdown))), 560, 330);
+}
+
+function drawPiecePreview(ctx, label, type, rect) {
+  ctx.fillStyle = "#aab8b4";
+  ctx.font = "700 12px sans-serif";
+  ctx.textAlign = "left";
+  ctx.fillText(label, rect.x, rect.y - 5);
+  ctx.fillStyle = "#0b1114";
+  ctx.fillRect(rect.x, rect.y, rect.w, rect.h);
+  ctx.strokeStyle = "#2f3b42";
+  ctx.strokeRect(rect.x, rect.y, rect.w, rect.h);
+  if (!type) return;
+  const blocks = SHAPES[type];
+  const size = 13;
+  const offsetX = rect.x + rect.w / 2 - 26;
+  const offsetY = rect.y + rect.h / 2 - 18;
+  ctx.fillStyle = COLORS[type];
+  for (const [x, y] of blocks) {
+    ctx.fillRect(offsetX + x * size, offsetY + y * size, size - 1, size - 1);
+  }
+}
+
+function drawStatusTimers(ctx, game) {
+  const rows = [];
+  const upgrades = game.player.shooter.upgrades;
+  for (const [name, time] of Object.entries(upgrades)) if (time > 0) rows.push(`${name}+ ${time.toFixed(1)}s`);
+  if (game.player.shieldTime > 0) rows.push(`shield ${game.player.shieldTime.toFixed(1)}s`);
+  const debuffs = game.player.debuffs;
+  if (debuffs.speedTime > 0) rows.push(`fall speed ${debuffs.speedTime.toFixed(1)}s`);
+  if (debuffs.spawnDelayTime > 0) rows.push(`spawn delay ${debuffs.spawnDelayTime.toFixed(1)}s`);
+  if (debuffs.colorTime > 0) rows.push(`color shift ${debuffs.colorTime.toFixed(1)}s`);
+  if (debuffs.ghostOffTime > 0) rows.push(`ghost off ${debuffs.ghostOffTime.toFixed(1)}s`);
+  if (debuffs.disruptTime > 0) rows.push(`visual noise ${debuffs.disruptTime.toFixed(1)}s`);
+  if (!rows.length) return;
+  ctx.fillStyle = "rgba(20,29,34,0.9)";
+  ctx.fillRect(835, 400, 220, 28 + rows.length * 20);
+  ctx.strokeStyle = "#2f3b42";
+  ctx.strokeRect(835, 400, 220, 28 + rows.length * 20);
+  ctx.fillStyle = "#dce7e3";
+  ctx.font = "700 12px sans-serif";
+  ctx.fillText("ACTIVE EFFECTS", 850, 420);
+  ctx.fillStyle = "#7dfad0";
+  ctx.font = "12px sans-serif";
+  rows.forEach((row, i) => ctx.fillText(row, 850, 442 + i * 20));
+}
+
 function drawOverlay(ctx, game) {
   ctx.fillStyle = "rgba(0,0,0,0.58)";
   ctx.fillRect(0, 0, game.canvas.width, game.canvas.height);
   ctx.fillStyle = "#ffffff";
   ctx.textAlign = "center";
   ctx.font = "700 34px sans-serif";
-  ctx.fillText(game.finished ? `${game.winner || "Opponent"} wins` : "Paused", 560, 286);
+  const title = game.finished
+    ? game.mode === "single" ? "Run complete" : `${game.winner || "Opponent"} wins`
+    : "Paused";
+  ctx.fillText(title, 560, 286);
   ctx.font = "16px sans-serif";
   ctx.fillText("Press Restart to play again.", 560, 322);
 }
