@@ -23,6 +23,7 @@ export default function StackFlightPage() {
         .slice(0, 100);
       localStorage.setItem('stack-flight-rankings', JSON.stringify(next));
       setScores(next);
+      event.source?.postMessage({ type: 'stack-flight-score-saved' }, event.origin);
     };
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);

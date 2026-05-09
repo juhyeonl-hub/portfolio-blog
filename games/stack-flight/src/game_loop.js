@@ -47,12 +47,18 @@ export class StackFlightGame {
     this.remoteInput = null;
     this.player = new PlayerState(this.rng, LAYOUT.shooter);
     this.ai = null;
+    window.addEventListener("message", (event) => {
+      if (event.origin === window.location.origin && event.data?.type === "stack-flight-score-saved") {
+        this.scoreSubmitted = true;
+      }
+    });
     this.ui.setMode(this.mode, this.seed, this.roomCode);
     this.ui.update(this);
   }
 
   restart(mode = this.mode, seed = makeSeed(), roomCode = "") {
     if (this.channel) this.channel.close();
+    this.paused = false;
     this.mode = mode;
     this.seed = seed >>> 0;
     this.rng = new RNG(this.seed);
@@ -112,10 +118,25 @@ export class StackFlightGame {
   frame(time) {
     const dt = Math.min(0.033, (time - this.last) / 1000 || 0);
     this.last = time;
+    this.handleGlobalInput();
     if (!this.paused) this.update(dt);
     this.draw();
     this.input.endFrame();
     requestAnimationFrame((next) => this.frame(next));
+  }
+
+  handleGlobalInput() {
+    if (this.mode === "single" && this.state === "playing" && !this.finished && this.input.consume("Escape")) {
+      this.paused = !this.paused;
+    }
+    if (!this.paused && !this.finished) return;
+    for (const click of this.input.clicks) {
+      const action = overlayActionAt(click.x, click.y, this);
+      if (action === "menu") this.showMenu();
+      if (action === "restart") this.selectMode(this.mode);
+      if (action === "resume") this.paused = false;
+      if (action === "save") this.submitScore();
+    }
   }
 
   update(dt) {
@@ -139,11 +160,24 @@ export class StackFlightGame {
       this.finished = true;
       this.winner = this.mode === "single" ? "Run complete" : "Opponent";
     }
-    if (this.finished && this.mode === "single" && !this.scoreSubmitted) {
-      this.scoreSubmitted = true;
-      window.parent?.postMessage({ type: "stack-flight-score", score: this.score(), lines: this.player.tetris.lines }, window.location.origin);
-    }
     this.ui.update(this);
+  }
+
+  showMenu() {
+    if (this.channel) this.channel.close();
+    this.paused = false;
+    this.finished = false;
+    this.state = "menu";
+    this.roomCode = "";
+    this.remoteState = null;
+    this.remoteInput = null;
+    this.ui.setMode(this.mode, this.seed, this.roomCode);
+    this.ui.update(this);
+  }
+
+  submitScore() {
+    if (this.mode !== "single" || this.scoreSubmitted) return;
+    window.parent?.postMessage({ type: "stack-flight-score", score: this.score(), lines: this.player.tetris.lines }, window.location.origin);
   }
 
   handleMenuInput() {
@@ -297,15 +331,25 @@ function drawOpponentPreview(ctx, rect, game) {
   ctx.fillText(game.mode === "single" ? "SCORE RUN" : game.mode === "ai" ? "AI OPPONENT" : "REMOTE", rect.x, rect.y - 22);
   ctx.font = "14px sans-serif";
   ctx.fillStyle = "#aab8b4";
-  const lines = [
-    game.mode === "host" ? `Room ${game.roomCode}` : `Seed ${game.seed}`,
-    game.remoteState ? `Remote lives ${game.remoteState.lives}` : "Private match sync is",
-    game.remoteState ? `Remote lines ${game.remoteState.lines}` : "host based for local",
-    game.remoteInput ? `Guest keys ${game.remoteInput.keys.length}` : "invite-code testing.",
-    "",
-    "Clear lines to send",
-    "attack bars across.",
-  ];
+  const lines = game.mode === "single"
+    ? [
+        `Score ${game.score()}`,
+        `Lines ${game.player.tetris.lines}`,
+        `Level ${game.level}`,
+        `Time ${Math.floor(game.time)}s`,
+        "",
+        "ESC pauses the run.",
+        "Save after game over.",
+      ]
+    : [
+        game.mode === "host" ? `Room ${game.roomCode}` : `Seed ${game.seed}`,
+        game.remoteState ? `Remote lives ${game.remoteState.lives}` : "Private match sync is",
+        game.remoteState ? `Remote lines ${game.remoteState.lines}` : "host based for local",
+        game.remoteInput ? `Guest keys ${game.remoteInput.keys.length}` : "invite-code testing.",
+        "",
+        "Clear lines to send",
+        "attack bars across.",
+      ];
   lines.forEach((line, i) => ctx.fillText(line, rect.x + 18, rect.y + 34 + i * 24));
 }
 
@@ -389,7 +433,7 @@ function drawStatusTimers(ctx, game) {
 }
 
 function drawOverlay(ctx, game) {
-  ctx.fillStyle = "rgba(0,0,0,0.58)";
+  ctx.fillStyle = game.paused ? "#050708" : "rgba(0,0,0,0.78)";
   ctx.fillRect(0, 0, game.canvas.width, game.canvas.height);
   ctx.fillStyle = "#ffffff";
   ctx.textAlign = "center";
@@ -399,5 +443,57 @@ function drawOverlay(ctx, game) {
     : "Paused";
   ctx.fillText(title, 560, 286);
   ctx.font = "16px sans-serif";
-  ctx.fillText("Press Restart to play again.", 560, 322);
+  if (game.mode === "single") {
+    ctx.fillText(`Score ${game.score()}  /  Lines ${game.player.tetris.lines}`, 560, 322);
+  }
+  drawOverlayButtons(ctx, game);
+}
+
+function overlayButtons(game) {
+  if (game.paused) {
+    return [
+      { action: "menu", label: "Menu", x: 374, y: 354, w: 112, h: 42 },
+      { action: "resume", label: "Resume", x: 504, y: 354, w: 112, h: 42 },
+      { action: "restart", label: "Restart", x: 634, y: 354, w: 112, h: 42 },
+    ];
+  }
+  const buttons = [
+    { action: "menu", label: "Menu", x: 374, y: 354, w: 112, h: 42 },
+    { action: "restart", label: "Restart", x: 504, y: 354, w: 112, h: 42 },
+  ];
+  if (game.mode === "single") {
+    buttons.push({
+      action: "save",
+      label: game.scoreSubmitted ? "Saved" : "Save",
+      x: 634,
+      y: 354,
+      w: 112,
+      h: 42,
+      disabled: game.scoreSubmitted,
+    });
+  }
+  return buttons;
+}
+
+function overlayActionAt(x, y, game) {
+  const button = overlayButtons(game).find((item) =>
+    !item.disabled && x >= item.x && x <= item.x + item.w && y >= item.y && y <= item.y + item.h
+  );
+  return button?.action || "";
+}
+
+function drawOverlayButtons(ctx, game) {
+  for (const button of overlayButtons(game)) {
+    ctx.fillStyle = button.disabled ? "#1a2024" : "#182227";
+    ctx.strokeStyle = button.disabled ? "#2a3338" : "#7dfad0";
+    ctx.lineWidth = 1;
+    ctx.fillRect(button.x, button.y, button.w, button.h);
+    ctx.strokeRect(button.x, button.y, button.w, button.h);
+    ctx.fillStyle = button.disabled ? "#657177" : "#eef5f2";
+    ctx.font = "700 15px sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(button.label, button.x + button.w / 2, button.y + button.h / 2 + 1);
+  }
+  ctx.textBaseline = "alphabetic";
 }

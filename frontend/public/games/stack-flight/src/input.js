@@ -7,7 +7,7 @@ export class Input {
 
     window.addEventListener("keydown", (event) => {
       const key = normalizeKey(event);
-      if (["KeyA", "KeyD", "KeyS", "Space", "KeyQ", "KeyE", "ShiftLeft", "ShiftRight"].includes(event.code)) {
+      if (["KeyA", "KeyD", "KeyS", "Space", "KeyQ", "KeyE", "ShiftLeft", "ShiftRight", "Escape"].includes(event.code)) {
         event.preventDefault();
       }
       if (!this.keys.has(key)) this.pressed.add(key);
