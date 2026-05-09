@@ -32,6 +32,7 @@ export class BlockXFlightGame {
     this.audio = new AudioSystem();
     this.last = 0;
     this.paused = false;
+    this.menuOpen = false;
     this.mode = "single";
     this.channel = null;
     this.state = "menu";
@@ -59,6 +60,7 @@ export class BlockXFlightGame {
   restart(mode = this.mode, seed = makeSeed(), roomCode = "") {
     if (this.channel) this.channel.close();
     this.paused = false;
+    this.menuOpen = false;
     this.mode = mode;
     this.seed = seed >>> 0;
     this.rng = new RNG(this.seed);
@@ -108,7 +110,8 @@ export class BlockXFlightGame {
   }
 
   togglePause() {
-    this.paused = !this.paused;
+    if (this.mode === "single") this.paused = !this.paused;
+    else this.menuOpen = !this.menuOpen;
   }
 
   start() {
@@ -126,11 +129,15 @@ export class BlockXFlightGame {
   }
 
   handleGlobalInput() {
-    if (this.mode === "single" && this.state === "playing" && !this.finished && this.input.consume("Escape")) {
-      this.paused = !this.paused;
-      return true;
+    if (this.state === "playing" && !this.finished && this.input.consume("Escape")) {
+      if (this.mode === "single") {
+        this.paused = !this.paused;
+        return true;
+      }
+      this.menuOpen = !this.menuOpen;
+      return false;
     }
-    if (!this.paused && !this.finished) return false;
+    if (!this.paused && !this.finished && !this.menuOpen) return false;
     for (const click of this.input.clicks) {
       const action = overlayActionAt(click.x, click.y, this);
       if (action === "menu") {
@@ -143,6 +150,7 @@ export class BlockXFlightGame {
       }
       if (action === "resume") {
         this.paused = false;
+        this.menuOpen = false;
         return true;
       }
       if (action === "save") {
@@ -181,6 +189,7 @@ export class BlockXFlightGame {
     if (this.channel) this.channel.close();
     this.channel = null;
     this.paused = false;
+    this.menuOpen = false;
     this.finished = false;
     this.winner = "";
     this.scoreSubmitted = false;
@@ -266,7 +275,7 @@ export class BlockXFlightGame {
     drawOpponentPreview(ctx, LAYOUT.opponent, this);
 
     if (this.state === "countdown") drawCountdown(ctx, this.countdown);
-    if (this.paused || this.finished) drawOverlay(ctx, this);
+    if (this.paused || this.finished || this.menuOpen) drawOverlay(ctx, this);
   }
 }
 
@@ -457,27 +466,29 @@ function drawStatusTimers(ctx, game) {
 }
 
 function drawOverlay(ctx, game) {
-  ctx.fillStyle = game.paused ? "#050708" : "rgba(0,0,0,0.78)";
+  ctx.fillStyle = game.paused ? "#050708" : game.menuOpen ? "rgba(0,0,0,0.46)" : "rgba(0,0,0,0.78)";
   ctx.fillRect(0, 0, game.canvas.width, game.canvas.height);
   ctx.fillStyle = "#ffffff";
   ctx.textAlign = "center";
   ctx.font = "700 34px sans-serif";
   const title = game.finished
     ? game.mode === "single" ? "Run complete" : `${game.winner || "Opponent"} wins`
-    : "Paused";
+    : game.menuOpen ? "Menu" : "Paused";
   ctx.fillText(title, 560, 286);
   ctx.font = "16px sans-serif";
   if (game.mode === "single") {
     ctx.fillText(`Score ${game.score()}  /  Lines ${game.player.tetris.lines}`, 560, 322);
+  } else if (game.menuOpen) {
+    ctx.fillText("Match continues in the background.", 560, 322);
   }
   drawOverlayButtons(ctx, game);
 }
 
 function overlayButtons(game) {
-  if (game.paused) {
+  if (game.paused || game.menuOpen) {
     return [
       { action: "menu", label: "Menu", x: 374, y: 354, w: 112, h: 42 },
-      { action: "resume", label: "Resume", x: 504, y: 354, w: 112, h: 42 },
+      { action: "resume", label: game.paused ? "Resume" : "Close", x: 504, y: 354, w: 112, h: 42 },
       { action: "restart", label: "Restart", x: 634, y: 354, w: 112, h: 42 },
     ];
   }
