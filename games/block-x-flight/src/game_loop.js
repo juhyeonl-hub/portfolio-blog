@@ -33,6 +33,7 @@ export class BlockXFlightGame {
     this.last = 0;
     this.paused = false;
     this.menuOpen = false;
+    this.confirmExit = false;
     this.mode = "single";
     this.channel = null;
     this.state = "menu";
@@ -61,6 +62,7 @@ export class BlockXFlightGame {
     if (this.channel) this.channel.close();
     this.paused = false;
     this.menuOpen = false;
+    this.confirmExit = false;
     this.mode = mode;
     this.seed = seed >>> 0;
     this.rng = new RNG(this.seed);
@@ -110,6 +112,7 @@ export class BlockXFlightGame {
   }
 
   togglePause() {
+    this.confirmExit = false;
     if (this.mode === "single") this.paused = !this.paused;
     else this.menuOpen = !this.menuOpen;
   }
@@ -130,6 +133,10 @@ export class BlockXFlightGame {
 
   handleGlobalInput() {
     if (this.state === "playing" && !this.finished && this.input.consume("Escape")) {
+      if (this.confirmExit) {
+        this.confirmExit = false;
+        return this.mode === "single";
+      }
       if (this.mode === "single") {
         this.paused = !this.paused;
         return true;
@@ -141,7 +148,16 @@ export class BlockXFlightGame {
     for (const click of this.input.clicks) {
       const action = overlayActionAt(click.x, click.y, this);
       if (action === "menu") {
+        if (!this.finished && (this.paused || this.menuOpen)) this.confirmExit = true;
+        else this.showMenu();
+        return true;
+      }
+      if (action === "confirm-menu") {
         this.showMenu();
+        return true;
+      }
+      if (action === "cancel-menu") {
+        this.confirmExit = false;
         return true;
       }
       if (action === "restart") {
@@ -151,6 +167,7 @@ export class BlockXFlightGame {
       if (action === "resume") {
         this.paused = false;
         this.menuOpen = false;
+        this.confirmExit = false;
         return true;
       }
       if (action === "save") {
@@ -190,6 +207,7 @@ export class BlockXFlightGame {
     this.channel = null;
     this.paused = false;
     this.menuOpen = false;
+    this.confirmExit = false;
     this.finished = false;
     this.winner = "";
     this.scoreSubmitted = false;
@@ -471,12 +489,16 @@ function drawOverlay(ctx, game) {
   ctx.fillStyle = "#ffffff";
   ctx.textAlign = "center";
   ctx.font = "700 34px sans-serif";
-  const title = game.finished
+  const title = game.confirmExit
+    ? "Leave match?"
+    : game.finished
     ? game.mode === "single" ? "Run complete" : `${game.winner || "Opponent"} wins`
     : game.menuOpen ? "Menu" : "Paused";
   ctx.fillText(title, 560, 286);
   ctx.font = "16px sans-serif";
-  if (game.mode === "single") {
+  if (game.confirmExit) {
+    ctx.fillText("Your current run will be forfeited.", 560, 322);
+  } else if (game.mode === "single") {
     ctx.fillText(`Score ${game.score()}  /  Lines ${game.player.tetris.lines}`, 560, 322);
   } else if (game.menuOpen) {
     ctx.fillText("Match continues in the background.", 560, 322);
@@ -485,6 +507,12 @@ function drawOverlay(ctx, game) {
 }
 
 function overlayButtons(game) {
+  if (game.confirmExit) {
+    return [
+      { action: "cancel-menu", label: "Cancel", x: 430, y: 354, w: 112, h: 42 },
+      { action: "confirm-menu", label: "Leave", x: 578, y: 354, w: 112, h: 42 },
+    ];
+  }
   if (game.paused || game.menuOpen) {
     return [
       { action: "menu", label: "Menu", x: 374, y: 354, w: 112, h: 42 },
