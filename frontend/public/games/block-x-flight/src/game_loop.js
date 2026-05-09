@@ -52,7 +52,8 @@ export class BlockXFlightGame {
     this.level = 1;
     this.time = 0;
     this.finished = false;
-    this.localName = window.localStorage.getItem("block-x-flight-player-name") ?? "Player";
+    window.localStorage.removeItem("block-x-flight-player-name");
+    this.localName = "Player";
     this.remoteName = "Opponent";
     this.localRestartReady = false;
     this.remoteRestartReady = false;
@@ -441,11 +442,7 @@ export class BlockXFlightGame {
       if (token === "Backspace") this.localName = this.localName.slice(0, -1);
       else if (/^[A-Z0-9]$/.test(token) && this.localName.length < 16) this.localName += token;
     }
-    if (this.localName.trim()) {
-      window.localStorage.setItem("block-x-flight-player-name", this.localName);
-    } else {
-      window.localStorage.removeItem("block-x-flight-player-name");
-    }
+    window.localStorage.removeItem("block-x-flight-player-name");
   }
 
   handleJoinCodeInput() {
