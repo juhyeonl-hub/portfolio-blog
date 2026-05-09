@@ -9,6 +9,7 @@ import ProjectDetailPage from './pages/ProjectDetailPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import AboutPage from './pages/AboutPage';
+import StackFlightPage from './pages/StackFlightPage';
 import GuestbookPage from './pages/GuestbookPage';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminProjectsPage from './pages/admin/AdminProjectsPage';
@@ -31,6 +32,7 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/games" element={<StackFlightPage />} />
           <Route path="/guestbook" element={<PageLayout title="Guestbook"><GuestbookPage /></PageLayout>} />
 
           {/* Legacy routes redirect */}

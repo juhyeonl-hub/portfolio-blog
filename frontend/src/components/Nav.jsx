@@ -7,6 +7,7 @@ export default function Nav() {
 
   const links = [
     { to: '/projects', label: 'Projects' },
+    { to: '/games', label: 'Experiments' },
     { to: '/blog', label: 'Journal' },
     { to: '/about', label: 'About' },
   ];

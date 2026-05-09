@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stack Flight</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <h1>Stack Flight</h1>
+          <p>Left hand stacks. Right hand survives.</p>
+        </div>
+        <div class="mode-panel">
+          <button id="prototypeBtn" class="active">Prototype</button>
+          <button id="aiBtn">Vs AI</button>
+          <button id="hostBtn">Host</button>
+          <button id="joinBtn">Join</button>
+        </div>
+      </header>
+
+      <section class="stage">
+        <canvas id="game" width="1120" height="640" aria-label="Stack Flight game canvas"></canvas>
+        <aside class="side">
+          <div class="status">
+            <span id="modeLabel">Prototype</span>
+            <strong id="roomLabel">Local</strong>
+          </div>
+          <div class="field">
+            <label for="inviteInput">Invite code</label>
+            <div class="invite-row">
+              <input id="inviteInput" maxlength="8" spellcheck="false" />
+              <button id="copyJoinBtn">Use</button>
+            </div>
+          </div>
+          <div class="compact">
+            <button id="restartBtn">Restart</button>
+            <button id="pauseBtn">Pause</button>
+          </div>
+          <dl class="readout">
+            <div><dt>Lives</dt><dd id="livesOut">3</dd></div>
+            <div><dt>Lines</dt><dd id="linesOut">0</dd></div>
+            <div><dt>Level</dt><dd id="levelOut">1</dd></div>
+            <div><dt>Seed</dt><dd id="seedOut">-</dd></div>
+          </dl>
+          <div class="controls">
+            <p><b>Tetris</b> A/D move, S drop, Space slam, Q/E rotate, Shift hold</p>
+            <p><b>Shooter</b> Mouse move. Shots fire automatically.</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
