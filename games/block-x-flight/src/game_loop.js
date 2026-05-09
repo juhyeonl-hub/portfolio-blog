@@ -118,8 +118,8 @@ export class BlockXFlightGame {
   frame(time) {
     const dt = Math.min(0.033, (time - this.last) / 1000 || 0);
     this.last = time;
-    this.handleGlobalInput();
-    if (!this.paused) this.update(dt);
+    const handledGlobalInput = this.handleGlobalInput();
+    if (!this.paused && !handledGlobalInput) this.update(dt);
     this.draw();
     this.input.endFrame();
     requestAnimationFrame((next) => this.frame(next));
@@ -128,27 +128,29 @@ export class BlockXFlightGame {
   handleGlobalInput() {
     if (this.mode === "single" && this.state === "playing" && !this.finished && this.input.consume("Escape")) {
       this.paused = !this.paused;
+      return true;
     }
-    if (!this.paused && !this.finished) return;
+    if (!this.paused && !this.finished) return false;
     for (const click of this.input.clicks) {
       const action = overlayActionAt(click.x, click.y, this);
       if (action === "menu") {
         this.showMenu();
-        return;
+        return true;
       }
       if (action === "restart") {
         this.selectMode(this.mode);
-        return;
+        return true;
       }
       if (action === "resume") {
         this.paused = false;
-        return;
+        return true;
       }
       if (action === "save") {
         this.submitScore();
-        return;
+        return true;
       }
     }
+    return false;
   }
 
   update(dt) {
