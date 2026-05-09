@@ -179,12 +179,22 @@ export class BlockXFlightGame {
 
   showMenu() {
     if (this.channel) this.channel.close();
+    this.channel = null;
     this.paused = false;
     this.finished = false;
+    this.winner = "";
+    this.scoreSubmitted = false;
     this.state = "menu";
+    this.countdown = 0;
     this.roomCode = "";
     this.remoteState = null;
     this.remoteInput = null;
+    this.seed = makeSeed();
+    this.rng = new RNG(this.seed);
+    this.level = 1;
+    this.time = 0;
+    this.player = new PlayerState(this.rng, LAYOUT.shooter);
+    this.ai = null;
     this.ui.setMode(this.mode, this.seed, this.roomCode);
     this.ui.update(this);
   }
@@ -472,14 +482,14 @@ function overlayButtons(game) {
     ];
   }
   const buttons = [
-    { action: "menu", label: "Menu", x: 374, y: 354, w: 112, h: 42 },
+    { action: "menu", label: "Menu", x: 330, y: 354, w: 112, h: 42 },
     { action: "restart", label: "Restart", x: 504, y: 354, w: 112, h: 42 },
   ];
   if (game.mode === "single") {
     buttons.push({
       action: "save",
       label: game.scoreSubmitted ? "Saved" : "Save",
-      x: 634,
+      x: 678,
       y: 354,
       w: 112,
       h: 42,
