@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Memory layers in a LangGraph research agent</title>
+  <desc id="desc">A research agent separates short-term checkpoint state from durable research memory stored across runs.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f5f0; }
+      .panel { fill: #ffffff; stroke: #1f2933; stroke-width: 2; rx: 8; }
+      .soft { fill: #eef6f2; stroke: #256d57; stroke-width: 2; rx: 8; }
+      .warm { fill: #fff2df; stroke: #b46a00; stroke-width: 2; rx: 8; }
+      .ink { fill: #1f2933; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .title { font-size: 25px; font-weight: 750; }
+      .label { font-size: 18px; font-weight: 700; }
+      .small { font-size: 14px; font-weight: 500; }
+      .tiny { font-size: 12px; font-weight: 500; }
+      .arrow { stroke: #1f2933; stroke-width: 2.5; fill: none; marker-end: url(#arrowhead); }
+      .muted { fill: #607080; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1f2933" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1120" height="520" />
+  <text class="ink title" x="56" y="58">Part 6: separating memory from messages</text>
+  <text class="ink small muted" x="56" y="84">A useful agent needs both execution state and durable knowledge.</text>
+
+  <rect class="panel" x="68" y="132" width="250" height="235" />
+  <text class="ink label" x="96" y="170">User question</text>
+  <text class="ink small" x="96" y="205">New run starts with</text>
+  <text class="ink small" x="96" y="228">a fresh message list.</text>
+  <text class="ink tiny muted" x="96" y="278">Example:</text>
+  <text class="ink tiny muted" x="96" y="300">"What is LangGraph memory?"</text>
+
+  <rect class="soft" x="424" y="116" width="286" height="270" />
+  <text class="ink label" x="454" y="154">Short-term state</text>
+  <text class="ink small" x="454" y="190">LangGraph checkpoint</text>
+  <text class="ink small" x="454" y="216">keeps the active thread:</text>
+  <text class="ink tiny muted" x="454" y="254">messages</text>
+  <text class="ink tiny muted" x="454" y="278">next route</text>
+  <text class="ink tiny muted" x="454" y="302">review status</text>
+  <text class="ink tiny muted" x="454" y="326">revision count</text>
+
+  <rect class="warm" x="810" y="116" width="250" height="270" />
+  <text class="ink label" x="840" y="154">Durable memory</text>
+  <text class="ink small" x="840" y="190">JSONL records survive</text>
+  <text class="ink small" x="840" y="216">across separate runs:</text>
+  <text class="ink tiny muted" x="840" y="254">research notes</text>
+  <text class="ink tiny muted" x="840" y="278">source records</text>
+  <text class="ink tiny muted" x="840" y="302">review decisions</text>
+  <text class="ink tiny muted" x="840" y="326">draft answers</text>
+
+  <path class="arrow" d="M318 250 C355 250, 382 250, 418 250" />
+  <path class="arrow" d="M710 250 C746 250, 770 250, 804 250" />
+  <path class="arrow" d="M814 370 C620 450, 334 434, 164 374" />
+
+  <text class="ink tiny muted" x="354" y="236">current run</text>
+  <text class="ink tiny muted" x="724" y="236">selected records</text>
+  <text class="ink tiny muted" x="438" y="448">next run can retrieve useful prior context</text>
+</svg>
