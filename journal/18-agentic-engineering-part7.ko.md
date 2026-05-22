@@ -1,5 +1,5 @@
 ---
-title: "검색 기반 에이전틱 엔지니어링 (Day 8 / Part 7)"
+title: "검색 기반 에이전틱 엔지니어링 (Part 7)"
 excerpt: "저장된 memory를 실제 실행 시작점에서 다시 꺼내 쓰면서, retrieval이 단순 검색이 아니라 시스템 정책이라는 걸 배운 기록."
 date: 2026-05-15
 tags: [Dev, AI, Agentic]

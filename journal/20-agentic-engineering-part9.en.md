@@ -1,5 +1,5 @@
 ---
-title: "Agentic Engineering with Verification (Day 10 / Part 9)"
+title: "Agentic Engineering with Verification (Part 9)"
 excerpt: "Checking retrieved memory against fresh evidence so the agent does not reuse stale conclusions as facts."
 date: 2026-05-19
 tags: [Dev, AI, Agentic]

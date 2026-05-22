@@ -1,5 +1,5 @@
 ---
-title: "Agentic Engineering with Ranking (Day 9 / Part 8)"
+title: "Agentic Engineering with Ranking (Part 8)"
 excerpt: "Adding scoring to memory retrieval so the agent can prioritize relevant, recent, and trustworthy records."
 date: 2026-05-17
 tags: [Dev, AI, Agentic]

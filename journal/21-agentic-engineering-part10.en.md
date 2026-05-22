@@ -1,5 +1,5 @@
 ---
-title: "Agentic Engineering with Observability (Day 11 / Part 10)"
+title: "Agentic Engineering with Observability (Part 10)"
 excerpt: "Treating memory records as an audit trail so the agent can explain what it reused, ignored, and verified."
 date: 2026-05-21
 tags: [Dev, AI, Agentic]

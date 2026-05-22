@@ -1,5 +1,5 @@
 ---
-title: "검증 기반 에이전틱 엔지니어링 (Day 10 / Part 9)"
+title: "검증 기반 에이전틱 엔지니어링 (Part 9)"
 excerpt: "retrieved memory를 fresh evidence와 대조하면서, 오래된 기억을 그대로 믿지 않는 agent workflow를 만든 기록."
 date: 2026-05-19
 tags: [Dev, AI, Agentic]

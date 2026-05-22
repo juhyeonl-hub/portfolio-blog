@@ -1,5 +1,5 @@
 ---
-title: "관찰 가능성 기반 에이전틱 엔지니어링 (Day 11 / Part 10)"
+title: "관찰 가능성 기반 에이전틱 엔지니어링 (Part 10)"
 excerpt: "memory record를 audit trail로 다루면서, agent가 무엇을 기억했고 무엇을 무시했는지 추적하는 방법을 정리한 기록."
 date: 2026-05-21
 tags: [Dev, AI, Agentic]

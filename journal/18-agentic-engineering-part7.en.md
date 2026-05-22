@@ -1,5 +1,5 @@
 ---
-title: "Agentic Engineering with Retrieval (Day 8 / Part 7)"
+title: "Agentic Engineering with Retrieval (Part 7)"
 excerpt: "Turning durable memory into reusable context by adding a retrieval step before the agent graph starts reasoning."
 date: 2026-05-15
 tags: [Dev, AI, Agentic]

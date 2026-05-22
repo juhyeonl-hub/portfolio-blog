@@ -1,5 +1,5 @@
 ---
-title: "랭킹 기반 에이전틱 엔지니어링 (Day 9 / Part 8)"
+title: "랭킹 기반 에이전틱 엔지니어링 (Part 8)"
 excerpt: "memory retrieval에 점수와 우선순위를 붙이면서, 오래된 기록과 중요한 기록을 다르게 다루는 방법을 정리한 기록."
 date: 2026-05-17
 tags: [Dev, AI, Agentic]
