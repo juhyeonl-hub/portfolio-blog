@@ -11,7 +11,7 @@ But ranking is not enough. A selected memory can still be stale or wrong.
 
 Part 9 is about **verification**.
 
-![Memory verification loop](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/20_memory_verification.svg)
+![Memory verification loop](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/20_memory_verification_part.svg)
 
 Memory can make a system faster. It can also trap the system in old conclusions. If the agent does not check whether prior knowledge is still true, it will confidently reuse yesterday's answer.
 

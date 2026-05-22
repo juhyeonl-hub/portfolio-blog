@@ -9,7 +9,7 @@ Part 7에서는 memory를 다시 꺼내 쓰기 시작했다. `memory_loader`가 
 
 오늘은 그 다음 문제다. record가 많아지면 "찾았다"만으로는 부족하다. **무엇을 먼저 믿고, 무엇을 뒤로 밀 것인가**를 정해야 한다.
 
-![Memory ranking](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/19_memory_ranking.svg)
+![Memory ranking](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/19_memory_ranking_part.svg)
 
 검색은 후보를 만든다. ranking은 시스템의 판단을 만든다.
 

@@ -9,7 +9,7 @@ Part 6 gave the agent durable memory. The researcher, analyst, writer, and revie
 
 But saving memory is only half the problem. Part 7 is about **retrieval**.
 
-![Memory retrieval flow](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/18_memory_retrieval.svg)
+![Memory retrieval flow](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/18_memory_retrieval_part.svg)
 
 Memory that cannot be retrieved is just a log. Memory that is retrieved too broadly becomes noise. So the core question was:
 

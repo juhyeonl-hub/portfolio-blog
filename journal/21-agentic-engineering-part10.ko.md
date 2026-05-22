@@ -9,7 +9,7 @@ Part 9에서는 retrieved memory를 검증했다. 이제 agent는 오래된 reco
 
 오늘은 memory를 다른 각도에서 봤다. memory는 agent를 똑똑하게 만드는 context이기도 하지만, 동시에 **audit trail**이다.
 
-![Memory observability](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/21_memory_observability.svg)
+![Memory observability](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/21_memory_observability_part.svg)
 
 agent가 어떤 답을 냈는지보다 더 중요한 질문이 있다.
 

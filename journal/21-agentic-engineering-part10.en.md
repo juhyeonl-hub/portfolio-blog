@@ -9,7 +9,7 @@ Part 9 added verification. Retrieved memory is no longer blindly trusted. It can
 
 Today I looked at memory from another angle. Memory is context, but it is also an **audit trail**.
 
-![Memory observability](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/21_memory_observability.svg)
+![Memory observability](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/21_memory_observability_part.svg)
 
 The important question is not only what answer the agent produced.
 

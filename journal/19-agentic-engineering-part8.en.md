@@ -9,7 +9,7 @@ Part 7 made memory reusable. The `memory_loader` searched prior records and inje
 
 Today was about the next problem: once there are many records, retrieval is not enough. The system needs to decide **which memories deserve priority**.
 
-![Memory ranking](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/19_memory_ranking.svg)
+![Memory ranking](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/19_memory_ranking_part.svg)
 
 Search creates candidates. Ranking turns those candidates into policy.
 
