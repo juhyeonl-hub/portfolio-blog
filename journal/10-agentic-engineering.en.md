@@ -1,6 +1,6 @@
 ---
 title: "What's Different When a Systems Programmer Does Agentic Engineering"
-excerpt: "From Unix process models to agentic systems. The final post in the series."
+excerpt: "From Unix process models to agentic systems as a design lens."
 tags: [Dev, AI, Career]
 ---
 

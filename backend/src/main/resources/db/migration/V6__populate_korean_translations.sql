@@ -306,7 +306,7 @@ WHERE slug = 'designing-an-ai-first-development-workflow-from-scratch';
 -- 10-agentic-engineering.ko.md  (slug: whats-different-when-a-systems-programmer-does-agentic-engineering)
 UPDATE posts SET
     title_ko   = $ko$시스템 프로그래머가 에이전틱 엔지니어링을 할 때 무엇이 달라지는가$ko$,
-    excerpt_ko = $ko$Unix 프로세스 모델에서 에이전틱 시스템으로 — 시리즈의 마지막 글.$ko$,
+    excerpt_ko = $ko$Unix 프로세스 모델에서 에이전틱 시스템으로 이어지는 설계 관점.$ko$,
     content_ko = $ko$## 배경
 
 에이전틱 엔지니어링 — 여러 AI 에이전트가 각자의 역할을 수행하고 결과를 결합해 더 큰 작업을 완성하는 시스템 설계.
