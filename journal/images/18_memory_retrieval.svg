@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Memory retrieval flow</title>
+  <desc id="desc">A user question is converted into a query, matched against durable memory records, then compressed into context for the agent graph.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f4ed}.ink{fill:#1f2933}.muted{fill:#5f6b7a}.panel{fill:#fffef9;stroke:#d7cfc0;stroke-width:2}.accent{fill:#2364aa}.warm{fill:#d97706}.line{stroke:#334e68;stroke-width:3;fill:none;marker-end:url(#arrow)}.small{font:500 18px Inter,Arial,sans-serif}.label{font:700 22px Inter,Arial,sans-serif}.mono{font:600 16px ui-monospace,SFMono-Regular,Menlo,monospace}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334e68"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="960" height="420"/>
+  <text class="ink label" x="48" y="56">Day 8: memory retrieval before reasoning</text>
+  <rect class="panel" x="54" y="112" width="180" height="116" rx="8"/>
+  <text class="ink label" x="86" y="154">Question</text>
+  <text class="muted small" x="82" y="188">current task</text>
+  <path class="line" d="M244 170 H344"/>
+  <rect class="panel" x="354" y="92" width="220" height="156" rx="8"/>
+  <text class="ink label" x="408" y="134">Retriever</text>
+  <text class="muted small" x="394" y="170">keyword + type filter</text>
+  <text class="accent mono" x="402" y="204">top_k records</text>
+  <path class="line" d="M584 170 H684"/>
+  <rect class="panel" x="694" y="112" width="210" height="116" rx="8"/>
+  <text class="ink label" x="742" y="154">Context</text>
+  <text class="muted small" x="728" y="188">compact memory note</text>
+  <rect class="panel" x="180" y="292" width="600" height="72" rx="8"/>
+  <text class="warm mono" x="214" y="336">memory is a hint, not proof</text>
+</svg>

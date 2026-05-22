@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -110,6 +112,9 @@ public class GitHubSyncService {
             post.setContent(parsed.content);
             post.setExcerpt(parsed.excerpt);
             post.setTags(resolveTags(parsed.tags));
+            if (parsed.createdAt != null) {
+                post.setCreatedAt(parsed.createdAt);
+            }
         }
         postRepository.save(post);
     }
@@ -154,6 +159,8 @@ public class GitHubSyncService {
                                 .map(String::trim)
                                 .filter(s -> !s.isEmpty())
                                 .toList();
+                    } else if (line.startsWith("date:")) {
+                        result.createdAt = parseDate(line.substring(5).trim());
                     }
                 }
             }
@@ -178,6 +185,20 @@ public class GitHubSyncService {
         }
 
         return result;
+    }
+
+    private LocalDateTime parseDate(String value) {
+        String normalized = stripQuotes(value).trim();
+        if (normalized.isBlank()) return null;
+
+        try {
+            if (normalized.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                return LocalDate.parse(normalized).atTime(12, 0);
+            }
+            return LocalDateTime.parse(normalized);
+        } catch (Exception ignored) {
+            return null;
+        }
     }
 
     private String fileToTitle(String filePath) {
@@ -211,5 +232,6 @@ public class GitHubSyncService {
         String content;
         String excerpt;
         List<String> tags;
+        LocalDateTime createdAt;
     }
 }

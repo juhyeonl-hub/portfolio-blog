@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Memory ranking</title>
+  <desc id="desc">Candidate memory records are scored by relevance, recency, type, and trust before being selected.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f6f8fb}.ink{fill:#172033}.muted{fill:#637083}.panel{fill:#ffffff;stroke:#cad3df;stroke-width:2}.green{fill:#2f855a}.blue{fill:#2b6cb0}.red{fill:#c05621}.line{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.small{font:500 18px Inter,Arial,sans-serif}.label{font:700 22px Inter,Arial,sans-serif}.mono{font:600 16px ui-monospace,SFMono-Regular,Menlo,monospace}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="960" height="420"/>
+  <text class="ink label" x="48" y="56">Day 9: ranking turns retrieval into policy</text>
+  <rect class="panel" x="68" y="112" width="210" height="220" rx="8"/>
+  <text class="ink label" x="112" y="150">Candidates</text>
+  <text class="muted small" x="104" y="194">research_note</text>
+  <text class="muted small" x="104" y="228">source_record</text>
+  <text class="muted small" x="104" y="262">review_decision</text>
+  <path class="line" d="M290 222 H386"/>
+  <rect class="panel" x="398" y="92" width="220" height="260" rx="8"/>
+  <text class="ink label" x="454" y="132">Score</text>
+  <text class="blue mono" x="438" y="178">relevance</text>
+  <text class="green mono" x="438" y="218">recency</text>
+  <text class="red mono" x="438" y="258">trust</text>
+  <text class="muted mono" x="438" y="298">record_type</text>
+  <path class="line" d="M630 222 H726"/>
+  <rect class="panel" x="738" y="132" width="160" height="180" rx="8"/>
+  <text class="ink label" x="778" y="174">Top K</text>
+  <text class="muted small" x="774" y="214">small</text>
+  <text class="muted small" x="774" y="246">useful</text>
+  <text class="muted small" x="774" y="278">current</text>
+</svg>

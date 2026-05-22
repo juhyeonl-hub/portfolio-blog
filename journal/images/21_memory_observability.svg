@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Memory observability</title>
+  <desc id="desc">Memory records become an audit trail across multiple agent runs.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8f7fb}.ink{fill:#202334}.muted{fill:#687086}.panel{fill:#ffffff;stroke:#d6d2e8;stroke-width:2}.purple{fill:#5b5bd6}.teal{fill:#227c7c}.line{stroke:#3f3f56;stroke-width:3;fill:none}.small{font:500 18px Inter,Arial,sans-serif}.label{font:700 22px Inter,Arial,sans-serif}.mono{font:600 16px ui-monospace,SFMono-Regular,Menlo,monospace}
+    </style>
+  </defs>
+  <rect class="bg" width="960" height="420"/>
+  <text class="ink label" x="48" y="56">Day 11: memory creates an audit trail</text>
+  <path class="line" d="M130 214 H830"/>
+  <circle cx="180" cy="214" r="22" fill="#5b5bd6"/>
+  <circle cx="360" cy="214" r="22" fill="#227c7c"/>
+  <circle cx="540" cy="214" r="22" fill="#5b5bd6"/>
+  <circle cx="720" cy="214" r="22" fill="#227c7c"/>
+  <rect class="panel" x="102" y="102" width="156" height="72" rx="8"/>
+  <text class="ink mono" x="132" y="146">run_01</text>
+  <rect class="panel" x="282" y="252" width="156" height="72" rx="8"/>
+  <text class="ink mono" x="312" y="296">review</text>
+  <rect class="panel" x="462" y="102" width="156" height="72" rx="8"/>
+  <text class="ink mono" x="492" y="146">source</text>
+  <rect class="panel" x="642" y="252" width="156" height="72" rx="8"/>
+  <text class="ink mono" x="672" y="296">answer</text>
+  <text class="muted small" x="286" y="372">The system can explain what it reused, rejected, and changed.</text>
+</svg>

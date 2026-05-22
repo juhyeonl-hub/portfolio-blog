@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Memory verification loop</title>
+  <desc id="desc">Retrieved memory is checked against fresh evidence before it is used in an answer.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f9faf7}.ink{fill:#1c2530}.muted{fill:#667085}.panel{fill:#ffffff;stroke:#cfd8cd;stroke-width:2}.ok{fill:#238636}.warn{fill:#b45309}.line{stroke:#344054;stroke-width:3;fill:none;marker-end:url(#arrow)}.small{font:500 18px Inter,Arial,sans-serif}.label{font:700 22px Inter,Arial,sans-serif}.mono{font:600 16px ui-monospace,SFMono-Regular,Menlo,monospace}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#344054"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="960" height="420"/>
+  <text class="ink label" x="48" y="56">Day 10: old memory needs fresh evidence</text>
+  <rect class="panel" x="72" y="122" width="190" height="138" rx="8"/>
+  <text class="ink label" x="112" y="166">Memory</text>
+  <text class="muted small" x="104" y="204">prior claim</text>
+  <path class="line" d="M272 190 H386"/>
+  <rect class="panel" x="398" y="92" width="220" height="196" rx="8"/>
+  <text class="ink label" x="456" y="136">Verifier</text>
+  <text class="warn mono" x="438" y="180">check age</text>
+  <text class="warn mono" x="438" y="214">check source</text>
+  <text class="ok mono" x="438" y="248">confirm claim</text>
+  <path class="line" d="M630 190 H744"/>
+  <rect class="panel" x="756" y="122" width="150" height="138" rx="8"/>
+  <text class="ink label" x="794" y="166">Use</text>
+  <text class="muted small" x="788" y="204">or ignore</text>
+  <path class="line" d="M506 292 V344 H166 V270"/>
+</svg>
