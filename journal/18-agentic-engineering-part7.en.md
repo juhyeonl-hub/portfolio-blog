@@ -7,7 +7,7 @@ tags: [Dev, AI, Agentic]
 
 Part 6 gave the agent durable memory. The researcher, analyst, writer, and reviewer could leave typed records in a JSONL store.
 
-But saving memory is only half the problem. Day 8 is about **retrieval**.
+But saving memory is only half the problem. Part 7 is about **retrieval**.
 
 ![Memory retrieval flow](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/18_memory_retrieval.svg)
 

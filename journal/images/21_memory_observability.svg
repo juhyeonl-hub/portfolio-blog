@@ -7,7 +7,7 @@
     </style>
   </defs>
   <rect class="bg" width="960" height="420"/>
-  <text class="ink label" x="48" y="56">Day 11: memory creates an audit trail</text>
+  <text class="ink label" x="48" y="56">Part 10: memory creates an audit trail</text>
   <path class="line" d="M130 214 H830"/>
   <circle cx="180" cy="214" r="22" fill="#5b5bd6"/>
   <circle cx="360" cy="214" r="22" fill="#227c7c"/>

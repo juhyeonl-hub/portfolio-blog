@@ -5,7 +5,7 @@ date: 2026-05-21
 tags: [Dev, AI, Agentic]
 ---
 
-Day 10에서는 retrieved memory를 검증했다. 이제 agent는 오래된 record를 그대로 믿지 않고, usable / verify / ignore로 나눌 수 있다.
+Part 9에서는 retrieved memory를 검증했다. 이제 agent는 오래된 record를 그대로 믿지 않고, usable / verify / ignore로 나눌 수 있다.
 
 오늘은 memory를 다른 각도에서 봤다. memory는 agent를 똑똑하게 만드는 context이기도 하지만, 동시에 **audit trail**이다.
 
@@ -118,7 +118,7 @@ review amnesia   이전 reviewer feedback을 다음 실행이 무시함
 
 ## 다음
 
-Day 8부터 Day 11까지는 memory를 system으로 키우는 흐름이었다.
+Part 7부터 Part 10까지는 memory를 system으로 키우는 흐름이었다.
 
 저장하고, 검색하고, 정렬하고, 검증하고, 추적했다. 이제 다음 단계는 이 memory layer를 실제 도구 사용과 연결하는 것이다. web search, local file inspection, source citation 같은 외부 행동이 memory와 만나면 agent는 더 실제적인 research system에 가까워진다.
 

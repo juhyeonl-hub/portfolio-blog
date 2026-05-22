@@ -11,7 +11,7 @@ Part 6에서는 durable memory를 만들었다. researcher, analyst, writer, rev
 
 ![Memory retrieval flow](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/18_memory_retrieval.svg)
 
-memory가 있어도 꺼내 쓰지 못하면 로그와 다르지 않다. 반대로 아무거나 다 꺼내오면 agent는 과거의 소음에 묻힌다. 그래서 Day 8의 핵심 질문은 이거였다.
+memory가 있어도 꺼내 쓰지 못하면 로그와 다르지 않다. 반대로 아무거나 다 꺼내오면 agent는 과거의 소음에 묻힌다. 그래서 Part 7의 핵심 질문은 이거였다.
 
 ```text
 새 질문이 들어왔을 때, 어떤 memory record를 context로 가져와야 하는가?

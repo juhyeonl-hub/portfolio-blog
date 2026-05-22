@@ -5,7 +5,7 @@ date: 2026-05-17
 tags: [Dev, AI, Agentic]
 ---
 
-Day 8에서는 memory를 다시 꺼내 쓰기 시작했다. `memory_loader`가 질문을 보고 관련 record를 찾아 worker context에 넣었다.
+Part 7에서는 memory를 다시 꺼내 쓰기 시작했다. `memory_loader`가 질문을 보고 관련 record를 찾아 worker context에 넣었다.
 
 오늘은 그 다음 문제다. record가 많아지면 "찾았다"만으로는 부족하다. **무엇을 먼저 믿고, 무엇을 뒤로 밀 것인가**를 정해야 한다.
 
@@ -112,6 +112,6 @@ Do not include low-confidence drafts unless no better context exists.
 
 ranking은 memory를 더 똑똑하게 골라준다. 하지만 여전히 문제가 남아 있다. 선택된 memory가 맞는지 어떻게 확인할 것인가?
 
-Day 10은 verification이다. 오래된 memory를 fresh evidence와 대조하고, 틀리거나 낡은 record를 사용하지 않는 규칙을 만들 차례다.
+Part 9는 verification이다. 오래된 memory를 fresh evidence와 대조하고, 틀리거나 낡은 record를 사용하지 않는 규칙을 만들 차례다.
 
 *To be continued.*

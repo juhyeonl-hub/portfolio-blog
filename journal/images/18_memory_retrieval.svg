@@ -10,7 +10,7 @@
     </marker>
   </defs>
   <rect class="bg" width="960" height="420"/>
-  <text class="ink label" x="48" y="56">Day 8: memory retrieval before reasoning</text>
+  <text class="ink label" x="48" y="56">Part 7: memory retrieval before reasoning</text>
   <rect class="panel" x="54" y="112" width="180" height="116" rx="8"/>
   <text class="ink label" x="86" y="154">Question</text>
   <text class="muted small" x="82" y="188">current task</text>

@@ -5,7 +5,7 @@ date: 2026-05-17
 tags: [Dev, AI, Agentic]
 ---
 
-Day 8 made memory reusable. The `memory_loader` searched prior records and injected a compact context before the graph started.
+Part 7 made memory reusable. The `memory_loader` searched prior records and injected a compact context before the graph started.
 
 Today was about the next problem: once there are many records, retrieval is not enough. The system needs to decide **which memories deserve priority**.
 
@@ -112,6 +112,6 @@ The output became steadier once the memory context became smaller.
 
 Ranking helps select memory, but it does not prove that memory is still true.
 
-Day 10 is about verification: checking old memory against fresh evidence before the agent relies on it.
+Part 9 is about verification: checking old memory against fresh evidence before the agent relies on it.
 
 *To be continued.*

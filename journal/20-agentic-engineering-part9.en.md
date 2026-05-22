@@ -5,11 +5,11 @@ date: 2026-05-19
 tags: [Dev, AI, Agentic]
 ---
 
-Day 9 added ranking. The agent could prioritize memory by relevance, recency, and record type.
+Part 8 added ranking. The agent could prioritize memory by relevance, recency, and record type.
 
 But ranking is not enough. A selected memory can still be stale or wrong.
 
-Day 10 is about **verification**.
+Part 9 is about **verification**.
 
 ![Memory verification loop](https://raw.githubusercontent.com/juhyeonl-hub/portfolio-blog/main/journal/images/20_memory_verification.svg)
 
@@ -113,6 +113,6 @@ Memory can now be saved, retrieved, ranked, and verified.
 
 The next problem is observability: seeing which memories were used, ignored, or changed the next run.
 
-Day 11 treats memory as an audit trail.
+Part 10 treats memory as an audit trail.
 
 *To be continued.*

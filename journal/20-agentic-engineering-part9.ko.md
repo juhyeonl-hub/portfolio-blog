@@ -5,7 +5,7 @@ date: 2026-05-19
 tags: [Dev, AI, Agentic]
 ---
 
-Day 9에서는 memory ranking을 붙였다. 이제 agent는 관련도, 최신성, record type을 보고 memory를 고를 수 있다.
+Part 8에서는 memory ranking을 붙였다. 이제 agent는 관련도, 최신성, record type을 보고 memory를 고를 수 있다.
 
 하지만 좋은 ranking도 마지막 답은 아니다. 선택된 memory가 여전히 맞는지 확인해야 한다.
 
@@ -115,6 +115,6 @@ REVISE: The answer treats durable memory as proof.
 
 다음 문제는 observability다. 여러 run을 지나면서 어떤 memory가 사용됐고, 어떤 memory가 무시됐고, 어떤 review가 다음 실행을 바꿨는지 볼 수 있어야 한다.
 
-Day 11은 memory를 audit trail로 보는 단계다.
+Part 10은 memory를 audit trail로 보는 단계다.
 
 *To be continued.*

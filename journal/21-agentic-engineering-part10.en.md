@@ -5,7 +5,7 @@ date: 2026-05-21
 tags: [Dev, AI, Agentic]
 ---
 
-Day 10 added verification. Retrieved memory is no longer blindly trusted. It can be marked usable, needs verification, or ignored.
+Part 9 added verification. Retrieved memory is no longer blindly trusted. It can be marked usable, needs verification, or ignored.
 
 Today I looked at memory from another angle. Memory is context, but it is also an **audit trail**.
 
@@ -118,7 +118,7 @@ Most of these are hard to diagnose from the final answer alone. Observability gi
 
 ## Next
 
-Days 8 through 11 turned memory into a system layer.
+Parts 7 through 10 turned memory into a system layer.
 
 The agent can now save, retrieve, rank, verify, and observe memory. The next step is connecting that memory layer to tool use: web search, local file inspection, and source citation.
 
