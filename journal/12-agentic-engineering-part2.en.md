@@ -96,6 +96,6 @@ The validation paid off immediately. My first run crashed with a `UnicodeEncodeE
 
 ## Next
 
-Part 3 will move to **supervisor + multi-agent orchestration**. I'll take today's agent as a building block for a system with separate researcher / analyst / writer agents, routed by a supervisor. Along the way I want to look at where single-agent is enough and where the orchestration cost is actually justified.
+Part 3 will extend the single ReAct agent into a **multi-tool agent**. Instead of only searching, the agent will learn to check the current date and fetch full page content from search result URLs, so I can see how tool choice changes answer quality.
 
 *To be continued.*
