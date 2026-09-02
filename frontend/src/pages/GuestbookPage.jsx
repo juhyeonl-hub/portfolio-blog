@@ -9,9 +9,9 @@ export default function GuestbookPage() {
 
   useEffect(() => { load(); }, []);
 
-  const load = () => {
+  function load() {
     api.get('/public/guestbook').then(setEntries).catch(console.error).finally(() => setLoading(false));
-  };
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ export default function GuestbookPage() {
           placeholder="Nickname" maxLength={50} required
           className="w-full px-3 py-2 bg-gray-900 border-2 border-gray-700 rounded text-white focus:outline-none focus:border-gray-500" />
         <textarea value={message} onChange={(e) => setMessage(e.target.value)}
-          placeholder="Leave a message..." rows={3} required
+          placeholder="Leave a message..." rows={3} maxLength={2000} required
           className="w-full px-3 py-2 bg-gray-900 border-2 border-gray-700 rounded text-white focus:outline-none focus:border-gray-500" />
         <button type="submit" className="px-4 py-2 bg-gray-700 border-2 border-gray-500 hover:bg-gray-600 hover:border-gray-400 text-white rounded font-bold transition-all">
           Post

@@ -1,6 +1,7 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/portfolio_blog
+    # Development must never default to the production database.
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/portfolio_blog_dev}
     username: ${DB_USERNAME:portfolio}
     password: ${DB_PASSWORD:portfolio}
     driver-class-name: org.postgresql.Driver
@@ -21,3 +22,6 @@ app:
     expiration-ms: 86400000  # 24 hours
   api-key: ${API_KEY:dev-api-key-change-in-production}
   upload-dir: ${UPLOAD_DIR:./uploads}
+  github:
+    webhook-secret: ${WEBHOOK_SECRET:}
+    repository: ${GITHUB_REPOSITORY:juhyeonl-hub/portfolio-blog}

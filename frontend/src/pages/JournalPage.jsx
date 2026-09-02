@@ -13,6 +13,8 @@ export default function JournalPage() {
   const search = searchParams.get('search') || '';
 
   useEffect(() => {
+    // A route change starts a new request and must restore the loading state.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true);
     let url = `/public/posts?page=${page}&size=6`;
     if (tag) url += `&tag=${encodeURIComponent(tag)}`;

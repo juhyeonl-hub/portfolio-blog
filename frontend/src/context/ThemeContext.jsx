@@ -23,6 +23,8 @@ export function ThemeProvider({ children }) {
   );
 }
 
+// Context modules intentionally export their provider and matching hook.
+// eslint-disable-next-line react-refresh/only-export-components
 export function useTheme() {
   return useContext(ThemeContext);
 }

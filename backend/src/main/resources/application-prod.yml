@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/portfolio_blog
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/portfolio_blog}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
@@ -21,3 +21,7 @@ app:
     expiration-ms: 86400000
   api-key: ${API_KEY}
   upload-dir: ${UPLOAD_DIR:/var/portfolio-blog/uploads}
+  github:
+    # Empty means fail closed: the webhook returns 503 and never changes posts.
+    webhook-secret: ${WEBHOOK_SECRET:}
+    repository: ${GITHUB_REPOSITORY:juhyeonl-hub/portfolio-blog}

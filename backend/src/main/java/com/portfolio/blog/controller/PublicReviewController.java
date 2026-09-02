@@ -1,12 +1,13 @@
 package com.portfolio.blog.controller;
 
+import com.portfolio.blog.dto.ProjectReviewRequest;
 import com.portfolio.blog.model.ProjectReview;
 import com.portfolio.blog.service.ProjectReviewService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/public/reviews")
@@ -26,10 +27,7 @@ public class PublicReviewController {
     @PostMapping("/project/{projectId}")
     public ResponseEntity<ProjectReview> create(
             @PathVariable Long projectId,
-            @RequestBody Map<String, Object> body) {
-        String nickname = (String) body.get("nickname");
-        int rating = (int) body.get("rating");
-        String comment = (String) body.get("comment");
-        return ResponseEntity.ok(service.create(projectId, nickname, rating, comment));
+            @Valid @RequestBody ProjectReviewRequest request) {
+        return ResponseEntity.ok(service.create(projectId, request));
     }
 }

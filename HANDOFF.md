@@ -1,5 +1,10 @@
 # Portfolio Blog (juhyeonl.dev) — AI 핸드오프 문서
 
+> **주의 (2026-09-02):** 아래 AWS EC2 배포/운영 내용은 과거 기록이며 현재
+> 운영 환경과 다르다. 현재 백엔드는 주현의 WSL2에서 systemd로 실행되고
+> Cloudflare Tunnel을 통해 공개된다. 운영 명령과 배포 절차는 반드시
+> [`OPERATIONS.md`](OPERATIONS.md)를 기준으로 한다.
+
 다른 AI가 이 프로젝트를 이어받아 **저널 글을 발행**하고 **배포/운영**을 할 수 있도록, 알아야 할 모든 정보를 정리한 문서다.
 
 > 사이트: https://juhyeonl.dev

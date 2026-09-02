@@ -7,7 +7,9 @@ export default function AdminPostsPage() {
   const [form, setForm] = useState({ title: '', content: '', excerpt: '', published: false, tags: '' });
 
   useEffect(() => { load(); }, []);
-  const load = () => api.get('/admin/posts').then(setPosts).catch(console.error);
+  function load() {
+    return api.get('/admin/posts').then(setPosts).catch(console.error);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -1,5 +1,6 @@
 package com.portfolio.blog.service;
 
+import com.portfolio.blog.dto.ProjectReviewRequest;
 import com.portfolio.blog.model.Project;
 import com.portfolio.blog.model.ProjectReview;
 import com.portfolio.blog.repository.ProjectRepository;
@@ -23,14 +24,14 @@ public class ProjectReviewService {
         return reviewRepository.findByProjectIdOrderByCreatedAtDesc(projectId);
     }
 
-    public ProjectReview create(Long projectId, String nickname, int rating, String comment) {
+    public ProjectReview create(Long projectId, ProjectReviewRequest request) {
         Project project = projectRepository.findById(projectId)
                 .orElseThrow(() -> new RuntimeException("Project not found"));
         ProjectReview review = new ProjectReview();
         review.setProject(project);
-        review.setNickname(nickname);
-        review.setRating(rating);
-        review.setComment(comment);
+        review.setNickname(request.getNickname().trim());
+        review.setRating(request.getRating());
+        review.setComment(request.getComment() == null ? null : request.getComment().trim());
         return reviewRepository.save(review);
     }
 

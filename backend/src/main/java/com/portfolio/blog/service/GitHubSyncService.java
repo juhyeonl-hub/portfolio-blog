@@ -1,5 +1,6 @@
 package com.portfolio.blog.service;
 
+import com.portfolio.blog.config.AppProperties;
 import com.portfolio.blog.model.Post;
 import com.portfolio.blog.model.Tag;
 import com.portfolio.blog.repository.PostRepository;
@@ -19,20 +20,25 @@ public class GitHubSyncService {
 
     private final PostRepository postRepository;
     private final TagRepository tagRepository;
+    private final AppProperties appProperties;
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public GitHubSyncService(PostRepository postRepository, TagRepository tagRepository) {
+    public GitHubSyncService(PostRepository postRepository,
+                             TagRepository tagRepository,
+                             AppProperties appProperties) {
         this.postRepository = postRepository;
         this.tagRepository = tagRepository;
+        this.appProperties = appProperties;
     }
 
+    @Transactional
     @SuppressWarnings("unchecked")
     public void processPushEvent(Map<String, Object> payload) {
         List<Map<String, Object>> commits = (List<Map<String, Object>>) payload.get("commits");
         if (commits == null) return;
 
-        Map<String, Object> repository = (Map<String, Object>) payload.get("repository");
-        String repoFullName = (String) repository.get("full_name");
+        // Never use a payload-controlled repository name to build raw GitHub URLs.
+        String repoFullName = appProperties.getGithub().getRepository();
 
         for (Map<String, Object> commit : commits) {
             List<String> added = (List<String>) commit.getOrDefault("added", List.of());
@@ -73,7 +79,6 @@ public class GitHubSyncService {
         }
     }
 
-    @Transactional
     void processMarkdownFile(String repoFullName, String filePath) {
         String rawUrl = "https://raw.githubusercontent.com/" + repoFullName + "/main/" + filePath;
         String content;

@@ -1,5 +1,6 @@
 package com.portfolio.blog.controller;
 
+import com.portfolio.blog.dto.GuestbookRequest;
 import com.portfolio.blog.model.GuestbookEntry;
 import com.portfolio.blog.service.GuestbookService;
 import jakarta.validation.Valid;
@@ -24,7 +25,7 @@ public class PublicGuestbookController {
     }
 
     @PostMapping
-    public ResponseEntity<GuestbookEntry> create(@Valid @RequestBody GuestbookEntry entry) {
-        return ResponseEntity.ok(service.create(entry));
+    public ResponseEntity<GuestbookEntry> create(@Valid @RequestBody GuestbookRequest request) {
+        return ResponseEntity.ok(service.create(request));
     }
 }

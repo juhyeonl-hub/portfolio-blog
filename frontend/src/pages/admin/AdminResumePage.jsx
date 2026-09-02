@@ -8,7 +8,9 @@ export default function AdminResumePage() {
 
   useEffect(() => { load(); }, []);
 
-  const load = () => api.get('/admin/resume').then(setSections).catch(console.error);
+  function load() {
+    return api.get('/admin/resume').then(setSections).catch(console.error);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

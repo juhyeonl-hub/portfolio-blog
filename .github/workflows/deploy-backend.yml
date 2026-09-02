@@ -1,20 +1,26 @@
-name: Deploy Backend
+name: Backend CI
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - "backend/**"
       - ".github/workflows/deploy-backend.yml"
+  pull_request:
+    paths:
+      - "backend/**"
+      - ".github/workflows/deploy-backend.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 concurrency:
-  group: deploy-backend
-  cancel-in-progress: false
+  group: backend-ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,36 +33,6 @@ jobs:
           java-version: "21"
           cache: maven
 
-      - name: Build backend jar
+      - name: Run backend tests
         working-directory: backend
-        run: mvn -DskipTests clean package
-
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh
-          printf '%s\n' "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/portfolio_blog_key
-          chmod 600 ~/.ssh/portfolio_blog_key
-          ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts
-
-      - name: Upload backend jar
-        run: |
-          scp -i ~/.ssh/portfolio_blog_key backend/target/blog-0.0.1-SNAPSHOT.jar "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/tmp/blog-0.0.1-SNAPSHOT.jar"
-
-      - name: Install backend jar on EC2
-        run: |
-          ssh -i ~/.ssh/portfolio_blog_key "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}" <<'REMOTE'
-            set -euo pipefail
-            cd ~/portfolio-blog
-            git fetch origin main
-            git reset --hard origin/main
-            test -s /tmp/blog-0.0.1-SNAPSHOT.jar
-            sudo cp /opt/portfolio-blog/blog.jar /opt/portfolio-blog/blog.jar.bak.$(date +%Y%m%d%H%M%S)
-            sudo cp /tmp/blog-0.0.1-SNAPSHOT.jar /opt/portfolio-blog/blog.jar
-            sudo chown ubuntu:ubuntu /opt/portfolio-blog/blog.jar
-            sudo systemctl restart portfolio-blog
-            sudo systemctl status portfolio-blog --no-pager
-          REMOTE
-
-      - name: Verify API
-        run: |
-          curl --fail --retry 12 --retry-delay 5 "http://${{ secrets.EC2_HOST }}:8080/api/health"
+        run: mvn test

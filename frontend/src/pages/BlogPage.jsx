@@ -21,10 +21,14 @@ export default function BlogPage() {
   const [searchInput, setSearchInput] = useState(search);
 
   useEffect(() => {
+    // Keep the editable draft aligned with browser back/forward navigation.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSearchInput(search);
   }, [search]);
 
   useEffect(() => {
+    // A route change starts a new request and must restore the loading state.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true);
     let url = `/public/posts?page=${page}&size=${PAGE_SIZE}`;
     if (tag) url += `&tag=${encodeURIComponent(tag)}`;

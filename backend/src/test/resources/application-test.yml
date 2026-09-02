@@ -22,3 +22,6 @@ app:
     expiration-ms: 86400000
   api-key: test-api-key
   upload-dir: ./test-uploads
+  github:
+    webhook-secret: test-webhook-secret
+    repository: juhyeonl-hub/portfolio-blog

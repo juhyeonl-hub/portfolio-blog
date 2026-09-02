@@ -12,9 +12,9 @@ export default function AdminProjectsPage() {
 
   useEffect(() => { loadProjects(); }, []);
 
-  const loadProjects = () => {
+  function loadProjects() {
     api.get('/admin/projects').then(setProjects).catch(console.error);
-  };
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
