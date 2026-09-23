@@ -190,3 +190,12 @@ portfolio-blog/
 ### Phase 8: GitHub Sync (Optional)
 - [x] Step 29: GitHub webhook listener for journal .md files
 - [x] Step 30: Auto-publish synced markdown posts
+
+### Bootprint invite-page maintenance — 2026-09-23 (user approved)
+- Scope: existing `frontend/public/territory-run/join/` page, Bootprint brand assets and Android link association only.
+- Expected: EN/KO/FI/SV selection, validated invite code, copy-code/install/open-app actions; no automatic joining.
+- Failure cases: missing/invalid code, unavailable clipboard, app not installed, old app without join route.
+- [x] Implement and browser-check the invite page.
+- [x] Verify frontend build and existing URL/custom-scheme compatibility locally
+- [x] Deploy after Vercel authentication; verify production assets and links.
+  - 2026-09-24: production `dpl_3z41kM7Qa8fmatkydS22rbZ5tPnG`, `https://juhyeonl.dev/territory-run/join`. EN/KO/FI/SV, mobile widths, invalid/missing codes and clipboard failure verified in Chromium.

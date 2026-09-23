@@ -1,67 +1,16 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Territory Run — Join a Battle</title>
-<meta property="og:title" content="You're invited to a Territory Run battle">
-<meta property="og:description" content="Walk the streets, paint the real map in your team's color.">
-<style>
-  :root { color-scheme: light dark; }
-  body { max-width: 640px; margin: 0 auto; padding: 40px 20px 64px;
-         font: 16px/1.65 system-ui, -apple-system, sans-serif; color: #1a2333; background: #fff; }
-  h1 { font-size: 1.7rem; margin-bottom: 6px; }
-  .lead { color: #667; margin-top: 0; }
-  .code-box { margin: 28px 0; padding: 20px; border-radius: 14px;
-              background: #eef3fb; border: 1px solid #cfdcf0; text-align: center; }
-  .code-label { font-size: .85rem; color: #667; letter-spacing: .04em; text-transform: uppercase; }
-  .code { font: 700 2rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
-          letter-spacing: .08em; margin-top: 6px; word-break: break-all; }
-  ol { padding-left: 1.3em; }
-  li { margin: .5em 0; }
-  .btn { display: inline-block; margin-top: 8px; padding: 12px 20px; border-radius: 10px;
-         background: #2563eb; color: #fff; text-decoration: none; font-weight: 700; }
-  .foot { margin-top: 40px; font-size: .9rem; color: #667; }
-  a { color: #2563eb; }
-  @media (prefers-color-scheme: dark) {
-    body { color: #e6ebf4; background: #0d1420; }
-    .lead, .code-label, .foot { color: #9aa7bd; }
-    .code-box { background: #16203033; border-color: #24344f; }
-    a { color: #7cb0ff; }
-  }
-</style>
-</head>
-<body>
-<h1>🇫🇮⚔️🇸🇪 You're invited to a battle</h1>
-<p class="lead">Territory Run turns your walks into a territory war — the streets you
-cover get painted in your team's color on the real map.</p>
-
-<div class="code-box" id="codeBox" hidden>
-  <div class="code-label">Invite code</div>
-  <div class="code" id="code"></div>
-</div>
-
-<h2>How to join</h2>
-<ol>
-  <li>Install <strong>Territory Run</strong> on your Android phone</li>
-  <li>Open the app and finish the quick setup (name + team)</li>
-  <li>Go to <strong>Battles</strong> → <strong>Join with invite code</strong></li>
-  <li>Enter the code above and pick your team</li>
-</ol>
-
-<p><a class="btn" href="https://play.google.com/store/apps/details?id=dev.juhyeonl.territoryrun">Get it on Google Play</a></p>
-
-<p class="foot">iPhone? An iOS version is planned — the app is Android-only for now.<br>
-Free, no ads. Your location is used only to compute territory and raw traces are
-deleted right after verification — see the
-<a href="../privacy/">privacy policy</a>.</p>
-
-<script>
-  var code = new URLSearchParams(location.search).get('code');
-  if (code) {
-    document.getElementById('code').textContent = code;
-    document.getElementById('codeBox').hidden = false;
-  }
-</script>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootprint — Join a battle</title><meta name="description" content="Walk, claim territory, and play together. Join your friends in Bootprint.">
+<meta property="og:title" content="You're invited to a Bootprint battle"><meta property="og:description" content="Your next walk. Our next battle. Play together on the real map.">
+<meta property="og:image" content="https://juhyeonl.dev/territory-run/join/bootprint.png"><meta property="og:type" content="website"><meta name="theme-color" content="#0A1622">
+<link rel="icon" href="/territory-run/join/bootprint.svg"><link rel="stylesheet" href="/territory-run/join/style.css">
+</head><body><main>
+<header><a class="brand" href="https://play.google.com/store/apps/details?id=dev.juhyeonl.territoryrun"><img src="/territory-run/join/bootprint.svg" width="48" height="48" alt="">Bootprint</a><label><span id="languageLabel" class="sr">Language</span><select id="language" aria-labelledby="languageLabel"><option value="en">English</option><option value="ko">한국어</option><option value="fi">Suomi</option><option value="sv">Svenska</option></select></label></header>
+<div class="hero"><span class="eyebrow">WALK · CLAIM · REPEAT</span><h1 id="title">Your next walk. Our next battle.</h1><p id="lead">Walk or run, claim territory, and play together on the real map.</p></div>
+<section class="invite" id="codeBox" hidden><span id="codeLabel" class="eyebrow">YOUR INVITE CODE</span><div id="code" tabindex="0"></div><button id="copy" type="button">Copy code</button><p id="copyStatus" role="status"></p><a id="open" class="btn" hidden>Open in Bootprint</a><p id="fallback" class="muted"></p></section>
+<p id="invalid" role="status" hidden></p>
+<a id="install" class="btn secondary" href="https://play.google.com/store/apps/details?id=dev.juhyeonl.territoryrun">Get it on Google Play</a>
+<section class="steps"><h2 id="stepsTitle">A few steps to your first territory</h2><ol><li id="step0"></li><li id="step1"></li><li id="step2"></li></ol></section>
+<footer><p id="note"></p><a id="privacy" href="https://juhyeonl-hub.github.io/claimr/privacy/">Privacy policy</a></footer>
+<noscript>Install Bootprint from Google Play, then ask your friend for their invite code. JavaScript is needed to show the code in this link.</noscript>
+</main><script src="/territory-run/join/invite.js"></script></body></html>
