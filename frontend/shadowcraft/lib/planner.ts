@@ -1,4 +1,5 @@
 import {CLASSES,classProfile} from './classes';
+import ascensionRules from './data/ascension-rules.json';
 export type Skill = {id:string;name:string;iconPath:string;kind:string;stigma:boolean;maxLevel:number;learning:any[];specializationSlots:any[];specializations:any[]};
 export type Node = {id:string;row:number;column:number;kind:string;name:string;grade?:string;iconPath:string;autoLearn:boolean;requiredLevel:number;pointCost:number;skill?:{id:string;name:string;iconPath:string};skillLevels?:number;stat?:{name:string;value:number;format:string};};
 export type Board={id:string;name:string;requiredLevel:number;rows:number;columns:number;pointKind:{code:string;name:string};nodes:Node[]};
@@ -6,14 +7,19 @@ export type Catalog={reviewRequired?:boolean;baselineVersion?:string;origin?:str
 export type PointBudget={sp:number;stigma:number;crystal:number;battle:number};
 export type GearItem={id:string;name:string;slot:string;owned:boolean;current:boolean;target:boolean;bonuses:Record<string,number>;note:string};
 export type Gear={mode:"manual"|"current"|"target";items:GearItem[]};
-export type Plan={searchPrefs?:{region:string;server:string;name:string};recentCharacters?:import('./plan-memory').RecentCharacter[];macroExtra?:boolean;gear?:Gear;classKey?:string;pointBudget?:PointBudget;level:number;extraSP:number;extraStigma:number;extraCrystal:number;extraBattle:number;mode:'safe'|'damage';base:Record<string,number>;bonus:Record<string,number>;specs:Record<string,string[]>;nodes:string[];checked:string[];character:any|null;};
+export type Plan={ascensionGrade3Confirmed?:boolean;searchPrefs?:{region:string;server:string;name:string};recentCharacters?:import('./plan-memory').RecentCharacter[];macroExtra?:boolean;gear?:Gear;classKey?:string;pointBudget?:PointBudget;level:number;extraSP:number;extraStigma:number;extraCrystal:number;extraBattle:number;mode:'safe'|'damage';base:Record<string,number>;bonus:Record<string,number>;specs:Record<string,string[]>;nodes:string[];checked:string[];character:any|null;};
 export const CORE=['13350000','13130000','13010000'];
 export const MOVEMENT=['13070000','13360000','13050000','13220000','13280000','13700000','13140000'];
 export const MANUAL=['13070000','13360000','13050000','13220000','13260000','13340000'];
 export const ORDER=['13350000','13130000','13010000','13100000','13060000','13070000','13360000','13050000','13260000','13340000','13210000','13220000'];
 export const ROLES:Record<string,string>={'13350000':'주력 연속 공격','13130000':'문양 소모 · 핵심 피해','13010000':'정신력 회복 · 문폭 쿨 감소','13100000':'문양 보충','13060000':'후방 공격 · 수동','13070000':'뒤편으로 이동','13360000':'뒤편으로 이동','13050000':'반대편으로 이동','13220000':'대상에게 이동','13260000':'상태 이상 해제','13340000':'그로기 구간용','13210000':'보조 공격','13310000':'폭딜 버프','13390000':'전투 속도 버프','13300000':'버프 사용 후 쿨 감소','13080000':'타이밍을 맞추는 생존기','13270000':'문양 5중첩 생성'};
 export function skillCost(s:Skill,lv:number){return s.learning.filter(l=>l.level<=lv).reduce((n,l)=>n+(s.stigma?l.stigmaPoints:l.skillPoints),0)}
-export function maxBase(s:Skill,lv:number){return Math.max(0,...s.learning.filter(l=>l.requiredCharacterLevel<=lv).map(l=>l.level))}
+export function ascensionGate(s:Skill){return (ascensionRules.requiredFromLevel as Record<string,number>)[s.id]}
+export function maxBase(s:Skill,lv:number,ascensionGrade3Confirmed=false){
+ const gate=ascensionGate(s);const limit=gate&&!ascensionGrade3Confirmed?gate-1:Infinity;
+ return Math.max(0,...s.learning.filter(l=>l.requiredCharacterLevel<=lv&&l.level<=limit).map(l=>l.level));
+}
+export function unmetAscensionSkills(c:Catalog,p:Plan){return p.ascensionGrade3Confirmed?[]:c.skills.filter(s=>ascensionGate(s)&&(p.base[s.id]??(s.stigma?0:1))>=ascensionGate(s));}
 export function boardBonus(c:Catalog,p:Plan,id:string){return c.boards.filter(b=>b.requiredLevel<=p.level).flatMap(b=>b.nodes).filter(n=>p.nodes.includes(n.id)&&n.skill?.id===id).reduce((a,n)=>a+(n.skillLevels||0),0)}
 export function equipmentBonus(p:Plan,id:string):number {
  if(!p.gear||p.gear.mode==='manual')return p.bonus[id]||0;
@@ -28,7 +34,7 @@ export function updatePlan(c:Catalog,p:Plan,patch:Partial<Plan>):Plan {
  if(!patch.specs){next.specs={...p.specs};for(const s of c.skills)if(finalLevel(c,p,s)!==finalLevel(c,next,s)||p.mode!==next.mode)next.specs[s.id]=recommendSpecs(s,finalLevel(c,next,s),next.mode);}
  return next;
 }
-export function finalLevel(c:Catalog,p:Plan,s:Skill){return Math.min(s.maxLevel,(p.base[s.id]??(s.stigma?0:1))+equipmentBonus(p,s.id)+boardBonus(c,p,s.id))}
+export function finalLevel(c:Catalog,p:Plan,s:Skill){if(ascensionGate(s)&&!p.ascensionGrade3Confirmed&&p.base[s.id]===0)return 0;return Math.min(s.maxLevel,(p.base[s.id]??(s.stigma?0:1))+equipmentBonus(p,s.id)+boardBonus(c,p,s.id))}
 export function slots(s:Skill,level:number){return s.specializationSlots.filter(x=>x.editable&&x.requiredSkillLevel<=level).length}
 export function equipped(p:Plan){const profile=classProfile(p.classKey);return (p.mode==='safe'?profile.safeStigmas:profile.damageStigmas).slice(0,[22,27,32,37].filter(l=>p.level>=l).length)}
 const cleanPoints=(n:number)=>Number.isFinite(n)?Math.max(0,Math.min(9999,Math.floor(n))):0;
@@ -42,11 +48,11 @@ export function recommendSpecs(s:Skill,lv:number,mode:string){const n=slots(s,lv
 // A transparent priority recommendation, not a combat/DPS simulation.
 export function applyRecommended(c:Catalog,p:Plan){
  const next={...p,base:{...p.base},specs:{...p.specs}};
- c.skills.forEach(s=>next.base[s.id]=s.stigma?0:(s.learning[0]?.requiredCharacterLevel<=p.level?1:0));
+ c.skills.forEach(s=>next.base[s.id]=s.stigma?0:(maxBase(s,p.level,p.ascensionGrade3Confirmed)>0?1:0));
  const profile=classProfile(c.classKey||p.classKey);const caps=pointLimits(c,p);let sp=0,stigma=0;
  function raise(id:string,goal:number){
   const s=c.skills.find(s=>s.id===id);if(!s||s.stigma&&!equipped(p).includes(id))return;
-  const max=Math.min(goal,maxBase(s,p.level),Math.max(0,s.maxLevel-equipmentBonus(p,id)-boardBonus(c,p,id)));
+  const max=Math.min(goal,maxBase(s,p.level,p.ascensionGrade3Confirmed),Math.max(0,s.maxLevel-equipmentBonus(p,id)-boardBonus(c,p,id)));
   for(let lv=(next.base[id]||0)+1;lv<=max;lv++){
    const cost=skillCost(s,lv)-skillCost(s,lv-1);
    if(s.stigma?stigma+cost>caps.stigma:sp+cost>caps.sp)break;

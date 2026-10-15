@@ -23,3 +23,7 @@ console.log('Malformed imported/stored plans rejected without overwriting stored
 
 for(const character of [{profile:{},skills:{}},{profile:{},nodes:123}]){entries.set('plan',JSON.stringify({...base,character}));memory=create();memory.restore();assert.equal(memory.readFailed,true)}
 console.log('Malformed public character skills/nodes cannot poison saved plans');
+
+for(const invalid of ['true',1,null,{},[]]){entries.set('plan',JSON.stringify({...base,ascensionGrade3Confirmed:invalid}));memory=create();memory.restore();assert.equal(memory.readFailed,true)}
+for(const confirmed of [false,true]){entries.set('plan',JSON.stringify({...previous,ascensionGrade3Confirmed:confirmed}));memory=create();assert.equal(memory.restore().ascensionGrade3Confirmed,confirmed)}
+console.log('Ascension confirmation: optional legacy field, strict boolean validation and persistence PASS');

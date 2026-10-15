@@ -185,3 +185,15 @@ The UI validates records/references before display, loads only when the database
 The deployed client index SHA-256 matches the committed export. An unmocked production browser API fetch returned 200, assassin/35 skills and enabled news refresh; a standalone Python HTTP probe returned 403 while curl and local backend checks returned 200. The Python-only discrepancy remains unexplained.
 
 The client index also reads `SkillAcquireData.json` and records its hash. Skill details show 3840 per-level learning rows; 104 have an ascension condition. Ascension is shown as the original client code (for example `AscensionGrade_3`), and is **not yet enforced by the existing planner**. The comparison tool reports these unmodeled rows separately. Missing/duplicate/discontinuous skill levels, class mismatches, invalid costs, and unsupported prerequisite/item conditions reject regeneration. Existing v1 exports without learning data still load, with an explicit missing-details state.
+
+### Planner ascension confirmation
+
+Supersedes the earlier display-only limitation: `AscensionGrade_3` now gates new manual investments and recommendations for 104 skills. The optional plan field `ascensionGrade3Confirmed` is an explicit user confirmation, scoped to the current class; missing legacy values are unconfirmed. Existing saved investment is preserved with a warning. A requested recommendation may remove gated investment after preview/apply; removing the confirmation alone does not change it. The code makes no assumption about the player-facing meaning of the enum's numeric suffix.
+
+Regenerate the compact rule overlay after reviewing a new official index:
+
+```sh
+python3 shadowcraft/operations/build-ascension-rules.py frontend/public/shadowcraft/data/client-index.json frontend/shadowcraft/lib/data/ascension-rules.json
+```
+
+Unknown ascension codes reject generation and require explicit support. The generated file stores original source metadata and index SHA-256. `shadowcraft/tests/ascension.py` tests the browser flow using `SHADOWCRAFT_TEST_URL`; the frontend `ascension.mjs` suite covers all eight classes, first-acquisition prerequisites, recommendation, equipment bypass prevention and preserved legacy allocations.

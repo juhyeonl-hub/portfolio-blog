@@ -64,7 +64,7 @@ export default function ClientDatabase({active}: {active: boolean}) {
               <span>SP {row.skillPoints} · 스티그마 {row.stigmaPoints}</span>
               <span>승급 조건: {row.ascensionRequirement === 'None' ? '없음' : row.ascensionRequirement}</span>
             </li>)}</ol> : <p>이 데이터 버전에는 습득 조건이 없습니다.</p>}
-            <p>기존 빌드 플래너에는 승급 조건이 반영되지 않습니다. 투자 전에 위 조건을 확인하세요.</p></>}
+            <p>플래너의 승급 조건 확인 설정으로 신규 투자와 추천을 제한합니다. 게임에서 조건 충족 여부를 직접 확인하세요.</p></>}
           {recipe && <><h3>{items.get(recipe.itemId)?.name}</h3><p>레시피 {recipe.id} · {recipe.category} · {recipe.race}</p>
             <p>기본 생산 수량 {recipe.outputQuantity}개 · 요구 숙련도 {recipe.masteryLevel}</p>
             <p>{recipe.hasCombo ? '연속 제작 결과가 존재합니다. ' : ''}성공 확률과 수수료는 미확정입니다. 아래는 입력한 시도 횟수에 필요한 재료이며 성공 수량 예측이 아닙니다.</p>

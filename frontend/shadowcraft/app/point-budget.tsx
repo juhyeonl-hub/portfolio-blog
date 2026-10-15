@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useState} from 'react';
 import {Swords,Zap,Waypoints,Shield,RefreshCw,Check,Undo2,Calculator} from 'lucide-react';
-import {type Catalog,type Plan,type PointBudget,pointLimits,totals,finalLevel,equipped} from '@/lib/planner';
+import {type Catalog,type Plan,type PointBudget,pointLimits,totals,finalLevel,equipped,unmetAscensionSkills} from '@/lib/planner';
 import {classProfile} from '@/lib/classes';
 import {recommendBuild} from '@/lib/recommendation';
 
@@ -9,6 +9,7 @@ const fields=[{key:'sp',label:'스킬 포인트',icon:Swords},{key:'stigma',labe
 const count=(value:string)=>Math.min(9999,Math.max(0,Math.floor(Number(value)||0)));
 export default function PointBudgetPanel({catalog,plan,onEdit,onApply}:{catalog:Catalog;plan:Plan;onEdit:(p:Partial<Plan>)=>void;onApply:(p:Plan)=>void}){
  const limits=pointLimits(catalog,plan);
+ const unmet=unmetAscensionSkills(catalog,plan);
  const [candidate,setCandidate]=useState<Plan|null>(null),[previous,setPrevious]=useState<Plan|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState('');
  const [calcKind,setCalcKind]=useState<keyof PointBudget>('sp'),[spent,setSpent]=useState(''),[remaining,setRemaining]=useState('');
  useEffect(()=>{setCandidate(null);setError('')},[plan,catalog]);
@@ -17,6 +18,9 @@ export default function PointBudgetPanel({catalog,plan,onEdit,onApply}:{catalog:
  const result=candidate?totals(catalog,candidate):null;
  return <section id="point-budget" className="panel budget-panel direct-budget">
   <div className="section-title"><div><span className="eyebrow">YOUR POINTS → YOUR BUILD</span><h3>내 포인트로 추천 배분</h3></div><label className="level-field">캐릭터 레벨<input type="number" min={1} max={45} value={plan.level} disabled={busy} onChange={e=>onEdit({level:Math.max(1,Math.min(45,count(e.target.value)))})}/></label></div>
+  <label className="ascension-confirm"><input type="checkbox" checked={plan.ascensionGrade3Confirmed===true} disabled={busy} onChange={e=>onEdit({ascensionGrade3Confirmed:e.target.checked})}/>승급 조건 충족을 게임에서 확인했습니다 (AscensionGrade_3)</label>
+  <p className="subtle">확인 전에는 승급이 필요한 스킬의 신규 투자·추천이 제한됩니다. 자동 캐릭터 조회로 확인한 값이 아니며, 이 설정은 현재 직업의 계획에 저장됩니다.</p>
+  {unmet.length>0&&<div className="notice amber-notice" role="status">승급 확인이 필요한 기존 투자 {unmet.length}개: {unmet.map(s=>s.name).join(', ')}. 저장된 투자는 유지됩니다. 게임에서 조건을 확인하거나 추천을 다시 적용하세요.</div>}
   <p className="budget-help"><b>총 보유량 = 이미 사용한 포인트 + 남은 포인트.</b> 게임에서 확인한 총량을 입력하세요. 레벨 보상은 여기에 더해지지 않습니다.</p>
   <div className="point-entry-grid">{fields.map(f=><label className="point-entry" key={f.key}><span><f.icon size={17}/>{f.label}</span><div><input type="number" min={0} max={9999} step={1} value={limits[f.key]} disabled={busy} onChange={e=>setPoints(f.key,count(e.target.value))}/><b>P</b></div><small>사용 + 미사용을 합친 총량</small></label>)}</div>
   <details className="point-extras"><summary><Calculator size={14}/>남은 포인트만 알고 있나요? / 아스펠 결정 입력</summary><div className="remaining-calculator"><label>포인트 종류<select value={calcKind} onChange={e=>setCalcKind(e.target.value as keyof PointBudget)}>{fields.map(f=><option key={f.key} value={f.key}>{f.label}</option>)}</select></label><label>게임에서 이미 쓴 양<input type="number" min={0} max={9999} placeholder="예: 180" value={spent} onChange={e=>setSpent(e.target.value)}/></label><span>+</span><label>게임에 남은 양<input type="number" min={0} max={9999} placeholder="예: 20" value={remaining} onChange={e=>setRemaining(e.target.value)}/></label><button className="button secondary" disabled={busy||spent===''||remaining===''} onClick={()=>setPoints(calcKind,Math.min(9999,count(spent)+count(remaining)))}>합계 {Math.min(9999,count(spent)+count(remaining))} 입력</button></div><p className="subtle">예: 180 사용 + 20 남음 → 총 200. 게임의 실제 사용량을 넣으세요. 현재 페이지의 계획 사용량과 다를 수 있습니다.</p><label className="battle-budget"><Shield size={15}/>아스펠 전용 결정 총량<input type="number" min={0} max={9999} value={limits.battle} disabled={busy} onChange={e=>setPoints('battle',count(e.target.value))}/><small>일반 데바니온과 별도 예산 · 없으면 0</small></label></details>

@@ -18,7 +18,7 @@ def compare(tables, catalogs):
     acquire = unique(rows('SkillAcquireData'), lambda r: (str(r['SkillId']['Value']), r['SkillLevel']))
     parts = unique(rows('SpecializedSkillParts'), lambda r: str(r['ID']['Value']))
     result = {'scope': 'learning fields and specialization parent/level only', 'wholeCatalogVerified': False,
-              'learningChecked': 0, 'specializationsChecked': 0, 'unmodeledAscensionRows': 0, 'differences': []}
+              'learningChecked': 0, 'specializationsChecked': 0, 'ascensionConditionRows': 0, 'differences': []}
     for file in sorted(Path(catalogs).glob('*.json')):
         data = json.loads(file.read_text())
         for skill in data['skills']:
@@ -26,7 +26,7 @@ def compare(tables, catalogs):
                 row = acquire.get((skill['id'], value['level']))
                 result['learningChecked'] += 1
                 if row and row.get('NeedAscensionGrade') not in (None, 'EAscensionGrade::None'):
-                    result['unmodeledAscensionRows'] += 1
+                    result['ascensionConditionRows'] += 1
                 for a, b in [('autoLearn','bAutoLearn'),('requiredCharacterLevel','NeedCharacterLevel'),('skillPoints','CostSkillPoint'),('stigmaPoints','CostStigmaPoint')]:
                     if row is None or value[a] != row[b]:
                         result['differences'].append({'class':file.stem,'skill':skill['id'],'level':value['level'],'field':a,'catalog':value[a],'client':row.get(b) if row else None})
