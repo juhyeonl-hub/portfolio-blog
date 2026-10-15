@@ -1,5 +1,6 @@
 type Item = {id: string; name: string; kind: string; grade: string; level: number};
-type Skill = {id: string; name: string; classKey: string};
+type Learning = {level: number; autoLearn: boolean; requiredCharacterLevel: number; skillPoints: number; stigmaPoints: number; ascensionRequirement: string};
+type Skill = {id: string; name: string; classKey: string; learning?: Learning[]};
 type Recipe = {id: string; itemId: string; outputQuantity: number; category: string; race: string; masteryLevel: number;
   ingredients: {itemId: string; quantity: number; enchant: number}[]; hasCombo: boolean; successRate: null; feePerAttempt: null};
 export type ClientIndex = {schema: string; source: {kind: string; region: string; buildId: string; language: string}; items: Item[]; skills: Skill[]; recipes: Recipe[]};
@@ -26,7 +27,20 @@ export function parseClientIndex(value: unknown): ClientIndex {
   const ids = new Set(data.items.map((i: Item) => i.id));
   for (const i of data.items) if (!text(i.name) || !text(i.kind) || !text(i.grade) || !number(i.level, 0, 10000)) fail();
   const classes = ['assassin', 'gladiator', 'templar', 'ranger', 'elementalist', 'sorcerer', 'cleric', 'chanter'];
-  for (const s of data.skills) if (!text(s.name) || !classes.includes(s.classKey)) fail();
+  for (const s of data.skills) {
+    if (!text(s.name) || !classes.includes(s.classKey)) fail();
+    // Older v1 exports remain readable during deployment/cache transitions.
+    if (s.learning !== undefined) {
+      if (!Array.isArray(s.learning) || !s.learning.length || s.learning.length > 100) fail();
+      s.learning.forEach((entry: unknown, index: number) => {
+        const row = object(entry);
+        if (row.level !== index + 1 || typeof row.autoLearn !== 'boolean' ||
+            !number(row.requiredCharacterLevel, 0, 10000) || !number(row.skillPoints, 0, 10000) ||
+            !number(row.stigmaPoints, 0, 10000) || typeof row.ascensionRequirement !== 'string' ||
+            !/^(None|AscensionGrade_[1-9][0-9]*)$/.test(row.ascensionRequirement)) fail();
+      });
+    }
+  }
   for (const r of data.recipes) {
     if (!ids.has(r.itemId) || !number(r.outputQuantity, 1) || !text(r.category) || !text(r.race) || !number(r.masteryLevel) || typeof r.hasCombo !== 'boolean' || r.successRate !== null || r.feePerAttempt !== null || !Array.isArray(r.ingredients) || r.ingredients.length > 100) fail();
     for (const entry of r.ingredients) {

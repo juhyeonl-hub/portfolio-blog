@@ -12,3 +12,13 @@ const actual=parse(JSON.parse(readFileSync('../public/shadowcraft/data/client-in
 assert.equal(actual.skills.length,280);
 assert.equal(new Set(actual.skills.map(s=>s.classKey)).size,8);
 console.log('Client index validation passed: malformed records and shipped Global references');
+
+const learning={level:1,autoLearn:true,requiredCharacterLevel:1,skillPoints:0,stigmaPoints:0,ascensionRequirement:'AscensionGrade_3'};
+const withLearning=structuredClone(fixture);withLearning.skills[0].learning=[learning];
+assert.equal(parse(withLearning).skills[0].learning[0].ascensionRequirement,'AscensionGrade_3');
+for(const patch of [{level:2},{level:true},{skillPoints:-1},{stigmaPoints:1.5},{autoLearn:1},{ascensionRequirement:'unknown'}]){
+ const bad=structuredClone(withLearning);Object.assign(bad.skills[0].learning[0],patch);assert.throws(()=>parse(bad));
+}
+assert.equal(actual.skills.reduce((n,s)=>n+s.learning.length,0),3840);
+assert.equal(actual.skills.flatMap(s=>s.learning).filter(r=>r.ascensionRequirement!=='None').length,104);
+console.log('Official skill learning conditions and backward-compatible v1 exports PASS');

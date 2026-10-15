@@ -35,3 +35,6 @@
 .database-detail { padding: 16px; border: 1px solid #343045; border-radius: 12px; align-self: start; min-width: 0; overflow-wrap: anywhere; }
 .database-detail li { margin: 10px 0; }
 @media (max-width: 700px) { .database-layout { grid-template-columns: minmax(0, 1fr); } .client-database { padding: 14px; } .database-detail { grid-row: 1; } }
+
+.skill-learning-list { list-style: none; padding: 0; display: grid; gap: 8px; }
+.skill-learning-list li { display: grid; gap: 6px; padding: 10px; border: 1px solid #343045; border-radius: 8px; }

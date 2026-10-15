@@ -43,7 +43,7 @@ def build(tables, localization, build_id):
     entries = read(localization)['Entries']
     rows = {}
     hashes = {}
-    for name in ('Item', 'CraftRecipe', 'Skill', 'SkillList'):
+    for name in ('Item', 'CraftRecipe', 'Skill', 'SkillList', 'SkillAcquireData'):
         path = tables / (name + '.json')
         rows[name] = read(path)['Properties']['Data']
         if not isinstance(rows[name], list) or not rows[name]:
@@ -102,11 +102,42 @@ def build(tables, localization, build_id):
         if key in skill_rows:
             raise ValueError('Duplicate skill ID')
         skill_rows[key] = row
+    learning = {key: [] for key in roster}
+    seen_learning = set()
+    for row in rows['SkillAcquireData']:
+        key = identifier(row['SkillId']['Value'])
+        if key not in roster:
+            continue
+        level = row['SkillLevel']
+        if type(level) is not int or not 1 <= level <= 100 or (key, level) in seen_learning:
+            raise ValueError('Invalid or duplicate learning level')
+        seen_learning.add((key, level))
+        if row['ClassType'].removeprefix('ECharacterClass::').lower() != roster[key]:
+            raise ValueError('Learning class does not match roster')
+        if type(row['bAutoLearn']) is not bool:
+            raise ValueError('Invalid auto-learn flag')
+        for field in ('NeedCharacterLevel', 'CostSkillPoint', 'CostStigmaPoint'):
+            if type(row[field]) is not int or not 0 <= row[field] <= 10000:
+                raise ValueError('Invalid learning cost or requirement')
+        ascension = row['NeedAscensionGrade']
+        if not isinstance(ascension, str) or not re.fullmatch(r'EAscensionGrade::(?:None|AscensionGrade_[1-9][0-9]*)', ascension):
+            raise ValueError('Unsupported ascension requirement')
+        # Do not silently drop newly introduced item or prerequisite requirements.
+        if row['NeedPrevSkillDataList'] or row['CostItemDataList']:
+            raise ValueError('Additional learning requirements need explicit support')
+        learning[key].append({'level': level, 'autoLearn': row['bAutoLearn'],
+                              'requiredCharacterLevel': row['NeedCharacterLevel'],
+                              'skillPoints': row['CostSkillPoint'], 'stigmaPoints': row['CostStigmaPoint'],
+                              'ascensionRequirement': ascension.removeprefix('EAscensionGrade::')})
+    for values in learning.values():
+        values.sort(key=lambda v: v['level'])
+        if not values or [v['level'] for v in values] != list(range(1, len(values) + 1)):
+            raise ValueError('Missing or discontinuous learning levels')
     skills = []
     for key, cls in sorted(roster.items()):
         row = skill_rows[key]
         name = plain(entries['SkillString_' + row['SkillString_Key'] + '_skill_name'])
-        skills.append({'id': key, 'name': name, 'classKey': cls})
+        skills.append({'id': key, 'name': name, 'classKey': cls, 'learning': learning[key]})
     if len(skills) != 280 or any(sum(s['classKey'] == c.lower() for s in skills) != 35 for c in active_classes):
         raise ValueError('Unexpected playable class roster')
     hashes['English'] = hashlib.sha256(Path(localization).read_bytes()).hexdigest()

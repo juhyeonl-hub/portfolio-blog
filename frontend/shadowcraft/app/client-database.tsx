@@ -58,7 +58,13 @@ export default function ClientDatabase({active}: {active: boolean}) {
         <div className="database-detail" aria-label="데이터 상세">
           {!selected && <p>목록에서 항목을 선택하세요.</p>}
           {item && <><h3>{item.name}</h3><p>ID {item.id} · {item.kind} · {item.grade} · 아이템 레벨 {item.level}</p></>}
-          {skill && <><h3>{skill.name}</h3><p>ID {skill.id} · {skill.classKey}</p><p>기존 빌드 플래너의 스킬·특화 설정은 변경하지 않습니다.</p></>}
+          {skill && <><h3>{skill.name}</h3><p>ID {skill.id} · {skill.classKey}</p><h4>레벨별 습득 조건</h4><p>포인트는 해당 레벨을 배울 때 드는 비용입니다. 승급 조건은 클라이언트 원본 코드로 표시합니다.</p>
+            {skill.learning ? <ol className="skill-learning-list">{skill.learning.map(row => <li key={row.level}>
+              <strong>스킬 Lv.{row.level}</strong><span>캐릭터 Lv.{row.requiredCharacterLevel} · {row.autoLearn ? '자동 습득' : '직접 습득'}</span>
+              <span>SP {row.skillPoints} · 스티그마 {row.stigmaPoints}</span>
+              <span>승급 조건: {row.ascensionRequirement === 'None' ? '없음' : row.ascensionRequirement}</span>
+            </li>)}</ol> : <p>이 데이터 버전에는 습득 조건이 없습니다.</p>}
+            <p>기존 빌드 플래너에는 승급 조건이 반영되지 않습니다. 투자 전에 위 조건을 확인하세요.</p></>}
           {recipe && <><h3>{items.get(recipe.itemId)?.name}</h3><p>레시피 {recipe.id} · {recipe.category} · {recipe.race}</p>
             <p>기본 생산 수량 {recipe.outputQuantity}개 · 요구 숙련도 {recipe.masteryLevel}</p>
             <p>{recipe.hasCombo ? '연속 제작 결과가 존재합니다. ' : ''}성공 확률과 수수료는 미확정입니다. 아래는 입력한 시도 횟수에 필요한 재료이며 성공 수량 예측이 아닙니다.</p>

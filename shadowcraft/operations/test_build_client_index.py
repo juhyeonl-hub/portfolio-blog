@@ -16,12 +16,13 @@ class ClientIndexTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.entries = {'String_item_body': '<b>Material</b>'}
         self.rows = {'Item': [{'ID': {'Value': 1}, 'Name': 'item', 'Desc': {'Key': 'item'}, 'ItemType': 'EItemType::Material', 'ItemGrade': 'EItemGrade::Common', 'ItemLevel': 1}],
-                     'CraftRecipe': [{'ID': {'Value': 2}, 'Product': 'item', 'ProductCount': 1, 'Category': 'ECraftCategory::Cooking', 'QualificationRace': 'ERace::All', 'MasteryLevel': 1, 'ComboRecipe': 'None', 'ComponentList': [{'Item': 'item', 'Count': 2, 'Enchant': 0}]}], 'Skill': [], 'SkillList': []}
+                     'CraftRecipe': [{'ID': {'Value': 2}, 'Product': 'item', 'ProductCount': 1, 'Category': 'ECraftCategory::Cooking', 'QualificationRace': 'ERace::All', 'MasteryLevel': 1, 'ComboRecipe': 'None', 'ComponentList': [{'Item': 'item', 'Count': 2, 'Enchant': 0}]}], 'Skill': [], 'SkillList': [], 'SkillAcquireData': []}
         for ci, cls in enumerate(['Assassin','Gladiator','Templar','Ranger','Elementalist','Sorcerer','Cleric','Chanter']):
             ids = list(range(1000 + ci * 35, 1035 + ci * 35))
             self.rows['SkillList'].append({'ClassType': 'ECharacterClass::'+cls, 'SkillIdList': ids})
             for key in ids:
                 self.rows['Skill'].append({'ID': {'Value': key}, 'SkillString_Key': str(key)})
+                self.rows['SkillAcquireData'].append({'SkillId': {'Value': key}, 'SkillLevel': 1, 'ClassType': 'ECharacterClass::'+cls, 'bAutoLearn': True, 'NeedCharacterLevel': 1, 'CostSkillPoint': 0, 'CostStigmaPoint': 0, 'NeedAscensionGrade': 'EAscensionGrade::None', 'NeedPrevSkillDataList': [], 'CostItemDataList': []})
                 self.entries['SkillString_'+str(key)+'_skill_name'] = 'Skill '+str(key)
     def build(self, build_id='123'):
         for key, rows in self.rows.items():
@@ -36,7 +37,24 @@ class ClientIndexTests(unittest.TestCase):
         self.assertIsNone(data['recipes'][0]['successRate'])
         self.assertIsNone(data['recipes'][0]['feePerAttempt'])
         self.assertFalse(data['source']['liveAvailabilityVerified'])
-        self.assertEqual(len(data['source']['inputSha256']), 5)
+        self.assertEqual(len(data['source']['inputSha256']), 6)
+    def test_learning_requirements(self):
+        self.rows['SkillAcquireData'][0]['NeedAscensionGrade'] = 'EAscensionGrade::AscensionGrade_3'
+        data = self.build()
+        self.assertEqual(data['skills'][0]['learning'][0]['ascensionRequirement'], 'AscensionGrade_3')
+    def test_invalid_learning(self):
+        row = self.rows['SkillAcquireData'][0]
+        for field, bad in [('SkillLevel', 2), ('SkillLevel', True), ('ClassType', 'ECharacterClass::Cleric'), ('CostSkillPoint', -1), ('bAutoLearn', 1), ('NeedAscensionGrade', 'unknown'), ('CostItemDataList', [{}]), ('NeedPrevSkillDataList', [{}])]:
+            old = row[field]
+            row[field] = bad
+            with self.subTest(field=field, value=bad), self.assertRaises(ValueError): self.build()
+            row[field] = old
+    def test_duplicate_learning(self):
+        self.rows['SkillAcquireData'].append(self.rows['SkillAcquireData'][0])
+        with self.assertRaises(ValueError): self.build()
+    def test_missing_learning(self):
+        self.rows['SkillAcquireData'].pop()
+        with self.assertRaises(ValueError): self.build()
     def test_missing_reference(self):
         self.rows['CraftRecipe'][0]['ComponentList'][0]['Item'] = 'missing'
         with self.assertRaises(KeyError): self.build()
