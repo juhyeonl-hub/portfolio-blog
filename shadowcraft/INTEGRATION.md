@@ -180,3 +180,6 @@ npm run build
 ```
 
 The UI validates records/references before display, loads only when the database tab is opened, and retries failed loads. Recipe quantities mean **attempts**, not guaranteed production. Client decoding configuration/credentials and third-party decoder implementations are not bundled. Browser acceptance: `SHADOWCRAFT_TEST_URL=http://127.0.0.1:5173/lab/shadowcraft/ python3 shadowcraft/tests/client_database.py` from repository root.
+
+2026-10-15 deployment: implementation commit `d30cfd6` pushed to main; Vercel production deployment `portfolio-blog-gf4gwxo4r-xxjuon-4682s-projects.vercel.app` reported Ready. Production `client_database.py` and existing `integration.py` passed, including eight-class storage isolation, export/import roundtrip, OCR asset paths, mobile layout and no plan-upload requests. This publishes the validated incremental tools; it does **not** complete official planner catalog replacement, probabilistic crafting or an official map with aligned markers.
+The deployed client index SHA-256 matches the committed export. An unmocked production browser API fetch returned 200, assassin/35 skills and enabled news refresh; a standalone Python HTTP probe returned 403 while curl and local backend checks returned 200. The Python-only discrepancy remains unexplained.
