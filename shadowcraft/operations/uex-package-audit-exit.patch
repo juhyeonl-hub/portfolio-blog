@@ -1,0 +1,12 @@
+--- a/src/Uex/Program.cs
++++ b/src/Uex/Program.cs
+@@ -78,6 +78,8 @@
+         foreach (var error in summary.Errors.Take(20)) Console.Error.WriteLine($"  {error}");
+         if (summary.Errors.Count > 20) Console.Error.WriteLine($"  ... and {summary.Errors.Count - 20} more");
+     }
+-    return 0; // partial parse failures are normal for a full-tree export; doctor is the health gate
++    // Opt-in research gate: automation must not accept a partial export.
++    return Environment.GetEnvironmentVariable("A2BC_STRICT_PACKAGE_AUDIT") == "1"
++        && summary.Errors.Count > 0 ? 1 : 0;
+ }));
+ root.Subcommands.Add(exportCommand);

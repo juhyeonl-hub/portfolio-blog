@@ -232,3 +232,43 @@ Of 72 enabled region references, 69 join successfully. The sector ratio
 64 inside. This does not prove either texture placement. Both projection and
 marker-support flags remain false. Obtain independently verified texture
 control points or reliable decoded tile transforms before adding world markers.
+
+### Strict package research gate (2026-10-16)
+
+The Verteron `.umap` preview previously returned partial JSON despite object
+exceptions. Do not use that JSON to infer absent/default transforms. Diagnostics
+found 121 StaticMeshComponent and 64 MaterialInstanceDynamic exception events,
+and an AionWorldSettings object with 64 unread bytes. The precise mapping/reader
+mismatch remains unresolved. The mapping file matches the October decoder copy.
+
+Apply `operations/aion2-package-audit.patch` in the research CUE4Parse checkout
+(pinned ec6595e46448a817ac21ea9bde01caa48f80a420 with the previously recorded
+AION2 update). Apply `operations/uex-package-audit-exit.patch` in research uex
+812e16238b41dd8ec31b0bd4b5ba23884f64e48c. Rebuild in Release mode. These are
+local modifications to [CUE4Parse](https://github.com/FabianFG/CUE4Parse)
+(Apache-2.0) and [uex](https://github.com/arkive-games/uex) (MIT), not application
+runtime dependencies or copies of the third-party October decoder.
+
+Set `A2BC_STRICT_PACKAGE_AUDIT=1` for fail-on-exception/incomplete consumption;
+optionally set `A2BC_PACKAGE_AUDIT=1` to log object type/name and remaining bytes.
+When invoking Windows dotnet from WSL, pass these names through WSLENV too:
+
+```sh
+A2BC_STRICT_PACKAGE_AUDIT=1 A2BC_PACKAGE_AUDIT=1 \
+WSLENV="${WSLENV:+$WSLENV:}A2BC_STRICT_PACKAGE_AUDIT:A2BC_PACKAGE_AUDIT" \
+'/mnt/c/Program Files/dotnet/dotnet.exe' src/Uex/bin/Release/net10.0/uex.dll \
+  --config /private/path/to/profile.json preview --profile a2bc-global \
+  AION2/Content/UI/Map/WorldMap/World_L_A/WorldMap_World_L_A.umap
+```
+
+Expected for the current reviewed mapping: exit 1, no JSON on stdout, and a
+strict AionWorldSettings failure. Batch export must also exit 1 on errors.
+Use a separate research output directory: batch export is not transactional,
+and failed runs do not remove older output files. Always inspect the exit code
+and summary before accepting artifacts. Keep profile credentials out of reports.
+Byte completeness alone does not establish field semantics.
+
+All 64 terrain textures passed strict extraction and reproduced the exact PNG
+hashes used by the published manifest. See `operations/map-package-audit.json`
+for counts and evidence hashes. Production terrain, saved builds and user-map
+progress are unchanged. World-to-image projection remains unverified.

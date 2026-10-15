@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-16",
+  "scope": "Installed Global Steam build 25926599, Verteron assets only",
+  "mappingSha256": "12513ea504185d279c4fa1d585ad684476ff1ecac36b4a2fcb524afb1d48d45c",
+  "layoutDiagnostic": {
+    "exceptionEventsByType": {
+      "MaterialInstanceDynamic": 64,
+      "StaticMeshComponent": 121
+    },
+    "incompleteReadEvents": [
+      "A2BC_OBJECT AionWorldSettings AionWorldSettings size=90 remaining=64"
+    ],
+    "partialJsonReturnedInNonStrictMode": true
+  },
+  "strictChecks": {
+    "layoutPreviewExitCode": 1,
+    "layoutPreviewOutputBytes": 0,
+    "layoutBatchExitCode": 1,
+    "tileExportExitCode": 0,
+    "fullyConsumedTextures": 64,
+    "sourcePngHashesMatchPublishedManifest": 64
+  },
+  "worldProjectionVerified": false,
+  "limitation": "Strict byte consumption detects failures, not field semantics. Mapping/reader compatibility remains unresolved.",
+  "evidenceSha256": {
+    "a2bc-map-layout-audit.log": "be403cc448c3dc410390baf3fde5cec0480be2ea83fbf0f01bf9fd706fe015cb",
+    "a2bc-map-layout-audited.json": "74fb66ac76b4f456db29e97089f0c46105fe82eb29bb18ce921bd7aed8538eba",
+    "a2bc-layout-strict.log": "77c091076e7bdb82bc6b7ea9a2942fb71a1a8304ae60397ce107a138810c0f01",
+    "a2bc-layout-batch-strict.log": "15eee98593b4b12c583b224eff51a2a30900fbc6fbdbe4ff1cbd4c2d23eafb9a",
+    "a2bc-tiles-strict.log": "db20cf41fa156612b86f083296ecb845eb20b9a75e4d042c4eb6ab6a51900158"
+  }
+}

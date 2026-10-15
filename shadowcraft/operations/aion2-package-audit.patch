@@ -1,0 +1,26 @@
+diff --git a/CUE4Parse/UE4/Assets/AbstractUePackage.cs b/CUE4Parse/UE4/Assets/AbstractUePackage.cs
+index ba65939..db5464f 100644
+--- a/CUE4Parse/UE4/Assets/AbstractUePackage.cs
++++ b/CUE4Parse/UE4/Assets/AbstractUePackage.cs
+@@ -84,6 +84,10 @@ protected void DeserializeObject(UObject obj, FAssetArchive Ar, long serialSize)
+         {
+             if (serialSize == 0) return; // Empty Export
+             obj.Deserialize(Ar, validPos);
++            if (Environment.GetEnvironmentVariable("A2BC_STRICT_PACKAGE_AUDIT") == "1" && Ar.Position != validPos)
++                throw new ParserException($"Strict package audit: {obj.ExportType} {obj.Name} left {validPos-Ar.Position} bytes");
++            if (Environment.GetEnvironmentVariable("A2BC_PACKAGE_AUDIT") == "1")
++                Console.Error.WriteLine($"A2BC_OBJECT {obj.ExportType} {obj.Name} size={serialSize} remaining={validPos-Ar.Position}");
+ #if DEBUG
+             var remaining = validPos - Ar.Position;
+             switch (remaining)
+@@ -102,7 +106,9 @@ protected void DeserializeObject(UObject obj, FAssetArchive Ar, long serialSize)
+         }
+         catch (Exception e)
+         {
+-            if (Globals.FatalObjectSerializationErrors)
++            if (Environment.GetEnvironmentVariable("A2BC_PACKAGE_AUDIT") == "1")
++                Console.Error.WriteLine($"A2BC_OBJECT_ERROR {obj.ExportType} {obj.Name} size={serialSize} remaining={validPos-Ar.Position} error={e.GetType().Name}: {e.Message}");
++            if (Globals.FatalObjectSerializationErrors || Environment.GetEnvironmentVariable("A2BC_STRICT_PACKAGE_AUDIT") == "1")
+             {
+                 throw new ParserException($"Could not read {obj.ExportType} named {obj.Name} correctly", e);
+             }
