@@ -321,3 +321,22 @@ Validation: `npm --prefix frontend run test:shadowcraft` includes the attempt
 engine and all shipped recipes. Run `shadowcraft/tests/official_crafting.py`
 with SHADOWCRAFT_TEST_URL for browser acceptance, alongside existing crafting
 and integration tests. Both loading errors and malformed data offer retry.
+
+### Verified compound board effects
+
+The legacy catalogs retained only one numeric stat per node. The node inspector
+now supplements 192 compound PvP nodes from official DaevanionNode records,
+covering integer critical resistance, evasion and defense. Korean display labels
+remain from the existing catalogs. `build-board-effects.py` validates 4,296
+node layouts/costs/conditions and 704 skill-level increments before generating
+`lib/data/board-effects.json`. Unknown fields, extra effect slots and mismatches
+fail regeneration; this is not a full official catalog migration.
+
+```sh
+python3 shadowcraft/operations/build-board-effects.py /path/to/DaevanionNode.json frontend/shadowcraft/lib/data/catalogs frontend/shadowcraft/lib/data/board-effects.json
+```
+
+The runtime supplement requires matching catalog version, node ID/position and
+primary stat key/value/format. Recommendations remain the existing heuristic;
+no saved plan or catalog is rewritten. `board-effects.mjs`, Python generator
+tests and `shadowcraft/tests/board_effects.py` cover validation and display.
