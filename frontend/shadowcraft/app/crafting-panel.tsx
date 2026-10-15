@@ -1,6 +1,7 @@
 import {useMemo, useRef, useState} from 'react';
 import {calculateCraftPlan, type CraftPlan} from '../lib/crafting';
 import {craftingInputCount, MAX_CRAFTING_FILE_BYTES, parseCraftingCatalog, type CraftingCatalog} from '../lib/crafting-catalog';
+import OfficialCrafting from './official-crafting';
 
 const inputValue = (values: Record<string, string>, id: string) => Object.hasOwn(values, id) ? values[id] : '';
 
@@ -61,8 +62,10 @@ export default function CraftingPanel() {
   const number = (n: number) => n.toLocaleString('ko-KR');
   return <section className="crafting-panel card" aria-label="제작 계산기">
     <h2>제작 재료 & 비용</h2>
-    <p>필요한 재료를 합산하고 보유량을 뺀 구매 수량을 확인하세요. 확정 수량 제작만 지원하며 확률 성공·부산물은 계산하지 않습니다.</p>
-    <div className="notice amber-notice">공식 글로벌 제작법 연결 대기 중입니다. 가져온 파일은 공식 데이터로 검증되지 않습니다.</div>
+    <p>필요한 재료를 합산하고 보유량을 뺀 구매 수량을 확인하세요. 공식 제작법은 시도 횟수 기준으로, 사용자 레시피는 확정 수량 기준으로 계산합니다.</p>
+    <OfficialCrafting/>
+    <h3>사용자 레시피로 확정 수량 계산</h3>
+    <p>가져온 파일은 공식 데이터로 검증되지 않습니다.</p>
     <label className="crafting-upload">레시피 파일 가져오기
       <input type="file" accept=".json,application/json" aria-label="레시피 파일 가져오기" onChange={e => {void importFile(e.target.files?.[0]); e.target.value = '';}}/>
     </label>

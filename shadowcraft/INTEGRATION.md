@@ -300,3 +300,24 @@ of archived evidence. Research patches/logs are preserved outside the repo in
 The two experimental source modifications were removed from the active tool.
 Do not enable this hypothesis for production exports: passing a geometry check
 cannot validate unobserved fields, other packages, or gameplay coordinates.
+
+### Official recipe attempts in the crafting tab
+
+Open **공식 제작법 열기** to load the validated Global client index. Search by
+English product name, item ID or recipe ID and select a recipe. Enter attempt
+count (1–10,000), stock satisfying each displayed enchant requirement, and
+integer purchase prices. Duplicate item/enchant requirements are aggregated;
+different enchant requirements remain separate. Blank price means unknown,
+including after stock deduction; a zero price is an explicit free purchase.
+
+Outputs are direct required/owned/purchased materials and known purchase costs.
+Success yield and fee-inclusive total remain unknown. Combo continuations and
+probabilistic intermediate recipes are excluded. The client snapshot may contain
+recipes not available on the live server. Inputs stay in this mounted tab only,
+without uploads or localStorage writes, and reset on refresh/class change.
+The existing imported deterministic recipe workflow is preserved.
+
+Validation: `npm --prefix frontend run test:shadowcraft` includes the attempt
+engine and all shipped recipes. Run `shadowcraft/tests/official_crafting.py`
+with SHADOWCRAFT_TEST_URL for browser acceptance, alongside existing crafting
+and integration tests. Both loading errors and malformed data offer retry.
