@@ -197,3 +197,15 @@ python3 shadowcraft/operations/build-ascension-rules.py frontend/public/shadowcr
 ```
 
 Unknown ascension codes reject generation and require explicit support. The generated file stores original source metadata and index SHA-256. `shadowcraft/tests/ascension.py` tests the browser flow using `SHADOWCRAFT_TEST_URL`; the frontend `ascension.mjs` suite covers all eight classes, first-acquisition prerequisites, recommendation, equipment bypass prevention and preserved legacy allocations.
+
+### Official terrain images
+
+The map tab includes **Verteron terrain** from the installed Global Steam build 25926599. It loads 64 tiles only when explicitly opened (about 3.8 MB total), and supports zoom, drag, arrow keys and failed-image retries. It is independent of imported maps and stored collection progress. NPC/collectible markers are not overlaid: world-to-image coordinates remain unverified. The source name is English client string `String_STR_Map_World_L_A_body`.
+
+`frontend/public/shadowcraft/maps/steam-25926599/verteron/manifest.json` records raw/display tile hashes, map settings hash and 112 edge comparisons. Reproduction requires the reviewed raw PNGs, strictly decoded World_L_A metadata and Pillow in the operator environment:
+
+```sh
+python3 shadowcraft/operations/build-terrain-assets.py PNG_DIRECTORY WORLD_MAP_JSON NEW_OUTPUT_DIRECTORY
+```
+
+Output must be a new directory. Missing tiles, unexpected dimensions/settings and seam differences exceeding the reviewed tolerance reject packaging. WebP conversion uses 1024px tiles at quality 85; this changes display encoding/resolution, not the map geometry. The recipe is pinned to this snapshot and must be reviewed before another build. Browser acceptance: `SHADOWCRAFT_TEST_URL=http://127.0.0.1:5175/lab/shadowcraft/ python3 shadowcraft/tests/terrain.py`.

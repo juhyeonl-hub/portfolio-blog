@@ -38,3 +38,7 @@
 
 .skill-learning-list { list-style: none; padding: 0; display: grid; gap: 8px; }
 .skill-learning-list li { display: grid; gap: 6px; padding: 10px; border: 1px solid #343045; border-radius: 8px; }
+
+.terrain-panel { border: 1px solid #454155; padding: 16px; border-radius: 12px; margin: 16px 0 24px; }
+.terrain-panel p { line-height: 1.6; margin: 12px 0; overflow-wrap: anywhere; }
+.terrain-canvas { margin-top: 12px; }
