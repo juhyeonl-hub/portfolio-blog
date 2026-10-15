@@ -7,6 +7,9 @@ import {loadBundledCatalog} from '@/lib/catalog-loaders';
 import ClassGuide from './class-guide';
 import PointBudgetPanel from './point-budget';
 import GearPanel from './gear-panel';
+import CraftingPanel from './crafting-panel';
+import MapPanel from './map-panel';
+import ClientDatabase from './client-database';
 import {usePlanMemory} from './use-plan-memory';
 import {validStoredPlan,rememberCharacter,type RecentCharacter} from '@/lib/plan-memory';
 import newsInitial from '@/lib/data/news.json';
@@ -14,7 +17,7 @@ import serverDirectory from '@/lib/data/servers.json';
 import {queryArmory} from '@/lib/armory-client';
 const savedServers=serverDirectory as Record<string, {serverId:number;serverName:string;raceId:number}[]>;
 import {type Skill,type Node,type Catalog,type Plan,emptyPlan,applyRecommended,equipmentBonus,updatePlan,finalLevel,boardBonus,totals,skillCost,maxBase,slots,recommendSpecs,equipped,cheapestPath,connected} from '@/lib/planner';
-const tabs=[{id:'gear',name:'내 장비 & 성장',icon:Shield},{id:'skills',name:'스킬 & 특화',icon:Swords},{id:'daevanion',name:'데바니온',icon:Waypoints},{id:'macro',name:'매크로 & 키 배치',icon:Keyboard},{id:'rotation',name:'보스전 운영',icon:BookOpen},{id:'updates',name:'업데이트',icon:History}];
+const tabs=[{id:'gear',name:'내 장비 & 성장',icon:Shield},{id:'skills',name:'스킬 & 특화',icon:Swords},{id:'daevanion',name:'데바니온',icon:Waypoints},{id:'macro',name:'매크로 & 키 배치',icon:Keyboard},{id:'rotation',name:'보스전 운영',icon:BookOpen},{id:'crafting',name:'제작 계산기',icon:SlidersHorizontal},{id:'map',name:'지도 & 수집',icon:Waypoints},{id:'database',name:'글로벌 데이터',icon:BookOpen},{id:'updates',name:'업데이트',icon:History}];
 function Icon({skill,size=42}:{skill?:{iconPath:string;name?:string};size?:number}){return skill?<img className="skill-icon" style={{width:size,height:size}} src={'/shadowcraft/game'+skill.iconPath} alt={skill.name||''} onError={e=>{const el=e.currentTarget;if(!el.dataset.fallback){el.dataset.fallback='1';el.src='https://cdn-hosted.gaming.tools/aion2'+skill.iconPath}else el.style.visibility='hidden'}}/>:<span className="skill-placeholder" style={{width:size,height:size}}><Swords size={size*.5}/></span>}
 function prettyDate(s?:string){if(!s)return '아직 확인 전';return new Date(s).toLocaleString('ko-KR',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}
 function safeNum(v:string,max=9999){return Math.min(max,Math.max(0,Math.floor(Number(v)||0)))}
@@ -68,6 +71,9 @@ function Workshop({classKey,initialCatalog,onClassChange}:{classKey:string;initi
  {isOver&&<div className="notice amber-notice"><AlertTriangle size={17}/>현재 계획이 포인트 예산을 초과합니다. 총 보유량을 확인한 뒤 추천 배분을 다시 계산하거나 투자를 줄이세요.</div>}
  {review&&<div className="notice amber-notice"><AlertTriangle size={17}/>새 데이터가 반영되었습니다. 추천 조합은 {BASELINE} 기준이므로 변경된 특화를 확인하세요.<button onClick={()=>setTab('updates')}>변경 기록 보기 →</button></div>}
  <div className="notice violet-notice"><Shield size={16}/><span>장비 보너스: {plan.gear?.mode==='current'?'현재 장비 합산':plan.gear?.mode==='target'?'목표 장비 가정':'스킬별 직접 입력'} · 장비를 등록하면 특화 해금과 성장 목표를 비교할 수 있습니다.</span><button onClick={()=>setTab('gear')}>내 장비 입력 →</button></div><div className="page-tabs" role="tablist">{tabs.map(t=><button role="tab" aria-selected={tab===t.id} key={t.id} onClick={()=>setTab(t.id)} className={tab===t.id?'active':''}><t.icon size={16}/>{t.name}</button>)}</div>
+ <div hidden={tab!=='crafting'}><CraftingPanel/></div>
+ <div hidden={tab!=='map'}><MapPanel/></div>
+ <div hidden={tab!=='database'}><ClientDatabase active={tab==='database'}/></div>
  {tab==='gear'&&<GearPanel catalog={catalog} plan={plan} onEdit={edit}/>}
  {tab==='skills'&&<>
  <div className="section-heading"><div><h2>스킬 & 특화</h2><p>기본 투자와 추가 레벨을 나누어, 지금 열리는 특화를 확인하세요.</p></div><button className="button secondary" onClick={()=>{setBudgetOpen(true);setTimeout(()=>document.getElementById('point-budget')?.scrollIntoView({behavior:'smooth',block:'start'}),30)}}><Zap size={15}/>예산에 맞춰 추천 배분</button></div>

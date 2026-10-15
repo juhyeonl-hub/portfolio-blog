@@ -92,6 +92,66 @@ SHADOWCRAFT_TEST_URL=https://juhyeonl.dev/lab/shadowcraft/ python3 shadowcraft/t
 
 ## 운영과 기록
 
+### 지도 화면 추가 (로컬 구현, 미배포)
+
+`지도 & 수집` 탭은 사용자 좌표 파일의 검색·분류 표시·완료 숨기기·확대/이동을 지원한다.
+공식 지도 이미지와 좌표는 아직 연결하지 않았으며, 기본 상태는 비어 있다.
+배경 없는 좌표 보기임을 화면에 명시한다. 가져온 데이터는 항상 공식 검증 안 됨으로 표시한다.
+지도 드래그와 방향키 이동, 버튼 확대/축소, 마커 Enter/Space 선택 및 동일 기능의 목록을 제공한다.
+
+파일은 서버로 전송하지 않는다. 지도 자체는 메모리에만 보관한다.
+완료 체크는 정규화된 파일 전체의 SHA-256을 붙인 `a2bc-map-progress-v1:` 키에 저장하며,
+같은 파일을 다시 가져오면 복원한다. 좌표·버전 등 내용이 바뀌면 별도 진행도로 취급한다.
+마커·분류 순서가 바뀌어도 다른 파일 내용으로 취급한다. 진행도는 직업 공통이며 기존 빌드 키는 사용하지 않는다.
+저장소가 차단되면 현재 화면에서만 체크한다. 저장 데이터가 손상되었으면 덮어쓰지 않고 안내한다.
+
+입력은 최대 2 MB, 분류 1~50개, 마커 최대 5000개다. 좌표는 왼쪽 위 `(0,0)`, 오른쪽 아래 `(1,1)`을
+기준으로 한다. 아래 예시는 **합성 검사용이며 실제 게임 위치가 아니다**.
+
+```json
+{
+  "schema": "a2bc-map-v1", "region": "global", "coordinates": "normalized-top-left",
+  "id": "synthetic", "name": "Test map", "version": "Synthetic example — not game data",
+  "categories": [{"id": "test-resource", "name": "Test resources"}],
+  "markers": [{"id": "test-point", "name": "Test point", "categoryId": "test-resource", "x": 0.25, "y": 0.5}]
+}
+```
+
+검증: `frontend`의 `npm run test:shadowcraft`에 지도 단위 테스트를 포함한다.
+로컬 Vite 실행 후 루트에서 `python3 shadowcraft/tests/map.py`로 브라우저 수용 검사를 실행한다.
+`SHADOWCRAFT_TEST_URL`로 테스트 주소를 지정할 수 있다.
+
+### 제작 화면 추가 (로컬 구현, 미배포)
+
+`제작 계산기` 탭에 레시피 검색, 목표 수량, 보유량·단가, 중간 재료 직접 제작/구매 선택,
+구매 목록·제작 순서·잉여량·수수료·총비용을 추가했다. 공식 글로벌 제작법은 아직 미확보이므로
+기본 목록은 비어 있다. 사용자 파일은 항상 **공식 검증 안 됨**으로 표시하며 파일의 출처 주장으로 이 표시를 바꾸지 않는다.
+확률 성공·부산물·최저가 레시피 자동 선택은 지원하지 않는다.
+
+제작 입력은 메모리에서만 유지한다. 탭 이동은 보존하지만 새로고침·직업 변경 시 초기화한다.
+기존 빌드 저장 키/JSON 형식은 변경하지 않는다. 잘못된 파일을 읽으면 현재 목록·계산 입력을 유지한다.
+파일은 서버에 전송하지 않는다.
+
+수동 가져오기 계약은 아래와 같다. 이 예시는 **합성 검사용 데이터이며 실제 게임 레시피가 아니다**.
+파일은 UTF-8 JSON, 최대 2 MB, 아이템 최대 3000개, 레시피 최대 500개다.
+아이템별 레시피는 하나만 허용하며 재료 ID는 모두 `items`에 있어야 한다.
+수량과 수수료는 안전한 범위의 정수이며 수수료와 사용자 단가는 동일한 통화의 최소 단위를 사용한다.
+
+```json
+{
+  "schema": "a2bc-crafting-v1",
+  "region": "global",
+  "version": "Synthetic example — not game data",
+  "items": [{"id": "test-tool", "name": "Test tool"}, {"id": "test-ore", "name": "Test ore"}],
+  "recipes": [{"id": "test-recipe", "itemId": "test-tool", "outputQuantity": 1,
+    "ingredients": [{"itemId": "test-ore", "quantity": 2}], "feePerCraft": 3}]
+}
+```
+
+검증: `frontend`에서 `npm run test:shadowcraft`, `npm run typecheck:shadowcraft`, `npm run build`.
+로컬 Vite 실행 후 저장소 루트에서 `python3 shadowcraft/tests/crafting.py`로 Chromium 검사를 실행한다.
+합성 데이터로 정상 계산·미확정 가격·파일 오류 보존·비글로벌 파일 거절·탭 이동·모바일 폭·빌드 저장 보존을 확인한다.
+
 화면은 Vercel, API·DB는 PC의 WSL2와 Cloudflare Tunnel에서 실행한다. 자세한 운영·가동 조건은 [OPERATIONS.md](../OPERATIONS.md)를 따른다.
 
 - 최종 작업 전 DB 백업: `/home/juhyeonl/portfolio-blog-ops/backups/portfolio_blog_20261015T151118Z.dump`, `pg_restore --list` 검증 통과.
@@ -102,3 +162,21 @@ SHADOWCRAFT_TEST_URL=https://juhyeonl.dev/lab/shadowcraft/ python3 shadowcraft/t
 - 최종 프런트 운영 배포: `dpl_RbvvR4F1RQVJ2MS3ZVkSrTRWawir` (READY). 운영 브라우저 검사 5개 모두 통과.
 - OCR 라이선스/NOTICE와 게임/데이터 출처 표기를 유지한다. 모든 캐릭터가 완전한 정보를 공개하는 것은 아니다. 브라우저 데이터 삭제/시크릿 모드에는 JSON 백업이 필요하다.
 - 블로그/플래너의 500kB 이상 chunk 경고는 남아 있다. 플래너는 gzip 약 64kB이고, 이번 마무리에서 블로그 전체의 코드 분할은 변경하지 않았다.
+
+### Global client index
+
+`frontend/public/shadowcraft/data/client-index.json` is a narrow, read-only export from the installed Global Steam client (app 3393110, build 25926599). It includes item names/classifications, playable skill names, and recipe material requirements. It does not establish live availability, complete combat semantics, success rates or fees. Existing planner catalogs retain their original provenance.
+
+Regenerate only from reviewed, strictly decoded Global records:
+
+```sh
+python3 shadowcraft/operations/build-client-index.py DECODED_TABLE_DIR ENGLISH_JSON STEAM_BUILD_ID frontend/public/shadowcraft/data/client-index.json
+python3 shadowcraft/operations/compare-client-planner.py DECODED_TABLE_DIR frontend/shadowcraft/lib/data/catalogs
+python3 -m unittest discover -s shadowcraft/operations -p 'test_*.py' -v
+cd frontend
+npm run test:shadowcraft
+npm run typecheck:shadowcraft
+npm run build
+```
+
+The UI validates records/references before display, loads only when the database tab is opened, and retries failed loads. Recipe quantities mean **attempts**, not guaranteed production. Client decoding configuration/credentials and third-party decoder implementations are not bundled. Browser acceptance: `SHADOWCRAFT_TEST_URL=http://127.0.0.1:5173/lab/shadowcraft/ python3 shadowcraft/tests/client_database.py` from repository root.

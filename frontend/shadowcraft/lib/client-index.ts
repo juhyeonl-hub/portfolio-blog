@@ -1,0 +1,38 @@
+type Item = {id: string; name: string; kind: string; grade: string; level: number};
+type Skill = {id: string; name: string; classKey: string};
+type Recipe = {id: string; itemId: string; outputQuantity: number; category: string; race: string; masteryLevel: number;
+  ingredients: {itemId: string; quantity: number; enchant: number}[]; hasCombo: boolean; successRate: null; feePerAttempt: null};
+export type ClientIndex = {schema: string; source: {kind: string; region: string; buildId: string; language: string}; items: Item[]; skills: Skill[]; recipes: Recipe[]};
+
+
+/** Validate static exports before rendering; no self-reported file imports. */
+export function parseClientIndex(value: unknown): ClientIndex {
+  const fail = (): never => {throw new Error('Invalid Global client index');};
+  const object = (v: unknown): Record<string, any> => v && typeof v === 'object' && !Array.isArray(v) ? v as Record<string, any> : fail();
+  const data = object(value), source = object(data.source);
+  const text = (v: unknown) => typeof v === 'string' && v.trim().length > 0 && v.length <= 2000;
+  const id = (v: unknown) => typeof v === 'string' && /^[1-9][0-9]*$/.test(v);
+  const number = (v: unknown, min = 0, max = 1000000) => typeof v === 'number' && Number.isSafeInteger(v) && v >= min && v <= max;
+  if (data.schema !== 'a2bc-client-index-v1' || source.kind !== 'installed-steam-client' || source.region !== 'global' || source.appId !== 3393110 || source.language !== 'en-US' || !id(source.buildId)) fail();
+  for (const key of ['items', 'skills', 'recipes']) {
+    if (!Array.isArray(data[key]) || !data[key].length || data[key].length > 100000) fail();
+    const seen = new Set();
+    for (const entry of data[key]) {
+      const row = object(entry);
+      if (!id(row.id) || seen.has(row.id)) fail();
+      seen.add(row.id);
+    }
+  }
+  const ids = new Set(data.items.map((i: Item) => i.id));
+  for (const i of data.items) if (!text(i.name) || !text(i.kind) || !text(i.grade) || !number(i.level, 0, 10000)) fail();
+  const classes = ['assassin', 'gladiator', 'templar', 'ranger', 'elementalist', 'sorcerer', 'cleric', 'chanter'];
+  for (const s of data.skills) if (!text(s.name) || !classes.includes(s.classKey)) fail();
+  for (const r of data.recipes) {
+    if (!ids.has(r.itemId) || !number(r.outputQuantity, 1) || !text(r.category) || !text(r.race) || !number(r.masteryLevel) || typeof r.hasCombo !== 'boolean' || r.successRate !== null || r.feePerAttempt !== null || !Array.isArray(r.ingredients) || r.ingredients.length > 100) fail();
+    for (const entry of r.ingredients) {
+      const i = object(entry);
+      if (!ids.has(i.itemId) || !number(i.quantity, 1) || !number(i.enchant)) fail();
+    }
+  }
+  return data as ClientIndex;
+}

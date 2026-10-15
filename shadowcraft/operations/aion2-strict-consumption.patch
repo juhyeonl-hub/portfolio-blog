@@ -1,0 +1,56 @@
+diff --git a/CUE4Parse/GameTypes/Aion2/Objects/FAion2DatFileArchive.cs b/CUE4Parse/GameTypes/Aion2/Objects/FAion2DatFileArchive.cs
+index 8725e0d..869c8c8 100644
+--- a/CUE4Parse/GameTypes/Aion2/Objects/FAion2DatFileArchive.cs
++++ b/CUE4Parse/GameTypes/Aion2/Objects/FAion2DatFileArchive.cs
+@@ -20,6 +20,15 @@ public static void DecryptData(Span<byte> data, byte[] key)
+         TensorUtils.Xor(data, key);
+     }
+
++    // Research gate: unexplained trailing bytes must not become a successful export.
++    // This checks byte consumption only; semantic/schema verification is separate.
++    public static void RequireFullyConsumed(FArchive archive)
++    {
++        if (archive.Position != archive.Length)
++            throw new ParserException(archive,
++                $"Incomplete read: position {archive.Position}, length {archive.Length}; schema compatibility unverified");
++    }
++
+     private string ReadAion2String(byte[]? xorKey = null)
+     {
+         var length = Read<int>();
+diff --git a/CUE4Parse/GameTypes/Aion2/Objects/FAion2DataTableFile.cs b/CUE4Parse/GameTypes/Aion2/Objects/FAion2DataTableFile.cs
+index 20b1ffb..4ba8317 100644
+--- a/CUE4Parse/GameTypes/Aion2/Objects/FAion2DataTableFile.cs
++++ b/CUE4Parse/GameTypes/Aion2/Objects/FAion2DataTableFile.cs
+@@ -85,6 +85,7 @@ public FAion2DataTableFile(GameFile file, IFileProvider provider)
+             TagData = tagData,
+         };
+
++        FAion2DatFileArchive.RequireFullyConsumed(Ar);
+         Properties.Add(tag);
+     }
+ }
+diff --git a/CUE4Parse/GameTypes/Aion2/Objects/FAion2MapDataFile.cs b/CUE4Parse/GameTypes/Aion2/Objects/FAion2MapDataFile.cs
+index be58388..23c7f8b 100644
+--- a/CUE4Parse/GameTypes/Aion2/Objects/FAion2MapDataFile.cs
++++ b/CUE4Parse/GameTypes/Aion2/Objects/FAion2MapDataFile.cs
+@@ -33,6 +33,7 @@ public FAion2MapDataFile(GameFile file, IFileProvider provider)
+             TagData = tagData,
+         };
+
++        FAion2DatFileArchive.RequireFullyConsumed(Ar);
+         Properties.Add(tag);
+     }
+ }
+diff --git a/CUE4Parse/GameTypes/Aion2/Objects/FAion2MapHierarchyFile.cs b/CUE4Parse/GameTypes/Aion2/Objects/FAion2MapHierarchyFile.cs
+index c9c67f5..5aaa618 100644
+--- a/CUE4Parse/GameTypes/Aion2/Objects/FAion2MapHierarchyFile.cs
++++ b/CUE4Parse/GameTypes/Aion2/Objects/FAion2MapHierarchyFile.cs
+@@ -18,6 +18,7 @@ public FAion2MapHierarchyFile(GameFile file)
+
+         Version = Ar.Read<int>();
+         Worlds = Ar.ReadArray(() => new FAion2World(Ar));
++        FAion2DatFileArchive.RequireFullyConsumed(Ar);
+     }
+
+     public class FAion2World
