@@ -1,0 +1,2276 @@
+{
+  "sourceCommit": "8ec574b258d3c689a3d1f0ead7e8b6f3fdad17a9",
+  "createdAt": "2026-10-15T13:53:29.777137+00:00",
+  "files": [
+    {
+      "path": "HANDOFF.md",
+      "bytes": 23538,
+      "sha256": "8ce44c34a229bf15c6a86ecb348e083129fff1bcf160e9f7e849ca2bee6fd030"
+    },
+    {
+      "path": "VERIFY_BUNDLE.py",
+      "bytes": 558,
+      "sha256": "9e4b42b6e502df8809023e9cdf22ad6846da2cec6763c381f81111984a616896"
+    },
+    {
+      "path": "fixtures/gear-tooltip-preprocessed.png",
+      "bytes": 489378,
+      "sha256": "0c2e32768394bb58da023c582926137f8fdc60f339c32524bf24c629f391e035"
+    },
+    {
+      "path": "operations/catalog-seed.sql",
+      "bytes": 3111426,
+      "sha256": "8380ac1302496d72c6ee9b4e398337dbc4a1c16b5adea96354c9d43bb8386ecb"
+    },
+    {
+      "path": "operations/sync_current_site.py",
+      "bytes": 2501,
+      "sha256": "6b04a04b4c258912a7a6ec910c508391c341756a3afc81960099c787293884ec"
+    },
+    {
+      "path": "runtime-data/assassin.json",
+      "bytes": 667913,
+      "sha256": "3e88274777a841a26dd074aaf86a81565c68074643245e221b58e2d2853e9c24"
+    },
+    {
+      "path": "runtime-data/chanter.json",
+      "bytes": 667626,
+      "sha256": "238fe29e15d58d935682f1abf596d2b04959b865368619d49beed2fbfc23bda0"
+    },
+    {
+      "path": "runtime-data/cleric.json",
+      "bytes": 668329,
+      "sha256": "135cb19f83dd6c73c14f944a804beb09a3cdd3c4ea8cc94c22b4364bdb5fbac3"
+    },
+    {
+      "path": "runtime-data/elementalist.json",
+      "bytes": 668565,
+      "sha256": "be24a919cfc993f6bb24a9f379994b55a09f7aedc7d99acd561f82c565853737"
+    },
+    {
+      "path": "runtime-data/export-status.json",
+      "bytes": 1645,
+      "sha256": "516417c72db925d269fe64c409e6f724a0cfd105420a2215d43d74e90f8d7b1e"
+    },
+    {
+      "path": "runtime-data/gladiator.json",
+      "bytes": 668073,
+      "sha256": "051a8a76226527b64fbb9305eb78b322df2b9252998db96037085ce37c597c8a"
+    },
+    {
+      "path": "runtime-data/ranger.json",
+      "bytes": 667762,
+      "sha256": "ebe279de311af82b2949de4e55d061d7f32672ae593e1b56acb99eaf4b1f0bb4"
+    },
+    {
+      "path": "runtime-data/sorcerer.json",
+      "bytes": 668024,
+      "sha256": "484bae9255b19d406e374ee8d1ee3728c892646c7ab823ec5d5008f2d5231ae0"
+    },
+    {
+      "path": "runtime-data/templar.json",
+      "bytes": 668106,
+      "sha256": "c40f1c9c1e8803174fb94cfda41dd09b7812669c4c2c093d2590cfbbfc72cbcb"
+    },
+    {
+      "path": "source/.gitignore",
+      "bytes": 824,
+      "sha256": "65c950beefe57952cd630bb6ae071b0302279c9b97d9ee8517ea6d2f4cd0b4f2"
+    },
+    {
+      "path": "source/.npmrc",
+      "bytes": 45,
+      "sha256": "a3909ac0447c469fda12c57374993be70f47ce73e49fd3124678c7c047f2214d"
+    },
+    {
+      "path": "source/.openai/hosting.json",
+      "bytes": 91,
+      "sha256": "5264982915084b172a30f5dd0ce1817ba338fdd37789345275ef8b4781d1115a"
+    },
+    {
+      "path": "source/README.md",
+      "bytes": 10120,
+      "sha256": "b670ba0eff3b6b1598f619278ca1f61eb609bebc1f80f68c56829905d715dac7"
+    },
+    {
+      "path": "source/UPDATES.md",
+      "bytes": 7931,
+      "sha256": "16976efc84e965c31703000572e00905c183cdb9869fdc94047943f79a80d368"
+    },
+    {
+      "path": "source/app/api/armory/route.ts",
+      "bytes": 997,
+      "sha256": "ea0296f050a4364ee39cb4bb2734b7edda949bb1de169b3549b5a36127f3c296"
+    },
+    {
+      "path": "source/app/api/catalog/route.ts",
+      "bytes": 377,
+      "sha256": "d39a09b3803e9e6f45ec6b37a2bed4d555ee6142b646eed68f51c374fed3942a"
+    },
+    {
+      "path": "source/app/api/character/route.ts",
+      "bytes": 3462,
+      "sha256": "8a1f8963ac0ec3c19e3423cfafa1f5a869a5f60e53326c738f9b11717901ae1b"
+    },
+    {
+      "path": "source/app/api/plan/route.ts",
+      "bytes": 1898,
+      "sha256": "5f47a9c9988d21dc3a6013a2fb64d954e15c1cd8daae5b5d228c26ec971f196a"
+    },
+    {
+      "path": "source/app/api/refresh/route.ts",
+      "bytes": 536,
+      "sha256": "a0559d3554efd54c170089cd1e4817d5bdd265a5ae133a5f074700240b3e6ac5"
+    },
+    {
+      "path": "source/app/api/sync/route.ts",
+      "bytes": 929,
+      "sha256": "e00d6c33e4cf7cc8d357a3c0b5f6869d1d954198a18a29f33656e8962591a8af"
+    },
+    {
+      "path": "source/app/chatgpt-auth.ts",
+      "bytes": 2550,
+      "sha256": "4265a2e7c2dcb3a6f4b7026f762bf5b6e4caec76cc13c0a45987ee9a9f2e42cc"
+    },
+    {
+      "path": "source/app/class-guide.tsx",
+      "bytes": 3210,
+      "sha256": "e07080aa5659ad0f37f192f02188c627965df57be52102d1b85e9256c765268f"
+    },
+    {
+      "path": "source/app/gear-ocr.tsx",
+      "bytes": 13501,
+      "sha256": "90bf66a9f2157e7437d7991047d06d35b949aa75a6cbdde3375000368896193a"
+    },
+    {
+      "path": "source/app/gear-panel.tsx",
+      "bytes": 12404,
+      "sha256": "219ac581b2cb84d5d09a12918d3aa1f65512040a52bc418744fa4d9aa9e03c57"
+    },
+    {
+      "path": "source/app/globals.css",
+      "bytes": 46332,
+      "sha256": "85879d153acc4558e8945d3c7e2dc7a222a9818d927bda33385d297c32632d7f"
+    },
+    {
+      "path": "source/app/layout.tsx",
+      "bytes": 461,
+      "sha256": "4472a5fdcebbd28be6f6e71e38667eeebbc9cee25398294d4f50d9e6aab6c096"
+    },
+    {
+      "path": "source/app/page.tsx",
+      "bytes": 45532,
+      "sha256": "99cc445c04fa3c67753e3764abcffae2a5ad987d782dfc5de6842005d49d71f2"
+    },
+    {
+      "path": "source/app/point-budget.tsx",
+      "bytes": 7802,
+      "sha256": "2107a2be44fec761b74c1843198e281b12cb88f4866082ccdd06493d90d7fadc"
+    },
+    {
+      "path": "source/app/use-plan-memory.ts",
+      "bytes": 2792,
+      "sha256": "ad834d9afac0d0829aa7afbdf1bd3ecb716e42c1c66fa409df7e561dc4f969ce"
+    },
+    {
+      "path": "source/build/connector-preview-plugin.mjs",
+      "bytes": 7211,
+      "sha256": "a6a9fe2086e302f94a3f91e3c1a68a45bb3aa07d4a79faf01b14732191eb4e80"
+    },
+    {
+      "path": "source/build/connector-preview-worker.mjs",
+      "bytes": 594,
+      "sha256": "c1b6b2c420cb67d9e28f8f4ae440f578c0dfd4cb840a12cfe4b58076629a17ba"
+    },
+    {
+      "path": "source/build/sites-vite-plugin.LICENSE",
+      "bytes": 1063,
+      "sha256": "7de1e115d165f176e68f962acdb809b5ab8d8ae78d3981e0701392b2ac50c713"
+    },
+    {
+      "path": "source/build/sites-vite-plugin.ts",
+      "bytes": 7185,
+      "sha256": "07af20e7097d9ed1d76f7c446d02997550b8fc5ca89668b249e25eabd62c6834"
+    },
+    {
+      "path": "source/build/sites-worker.ts",
+      "bytes": 1279,
+      "sha256": "28a75f74adfc226a773d1c00d5779c26412eea40a104da5c77f7d0f0fc30f0e8"
+    },
+    {
+      "path": "source/cloudflare-env.d.ts",
+      "bytes": 99,
+      "sha256": "8b0eca84aa3364cc7ccc43cc3af6beb88dd34ebd410de08690bf094ce39fbcb0"
+    },
+    {
+      "path": "source/components/connector-error.tsx",
+      "bytes": 1082,
+      "sha256": "2d0d04559952ce9c9a327cca499f4b99f35d885cccfce375230e116695d3f155"
+    },
+    {
+      "path": "source/components/ui/accordion.tsx",
+      "bytes": 2048,
+      "sha256": "a4f153089ba886dfcf73fac26b5c01ca933fa12fbe88df6fb723912bfffdfbb0"
+    },
+    {
+      "path": "source/components/ui/alert-dialog.tsx",
+      "bytes": 5439,
+      "sha256": "9a8d950f2b9b4352d5ebb762fb44d5c28c2d353aa29712071973656a8736e311"
+    },
+    {
+      "path": "source/components/ui/alert.tsx",
+      "bytes": 1614,
+      "sha256": "2cc59b5f7bda91c1670884b1bf46bfc8a2a6f226cef184f5762acc037188885b"
+    },
+    {
+      "path": "source/components/ui/aspect-ratio.tsx",
+      "bytes": 274,
+      "sha256": "b1c157886236782cb92d8fbcd4749532aaf6d8aabefd6e157ca40358f902f407"
+    },
+    {
+      "path": "source/components/ui/attachment.tsx",
+      "bytes": 6002,
+      "sha256": "ae8a25dd1a896d3964e3ef54d97e51221b418cde287dfd794428b89951c5c790"
+    },
+    {
+      "path": "source/components/ui/avatar.tsx",
+      "bytes": 2916,
+      "sha256": "58a846bf1617b94b9681921db9b8461d0145f311424663d11678a06b6153cb34"
+    },
+    {
+      "path": "source/components/ui/badge.tsx",
+      "bytes": 1776,
+      "sha256": "46a0de5224f6a5d5d63d45246534288518dce888f031064bff925bbc7fe6ad97"
+    },
+    {
+      "path": "source/components/ui/breadcrumb.tsx",
+      "bytes": 2350,
+      "sha256": "d4c0831bba2212e778248f54a6ace6ef378df8bba4616d1abf27787a31eabae5"
+    },
+    {
+      "path": "source/components/ui/bubble.tsx",
+      "bytes": 4699,
+      "sha256": "870cc0c5cfc8a515053f7e41e706a6bd017a909b45f1305fd3b164a52cc4483b"
+    },
+    {
+      "path": "source/components/ui/button-group.tsx",
+      "bytes": 2202,
+      "sha256": "784c89d8ee683e1bc972ae69e6ea8225a7f63abe22aa1b5fc3423ae8a2a399c0"
+    },
+    {
+      "path": "source/components/ui/button.tsx",
+      "bytes": 2392,
+      "sha256": "cc36af0f8b5019c33cc039fbf03bb952a513072b15b55b53c592b78af3e5f4c4"
+    },
+    {
+      "path": "source/components/ui/calendar.tsx",
+      "bytes": 7832,
+      "sha256": "3855fbe0d3f8ad3a4b93071f98b76a9f6782d46ec8b05f5d2ddbee1e4e39bc84"
+    },
+    {
+      "path": "source/components/ui/card.tsx",
+      "bytes": 1987,
+      "sha256": "c48dd3b96be90a7066f1aebf294f0af9d00ebcdc367d5d4aca55429ade570c1c"
+    },
+    {
+      "path": "source/components/ui/carousel.tsx",
+      "bytes": 5556,
+      "sha256": "b7ea0dda3903d972c186f739e23da61f547bc83b5a0bf13b16856577846d5fc3"
+    },
+    {
+      "path": "source/components/ui/chart.tsx",
+      "bytes": 10614,
+      "sha256": "45aa5ea4a386f4fb5b8869ff4bab3a08cf89255190ee322043baf84c3e950b6a"
+    },
+    {
+      "path": "source/components/ui/checkbox.tsx",
+      "bytes": 1214,
+      "sha256": "b23ab9d4deeedf2ac8f512c368361ede681aa383437ef48563a6f9b7dbe95f27"
+    },
+    {
+      "path": "source/components/ui/collapsible.tsx",
+      "bytes": 795,
+      "sha256": "c6598e5584f4258b5d9fefadbc5ad6a66888ad58729f4b634a0bb2d9c513188b"
+    },
+    {
+      "path": "source/components/ui/combobox.tsx",
+      "bytes": 9158,
+      "sha256": "2d68e78b2dc7e38a085f222dede60a80b4f8229a6e91732c484605e204d46735"
+    },
+    {
+      "path": "source/components/ui/command.tsx",
+      "bytes": 4818,
+      "sha256": "361193df1e3d64a9e9b5048f045264782fcb387aab3f00f2b805fdcbf538b16a"
+    },
+    {
+      "path": "source/components/ui/context-menu.tsx",
+      "bytes": 8268,
+      "sha256": "2cf1fcf59df0649a3e2a126d1df2f639145f6b6bf5689ee54af1f40ab1245017"
+    },
+    {
+      "path": "source/components/ui/dialog.tsx",
+      "bytes": 4303,
+      "sha256": "dce39c6adc47d997bd2567f8b7a72f466b0134715105cd42f9194007b8ecdb14"
+    },
+    {
+      "path": "source/components/ui/direction.tsx",
+      "bytes": 506,
+      "sha256": "84ae2ad658207f0e0f367978e5508cd8027cd00c29c41d3d13db21a708c3d1e6"
+    },
+    {
+      "path": "source/components/ui/drawer.tsx",
+      "bytes": 4255,
+      "sha256": "cb6eaf58eb0757ca91af284e5d925b89a42ad7eb19cb3f44c575a3487aa9350f"
+    },
+    {
+      "path": "source/components/ui/dropdown-menu.tsx",
+      "bytes": 8418,
+      "sha256": "98f0dcdae38225b73734aceeb9213dd751fea2c72ea520df31003cd133deac8a"
+    },
+    {
+      "path": "source/components/ui/empty.tsx",
+      "bytes": 2396,
+      "sha256": "ae95bdcf367a076ae02e7925f14522a148798f72d9651749c6d55497dba584c0"
+    },
+    {
+      "path": "source/components/ui/field.tsx",
+      "bytes": 6159,
+      "sha256": "ba67d76f017ac059fc86cf8c344e0b2991c4322d3619e125498c19b87f6eefbd"
+    },
+    {
+      "path": "source/components/ui/form.tsx",
+      "bytes": 3757,
+      "sha256": "315b46bb75ab7d1c6061b5d750aa4bedf6e7a455e15e2d7f9182f053d5972b1e"
+    },
+    {
+      "path": "source/components/ui/hover-card.tsx",
+      "bytes": 1526,
+      "sha256": "f5d8df42c59370ec14d61bcc54f7d68e9bb7dfa0d6a872b2f7cffc2aafbf23b8"
+    },
+    {
+      "path": "source/components/ui/input-group.tsx",
+      "bytes": 5065,
+      "sha256": "6afbd58fea4c438e6252dc4568bddc122e84ababead4ad5cee50ace01100c9a0"
+    },
+    {
+      "path": "source/components/ui/input-otp.tsx",
+      "bytes": 2254,
+      "sha256": "161946daa89f0eda2575b9271c0494e35807c4ffb55598a49f67160c17fec299"
+    },
+    {
+      "path": "source/components/ui/input.tsx",
+      "bytes": 962,
+      "sha256": "8c4612a7c41319ac5049daa3b34b080f9784b6245c17780eb87c127e58e473db"
+    },
+    {
+      "path": "source/components/ui/item.tsx",
+      "bytes": 4486,
+      "sha256": "6e2144d6d87142dbbe56d568810bf546318c8aa661447ebb0d76ebbf382cb45f"
+    },
+    {
+      "path": "source/components/ui/kbd.tsx",
+      "bytes": 862,
+      "sha256": "6088c3a5432338b1719c17e9b5d0e1fa74fd1f66060f248fc88909d33a82cd13"
+    },
+    {
+      "path": "source/components/ui/label.tsx",
+      "bytes": 606,
+      "sha256": "a476e41f08b9de5bd447de66a33d8bc2ad18f2fa6b96c064778bab4b6f439f4c"
+    },
+    {
+      "path": "source/components/ui/marker.tsx",
+      "bytes": 1864,
+      "sha256": "3d798763f094b2bb5e7ade2d5cd1b9bab498bc8ca7fd4cfaf4e5835bdedc34a0"
+    },
+    {
+      "path": "source/components/ui/menubar.tsx",
+      "bytes": 8389,
+      "sha256": "9243af8afcea03703398ccd1c2a8c0a87ad6cbaf2bd272fb609f5b79fe46aebb"
+    },
+    {
+      "path": "source/components/ui/message-scroller.tsx",
+      "bytes": 3992,
+      "sha256": "bb7660a248e4e9589c3816c7c1c199ea1381a70d2c8476ae895b567a7a4d86cf"
+    },
+    {
+      "path": "source/components/ui/message.tsx",
+      "bytes": 2232,
+      "sha256": "9d2952bf3b641081f09aa2739535e6bbd1be0a4946789752a2c20d8aaef43185"
+    },
+    {
+      "path": "source/components/ui/native-select.tsx",
+      "bytes": 1995,
+      "sha256": "007516b111fca8c98a6c40c94ab91bb68cc5b52afce1ed1f5e510c3d86e7347c"
+    },
+    {
+      "path": "source/components/ui/navigation-menu.tsx",
+      "bytes": 6658,
+      "sha256": "889d358a77de88e9cb6f39ea4895ea4c76eaf01d731b74e44f1c41e97a78a044"
+    },
+    {
+      "path": "source/components/ui/pagination.tsx",
+      "bytes": 2717,
+      "sha256": "374ad135c3d4ff3ec080a0009cd9745cdd0e12faa89d2b0e86074f11e5127fd1"
+    },
+    {
+      "path": "source/components/ui/popover.tsx",
+      "bytes": 2357,
+      "sha256": "31c350309ff5d3034e6ecf1b0eda75ba8855bdbf987fc7ad6d71f0ef07c5a447"
+    },
+    {
+      "path": "source/components/ui/progress.tsx",
+      "bytes": 755,
+      "sha256": "c8c26e8f5f041c3cdf4915347dc1d9c022f9448f149990fadcaf303e952fa57d"
+    },
+    {
+      "path": "source/components/ui/radio-group.tsx",
+      "bytes": 1460,
+      "sha256": "fe5ce39636d0818c2bf9c4eebddff893d1225fa2c81b5fa4bb8cbb39a8c913ce"
+    },
+    {
+      "path": "source/components/ui/resizable.tsx",
+      "bytes": 1815,
+      "sha256": "bc63958467aa00557c551bb0d96a5ae4c965c1e1ba2380e595949d933b132f7c"
+    },
+    {
+      "path": "source/components/ui/scroll-area.tsx",
+      "bytes": 1639,
+      "sha256": "8bd9d986b2844c9a87de825c6de4787b6739b36c3dc9a05ccf3eb107160e4043"
+    },
+    {
+      "path": "source/components/ui/select.tsx",
+      "bytes": 6353,
+      "sha256": "0b796a108a4eb5ba52d9ad938b7aea36dc56ae66c703a6d0a23dbc24f96daff3"
+    },
+    {
+      "path": "source/components/ui/separator.tsx",
+      "bytes": 694,
+      "sha256": "6da346505c8629a4668420d2a5ca48891383bbe0b0ceb14163537c671879427e"
+    },
+    {
+      "path": "source/components/ui/sheet.tsx",
+      "bytes": 4188,
+      "sha256": "63863cf2df8f8973e52b3459ac9bdbf81be1262dbc70eb53d5271ffb03488e16"
+    },
+    {
+      "path": "source/components/ui/sidebar.tsx",
+      "bytes": 21526,
+      "sha256": "4a8d73e7730a2b1fcecfca31299ed26db65c2307b84197a59c6ec7c01c7ad28e"
+    },
+    {
+      "path": "source/components/ui/skeleton.tsx",
+      "bytes": 276,
+      "sha256": "ba48dd5be5a6a1378bd4e011028654b5bf419f1e7d20ee4b9f8330c1264e7239"
+    },
+    {
+      "path": "source/components/ui/slider.tsx",
+      "bytes": 1991,
+      "sha256": "0e37484f4b416e79ac18c655cac961aefacf6e67085cfc2b320ea8af545635a3"
+    },
+    {
+      "path": "source/components/ui/sonner.tsx",
+      "bytes": 1034,
+      "sha256": "13ccc9b0fe4248e622f83a1d3b2f0566b72b5e04162d7d0c8db8945ecc71b55f"
+    },
+    {
+      "path": "source/components/ui/spinner.tsx",
+      "bytes": 331,
+      "sha256": "3e6e6e8d37fb4069f8e43e55318f8db06fbc36e6c8be0096da3c9337c1c798b9"
+    },
+    {
+      "path": "source/components/ui/switch.tsx",
+      "bytes": 1408,
+      "sha256": "386d4d4deb39f34126f9700fe9bf5393d238485dd94018bba9d154dda84c62ae"
+    },
+    {
+      "path": "source/components/ui/table.tsx",
+      "bytes": 2478,
+      "sha256": "20e5a7f224959c6b75802995706a97e9da171f693d4b6b1b436388fcd9df96f3"
+    },
+    {
+      "path": "source/components/ui/tabs.tsx",
+      "bytes": 3782,
+      "sha256": "865d0194331b9b2be36723fa79d3575dc83078b4cb941cafee87cb72fc2cff46"
+    },
+    {
+      "path": "source/components/ui/textarea.tsx",
+      "bytes": 759,
+      "sha256": "253cdeb487c73beaaccdf47fc163e36e7d5b7ae6ddf09a4f64998a109a112979"
+    },
+    {
+      "path": "source/components/ui/toggle-group.tsx",
+      "bytes": 2308,
+      "sha256": "69f643e889e933f05c1439084480d8646f66a161c7d1cf0730ee926382ade35e"
+    },
+    {
+      "path": "source/components/ui/toggle.tsx",
+      "bytes": 1565,
+      "sha256": "ba4d0b0a2b2fee75dc36dfc19e32082e721024b919050c97fd5dc70faa924e16"
+    },
+    {
+      "path": "source/components/ui/tooltip.tsx",
+      "bytes": 1830,
+      "sha256": "a0784eb77831a799fad7991df4f1b666f876201565a80175e1aa68733574a2e4"
+    },
+    {
+      "path": "source/components.json",
+      "bytes": 420,
+      "sha256": "31f4ca67a4a62572571003d3d5aac85ee6fbfca67a192924bac6b168d95e98fd"
+    },
+    {
+      "path": "source/db/index.ts",
+      "bytes": 423,
+      "sha256": "dc7610b00b918e0ffff1360a63626f16655ced3064b2eaf96095a4101fb14bcd"
+    },
+    {
+      "path": "source/db/schema.ts",
+      "bytes": 653,
+      "sha256": "ee5813fca39ecadd0e87612a0c7a4c03fbf9573558dcebbde9d227706d6c69ec"
+    },
+    {
+      "path": "source/drizzle/0000_gorgeous_anthem.sql",
+      "bytes": 484,
+      "sha256": "6479f4fe5ef7b17984c7d69350ced57f2302ba3106e83b1299d4be31ba69a529"
+    },
+    {
+      "path": "source/drizzle/meta/0000_snapshot.json",
+      "bytes": 2936,
+      "sha256": "91828bcd9422c1ebc6b5531a39219a80320bb9627cdce612c4261e204d17226f"
+    },
+    {
+      "path": "source/drizzle/meta/_journal.json",
+      "bytes": 205,
+      "sha256": "ee6c8c0c5da8311e5d0bf90f89d66260784aeb8230f1224da51d3e845fc8165c"
+    },
+    {
+      "path": "source/drizzle.config.ts",
+      "bytes": 148,
+      "sha256": "af081f7384aaeb0082cf422e29f139d137ca2f6a57c69b2c37b9fb1f8479867b"
+    },
+    {
+      "path": "source/eslint.config.mjs",
+      "bytes": 846,
+      "sha256": "f22a254df7d934bbf9be499d3c969a13abb7f7f64c03f5967d0095cad81dfe06"
+    },
+    {
+      "path": "source/examples/d1/app/api/notes/route.ts",
+      "bytes": 1700,
+      "sha256": "a3d4a74fd53b7bf53e2df41f169d9d9d44a8b22aeb6d92f4e754956079af8909"
+    },
+    {
+      "path": "source/examples/d1/db/schema.ts",
+      "bytes": 370,
+      "sha256": "d89eabd95716ce404f5f7ca2a254220435be8ddce7c899d7ef461ff22ec80454"
+    },
+    {
+      "path": "source/hooks/use-mobile.ts",
+      "bytes": 565,
+      "sha256": "ad0936f84f1df79d3697bfbff9c18f8ad58431c1cbaf2359c6a853b0fcc9f28b"
+    },
+    {
+      "path": "source/lib/armory-client.ts",
+      "bytes": 1529,
+      "sha256": "dbcf68afac3b3cb45726b3b63bce35aa384aaedafebaebc52ea60d16a70f9c31"
+    },
+    {
+      "path": "source/lib/catalog-loaders.ts",
+      "bytes": 718,
+      "sha256": "bbe61bc5f290b5d152668e48f38b38a4c42888a8f72acd25a2ee49764c06e9e0"
+    },
+    {
+      "path": "source/lib/catalog-server.ts",
+      "bytes": 4859,
+      "sha256": "a034f54b2b8b239ba080848d66a1a06684bfa3511cff0c1e9670ac7815c4995a"
+    },
+    {
+      "path": "source/lib/classes.ts",
+      "bytes": 1003,
+      "sha256": "30feb77165a961d35a9fc317929e5daeb510afc8af3eea38bcbe3fb2acbd93c4"
+    },
+    {
+      "path": "source/lib/connector-context.ts",
+      "bytes": 612,
+      "sha256": "bbddff68689cb0f6926fecd4b8b96f12f2054277c296e97b0df07d4ad5ece24e"
+    },
+    {
+      "path": "source/lib/connector-contract.mts",
+      "bytes": 5362,
+      "sha256": "e1a7b24a8793af34b595690d9b1300c897c7321c14f215cedf58ad95799d7c3e"
+    },
+    {
+      "path": "source/lib/connector-errors.mts",
+      "bytes": 2717,
+      "sha256": "a22edf13d6873ae832c4a2a0d579fc666c73ec996ef0722d39172649d38f0871"
+    },
+    {
+      "path": "source/lib/connector-preview.d.ts",
+      "bytes": 433,
+      "sha256": "abd69a94f7f61f1359063bb557574faae35e8ff5a028cc4c04b9ee248ef52642"
+    },
+    {
+      "path": "source/lib/connectors.ts",
+      "bytes": 416,
+      "sha256": "1c93d747e384c8e17e3e3dd5361b24412babf5eba2a11d2ae7a75f4e0924112c"
+    },
+    {
+      "path": "source/lib/data/catalog.json",
+      "bytes": 387036,
+      "sha256": "92eb2347d1543e9164623a0ca6d4eb845601a13f4d7b710409de4b598f866472"
+    },
+    {
+      "path": "source/lib/data/catalogs/assassin.json",
+      "bytes": 387087,
+      "sha256": "20f4d07d2ca4fb0a74b5393370fc954cbbf286486cf9848b9c7bf76e54a77f46"
+    },
+    {
+      "path": "source/lib/data/catalogs/chanter.json",
+      "bytes": 386789,
+      "sha256": "be198e7c3e4976a303d579dc208c40b695d8dfdfce4e77f99254b854b8bfc9ea"
+    },
+    {
+      "path": "source/lib/data/catalogs/cleric.json",
+      "bytes": 387492,
+      "sha256": "87aa6381e8e118ad76e6c076f5e6ec4c467551de6e27baee2ff3d6501d18d6ef"
+    },
+    {
+      "path": "source/lib/data/catalogs/elementalist.json",
+      "bytes": 387728,
+      "sha256": "018061a0df971bbe0c9ceb8a15ed3fba009eb3d258ed66bc4828fd187f37e456"
+    },
+    {
+      "path": "source/lib/data/catalogs/gladiator.json",
+      "bytes": 387208,
+      "sha256": "e73e42bb5801ae68cf6fa09c9c3fecac0dadd9af044eccd0d6f365c3da6f7675"
+    },
+    {
+      "path": "source/lib/data/catalogs/ranger.json",
+      "bytes": 386925,
+      "sha256": "a925bc47d50e8a00af1f045698e17022a1b39bfa313207b6497633fde298301a"
+    },
+    {
+      "path": "source/lib/data/catalogs/sorcerer.json",
+      "bytes": 387187,
+      "sha256": "677d0c3344862924bd120f1a213035b75748fdd1feec19d2f768107f276ea707"
+    },
+    {
+      "path": "source/lib/data/catalogs/templar.json",
+      "bytes": 387269,
+      "sha256": "116ea011dea37e412cd0a1792df1b69292a450fe3ac6d0e2254c498469f10675"
+    },
+    {
+      "path": "source/lib/data/class-profiles.json",
+      "bytes": 77557,
+      "sha256": "129623cf30a3e63450e023bbdfbfd26acade20fb9be271efacfa387173a68252"
+    },
+    {
+      "path": "source/lib/data/news.json",
+      "bytes": 10334,
+      "sha256": "32f65def6a71bd53751fdc31bbaf09217e5cf82e63deea628cfd1ed3c1055201"
+    },
+    {
+      "path": "source/lib/data/servers.json",
+      "bytes": 8906,
+      "sha256": "fe0fb6ae3fb46ae32a7654849daa5fc24ed4f5e5d80b6c068ec717b8e16cecb5"
+    },
+    {
+      "path": "source/lib/gear-ocr.ts",
+      "bytes": 2381,
+      "sha256": "c098e8b00a004ec35f14da26987c39aa218894b17657f581e5fb5400d7d065cd"
+    },
+    {
+      "path": "source/lib/literal-parser.mjs",
+      "bytes": 2699,
+      "sha256": "7f7b85f286eeb582cae564e8597bafb2ce11f68cc07a8d3e72d93310a29b605f"
+    },
+    {
+      "path": "source/lib/plan-memory.ts",
+      "bytes": 1969,
+      "sha256": "8f1af77f7c6da9318f2ba8b79137908d5ce2c886e6c0718900b3b78dc7377ead"
+    },
+    {
+      "path": "source/lib/planner.ts",
+      "bytes": 9782,
+      "sha256": "616fbf5242c35177bb2fecb26ea8bb2f9f0ebd1ba464b27468bd309fc669ea4e"
+    },
+    {
+      "path": "source/lib/recommendation.ts",
+      "bytes": 4120,
+      "sha256": "fdd5eb94b6ddd6f9e33f0836447b6f7673458e3565741baa5274642d5cfddf93"
+    },
+    {
+      "path": "source/lib/utils.ts",
+      "bytes": 177,
+      "sha256": "53f3d3d070f0a9082934da25b875f9499855c2b0693868dd28be8c23d8730f68"
+    },
+    {
+      "path": "source/next.config.ts",
+      "bytes": 133,
+      "sha256": "614bce25b089c3f19b1e17a6346c74b858034040154c6621e7d35303004767cc"
+    },
+    {
+      "path": "source/package.json",
+      "bytes": 2169,
+      "sha256": "34bbd586735b1911580f963344fe26703ec799e45ac20677ad0d321fe0063872"
+    },
+    {
+      "path": "source/pnpm-lock.yaml",
+      "bytes": 347948,
+      "sha256": "221580a14e9ab4c1a74a2963fe0c0111fb14c77a273588a5ebf5023c435b364e"
+    },
+    {
+      "path": "source/pnpm-workspace.yaml",
+      "bytes": 758,
+      "sha256": "76486587401bffebfc0199781af6ce2dd5d6217412f8c6723019215af3a1fd2f"
+    },
+    {
+      "path": "source/postcss.config.mjs",
+      "bytes": 94,
+      "sha256": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde"
+    },
+    {
+      "path": "source/public/favicon.svg",
+      "bytes": 242,
+      "sha256": "d4ad4d9f54ac3a4f21344a19505295790f6ac01629ace518df13e9c579cfd8ed"
+    },
+    {
+      "path": "source/public/file.svg",
+      "bytes": 392,
+      "sha256": "1e0ae4d1a1ddfa36752988647b731e4abf150c414d069ec83c96fb0aaeff0307"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+      "bytes": 5118,
+      "sha256": "5586282a664ae6d5193bdf94ae720c02a53a8ccff31f8f6f3ad9bfc2bd0b83c4"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+      "bytes": 4900,
+      "sha256": "b5f5a2a215b178ec51b6415bd6b259f33b78122709597c10a98a106dd3893e18"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+      "bytes": 4838,
+      "sha256": "dbd6d83c1411acf34329a78fe5cc2c7712784990556cea9f473d6bb4758eb8d1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_sprite.webp",
+      "bytes": 5074,
+      "sha256": "f54057fbb9dfca4f7a463a40f6910df456ac337231b0214322dcd99ca789c42b"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/icon/ut_class_assassin_large.webp",
+      "bytes": 20518,
+      "sha256": "94bf608e1871ff70cccb768b99e3f0e340c3ee30195feecaa7fa1c7f6c6eebf3"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/icon/ut_class_chanter_large.webp",
+      "bytes": 22884,
+      "sha256": "6cdeaead0b1f798d7e67cc3ad42e20db411e94467554eea552639d54b9505c71"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/icon/ut_class_cleric_large.webp",
+      "bytes": 22514,
+      "sha256": "fb3a40d8acac553220196ba3a8a31ad3d816c2335c033731686e24837aad8a96"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/icon/ut_class_elementalist_large.webp",
+      "bytes": 27282,
+      "sha256": "a806f49697fb563cff0200efc22a917c5f4f5b9c661941166ecaf2ed76d7a932"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/icon/ut_class_gladiator_large.webp",
+      "bytes": 19678,
+      "sha256": "91789bbe45afad478077f40b892f3fc3ba48e724bceb3b5f7f3dcedfd26dfea1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/icon/ut_class_ranger_large.webp",
+      "bytes": 18806,
+      "sha256": "f158a8f72e78527e3badb09896d96896ef9ea2d0c23a8e67505f4bd59f339363"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/icon/ut_class_sorcerer_large.webp",
+      "bytes": 22318,
+      "sha256": "04043c50b34abf3d3c247aa87b0a887e8f04c09c30211b17fb6c8025dd2df151"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/icon/ut_class_templar_large.webp",
+      "bytes": 23698,
+      "sha256": "5f1afab5bcfcdedf474be17cff3c68dd4a4a755d7cf4ab64c443f282430ccf40"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_001.webp",
+      "bytes": 9938,
+      "sha256": "6fee9e1dfa73aacc2671fa2f313ed46f8526834129d83575e5d5c0e988be694a"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_005.webp",
+      "bytes": 7138,
+      "sha256": "bab840f97f172f1617b45d5e053cb28ed89c34e7258c982476c3d27cc577c61c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_006.webp",
+      "bytes": 11360,
+      "sha256": "72de5515e4946f310bdb1c6bc2c31d15099b83bc8a8e42b3a1c4b957654afb26"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_007.webp",
+      "bytes": 14314,
+      "sha256": "6e343858ebdc156d764ff6d9d51b30257ee5339d5d2a44d268115722ada539e7"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_009.webp",
+      "bytes": 8374,
+      "sha256": "6f25421234b082d51b61e5b7a190a3a4ec333474968d9a1f5a5b7737a365c977"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_013.webp",
+      "bytes": 7808,
+      "sha256": "b5f210206cb4968344b002db8c0438eefe44a6cd21a1fed20939032540abe32c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_014.webp",
+      "bytes": 7752,
+      "sha256": "b056d9466fe32932270b3c68db0c4afedaa8f2ed7f2185fb9de60aeadc4ca037"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_016.webp",
+      "bytes": 10152,
+      "sha256": "86dcae805ba1bf05bda79190d971e9c0769a48546fc286bd85cd5212a30211d8"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_019.webp",
+      "bytes": 10726,
+      "sha256": "67b37113ce79642aab9943794356f3fdc20a073e98229e11ce2d8cf66c5be395"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_020.webp",
+      "bytes": 13620,
+      "sha256": "5eb0230dd0722c8874decce0f23d9dcc18f867486b0868d86f7ed11ead904875"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_022.webp",
+      "bytes": 15812,
+      "sha256": "bba00bd2f1ebb9f9df0c428effbbe07401c359efc76868db440446e97d2f3c9c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_023.webp",
+      "bytes": 9856,
+      "sha256": "9a46ee81d94b6784ae8854a15b82adeb0bd65acb185a13dac8e207283465c0f3"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_024.webp",
+      "bytes": 9664,
+      "sha256": "39e8a78cc6bdd62b8a023502f58ac95bfdc8a7cf8f4297089bb6db993adc6c5a"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_025.webp",
+      "bytes": 12062,
+      "sha256": "512448143379c21d5fa72fdf1e517ade1832df6ae72a892bc1ba2ba95ad81baf"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_026.webp",
+      "bytes": 14762,
+      "sha256": "14813368efc08dd38e1f0148f0694826dfe197d059ada0de0d61c3fca4434f43"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_028.webp",
+      "bytes": 8184,
+      "sha256": "1ed797a7ce86612561822350a023e9086b9e427c65ad9ae029dddcd0e7b62e68"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_029.webp",
+      "bytes": 9238,
+      "sha256": "0b9f2b2074fd6fd7528231a2b5aef4ef4095ade214ca6fbe67872cb021fd7c53"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_031.webp",
+      "bytes": 6848,
+      "sha256": "4044611a9558627545aa1ceef73b9df1458b95f90e09fa4b16a79a49897da0d4"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_034.webp",
+      "bytes": 10286,
+      "sha256": "3878f3a652b59b17797879ab4e26a7662a50e5035f68e2eabbd5b5e88cd77003"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_035.webp",
+      "bytes": 7562,
+      "sha256": "f80efee22398ceba4463fa9a81321d8d6a292585aaae4d0a6f490029f22e4c33"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_036.webp",
+      "bytes": 7774,
+      "sha256": "a463ede0682df183c913790bc66c50004880f41b9db68180b3e3e9ceea74aef0"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_037.webp",
+      "bytes": 10870,
+      "sha256": "24627e47df8624b76fd563da5d4915c956ad48691a615099a736ce13f81cec69"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_039.webp",
+      "bytes": 11042,
+      "sha256": "9aca97100c2ebaecc4b86a310bd3de6e71a856af271efccfd886ef0da5d3bfc5"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_passive_001.webp",
+      "bytes": 10438,
+      "sha256": "2e241dd71126b9876d0f72b8482dd90642bc0448e4a9a3738af4a404321597d5"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_passive_002.webp",
+      "bytes": 9624,
+      "sha256": "da0bcd28e1e71cd25169d6443eaf15bb6d5d6601ee9d913eed726cf956eff566"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_passive_003.webp",
+      "bytes": 6134,
+      "sha256": "7c8606ced30337d7cc1fefa1f581a478ef4e5f8a0bf5b17dc6bc39b90eadfe4e"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_passive_004.webp",
+      "bytes": 6644,
+      "sha256": "d3a57fc46c0f05040446c6883a4bcbfe1015536de44b2503b860d9efb528646c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_passive_006.webp",
+      "bytes": 7046,
+      "sha256": "0feb187574a746202775b5c2a68935ef899552c317db48565aa50a6c750a4bb1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_passive_007.webp",
+      "bytes": 7640,
+      "sha256": "6be48984ed7f5dcb5f584029da3a07624cf03ab71a6f062bff76827301c88afa"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_passive_008.webp",
+      "bytes": 11436,
+      "sha256": "34e21b24fd2f17a94b1e85c2975e2c34c020a2b10d9118b35633c40b82794e5b"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_passive_009.webp",
+      "bytes": 7454,
+      "sha256": "a6e70799900b951e0edf1c9087ac58eeb68df1a31a2f6a9fe86bb53012a755c4"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_passive_010.webp",
+      "bytes": 7030,
+      "sha256": "873d05a13c3314bc5cf62b76cbc0e4afdb03f6a6d79f26bf1455e720568e834f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_as_skill_passive_011.webp",
+      "bytes": 8942,
+      "sha256": "103d8cd514efb4ae317097b5e1a90144eb2078d871ef44a75cb35ff1989ba25f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_001.webp",
+      "bytes": 7756,
+      "sha256": "f2ff971838c64474cce33feb177fc87b300f4eeb4a9e5d9475a0158970689cbf"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_004.webp",
+      "bytes": 7202,
+      "sha256": "35f6674cc8119f7f9b5d61a6af57ee5e5f6c4dbc2377d5c0d9f7491258b1ba60"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_006.webp",
+      "bytes": 7356,
+      "sha256": "bf1f2b6107680f73f1850cb24ba334018141dfb866a91feab0e86d012eb7256b"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_008.webp",
+      "bytes": 8690,
+      "sha256": "2006e1c8696e324d9b3160b331a6a44cce6895138d32c6845e3cfeda6d6c96c1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_009.webp",
+      "bytes": 5520,
+      "sha256": "76f88719eecdd0c2f602ec7428aa2cd1392ab2ad2d1c413be1474bdecf3f6e34"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_010.webp",
+      "bytes": 10558,
+      "sha256": "023d3a050beb5874bd7f809021fc053cbb413f81d1417d376b4030427c4532ec"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_013.webp",
+      "bytes": 4492,
+      "sha256": "d7b976e0e2e03e2b06e4a17875581ed2d2993ab0c958498a67b3b48ebb487c4c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_014.webp",
+      "bytes": 10452,
+      "sha256": "98f4e5af81a4b5909f0d37d8132ce95c89018c88b5bd8c3e1d5f9b2f99bf2b52"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_015.webp",
+      "bytes": 8174,
+      "sha256": "820a2f2f34034971f203e4f30e2d336562b91818c816557f553c7769d4ca58b0"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_016.webp",
+      "bytes": 8878,
+      "sha256": "17a29b7b018dc5f91e78546049f5a758427c6b29c4f708ec81443dfbfdf1ac7a"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_017.webp",
+      "bytes": 8188,
+      "sha256": "50de39f8c7fc5be5425b4b9d1e458c169da87d80ac1de3b9c037a7c2f45478bd"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_019.webp",
+      "bytes": 7370,
+      "sha256": "2f6326560eb65d4cd110168c0326b7f51e002eef3ccf9e3afc2398a545319639"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_021.webp",
+      "bytes": 8784,
+      "sha256": "737cbd2f884dd74962513981abe6cbda3ee112d25eb1c348d4f99780c9c99f84"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_022.webp",
+      "bytes": 7826,
+      "sha256": "d4e0184950939b36c3a4b3089704a18346d462574149df5c7091ddf8e45928c3"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_023.webp",
+      "bytes": 15348,
+      "sha256": "507921f90e666e33d58ff6b0161358e273dc90d4d4b903f24b57bc8abfd5bf57"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_024.webp",
+      "bytes": 12332,
+      "sha256": "1840bfda9c013cd9e6d1625e2bb918659d592f6bd9b041ab5439a5995c8eef07"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_025.webp",
+      "bytes": 7902,
+      "sha256": "3f0e4804f228c3d9ccd14f7a3ace3143d3d37c85297e28263092de483ecda5db"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_029.webp",
+      "bytes": 8516,
+      "sha256": "d110392a0d693b67d4cb43fa91184d3b8ac9409a44d2c4f66df3ab93866076d2"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_030.webp",
+      "bytes": 10178,
+      "sha256": "9d41892c51c6b33c57b97391b74a1bc59d6633702fe87d51877940ff300a5adb"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_033.webp",
+      "bytes": 9822,
+      "sha256": "4afc440dc5dd2209c156f4d68d0a560eb0a1ae2507b3ea71489ad34a630331aa"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_042.webp",
+      "bytes": 6482,
+      "sha256": "965917f45b6c6c2ae05ecf00cd2cedcdd446d86800fdcd4097eddcab57dda299"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_043.webp",
+      "bytes": 8166,
+      "sha256": "c6d15f1b876a88f666cbc370bf6788bd7937fbeed71671070ff1a43d8a75095b"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_044.webp",
+      "bytes": 5106,
+      "sha256": "07df7d32cfcf3d0f46a04433cba02a6961a2c88fa5dbd666968aeeff3664decc"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_passive_001.webp",
+      "bytes": 11016,
+      "sha256": "4cc4f6252f50699b6dda48e4ca0981caca69965b62363bc829929fa7426c7ac2"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_passive_002.webp",
+      "bytes": 7800,
+      "sha256": "5213a10d2ea64bc910b1d239f74922130f5b02832dfc7c174c749eeadcdc9980"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_passive_007.webp",
+      "bytes": 9156,
+      "sha256": "8bfdd28c569db6462354a87d575eda34d37ceddbf19e047b21411aada325d25b"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_passive_008.webp",
+      "bytes": 7776,
+      "sha256": "9f359d543d1fd5aaf515f51f2fb43cefa1722cd147942c133b889635dfda8de4"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_passive_010.webp",
+      "bytes": 8028,
+      "sha256": "c28feda804abef0b24486fc34a33a269c417160f2da18228e975e714e6a56907"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_passive_011.webp",
+      "bytes": 5522,
+      "sha256": "d090aee91d296085461f9aca5d7336f1d5add55a99f30c61d6bd841dfeae5632"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ch_skill_passive_012.webp",
+      "bytes": 9144,
+      "sha256": "c39a6047884f37cdb97128c9cd7a62cbb6640906b4353d58041b08e29341fb08"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_001.webp",
+      "bytes": 9258,
+      "sha256": "ee225c30f7385db5d2f790a4606de36b4da3a31fe42d633d37fda002a671215f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_004.webp",
+      "bytes": 10674,
+      "sha256": "df47d9aebb98d87bf7259ec378b9bf144e80c90a2acc81309bc394bbc1dff710"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_006.webp",
+      "bytes": 10418,
+      "sha256": "b9470603113323474a69f01bc0d8d17630236d8992938e9acab2980b8cdd7775"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_007.webp",
+      "bytes": 12886,
+      "sha256": "a858f9e30022c7f9a5f72cd48fd8568475560f4a429ed9dd0fc8b6e3920358a0"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_008.webp",
+      "bytes": 6200,
+      "sha256": "78459a9ca338b2e969f5f784aca4ffe9d1744cd9ca45df3c01fbefc85f3aae54"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_009.webp",
+      "bytes": 6634,
+      "sha256": "493c06454180047f86b97d35fd35b0dfee6d13a35a1536af0fbbd429e59fcde8"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_010.webp",
+      "bytes": 5768,
+      "sha256": "7acdb093c3206f899814107d3bf05b45315848538f3adaba5256e4175cbb5e73"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_012.webp",
+      "bytes": 8102,
+      "sha256": "d656fb6cd5be353f4c955050af573ca6d0ab6edb8cb2a0595e1059a1fb41aeb0"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_015.webp",
+      "bytes": 9460,
+      "sha256": "4b030d95687bcf52f30433302baf39170e0a3dea5eda5875365bc2dd9a3d4c33"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_019.webp",
+      "bytes": 7582,
+      "sha256": "96474532ee0f4ee13343d0e9b032ce5054dfb9404d30b995cd14e76c09375521"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_026.webp",
+      "bytes": 7190,
+      "sha256": "efe4f9c1298c25f4dddfc155a71bc87c36b4d84c94b3c75e83b5b42b6fb03b6a"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_027.webp",
+      "bytes": 6530,
+      "sha256": "3973432a89d856800ade246159c2abc515956dce805602e3408990b6748811db"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_028.webp",
+      "bytes": 9206,
+      "sha256": "8c3558c5eb506e0e0c5727173ca1dfaf8c112db8fea2920b3b4f3be2dbe3d659"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_029.webp",
+      "bytes": 12194,
+      "sha256": "6c4d9ddd92352b44edf853c6eb3b90d943ce723e3302ab278744d80c249b2632"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_035.webp",
+      "bytes": 12250,
+      "sha256": "9f2c893029712016821a269d65f19dc97d3017666fc00c2630da93f6495295fd"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_037.webp",
+      "bytes": 9784,
+      "sha256": "d96c05328ec0bda5ee9548986b87ebdd03a537c0721ded880590344c2e0b49a1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_039.webp",
+      "bytes": 7432,
+      "sha256": "38f7328da91f79e775fa709037ac9ddccc254b7a669d4f3464e35b10098b755f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_040.webp",
+      "bytes": 8318,
+      "sha256": "8b7414c3daeacabd499aa26852efad8ba81986ae147c11f4f66358cecb878789"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_041.webp",
+      "bytes": 3744,
+      "sha256": "ae4c3180da139dabdf05b378b26e290a7e897a6f9b320e124432575d98a348d0"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_042.webp",
+      "bytes": 6512,
+      "sha256": "e4b29187eaaf6f98216ca47f5b973f36921c6f9fa973a08cdfd79672a5beffc8"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_044.webp",
+      "bytes": 6876,
+      "sha256": "bad321e85eac0ae88be551271ee796e17fd3366f674c1d58d43c2c861ea6c0d8"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_046.webp",
+      "bytes": 9252,
+      "sha256": "d4d43b121d87371a280256bbac45783479a9394b4c08a9bd93663841f0ee221c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_047.webp",
+      "bytes": 9978,
+      "sha256": "75d198d7773943d2b17d37e2b24a9b74a81959b8ebfba1f54caf2cd39f6ca2db"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_passive_001.webp",
+      "bytes": 6876,
+      "sha256": "f1c9f35b56ba7a4b6cad647ffa20bfb4cf70ddf9ffc3bf96f14393b34a73e171"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_passive_002.webp",
+      "bytes": 7444,
+      "sha256": "61d76b9cb19e06ddac7d33d658b0a428f238929ecb0848d45dbbb58aa35e4f5f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_passive_003.webp",
+      "bytes": 4686,
+      "sha256": "f973416f08ae372a37944a697e38837b2b2f5bd12f8d9b06124501ef153b179f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_passive_005.webp",
+      "bytes": 5482,
+      "sha256": "04f66442af56b1ef087a5e68931b7822368892234f039d3abaeef729e4f86fd6"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_passive_006.webp",
+      "bytes": 10910,
+      "sha256": "f34c6e71f8a12640318067d9674f5b2222a8dd79f446e66f51e54e244090b5d0"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_passive_007.webp",
+      "bytes": 4980,
+      "sha256": "90bc01bf19310aef8b127a7d648109d0634b664db1539b39c7b52d5bdf372add"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_passive_008.webp",
+      "bytes": 7292,
+      "sha256": "7899f9e28221c129c46ab8b9b8c384f38d96d808d013574c75b833b18785b9e3"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_passive_011.webp",
+      "bytes": 9546,
+      "sha256": "65af4f26918dbb4d9037c18f8ab71490a515353651190a6d0f2f948ac8501f26"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_cl_skill_passive_012.webp",
+      "bytes": 8774,
+      "sha256": "946797fc63b3c6121f5fe113d689438144ff0fa522f328d03c6a4c56008d4d81"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_co_skill_002.webp",
+      "bytes": 6942,
+      "sha256": "6aca92b115c39488125ab1c004fb59e52c3bb72c21aa58647be9d97d2d45a403"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_co_skill_003.webp",
+      "bytes": 10858,
+      "sha256": "d540729f22017c7e6ff91436a078cda4d3c90da0b0d40adea7808516b680cfa7"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_001.webp",
+      "bytes": 7256,
+      "sha256": "ee44aedcdf3d752039963823e131df09ce49e4c4ea5ab0c515cdbc8a53c17806"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_004.webp",
+      "bytes": 7948,
+      "sha256": "402d8a9e09a3461ffa543bcba95b36d509c6bd5ca7994a91a33f32c04658e91f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_006.webp",
+      "bytes": 5522,
+      "sha256": "b98014a7c2c14720e1968e4b9832ce6a0440d74867a513aedaf8a4bd42b70c42"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_007.webp",
+      "bytes": 6364,
+      "sha256": "37cca2eb42d8d49dfefed47da07c375a0bd9f87b06d91b0316f8380104423f19"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_008.webp",
+      "bytes": 6394,
+      "sha256": "f2a38bd4af99a4dec675eddf346b72cf6987ceb8d674a3e4ac59828850ca4433"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_010.webp",
+      "bytes": 7128,
+      "sha256": "858bd969d66bfb9759d65ca07b2697484801baa4f70a4042c553528af71bb987"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_011.webp",
+      "bytes": 6182,
+      "sha256": "1fe4990ad1a618435403d590e30f0165ecd34c8ac779b1ec77aedc23849fac15"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_012.webp",
+      "bytes": 5760,
+      "sha256": "8f54654d1f4b80f984bea9eb417aa5155295551e9a3d9644c4713ad6fed97b9c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_013.webp",
+      "bytes": 8608,
+      "sha256": "8bfa2dbdce57d318a005858b9c3f4695deaa01c575e0857be2ca3bd4dbac37b1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_014.webp",
+      "bytes": 6392,
+      "sha256": "fe3035602b41835f1e344db52943e766c64d51d3c4a20d7566cecddfecc5f6cd"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_015.webp",
+      "bytes": 10538,
+      "sha256": "7cd9b5685177eab01ba14992159fa410649a7b80e8bb6d988a5c17612d85f7aa"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_017.webp",
+      "bytes": 8684,
+      "sha256": "e5d40be49f7d57472d7bb2f890d2df0ff5a4fdfdfc74b25096fc9d3d34a461dd"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_019.webp",
+      "bytes": 9984,
+      "sha256": "99f71e43ec02836ee01b9d70b501afb1b4146f067fb580d3fba9e01858d1f39c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_022.webp",
+      "bytes": 7196,
+      "sha256": "6d07e79e7fb6b76509dd921db8186b05269c6dc2f865b096cbc7b3f4f22141fd"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_023.webp",
+      "bytes": 13236,
+      "sha256": "32f85c6469567b67403f053cbd88e6bbe3a1a7332d61063cc88adbbe4d8ad70f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_024.webp",
+      "bytes": 7988,
+      "sha256": "4a7cadb1ea3595cdf156c0c727a914c5cb9c23b3d367421af4be4e73cc909de3"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_025.webp",
+      "bytes": 8330,
+      "sha256": "d64b926590a93f310230572d24af0b5af0e9dbc1f3451805c5c917a19df0e6a6"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_026.webp",
+      "bytes": 7026,
+      "sha256": "5438a4ed6b45d7c9b3eb68edef75bc60ba90407f32cedc4901b6c4f6e25d9d6d"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_030.webp",
+      "bytes": 8044,
+      "sha256": "4e8f60c7201d02888552be0747bcf40de4f714e15b909f8cab63a6fadba01137"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_033.webp",
+      "bytes": 9348,
+      "sha256": "f98b178037041c2990419b287e17a668f9dd3399dfac4f5b15a9e2331ecf5f42"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_034.webp",
+      "bytes": 5000,
+      "sha256": "aed0c891902fe1ef2528abc2688789ff08733457c06304c7eeda2013e1c1ddf6"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_036.webp",
+      "bytes": 6962,
+      "sha256": "8d7ae3e744cc2ab9497458edb1769a90f45af7aa1916bc71fd04840ce57fc277"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_037.webp",
+      "bytes": 8326,
+      "sha256": "e4e71d1c19d12f58916e5ee8a14d8d7b100d9a2a742e23df5cf4a81b2705faf1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_passive_002.webp",
+      "bytes": 8508,
+      "sha256": "56420afceb6272ef6690068ec31eababf52c9297c528aa782f409866d70d382a"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_passive_003.webp",
+      "bytes": 7188,
+      "sha256": "577dade251f59532e3c824011d1eb66d4b1141fa1913d53487c85191285e8846"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_passive_004.webp",
+      "bytes": 8464,
+      "sha256": "8975e6262da91c547ee8fc1d85aa67f01247d9d99c32e5d70df2bdf4634aff8e"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_passive_006.webp",
+      "bytes": 7708,
+      "sha256": "758df370fef74cc5fcd809e3bbf5eddd7e694b1d4b04836e40337a1474ffee08"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_passive_007.webp",
+      "bytes": 7994,
+      "sha256": "cbe81519d2b52262750cdd58c890521bb89ea87dd6a23dee81ad44ef9c4d36bd"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_passive_008.webp",
+      "bytes": 8968,
+      "sha256": "ac0a6afb7a9e302ac76c360c68dda0f0ac607f3680e593de0c8982d2a6718136"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_passive_011.webp",
+      "bytes": 7026,
+      "sha256": "5884158504f1b972e1cd810aa28ded86f83e46e113cf6fd28d5151143a514531"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_passive_012.webp",
+      "bytes": 7758,
+      "sha256": "f170627ca58b914978bdf6d83e6c21d0e36948e3cf97d7f3f2d385422895a8fe"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_el_skill_passive_013.webp",
+      "bytes": 5974,
+      "sha256": "1329aad226220a282df2d6eaeec52f332c7f8e72e27c5b93e488a2356feda37f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_001.webp",
+      "bytes": 4264,
+      "sha256": "86b282d6a139810abc54a3bb520b8040668899107003ecbdcb6baff49c81a06c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_002.webp",
+      "bytes": 6574,
+      "sha256": "fc81eecd462801ebd6da0c89b7f409bddb9a566fa4a79743d259908ce16a7fbd"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_005.webp",
+      "bytes": 5148,
+      "sha256": "227a5523f92e557801511e28aeb67ee706957fd117f612bfd574072602a9a920"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_007.webp",
+      "bytes": 8352,
+      "sha256": "d8a1f14bf6ae2ad4851250e48f485025f4e3e3f9fbcc3b9b70bbf37a7555aa89"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_008.webp",
+      "bytes": 5482,
+      "sha256": "e9a4e4a10bbeb0935d5e84daa5c1df6fb1ad2f44633e4bbe287a55fe91e496e4"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_010.webp",
+      "bytes": 8060,
+      "sha256": "e3bc9af714e4a61ec3b0011eb341ea9b61e3b932c276147883f67e323fe77501"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_011.webp",
+      "bytes": 7930,
+      "sha256": "a93a8647a7ad138c5114c85536a7c4930075e9e7875feec5dcbf90d7d927d06f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_013.webp",
+      "bytes": 8062,
+      "sha256": "d0061e42df87953d198747db1c78a653e660a4cbfd3027cd4fc1c6f9505f606e"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_015.webp",
+      "bytes": 8252,
+      "sha256": "2853161c6a732b0c6754adad66feaa70d202f1046723d347dc219912c93cf7b5"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_017.webp",
+      "bytes": 8294,
+      "sha256": "b5e41624875c632253b3e657641c2389bb18d908682b4a72bccaadb3bdeb1db9"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_019.webp",
+      "bytes": 10784,
+      "sha256": "1954604c366fe24a1e4b6d479f447c10d2ac776d7b9fb1eb291ba654985d0a7c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_020.webp",
+      "bytes": 8864,
+      "sha256": "e5779a1fa3ed471ae80b67b4bbad409b0b6993b3a5bfe5c360781e474521db25"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_024.webp",
+      "bytes": 10410,
+      "sha256": "4d2bc0fc93522405080bcc406eb68d9d3fdd75938e0f4cd757bd9eb18560778f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_027.webp",
+      "bytes": 8906,
+      "sha256": "1f7c708599b6d05e9f367768b947aa59405462a2f4284a656722c2aa5c92d171"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_028.webp",
+      "bytes": 8878,
+      "sha256": "e3f5f74d28baf51618991851015ac546c4a79d42db7fcd2b0d940b7e411078aa"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_034.webp",
+      "bytes": 7536,
+      "sha256": "bd664d4b833a1e75c002d3854107a5bed6b195b8f395a39b4c41d6395458c3a7"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_036.webp",
+      "bytes": 10622,
+      "sha256": "839336caf119d605fd69c60c4a486d819e37a27d8357364a522bdf8e82e2cfd7"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_038.webp",
+      "bytes": 9680,
+      "sha256": "f43a7f0b5b9e769b99110bdb20b647e42f0cf44a89781c95a3e70d8ad9b5ec99"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_039.webp",
+      "bytes": 8420,
+      "sha256": "c6ce88bf315ba76f826ef5773f20ccfe26a3cb3baf9763bf1ba69d89541e3a09"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_040.webp",
+      "bytes": 12162,
+      "sha256": "b891497494bc0fd5ffb76784b9306f22cebf9354e2e77b25e8f2e8cb5b52afd1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_041.webp",
+      "bytes": 9140,
+      "sha256": "3b9740ac023d68c18280cae6561c4c57c7808efb6483ccc4121672e558c1df8e"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_043.webp",
+      "bytes": 8236,
+      "sha256": "74aa80d12aa8b94f3bd44dfea144d27cae029ed854b03ffb5e292a98920bf758"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_045.webp",
+      "bytes": 7246,
+      "sha256": "8c6f89fb6b5d626c6ae3b4d11143e7b0ab67cdc3e3c98eb23ff6c4cf5ee31176"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_passive_001.webp",
+      "bytes": 8536,
+      "sha256": "5a211b886318927366cef5fd20c4e81e715543a5b2e369e04d3c5736bb082fb1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_passive_002.webp",
+      "bytes": 8316,
+      "sha256": "f823abc1cc5d535d65d5ec41efe905f783d7cc539273bb8daba91d071a23a7d1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_passive_003.webp",
+      "bytes": 7536,
+      "sha256": "4092a3f8d703c01bbe85fa248840ecbd435806e2873347fd3508a37a67f8ae7e"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_passive_004.webp",
+      "bytes": 6240,
+      "sha256": "b03f8ab3bd2ca3cea5ea58b7ffcc2c0377aa69d746977ad204c497ecc9326a0d"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_passive_005.webp",
+      "bytes": 6190,
+      "sha256": "3964737be18f21f9ff03b16d435eb82c6d55610644d2ab4d043c7dbd31614b0b"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_passive_006.webp",
+      "bytes": 8784,
+      "sha256": "25d3d3b847ac7ddc79ea02e803bc5730ff0948a194a6a61771896e3ed712ab1e"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_passive_007.webp",
+      "bytes": 11946,
+      "sha256": "9adc09678538942e927966ee6390604ac329f30a637ad537ad90b9e7f630b6f4"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_passive_008.webp",
+      "bytes": 7846,
+      "sha256": "723f74ed88b1e80785f327d0ee0cfc29e1d3937eb8b02561d50f631a65407e68"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_passive_009.webp",
+      "bytes": 8648,
+      "sha256": "882aed140f19998cdc751a60256fc9a270bd3958ea2129f9a5a3483c14df35d1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_gl_skill_passive_010.webp",
+      "bytes": 13514,
+      "sha256": "21c067324de7b0f06e6bd8f98d68d0072d40d4a460e4c39cfbf2833eedfddcca"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_001.webp",
+      "bytes": 8828,
+      "sha256": "421ed5e9eb85b0e4a73a0479c5082571afaf855623a141c948ff9684a574f3e3"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_002.webp",
+      "bytes": 8692,
+      "sha256": "9384663d3f7839b9a10f5761145a267fc71b310d5705e57d7458e92f241b1c4d"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_005.webp",
+      "bytes": 6836,
+      "sha256": "301a38d10f83f9bb1fa6df08f09780c639323c4da46f66bb9e52b4f0a0adba41"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_006.webp",
+      "bytes": 6974,
+      "sha256": "866ac6745bae64a897afe17667c2d41c90bf4770ceddc3d64c65892ba9aec995"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_007.webp",
+      "bytes": 13954,
+      "sha256": "7a9ca8117a6f1531acdf5c02715eab6e6d84ed781b8eff0743b2051a42032818"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_008.webp",
+      "bytes": 5698,
+      "sha256": "dbaa6ca26e4cdbe548b149e502d0858139976bb3d531bfb7ecd2591f4840139c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_011.webp",
+      "bytes": 8106,
+      "sha256": "4a4c3205867b3294af4168832d4cfc65a88b49d77b3070bc0d7246264018c40a"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_012.webp",
+      "bytes": 8814,
+      "sha256": "eb4d5fbff546d70914855826ec3a82827429a19bfb138525d911781f900c7029"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_013.webp",
+      "bytes": 8812,
+      "sha256": "5a3e6e4fd6f583ad189a8303bfdbac221d00b07bfd7a9a01e12066e95cad3686"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_015.webp",
+      "bytes": 13688,
+      "sha256": "e087236b51c0e7c43033935084899477ecf062a40b772be817dbf9168f1b8a4f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_016.webp",
+      "bytes": 4530,
+      "sha256": "71f655eeed7513e9a1e487546d25fd84482713797c85e62be449281a7bceb391"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_017.webp",
+      "bytes": 7266,
+      "sha256": "0b3f25e84702df4621e41c1f26823ef123f5d4003e6bea6e16ad1027b44d9b57"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_018.webp",
+      "bytes": 8192,
+      "sha256": "4da0a3232d9dd795e0e7ba332909b3eee770583c48942fc67b5134256a976f64"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_019.webp",
+      "bytes": 12596,
+      "sha256": "c7e068195ebd50ab99ea16ce5460df4182d551f2c05c09c8137eb5c1c146ca68"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_022.webp",
+      "bytes": 9864,
+      "sha256": "618bc9ebf8238b91896a8b4d98d0216a57aea42daec8c41549bfdff9668a0c00"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_023.webp",
+      "bytes": 7362,
+      "sha256": "3959b0c493840a87e545614c56ffb0871ccb9199262904d8608d4fd2c3a9f22f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_026.webp",
+      "bytes": 7886,
+      "sha256": "9adb39a9804b51174ec3b3ea0f6e34e357c5843ad746c44f80d2fd10824b5696"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_030.webp",
+      "bytes": 9124,
+      "sha256": "283e39767370263676e642b1bc540d98452ca768926a2d9318558124c64bd6cc"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_031.webp",
+      "bytes": 8302,
+      "sha256": "35274646c38c14ed6657667443bc035256ae2da355bbf57f8c0d1568c4f6f94b"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_033.webp",
+      "bytes": 8630,
+      "sha256": "eadb319238d309f3a0e6f3b1defddb1703fe126d8d2bec090fbc3fabf43f58ee"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_034.webp",
+      "bytes": 6462,
+      "sha256": "e25bea4a149a8a8ac4098bd2b8787465472474e142c509eb108485324480da29"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_035.webp",
+      "bytes": 9600,
+      "sha256": "0517904b155af4c4c8d268897e783a3aa75df4f56fcd4b322b925a131c0e666c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_038.webp",
+      "bytes": 6252,
+      "sha256": "3a6fc024df23d8c8791bdf103b28b6c1e6fdf275b1947bc16603825fd5bcc184"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_passive_001.webp",
+      "bytes": 6234,
+      "sha256": "21aa423450aab2f82c4981fc39d1c0ed1b4c307f4bf845b1955be1d206fd6d4b"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_passive_003.webp",
+      "bytes": 8860,
+      "sha256": "f2372359f2b56ee0beca3ff397f31a36d4cd746efedaa07e5e09fd7e647c6b7d"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_passive_004.webp",
+      "bytes": 6312,
+      "sha256": "b02721cf3f878e85eeb408f6ceb9ebc36e779f10d37e0d35c100a96705f9f3e2"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_passive_006.webp",
+      "bytes": 7858,
+      "sha256": "458b62ff94507454cf84273b337b4c5dd30a8653f10a43269c9fdffa67130f2b"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_passive_007.webp",
+      "bytes": 7182,
+      "sha256": "128f2ecbadd48e71a488d6acb035b08b4de1a1a28296f00ae5b76c23a1466b5e"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_passive_008.webp",
+      "bytes": 6008,
+      "sha256": "d66cf3fbd63b4c5f2e6baa177545a682d95c0bccb1020888502c3ade0c14885e"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_passive_011.webp",
+      "bytes": 9904,
+      "sha256": "3650ab1e095311e5a06c4b562fbecf49549ad31f3f0d697499bed68b47534fb0"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_passive_012.webp",
+      "bytes": 7534,
+      "sha256": "eeb8ae28352732be818afa1671c61249da1f1ea3cc28c649c481c8fe76cefaa6"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_ra_skill_passive_013.webp",
+      "bytes": 9958,
+      "sha256": "ea8356400e3ef16cbade9af192491431e7c6e2aa473032974a51d451f6d3a391"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_001.webp",
+      "bytes": 9498,
+      "sha256": "7e411377067750f0abce5e7da2062e2b10ce93e8e4f3189a30fc308dddc78515"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_004.webp",
+      "bytes": 8700,
+      "sha256": "17d1f67b63b0fa709495bb38e0e589cba2962ea19803b47c77019117d1a97ab4"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_005.webp",
+      "bytes": 8502,
+      "sha256": "15bdc25f3335477ebfde033cef2defaeb1baa32daa27970b766fdb4963a709a2"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_006.webp",
+      "bytes": 7802,
+      "sha256": "37d3f150ba4237d1fec03e7e4ad4823646504cc40619caca38cfc6c74ea296d1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_009.webp",
+      "bytes": 9340,
+      "sha256": "3a1c59519bb02f8d781aa5896a0921d23f3242942a79cfc01eb9a8aeb36ba177"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_011.webp",
+      "bytes": 7220,
+      "sha256": "2e49c09b70b140a63d48e6cff06a5ef86040aaa6c27a8ed1164287dc0a7f5925"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_012.webp",
+      "bytes": 5854,
+      "sha256": "5d4b0fd430fde9c0379f7d424eaf05e6dd073d18e6f4c4b30ebef161c7a0140f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_013.webp",
+      "bytes": 10210,
+      "sha256": "32b9f06f1eb00458158782005e54c9e0f83d35f429a74ca7cb7af060c7a421d9"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_014.webp",
+      "bytes": 7514,
+      "sha256": "75c8c61195d8a0bc20587780c1eed3c33f94950bf4b09c1e1458572cc42a833b"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_015.webp",
+      "bytes": 7188,
+      "sha256": "5447266d28819b89233afbe2e8ef3bfb5a2d4340427031ad9609add4ee82975a"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_016.webp",
+      "bytes": 10520,
+      "sha256": "27b703ba72d60e2c142c07c77e58f9a278eefcfd0706a0ea865a2a354132d88d"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_019.webp",
+      "bytes": 8364,
+      "sha256": "6417a1cea0950644ff6fe369a2b80adc6c14bcb401f9c24a69699210733b0ccb"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_020.webp",
+      "bytes": 6896,
+      "sha256": "806f859cd39f9363b51359743e4f739ef23fc65a8114e9879e328a33f933725e"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_021.webp",
+      "bytes": 9208,
+      "sha256": "3ef57b11010eaa9eba641bd342695513a013a864b51b93653e2dddbe40e33f88"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_022.webp",
+      "bytes": 7408,
+      "sha256": "066ffcd2c1068dfabd46a806e6ab6c5caef7c9a54efef252efc2bd12ca34684c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_025.webp",
+      "bytes": 8564,
+      "sha256": "ba483a645bb11f04f6c77129957994955d5113cc34ce3e64b9714bb7a520da18"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_027.webp",
+      "bytes": 8382,
+      "sha256": "902380f53365f7f00f4bf5988ef345925587167e17a1b9465c0193598203a0b8"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_028.webp",
+      "bytes": 7324,
+      "sha256": "8060253aa595d9f8bbc49470c03382becdb7e6aa7cdb3fb30452c82eb4e12265"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_032.webp",
+      "bytes": 12908,
+      "sha256": "293e35e8382d3921122116f149b7caac9adfc0a823aa63401cf6a19e5bcf693b"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_036.webp",
+      "bytes": 10918,
+      "sha256": "ab11e0a9006873ae02f72139badb74344ce6da95eb7b0edb978b5e6ba6ead646"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_038.webp",
+      "bytes": 8496,
+      "sha256": "b069fe8f0d98c57b6ed2410a046440be19033dcb033b4d7f8c8f9cf3d3da1ff3"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_039.webp",
+      "bytes": 8646,
+      "sha256": "ffd5a46a662e08344628a5b658d28df6a835f734b262566bf4a1bb242487657e"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_040.webp",
+      "bytes": 9964,
+      "sha256": "75863b9f5ed3adb42a6499a7b2e9f99c5ebf6f0d98cf1e39a7850b0e0af2e024"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_041.webp",
+      "bytes": 6746,
+      "sha256": "b740b15ea2f5814a6e8d01bb112bc714050c2e337b8d2787e003214e57b66445"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_passive_001.webp",
+      "bytes": 8462,
+      "sha256": "1233e7e61efa81a936894f177dd131fa3b04f006e6befbd2f3541d76298033ba"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_passive_002.webp",
+      "bytes": 6960,
+      "sha256": "3974c37fed0fafac7a43828f10e015a7a65f17503a45c658ee2e58cf93efa6a0"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_passive_003.webp",
+      "bytes": 11892,
+      "sha256": "1b26bd0c7bd1bacb12b9b14d0c1472da4cebab3849862b099d7de27af82ac048"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_passive_004.webp",
+      "bytes": 9290,
+      "sha256": "2740780e4bdf84df8d55d01d59917cbc50d18e9f41bc2462b140a73c90b8f65e"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_passive_005.webp",
+      "bytes": 10392,
+      "sha256": "97bcef8d02f4f581cda1f6551201bd7ed45470402f8d7326a2ae52bec305c59f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_passive_006.webp",
+      "bytes": 9622,
+      "sha256": "d3854f19bf9d589bee1583908b741bb2c7e586c6e194b0cb8d6d80da7ebdad6e"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_passive_007.webp",
+      "bytes": 9314,
+      "sha256": "68de85a091f29c54c8280dc821b0b099e786a4c8a5af44ce67c52906ee897b13"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_so_skill_passive_008.webp",
+      "bytes": 9948,
+      "sha256": "28e917dcb0fcfe12185a830c95e55a3cf533d6a1a360eba7c117fc7bbf57fc9f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_001.webp",
+      "bytes": 6006,
+      "sha256": "ba8d47692032f1b85edac7b5436a5cff2fead48c9616418aaa093842de174cf1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_004.webp",
+      "bytes": 9598,
+      "sha256": "23e1588448d52a0a9a1d61d79d2f524453db4e65e40c84883a8022f31ce107dd"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_006.webp",
+      "bytes": 11588,
+      "sha256": "419efa722365cde7c203abe3f0a994699a674e0128f9ac7806e875ce6470f5fd"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_007.webp",
+      "bytes": 12278,
+      "sha256": "409d9db4e0c089cf31e05396c6c80b4cbc836a9b4d0e332dae92fa7343b10101"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_009.webp",
+      "bytes": 9688,
+      "sha256": "358cd0469ed366e4fd196819f23493480931e53b6a3892060ff1344fdce1c3ec"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_010.webp",
+      "bytes": 8268,
+      "sha256": "3b1202d51c7a3a9787bb23587dbf13452af58c9be56fa87dc5e38d6f64a01504"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_011.webp",
+      "bytes": 7106,
+      "sha256": "e6e571300c93f1a80e2df614e0c4d015e24cd5c84ad14b180b24674c5022d7e0"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_012.webp",
+      "bytes": 11694,
+      "sha256": "5c9a379fd95d0d820f5dc3f648ce2128040d5537f6c992698345efb678d1d19c"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_013.webp",
+      "bytes": 12470,
+      "sha256": "7b9f860b0610d4a8a75ba9359f80240d24d7b9a0ac074a30b1e7f0d9871a5369"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_015.webp",
+      "bytes": 6278,
+      "sha256": "601cc56bd394a2e7aa175fe9657c1fe7809bf5ccc2f5d9e9b9325a9bdc853cb1"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_018.webp",
+      "bytes": 11366,
+      "sha256": "dce725b1d4f8d7df198da3c152f69cc363cb73f832bcd62c73b36a12316fa6d6"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_021.webp",
+      "bytes": 13872,
+      "sha256": "e40b5fbe8fe0b43a422eb631d7d4685438e00c581fe81fa5eed7bd58836a1acf"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_022.webp",
+      "bytes": 9480,
+      "sha256": "c9e75ee29f8faaa2ab1a35307e415280adf8c027430410b0a7027cac35d95a41"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_024.webp",
+      "bytes": 11836,
+      "sha256": "7003ee8a628a06e6d635367c74bf4efe9c821b24d5efd8e709f12743fe2664e4"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_025.webp",
+      "bytes": 10832,
+      "sha256": "a14e4c99e2a8820d7d81c12540e07f51cba273cf3bd497c087414e6af2ef9e8a"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_028.webp",
+      "bytes": 6440,
+      "sha256": "d8c8b4d40d03fc533431555a1a495d75795e9c4dfb14b2fc8733f75d6a499ff7"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_029.webp",
+      "bytes": 7314,
+      "sha256": "7f533a69558b9ede83c762dec18bb238b23f08f526dd020b87cbc1c19b5b7ca9"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_030.webp",
+      "bytes": 7836,
+      "sha256": "9ac56ea537009e1131f6a1e8add06a865895cf0d352f60f08c666939943186b9"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_034.webp",
+      "bytes": 8670,
+      "sha256": "09a635f162dc7ad0687c08838ee2d347c8f41b0fb01591439cd60066619864b0"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_035.webp",
+      "bytes": 12180,
+      "sha256": "4e39e689031c839ae9d1d3abfaa9de72456361a33e2d7578f40045e4c12aacbb"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_041.webp",
+      "bytes": 14930,
+      "sha256": "75445b2ae0fd07aa3c185382e44d227b027a5e431fb6c15dd2a1c69f988fa9ce"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_045.webp",
+      "bytes": 6496,
+      "sha256": "5daef186d3b4e1200b5e01e8187a1975da3a657f8c0cf89c2cfbb7299e2dc55f"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_passive_001.webp",
+      "bytes": 9674,
+      "sha256": "1f55011973af95b72ffd6ce20d60f3b6451991a8c0bf5d81a8a340f89acb13bc"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_passive_002.webp",
+      "bytes": 7226,
+      "sha256": "9af02a476fc807fac0599a5c4da69c959d7aab3dd30b9e8980b2abf72bb7fc06"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_passive_003.webp",
+      "bytes": 7158,
+      "sha256": "16741079b199ae7978a5870316d789f35f36d17d132f50a03b6d5aaebff1c4b7"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_passive_004.webp",
+      "bytes": 5972,
+      "sha256": "27211657fe17e8dd6555fec55f94974b48bc174db4a60564732dcba4dee4eac8"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_passive_005.webp",
+      "bytes": 9362,
+      "sha256": "18ee4f0a6261e5a86ade3d2ff427948cc54e8d5a0c9afce7619df54168a5ff4a"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_passive_007.webp",
+      "bytes": 10752,
+      "sha256": "2e6f73e7a712725ac43474abfb37076dd885400f6c5bf04fcbdac9e7221d2e30"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_passive_008.webp",
+      "bytes": 9460,
+      "sha256": "928f0cc4cfc1fec500db009c77f3cc025fb555b584feeaaa844c2a3ecddc22c4"
+    },
+    {
+      "path": "source/public/game/images/ui/resource/texture/skill/icon_te_skill_passive_010.webp",
+      "bytes": 11104,
+      "sha256": "603721c44c4b0fdc5fd5f34ba051b3808eab953dc61cb7676e6bb0ed55d462ec"
+    },
+    {
+      "path": "source/public/globe.svg",
+      "bytes": 1036,
+      "sha256": "d051a8c47936990a9085693d307bb7cea1bc1b6d7ed956bcbaacf674f4ec96b9"
+    },
+    {
+      "path": "source/public/ocr/CORE-LICENSE.txt",
+      "bytes": 11358,
+      "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "source/public/ocr/NOTICE.txt",
+      "bytes": 523,
+      "sha256": "a3275e600a6a59117c046068418a94c9e6e39a849f61541ff01737f4ea96bfad"
+    },
+    {
+      "path": "source/public/ocr/TESSERACT-JS-LICENSE.txt",
+      "bytes": 11357,
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+    },
+    {
+      "path": "source/public/ocr/core/tesseract-core-lstm.wasm.js",
+      "bytes": 3896484,
+      "sha256": "eef5f8b2f8e20e150680b20adaec4a60babafee3adbe8a94583c81fee46e8680"
+    },
+    {
+      "path": "source/public/ocr/core/tesseract-core-relaxedsimd-lstm.wasm.js",
+      "bytes": 3905767,
+      "sha256": "861a536cf9ef8e63cb644d57bab39c388f37f7d6b6f60024b741c5f6b39a59b3"
+    },
+    {
+      "path": "source/public/ocr/core/tesseract-core-relaxedsimd.wasm.js",
+      "bytes": 4697227,
+      "sha256": "843074aa5bad1cc6421b74a86201768ced9f244795e4d81435435a61a40ce535"
+    },
+    {
+      "path": "source/public/ocr/core/tesseract-core-simd-lstm.wasm.js",
+      "bytes": 3899472,
+      "sha256": "c58b46a4c796c0b8afccf77591d5b875b6896b45d402bbce8caa6f5362447b38"
+    },
+    {
+      "path": "source/public/ocr/core/tesseract-core-simd.wasm.js",
+      "bytes": 4690932,
+      "sha256": "6b61ef4e911b5cf57e656bbfe983d6e2b3711a02dd164154ddda064566e8e09d"
+    },
+    {
+      "path": "source/public/ocr/core/tesseract-core.wasm.js",
+      "bytes": 4687944,
+      "sha256": "0bc6ce3e5fbbd0cd89706cf2fd70960e3372f4f01ee24265b26990808aaeb286"
+    },
+    {
+      "path": "source/public/ocr/lang/eng.traineddata.gz",
+      "bytes": 2952873,
+      "sha256": "45b4cb346724ac1774f1c36f42f182b887bcdb28ebe63e6fff90ac41f3fcff91"
+    },
+    {
+      "path": "source/public/ocr/lang/kor.traineddata.gz",
+      "bytes": 1572336,
+      "sha256": "78c21276ab14c9bb734d83be1055d9fe5469a4e7e977c51ad385be5737e61126"
+    },
+    {
+      "path": "source/public/ocr/worker.min.js",
+      "bytes": 111307,
+      "sha256": "576b7df7e3393e137e51849357c9adb53fe7ac1bb69bfa06cf3d61520f182c6d"
+    },
+    {
+      "path": "source/public/window.svg",
+      "bytes": 386,
+      "sha256": "decf1cf7bb22b5c99c4857cfcd5718ce5465c4454166317589c83fc73df74b66"
+    },
+    {
+      "path": "source/scripts/build-verified.sh",
+      "bytes": 661,
+      "sha256": "2ae5329ac860076070c9217a43106a15cb5ecf907a0f7baeb9ef903f76b53c68"
+    },
+    {
+      "path": "source/scripts/connector-preview/connector-preview-session.mjs",
+      "bytes": 6855,
+      "sha256": "57224ad185a25115a14fccc68d3217e55b199260c3dd98a2c807beffec1a0a9b"
+    },
+    {
+      "path": "source/scripts/connector-preview/host-binding.mjs",
+      "bytes": 7793,
+      "sha256": "9e44ab6864133a5c82f834a5904ebb7d6104cb783c24efba3c0fe1a161182cea"
+    },
+    {
+      "path": "source/scripts/connector-preview/protocol.mjs",
+      "bytes": 1781,
+      "sha256": "111e062ebf08d3f180130f5bc3dcb3c1414c1d7be3c032c9d675a61c0c7513a8"
+    },
+    {
+      "path": "source/scripts/execution-profile.mjs",
+      "bytes": 624,
+      "sha256": "2e71116f4d2b70cff8bb70436f8dd5c709ec7ff62893424530f404e0193d3630"
+    },
+    {
+      "path": "source/scripts/install-ci.mjs",
+      "bytes": 1685,
+      "sha256": "4a5a92d60a08d0ba54effd8373da2da06284312c55b767287c68a0bec7200da7"
+    },
+    {
+      "path": "source/scripts/install-ci.sh",
+      "bytes": 6783,
+      "sha256": "10d8764a61be50351dc3496e13588270de7956f0aa5f1189c49cabb2d89fe5c0"
+    },
+    {
+      "path": "source/scripts/install-pnpm.sh",
+      "bytes": 9015,
+      "sha256": "a684c02c2b493dfbf262a66252a5cd36f81ca995a4024761728662ae63aa40c0"
+    },
+    {
+      "path": "source/scripts/npm-install.mjs",
+      "bytes": 7025,
+      "sha256": "9715c6a32d1d4a0289ef6376a0e819c3b6a6416b8a9877733d9fb4339ce626b6"
+    },
+    {
+      "path": "source/scripts/pnpm-install.mjs",
+      "bytes": 10633,
+      "sha256": "a83164e344c1947053def83b546be8115deaa827314bbaead7afe6b6451c5cdf"
+    },
+    {
+      "path": "source/scripts/run-framework.mjs",
+      "bytes": 993,
+      "sha256": "9bf9f41a29314cabe0238b8e9c540ec3f7b5a6adafc7c8fb6c3940722d061dca"
+    },
+    {
+      "path": "source/scripts/sites-env.mjs",
+      "bytes": 906,
+      "sha256": "5de99d6806b01f0ee0b941af3684d75dcf1afbbcff22cb95bfa2e584c5dafa88"
+    },
+    {
+      "path": "source/scripts/sites-env.sh",
+      "bytes": 1530,
+      "sha256": "df86ebfc27d2f00860036658e933ac0ddd7b5f6879aa5d51218f0863c7e1fb60"
+    },
+    {
+      "path": "source/tests/armory.mjs",
+      "bytes": 2548,
+      "sha256": "7517ec4247a9ce8c9004151264d2af45127498bdb69608ec36eecad0f62eefea"
+    },
+    {
+      "path": "source/tests/budget.mjs",
+      "bytes": 2496,
+      "sha256": "c5bd15e1f25f702ba582b083ace264a7563ade9dda8f21d5e30c5ebdef350af3"
+    },
+    {
+      "path": "source/tests/classes.mjs",
+      "bytes": 3646,
+      "sha256": "3787348155905ef7ed9d7e99c67a63577b2013fbb0c876f42f3206d18c294550"
+    },
+    {
+      "path": "source/tests/gear-ocr-image.mjs",
+      "bytes": 1018,
+      "sha256": "a7ba479d748eea745371b1f9be3c510c6a5bfaf0100389fe51683f8df0808979"
+    },
+    {
+      "path": "source/tests/gear-ocr.mjs",
+      "bytes": 1347,
+      "sha256": "2dd020c548c960ca4db8c53e07455d1e8c9d50011938f84cd4e90f0c8e6c5ab6"
+    },
+    {
+      "path": "source/tests/gear.mjs",
+      "bytes": 2797,
+      "sha256": "5075f5f9af166dee68ee02a1b74a8da9f366a21e476f37e38a68c7d47b410153"
+    },
+    {
+      "path": "source/tests/modules.mjs",
+      "bytes": 885,
+      "sha256": "98b3665d437c4990b0a7a98c04043768b121dc2006c6aa0df129dad0818e8e42"
+    },
+    {
+      "path": "source/tests/plan-memory.mjs",
+      "bytes": 2927,
+      "sha256": "2e3dc88e28e355bc8d902e1eae9c9c6a5133bf0089924872e1e8ffa0337b4e18"
+    },
+    {
+      "path": "source/tsconfig.json",
+      "bytes": 800,
+      "sha256": "7199c6e4e400921e8049729840165a39f1476fa97901bed00239e7697bfe8da4"
+    },
+    {
+      "path": "source/vendor/shadcn-tailwind-4.13.0.LICENSE.md",
+      "bytes": 1063,
+      "sha256": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f"
+    },
+    {
+      "path": "source/vendor/shadcn-tailwind-4.13.0.css",
+      "bytes": 16041,
+      "sha256": "bc7d83425702955b4cb67cb14ede9d603f9d912376d57a2d81d661094d2a782a"
+    },
+    {
+      "path": "source/vite.config.ts",
+      "bytes": 3115,
+      "sha256": "6f6d890794fbe23f3e35cceb327f49d5977432a5aaf715e040a6408932da395b"
+    }
+  ]
+}

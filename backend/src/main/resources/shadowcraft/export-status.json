@@ -1,0 +1,69 @@
+{
+  "exportedAt": "2026-10-15T13:48:50.157716+00:00",
+  "results": [
+    {
+      "class": "assassin",
+      "ok": true,
+      "version": "2.0.7.0",
+      "origin": "live",
+      "checkedAt": "2026-10-15T13:01:59.855Z",
+      "reviewRequired": false
+    },
+    {
+      "class": "gladiator",
+      "ok": true,
+      "version": "2.0.7.0",
+      "origin": "bundled",
+      "checkedAt": "2026-10-15T02:47:23.969830+00:00",
+      "reviewRequired": false
+    },
+    {
+      "class": "templar",
+      "ok": true,
+      "version": "2.0.7.0",
+      "origin": "bundled",
+      "checkedAt": "2026-10-15T02:47:23.980144+00:00",
+      "reviewRequired": false
+    },
+    {
+      "class": "ranger",
+      "ok": true,
+      "version": "2.0.7.0",
+      "origin": "bundled",
+      "checkedAt": "2026-10-15T02:47:23.989563+00:00",
+      "reviewRequired": false
+    },
+    {
+      "class": "elementalist",
+      "ok": true,
+      "version": "2.0.7.0",
+      "origin": "bundled",
+      "checkedAt": "2026-10-15T02:47:24.008709+00:00",
+      "reviewRequired": false
+    },
+    {
+      "class": "sorcerer",
+      "ok": true,
+      "version": "2.0.7.0",
+      "origin": "bundled",
+      "checkedAt": "2026-10-15T02:47:24.017273+00:00",
+      "reviewRequired": false
+    },
+    {
+      "class": "cleric",
+      "ok": true,
+      "version": "2.0.7.0",
+      "origin": "bundled",
+      "checkedAt": "2026-10-15T02:47:24.026958+00:00",
+      "reviewRequired": false
+    },
+    {
+      "class": "chanter",
+      "ok": true,
+      "version": "2.0.7.0",
+      "origin": "bundled",
+      "checkedAt": "2026-10-15T02:47:24.034867+00:00",
+      "reviewRequired": false
+    }
+  ]
+}

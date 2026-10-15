@@ -76,3 +76,7 @@ the current production layout and deployment procedure.
 ## License
 
 MIT
+
+## aion2(Steam) build craft
+
+The Lab links to `/lab/shadowcraft/`, an AION2 Global PvE planner with eight classes, equipment bonuses, browser OCR and anonymous device storage. See [integration and acceptance results](shadowcraft/INTEGRATION.md) for local checks, JSON migration, protected catalog updates and deployment requirements.

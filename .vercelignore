@@ -1,0 +1,11 @@
+# Vercel builds only the existing frontend project.
+/backend/
+/shadowcraft/
+/journal/
+/games/
+/ops/
+/*.md
+/.git/
+/.github/
+/frontend/node_modules/
+/frontend/dist/

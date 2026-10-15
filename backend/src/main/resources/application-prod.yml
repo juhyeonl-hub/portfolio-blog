@@ -13,6 +13,9 @@ server:
 
 # Admin settings - MUST be set via environment variables in production
 app:
+  shadowcraft:
+    news-refresh-enabled: ${A2BC_NEWS_REFRESH_ENABLED:true}
+    news-refresh-ms: 900000
   admin:
     username: ${ADMIN_USERNAME}
     password: ${ADMIN_PASSWORD}

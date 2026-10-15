@@ -1,0 +1,9 @@
+OCR assets served locally by Shadowcraft:
+Tesseract.js 7.0.0 and Tesseract.js-core 7.0.0 (Apache-2.0).
+Language data: @tesseract.js-data/kor and @tesseract.js-data/eng 1.0.0,
+4.0.0_best_int datasets, derived from the Tesseract tessdata project (Apache-2.0).
+Sources: https://github.com/naptha/tesseract.js
+https://github.com/naptha/tesseract.js-core
+https://github.com/naptha/tessdata
+https://github.com/tesseract-ocr/tessdata_best
+Original screenshots are processed in the user's browser and never sent to an OCR service.

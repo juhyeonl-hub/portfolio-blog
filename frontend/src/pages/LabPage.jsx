@@ -4,6 +4,7 @@ import SectionLabel from '../components/SectionLabel';
 import usePageView from '../hooks/usePageView';
 
 const experiments = [
+  { slug: 'shadowcraft/', title: 'aion2(Steam) build craft', description: '아이온2 글로벌 8직업 PvE 포인트·장비·특화 플래너. 브라우저 OCR과 기기 저장 지원.', tags: ['AION2', 'Planner', 'OCR'], date: '2026.10' },
   {
     slug: 'block-x-flight',
     title: 'Block X Flight',
@@ -30,6 +31,7 @@ export default function LabPage() {
             <Link
               key={experiment.slug}
               to={`/lab/${experiment.slug}`}
+              reloadDocument={experiment.slug === 'shadowcraft/'}
               className="flex items-center justify-between px-5 py-4 no-underline transition-colors"
               style={{ borderTop: i > 0 ? '1px solid var(--border)' : 'none', background: 'var(--bg-card)' }}
               onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-hover)'}

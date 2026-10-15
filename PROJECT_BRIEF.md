@@ -199,3 +199,16 @@ portfolio-blog/
 - [x] Verify frontend build and existing URL/custom-scheme compatibility locally
 - [x] Deploy after Vercel authentication; verify production assets and links.
   - 2026-09-24: production `dpl_3z41kM7Qa8fmatkydS22rbZ5tPnG`, `https://juhyeonl.dev/territory-run/join`. EN/KO/FI/SV, mobile widths, invalid/missing codes and clipboard failure verified in Chromium.
+
+### Shadowcraft integration — 2026-10-15 (user requested)
+- Scope: separate Vite HTML at `/lab/shadowcraft/`, Spring public lookup/catalog and authenticated admin catalog updates. Anonymous local plans; preserve original keys and JSON transfer.
+- Expected: eight classes, budget/gear/OCR, persistent plans, preserved runtime snapshots.
+- Failure cases: blocked storage, invalid imports, external lookup errors, unauthorized updates, invalid upstream schema.
+- [x] Implement and locally verify planner integration against handoff acceptance criteria; see `shadowcraft/INTEGRATION.md` for evidence and remaining production/user-data checks.
+- [x] Deploy backend V12 and frontend to `https://juhyeonl.dev/lab/shadowcraft/`; verify database backup, unchanged existing content and production HTTPS browser acceptance checks (2026-10-15).
+
+### a2bc completion — 2026-10-15 (user confirmed scope)
+- No personal plans require migration.
+- Official news automatically refreshes; catalogs are imported manually from reviewed files. No automatic Gaming.Tools collection.
+- [x] Verify failure preservation, review baseline, production refresh and full regression suite.
+- [x] Prepare and review requested product changes for Git; exclude personal context and credentials. Commit/push is verified against remote HEAD in the completion report.

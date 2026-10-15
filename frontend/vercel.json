@@ -1,7 +1,35 @@
 {
   "rewrites": [
-    { "source": "/ws/:path*", "destination": "https://api.juhyeonl.dev/ws/:path*" },
-    { "source": "/api/:path*", "destination": "https://api.juhyeonl.dev/api/:path*" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    {
+      "source": "/lab/shadowcraft",
+      "destination": "/lab/shadowcraft/index.html"
+    },
+    {
+      "source": "/lab/shadowcraft/",
+      "destination": "/lab/shadowcraft/index.html"
+    },
+    {
+      "source": "/ws/:path*",
+      "destination": "https://api.juhyeonl.dev/ws/:path*"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "https://api.juhyeonl.dev/api/:path*"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/shadowcraft/ocr/lang/:file*",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/gzip"
+        }
+      ]
+    }
   ]
 }

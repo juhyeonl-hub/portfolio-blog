@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {moduleUrl} from './modules.mjs';
+const {parseGearText}=await import(moduleUrl(readFileSync('lib/gear-ocr.ts','utf8')));
+const c=JSON.parse(readFileSync('lib/data/catalogs/assassin.json'));
+const result=parseGearText('+7 환상의 단도\n유일 단검\n아이템 레벨\n36(+18)\n치명타 200\n다단 히트 적중 6.3%\n문양 폭발 LV+1\n방어력 +100\n치명타 +10',c);
+assert.equal(result.name,'+7 환상의 단도');assert.deepEqual(result.bonuses.map(x=>[x.skillId,x.value]),[['13130000',1]]);
+assert.equal(parseGearText('심장찌르기\nLV+2',c).bonuses[0].value,2);
+assert.equal(parseGearText('문양 폭발 20%',c).bonuses[0].value,null);
+assert.equal(parseGearText('문양 폭발 +20%',c).bonuses[0].value,null);
+assert.equal(parseGearText('문양 폭발 +100',c).bonuses[0].value,null);
+assert.equal(parseGearText('문양 폭발 LV+I',c).bonuses[0].uncertain,true);
+assert.equal(parseGearText('문양 폭발',c).bonuses[0].value,null);
+assert.equal(parseGearText('문양폭발 LV+1\n문양 폭발 LV+1',c).bonuses.length,1);
+assert.equal(parseGearText('치명타 +100\n공격력 +20\n방어력 +100',c).bonuses.length,0);
+console.log('OCR parser: supplied item, separated level, percent/stat rejection, uncertain digits, duplicate rows PASS');

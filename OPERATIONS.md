@@ -1,6 +1,6 @@
 # juhyeonl.dev Operations
 
-Last verified: 2026-09-02
+Last verified: 2026-10-15
 
 This is the current runbook for the production backend. Older EC2 instructions
 in `HANDOFF.md` are historical and must not be used for deployment.
@@ -60,8 +60,20 @@ sudo journalctl -u portfolio-blog -n 100 --no-pager
 /usr/bin/curl --fail https://juhyeonl.dev/api/health
 ```
 
-The service is enabled at boot. If WSL itself is not started after Windows
-reboots, Windows/WSL startup remains a separate dependency.
+The app, PostgreSQL and cloudflared are enabled at WSL boot. The app uses
+`Restart=always`; cloudflared uses `Restart=on-failure`. On 2026-10-15,
+Windows Task Scheduler showed `Start WSL at logon` ready with a logon trigger
+and `WSL-KeepAlive` running with a boot trigger. AC automatic sleep timeout
+was zero (disabled); DC timeout was 600 seconds. A full Windows reboot recovery
+test has not been performed in this session.
+
+The frontend is served by Vercel. The backend and database run on the user's
+Windows PC in WSL2, so API availability depends on that PC, Windows/WSL,
+power and the home internet connection. Power-off, manual sleep or WSL shutdown
+interrupts the API. This is configured for continuous operation while the host
+is running, not an independently hosted or guaranteed 24/7 backend. The planner's
+bundled calculations, browser storage and OCR can still run from Vercel when the
+backend is unavailable; public character lookup requires the backend.
 
 ## GitHub webhook secret
 

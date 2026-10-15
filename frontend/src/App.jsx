@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
@@ -20,6 +21,11 @@ import AdminSettingsPage from './pages/admin/AdminSettingsPage';
 import PageLayout from './components/PageLayout';
 import NotFoundPage from './pages/NotFoundPage';
 
+function ShadowcraftRedirect() {
+  useEffect(() => { window.location.replace('/lab/shadowcraft/'); }, []);
+  return <a href="/lab/shadowcraft/">Open Shadowcraft</a>;
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -33,6 +39,7 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/lab/shadowcraft/*" element={<ShadowcraftRedirect />} />
           <Route path="/lab" element={<LabPage />} />
           <Route path="/lab/block-x-flight" element={<BlockXFlightPage />} />
           <Route path="/experiments" element={<Navigate to="/lab" replace />} />
