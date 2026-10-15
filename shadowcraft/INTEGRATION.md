@@ -209,3 +209,26 @@ python3 shadowcraft/operations/build-terrain-assets.py PNG_DIRECTORY WORLD_MAP_J
 ```
 
 Output must be a new directory. Missing tiles, unexpected dimensions/settings and seam differences exceeding the reviewed tolerance reject packaging. WebP conversion uses 1024px tiles at quality 85; this changes display encoding/resolution, not the map geometry. The recipe is pinned to this snapshot and must be reviewed before another build. Browser acceptance: `SHADOWCRAFT_TEST_URL=http://127.0.0.1:5175/lab/shadowcraft/ python3 shadowcraft/tests/terrain.py`.
+
+### Verteron coordinate audit
+
+Run against the locally decoded official Global Steam build 25926599 Data directory:
+
+```sh
+python3 shadowcraft/operations/audit-map-coordinates.py /path/to/AION2/Content/Data > /tmp/map-coordinate-audit.json
+python3 -m unittest discover -s shadowcraft/operations -p 'test_*.py'
+```
+
+The checked-in `operations/map-coordinate-audit.json` records input hashes, all
+16 axis/scale hypotheses, unresolved references, and per-anchor distances for
+the two identity-axis candidates. It contains no game archive credentials.
+The command only reads inputs and prints JSON; a successful exit means the
+audit ran, **not** that projection was certified. Missing individual references
+are explicit audit findings; no joins, duplicate identities, non-finite
+coordinates and invalid polygon/sector inputs fail the command.
+
+Of 72 enabled region references, 69 join successfully. The sector ratio
+102000/1024 (99.609375) puts 65 labels inside their named subzone; scale 100 puts
+64 inside. This does not prove either texture placement. Both projection and
+marker-support flags remain false. Obtain independently verified texture
+control points or reliable decoded tile transforms before adding world markers.

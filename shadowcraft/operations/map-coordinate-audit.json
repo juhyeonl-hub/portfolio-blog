@@ -1,0 +1,879 @@
+{
+  "format": "a2bc-map-coordinate-audit-v1",
+  "mapKey": "World_L_A",
+  "mapId": 1010,
+  "scope": "Label-to-subzone consistency only; polygons are not texture control points.",
+  "worldProjectionVerified": false,
+  "markerSupport": false,
+  "joinedCount": 69,
+  "unresolved": [
+    {
+      "label": "WorldMap_Name_holyowlShelter",
+      "subzoneId": 2095,
+      "missing": [
+        "label",
+        "subzone"
+      ]
+    },
+    {
+      "label": "WorldMap_Name_DranaCultivationArea",
+      "subzoneId": 2119,
+      "missing": [
+        "label"
+      ]
+    },
+    {
+      "label": "WorldMap_Name_DranaProcessingArea",
+      "subzoneId": 2120,
+      "missing": [
+        "label"
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "scale": 99.609375,
+      "swapXY": false,
+      "signX": 1,
+      "signY": 1,
+      "insideCount": 65,
+      "medianDistance": 0.0,
+      "maxDistance": 2439.441625,
+      "anchors": [
+        {
+          "label": "WorldMap_Name_DawnLegionBase",
+          "subzoneId": 2010,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CantasValley",
+          "subzoneId": 2027,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CantasValleyEastern",
+          "subzoneId": 2025,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_EllunRiverMarshWestern",
+          "subzoneId": 2034,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_EllunRiverMarshEastern",
+          "subzoneId": 2035,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_EllunRiverGrassland",
+          "subzoneId": 2039,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_EllunRiver_Middle",
+          "subzoneId": 2081,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_VerteronCitadelRuin",
+          "subzoneId": 2082,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_WindBreezeHeadquarters",
+          "subzoneId": 2090,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_TolbasForest_Northern",
+          "subzoneId": 2083,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_TolbasForest_Southern",
+          "subzoneId": 2103,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_EasternTolbasForest",
+          "subzoneId": 2084,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_OwllauVillage",
+          "subzoneId": 2085,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_OwllauDeportation",
+          "subzoneId": 2086,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_SteepGuardPost",
+          "subzoneId": 2078,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CantasValleyOutpost",
+          "subzoneId": 2074,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_WindBreezeStreetStall",
+          "subzoneId": 2075,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_BeachOutpost",
+          "subzoneId": 2076,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_RefugeeCampsite",
+          "subzoneId": 2077,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_MarshGarrison",
+          "subzoneId": 2031,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_BellnithsCampsite",
+          "subzoneId": 2037,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_EllunRiverMarshSpiritsRetreat",
+          "subzoneId": 2032,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CollapsedObservatory",
+          "subzoneId": 2036,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CecilCampsite",
+          "subzoneId": 2038,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_DundunmongsShelter",
+          "subzoneId": 2087,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CollapsedPillarShelter",
+          "subzoneId": 2088,
+          "distanceToRegion": 40.80623
+        },
+        {
+          "label": "WorldMap_Name_BreezeDistributionStation",
+          "subzoneId": 2089,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_WindBreezeFarm",
+          "subzoneId": 2091,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AstinCompanyCamp",
+          "subzoneId": 2092,
+          "distanceToRegion": 347.306811
+        },
+        {
+          "label": "WorldMap_Name_BreezeDeliveryWorkshop",
+          "subzoneId": 2093,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_OwllauVillageBorderArea",
+          "subzoneId": 2094,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AbandonedWindBreezeOffice",
+          "subzoneId": 2096,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_PamosFarm",
+          "subzoneId": 2097,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_MercenaryCampsite",
+          "subzoneId": 2098,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_RelicExplorationCamp",
+          "subzoneId": 2099,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_TolbasForest_NightlyDewCave",
+          "subzoneId": 2104,
+          "distanceToRegion": 2439.441625
+        },
+        {
+          "label": "WorldMap_Name_EllunRiver_Middle_AnguishHill",
+          "subzoneId": 2105,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_VerteronCitadelRuin_DestroyedAbyssGate",
+          "subzoneId": 2106,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_PilgrimsRidgePath",
+          "subzoneId": 2043,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_ZumionVillage",
+          "subzoneId": 2040,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AncientZumionTempleSite",
+          "subzoneId": 2061,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AltamiaHighlandWestern",
+          "subzoneId": 2048,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AltamiaHighlandEastern",
+          "subzoneId": 2047,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_Altamiacanyon",
+          "subzoneId": 2050,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AltamiaHighland_Southern",
+          "subzoneId": 2049,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_RockTombHill",
+          "subzoneId": 2052,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_DestroyedTempleSite",
+          "subzoneId": 2053,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_ContaminatedSanctuary",
+          "subzoneId": 2054,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_RockHillGuardPost",
+          "subzoneId": 2055,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AlertGuardPost",
+          "subzoneId": 2057,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_HillofPurification",
+          "subzoneId": 2058,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AltamiaHighland_BeastHunteCampsite",
+          "subzoneId": 2070,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_OldShelterOfPilgrim",
+          "subzoneId": 2065,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CanyonCampsite",
+          "subzoneId": 2062,
+          "distanceToRegion": 434.686953
+        },
+        {
+          "label": "WorldMap_Name_CanyonPlateauCamp",
+          "subzoneId": 2154,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_GardenofMiraju",
+          "subzoneId": 2064,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_KrakaFootPath",
+          "subzoneId": 2109,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_KrakaFootPathCamp",
+          "subzoneId": 2110,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_DranaPlantation",
+          "subzoneId": 2111,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_NahidArmyGarrison",
+          "subzoneId": 2118,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_RedForest",
+          "subzoneId": 2116,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_RedForestCamp",
+          "subzoneId": 2117,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_ChaserCamp",
+          "subzoneId": 2112,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_ShelterforLabourers",
+          "subzoneId": 2113,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_DranaTransporthub",
+          "subzoneId": 2115,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_IslandOfEternity",
+          "subzoneId": 2124,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_IslandofCrimson",
+          "subzoneId": 2147,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_IslandofCrimsonCamp",
+          "subzoneId": 2148,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_TolbasForest_Halmomong",
+          "subzoneId": 2108,
+          "distanceToRegion": 0.0
+        }
+      ]
+    },
+    {
+      "scale": 99.609375,
+      "swapXY": false,
+      "signX": -1,
+      "signY": 1,
+      "insideCount": 2,
+      "medianDistance": 117345.672851,
+      "maxDistance": 399167.914664
+    },
+    {
+      "scale": 99.609375,
+      "swapXY": false,
+      "signX": 1,
+      "signY": -1,
+      "insideCount": 4,
+      "medianDistance": 111794.721181,
+      "maxDistance": 431508.06914
+    },
+    {
+      "scale": 99.609375,
+      "swapXY": false,
+      "signX": -1,
+      "signY": -1,
+      "insideCount": 1,
+      "medianDistance": 195292.811563,
+      "maxDistance": 603576.080151
+    },
+    {
+      "scale": 99.609375,
+      "swapXY": true,
+      "signX": 1,
+      "signY": 1,
+      "insideCount": 5,
+      "medianDistance": 103109.102805,
+      "maxDistance": 602705.209511
+    },
+    {
+      "scale": 99.609375,
+      "swapXY": true,
+      "signX": -1,
+      "signY": 1,
+      "insideCount": 1,
+      "medianDistance": 134196.250959,
+      "maxDistance": 408742.822468
+    },
+    {
+      "scale": 99.609375,
+      "swapXY": true,
+      "signX": 1,
+      "signY": -1,
+      "insideCount": 0,
+      "medianDistance": 129904.786309,
+      "maxDistance": 421904.008458
+    },
+    {
+      "scale": 99.609375,
+      "swapXY": true,
+      "signX": -1,
+      "signY": -1,
+      "insideCount": 4,
+      "medianDistance": 104441.210507,
+      "maxDistance": 334960.47315
+    },
+    {
+      "scale": 100.0,
+      "swapXY": false,
+      "signX": 1,
+      "signY": 1,
+      "insideCount": 64,
+      "medianDistance": 0.0,
+      "maxDistance": 2079.583598,
+      "anchors": [
+        {
+          "label": "WorldMap_Name_DawnLegionBase",
+          "subzoneId": 2010,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CantasValley",
+          "subzoneId": 2027,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CantasValleyEastern",
+          "subzoneId": 2025,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_EllunRiverMarshWestern",
+          "subzoneId": 2034,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_EllunRiverMarshEastern",
+          "subzoneId": 2035,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_EllunRiverGrassland",
+          "subzoneId": 2039,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_EllunRiver_Middle",
+          "subzoneId": 2081,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_VerteronCitadelRuin",
+          "subzoneId": 2082,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_WindBreezeHeadquarters",
+          "subzoneId": 2090,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_TolbasForest_Northern",
+          "subzoneId": 2083,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_TolbasForest_Southern",
+          "subzoneId": 2103,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_EasternTolbasForest",
+          "subzoneId": 2084,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_OwllauVillage",
+          "subzoneId": 2085,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_OwllauDeportation",
+          "subzoneId": 2086,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_SteepGuardPost",
+          "subzoneId": 2078,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CantasValleyOutpost",
+          "subzoneId": 2074,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_WindBreezeStreetStall",
+          "subzoneId": 2075,
+          "distanceToRegion": 63.55541
+        },
+        {
+          "label": "WorldMap_Name_BeachOutpost",
+          "subzoneId": 2076,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_RefugeeCampsite",
+          "subzoneId": 2077,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_MarshGarrison",
+          "subzoneId": 2031,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_BellnithsCampsite",
+          "subzoneId": 2037,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_EllunRiverMarshSpiritsRetreat",
+          "subzoneId": 2032,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CollapsedObservatory",
+          "subzoneId": 2036,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CecilCampsite",
+          "subzoneId": 2038,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_DundunmongsShelter",
+          "subzoneId": 2087,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CollapsedPillarShelter",
+          "subzoneId": 2088,
+          "distanceToRegion": 11.960323
+        },
+        {
+          "label": "WorldMap_Name_BreezeDistributionStation",
+          "subzoneId": 2089,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_WindBreezeFarm",
+          "subzoneId": 2091,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AstinCompanyCamp",
+          "subzoneId": 2092,
+          "distanceToRegion": 774.751736
+        },
+        {
+          "label": "WorldMap_Name_BreezeDeliveryWorkshop",
+          "subzoneId": 2093,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_OwllauVillageBorderArea",
+          "subzoneId": 2094,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AbandonedWindBreezeOffice",
+          "subzoneId": 2096,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_PamosFarm",
+          "subzoneId": 2097,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_MercenaryCampsite",
+          "subzoneId": 2098,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_RelicExplorationCamp",
+          "subzoneId": 2099,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_TolbasForest_NightlyDewCave",
+          "subzoneId": 2104,
+          "distanceToRegion": 2079.583598
+        },
+        {
+          "label": "WorldMap_Name_EllunRiver_Middle_AnguishHill",
+          "subzoneId": 2105,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_VerteronCitadelRuin_DestroyedAbyssGate",
+          "subzoneId": 2106,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_PilgrimsRidgePath",
+          "subzoneId": 2043,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_ZumionVillage",
+          "subzoneId": 2040,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AncientZumionTempleSite",
+          "subzoneId": 2061,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AltamiaHighlandWestern",
+          "subzoneId": 2048,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AltamiaHighlandEastern",
+          "subzoneId": 2047,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_Altamiacanyon",
+          "subzoneId": 2050,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AltamiaHighland_Southern",
+          "subzoneId": 2049,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_RockTombHill",
+          "subzoneId": 2052,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_DestroyedTempleSite",
+          "subzoneId": 2053,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_ContaminatedSanctuary",
+          "subzoneId": 2054,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_RockHillGuardPost",
+          "subzoneId": 2055,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AlertGuardPost",
+          "subzoneId": 2057,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_HillofPurification",
+          "subzoneId": 2058,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_AltamiaHighland_BeastHunteCampsite",
+          "subzoneId": 2070,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_OldShelterOfPilgrim",
+          "subzoneId": 2065,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_CanyonCampsite",
+          "subzoneId": 2062,
+          "distanceToRegion": 776.189936
+        },
+        {
+          "label": "WorldMap_Name_CanyonPlateauCamp",
+          "subzoneId": 2154,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_GardenofMiraju",
+          "subzoneId": 2064,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_KrakaFootPath",
+          "subzoneId": 2109,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_KrakaFootPathCamp",
+          "subzoneId": 2110,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_DranaPlantation",
+          "subzoneId": 2111,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_NahidArmyGarrison",
+          "subzoneId": 2118,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_RedForest",
+          "subzoneId": 2116,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_RedForestCamp",
+          "subzoneId": 2117,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_ChaserCamp",
+          "subzoneId": 2112,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_ShelterforLabourers",
+          "subzoneId": 2113,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_DranaTransporthub",
+          "subzoneId": 2115,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_IslandOfEternity",
+          "subzoneId": 2124,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_IslandofCrimson",
+          "subzoneId": 2147,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_IslandofCrimsonCamp",
+          "subzoneId": 2148,
+          "distanceToRegion": 0.0
+        },
+        {
+          "label": "WorldMap_Name_TolbasForest_Halmomong",
+          "subzoneId": 2108,
+          "distanceToRegion": 0.0
+        }
+      ]
+    },
+    {
+      "scale": 100.0,
+      "swapXY": false,
+      "signX": -1,
+      "signY": 1,
+      "insideCount": 2,
+      "medianDistance": 117588.164119,
+      "maxDistance": 400075.737872
+    },
+    {
+      "scale": 100.0,
+      "swapXY": false,
+      "signX": 1,
+      "signY": -1,
+      "insideCount": 4,
+      "medianDistance": 112012.153712,
+      "maxDistance": 432453.133945
+    },
+    {
+      "scale": 100.0,
+      "swapXY": false,
+      "signX": -1,
+      "signY": -1,
+      "insideCount": 1,
+      "medianDistance": 195751.738844,
+      "maxDistance": 604861.958411
+    },
+    {
+      "scale": 100.0,
+      "swapXY": true,
+      "signX": 1,
+      "signY": 1,
+      "insideCount": 5,
+      "medianDistance": 103315.07361,
+      "maxDistance": 603989.531455
+    },
+    {
+      "scale": 100.0,
+      "swapXY": true,
+      "signX": -1,
+      "signY": 1,
+      "insideCount": 1,
+      "medianDistance": 134452.627238,
+      "maxDistance": 409648.85017
+    },
+    {
+      "scale": 100.0,
+      "swapXY": true,
+      "signX": 1,
+      "signY": -1,
+      "insideCount": 0,
+      "medianDistance": 130301.047455,
+      "maxDistance": 422849.58556
+    },
+    {
+      "scale": 100.0,
+      "swapXY": true,
+      "signX": -1,
+      "signY": -1,
+      "insideCount": 4,
+      "medianDistance": 104654.650182,
+      "maxDistance": 335661.344694
+    }
+  ],
+  "remainingEvidence": "Independently verified world-to-texture control points or correctly decoded tile transforms.",
+  "inputSha256": {
+    "WorldMap/World_L_A.json": "9502569673408a5a5b406384fe0cfd418e99eff6f3f377041c4e89668efd1dfc",
+    "Table/WorldMapUIRegion.json": "5870a67bf73bd10c1e85d96d9a23298b8495b156aa9df9134ef01310bf64bff2",
+    "Map/World/World_L/World_L_A/MapData.json": "1ad2f35ad63afe98f36761eab3d12125e19223da3560b73b5022b80c63ecb351"
+  }
+}
