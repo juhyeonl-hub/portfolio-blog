@@ -11,6 +11,7 @@ for(const view of [{x:-1,y:0,zoom:1},{x:1,y:0,zoom:1},{x:0,y:0,zoom:0},{x:NaN,y:
 for(const size of [0,17,1.5])assert.throws(()=>tiles({x:0,y:0,zoom:1},size));
 const root='../public/shadowcraft/maps/steam-25926599/verteron';
 const manifest=JSON.parse(readFileSync(root+'/manifest.json'));
+assert.deepEqual(JSON.parse(readFileSync('lib/data/terrain-catalog.json')),Object.fromEntries(['name','source','gridSize','basePath'].map(k=>[k,manifest[k]])));
 assert.equal(manifest.tiles.length,64);assert.equal(manifest.seams.length,112);
 assert.equal(manifest.worldProjectionVerified,false);assert.equal(manifest.markerSupport,false);
 assert.deepEqual(new Set(manifest.tiles.map(t=>`${t.x}_${t.y}`)),new Set(tiles({x:0,y:0,zoom:1},8).map(t=>`${t.x}_${t.y}`)));

@@ -1,5 +1,5 @@
 import {useRef, useState} from 'react';
-import {name as terrainName, source, gridSize, basePath} from '../../public/shadowcraft/maps/steam-25926599/verteron/manifest.json';
+import {name as terrainName, source, gridSize, basePath} from '../lib/data/terrain-catalog.json';
 import {constrainMapView, zoomMap, type MapView} from '../lib/world-map';
 import {visibleTerrainTiles} from '../lib/terrain-map';
 

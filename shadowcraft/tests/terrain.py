@@ -23,7 +23,10 @@ with sync_playwright() as p:
     page.unroute('**/maps/steam-25926599/verteron/4_4.webp')
     panel.get_by_role('button',name='지형 다시 불러오기',exact=True).click()
     expect(panel.get_by_role('alert')).to_have_count(0)
-    page.wait_for_function("performance.getEntriesByType('resource').filter(r=>r.name.includes('/maps/steam-25926599/verteron/')&&r.name.endsWith('.webp')).length>=128")
+    # Retry can cancel unfinished first-pass requests; count unique successful assets.
+    for _ in range(200):
+        if len({u for u,status in tiles if status==200})==64: break
+        page.wait_for_timeout(100)
     assert len({u for u,status in tiles if status==200})==64
     panel.get_by_role('button',name='지형 지도 확대',exact=True).click()
     expect(canvas).to_have_attribute('viewBox','250 250 500 500')

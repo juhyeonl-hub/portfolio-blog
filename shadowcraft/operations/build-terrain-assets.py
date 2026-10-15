@@ -1,7 +1,7 @@
 """Package reviewed Global Verteron terrain tiles; no world-marker projection.
 
 Requires Pillow in the operator environment (not a runtime app dependency).
-Usage: build-terrain-assets.py PNG_DIR WORLD_MAP_JSON OUTPUT_DIR
+Usage: build-terrain-assets.py PNG_DIR WORLD_MAP_JSON OUTPUT_DIR [DISPLAY_METADATA_JSON]
 This recipe is deliberately pinned to the reviewed Steam build 25926599.
 """
 import hashlib
@@ -22,7 +22,7 @@ def validate_settings(path):
         raise ValueError('Map settings differ from the reviewed snapshot')
 
 
-def package(source, settings, output):
+def package(source, settings, output, display_metadata=None):
     source, output = Path(source), Path(output)
     validate_settings(settings)
     if output.exists():
@@ -65,10 +65,16 @@ def package(source, settings, output):
                                       'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'bytes':target.stat().st_size})
         (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
         folder.rename(output)
+    if display_metadata is not None:
+        metadata = Path(display_metadata)
+        metadata.parent.mkdir(parents=True, exist_ok=True)
+        temporary_metadata = metadata.with_suffix('.tmp')
+        temporary_metadata.write_text(json.dumps({key:manifest[key] for key in ['name','source','gridSize','basePath']},indent=2)+'\n')
+        temporary_metadata.replace(metadata)
     return manifest
 
 if __name__ == '__main__':
-    if len(sys.argv) != 4:
-        raise SystemExit('Expected PNG directory, decoded WorldMap JSON, new output directory')
+    if len(sys.argv) not in (4, 5):
+        raise SystemExit('Expected PNG directory, decoded WorldMap JSON, new output directory, optional display metadata JSON')
     result=package(*sys.argv[1:])
     print(json.dumps({'tiles':len(result['tiles']),'seams':len(result['seams']),'bytes':sum(t['bytes'] for t in result['tiles'])}))

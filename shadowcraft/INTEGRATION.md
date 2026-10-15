@@ -205,7 +205,7 @@ The map tab includes **Verteron terrain** from the installed Global Steam build 
 `frontend/public/shadowcraft/maps/steam-25926599/verteron/manifest.json` records raw/display tile hashes, map settings hash and 112 edge comparisons. Reproduction requires the reviewed raw PNGs, strictly decoded World_L_A metadata and Pillow in the operator environment:
 
 ```sh
-python3 shadowcraft/operations/build-terrain-assets.py PNG_DIRECTORY WORLD_MAP_JSON NEW_OUTPUT_DIRECTORY
+python3 shadowcraft/operations/build-terrain-assets.py PNG_DIRECTORY WORLD_MAP_JSON NEW_OUTPUT_DIRECTORY frontend/shadowcraft/lib/data/terrain-catalog.json
 ```
 
 Output must be a new directory. Missing tiles, unexpected dimensions/settings and seam differences exceeding the reviewed tolerance reject packaging. WebP conversion uses 1024px tiles at quality 85; this changes display encoding/resolution, not the map geometry. The recipe is pinned to this snapshot and must be reviewed before another build. Browser acceptance: `SHADOWCRAFT_TEST_URL=http://127.0.0.1:5175/lab/shadowcraft/ python3 shadowcraft/tests/terrain.py`.

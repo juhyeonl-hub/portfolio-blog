@@ -19,7 +19,9 @@ class TerrainAssetsTests(unittest.TestCase):
         self.settings=self.root/'settings.json';self.settings.write_text(json.dumps({'Properties':{'Data':{'WorldMapDataTableKey':'World_L_A','SectorSize':{'X':2,'Y':2},'SectorTextureSize':8}}}))
         self.out=self.root/'output'
     def test_complete(self):
-        result=module.package(self.source,self.settings,self.out)
+        result=module.package(self.source,self.settings,self.out,self.root/'display.json')
+        display=json.loads((self.root/'display.json').read_text())
+        self.assertEqual(display,{k:result[k] for k in ['name','source','gridSize','basePath']})
         self.assertEqual(len(result['tiles']),4);self.assertEqual(len(result['seams']),4)
         self.assertFalse(result['worldProjectionVerified']);self.assertFalse(result['markerSupport'])
         self.assertTrue((self.out/'manifest.json').exists())
