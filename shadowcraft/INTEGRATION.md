@@ -272,3 +272,31 @@ All 64 terrain textures passed strict extraction and reproduced the exact PNG
 hashes used by the published manifest. See `operations/map-package-audit.json`
 for counts and evidence hashes. Production terrain, saved builds and user-map
 progress are unchanged. World-to-image projection remains unverified.
+
+### Quarantined static-mesh layout probe
+
+`operations/tile-layout-research.json` records a hypothesis, not an approved
+mapping or runtime catalog. Changing only StaticMeshComponent's property count
+from 33 to 34 made 121 static mesh component reads complete. The original
+mapping still lacks a verified name/position for the extra slot; named properties
+within the class were not repaired. Material and world-settings failures remain.
+
+All 64 tile actors resolve to unique matching textures and root components.
+Their centers follow `-3584 + 1024 * sectorIndex` on each axis within 0.001;
+maximum observed error is approximately 0.0001. The tolerance accommodates
+float32 roundoff rather than allowing a fitted or shifted grid. This is a
+consistency check in map-scene coordinates, not proof of a game-world projection.
+
+Reproduce the geometry portion using the archived quarantined JSON:
+
+```sh
+python3 shadowcraft/operations/audit-tile-layout.py /path/to/a2bc-gap-preview.json
+python3 -m unittest discover -s shadowcraft/operations -p 'test_*.py'
+```
+
+The checked-in report additionally records diagnostic counts and SHA-256 hashes
+of archived evidence. Research patches/logs are preserved outside the repo in
+`a2bc-client-research/steam-25926599/october-decoded/map-probe/staticmesh-gap`.
+The two experimental source modifications were removed from the active tool.
+Do not enable this hypothesis for production exports: passing a geometry check
+cannot validate unobserved fields, other packages, or gameplay coordinates.
