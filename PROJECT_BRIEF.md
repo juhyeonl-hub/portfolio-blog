@@ -425,3 +425,5 @@ portfolio-blog/
 - [x] Extract SkillEffect (31,629), SkillAbnormalEffect (12,771), SkillEffectLv (78,564) directly from installed Global files. Research outputs retained outside the application; hash/count/reference audit committed. All 218 se, 209 se_dmg and 302 abe unique references in playable descriptions match rows. This validates identity, not value semantics or combat formulas.
 - Validation: 60 Python operations tests, 19 frontend suites, TypeScript, ESLint, production build, client database browser acceptance and eight-class integration passed. Existing >500 kB chunk warning remains. Initial Abnormal.dat filename was absent; corrected using schema names. Sandbox-local Vite binding failed; approved local execution succeeded on 5174.
 - Remaining: interpret dynamic effect fields/level overrides, map projection, crafting probability/fees and other previously recorded full-site requirements. No whole-project completion claim.
+
+운영 검증: `c28cce4`, Vercel `portfolio-blog-bzoqgxiht-xxjuon-4682s-projects.vercel.app` Ready 및 `juhyeonl.dev` 연결 확인. 운영 데이터베이스 브라우저 검사에서 공식 설명·제작 결과 양방향 이동·재료 계산·오류 재시도·390px 화면·저장 보존 통과. 원본에서 재생성한 인덱스는 커밋 파일과 바이트 단위로 일치한다.

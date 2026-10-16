@@ -135,3 +135,5 @@
 - 설치 파일에서 SkillEffect 31,629행, SkillAbnormalEffect 12,771행, SkillEffectLv 78,564행을 추가 추출했다. 설명의 고유 se 218개, se_dmg 209개, abe 302개가 모두 대응 레코드와 일치한다. 원본/해독 파일 해시와 범위는 `operations/skill-effect-reference-audit.json`에 기록했다. 나머지 토큰 종류와 각 값의 단위·레벨별 연산은 아직 검증하지 않았다.
 - Python 60개·프런트 19묶음·타입 검사·ESLint·빌드·신규 상세 화면 및 기존 8직업 브라우저 회귀 검사 통과. 기존 대형 청크 경고 유지. 이 작업에 백엔드·DB 변경은 없다.
 - 추출 도중 Abnormal.dat가 없는 것을 확인하고 스키마의 SkillAbnormalEffect.dat로 수정했다. 연구용 해독기 코드는 서비스에 복사하지 않았다.
+
+운영 검증: `c28cce4`, Vercel `portfolio-blog-bzoqgxiht-xxjuon-4682s-projects.vercel.app` Ready 및 `juhyeonl.dev` 연결 확인. 운영 데이터베이스 브라우저 검사에서 공식 설명·제작 결과 양방향 이동·재료 계산·오류 재시도·390px 화면·저장 보존 통과. 원본에서 재생성한 인덱스는 커밋 파일과 바이트 단위로 일치한다.
