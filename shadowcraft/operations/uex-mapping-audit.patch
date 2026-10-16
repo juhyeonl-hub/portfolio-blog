@@ -1,0 +1,35 @@
+--- a/src/Uex/Program.cs
++++ b/src/Uex/Program.cs
+@@ -227,2 +227,32 @@
+
++// Read-only schema inspection; does not mount archives or load profiles.
++var mappingAudit = new Command("mapping-audit", "Inspect mapping inheritance and property indexes");
++var mappingFile = new Argument<string>("mapping");
++var mappingTypes = new Argument<string[]>("types");
++mappingAudit.Arguments.Add(mappingFile);
++mappingAudit.Arguments.Add(mappingTypes);
++mappingAudit.SetAction(parse => Run(() =>
++{
++    var mappings = new CUE4Parse.MappingsProvider.Usmap.FileUsmapTypeMappingsProvider(parse.GetValue(mappingFile)!).MappingsForGame!;
++    var output = new List<object>();
++    foreach (var name in parse.GetValue(mappingTypes)!)
++    {
++        if (!mappings.Types.TryGetValue(name, out var schema)) throw new Exception("Missing schema: " + name);
++        var chain = new List<object>();
++        var offset = 0;
++        for (var current = schema; current != null; current = current.Super.Value)
++        {
++            chain.Add(new { name = current.Name, ownCount = current.PropertyCount, offset, namedCount = current.Properties.Count });
++            offset += current.PropertyCount;
++        }
++        var properties = new List<object>();
++        for (var i = 0; i < offset; i++)
++            if (schema.TryGetValue(i, out var field)) properties.Add(new { index = i, name = field.Name, type = field.MappingType.Type });
++        output.Add(new { name, totalCount = offset, chain, properties });
++    }
++    Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(output, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
++    return 0;
++}));
++root.Subcommands.Add(mappingAudit);
++
+ return root.Parse(args).Invoke();

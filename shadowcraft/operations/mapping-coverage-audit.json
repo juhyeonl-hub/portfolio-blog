@@ -1,0 +1,144 @@
+{
+  "researchOnly": true,
+  "indexCoveragePassed": false,
+  "fieldSemanticsVerified": false,
+  "wholePackageVerified": false,
+  "worldProjectionVerified": false,
+  "classes": [
+    {
+      "name": "AionWorldSettings",
+      "totalCount": 153,
+      "chain": [
+        {
+          "name": "AionWorldSettings",
+          "ownCount": 13,
+          "offset": 0,
+          "namedCount": 13
+        },
+        {
+          "name": "WorldSettings",
+          "ownCount": 59,
+          "offset": 13,
+          "namedCount": 59
+        },
+        {
+          "name": "Info",
+          "ownCount": 0,
+          "offset": 72,
+          "namedCount": 0
+        },
+        {
+          "name": "Actor",
+          "ownCount": 81,
+          "offset": 72,
+          "namedCount": 81
+        },
+        {
+          "name": "Object",
+          "ownCount": 0,
+          "offset": 153,
+          "namedCount": 0
+        }
+      ],
+      "observedEvents": 3,
+      "issues": []
+    },
+    {
+      "name": "MaterialInstanceDynamic",
+      "totalCount": 21,
+      "chain": [
+        {
+          "name": "MaterialInstanceDynamic",
+          "ownCount": 0,
+          "offset": 0,
+          "namedCount": 0
+        },
+        {
+          "name": "MaterialInstance",
+          "ownCount": 15,
+          "offset": 0,
+          "namedCount": 15
+        },
+        {
+          "name": "MaterialInterface",
+          "ownCount": 6,
+          "offset": 15,
+          "namedCount": 6
+        },
+        {
+          "name": "Object",
+          "ownCount": 0,
+          "offset": 21,
+          "namedCount": 0
+        }
+      ],
+      "observedEvents": 256,
+      "issues": [
+        {
+          "index": 24,
+          "nonzero": true,
+          "events": 64,
+          "reason": "missing-index"
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshComponent",
+      "totalCount": 202,
+      "chain": [
+        {
+          "name": "StaticMeshComponent",
+          "ownCount": 33,
+          "offset": 0,
+          "namedCount": 33
+        },
+        {
+          "name": "MeshComponent",
+          "ownCount": 4,
+          "offset": 33,
+          "namedCount": 4
+        },
+        {
+          "name": "PrimitiveComponent",
+          "ownCount": 117,
+          "offset": 37,
+          "namedCount": 117
+        },
+        {
+          "name": "SceneComponent",
+          "ownCount": 33,
+          "offset": 154,
+          "namedCount": 33
+        },
+        {
+          "name": "ActorComponent",
+          "ownCount": 15,
+          "offset": 187,
+          "namedCount": 15
+        },
+        {
+          "name": "Object",
+          "ownCount": 0,
+          "offset": 202,
+          "namedCount": 0
+        }
+      ],
+      "observedEvents": 618,
+      "issues": [
+        {
+          "index": 136,
+          "nonzero": true,
+          "events": 121,
+          "reason": "unknown-type"
+        }
+      ]
+    }
+  ],
+  "evidenceSha256": {
+    "mappingDump": "124d467e597c2e53f5a2bd58b844924659756a8f68b0888fd2c799a9a58677a4",
+    "propertyTrace": "89483c6d85a69bbd865ed64744cd85a984590cfebb4488c484fdf1486926a948"
+  },
+  "mappingSha256": "12513ea504185d279c4fa1d585ad684476ff1ecac36b4a2fcb524afb1d48d45c",
+  "buildId": "25926599",
+  "region": "global"
+}

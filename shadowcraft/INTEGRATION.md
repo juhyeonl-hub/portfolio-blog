@@ -362,3 +362,27 @@ NpcData, VehicleList and English localization. Broken references and duplicate
 IDs fail before output replacement. The browser validates the Global source,
 loads only on request, supports retry, and writes no localStorage or backend data.
 Research-only decoder sources and private configuration are not shipped.
+
+### Mapping index coverage preflight
+
+`operations/uex-mapping-audit.patch` adds an independent read-only inspection
+command to the research CLI. Unlike archive extraction, it does not read a
+profile or mount any game files:
+
+```sh
+uex mapping-audit AION2-5.3.2.0.usmap AionWorldSettings MaterialInstanceDynamic StaticMeshComponent > mapping-chains.json
+python3 shadowcraft/operations/audit-mapping-coverage.py mapping-chains.json property-trace.log
+```
+
+Use a trace recorded with that exact mapping. A disagreement between recorded
+and resolved property names/types fails instead of comparing mixed snapshots.
+The current Verteron trace yields exit 1: index 24 is absent from the 21-slot
+MaterialInstanceDynamic chain (64 events); StaticMeshComponent index 136 has
+unsupported Unknown type (121 events). `mapping-coverage-audit.json` records
+chains, event counts, mapping hash and input hashes. Full dumps remain outside
+the application under `map-probe/mapping-coverage`.
+
+Exit 0 means only that all observed indexes have mapped types. It does not
+validate field semantics or package consumption: AionWorldSettings illustrates
+this distinction, with covered indexes but 64 unread bytes in the strict audit.
+Do not enable production projection or markers from this preflight alone.
