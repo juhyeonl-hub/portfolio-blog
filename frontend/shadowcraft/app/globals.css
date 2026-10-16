@@ -80,3 +80,5 @@
 @media(max-width:760px){.event-timer-header{padding:6px 10px}.event-timer-toolbar{gap:6px;font-size:10px}.event-timer-toolbar>strong{display:none}.event-timer-card{min-width:105px}.event-timer-settings{padding:10px 2px}.event-timer-setting{grid-template-columns:1fr auto}.event-timer-setting>label:first-child{grid-column:1/-1}.shell>.sidebar.mobile-show{top:var(--a2bc-timer-height,0px)}}
 /* Keep unknown-schedule labels inside each horizontally scrollable card. */
 .event-timer-card{min-width:138px}.event-timer-card strong{font-size:14px}
+
+.faction-picker{display:flex;gap:8px;margin-top:6px}.faction-picker button{flex:1;min-width:70px}.faction-picker button[aria-pressed=true]{border-color:#bfa2ff;background:#332b48;color:#eee}
