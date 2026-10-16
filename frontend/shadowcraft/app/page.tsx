@@ -9,6 +9,7 @@ import PointBudgetPanel from './point-budget';
 import GearPanel from './gear-panel';
 import MapPanel from './map-panel';
 import QuickBuild from './quick-build';
+import EventTimers from './event-timers';
 import SteamActivity from './steam-activity';
 import BuildLibraryPanel from './build-library';
 import SharedBuildView,{ShareBuildPanel} from './build-share';
@@ -118,7 +119,7 @@ function Workshop({classKey,initialCatalog,onClassChange}:{classKey:string;initi
 export default function Page(){
  const [hash,setHash]=useState(()=>location.hash);
  useEffect(()=>{const changed=()=>setHash(location.hash);window.addEventListener('hashchange',changed);return()=>window.removeEventListener('hashchange',changed);},[]);
- return hash.startsWith('#published=')?<PublishedBuildView id={hash.slice(11)}/>:hash.startsWith('#build=')?<SharedBuildView hash={hash}/>:<PlannerPage/>;
+ return <><EventTimers/>{hash.startsWith('#published=')?<PublishedBuildView id={hash.slice(11)}/>:hash.startsWith('#build=')?<SharedBuildView hash={hash}/>:<PlannerPage/>}</>;
 }
 function PlannerPage(){
  const [selected,setSelected]=useState('assassin'),[catalogs,setCatalogs]=useState<Record<string,Catalog>>({assassin:assassinInitial as Catalog}),[loadError,setLoadError]=useState(''),[retry,setRetry]=useState(0);

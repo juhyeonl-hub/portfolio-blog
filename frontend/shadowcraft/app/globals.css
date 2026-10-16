@@ -60,3 +60,23 @@
 .quick-build input[type=number] {display:block;width:100%;min-width:0;margin-top:8px}
 .quick-edit {border-top:1px solid #393344;padding-top:8px}
 @media(max-width:600px){.quick-build-options{grid-template-columns:1fr}.quick-preview{padding:14px}.quick-actions .button{width:100%}}
+
+.event-timer-header{position:sticky;top:0;z-index:25;background:#12141df5;border-bottom:1px solid #494058;backdrop-filter:blur(12px);padding:8px 18px;color:#eee}
+.event-timer-toolbar{display:flex;align-items:center;gap:12px;font-size:12px;margin-bottom:6px}
+.event-timer-toolbar>span{color:#b5b2c4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.event-timer-toolbar>button{margin-left:auto;flex-shrink:0}
+.event-timer-strip{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.event-timer-card{flex:1;min-width:115px;display:grid;gap:3px;padding:6px 12px;background:#202331;border-radius:7px;border:1px solid #343846}
+.event-timer-card b{font-size:12px}.event-timer-card strong{font-size:16px;font-variant-numeric:tabular-nums;color:#d6c3ff;white-space:nowrap}.event-timer-card small{font-size:10px;color:#b5b2c4}
+.event-timer-settings{max-height:60vh;overflow-y:auto;padding:16px;max-width:900px;margin:auto;overscroll-behavior:contain}
+.event-timer-settings h3{margin:0 0 12px}.event-timer-settings p{font-size:12px;line-height:1.7;margin:12px 0}
+.event-timer-settings label{display:flex;flex-direction:column;gap:6px;font-size:12px}
+.event-timer-settings input:not([type=checkbox]),.event-timer-settings select{width:100%;min-width:0;background:#171923;border:1px solid #505368;border-radius:6px;color:#eee;padding:8px}
+.event-timer-settings fieldset{border:0;padding:0;display:grid;gap:10px;min-width:0}
+.event-timer-setting{display:grid;grid-template-columns:150px 1fr auto;align-items:center;gap:12px;border-top:1px solid #343846;padding-top:10px}
+.event-timer-setting>label:first-child{flex-direction:row;align-items:center}
+.event-timer-error{font-size:12px;color:#ffbd9b;margin:4px 0}
+.shell>.sidebar{top:var(--a2bc-timer-height,0px)}
+@media(max-width:760px){.event-timer-header{padding:6px 10px}.event-timer-toolbar{gap:6px;font-size:10px}.event-timer-toolbar>strong{display:none}.event-timer-card{min-width:105px}.event-timer-settings{padding:10px 2px}.event-timer-setting{grid-template-columns:1fr auto}.event-timer-setting>label:first-child{grid-column:1/-1}.shell>.sidebar.mobile-show{top:var(--a2bc-timer-height,0px)}}
+/* Keep unknown-schedule labels inside each horizontally scrollable card. */
+.event-timer-card{min-width:138px}.event-timer-card strong{font-size:14px}
