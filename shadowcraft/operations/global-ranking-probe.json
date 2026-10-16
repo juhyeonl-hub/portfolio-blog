@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-16T05:04:42.441568+00:00",
+  "scope": "Steam Global EU; one server; three content types; not an all-region availability proof",
+  "requests": [
+    {
+      "url": "https://aion2.plaync.com/api/ranking/list?region=eu&lang=en-US&rankingContentsType=1&rankingType=0&serverId=1301",
+      "status": 200,
+      "data": {
+        "friendRankingList": null,
+        "myRanking": null,
+        "rankingList": [],
+        "season": null
+      }
+    },
+    {
+      "url": "https://aion2.plaync.com/api/ranking/list?region=eu&lang=en-US&rankingContentsType=3&rankingType=0&serverId=1301",
+      "status": 200,
+      "data": {
+        "friendRankingList": null,
+        "myRanking": null,
+        "rankingList": [],
+        "season": null
+      }
+    },
+    {
+      "url": "https://aion2.plaync.com/api/ranking/list?region=eu&lang=en-US&rankingContentsType=21&rankingType=0&serverId=1301",
+      "status": 200,
+      "data": {
+        "friendRankingList": null,
+        "myRanking": null,
+        "rankingList": [],
+        "season": null
+      }
+    }
+  ],
+  "usableRankingSample": false
+}

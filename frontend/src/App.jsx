@@ -17,6 +17,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminProjectsPage from './pages/admin/AdminProjectsPage';
 import AdminResumePage from './pages/admin/AdminResumePage';
 import AdminPostsPage from './pages/admin/AdminPostsPage';
+import AdminBuildsPage from './pages/admin/AdminBuildsPage';
 import AdminSettingsPage from './pages/admin/AdminSettingsPage';
 import PageLayout from './components/PageLayout';
 import NotFoundPage from './pages/NotFoundPage';
@@ -58,6 +59,7 @@ function App() {
           <Route path="/admin" element={<ProtectedRoute><PageLayout><AdminDashboard /></PageLayout></ProtectedRoute>} />
           <Route path="/admin/projects" element={<ProtectedRoute><PageLayout><AdminProjectsPage /></PageLayout></ProtectedRoute>} />
           <Route path="/admin/resume" element={<ProtectedRoute><PageLayout><AdminResumePage /></PageLayout></ProtectedRoute>} />
+          <Route path="/admin/a2bc-builds" element={<ProtectedRoute><PageLayout><AdminBuildsPage /></PageLayout></ProtectedRoute>} />
           <Route path="/admin/posts" element={<ProtectedRoute><PageLayout><AdminPostsPage /></PageLayout></ProtectedRoute>} />
           <Route path="/admin/settings" element={<ProtectedRoute><PageLayout><AdminSettingsPage /></PageLayout></ProtectedRoute>} />
 

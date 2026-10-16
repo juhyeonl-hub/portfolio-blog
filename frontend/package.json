@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test:shadowcraft": "cd shadowcraft && node tests/plan-memory.mjs && node tests/gear.mjs && node tests/gear-ocr.mjs && node tests/budget.mjs && node tests/classes.mjs && node tests/armory.mjs && node tests/crafting.mjs && node tests/crafting-catalog.mjs && node tests/world-map.mjs && node tests/client-index.mjs && node tests/ascension.mjs && node tests/terrain-map.mjs && node tests/craft-attempts.mjs && node tests/board-effects.mjs && node tests/npc-index.mjs && node tests/journal-index.mjs && node tests/build-library.mjs && node tests/build-share.mjs",
+    "test:shadowcraft": "cd shadowcraft && node tests/plan-memory.mjs && node tests/gear.mjs && node tests/gear-ocr.mjs && node tests/budget.mjs && node tests/classes.mjs && node tests/armory.mjs && node tests/crafting.mjs && node tests/crafting-catalog.mjs && node tests/world-map.mjs && node tests/client-index.mjs && node tests/ascension.mjs && node tests/terrain-map.mjs && node tests/craft-attempts.mjs && node tests/board-effects.mjs && node tests/npc-index.mjs && node tests/journal-index.mjs && node tests/build-library.mjs && node tests/build-share.mjs && node tests/public-builds.mjs",
     "typecheck:shadowcraft": "tsc -p shadowcraft/tsconfig.json"
   },
   "dependencies": {

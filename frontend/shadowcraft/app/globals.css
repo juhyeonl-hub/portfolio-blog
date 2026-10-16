@@ -42,3 +42,5 @@
 .terrain-panel { border: 1px solid #454155; padding: 16px; border-radius: 12px; margin: 16px 0 24px; }
 .terrain-panel p { line-height: 1.6; margin: 12px 0; overflow-wrap: anywhere; }
 .terrain-canvas { margin-top: 12px; }
+/* Keep every navigation item reachable as planner tools grow or viewport height shrinks. */
+.sidebar{overflow-y:auto;overscroll-behavior:contain}

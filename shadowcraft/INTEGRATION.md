@@ -404,3 +404,12 @@ Do not enable production projection or markers from this preflight alone.
 수신 화면은 브라우저 저장을 읽거나 쓰지 않고 번들 카탈로그만 사용한다. 버전 차이는 표시하고 미확인 스킬/특화/노드 참조는 거부한다. 전투 유효성이나 예산 적합성을 자동 승인하지 않는다. 공유 API/DB 마이그레이션/추가 의존성은 없다.
 
 검증: `npm --prefix frontend run test:shadowcraft`, `python3 shadowcraft/tests/build_share.py` (`SHADOWCRAFT_TEST_URL`로 운영 URL 지정 가능).
+
+### Public build directory and administration
+
+- 방문자: **공개 빌드** 탭에서 직업·제목 검색, 20개 단위 페이지, `#published=<UUID>` 상세 링크. 기존 공유 화면에서 배분 확인/JSON 다운로드. 읽기만으로 로컬 빌드를 바꾸지 않는다.
+- 관리자: 블로그 관리자 홈 → **a2bc Builds** (`/admin/a2bc-builds`). 플래너에서 만든 공유 링크와 제목/설명을 넣고 저장한다. 기본값은 비공개이며, ‘방문자에게 공개’를 체크하고 저장해야 공개된다. 체크 해제 후 저장하면 다시 숨겨진다. 삭제에는 확인과 최신 revision이 필요하다.
+- 기존 ADMIN JWT/API key로 `/api/admin/shadowcraft/builds` GET/POST, `/{id}` GET/PUT/DELETE(`revision` 쿼리)를 사용한다. 공개 GET `/api/public/shadowcraft/builds?class=&q=&page=0` 및 `/{id}`는 공개된 레코드만 반환한다. 모든 쓰기는 서버에서 공유 스키마/개인정보 제외/카탈로그 ID/크기를 재검증한다.
+- Flyway V13은 새 테이블만 추가한다. 기존 블로그/카탈로그 테이블을 변경하지 않는다. API 인증 설정·환경변수 추가 없음. 배포/롤백은 `OPERATIONS.md`의 systemd 절차를 따른다. 이전 JAR로 롤백해도 새 테이블을 삭제하지 않는다.
+- 운영 목록은 아직 비어 있다. 테스트 데이터를 공개 콘텐츠로 자동 게시하지 않았다. 순위·조회수·사용자 작성자 정보를 만들어 넣지 않는다.
+- 검증: `PublicBuildControllerTest` (기존 포함 백엔드 24개), 프런트 `public-builds.mjs` (전체 19묶음), `shadowcraft/tests/public_builds.py`의 격리된 관리자/공개 응답 검사. 실제 운영 DB에는 V13 적용과 공개 빈 목록·익명 쓰기 거부·기존 데이터 지문 보존을 확인한다.
