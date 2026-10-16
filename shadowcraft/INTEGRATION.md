@@ -170,7 +170,7 @@ SHADOWCRAFT_TEST_URL=https://juhyeonl.dev/lab/shadowcraft/ python3 shadowcraft/t
 Regenerate only from reviewed, strictly decoded Global records:
 
 ```sh
-python3 shadowcraft/operations/build-client-index.py DECODED_TABLE_DIR ENGLISH_JSON STEAM_BUILD_ID frontend/public/shadowcraft/data/client-index.json
+python3 shadowcraft/operations/build-client-index.py DECODED_TABLE_DIR ENGLISH_JSON STEAM_BUILD_ID frontend/public/shadowcraft/data/client-index.json EFFECT_TABLE_DIR
 python3 shadowcraft/operations/compare-client-planner.py DECODED_TABLE_DIR frontend/shadowcraft/lib/data/catalogs
 python3 -m unittest discover -s shadowcraft/operations -p 'test_*.py' -v
 cd frontend
@@ -413,3 +413,13 @@ Do not enable production projection or markers from this preflight alone.
 - Flyway V13은 새 테이블만 추가한다. 기존 블로그/카탈로그 테이블을 변경하지 않는다. API 인증 설정·환경변수 추가 없음. 배포/롤백은 `OPERATIONS.md`의 systemd 절차를 따른다. 이전 JAR로 롤백해도 새 테이블을 삭제하지 않는다.
 - 운영 목록은 아직 비어 있다. 테스트 데이터를 공개 콘텐츠로 자동 게시하지 않았다. 순위·조회수·사용자 작성자 정보를 만들어 넣지 않는다.
 - 검증: `PublicBuildControllerTest` (기존 포함 백엔드 24개), 프런트 `public-builds.mjs` (전체 19묶음), `shadowcraft/tests/public_builds.py`의 격리된 관리자/공개 응답 검사. 실제 운영 DB에는 V13 적용과 공개 빈 목록·익명 쓰기 거부·기존 데이터 지문 보존을 확인한다.
+
+### Base effect descriptions and Altgard (2026-10-16)
+
+The optional final `EFFECT_TABLE_DIR` argument contains reviewed `SkillEffect.json` and `SkillAbnormalEffect.json` from the same Global build. Omit it only when deliberately generating unresolved prose. The shipped index resolves 592 explicit scalar field/formatter references; `resolvedReferences` records each token and formatted value. `valueScope=base-client-values` excludes skill-level overrides, gear, specializations and full damage/heal formulas. The original localization and both effect-table hashes are retained. Never evaluate arbitrary text expressions from game data.
+
+The planner's official-description button opens the selected skill in our read-only database. Existing catalogs and allocations retain their prior behavior.
+
+Package Altgard with the same terrain builder, passing its `World_D_A.json`, source PNG directory and a **new** output directory, plus `frontend/shadowcraft/lib/data/terrain-altgard.json` for display metadata. The builder selects only reviewed World_L_A/World_D_A identities, rejects missing/wrong-sized/discontinuous tiles and preserves prior output. Altgard's actual exported mip is 1024px (its settings declare 2048), with a separately reviewed seam threshold of 11/255; Verteron's threshold remains 10/255. Region changes remount the viewer to isolate pending image events, viewport and retry state. Neither map establishes world-coordinate projection.
+
+Runtime research is authorized locally but has not produced a new mapping. `operations/runtime-mapping-attempt.json` records tool versions and sanitized error outcomes only. Raw dumps, research profiles, runtime data and third-party executables must remain outside this repository.

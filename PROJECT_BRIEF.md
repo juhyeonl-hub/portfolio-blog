@@ -437,3 +437,5 @@ portfolio-blog/
 - Runtime mapping investigation: user explicitly approved local game-memory analysis. Tools and output are isolated outside the repository; no memory data is uploaded. Results are recorded separately; completion of the mapping is not assumed from authorization.
 
 메모리 매핑 조사 결과: 관리자 권한 jmap 직접 읽기는 `0x8007012B`, Microsoft 서명 ProcDump 11.1/12.02 복제 방식 및 12.02 단일 캡처는 `0x800707D1`로 실패했다. 덤프·새 매핑 파일은 생성되지 않았다. 복제 실패 직후에는 대상 프로세스가 조회됐지만 단일 캡처 후 최종 확인에서는 조회되지 않았다. 종료 원인과 도구 실행의 인과관계는 확정하지 않는다. 반복 실행을 멈췄고, 결과만 `operations/runtime-mapping-attempt.json`에 기록했다. 원본 메모리나 계정 정보를 Git/외부로 전송하지 않았다.
+
+운영 검증: `97b256a`, Vercel `portfolio-blog-n70414wvb-xxjuon-4682s-projects.vercel.app` Ready 및 운영 도메인 연결 확인. 운영 데이터베이스·두 지역 지형 브라우저 검사 통과(각 지역 64개 타일 성공 응답, 기본 수치, 상세 이동, 오류 재시도, 저장 보존). 효과 테이블을 포함해 재생성한 인덱스는 커밋 파일과 바이트 단위로 일치했다.
