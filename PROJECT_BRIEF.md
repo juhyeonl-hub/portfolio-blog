@@ -463,3 +463,8 @@ portfolio-blog/
 확장 작업 검증: Python 78개, 프런트 19묶음, TypeScript, ESLint, 운영 빌드, 퀘스트 보상/직업별 보상/권장 정보 브라우저 검사, 6지역 지형 브라우저 검사, 기존 8직업 통합 검사 통과. 기존 대형 청크·플러그인 처리 시간 경고 유지.
 
 운영 검증: `549a0c2` 배포 `portfolio-blog-g6iffjpub-xxjuon-4682s-projects.vercel.app` Ready 및 `juhyeonl.dev` 연결 확인. 운영 퀘스트/직업별 보상·6지역 지도·8직업 통합 브라우저 검사 통과. 운영 journal-index는 로컬 재생성 파일과 SHA-256 `2a2b713de32cfe71daeb26c8bdc1d4f3c2b95d0adb9edba8ef873e0354b59485`로 일치한다. 백엔드 기존 24개 테스트도 재실행해 통과했다. 신규 서버상태 후보 axsddlr/aion2_api는 README의 Caveats에서 Gaming.Tools HTML 수집을 명시하므로 공식 수집 경로로 채택하지 않았다.
+
+#### Runtime preflight diagnosis (2026-10-16)
+- Inspected pinned patternsleuth source: live image probing reads the entire module in one call. Installed PE SizeOfImage is 427,352,064 bytes; a partially inaccessible region is a candidate explanation, not a confirmed target observation.
+- Added metadata-only Windows preflight (fixed Global Steam executable selection; no memory-content read/write/dump, no page protection change). 64-bit self-test passed: page classification, invalid PID and complete five-region/499,712-byte coverage.
+- Latest AION2 process count is zero. No further target-memory attempt has occurred. Scoped Application crash events 1000/1001 around the earlier failed capture returned zero matching records; exit causality remains unknown. Awaiting game availability for actual target preflight.
