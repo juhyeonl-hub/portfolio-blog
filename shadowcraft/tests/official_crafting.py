@@ -28,6 +28,10 @@ with sync_playwright() as p:
     expect(panel.get_by_label('공식 제작법 검색')).to_be_visible()
     panel.get_by_label('공식 제작법 검색').fill(recipe['id'])
     panel.get_by_role('button',name=f"#{recipe['id']}",exact=False).click()
+    probability = panel.get_by_role('region',name='제작 기본 예상 확률',exact=True)
+    expect(probability.get_by_role('status')).to_contain_text('약 67.51%')
+    probability.get_by_label('숙련도 레벨 차이',exact=True).fill('10')
+    expect(probability.get_by_role('status')).to_contain_text('약 79.03%')
     panel.get_by_label('제작 시도 횟수',exact=True).fill('3')
     result = panel.get_by_label('공식 제작 계산 결과',exact=True)
     expect(result).to_contain_text('수수료 포함 총비용: 미확정 · 성공 결과 수량: 미확정')
@@ -43,6 +47,7 @@ with sync_playwright() as p:
         cost += (quantity-1)*7
         expect(result).to_contain_text(f'{label} · 필요 {quantity:,} · 보유 사용 1 · 구매 {quantity-1:,}')
     expect(result).to_contain_text(f'구매 재료비: {cost:,}')
+    expect(probability.get_by_role('status')).to_contain_text('약 79.03%')
     panel.get_by_label('제작 시도 횟수',exact=True).fill('10001')
     expect(panel.get_by_role('alert')).to_be_visible()
     expect(result).to_have_count(0)

@@ -10,6 +10,14 @@ for (const mutate of [d=>d.source.region='kr',d=>d.source.appId=0,d=>d.items.pus
 }
 const actual=parse(JSON.parse(readFileSync('../public/shadowcraft/data/client-index.json','utf8')));
 assert.equal(actual.recipes.filter(r=>r.craftType==='Succession').length,342);
+assert.equal(actual.recipes.filter(r=>r.baseRateCurve).length,622);
+const bowCurve=actual.recipes.find(r=>r.id==='211043001').baseRateCurve;
+assert.equal(bowCurve.rawRates[0]/bowCurve.percentDivisor,67.506212);
+assert.equal(bowCurve.rawRates[44]/bowCurve.percentDivisor,94.008885);
+assert.equal(bowCurve.rawRates[65]/bowCurve.percentDivisor,94.639789);
+for(const patch of [{rawRates:[]},{rawRates:[NaN]},{rawRates:[-1]},{rawRates:[100000001]},{rawRates:[true]},{rawRates:Array(129).fill(1)},{percentDivisor:100},{scope:'live-verified'},{group:null}]){
+ const bad=structuredClone(fixture);bad.recipes[0].baseRateCurve={...bowCurve,...patch};assert.throws(()=>parse(bad));
+}
 assert.equal(actual.recipes.filter(r=>r.successionCandidateItemIds.length).length,190);
 const succession=structuredClone(fixture);
 Object.assign(succession.recipes[0],{craftType:'Succession',successionCandidateItemIds:['1']});

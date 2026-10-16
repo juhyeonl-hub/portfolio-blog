@@ -10,6 +10,28 @@ module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
 class ClientIndexTests(unittest.TestCase):
+    def test_rate_validation(self):
+        valid = [{'Name': 'test', 'Rates': [{'Gap': 0, 'Rate': 67506212}, {'Gap': 1, 'Rate': 68198244}]}]
+        self.assertEqual(module.craft_curves(valid)['test'], [67506212, 68198244])
+        for records in [[], valid + valid, [{'Name': 'test', 'Rates': []}],
+                        [{'Name': 'test', 'Rates': [{'Gap': 1, 'Rate': 1}]}],
+                        [{'Name': 'test', 'Rates': [{'Gap': 0, 'Rate': True}]}],
+                        [{'Name': 'test', 'Rates': [{'Gap': 0, 'Rate': 100000001}]}]]:
+            with self.assertRaises(ValueError):
+                module.craft_curves(records)
+
+    def test_rate_links_and_missing_group(self):
+        self.rows['CraftRecipeRate'] = [{'Name': 'test', 'Rates': [{'Gap': 0, 'Rate': 67506212}]}]
+        self.rows['CraftRecipe'][0]['CraftRateGroup'] = 'test'
+        data = self.build()
+        self.assertEqual(data['recipes'][0]['baseRateCurve']['rawRates'], [67506212])
+        self.assertIn('CraftRecipeRate', data['source']['inputSha256'])
+        self.rows['CraftRecipe'][0]['CraftRateGroup'] = 'None'
+        self.assertIsNone(self.build()['recipes'][0]['baseRateCurve'])
+        self.rows['CraftRecipe'][0]['CraftRateGroup'] = 'missing'
+        with self.assertRaises(ValueError):
+            self.build()
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

@@ -2,6 +2,7 @@ import {useEffect, useMemo, useState} from 'react';
 import {parseClientIndex, type ClientIndex} from '../lib/client-index';
 import {calculateAttempts, materialKey} from '../lib/craft-attempts';
 import {craftingInputCount} from '../lib/crafting-catalog';
+import CraftProbability from './craft-probability';
 
 export default function OfficialCrafting() {
   const [open, setOpen] = useState(false), [retry, setRetry] = useState(0);
@@ -39,7 +40,7 @@ export default function OfficialCrafting() {
   const number = (value: number) => value.toLocaleString('ko-KR');
   return <section aria-label="공식 제작 시도 계산" className="card">
     <h3>공식 글로벌 제작 재료 계산</h3>
-    <p>정한 횟수만큼 제작을 시도할 때 필요한 직접 재료를 계산합니다. 성공률·수수료·연속 제작 결과는 미확인입니다.</p>
+    <p>정한 횟수만큼 제작을 시도할 때 필요한 직접 재료와 기본 예상 성공 확률을 확인합니다. 수수료·연속 제작 결과는 미확인입니다.</p>
     {!open && <button className="button ghost" onClick={() => setOpen(true)}>공식 제작법 열기</button>}
     {loading && <p role="status">공식 제작법을 불러오는 중…</p>}
     {error && <p role="alert">{error} <button className="button ghost" onClick={() => setRetry(v => v + 1)}>공식 제작법 다시 불러오기</button></p>}
@@ -52,6 +53,7 @@ export default function OfficialCrafting() {
         onClick={() => {setSelected(r.id); setAttempts('1'); setStock({}); setPrices({});}}>{name(r.itemId)} · {r.race} · 숙련도 {r.masteryLevel} · #{r.id}</button>)}</div>
       {recipe && <>
         <h4>{name(recipe.itemId)} · 제작법 #{recipe.id}</h4>
+        <CraftProbability key={recipe.id} recipe={recipe}/>
         {recipe.hasCombo && <p>연속 제작 조건이 있는 제작법입니다. 후속 단계와 추가 결과는 계산에 포함되지 않습니다.</p>}
         <label className="crafting-field">제작 시도 횟수<input inputMode="numeric" value={attempts} onChange={e => setAttempts(e.target.value)}/></label>
         <p>같은 아이템도 요구 강화 수치별로 보유량·단가를 구분합니다. 강화 수치의 충족 여부는 게임에서 확인하세요.</p>

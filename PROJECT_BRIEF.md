@@ -498,3 +498,10 @@ portfolio-blog/
 - Added audit script, sanitized observation artifact, and boundary/missing/invalid/duplicate checks.
 - Prior 9cfcfe2 production deployment Ready and production client-database browser acceptance passed (including succession candidates and stored-data preservation).
 - Validation: Python 92 tests and all 19 frontend suites passed; all 57 reported points match both linked bow curves. No application bundle or saved-data changes.
+
+#### Crafting probability preview implementation (2026-10-16)
+- Goal: connect explicit Global recipe rate groups to a usable preview while preserving existing plans and material calculations.
+- Scope: optional baseRateCurve in v1 index, reproducible builder, recipe detail input/table, parser and regression tests. Input is an explicit nonnegative proficiency gap; output is an approximate percentage from the client table. Missing groups, malformed/noninteger/out-of-range input do not produce a rate.
+- Link 622 recipes to explicit curves; 476 recipes without groups display unavailable. Preserve raw integer rates, source table hash and the observationally supported divisor 1,000,000. Display approximate percentages rounded to two decimals. No automatic tier conversion, cap extrapolation, fees, combo odds, modifiers or live success claim.
+- Reset gap to zero on recipe navigation; retain separate attempt-based material quantities. No storage writes, API or database changes.
+- Shared preview is available both in the official crafting calculator and recipe database. Baseline regressions: Python 94, frontend 19 suites, backend 24 and 16 browser suites passed; final shared-component build/type/lint and crafting acceptance are verified before release.

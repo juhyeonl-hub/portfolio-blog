@@ -2,6 +2,7 @@ import {useEffect, useMemo, useState} from 'react';
 
 import JournalDatabase from './journal-database';
 import NpcDatabase from './npc-database';
+import CraftProbability from './craft-probability';
 
 import {parseClientIndex, type ClientIndex} from '../lib/client-index';
 
@@ -58,7 +59,7 @@ export default function ClientDatabase({active, initialSkillId = ''}: {active: b
     {error && <div role="alert">{error} <button className="button ghost" onClick={() => setRetry(v => v + 1)}>다시 불러오기</button></div>}
     {data && <>
       <p>Steam 빌드 {data.source.buildId} · 공식 클라이언트 원본 · 영문 이름 · 구조 및 참조 검사 통과</p>
-      <p className="subtle">모든 필드의 의미와 서버 내 이용 가능 여부를 검증한 것은 아닙니다. 성공 확률·수수료·미확인 수치는 표시하지 않습니다.</p>
+      <p className="subtle">서버 내 이용 가능 여부는 확인되지 않았습니다. 제작 기본 확률은 클라이언트 표의 예상치이며, 미확인 수수료는 표시하지 않습니다.</p>
       <div className="database-tabs">{(['items', 'skills', 'recipes'] as const).map((kind, i) => <button className="button ghost" key={kind} aria-pressed={section === kind} onClick={() => {setSection(kind); setFilter(''); setPage(0); setSelected(''); setQuery('');}}>{['아이템', '플레이어 스킬', '제작법'][i]} ({data[kind].length})</button>)}</div>
       <div className="database-filters"><label>데이터 검색<input type="search" value={query} onChange={e => {setQuery(e.target.value); setPage(0);}} placeholder="영문 이름 또는 ID"/></label>
         <label>분류<select value={filter} onChange={e => {setFilter(e.target.value); setPage(0);}}><option value="">전체</option>{categories.map(c => <option key={c}>{c}</option>)}</select></label></div>
@@ -91,7 +92,8 @@ export default function ClientDatabase({active, initialSkillId = ''}: {active: b
             </div>}
             {combo && <div aria-label="연결된 제작 결과"><h4>연결된 제작 결과</h4><button className="button ghost" onClick={() => navigate('recipes', combo.id)}>{items.get(combo.itemId)?.name} · {combo.id}</button><p>원본 제작법에 연결된 결과입니다. 발생 확률이나 추가 재료 소모를 뜻하지 않습니다.</p></div>}
             {!!comboParents.length && <div aria-label="이 결과를 연결하는 제작법"><h4>이 결과를 연결하는 제작법</h4>{comboParents.map(r => <button key={r.id} className="button ghost" onClick={() => navigate('recipes', r.id)}>{items.get(r.itemId)?.name} · {r.id}</button>)}</div>}
-            <p>{recipe.hasCombo ? '연속 제작 결과가 존재합니다. ' : ''}성공 확률과 수수료는 미확정입니다. 아래는 입력한 시도 횟수에 필요한 재료이며 성공 수량 예측이 아닙니다.</p>
+            <CraftProbability key={recipe.id} recipe={recipe}/>
+            <p>{recipe.hasCombo ? '연속 제작 결과가 존재합니다. ' : ''}아래는 입력한 시도 횟수에 필요한 재료이며 성공 수량 예측이 아닙니다. 수수료는 미확인입니다.</p>
             <label>제작 시도 횟수<input inputMode="numeric" value={attempts} onChange={e => setAttempts(e.target.value)}/></label>
             {!validCount ? <p role="alert">시도 횟수는 1~10000의 정수로 입력하세요.</p> : <ul>{recipe.ingredients.map((ingredient, i) => <li key={`${ingredient.itemId}-${i}`}><button className="button ghost" onClick={() => navigate('items', ingredient.itemId)}>{items.get(ingredient.itemId)?.name ?? ingredient.itemId}</button> × {(ingredient.quantity * count).toLocaleString()}{ingredient.enchant > 0 ? ` (강화 +${ingredient.enchant})` : ''}</li>)}</ul>}
           </>}

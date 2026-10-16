@@ -1,7 +1,8 @@
 """Build a narrow, read-only index from locally decoded Global client records.
 
 No decoder implementation or third-party database is bundled. Unknown fields,
-combat scaling, success probabilities and inferred fees are deliberately omitted.
+combat scaling and inferred fees are deliberately omitted. Optional raw crafting
+curves support a separately labelled client-table estimate, not a live success rate.
 Usage: python3 build-client-index.py DECODED_TABLE_DIR ENGLISH_JSON STEAM_BUILD_ID OUTPUT_JSON [EFFECT_TABLE_DIR]
 """
 import hashlib
@@ -101,6 +102,24 @@ def description(value, effects=None):
     return result
 
 
+def craft_curves(records):
+    """Keep integer source values; the UI labels the observed scale as an estimate."""
+    curves = {}
+    for row in records:
+        name, rates = row['Name'], row['Rates']
+        if not isinstance(name, str) or not name or name in curves:
+            raise ValueError('Invalid or duplicate rate group')
+        if not isinstance(rates, list) or not 1 <= len(rates) <= 128:
+            raise ValueError('Invalid rate curve')
+        for gap, rate in enumerate(rates):
+            if type(rate['Gap']) is not int or rate['Gap'] != gap or type(rate['Rate']) is not int or not 0 <= rate['Rate'] <= 100_000_000:
+                raise ValueError('Invalid rate or discontinuous gap')
+        curves[name] = [r['Rate'] for r in rates]
+    if not curves:
+        raise ValueError('Missing rate curves')
+    return curves
+
+
 def build(tables, localization, build_id, effect_tables=None):
     if not isinstance(build_id, str) or not re.fullmatch(r'[1-9][0-9]*', build_id):
         raise ValueError('Explicit Steam build ID required')
@@ -108,6 +127,11 @@ def build(tables, localization, build_id, effect_tables=None):
     entries = read(localization)['Entries']
     rows = {}
     hashes = {}
+    curves = None
+    rate_path = tables / 'CraftRecipeRate.json'
+    if rate_path.exists():
+        curves = craft_curves(read(rate_path)['Properties']['Data'])
+        hashes['CraftRecipeRate'] = hashlib.sha256(rate_path.read_bytes()).hexdigest()
     effects = None
     if effect_tables is not None:
         effects = {}
@@ -173,6 +197,13 @@ def build(tables, localization, build_id, effect_tables=None):
                         'hasCombo': row['ComboRecipe'] not in ('', 'None'),
                         'comboRecipeId': recipe_names[row['ComboRecipe']] if row['ComboRecipe'] not in ('', 'None') else None,
                         'successRate': None, 'feePerAttempt': None})
+        if curves is not None:
+            group = row['CraftRateGroup']
+            if group != 'None' and group not in curves:
+                raise ValueError('Missing explicit rate group')
+            recipes[-1]['baseRateCurve'] = None if group == 'None' else {
+                'group': group, 'rawRates': curves[group],
+                'scope': 'client-table-estimate', 'percentDivisor': 1_000_000}
         # Optional for older reviewed snapshots; only explicit reflected fields qualify.
         if 'Type' in row:
             if row['Type'] not in ('ECraftType::Common', 'ECraftType::Succession'):

@@ -3,6 +3,7 @@ type Learning = {level: number; autoLearn: boolean; requiredCharacterLevel: numb
 type Description = {text: string; unresolvedValues: number; valueScope?: 'base-client-values'; resolvedReferences?: {reference: string; value: string}[]};
 type Skill = {id: string; name: string; classKey: string; learning?: Learning[]; description?: Description | null; traits?: Description | null};
 type Recipe = {id: string; itemId: string; outputQuantity: number; category: string; race: string; masteryLevel: number;
+  baseRateCurve?: {group: string; rawRates: number[]; scope: 'client-table-estimate'; percentDivisor: 1000000} | null;
   craftType?: 'Common' | 'Succession'; successionCandidateItemIds?: string[];
   ingredients: {itemId: string; quantity: number; enchant: number}[]; hasCombo: boolean; comboRecipeId?: string | null; successRate: null; feePerAttempt: null};
 export type ClientIndex = {schema: string; source: {kind: string; region: string; buildId: string; language: string}; items: Item[]; skills: Skill[]; recipes: Recipe[]};
@@ -60,6 +61,12 @@ export function parseClientIndex(value: unknown): ClientIndex {
   }
   const recipeIds = new Set(data.recipes.map((r: Recipe) => r.id));
   for (const r of data.recipes) {
+    if (r.baseRateCurve !== undefined && r.baseRateCurve !== null) {
+      const curve = object(r.baseRateCurve);
+      if (!text(curve.group) || curve.scope !== 'client-table-estimate' || curve.percentDivisor !== 1000000 ||
+          !Array.isArray(curve.rawRates) || !curve.rawRates.length || curve.rawRates.length > 128 ||
+          curve.rawRates.some((v: unknown) => !number(v, 0, 100000000))) fail();
+    }
     if (r.craftType !== undefined || r.successionCandidateItemIds !== undefined) {
       if (!['Common', 'Succession'].includes(r.craftType) || !Array.isArray(r.successionCandidateItemIds) ||
           r.successionCandidateItemIds.length > 100 || new Set(r.successionCandidateItemIds).size !== r.successionCandidateItemIds.length ||
