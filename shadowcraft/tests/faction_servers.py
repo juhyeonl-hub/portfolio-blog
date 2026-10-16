@@ -24,7 +24,7 @@ with sync_playwright() as p:
  expect(select).to_have_value('')
  assert select.locator('option[value="1301"]').count()==0
  select.select_option('2301')
- page.get_by_label('서버 시계',exact=True).select_option('0')
+ page.get_by_label('시간 기준 국가·지역',exact=True).select_option('Atlantic/Reykjavik')
  page.get_by_role('button',name='시간표 저장',exact=True).click()
  page.reload()
  page.get_by_role('button',name='서버·타이머 설정',exact=True).click()

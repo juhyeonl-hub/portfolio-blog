@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl} from './modules.mjs';
-const {parseTimes,parseSettings,emptySettings,emptyServer,nextOccurrence,countdown,scheduleMinutes}=await import(moduleUrl(readFileSync('lib/event-timers.ts','utf8')));
+const {parseTimes,parseSettings,emptySettings,emptyServer,nextOccurrence,countdown,scheduleMinutes,nextZonedOccurrence,nextTimerOccurrence}=await import(moduleUrl(readFileSync('lib/event-timers.ts','utf8')));
 assert.deepEqual(parseTimes('21:00, 09:00 09:00'),[540,1260]);
 for(const x of ['24:00','12:60','9:00','12:00oops'])assert.throws(()=>parseTimes(x));
 const now=Date.parse('2026-10-17T23:59:59Z');
@@ -21,3 +21,16 @@ const settings={...emptySettings(),server:'1301',profiles:{'eu:1301':{...emptySe
 assert.deepEqual(parseSettings(JSON.stringify(settings)),settings);
 for(const profile of [{offset:9999},{hidden:['fake']},{times:{gartua:'25:00'}},{dimension:'fake'},{times:[]}])assert.throws(()=>parseSettings(JSON.stringify({...settings,profiles:{'eu:1301':{...emptyServer(),...profile}}})));
 console.log('Timers: midnight/second/offset boundaries, missing schedules, defaults, validation and settings roundtrip PASS');
+
+assert.equal(nextZonedOccurrence(Date.parse('2026-01-01T00:00:00Z'),[9*60],'Asia/Seoul'),Date.parse('2026-01-01T00:00:00Z'));
+assert.equal(nextZonedOccurrence(Date.parse('2026-01-01T00:00:01Z'),[9*60],'Asia/Seoul'),Date.parse('2026-01-02T00:00:00Z'));
+assert.equal(nextZonedOccurrence(Date.parse('2026-01-01T00:00:00Z'),[12*60],'Europe/Helsinki'),Date.parse('2026-01-01T10:00:00Z'));
+assert.equal(nextZonedOccurrence(Date.parse('2026-07-01T00:00:00Z'),[12*60],'Europe/Helsinki'),Date.parse('2026-07-01T09:00:00Z'));
+assert.equal(nextZonedOccurrence(Date.parse('2026-03-28T23:00:00Z'),[3*60+30],'Europe/Helsinki'),Date.parse('2026-03-30T00:30:00Z'));
+assert.equal(nextZonedOccurrence(Date.parse('2026-10-25T00:31:00Z'),[3*60+30],'Europe/Helsinki'),Date.parse('2026-10-25T01:30:00Z'));
+assert.equal(nextZonedOccurrence(Date.parse('2026-10-24T23:00:00Z'),[3*60+30],'Europe/Helsinki'),Date.parse('2026-10-25T00:30:00Z'));
+assert.equal(nextZonedOccurrence(now,[0],'invalid'),null);
+assert.equal(nextTimerOccurrence(now,[0],{...emptyServer(),offset:0}),nextOccurrence(now,[0],0));
+assert.equal(parseSettings(JSON.stringify({...settings,profiles:{'eu:1301':{...emptyServer(),timeZone:'Asia/Seoul'}}})).profiles['eu:1301'].timeZone,'Asia/Seoul');
+assert.throws(()=>parseSettings(JSON.stringify({...settings,profiles:{'eu:1301':{...emptyServer(),timeZone:'Mars/Unknown'}}})));
+console.log('Country time zones: Seoul, Helsinki summer/winter, DST gap/fold, exact boundary, legacy offset and validation PASS');
