@@ -536,3 +536,6 @@ This decision supersedes prior whole-reference-site parity requirements and hist
 Measured DPS implementation: independent local-only read adapter for A2Tools v1 streaming snapshots, opt-in UI with strict validation and stale/disconnected states. Raw capture and source keys stay on the game PC; no uploads or storage. A2Tools/Npcap installation confirmation requested for Windows system driver changes. Synthetic tests establish transport behavior only, not live combat accuracy.
 
 Validation: Python99, frontend20 suites, typecheck/lint/build, synthetic transport browser and eight-class integration passed. Live combat validation remains pending collector setup.
+
+운영 배포: `313b85e`, `portfolio-blog-7273wz1hl-xxjuon-4682s-projects.vercel.app` Ready, juhyeonl.dev 연결 확인. Git 자동 배포가 목록에 나타나지 않아 추적 파일만 임시 디렉터리로 내보내 수동 배포했다(개인 미추적 문서 제외). 운영 합성 통신 검사 및 다운로드 도구 원본 일치 통과.
+실제 소켓 검사: 운영 HTTPS → loopback HTTP는 초기 브라우저 로컬 네트워크 권한 거부로 실패했다. 동일 테스트 브라우저에서 local-network-access 권한을 부여한 뒤 인증·CORS 연결 성공. 보안 비활성화 없이 권한 전 차단/허용 후 성공을 재현했다. 이 검사도 합성 피해값이며 실제 게임 정확도를 검증하지 않는다. 테스트 파일 `tests/live_dps_socket.py`. Windows 수집기/드라이버 설치 확인은 대기 중.
