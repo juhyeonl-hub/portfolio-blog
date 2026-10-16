@@ -85,6 +85,10 @@ export default function ClientDatabase({active, initialSkillId = ''}: {active: b
             <p>플래너의 승급 조건 확인 설정으로 신규 투자와 추천을 제한합니다. 게임에서 조건 충족 여부를 직접 확인하세요.</p></>}
           {recipe && <><h3>{items.get(recipe.itemId)?.name}</h3><p>레시피 {recipe.id} · {recipe.category} · {recipe.race}</p>
             <p>기본 생산 수량 {recipe.outputQuantity}개 · 요구 숙련도 {recipe.masteryLevel}</p>
+            {recipe.craftType && <p>제작 유형: {recipe.craftType === 'Succession' ? '계승 제작' : '일반 제작'}</p>}
+            {recipe.craftType === 'Succession' && <div aria-label="계승 대상 후보"><h4>계승 대상 후보</h4>
+              {recipe.successionCandidateItemIds?.length ? <>{recipe.successionCandidateItemIds.map(id=><button className="button ghost" key={id} onClick={()=>navigate('items',id)}>{items.get(id)?.name} · ID {id}</button>)}<p>계승 대상 선택은 아래 재료 계산과 별도입니다. 후보 전체가 소모된다는 뜻은 아닙니다.</p></> : <p>이 제작법에는 계승 대상 후보가 명시되어 있지 않습니다.</p>}
+            </div>}
             {combo && <div aria-label="연결된 제작 결과"><h4>연결된 제작 결과</h4><button className="button ghost" onClick={() => navigate('recipes', combo.id)}>{items.get(combo.itemId)?.name} · {combo.id}</button><p>원본 제작법에 연결된 결과입니다. 발생 확률이나 추가 재료 소모를 뜻하지 않습니다.</p></div>}
             {!!comboParents.length && <div aria-label="이 결과를 연결하는 제작법"><h4>이 결과를 연결하는 제작법</h4>{comboParents.map(r => <button key={r.id} className="button ghost" onClick={() => navigate('recipes', r.id)}>{items.get(r.itemId)?.name} · {r.id}</button>)}</div>}
             <p>{recipe.hasCombo ? '연속 제작 결과가 존재합니다. ' : ''}성공 확률과 수수료는 미확정입니다. 아래는 입력한 시도 횟수에 필요한 재료이며 성공 수량 예측이 아닙니다.</p>

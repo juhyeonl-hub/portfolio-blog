@@ -478,3 +478,15 @@ portfolio-blog/
 - Full-site completion remains open: gameplay-coordinate projection, final combat formulas/level overrides, crafting probabilities/fees and remaining live-source requirements are not established by these map schema results.
 
 검증: Python 87개, 프런트엔드 19묶음, TypeScript, ESLint, 빌드, 6지역 지도/154개 지역명 토글·확대·재시도·모바일·저장 보존, 기존 8직업 통합 검사 통과. 원본으로 다시 생성한 지역명 데이터는 앱 파일과 바이트 단위로 일치한다. 해시가 다른 연구용 스키마는 마운트 전에 거부됨을 확인했다. 기존 번들 크기 경고와 외부 연구 도구 의존성/선택적 네이티브 빌드 경고는 유지되며, 연구 도구는 배포하지 않는다.
+
+
+#### Reflected crafting definitions (2026-10-16)
+- Read named crafting and skill-growth table definitions from the same verified Global Steam process. Resolve nested types explicitly, including CraftRecipeRateRates Gap:Int8 / Rate:UInt32, ComponentItem CombineName, DateTimeServerLocalNeedOffset Ticks:Int64. An initial nested-array pointer probe failed; corrected the offset to the inspected UE 5.3 ArrayFlags/Inner layout. No process memory writes.
+- Strictly re-decoded 1,098 CraftRecipe, 1,090 CraftRecipeRate and 78,564 SkillEffectLv rows. The latter is byte-identical to the prior export. All published item/skill/recipe fields remain unchanged; the new CraftRecipe hash replaces the old inferred-schema source hash.
+- Display explicit craft type (756 common / 342 succession) and 380 resolved candidate references in 190 succession recipes. Keep candidates separate from ordinary material quantities; show absent candidates without inventing them. Optional v1 fields preserve older data compatibility.
+- 622 explicit CraftRateGroup links resolve, 476 recipes have no group. Raw rate units and Gap selection are not established. Raw local/remote fee fields are all zero, which is not proof of live free crafting; UI fees and success rates remain unknown. Requested one read-only in-game recipe/mastery/success-percent observation for calibration; no crafting execution requested.
+- Runtime definitions, decrypted tables and decoder research remain outside the application. `operations/runtime-crafting-schema-audit.json` contains sanitized hashes/counts and interpretation limits.
+
+계승 제작 검증: Python 89개, 프런트 19묶음, TypeScript, ESLint, 빌드 및 백엔드 24개 통과. 공식 데이터베이스 브라우저 검사는 계승 후보별 이동·기존 재료 계산·잘못된 입력·탭 이동·모바일·저장 보존·재시도를 통과했다. 이름이 같은 후보 두 개를 구분하도록 아이템 ID를 함께 표시했다.
+
+지도 운영 검증: `715d742`, Vercel `portfolio-blog-cxj8xfbz9-xxjuon-4682s-projects.vercel.app` Ready 및 `juhyeonl.dev` 연결 확인. 운영 6지역 지형/154개 지역명·토글·확대·재시도·모바일·저장 보존 검사 통과.

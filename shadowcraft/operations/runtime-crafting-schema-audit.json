@@ -1,0 +1,67 @@
+{
+  "steamBuildId": "25926599",
+  "source": "Bounded native reflection of named data structures, followed by strict full-file decoding of installed Global payloads",
+  "nativeDefinitionsSha256": "576c16080ce6ae9696328d55b00a0845fd406d15aa6202b08e8afb85322ac48f",
+  "tables": {
+    "CraftRecipe": {
+      "rows": 1098,
+      "sha256": "2818e5a0f11183debcaf70b6a5206663d4cbc64fe678970508ef10299b91e8ba"
+    },
+    "CraftRecipeRate": {
+      "rows": 1090,
+      "sha256": "9bdc35af624cd48aba9fcee50c4e819fd7b38c5d298073e72c42b8ca291833fa"
+    },
+    "SkillEffectLv": {
+      "rows": 78564,
+      "sha256": "196186cf00d6e5550e6c1c302b7629eeee5c056ab876bcb319091cbd958efac9"
+    }
+  },
+  "verifiedFields": {
+    "CraftRecipeRateRates": {
+      "Gap": "Int8",
+      "Rate": "UInt32"
+    },
+    "CraftRecipeTableItem": [
+      "Type",
+      "FailRewardProbability",
+      "FailRewardDesc",
+      "SuccessionComponentCandidateList",
+      "CraftGauge",
+      "FailGaugeValue",
+      "CraftingFeeType",
+      "CraftingFee",
+      "RemoteCraftingFee",
+      "CraftRateGroup"
+    ],
+    "ComponentItem": {
+      "CombineName": "Name"
+    },
+    "DateTimeServerLocalNeedOffset": {
+      "Ticks": "Int64"
+    }
+  },
+  "craftTypes": {
+    "Common": 756,
+    "Succession": 342
+  },
+  "successionRecipesWithCandidates": 190,
+  "candidateReferences": 380,
+  "craftRateGroupLinks": 622,
+  "missingRateGroupLinks": 0,
+  "recipesWithoutRateGroup": 476,
+  "allExistingPublishedRecipeFieldsUnchanged": true,
+  "skillEffectLvByteIdenticalToPriorExport": true,
+  "clientFeeFields": {
+    "CraftingFeeAllZero": true,
+    "RemoteCraftingFeeAllZero": true,
+    "liveFeeVerified": false
+  },
+  "successRateUnitVerified": false,
+  "gapSelectionSemanticsVerified": false,
+  "combatFormulaVerified": false,
+  "limitations": [
+    "Rate field identity does not establish its percentage denominator or the rule for selecting Gap.",
+    "Zero client fee fields do not establish the live server fee.",
+    "Succession candidates are displayed separately; quantities and inherited-state effects are not inferred."
+  ]
+}

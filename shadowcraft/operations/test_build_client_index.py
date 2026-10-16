@@ -63,6 +63,22 @@ class ClientIndexTests(unittest.TestCase):
         self.rows['CraftRecipe'].append(second)
         with self.assertRaises(ValueError): self.build()
 
+    def test_explicit_succession_candidates(self):
+        row = self.rows['CraftRecipe'][0]
+        row.update(Type='ECraftType::Succession', SuccessionComponentCandidateList=['item'])
+        result = self.build()['recipes'][0]
+        self.assertEqual(result['craftType'], 'Succession')
+        self.assertEqual(result['successionCandidateItemIds'], ['1'])
+        self.assertEqual(result['ingredients'], [{'itemId': '1', 'quantity': 2, 'enchant': 0}])
+        row['SuccessionComponentCandidateList'] = ['missing']
+        with self.assertRaises(KeyError): self.build()
+
+    def test_bad_succession_metadata(self):
+        row = self.rows['CraftRecipe'][0]
+        for kind, candidates in [('ECraftType::Unknown', []), ('ECraftType::Common', ['item']), ('ECraftType::Succession', ['item', 'item']), ('ECraftType::Succession', None)]:
+            row.update(Type=kind, SuccessionComponentCandidateList=candidates)
+            with self.subTest(kind=kind, candidates=candidates), self.assertRaises(ValueError): self.build()
+
     def test_learning_requirements(self):
         self.rows['SkillAcquireData'][0]['NeedAscensionGrade'] = 'EAscensionGrade::AscensionGrade_3'
         data = self.build()

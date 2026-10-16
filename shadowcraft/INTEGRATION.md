@@ -460,3 +460,10 @@ python3 shadowcraft/operations/build-terrain-labels.py MAP_EXPORT_DIR WORLD_MAP_
 ```
 
 Review output before replacing `frontend/shadowcraft/lib/data/terrain-labels.json`. The builder checks complete zero-remainder object audit coverage, all 148 associated tile transforms and material bindings, explicit design-package links, exact region-name joins for map IDs 1010/1110/20/22, unique references and finite bounded map-local positions. Nine unlocalized authored names are explicitly omitted; 154 labels resolve across Verteron, Altgard and the two Reshanta maps. It does not guess missing names or apply a gameplay-coordinate transform. UI toggles and declutters labels while zooming, without touching saved plans or collection progress.
+
+
+### Reflected crafting schema snapshot
+
+The original research decoder schema contained inferred unnamed fields in CraftRecipe. Named native reflection now verifies all 34 recipe fields and nested candidate/component/date structures. Re-decoding succeeds for all 1,098 rows; the published ingredient IDs/counts/enchant requirements, output quantities, combo links and mastery fields are unchanged. Preserve the older export separately. The current client-index CraftRecipe input hash refers to the corrected export, archived under `a2bc-client-research/steam-25926599/runtime-crafting/decoded`.
+
+Optional `craftType` (`Common`/`Succession`) and `successionCandidateItemIds` are emitted together, strictly validated and resolved against Item. There are 342 succession recipes; 190 name two candidate items each. Candidates are not automatically included in material totals. Missing candidates do not imply no target is needed. Never convert raw CraftRecipeRate `Rate` to a percentage or choose a `Gap` using an assumed formula. Both client fee fields being zero does not verify the server fee. `runtime-crafting-schema-audit.json` records these boundaries and table hashes. SkillEffectLv is byte-identical to the prior verified growth-table source.

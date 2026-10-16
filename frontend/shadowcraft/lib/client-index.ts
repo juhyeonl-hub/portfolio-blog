@@ -3,6 +3,7 @@ type Learning = {level: number; autoLearn: boolean; requiredCharacterLevel: numb
 type Description = {text: string; unresolvedValues: number; valueScope?: 'base-client-values'; resolvedReferences?: {reference: string; value: string}[]};
 type Skill = {id: string; name: string; classKey: string; learning?: Learning[]; description?: Description | null; traits?: Description | null};
 type Recipe = {id: string; itemId: string; outputQuantity: number; category: string; race: string; masteryLevel: number;
+  craftType?: 'Common' | 'Succession'; successionCandidateItemIds?: string[];
   ingredients: {itemId: string; quantity: number; enchant: number}[]; hasCombo: boolean; comboRecipeId?: string | null; successRate: null; feePerAttempt: null};
 export type ClientIndex = {schema: string; source: {kind: string; region: string; buildId: string; language: string}; items: Item[]; skills: Skill[]; recipes: Recipe[]};
 
@@ -59,6 +60,11 @@ export function parseClientIndex(value: unknown): ClientIndex {
   }
   const recipeIds = new Set(data.recipes.map((r: Recipe) => r.id));
   for (const r of data.recipes) {
+    if (r.craftType !== undefined || r.successionCandidateItemIds !== undefined) {
+      if (!['Common', 'Succession'].includes(r.craftType) || !Array.isArray(r.successionCandidateItemIds) ||
+          r.successionCandidateItemIds.length > 100 || new Set(r.successionCandidateItemIds).size !== r.successionCandidateItemIds.length ||
+          r.successionCandidateItemIds.some((i: unknown)=>!ids.has(i)) || (r.craftType === 'Common' && r.successionCandidateItemIds.length)) fail();
+    }
     if (r.comboRecipeId !== undefined && (r.comboRecipeId === null ? r.hasCombo :
         !r.hasCombo || !id(r.comboRecipeId) || !recipeIds.has(r.comboRecipeId))) fail();
     if (!ids.has(r.itemId) || !number(r.outputQuantity, 1) || !text(r.category) || !text(r.race) || !number(r.masteryLevel) || typeof r.hasCombo !== 'boolean' || r.successRate !== null || r.feePerAttempt !== null || !Array.isArray(r.ingredients) || r.ingredients.length > 100) fail();

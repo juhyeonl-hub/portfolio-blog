@@ -173,6 +173,17 @@ def build(tables, localization, build_id, effect_tables=None):
                         'hasCombo': row['ComboRecipe'] not in ('', 'None'),
                         'comboRecipeId': recipe_names[row['ComboRecipe']] if row['ComboRecipe'] not in ('', 'None') else None,
                         'successRate': None, 'feePerAttempt': None})
+        # Optional for older reviewed snapshots; only explicit reflected fields qualify.
+        if 'Type' in row:
+            if row['Type'] not in ('ECraftType::Common', 'ECraftType::Succession'):
+                raise ValueError('Unknown craft type')
+            candidates = row['SuccessionComponentCandidateList']
+            if not isinstance(candidates, list) or len(candidates) > 100 or any(not isinstance(c, str) for c in candidates) or len(set(candidates)) != len(candidates):
+                raise ValueError('Invalid succession candidates')
+            if candidates and row['Type'] != 'ECraftType::Succession':
+                raise ValueError('Candidates on non-succession recipe')
+            recipes[-1].update(craftType=row['Type'].removeprefix('ECraftType::'),
+                               successionCandidateItemIds=[item_names[c] for c in candidates])
     active_classes = {'Assassin', 'Gladiator', 'Templar', 'Ranger', 'Elementalist', 'Sorcerer', 'Cleric', 'Chanter'}
     roster = {}
     for row in rows['SkillList']:

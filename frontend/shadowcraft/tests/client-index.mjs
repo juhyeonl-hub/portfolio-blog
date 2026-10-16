@@ -9,6 +9,14 @@ for (const mutate of [d=>d.source.region='kr',d=>d.source.appId=0,d=>d.items.pus
  const data=structuredClone(fixture);mutate(data);assert.throws(()=>parse(data));
 }
 const actual=parse(JSON.parse(readFileSync('../public/shadowcraft/data/client-index.json','utf8')));
+assert.equal(actual.recipes.filter(r=>r.craftType==='Succession').length,342);
+assert.equal(actual.recipes.filter(r=>r.successionCandidateItemIds.length).length,190);
+const succession=structuredClone(fixture);
+Object.assign(succession.recipes[0],{craftType:'Succession',successionCandidateItemIds:['1']});
+assert.equal(parse(succession).recipes[0].ingredients.length,1);
+for(const patch of [{craftType:'unknown'},{craftType:'Common'},{successionCandidateItemIds:['99']},{successionCandidateItemIds:['1','1']},{successionCandidateItemIds:null},{craftType:undefined}]){
+ const bad=structuredClone(succession);Object.assign(bad.recipes[0],patch);assert.throws(()=>parse(bad));
+}
 assert.equal(actual.skills.length,280);
 assert.equal(new Set(actual.skills.map(s=>s.classKey)).size,8);
 console.log('Client index validation passed: malformed records and shipped Global references');
