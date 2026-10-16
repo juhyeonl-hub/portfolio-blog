@@ -394,3 +394,13 @@ Do not enable production projection or markers from this preflight alone.
 - **Steam 접속 현황**: `GET /api/public/shadowcraft/activity` reads official Steam `ISteamUserStats/GetNumberOfCurrentPlayers/v1/` for app 3393110. One-minute backend cache includes failed attempts; initial failure returns 502, later failure returns last known count with its original `checkedAt` and `stale:true`. No plan writes, accounts, DB migration or new credentials. This is the whole Steam app count, not per-server online status.
 - Tests: `python3 shadowcraft/tests/build_library.py`, `recipe_links.py`, `steam_activity.py`; set `SHADOWCRAFT_TEST_URL` for production. Activity browser cases use controlled fixtures; verify the actual endpoint separately. Backend service cases are in `SteamActivityServiceTest`.
 - Deployment uses **systemd `portfolio-blog`**, as documented in `OPERATIONS.md`; legacy ops `start.sh`/`stop.sh` PID files do not track the current service.
+
+### Anonymous build links
+
+빌드 보관함 → **현재 배분 공유 링크 만들기**에서 현재 배분의 고정 스냅샷을 만든다. URL의 `#build=` 뒤에 `a2bc-share-v1` JSON을 UTF-8/base64url로 인코딩한다. 인코딩 본문은 최대 24,000자이며 초과 시 기존 JSON 내보내기를 안내한다. URL 길이 제한으로 일부 메신저에서 잘릴 수 있다. 수신자는 읽기 전용 화면에서 배분과 데이터 버전을 확인하고 JSON을 다운로드할 수 있다. 적용은 기존 플래너의 명시적 JSON 불러오기를 사용한다.
+
+캐릭터·검색 기록·장비 이름/메모는 공유하지 않는다. 선택 장비 모드의 스킬 보너스를 합산한 수동 보너스로 고정하므로 장비 목록을 편집하는 원본 백업 용도에는 기존 내보내기를 사용한다. 링크를 가진 사람은 배분을 읽을 수 있으며, 링크 생성 뒤 원본 수정이 기존 링크를 바꾸지는 않는다. 서버 저장이나 공개 검색 목록은 없다.
+
+수신 화면은 브라우저 저장을 읽거나 쓰지 않고 번들 카탈로그만 사용한다. 버전 차이는 표시하고 미확인 스킬/특화/노드 참조는 거부한다. 전투 유효성이나 예산 적합성을 자동 승인하지 않는다. 공유 API/DB 마이그레이션/추가 의존성은 없다.
+
+검증: `npm --prefix frontend run test:shadowcraft`, `python3 shadowcraft/tests/build_share.py` (`SHADOWCRAFT_TEST_URL`로 운영 URL 지정 가능).

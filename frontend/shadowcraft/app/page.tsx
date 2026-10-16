@@ -11,6 +11,7 @@ import CraftingPanel from './crafting-panel';
 import MapPanel from './map-panel';
 import SteamActivity from './steam-activity';
 import BuildLibraryPanel from './build-library';
+import SharedBuildView,{ShareBuildPanel} from './build-share';
 import ClientDatabase from './client-database';
 import {nodeStats} from '@/lib/board-effects';
 import {usePlanMemory} from './use-plan-memory';
@@ -75,7 +76,7 @@ function Workshop({classKey,initialCatalog,onClassChange}:{classKey:string;initi
  {review&&<div className="notice amber-notice"><AlertTriangle size={17}/>새 데이터가 반영되었습니다. 추천 조합은 {BASELINE} 기준이므로 변경된 특화를 확인하세요.<button onClick={()=>setTab('updates')}>변경 기록 보기 →</button></div>}
  <div className="notice violet-notice"><Shield size={16}/><span>장비 보너스: {plan.gear?.mode==='current'?'현재 장비 합산':plan.gear?.mode==='target'?'목표 장비 가정':'스킬별 직접 입력'} · 장비를 등록하면 특화 해금과 성장 목표를 비교할 수 있습니다.</span><button onClick={()=>setTab('gear')}>내 장비 입력 →</button></div><div className="page-tabs" role="tablist">{tabs.map(t=><button role="tab" aria-selected={tab===t.id} key={t.id} onClick={()=>setTab(t.id)} className={tab===t.id?'active':''}><t.icon size={16}/>{t.name}</button>)}</div>
  <div hidden={tab!=='activity'}><SteamActivity active={tab==='activity'}/></div>
- {tab==='builds'&&<BuildLibraryPanel classKey={classKey} catalogVersion={catalog.version||'미확인'} plan={plan} onApply={setPlan}/>}
+ {tab==='builds'&&<><BuildLibraryPanel classKey={classKey} catalogVersion={catalog.version||'미확인'} plan={plan} onApply={setPlan}/><ShareBuildPanel catalog={catalog} plan={plan}/></>}
  <div hidden={tab!=='crafting'}><CraftingPanel/></div>
  <div hidden={tab!=='map'}><MapPanel/></div>
  <div hidden={tab!=='database'}><ClientDatabase active={tab==='database'}/></div>
@@ -109,6 +110,11 @@ function Workshop({classKey,initialCatalog,onClassChange}:{classKey:string;initi
 }
 
 export default function Page(){
+ const [hash,setHash]=useState(()=>location.hash);
+ useEffect(()=>{const changed=()=>setHash(location.hash);window.addEventListener('hashchange',changed);return()=>window.removeEventListener('hashchange',changed);},[]);
+ return hash.startsWith('#build=')?<SharedBuildView hash={hash}/>:<PlannerPage/>;
+}
+function PlannerPage(){
  const [selected,setSelected]=useState('assassin'),[catalogs,setCatalogs]=useState<Record<string,Catalog>>({assassin:assassinInitial as Catalog}),[loadError,setLoadError]=useState(''),[retry,setRetry]=useState(0);
  useEffect(()=>{try{const key=localStorage.getItem('shadowcraft-selected-class');if(key&&isClassKey(key))setSelected(key)}catch{}},[]);
  useEffect(()=>{let active=true;setLoadError('');if(!catalogs[selected])loadBundledCatalog(selected).then(c=>{if(active)setCatalogs(old=>({...old,[selected]:c}))}).catch(()=>{if(active)setLoadError('직업 데이터를 불러오지 못했습니다. 다시 시도하세요.')});return()=>{active=false}},[selected,retry]);
