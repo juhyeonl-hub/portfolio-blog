@@ -36,6 +36,16 @@ def plain(value):
     return result
 
 
+def description(value):
+    """Keep literal official prose; never present unresolved formulas as numbers."""
+    text = plain(value)
+    tokens = re.findall(r'\{[^{}]+\}', text)
+    text = re.sub(r'\{[^{}]+\}', '[unresolved value]', text)
+    if '{' in text or '}' in text:
+        raise ValueError('Malformed skill description placeholder')
+    return {'text': text, 'unresolvedValues': len(tokens)}
+
+
 def build(tables, localization, build_id):
     if not isinstance(build_id, str) or not re.fullmatch(r'[1-9][0-9]*', build_id):
         raise ValueError('Explicit Steam build ID required')
@@ -67,6 +77,12 @@ def build(tables, localization, build_id):
         items.append({'id': key, 'name': name, 'kind': kind, 'grade': grade, 'level': level})
     recipes = []
     recipe_ids = set()
+    recipe_names = {}
+    for row in rows['CraftRecipe']:
+        name = row['Name']
+        if not isinstance(name, str) or not name or name in recipe_names:
+            raise ValueError('Invalid or duplicate recipe name')
+        recipe_names[name] = identifier(row['ID']['Value'])
     for row in rows['CraftRecipe']:
         key = identifier(row['ID']['Value'])
         if key in recipe_ids:
@@ -85,6 +101,7 @@ def build(tables, localization, build_id):
                         'race': row['QualificationRace'].removeprefix('ERace::'),
                         'masteryLevel': row['MasteryLevel'], 'ingredients': ingredients,
                         'hasCombo': row['ComboRecipe'] not in ('', 'None'),
+                        'comboRecipeId': recipe_names[row['ComboRecipe']] if row['ComboRecipe'] not in ('', 'None') else None,
                         'successRate': None, 'feePerAttempt': None})
     active_classes = {'Assassin', 'Gladiator', 'Templar', 'Ranger', 'Elementalist', 'Sorcerer', 'Cleric', 'Chanter'}
     roster = {}
@@ -137,7 +154,12 @@ def build(tables, localization, build_id):
     for key, cls in sorted(roster.items()):
         row = skill_rows[key]
         name = plain(entries['SkillString_' + row['SkillString_Key'] + '_skill_name'])
-        skills.append({'id': key, 'name': name, 'classKey': cls, 'learning': learning[key]})
+        prefix = 'SkillString_' + row['SkillString_Key']
+        effect = entries.get(prefix + '_skill_desc_effect')
+        traits = entries.get(prefix + '_skill_spec_effect')
+        skills.append({'id': key, 'name': name, 'classKey': cls, 'learning': learning[key],
+                       'description': description(effect) if effect else None,
+                       'traits': description(traits) if traits else None})
     if len(skills) != 280 or any(sum(s['classKey'] == c.lower() for s in skills) != 35 for c in active_classes):
         raise ValueError('Unexpected playable class roster')
     hashes['English'] = hashlib.sha256(Path(localization).read_bytes()).hexdigest()

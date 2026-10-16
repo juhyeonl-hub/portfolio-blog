@@ -22,3 +22,17 @@ for(const patch of [{level:2},{level:true},{skillPoints:-1},{stigmaPoints:1.5},{
 assert.equal(actual.skills.reduce((n,s)=>n+s.learning.length,0),3840);
 assert.equal(actual.skills.flatMap(s=>s.learning).filter(r=>r.ascensionRequirement!=='None').length,104);
 console.log('Official skill learning conditions and backward-compatible v1 exports PASS');
+const enriched=structuredClone(fixture);
+enriched.skills[0].description={text:'Deals [unresolved value] damage. Restores 100 MP.',unresolvedValues:1};
+enriched.recipes.push({...structuredClone(enriched.recipes[0]),id:'4'});
+enriched.recipes[0].hasCombo=true;enriched.recipes[0].comboRecipeId='4';
+assert.equal(parse(enriched).recipes[0].comboRecipeId,'4');
+for(const mutate of [d=>d.skills[0].description.text='{se:123:value}',d=>d.skills[0].description.unresolvedValues=0,d=>d.skills[0].description.text='<img src=x>',d=>d.recipes[0].comboRecipeId='99',d=>d.recipes[0].comboRecipeId=null,d=>d.recipes[0].hasCombo=false]){
+ const bad=structuredClone(enriched);mutate(bad);assert.throws(()=>parse(bad));
+}
+assert.equal(actual.recipes.filter(r=>r.comboRecipeId).length,296);
+const quick=actual.skills.find(s=>s.id==='13010000');
+assert.ok(quick.description.text.includes('restores 100 MP'));
+assert.equal(quick.description.unresolvedValues,2);
+assert.ok(actual.skills.every(s=>s.description));
+console.log('Official descriptions and 296 resolved combo recipe references PASS');

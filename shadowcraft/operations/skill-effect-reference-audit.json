@@ -1,0 +1,49 @@
+{
+  "steamBuildId": "25926599",
+  "source": "installed-global-steam-client",
+  "tables": {
+    "SkillEffect": {
+      "rows": 31629,
+      "decodedSha256": "b8e684baf08a951be36901dfde3c338b130c0d0a9600a132701a2157830d689d",
+      "payloadSha256": "a5eb30f619a0b6eda40fdc6809bb3d49590b09d4574a1b0fc081bfca483f90c0"
+    },
+    "SkillAbnormalEffect": {
+      "rows": 12771,
+      "decodedSha256": "3a1fd036d2c2e9ff9f1df6302b0bdbe0c52ff7ac9942a2b6f7f14c689b3c7bcb",
+      "payloadSha256": "a978c621461d58a67003a854c66cd2bcf5c00174d4dcc7bbd2c2eca6a523bf86"
+    },
+    "SkillEffectLv": {
+      "rows": 78564,
+      "decodedSha256": "196186cf00d6e5550e6c1c302b7629eeee5c056ab876bcb319091cbd958efac9",
+      "payloadSha256": "392754d4d65bf798f2b03d3b37dc9a15562c3a2c4a8bb9580069893827d27056"
+    }
+  },
+  "playableSkillCount": 280,
+  "descriptionTokenCounts": {
+    "se_dmg": 406,
+    "abe": 329,
+    "se": 267,
+    "sef": 1,
+    "se_abe": 9,
+    "se_abe_dmg": 27
+  },
+  "referenceCoverage": {
+    "se": {
+      "uniqueReferences": 218,
+      "matched": 218,
+      "missing": []
+    },
+    "se_dmg": {
+      "uniqueReferences": 209,
+      "matched": 209,
+      "missing": []
+    },
+    "abe": {
+      "uniqueReferences": 302,
+      "matched": 302,
+      "missing": []
+    }
+  },
+  "validation": "ID references only; value positions, scaling, units and level overrides are not yet validated",
+  "decoder": "SemaAlter October research decoder; research-only, implementation not bundled"
+}

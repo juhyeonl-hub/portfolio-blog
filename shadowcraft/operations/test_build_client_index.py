@@ -16,7 +16,7 @@ class ClientIndexTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.entries = {'String_item_body': '<b>Material</b>'}
         self.rows = {'Item': [{'ID': {'Value': 1}, 'Name': 'item', 'Desc': {'Key': 'item'}, 'ItemType': 'EItemType::Material', 'ItemGrade': 'EItemGrade::Common', 'ItemLevel': 1}],
-                     'CraftRecipe': [{'ID': {'Value': 2}, 'Product': 'item', 'ProductCount': 1, 'Category': 'ECraftCategory::Cooking', 'QualificationRace': 'ERace::All', 'MasteryLevel': 1, 'ComboRecipe': 'None', 'ComponentList': [{'Item': 'item', 'Count': 2, 'Enchant': 0}]}], 'Skill': [], 'SkillList': [], 'SkillAcquireData': []}
+                     'CraftRecipe': [{'ID': {'Value': 2}, 'Name': 'recipe', 'Product': 'item', 'ProductCount': 1, 'Category': 'ECraftCategory::Cooking', 'QualificationRace': 'ERace::All', 'MasteryLevel': 1, 'ComboRecipe': 'None', 'ComponentList': [{'Item': 'item', 'Count': 2, 'Enchant': 0}]}], 'Skill': [], 'SkillList': [], 'SkillAcquireData': []}
         for ci, cls in enumerate(['Assassin','Gladiator','Templar','Ranger','Elementalist','Sorcerer','Cleric','Chanter']):
             ids = list(range(1000 + ci * 35, 1035 + ci * 35))
             self.rows['SkillList'].append({'ClassType': 'ECharacterClass::'+cls, 'SkillIdList': ids})
@@ -38,6 +38,31 @@ class ClientIndexTests(unittest.TestCase):
         self.assertIsNone(data['recipes'][0]['feePerAttempt'])
         self.assertFalse(data['source']['liveAvailabilityVerified'])
         self.assertEqual(len(data['source']['inputSha256']), 6)
+    def test_official_description(self):
+        key = 'SkillString_1000_skill_desc_effect'
+        self.entries[key] = '<unique>Deals {se:123:value} damage.</>\nRestores 100 MP.'
+        desc = self.build()['skills'][0]['description']
+        self.assertEqual(desc, {'text': 'Deals [unresolved value] damage.\nRestores 100 MP.', 'unresolvedValues': 1})
+        self.entries[key] = 'Broken {value'
+        with self.assertRaises(ValueError): self.build()
+
+    def test_combo_reference(self):
+        import copy
+        second = copy.deepcopy(self.rows['CraftRecipe'][0])
+        second.update(ID={'Value': 3}, Name='combo')
+        self.rows['CraftRecipe'].append(second)
+        self.rows['CraftRecipe'][0]['ComboRecipe'] = 'combo'
+        self.assertEqual(self.build()['recipes'][0]['comboRecipeId'], '3')
+        self.rows['CraftRecipe'][0]['ComboRecipe'] = 'missing'
+        with self.assertRaises(KeyError): self.build()
+
+    def test_duplicate_recipe_name(self):
+        import copy
+        second = copy.deepcopy(self.rows['CraftRecipe'][0])
+        second['ID']['Value'] = 3
+        self.rows['CraftRecipe'].append(second)
+        with self.assertRaises(ValueError): self.build()
+
     def test_learning_requirements(self):
         self.rows['SkillAcquireData'][0]['NeedAscensionGrade'] = 'EAscensionGrade::AscensionGrade_3'
         data = self.build()

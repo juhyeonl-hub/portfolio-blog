@@ -1,8 +1,9 @@
 type Item = {id: string; name: string; kind: string; grade: string; level: number};
 type Learning = {level: number; autoLearn: boolean; requiredCharacterLevel: number; skillPoints: number; stigmaPoints: number; ascensionRequirement: string};
-type Skill = {id: string; name: string; classKey: string; learning?: Learning[]};
+type Description = {text: string; unresolvedValues: number};
+type Skill = {id: string; name: string; classKey: string; learning?: Learning[]; description?: Description | null; traits?: Description | null};
 type Recipe = {id: string; itemId: string; outputQuantity: number; category: string; race: string; masteryLevel: number;
-  ingredients: {itemId: string; quantity: number; enchant: number}[]; hasCombo: boolean; successRate: null; feePerAttempt: null};
+  ingredients: {itemId: string; quantity: number; enchant: number}[]; hasCombo: boolean; comboRecipeId?: string | null; successRate: null; feePerAttempt: null};
 export type ClientIndex = {schema: string; source: {kind: string; region: string; buildId: string; language: string}; items: Item[]; skills: Skill[]; recipes: Recipe[]};
 
 
@@ -29,6 +30,13 @@ export function parseClientIndex(value: unknown): ClientIndex {
   const classes = ['assassin', 'gladiator', 'templar', 'ranger', 'elementalist', 'sorcerer', 'cleric', 'chanter'];
   for (const s of data.skills) {
     if (!text(s.name) || !classes.includes(s.classKey)) fail();
+    for (const field of ['description', 'traits']) {
+      if (s[field] !== undefined && s[field] !== null) {
+        const desc = object(s[field]);
+        if (!text(desc.text) || /[{}<>]/.test(desc.text) || !number(desc.unresolvedValues, 0, 1000) ||
+            (desc.text.match(/\[unresolved value\]/g) ?? []).length !== desc.unresolvedValues) fail();
+      }
+    }
     // Older v1 exports remain readable during deployment/cache transitions.
     if (s.learning !== undefined) {
       if (!Array.isArray(s.learning) || !s.learning.length || s.learning.length > 100) fail();
@@ -41,7 +49,10 @@ export function parseClientIndex(value: unknown): ClientIndex {
       });
     }
   }
+  const recipeIds = new Set(data.recipes.map((r: Recipe) => r.id));
   for (const r of data.recipes) {
+    if (r.comboRecipeId !== undefined && (r.comboRecipeId === null ? r.hasCombo :
+        !r.hasCombo || !id(r.comboRecipeId) || !recipeIds.has(r.comboRecipeId))) fail();
     if (!ids.has(r.itemId) || !number(r.outputQuantity, 1) || !text(r.category) || !text(r.race) || !number(r.masteryLevel) || typeof r.hasCombo !== 'boolean' || r.successRate !== null || r.feePerAttempt !== null || !Array.isArray(r.ingredients) || r.ingredients.length > 100) fail();
     for (const entry of r.ingredients) {
       const i = object(entry);

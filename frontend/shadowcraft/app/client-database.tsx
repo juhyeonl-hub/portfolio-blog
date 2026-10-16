@@ -41,6 +41,8 @@ export default function ClientDatabase({active}: {active: boolean}) {
   const recipe = section === 'recipes' ? data?.recipes.find(r => r.id === selected) : undefined;
   const item = section === 'items' ? items.get(selected) : undefined;
   const skill = section === 'skills' ? data?.skills.find(s => s.id === selected) : undefined;
+  const combo = recipe?.comboRecipeId ? data?.recipes.find(r => r.id === recipe.comboRecipeId) : undefined;
+  const comboParents = recipe ? data?.recipes.filter(r => r.comboRecipeId === recipe.id) ?? [] : [];
   const producedBy = item ? data?.recipes.filter(r => r.itemId === item.id) ?? [] : [];
   const usedBy = item ? data?.recipes.filter(r => r.ingredients.some(i => i.itemId === item.id)) ?? [] : [];
   const recipeGroups = [{label: '생산 제작법', rows: producedBy}, {label: '재료로 쓰는 제작법', rows: usedBy}];
@@ -67,7 +69,13 @@ export default function ClientDatabase({active}: {active: boolean}) {
         <div className="database-detail" aria-label="데이터 상세">
           {!selected && <p>목록에서 항목을 선택하세요.</p>}
           {item && <><h3>{item.name}</h3><p>ID {item.id} · {item.kind} · {item.grade} · 아이템 레벨 {item.level}</p><p>제작법 등록 여부를 보여줍니다. 현재 서버의 획득 가능 여부나 성공 확률은 확인되지 않았습니다.</p>{recipeGroups.map(({label, rows}) => <details key={label}><summary>{label} ({rows.length}개)</summary>{rows.length ? <ul>{rows.map(r => <li key={r.id}><button className="button ghost" onClick={() => navigate('recipes', r.id)}>{items.get(r.itemId)?.name ?? r.itemId} · {r.category} · {r.race} · {r.id}</button></li>)}</ul> : <p>등록된 제작법이 없습니다.</p>}</details>)}</>}
-          {skill && <><h3>{skill.name}</h3><p>ID {skill.id} · {skill.classKey}</p><h4>레벨별 습득 조건</h4><p>포인트는 해당 레벨을 배울 때 드는 비용입니다. 승급 조건은 클라이언트 원본 코드로 표시합니다.</p>
+          {skill && <><h3>{skill.name}</h3><p>ID {skill.id} · {skill.classKey}</p>
+            <div aria-label="공식 글로벌 스킬 설명"><h4>공식 글로벌 스킬 설명</h4>
+              {skill.description ? <p style={{whiteSpace: 'pre-line'}}>{skill.description.text}</p> : <p>이 데이터에는 영문 설명이 없습니다.</p>}
+              {skill.traits && <p>{skill.traits.text}</p>}
+              {!!((skill.description?.unresolvedValues ?? 0) + (skill.traits?.unresolvedValues ?? 0)) && <p className="subtle">[unresolved value]는 아직 계산하지 않은 효과 수치입니다. 장비·레벨·특화에 따른 최종 수치는 반영하지 않습니다.</p>}
+            </div>
+            <h4>레벨별 습득 조건</h4><p>포인트는 해당 레벨을 배울 때 드는 비용입니다. 승급 조건은 클라이언트 원본 코드로 표시합니다.</p>
             {skill.learning ? <ol className="skill-learning-list">{skill.learning.map(row => <li key={row.level}>
               <strong>스킬 Lv.{row.level}</strong><span>캐릭터 Lv.{row.requiredCharacterLevel} · {row.autoLearn ? '자동 습득' : '직접 습득'}</span>
               <span>SP {row.skillPoints} · 스티그마 {row.stigmaPoints}</span>
@@ -76,6 +84,8 @@ export default function ClientDatabase({active}: {active: boolean}) {
             <p>플래너의 승급 조건 확인 설정으로 신규 투자와 추천을 제한합니다. 게임에서 조건 충족 여부를 직접 확인하세요.</p></>}
           {recipe && <><h3>{items.get(recipe.itemId)?.name}</h3><p>레시피 {recipe.id} · {recipe.category} · {recipe.race}</p>
             <p>기본 생산 수량 {recipe.outputQuantity}개 · 요구 숙련도 {recipe.masteryLevel}</p>
+            {combo && <div aria-label="연결된 제작 결과"><h4>연결된 제작 결과</h4><button className="button ghost" onClick={() => navigate('recipes', combo.id)}>{items.get(combo.itemId)?.name} · {combo.id}</button><p>원본 제작법에 연결된 결과입니다. 발생 확률이나 추가 재료 소모를 뜻하지 않습니다.</p></div>}
+            {!!comboParents.length && <div aria-label="이 결과를 연결하는 제작법"><h4>이 결과를 연결하는 제작법</h4>{comboParents.map(r => <button key={r.id} className="button ghost" onClick={() => navigate('recipes', r.id)}>{items.get(r.itemId)?.name} · {r.id}</button>)}</div>}
             <p>{recipe.hasCombo ? '연속 제작 결과가 존재합니다. ' : ''}성공 확률과 수수료는 미확정입니다. 아래는 입력한 시도 횟수에 필요한 재료이며 성공 수량 예측이 아닙니다.</p>
             <label>제작 시도 횟수<input inputMode="numeric" value={attempts} onChange={e => setAttempts(e.target.value)}/></label>
             {!validCount ? <p role="alert">시도 횟수는 1~10000의 정수로 입력하세요.</p> : <ul>{recipe.ingredients.map((ingredient, i) => <li key={`${ingredient.itemId}-${i}`}><button className="button ghost" onClick={() => navigate('items', ingredient.itemId)}>{items.get(ingredient.itemId)?.name ?? ingredient.itemId}</button> × {(ingredient.quantity * count).toLocaleString()}{ingredient.enchant > 0 ? ` (강화 +${ingredient.enchant})` : ''}</li>)}</ul>}
