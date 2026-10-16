@@ -6,7 +6,8 @@ type Recipe = {id: string; itemId: string; outputQuantity: number; category: str
   baseRateCurve?: {group: string; rawRates: number[]; scope: 'client-table-estimate'; percentDivisor: 1000000} | null;
   craftType?: 'Common' | 'Succession'; successionCandidateItemIds?: string[];
   ingredients: {itemId: string; quantity: number; enchant: number}[]; hasCombo: boolean; comboRecipeId?: string | null; successRate: null; feePerAttempt: null};
-export type ClientIndex = {schema: string; source: {kind: string; region: string; buildId: string; language: string}; items: Item[]; skills: Skill[]; recipes: Recipe[]};
+export type MasteryGrade = {key: string; name: string; min: number; max: number};
+export type ClientIndex = {craftMasteryGrades?: MasteryGrade[]; schema: string; source: {kind: string; region: string; buildId: string; language: string}; items: Item[]; skills: Skill[]; recipes: Recipe[]};
 
 
 /** Validate static exports before rendering; no self-reported file imports. */
@@ -57,6 +58,16 @@ export function parseClientIndex(value: unknown): ClientIndex {
             !number(row.stigmaPoints, 0, 10000) || typeof row.ascensionRequirement !== 'string' ||
             !/^(None|AscensionGrade_[1-9][0-9]*)$/.test(row.ascensionRequirement)) fail();
       });
+    }
+  }
+  if (data.craftMasteryGrades !== undefined) {
+    if (!Array.isArray(data.craftMasteryGrades) || !data.craftMasteryGrades.length || data.craftMasteryGrades.length > 16) fail();
+    let next = 1;
+    const seen = new Set();
+    for (const entry of data.craftMasteryGrades) {
+      const grade = object(entry);
+      if (!text(grade.key) || !text(grade.name) || seen.has(grade.key) || grade.min !== next || !number(grade.max, next, 10000)) fail();
+      seen.add(grade.key); next = grade.max + 1;
     }
   }
   const recipeIds = new Set(data.recipes.map((r: Recipe) => r.id));

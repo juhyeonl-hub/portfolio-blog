@@ -53,7 +53,7 @@ export default function OfficialCrafting() {
         onClick={() => {setSelected(r.id); setAttempts('1'); setStock({}); setPrices({});}}>{name(r.itemId)} · {r.race} · 숙련도 {r.masteryLevel} · #{r.id}</button>)}</div>
       {recipe && <>
         <h4>{name(recipe.itemId)} · 제작법 #{recipe.id}</h4>
-        <CraftProbability key={recipe.id} recipe={recipe}/>
+        <CraftProbability key={recipe.id} recipe={recipe} grades={data?.craftMasteryGrades}/>
         {recipe.hasCombo && <p>연속 제작 조건이 있는 제작법입니다. 후속 단계와 추가 결과는 계산에 포함되지 않습니다.</p>}
         <label className="crafting-field">제작 시도 횟수<input inputMode="numeric" value={attempts} onChange={e => setAttempts(e.target.value)}/></label>
         <p>같은 아이템도 요구 강화 수치별로 보유량·단가를 구분합니다. 강화 수치의 충족 여부는 게임에서 확인하세요.</p>

@@ -92,7 +92,7 @@ export default function ClientDatabase({active, initialSkillId = ''}: {active: b
             </div>}
             {combo && <div aria-label="연결된 제작 결과"><h4>연결된 제작 결과</h4><button className="button ghost" onClick={() => navigate('recipes', combo.id)}>{items.get(combo.itemId)?.name} · {combo.id}</button><p>원본 제작법에 연결된 결과입니다. 발생 확률이나 추가 재료 소모를 뜻하지 않습니다.</p></div>}
             {!!comboParents.length && <div aria-label="이 결과를 연결하는 제작법"><h4>이 결과를 연결하는 제작법</h4>{comboParents.map(r => <button key={r.id} className="button ghost" onClick={() => navigate('recipes', r.id)}>{items.get(r.itemId)?.name} · {r.id}</button>)}</div>}
-            <CraftProbability key={recipe.id} recipe={recipe}/>
+            <CraftProbability key={recipe.id} recipe={recipe} grades={data?.craftMasteryGrades}/>
             <p>{recipe.hasCombo ? '연속 제작 결과가 존재합니다. ' : ''}아래는 입력한 시도 횟수에 필요한 재료이며 성공 수량 예측이 아닙니다. 수수료는 미확인입니다.</p>
             <label>제작 시도 횟수<input inputMode="numeric" value={attempts} onChange={e => setAttempts(e.target.value)}/></label>
             {!validCount ? <p role="alert">시도 횟수는 1~10000의 정수로 입력하세요.</p> : <ul>{recipe.ingredients.map((ingredient, i) => <li key={`${ingredient.itemId}-${i}`}><button className="button ghost" onClick={() => navigate('items', ingredient.itemId)}>{items.get(ingredient.itemId)?.name ?? ingredient.itemId}</button> × {(ingredient.quantity * count).toLocaleString()}{ingredient.enchant > 0 ? ` (강화 +${ingredient.enchant})` : ''}</li>)}</ul>}

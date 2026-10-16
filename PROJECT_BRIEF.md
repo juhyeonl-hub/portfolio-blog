@@ -507,3 +507,10 @@ portfolio-blog/
 - Shared preview is available both in the official crafting calculator and recipe database. Baseline regressions: Python 94, frontend 19 suites, backend 24 and 16 browser suites passed; final shared-component build/type/lint and crafting acceptance are verified before release.
 
 운영 검증 완료: 코드 커밋 `8e4b57a`, Vercel `portfolio-blog-1hjqlmffl-xxjuon-4682s-projects.vercel.app` Ready 및 `juhyeonl.dev` 연결 확인. 운영 제작 계산기·클라이언트 데이터베이스·8직업 통합 브라우저 검사 통과. 확률 입력/미등록/범위 오류/재료비/모바일/기존 저장 보존 확인. 운영 client-index는 재생성본과 바이트 단위 일치(SHA-256 `5cc31fa61622c34d366e9ab635d8d9f7f06dc11be4fb8d2b28c842654abf6f08`). 전체 사이트의 미확인 데이터와 추가 기능 한계는 그대로 남으며 이 릴리스가 이를 해결했다는 뜻은 아니다.
+
+#### Crafting mastery grade conversion (2026-10-16)
+- Explicit CraftMastery rows 1–50 map to Beginner (Novice), 51–100 to Intermediate (Professional). Localized grade names and the user's professional Lv5/raw requirement 55 corroborate the within-grade offset.
+- Optional hashed grade ranges preserve legacy v1 loading. Both probability views accept either direct gap or grade/within-grade level. Novice20 versus required55 gives -35 and no rate; Professional5 gives55/gap0; Professional15 gives65/gap10. Validate contiguous unique grades and reject malformed/out-of-range levels.
+- Base mastery only: no bonus modifiers or live crafting permission claims. No saved-data writes or backend changes.
+
+검증: Python 95개, 프런트엔드 19묶음, TypeScript·ESLint·빌드 및 제작 계산기/데이터베이스 브라우저 검사 통과. 등급 선택 상자의 접근성 이름 때문에 초기 브라우저 검사가 실패해 명시적 aria-label로 수정한 뒤 통과했다. 기존 아이템·스킬·레시피 데이터 필드는 모두 동일하다. 기존 번들 크기 경고 유지.

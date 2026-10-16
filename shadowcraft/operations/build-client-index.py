@@ -120,6 +120,26 @@ def craft_curves(records):
     return curves
 
 
+def mastery_grades(records, entries):
+    groups = []
+    seen = set()
+    for level, row in enumerate(records, 1):
+        if type(row['CraftMasteryLevel']) is not int or row['CraftMasteryLevel'] != level:
+            raise ValueError('Discontinuous mastery levels')
+        key = row['CraftMasteryGrade'].removeprefix('ECraftMasteryGrade::')
+        if not key or not row['CraftMasteryGrade'].startswith('ECraftMasteryGrade::'):
+            raise ValueError('Invalid mastery grade')
+        if not groups or groups[-1]['key'] != key:
+            if key in seen:
+                raise ValueError('Discontinuous mastery grade')
+            seen.add(key)
+            groups.append({'key': key, 'name': plain(entries['String_UI_MASTERYGRADE_' + key.upper() + '_body']), 'min': level, 'max': level})
+        groups[-1]['max'] = level
+    if not groups or len(groups) > 16 or len(records) > 10000:
+        raise ValueError('Invalid mastery table')
+    return groups
+
+
 def build(tables, localization, build_id, effect_tables=None):
     if not isinstance(build_id, str) or not re.fullmatch(r'[1-9][0-9]*', build_id):
         raise ValueError('Explicit Steam build ID required')
@@ -132,6 +152,11 @@ def build(tables, localization, build_id, effect_tables=None):
     if rate_path.exists():
         curves = craft_curves(read(rate_path)['Properties']['Data'])
         hashes['CraftRecipeRate'] = hashlib.sha256(rate_path.read_bytes()).hexdigest()
+    grades = None
+    mastery_path = tables / 'CraftMastery.json'
+    if mastery_path.exists():
+        grades = mastery_grades(read(mastery_path)['Properties']['Data'], entries)
+        hashes['CraftMastery'] = hashlib.sha256(mastery_path.read_bytes()).hexdigest()
     effects = None
     if effect_tables is not None:
         effects = {}
@@ -279,7 +304,8 @@ def build(tables, localization, build_id, effect_tables=None):
             'source': {'kind': 'installed-steam-client', 'appId': 3393110, 'buildId': build_id,
                        'region': 'global', 'language': 'en-US', 'validation': 'structural-and-reference-checks',
                        'liveAvailabilityVerified': False, 'inputSha256': hashes},
-            'items': items, 'skills': skills, 'recipes': recipes}
+            'items': items, 'skills': skills, 'recipes': recipes,
+            **({'craftMasteryGrades': grades} if grades is not None else {})}
 
 
 if __name__ == '__main__':

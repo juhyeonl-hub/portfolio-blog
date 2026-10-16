@@ -61,3 +61,9 @@ for(const patch of [{valueScope:'final-damage'},{resolvedReferences:null},{resol
  const bad=structuredClone(fixture);bad.skills[0].description={...structuredClone(shadowblade),...patch};assert.throws(()=>parse(bad));
 }
 console.log('592 base-effect substitutions, provenance and unresolved damage formulas PASS');
+
+assert.deepEqual(actual.craftMasteryGrades.map(g=>[g.min,g.max]),[[1,50],[51,100]]);
+for(const grades of [[],null,[{key:'x',name:'X',min:2,max:50}],[{key:'x',name:'X',min:1,max:0}], [{key:'x',name:'X',min:1,max:50},{key:'x',name:'X',min:51,max:100}]]){
+ const bad=structuredClone(fixture);bad.craftMasteryGrades=grades;assert.throws(()=>parse(bad));
+}
+console.log('Mastery grade continuity, duplicates, bounds and legacy compatibility PASS');

@@ -10,6 +10,16 @@ module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
 class ClientIndexTests(unittest.TestCase):
+    def test_mastery_ranges(self):
+        entries = {'String_UI_MASTERYGRADE_BEGINNER_body': 'Novice', 'String_UI_MASTERYGRADE_INTERMEDIATE_body': 'Professional'}
+        rows = [{'CraftMasteryLevel': i, 'CraftMasteryGrade': 'ECraftMasteryGrade::' + ('Beginner' if i <= 50 else 'Intermediate')} for i in range(1, 101)]
+        grades = module.mastery_grades(rows, entries)
+        self.assertEqual([(g['min'], g['max']) for g in grades], [(1,50),(51,100)])
+        self.assertEqual(grades[1]['min'] + 5 - 1, 55)
+        for broken in [[], rows[1:], rows + rows[:1], [rows[0], {**rows[1], 'CraftMasteryLevel': True}]]:
+            with self.assertRaises(ValueError): module.mastery_grades(broken, entries)
+        with self.assertRaises(KeyError): module.mastery_grades(rows, {})
+
     def test_rate_validation(self):
         valid = [{'Name': 'test', 'Rates': [{'Gap': 0, 'Rate': 67506212}, {'Gap': 1, 'Rate': 68198244}]}]
         self.assertEqual(module.craft_curves(valid)['test'], [67506212, 68198244])
