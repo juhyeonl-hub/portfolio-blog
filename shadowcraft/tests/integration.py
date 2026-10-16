@@ -8,6 +8,12 @@ URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft
 keys=['assassin','gladiator','templar','ranger','elementalist','sorcerer','cleric','chanter']
 names=['살성','검성','수호성','궁성','정령성','마도성','치유성','호법성']
 passed=[]
+def open_settings(page):
+ page.locator('.sidebar .nav').filter(has_text='스킬 & 특화').click()
+ page.locator('.planner-context').evaluate('(el)=>el.open=true')
+ if page.locator('.point-entry input').count()==0:
+  page.get_by_role('button',name='내 포인트 입력',exact=False).click()
+
 with sync_playwright() as p:
  browser=p.chromium.launch(headless=True)
  context=browser.new_context(accept_downloads=True)
@@ -20,11 +26,13 @@ with sync_playwright() as p:
  for key,name in zip(keys,names):
   page.locator('.class-picker button').filter(has_text=name).click()
   expect(page.locator('.breadcrumb b')).to_have_text(name)
+  open_settings(page)
   field=page.locator('.point-entry input').nth(0);field.fill(str(100+keys.index(key)))
   page.wait_for_function("key => !!localStorage.getItem(key)",arg='shadowcraft-plan-v1' if key=='assassin' else 'shadowcraft-plan-v1:'+key)
-  page.reload(wait_until='domcontentloaded');expect(page.locator('.point-entry input').nth(0)).to_have_value(str(100+keys.index(key)))
+  page.reload(wait_until='domcontentloaded');open_settings(page);expect(page.locator('.point-entry input').nth(0)).to_have_value(str(100+keys.index(key)))
  passed.append('8 classes: isolated edits, selected class and reload persistence during catalog failure')
  page.locator('.class-picker button').filter(has_text='살성').click()
+ open_settings(page)
  page.locator('.point-entry input').nth(0).fill('80');page.locator('.point-entry input').nth(1).fill('5');page.locator('.point-entry input').nth(2).fill('10')
  page.get_by_role('button',name='내 포인트로 추천 미리보기',exact=True).click()
  page.wait_for_selector('.recommend-preview')
@@ -46,7 +54,7 @@ with sync_playwright() as p:
  page.get_by_role('button',name=re.compile('캐릭터.*불러오기|다시 불러오기|캐릭터 변경')).first.click()
 
  page.locator('.recent-characters button').first.click()
- page.reload(wait_until='domcontentloaded');expect(page.locator('.character-main h3')).to_contain_text('검증캐릭터')
+ page.reload(wait_until='domcontentloaded');open_settings(page);expect(page.locator('.character-main h3')).to_contain_text('검증캐릭터')
  passed.append('fixture region/server lookup, search/profile, recent selection and character reload')
  # Add equipment through the UI before exporting the combined plan.
  page.locator('.sidebar .nav').filter(has_text='내 장비 & 성장').click()

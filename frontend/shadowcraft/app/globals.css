@@ -44,3 +44,19 @@
 .terrain-canvas { margin-top: 12px; }
 /* Keep every navigation item reachable as planner tools grow or viewport height shrinks. */
 .sidebar{overflow-y:auto;overscroll-behavior:contain}
+
+/* Build-first entry: configure optionally and preview before saving. */
+.quick-build {display:grid;gap:18px;min-width:0}
+.quick-build h2,.quick-build h3,.quick-build p {margin:0}
+.quick-build-options {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.quick-build-options button {display:flex;flex-direction:column;align-items:flex-start;white-space:normal;text-align:left;padding:20px;gap:10px}
+.quick-build-options button.selected {border-color:#a78bfa;background:#302744}
+.quick-build-options strong {font-size:20px}
+.quick-build-options span,.quick-build-options small {line-height:1.6}
+.quick-preview {border:1px solid #67558c;border-radius:12px;padding:20px;display:grid;gap:16px}
+.quick-preview ul {padding-left:22px;line-height:1.9;overflow-wrap:anywhere}
+.quick-actions {display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.quick-build summary,.planner-context>summary {cursor:pointer;padding:12px 0;font-weight:600}
+.quick-build input[type=number] {display:block;width:100%;min-width:0;margin-top:8px}
+.quick-edit {border-top:1px solid #393344;padding-top:8px}
+@media(max-width:600px){.quick-build-options{grid-template-columns:1fr}.quick-preview{padding:14px}.quick-actions .button{width:100%}}
