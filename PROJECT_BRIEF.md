@@ -516,3 +516,14 @@ portfolio-blog/
 검증: Python 95개, 프런트엔드 19묶음, TypeScript·ESLint·빌드 및 제작 계산기/데이터베이스 브라우저 검사 통과. 등급 선택 상자의 접근성 이름 때문에 초기 브라우저 검사가 실패해 명시적 aria-label로 수정한 뒤 통과했다. 기존 아이템·스킬·레시피 데이터 필드는 모두 동일하다. 기존 번들 크기 경고 유지.
 
 운영 검증: `d205921`, Vercel `portfolio-blog-hv6ggj5az-xxjuon-4682s-projects.vercel.app` Ready 및 juhyeonl.dev 연결. 운영 제작 계산기·데이터베이스 검사 통과(입문20 미달, 전문5 차이0, 전문15 차이10, 잘못된 입력, 모바일, 저장 보존). 재생성/운영 데이터 바이트 일치, SHA-256 `d694bd1e5109ae1efc6a9be778fa39de5a3687f38362ec2e2d42395fdd4cf8ae`.
+
+## Current product scope — user decision 2026-10-16
+This decision supersedes prior whole-reference-site parity requirements and historical completion blockers.
+- Remove crafting from the active product: calculator tab, recipe browsing and recipe links. Preserve source data and existing plans.
+- Exclude predictive final combat/DPS simulation. Proc-triggered cooldown resets and rotations make a simplistic estimate unsuitable. A damage meter is NOT commissioned by this discussion.
+- Retain the eight-class build planner, equipment comparison, save/share, official skill/item reference and map/location work.
+- Do not build a real-time leaderboard or server congestion mirror.
+- Direction for a later character-reference feature: inspect a chosen public character's equipment/build, compare with one's own and explicitly apply supported fields. Do not claim ranking status without evidence or overwrite plans automatically. Full equipment availability still needs investigation.
+- Immediate acceptance: no crafting tab or recipe navigation in the product; item/skill browsing, import and stored plans remain functional. Map world-position projection remains a priority.
+
+범위 변경 검증: 프런트 19묶음, TypeScript·ESLint·빌드, 데이터베이스/8직업 통합 브라우저 검사 통과. 제작 진입점 부재, 아이템·스킬 조회, 모바일·재시도·저장 보존 확인. 기존 대형 번들 경고 유지. 원본 데이터 및 개인 계획 형식은 변경하지 않았다.
