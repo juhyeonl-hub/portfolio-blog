@@ -8,7 +8,7 @@ with sync_playwright() as p:
     errors,tiles,posts=[],[],[]
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.on('request',lambda r:posts.append(r.url) if r.method=='POST' else None)
-    page.on('response',lambda r:tiles.append((r.url,r.status)) if '/maps/steam-25926599/verteron/' in r.url and r.url.endswith('.webp') else None)
+    page.on('response',lambda r:tiles.append((r.url,r.status)) if '/maps/steam-25926599/' in r.url and r.url.endswith('.webp') else None)
     page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
     page.goto(url)
     page.get_by_role('tab',name='지도 & 수집',exact=True).click()
@@ -36,6 +36,26 @@ with sync_playwright() as p:
     box=canvas.bounding_box();page.mouse.move(box['x']+box['width']*.5,box['y']+box['height']*.5);page.mouse.down();page.mouse.move(box['x']+box['width']*.6,box['y']+box['height']*.5);page.mouse.up()
     assert float(canvas.get_attribute('viewBox').split()[0])<300
     panel.get_by_role('button',name='지형 전체 보기',exact=True).click()
+    expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
+    assert page.evaluate('JSON.stringify({...localStorage})')==before
+    panel.get_by_label('공식 지형 지역',exact=True).select_option('altgard')
+    expect(panel.get_by_role('group')).to_have_count(0)
+    panel.get_by_role('button',name='공식 Altgard 지형 열기',exact=True).click()
+    canvas=panel.get_by_role('group',name='Altgard 지형 이미지',exact=True)
+    expect(canvas.locator('image')).to_have_count(64)
+    for _ in range(200):
+        if len({u for u,status in tiles if status==200 and '/altgard/' in u})==64: break
+        page.wait_for_timeout(100)
+    assert len({u for u,status in tiles if status==200 and '/altgard/' in u})==64
+    expect(panel.get_by_role('alert')).to_have_count(0)
+    canvas.screenshot(path='/tmp/a2bc-altgard-browser.png')
+    expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
+    assert all('/altgard/' in x for x in canvas.locator('image').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))'))
+    panel.get_by_role('button',name='지형 지도 확대',exact=True).click()
+    expect(canvas).to_have_attribute('viewBox','250 250 500 500')
+    panel.get_by_label('공식 지형 지역',exact=True).select_option('verteron')
+    panel.get_by_role('button',name='공식 Verteron 지형 열기',exact=True).click()
+    canvas=panel.get_by_role('group',name='Verteron 지형 이미지',exact=True)
     expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
     assert page.evaluate('JSON.stringify({...localStorage})')==before
     page.set_viewport_size({'width':390,'height':844})

@@ -5,16 +5,16 @@ import NpcDatabase from './npc-database';
 
 import {parseClientIndex, type ClientIndex} from '../lib/client-index';
 
-export default function ClientDatabase({active}: {active: boolean}) {
+export default function ClientDatabase({active, initialSkillId = ''}: {active: boolean; initialSkillId?: string}) {
   const [data, setData] = useState<ClientIndex | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [retry, setRetry] = useState(0);
-  const [section, setSection] = useState<'items' | 'skills' | 'recipes'>('items');
-  const [query, setQuery] = useState('');
+  const [section, setSection] = useState<'items' | 'skills' | 'recipes'>(initialSkillId ? 'skills' : 'items');
+  const [query, setQuery] = useState(initialSkillId);
   const [filter, setFilter] = useState('');
   const [page, setPage] = useState(0);
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState(initialSkillId);
   const [attempts, setAttempts] = useState('1');
   useEffect(() => {
     if (!active || data) return;
@@ -71,6 +71,7 @@ export default function ClientDatabase({active}: {active: boolean}) {
           {item && <><h3>{item.name}</h3><p>ID {item.id} · {item.kind} · {item.grade} · 아이템 레벨 {item.level}</p><p>제작법 등록 여부를 보여줍니다. 현재 서버의 획득 가능 여부나 성공 확률은 확인되지 않았습니다.</p>{recipeGroups.map(({label, rows}) => <details key={label}><summary>{label} ({rows.length}개)</summary>{rows.length ? <ul>{rows.map(r => <li key={r.id}><button className="button ghost" onClick={() => navigate('recipes', r.id)}>{items.get(r.itemId)?.name ?? r.itemId} · {r.category} · {r.race} · {r.id}</button></li>)}</ul> : <p>등록된 제작법이 없습니다.</p>}</details>)}</>}
           {skill && <><h3>{skill.name}</h3><p>ID {skill.id} · {skill.classKey}</p>
             <div aria-label="공식 글로벌 스킬 설명"><h4>공식 글로벌 스킬 설명</h4>
+              {skill.description?.valueScope === 'base-client-values' && <p className="subtle">클라이언트 기본값 기준 · 레벨 성장·장비·특화 효과 미적용</p>}
               {skill.description ? <p style={{whiteSpace: 'pre-line'}}>{skill.description.text}</p> : <p>이 데이터에는 영문 설명이 없습니다.</p>}
               {skill.traits && <p>{skill.traits.text}</p>}
               {!!((skill.description?.unresolvedValues ?? 0) + (skill.traits?.unresolvedValues ?? 0)) && <p className="subtle">[unresolved value]는 아직 계산하지 않은 효과 수치입니다. 장비·레벨·특화에 따른 최종 수치는 반영하지 않습니다.</p>}

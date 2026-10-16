@@ -36,3 +36,12 @@ assert.ok(quick.description.text.includes('restores 100 MP'));
 assert.equal(quick.description.unresolvedValues,2);
 assert.ok(actual.skills.every(s=>s.description));
 console.log('Official descriptions and 296 resolved combo recipe references PASS');
+const shadowblade=actual.skills.find(s=>s.id==='13020000').description;
+assert.ok(shadowblade.text.includes('reduces Move Speed by 40% for 5s'));
+assert.equal(shadowblade.valueScope,'base-client-values');
+assert.equal(shadowblade.unresolvedValues,2);
+assert.equal(actual.skills.reduce((n,s)=>n+(s.description?.resolvedReferences.length??0)+(s.traits?.resolvedReferences.length??0),0),592);
+for(const patch of [{valueScope:'final-damage'},{resolvedReferences:null},{resolvedReferences:[{reference:'bad',value:'40'}]},{resolvedReferences:[{reference:'se:1:effect_value01',value:'NaN'}]}]){
+ const bad=structuredClone(fixture);bad.skills[0].description={...structuredClone(shadowblade),...patch};assert.throws(()=>parse(bad));
+}
+console.log('592 base-effect substitutions, provenance and unresolved damage formulas PASS');

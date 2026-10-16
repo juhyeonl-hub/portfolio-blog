@@ -2,12 +2,13 @@
 
 No decoder implementation or third-party database is bundled. Unknown fields,
 combat scaling, success probabilities and inferred fees are deliberately omitted.
-Usage: python3 build-client-index.py DECODED_TABLE_DIR ENGLISH_JSON STEAM_BUILD_ID OUTPUT_JSON
+Usage: python3 build-client-index.py DECODED_TABLE_DIR ENGLISH_JSON STEAM_BUILD_ID OUTPUT_JSON [EFFECT_TABLE_DIR]
 """
 import hashlib
 import json
 import re
 import sys
+from decimal import Decimal
 from pathlib import Path
 
 
@@ -36,23 +37,92 @@ def plain(value):
     return result
 
 
-def description(value):
+def resolve_effect(token, effects):
+    """Interpret explicit localization field/formatter references at base values.
+
+    Array indexes are the one-based field numbers in the client localization.
+    No damage formulas, level overrides, stat context or expression evaluation.
+    """
+    match = re.fullmatch(r'(se|abe):([1-9][0-9]*):(effect_value[0-9]{2}|value[0-9]{2}|aggro_absolute)(?::(divide100|divide100abs|divide1000|noneabs|time))?', token)
+    if not match or effects is None:
+        return None
+    kind, key, field, formatter = match.groups()
+    table = 'SkillEffect' if kind == 'se' else 'SkillAbnormalEffect'
+    row = effects[table].get(key)
+    if row is None:
+        raise ValueError('Missing effect reference: ' + token)
+    if field == 'aggro_absolute' and kind == 'se':
+        raw = str(row['AggroAbsolute'])
+    elif field.startswith('effect_value' if kind == 'se' else 'value'):
+        index = int(field[-2:]) - 1
+        values = row['EffectValueList' if kind == 'se' else 'Values']
+        if index < 0 or index >= len(values):
+            raise ValueError('Effect value index out of range: ' + token)
+        raw = values[index]
+    else:
+        return None
+    # Values can contain formulas or symbolic names; never eval them.
+    if not isinstance(raw, str) or not re.fullmatch(r'-?[0-9]{1,12}(?:\.[0-9]{1,8})?', raw):
+        return None
+    value = Decimal(raw)
+    if formatter in ('divide100', 'divide100abs'):
+        value /= 100
+    elif formatter in ('divide1000', 'time'):
+        value /= 1000
+    if formatter in ('divide100abs', 'noneabs'):
+        value = abs(value)
+    result = format(value, 'f')
+    if '.' in result:
+        result = result.rstrip('0').rstrip('.')
+    if result == '-0':
+        result = '0'
+    return result + ('s' if formatter == 'time' else '')
+
+
+def description(value, effects=None):
     """Keep literal official prose; never present unresolved formulas as numbers."""
     text = plain(value)
-    tokens = re.findall(r'\{[^{}]+\}', text)
-    text = re.sub(r'\{[^{}]+\}', '[unresolved value]', text)
+    resolved = []
+    unresolved = []
+    def replace(match):
+        token = match.group(0)[1:-1]
+        result = resolve_effect(token, effects)
+        if result is None:
+            unresolved.append(token)
+            return '[unresolved value]'
+        resolved.append({'reference': token, 'value': result})
+        return result
+    text = re.sub(r'\{[^{}]+\}', replace, text)
     if '{' in text or '}' in text:
         raise ValueError('Malformed skill description placeholder')
-    return {'text': text, 'unresolvedValues': len(tokens)}
+    result = {'text': text, 'unresolvedValues': len(unresolved)}
+    if effects is not None:
+        result.update(valueScope='base-client-values', resolvedReferences=resolved)
+    return result
 
 
-def build(tables, localization, build_id):
+def build(tables, localization, build_id, effect_tables=None):
     if not isinstance(build_id, str) or not re.fullmatch(r'[1-9][0-9]*', build_id):
         raise ValueError('Explicit Steam build ID required')
     tables = Path(tables)
     entries = read(localization)['Entries']
     rows = {}
     hashes = {}
+    effects = None
+    if effect_tables is not None:
+        effects = {}
+        for name in ('SkillEffect', 'SkillAbnormalEffect'):
+            path = Path(effect_tables) / (name + '.json')
+            records = read(path)['Properties']['Data']
+            if not isinstance(records, list) or not records:
+                raise ValueError('Missing effect rows: ' + name)
+            effects[name] = {}
+            for row in records:
+                key = identifier(row['ID']['Value'])
+                if key in effects[name]:
+                    raise ValueError('Duplicate effect ID')
+                effects[name][key] = row
+            hashes[name] = hashlib.sha256(path.read_bytes()).hexdigest()
     for name in ('Item', 'CraftRecipe', 'Skill', 'SkillList', 'SkillAcquireData'):
         path = tables / (name + '.json')
         rows[name] = read(path)['Properties']['Data']
@@ -158,8 +228,8 @@ def build(tables, localization, build_id):
         effect = entries.get(prefix + '_skill_desc_effect')
         traits = entries.get(prefix + '_skill_spec_effect')
         skills.append({'id': key, 'name': name, 'classKey': cls, 'learning': learning[key],
-                       'description': description(effect) if effect else None,
-                       'traits': description(traits) if traits else None})
+                       'description': description(effect, effects) if effect else None,
+                       'traits': description(traits, effects) if traits else None})
     if len(skills) != 280 or any(sum(s['classKey'] == c.lower() for s in skills) != 35 for c in active_classes):
         raise ValueError('Unexpected playable class roster')
     hashes['English'] = hashlib.sha256(Path(localization).read_bytes()).hexdigest()
@@ -171,9 +241,9 @@ def build(tables, localization, build_id):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 5:
-        raise SystemExit('Expected table directory, English localization JSON, Steam build ID, output JSON')
-    result = build(sys.argv[1], sys.argv[2], sys.argv[3])
+    if len(sys.argv) not in (5, 6):
+        raise SystemExit('Expected table directory, English localization JSON, Steam build ID, output JSON, optional effect table directory')
+    result = build(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[5] if len(sys.argv) == 6 else None)
     output = Path(sys.argv[4])
     output.parent.mkdir(parents=True, exist_ok=True)
     temporary = output.with_suffix('.tmp')

@@ -1,0 +1,40 @@
+{
+  "steamBuildId": "25926599",
+  "permission": "User explicitly approved local runtime memory analysis on 2026-10-16; no upload or Git inclusion of dumps",
+  "tools": {
+    "jmapVersion": "0.2.0",
+    "windowsReleaseArchiveSha256": "1209186bb71f3affc330164ba21431f8518c371ecdc6a23a4c1e73e31c20c493",
+    "procdumpVersions": [
+      "11.1",
+      "12.02"
+    ],
+    "procdumpSignature": "Valid Microsoft Corporation"
+  },
+  "attempts": [
+    {
+      "method": "jmap direct process read, elevated, native reflection output only",
+      "result": "failed",
+      "error": "ReadProcessMemory partial read 0x8007012B"
+    },
+    {
+      "method": "ProcDump clone capture, elevated, 11.1",
+      "result": "failed",
+      "error": "Target process no longer running; 0x800707D1"
+    },
+    {
+      "method": "ProcDump clone capture, elevated, 12.02",
+      "result": "failed",
+      "error": "Target process no longer running; 0x800707D1"
+    },
+    {
+      "method": "ProcDump direct capture, elevated, 12.02, 15-second collection timeout",
+      "result": "failed",
+      "error": "Target process no longer running; 0x800707D1"
+    }
+  ],
+  "dumpCreated": false,
+  "mappingCreated": false,
+  "causeConfirmed": false,
+  "note": "Target processes were still listed after clone failures, but no AION2 process was listed at the final check after direct capture. Exit cause is unconfirmed. Runtime access stopped. No protection settings were changed.",
+  "finalProcessListed": false
+}

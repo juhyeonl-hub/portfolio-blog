@@ -1,4 +1,4 @@
-"""Package reviewed Global Verteron terrain tiles; no world-marker projection.
+"""Package reviewed Global terrain tiles; no world-marker projection.
 
 Requires Pillow in the operator environment (not a runtime app dependency).
 Usage: build-terrain-assets.py PNG_DIR WORLD_MAP_JSON OUTPUT_DIR [DISPLAY_METADATA_JSON]
@@ -14,28 +14,35 @@ from PIL import Image, ImageChops, ImageStat
 
 GRID = 8  # World_L_A's reviewed SectorSize, not inferred from filenames.
 PIXELS = 2048  # Reviewed SectorTextureSize.
+MAPS = {'World_L_A': ('Verteron', 'verteron', 10),
+        'World_D_A': ('Altgard', 'altgard', 11)}
+# Reviewed maximum seam RGB difference: Verteron 7.935, Altgard 10.829.
 
 
 def validate_settings(path):
     data = json.loads(Path(path).read_text())['Properties']['Data']
-    if data['WorldMapDataTableKey'] != 'World_L_A' or data['SectorSize'] != {'X': GRID, 'Y': GRID} or data['SectorTextureSize'] != PIXELS:
+    if data['WorldMapDataTableKey'] not in MAPS or data['SectorSize'] != {'X': GRID, 'Y': GRID} or data['SectorTextureSize'] != PIXELS:
         raise ValueError('Map settings differ from the reviewed snapshot')
+    return data['WorldMapDataTableKey']
 
 
 def package(source, settings, output, display_metadata=None):
     source, output = Path(source), Path(output)
-    validate_settings(settings)
+    map_key = validate_settings(settings)
+    name, slug, seam_limit = MAPS[map_key]
+    # Global Altgard's exported texture mip is 1024 despite SectorTextureSize=2048.
+    source_pixels = 1024 if map_key == 'World_D_A' else PIXELS
     if output.exists():
         raise ValueError('Output must be a new directory; preserve the previous export')
     edges, files = {}, {}
     for x in range(GRID):
         for y in range(GRID):
-            path = source / f'World_L_A_{x:02}_{y:02}.png'
+            path = source / f'{map_key}_{x:02}_{y:02}.png'
             with Image.open(path) as im:
-                if im.size != (PIXELS, PIXELS):
+                if im.size != (source_pixels, source_pixels):
                     raise ValueError('Unexpected tile dimensions: '+path.name)
                 rgb = im.convert('RGB')
-                edges[x,y] = [rgb.crop(box) for box in [(0,0,1,PIXELS),(PIXELS-1,0,PIXELS,PIXELS),(0,0,PIXELS,1),(0,PIXELS-1,PIXELS,PIXELS)]]
+                edges[x,y] = [rgb.crop(box) for box in [(0,0,1,source_pixels),(source_pixels-1,0,source_pixels,source_pixels),(0,0,source_pixels,1),(0,source_pixels-1,source_pixels,source_pixels)]]
             files[x,y] = path
     seams = []
     for (x,y), edge in edges.items():
@@ -44,13 +51,12 @@ def package(source, settings, output, display_metadata=None):
                 error = statistics.mean(ImageStat.Stat(ImageChops.difference(edge[a],edges[neighbor][b])).mean)
                 seams.append({'x':x,'y':y,'direction':direction,'rgbMeanAbsoluteDifference':round(error,6)})
     # A conservative review gate, not a universal definition of a correct map.
-    # Observed maximum is 7.935 / 255 for this build; reject new discontinuities.
-    if max(row['rgbMeanAbsoluteDifference'] for row in seams) > 10:
+    if max(row['rgbMeanAbsoluteDifference'] for row in seams) > seam_limit:
         raise ValueError('Tile seam exceeds reviewed tolerance; inspect orientation and source')
-    manifest = {'schema':'a2bc-terrain-v1','name':'Verteron','mapKey':'World_L_A','gridSize':GRID,
+    manifest = {'schema':'a2bc-terrain-v1','name':name,'mapKey':map_key,'gridSize':GRID,
                 'source':{'kind':'installed-steam-client','appId':3393110,'buildId':'25926599','region':'global'},
-                'basePath':'/shadowcraft/maps/steam-25926599/verteron',
-                'sourceTilePixels':PIXELS,'displayTilePixels':1024,
+                'basePath':'/shadowcraft/maps/steam-25926599/'+slug,
+                'sourceTilePixels':source_pixels,'displayTilePixels':1024,
                 'worldProjectionVerified':False,'markerSupport':False,
                 'settingsSha256':hashlib.sha256(Path(settings).read_bytes()).hexdigest(),'seams':seams,'tiles':[]}
     output.parent.mkdir(parents=True,exist_ok=True)

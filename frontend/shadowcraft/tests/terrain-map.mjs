@@ -17,3 +17,13 @@ assert.equal(manifest.worldProjectionVerified,false);assert.equal(manifest.marke
 assert.deepEqual(new Set(manifest.tiles.map(t=>`${t.x}_${t.y}`)),new Set(tiles({x:0,y:0,zoom:1},8).map(t=>`${t.x}_${t.y}`)));
 for(const t of manifest.tiles){const bytes=readFileSync(root+'/'+t.file);assert.equal(createHash('sha256').update(bytes).digest('hex'),t.sha256);assert.equal(bytes.length,t.bytes);assert.equal(bytes.subarray(8,12).toString(),'WEBP');}
 console.log('Terrain: viewport bounds, all 64 assets/hashes, 112 seam records and explicit marker/projection limits PASS');
+const altRoot='../public/shadowcraft/maps/steam-25926599/altgard';
+const alt=JSON.parse(readFileSync(altRoot+'/manifest.json'));
+assert.deepEqual(JSON.parse(readFileSync('lib/data/terrain-altgard.json')),Object.fromEntries(['name','source','gridSize','basePath'].map(k=>[k,alt[k]])));
+assert.equal(alt.mapKey,'World_D_A');assert.equal(alt.source.region,'global');
+assert.equal(alt.tiles.length,64);assert.equal(alt.seams.length,112);assert.equal(alt.sourceTilePixels,1024);
+assert.equal(alt.worldProjectionVerified,false);assert.equal(alt.markerSupport,false);
+assert.ok(Math.max(...alt.seams.map(s=>s.rgbMeanAbsoluteDifference))<=11);
+assert.deepEqual(new Set(alt.tiles.map(t=>`${t.x}_${t.y}`)),new Set(tiles({x:0,y:0,zoom:1},8).map(t=>`${t.x}_${t.y}`)));
+for(const t of alt.tiles){const bytes=readFileSync(altRoot+'/'+t.file);assert.equal(createHash('sha256').update(bytes).digest('hex'),t.sha256);assert.equal(bytes.length,t.bytes);}
+console.log('Altgard: 64 Global tiles, 112 seams, metadata and all hashes PASS');

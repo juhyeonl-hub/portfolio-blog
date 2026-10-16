@@ -1,6 +1,6 @@
 type Item = {id: string; name: string; kind: string; grade: string; level: number};
 type Learning = {level: number; autoLearn: boolean; requiredCharacterLevel: number; skillPoints: number; stigmaPoints: number; ascensionRequirement: string};
-type Description = {text: string; unresolvedValues: number};
+type Description = {text: string; unresolvedValues: number; valueScope?: 'base-client-values'; resolvedReferences?: {reference: string; value: string}[]};
 type Skill = {id: string; name: string; classKey: string; learning?: Learning[]; description?: Description | null; traits?: Description | null};
 type Recipe = {id: string; itemId: string; outputQuantity: number; category: string; race: string; masteryLevel: number;
   ingredients: {itemId: string; quantity: number; enchant: number}[]; hasCombo: boolean; comboRecipeId?: string | null; successRate: null; feePerAttempt: null};
@@ -35,6 +35,14 @@ export function parseClientIndex(value: unknown): ClientIndex {
         const desc = object(s[field]);
         if (!text(desc.text) || /[{}<>]/.test(desc.text) || !number(desc.unresolvedValues, 0, 1000) ||
             (desc.text.match(/\[unresolved value\]/g) ?? []).length !== desc.unresolvedValues) fail();
+        if (desc.valueScope !== undefined || desc.resolvedReferences !== undefined) {
+          if (desc.valueScope !== 'base-client-values' || !Array.isArray(desc.resolvedReferences) || desc.resolvedReferences.length > 1000) fail();
+          for (const entry of desc.resolvedReferences) {
+            const ref = object(entry);
+            if (typeof ref.reference !== 'string' || !/^(se|abe):[1-9][0-9]*:(effect_value[0-9]{2}|value[0-9]{2}|aggro_absolute)(?::(divide100|divide100abs|divide1000|noneabs|time))?$/.test(ref.reference) ||
+                typeof ref.value !== 'string' || !/^-?\d{1,12}(?:\.\d{1,11})?s?$/.test(ref.value)) fail();
+          }
+        }
       }
     }
     // Older v1 exports remain readable during deployment/cache transitions.

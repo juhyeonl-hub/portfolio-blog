@@ -427,3 +427,13 @@ portfolio-blog/
 - Remaining: interpret dynamic effect fields/level overrides, map projection, crafting probability/fees and other previously recorded full-site requirements. No whole-project completion claim.
 
 운영 검증: `c28cce4`, Vercel `portfolio-blog-bzoqgxiht-xxjuon-4682s-projects.vercel.app` Ready 및 `juhyeonl.dev` 연결 확인. 운영 데이터베이스 브라우저 검사에서 공식 설명·제작 결과 양방향 이동·재료 계산·오류 재시도·390px 화면·저장 보존 통과. 원본에서 재생성한 인덱스는 커밋 파일과 바이트 단위로 일치한다.
+
+#### Base effect formatting and second official terrain (2026-10-16)
+- [x] Resolve 592 explicit se/abe localization references from the installed Global SkillEffect/SkillAbnormalEffect tables. Preserve exact decimal formatting, reference/value provenance and source hashes. Display base-client scope; do not evaluate damage/heal formulas or claim level/gear/spec adjustments. 94 of 280 skill descriptions now have no unresolved tokens; 447 tokens across descriptions/traits remain unresolved.
+- [x] Replace the planner's external skill-description navigation with an internal official Global detail action. Selecting a skill resets only the database view, never the saved build.
+- [x] Extract and package 64 Altgard terrain tiles from the same Global Steam build. Verify 112 seams (maximum RGB mean difference 10.828776), hashes and dimensions; retain the Verteron review tolerance separately. Altgard exported mip is 1024px although its settings say 2048px; record actual image dimensions and the original settings hash.
+- [x] Add lazy Verteron/Altgard selection, resetting viewport/error state per region. Preserve user-map progress. Neither terrain claims world-marker projection.
+- Validation: Python 67, frontend 19 suites, backend 24, TypeScript, ESLint, build; official database, two-region terrain and eight-class browser tests passed. Existing large-chunk warning remains. Initial Altgard dimension assumption was rejected and corrected after inspecting all 64 PNGs; map selection accessibility naming was fixed after browser failure.
+- Runtime mapping investigation: user explicitly approved local game-memory analysis. Tools and output are isolated outside the repository; no memory data is uploaded. Results are recorded separately; completion of the mapping is not assumed from authorization.
+
+메모리 매핑 조사 결과: 관리자 권한 jmap 직접 읽기는 `0x8007012B`, Microsoft 서명 ProcDump 11.1/12.02 복제 방식 및 12.02 단일 캡처는 `0x800707D1`로 실패했다. 덤프·새 매핑 파일은 생성되지 않았다. 복제 실패 직후에는 대상 프로세스가 조회됐지만 단일 캡처 후 최종 확인에서는 조회되지 않았다. 종료 원인과 도구 실행의 인과관계는 확정하지 않는다. 반복 실행을 멈췄고, 결과만 `operations/runtime-mapping-attempt.json`에 기록했다. 원본 메모리나 계정 정보를 Git/외부로 전송하지 않았다.

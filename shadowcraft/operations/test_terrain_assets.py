@@ -26,6 +26,19 @@ class TerrainAssetsTests(unittest.TestCase):
         self.assertFalse(result['worldProjectionVerified']);self.assertFalse(result['markerSupport'])
         self.assertTrue((self.out/'manifest.json').exists())
         with self.assertRaises(ValueError):module.package(self.source,self.settings,self.out)
+    def test_altgard_actual_mip_dimensions(self):
+        data=json.loads(self.settings.read_text())
+        data['Properties']['Data']['WorldMapDataTableKey']='World_D_A'
+        self.settings.write_text(json.dumps(data))
+        for x in range(2):
+            for y in range(2):
+                Image.new('RGB',(1024,1024),(20,30,40)).save(self.source/f'World_D_A_{x:02}_{y:02}.png')
+        result=module.package(self.source,self.settings,self.out)
+        self.assertEqual(result['name'],'Altgard')
+        self.assertEqual(result['sourceTilePixels'],1024)
+        self.assertTrue(result['basePath'].endswith('/altgard'))
+        self.assertEqual(result['mapKey'],'World_D_A')
+
     def test_missing(self):
         (self.source/'World_L_A_01_01.png').unlink()
         with self.assertRaises(FileNotFoundError):module.package(self.source,self.settings,self.out)

@@ -1,0 +1,11 @@
+{
+  "name": "Altgard",
+  "source": {
+    "kind": "installed-steam-client",
+    "appId": 3393110,
+    "buildId": "25926599",
+    "region": "global"
+  },
+  "gridSize": 8,
+  "basePath": "/shadowcraft/maps/steam-25926599/altgard"
+}
