@@ -30,11 +30,50 @@
       "method": "ProcDump direct capture, elevated, 12.02, 15-second collection timeout",
       "result": "failed",
       "error": "Target process no longer running; 0x800707D1"
+    },
+    {
+      "method": "Metadata-only VirtualQueryEx on verified running Global Steam main process",
+      "result": "success",
+      "imageBytes": 427352064,
+      "readableBytes": 346202112,
+      "unreadableBytes": 81149952
+    },
+    {
+      "method": "Read only readable main-module regions in bounded chunks; raw partial image retained locally outside repository",
+      "result": "success",
+      "completeImage": false,
+      "readableBytes": 346468352,
+      "unreadableBytes": 80883712
+    },
+    {
+      "method": "jmap manual candidate addresses, default concurrency",
+      "result": "failed",
+      "error": "Invalid pointer while reading 8 bytes; no mapping produced"
+    },
+    {
+      "method": "jmap manual addresses, single-object concurrency and diagnostic trace",
+      "result": "failed",
+      "error": "Invalid UTF-8 at object 213558 of initial snapshot 636921; no mapping produced"
+    },
+    {
+      "method": "Bounded direct reflection inspection of four explicitly named map classes/structs and inheritance",
+      "result": "success",
+      "uniqueDefinitions": 14,
+      "nativeNamePoolVerified": true
+    },
+    {
+      "method": "Apply explicitly reviewed reflected schema differences to external research exporter; strict package export",
+      "result": "success",
+      "packages": 12,
+      "objects": 1267,
+      "unreadBytes": 0,
+      "errors": 0
     }
   ],
   "dumpCreated": false,
   "mappingCreated": false,
   "causeConfirmed": false,
-  "note": "Target processes were still listed after clone failures, but no AION2 process was listed at the final check after direct capture. Exit cause is unconfirmed. Runtime access stopped. No protection settings were changed.",
-  "finalProcessListed": false
+  "note": "Historical full-dump failures remain unresolved. A later logged-in session allowed readable-page capture and targeted native schema inspection. The image is partial; jmap did not produce a complete usmap. Readable regions changed between probes. Corrected research schemas decode six terrain and six linked design packages completely; this does not verify world-to-map projection or combat formulas. No memory writes, protection changes or raw-memory uploads.",
+  "finalProcessListed": true,
+  "partialImageCreated": true
 }

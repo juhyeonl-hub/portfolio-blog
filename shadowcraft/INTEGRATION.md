@@ -422,7 +422,7 @@ The planner's official-description button opens the selected skill in our read-o
 
 Package Altgard with the same terrain builder, passing its `World_D_A.json`, source PNG directory and a **new** output directory, plus `frontend/shadowcraft/lib/data/terrain-altgard.json` for display metadata. The builder selects only reviewed World_L_A/World_D_A identities, rejects missing/wrong-sized/discontinuous tiles and preserves prior output. Altgard's actual exported mip is 1024px (its settings declare 2048), with a separately reviewed seam threshold of 11/255; Verteron's threshold remains 10/255. Region changes remount the viewer to isolate pending image events, viewport and retry state. Neither map establishes world-coordinate projection.
 
-Runtime research is authorized locally but has not produced a new mapping. `operations/runtime-mapping-attempt.json` records tool versions and sanitized error outcomes only. Raw dumps, research profiles, runtime data and third-party executables must remain outside this repository.
+Runtime research is authorized locally. Full usmap extraction remains unsuccessful; later targeted schema verification is documented below. `operations/runtime-mapping-attempt.json` records tool versions and sanitized error outcomes only. Raw dumps, research profiles, runtime data and third-party executables must remain outside this repository.
 
 ### Effect growth link audit
 
@@ -438,8 +438,25 @@ The terrain builder supports six reviewed maps with per-region grid sizes and ac
 
 ### Runtime image metadata preflight
 
-`operations/probe-runtime-image.ps1 -SelfTest` checks page classification, invalid PID rejection and complete metadata coverage of the calling 64-bit Windows PowerShell process. Without `-SelfTest`, it selects only the expected installed Global Steam AION2 executable. It uses `VirtualQueryEx` with `PROCESS_QUERY_INFORMATION`, outputs aggregate page metadata, and does not call ReadProcessMemory, create dumps, change protection or inject code. The existing user authorization covers local runtime investigation; no game process was available for this preflight at the latest check.
+`operations/probe-runtime-image.ps1 -SelfTest` checks page classification, invalid PID rejection and complete metadata coverage of the calling 64-bit Windows PowerShell process. Without `-SelfTest`, it selects only the expected installed Global Steam AION2 executable. It uses `VirtualQueryEx` with `PROCESS_QUERY_INFORMATION`, outputs aggregate page metadata, and does not call ReadProcessMemory, create dumps, change protection or inject code. The existing user authorization covers local runtime investigation; the initial check had no running game; the subsequent logged-in probe is documented below.
 
-The pinned jmap dependency [patternsleuth 1d90b02](https://github.com/trumank/patternsleuth/blob/1d90b02c7610b595f940af04ce97e0f6feb06923/patternsleuth/src/process/external.rs) reads the entire SizeOfImage in one ReadProcessMemory call. A non-readable region can explain a partial-read error, but this remains a hypothesis until target metadata is observed. The installed PE declares 427,352,064 image bytes. Windows Application event IDs 1000/1001 in the previous attempt's narrow time window contained no AION2 crash record; that does not establish why the game exited. Do not rerun full dumps on the basis of this preflight alone.
+The pinned jmap dependency [patternsleuth 1d90b02](https://github.com/trumank/patternsleuth/blob/1d90b02c7610b595f940af04ce97e0f6feb06923/patternsleuth/src/process/external.rs) reads the entire SizeOfImage in one ReadProcessMemory call. A non-readable region can explain a partial-read error, and the subsequent target probe confirmed unreadable regions. This does not establish the earlier process-exit cause. The installed PE declares 427,352,064 image bytes. Windows Application event IDs 1000/1001 in the previous attempt's narrow time window contained no AION2 crash record; that does not establish why the game exited. Do not rerun full dumps on the basis of this preflight alone.
 
 API reference: [Microsoft VirtualQueryEx](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualqueryex). Self-test passed on 64-bit Windows PowerShell, with 499,712 image bytes covered by five readable regions. This is tool validation, not Global process validation or a recovered usmap.
+
+
+### Verified map schema corrections and local region labels
+
+The logged-in Global Steam session allowed a partial readable-image capture and bounded inspection of four explicitly named map class/struct definitions plus their inheritance (14 unique definitions). Both full jmap attempts failed, so this is not a complete replacement usmap. `operations/runtime-map-schema-audit.json` records sanitized hashes, field differences and strict package results. Raw memory, runtime traces, schema definitions and extracted packages remain outside Git under the private research directories.
+
+`operations/uex-runtime-schema-corrections.patch` applies to the external Uex research checkout, not this application's dependencies. It is opt-in via `A2BC_RUNTIME_SCHEMA_CORRECTIONS`, requires the exact reviewed schema SHA-256, retains complex existing field types and rejects unreviewed additions/removals/type changes. Set the variable to the private `target-class-schemas.json`, and enable both `A2BC_STRICT_PACKAGE_AUDIT=1` and `A2BC_PACKAGE_AUDIT=1`. Never accept an export with missing coverage, parser errors or nonzero remaining bytes. The research tool has existing dependency vulnerability warnings and an optional native-build warning; it is not shipped to the blog.
+
+All six `WorldMap_<mapKey>.umap` packages and their six explicitly linked design packages now decode completely: 1,267 objects, 1,273 audit events including referenced packages, zero unread bytes/errors. Explicit material/plane/texture links verify 164 centered tile placements across five regions. Ishalgen's 25 tiles have a translated origin; it is not silently treated as a centered map. None of these results establishes the gameplay-world projection.
+
+Generate the four regions' map-local labels with:
+
+```sh
+python3 shadowcraft/operations/build-terrain-labels.py MAP_EXPORT_DIR WORLD_MAP_UI_REGION_JSON ENGLISH_JSON FIRST_TERRAIN_LOG OTHER_TERRAIN_LOG DESIGN_LOG > /tmp/terrain-labels.json
+```
+
+Review output before replacing `frontend/shadowcraft/lib/data/terrain-labels.json`. The builder checks complete zero-remainder object audit coverage, all 148 associated tile transforms and material bindings, explicit design-package links, exact region-name joins for map IDs 1010/1110/20/22, unique references and finite bounded map-local positions. Nine unlocalized authored names are explicitly omitted; 154 labels resolve across Verteron, Altgard and the two Reshanta maps. It does not guess missing names or apply a gameplay-coordinate transform. UI toggles and declutters labels while zooming, without touching saved plans or collection progress.

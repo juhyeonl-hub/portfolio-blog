@@ -19,6 +19,12 @@ with sync_playwright() as p:
     panel.get_by_role('button',name='공식 Verteron 지형 열기',exact=True).click()
     canvas=panel.get_by_role('group',name='Verteron 지형 이미지',exact=True)
     expect(canvas.locator('image')).to_have_count(64)
+    expect(canvas.locator('circle')).to_have_count(69)
+    assert 0 < canvas.locator('text').count() < 69, 'dense labels must not overlap'
+    panel.get_by_role('checkbox',name='지역명 표시 (69)',exact=True).uncheck()
+    expect(canvas.locator('text')).to_have_count(0)
+    panel.get_by_role('checkbox',name='지역명 표시 (69)',exact=True).check()
+    expect(canvas.locator('circle')).to_have_count(69)
     expect(panel.get_by_role('alert')).to_be_visible()
     page.unroute('**/maps/steam-25926599/verteron/4_4.webp')
     panel.get_by_role('button',name='지형 다시 불러오기',exact=True).click()
@@ -42,6 +48,8 @@ with sync_playwright() as p:
     expect(panel.get_by_role('group')).to_have_count(0)
     panel.get_by_role('button',name='공식 Altgard 지형 열기',exact=True).click()
     canvas=panel.get_by_role('group',name='Altgard 지형 이미지',exact=True)
+    expect(canvas.locator('circle')).to_have_count(71)
+    expect(panel.get_by_role('checkbox',name='지역명 표시 (71)',exact=True)).to_be_checked()
     expect(canvas.locator('image')).to_have_count(64)
     for _ in range(200):
         if len({u for u,status in tiles if status==200 and '/altgard/' in u})==64: break
@@ -64,6 +72,7 @@ with sync_playwright() as p:
         panel.get_by_role('button',name=f'공식 {name} 지형 열기',exact=True).click()
         canvas=panel.get_by_role('group',name=f'{name} 지형 이미지',exact=True)
         expect(canvas.locator('image')).to_have_count(count)
+        expect(canvas.locator('circle')).to_have_count(7 if slug.startswith('reshanta') else 0)
         expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
         for _ in range(200):
             if len({u for u,status in tiles if status==200 and '/'+slug+'/' in u})==count:break

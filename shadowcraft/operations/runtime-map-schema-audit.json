@@ -1,0 +1,171 @@
+{
+  "steamBuildId": "25926599",
+  "scope": "strict map package decoding and map-local terrain placement",
+  "fullRuntimeMappingCreated": false,
+  "worldProjectionVerified": false,
+  "schemaDefinitionsSha256": "60014e133504dd8f9c70ae0e41cf7b9a30a719330c709da403b40c0c6d8c36c1",
+  "schemaCorrections": {
+    "AionWorldSettings": {
+      "added": [
+        "ActiveAISFields"
+      ]
+    },
+    "StaticMeshComponent": {
+      "added": [
+        "WorldPositionOffsetDisableDistanceInVSM"
+      ]
+    },
+    "MaterialInstance": {
+      "PhysicalMaterialMapArrayDim": 8
+    },
+    "PrimitiveComponent": {
+      "added": [
+        "bAllowScreenSpaceMeshBlendSource",
+        "bAllowScreenSpaceMeshBlendTarget"
+      ],
+      "removed": [
+        "bObjectClassification",
+        "AnamorphicLensFlareShape"
+      ]
+    },
+    "MaterialInstanceBasePropertyOverrides": {
+      "added": [
+        "bOverride_TranslucentShadowStartOffset",
+        "TranslucentShadowStartOffset",
+        "bOverride_bAllowHighQualityTranslucency",
+        "bAllowHighQualityTranslucency"
+      ],
+      "removed": [
+        "bOverride_bAllowDepthVelocityMaterial",
+        "bAllowDepthVelocityMaterial"
+      ]
+    }
+  },
+  "packages": [
+    {
+      "name": "WorldMap_Abyss_Reshanta_A",
+      "objects": 73,
+      "sha256": "1e8b613aec6a9c0afb6c0f7c2d4c552a2cca933c0b0945e6cca1f675340a7d86"
+    },
+    {
+      "name": "WorldMap_Abyss_Reshanta_A_Design",
+      "objects": 19,
+      "sha256": "3bcb507ec55d3b8fe2971454b24d4269e67040c347609a2a2f7a081fe8b38c41"
+    },
+    {
+      "name": "WorldMap_Abyss_Reshanta_C",
+      "objects": 23,
+      "sha256": "d356c259e9f645584eebd0540fe567f24a2b83a4c073b8c37d9d5301ec7748c9"
+    },
+    {
+      "name": "WorldMap_Abyss_Reshanta_C_Design",
+      "objects": 19,
+      "sha256": "209c468f712550650f6f410b8dc7f0f3d4a7ae6ab730dd796433ade1841b4743"
+    },
+    {
+      "name": "WorldMap_World_D_A",
+      "objects": 325,
+      "sha256": "00584e384fd3ef880fa7fd09599867179c828adeccbcc279ebf3d612881c30d8"
+    },
+    {
+      "name": "WorldMap_World_D_A_Design",
+      "objects": 155,
+      "sha256": "e35c6198cf80a8bb02bf1c6da9cbf6d6ce4c8ce442194a975d69358380b4e62b"
+    },
+    {
+      "name": "WorldMap_World_D_Starter",
+      "objects": 102,
+      "sha256": "ea3f48b5fd908615918f26656ff910149881325a2c0bf2c9aaf12e2054ab5159"
+    },
+    {
+      "name": "WorldMap_World_D_Starter_Design",
+      "objects": 5,
+      "sha256": "76f83c64336cc9fcf06c0cc6267ebc034b5d4f99d6736261521267cf3d62d5b9"
+    },
+    {
+      "name": "WorldMap_World_L_A",
+      "objects": 353,
+      "sha256": "4e2f4e057cf04d72922f29c7383f2a141c2ba15267612590b26012a1e223efab"
+    },
+    {
+      "name": "WorldMap_World_L_A_Design",
+      "objects": 117,
+      "sha256": "5bd9573010adb9efe02b39c45055f6ba021ae9fccfee6a8525d9bc6dd3f3e896"
+    },
+    {
+      "name": "WorldMap_World_L_Starter",
+      "objects": 71,
+      "sha256": "a43cbc8d7e7afffb7ac6b5aba30d6219e84711d986c076eb1ead39d4379e29d9"
+    },
+    {
+      "name": "WorldMap_World_L_Starter_Design",
+      "objects": 5,
+      "sha256": "53c10f7f9b67931c1f8f43b5fabb42defbe41966f0d00aee097f1397da8053b2"
+    }
+  ],
+  "auditLogs": [
+    {
+      "sha256": "8a38711e488d2dfd5cd1701e8d34672afba5f202fc378a4c9d6e214ae42cf386",
+      "objectsIncludingReferencedPackages": 354,
+      "errors": 0,
+      "unreadBytes": 0
+    },
+    {
+      "sha256": "ac9eadd796072f3778584efa88d739ca14b1ad9b2fb583beab02bcc7f75c6990",
+      "objectsIncludingReferencedPackages": 599,
+      "errors": 0,
+      "unreadBytes": 0
+    },
+    {
+      "sha256": "b731a7cc069a06a8c7dfd45f997d662c89b349554b7eae26d2132073e6aa2875",
+      "objectsIncludingReferencedPackages": 320,
+      "errors": 0,
+      "unreadBytes": 0
+    }
+  ],
+  "terrainLayout": {
+    "centeredGridVerified": [
+      "World_L_A",
+      "World_D_A",
+      "World_L_Starter",
+      "Abyss_Reshanta_A",
+      "Abyss_Reshanta_C"
+    ],
+    "nonCenteredOriginObserved": {
+      "map": "World_D_Starter",
+      "tile": "00_00",
+      "x": -2798.4114,
+      "y": -2078.1155
+    }
+  },
+  "labels": [
+    {
+      "map": "World_L_A",
+      "observed": 74,
+      "localized": 69,
+      "unresolved": 5,
+      "coordinateSpace": "map-local"
+    },
+    {
+      "map": "World_D_A",
+      "observed": 75,
+      "localized": 71,
+      "unresolved": 4,
+      "coordinateSpace": "map-local"
+    },
+    {
+      "map": "Abyss_Reshanta_A",
+      "observed": 7,
+      "localized": 7,
+      "unresolved": 0,
+      "coordinateSpace": "map-local"
+    },
+    {
+      "map": "Abyss_Reshanta_C",
+      "observed": 7,
+      "localized": 7,
+      "unresolved": 0,
+      "coordinateSpace": "map-local"
+    }
+  ]
+}

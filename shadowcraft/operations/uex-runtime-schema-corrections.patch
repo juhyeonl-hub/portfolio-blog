@@ -1,0 +1,56 @@
+--- a/src/Uex/Core/ProviderManager.cs
++++ b/src/Uex/Core/ProviderManager.cs
+@@ -54,6 +54,7 @@
+         var provider = CreateProvider(game, p.PaksDir);
+         if (p.Usmap is not null)
+             provider.MappingsContainer = new FileUsmapTypeMappingsProvider(p.Usmap);
++        RuntimeMappingCorrections.Apply(provider.MappingsContainer?.MappingsForGame);
+         provider.Initialize();
+         if (!string.IsNullOrEmpty(p.AesKey))
+             provider.SubmitKey(new FGuid(), new FAesKey(p.AesKey));
+--- /dev/null
++++ b/src/Uex/Core/RuntimeMappingCorrections.cs
+@@ -0,0 +1,43 @@
++using CUE4Parse.MappingsProvider;
++using System.Text.Json;
++namespace Uex.Core;
++internal static class RuntimeMappingCorrections {
++ static bool ReviewedNested(string name,string field,string kind) => name=="MaterialInstanceBasePropertyOverrides" && ((kind=="BoolProperty" && new[]{"bOverride_TranslucentShadowStartOffset","bOverride_bAllowHighQualityTranslucency","bAllowHighQualityTranslucency"}.Contains(field)) || (kind=="FloatProperty"&&field=="TranslucentShadowStartOffset"));
++ public static void Apply(TypeMappings? mappings) {
++  var path=Environment.GetEnvironmentVariable("A2BC_RUNTIME_SCHEMA_CORRECTIONS");
++  if(string.IsNullOrEmpty(path))return;
++  if(mappings is null)throw new Exception("Missing mappings");
++  var bytes=File.ReadAllBytes(path);
++  if(Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(bytes)).ToLowerInvariant()!="60014e133504dd8f9c70ae0e41cf7b9a30a719330c709da403b40c0c6d8c36c1")throw new Exception("Unreviewed runtime schema snapshot");
++  using var doc=JsonDocument.Parse(File.ReadAllText(path));
++  var seen=new HashSet<string>();
++  foreach(var row in doc.RootElement.EnumerateArray()) {
++   var name=row.GetProperty("Name").GetString()!;
++   if(!seen.Add(name))continue;
++   var schema=mappings.Types[name];
++   var super=row.GetProperty("Super").GetString();
++   if(schema.SuperType!=super)throw new Exception("Superclass mismatch: "+name);
++   var old=schema.Properties.Values.GroupBy(p=>p.Name).ToDictionary(g=>g.Key,g=>g.First());
++   var fresh=new Dictionary<int,PropertyInfo>();var names=new HashSet<string>();int index=0;
++   foreach(var field in row.GetProperty("Properties").EnumerateArray()) {
++    var fieldName=field.GetProperty("Name").GetString()!;
++    var kind=field.GetProperty("Type").GetString()!;
++    var count=field.GetProperty("ArrayDim").GetInt32();
++    if(count<1||count>255||!names.Add(fieldName))throw new Exception("Invalid field");
++    PropertyType type;
++    if(old.TryGetValue(fieldName,out var prior)) {
++     type=prior.MappingType;
++     bool alias=(kind=="ByteProperty"&&type.Type=="EnumProperty")||(kind=="ClassProperty"&&type.Type=="ObjectProperty")||(kind=="SoftClassProperty"&&type.Type=="SoftObjectProperty")||(kind=="MulticastSparseDelegateProperty"&&type.Type=="Unknown");
++     if(type.Type!=kind&&!alias)throw new Exception("Field type mismatch: "+name+"."+fieldName+" "+type.Type+" / "+kind);
++    } else {
++     if(!(ReviewedNested(name,fieldName,kind)||(kind=="IntProperty"&&((name=="StaticMeshComponent"&&fieldName=="WorldPositionOffsetDisableDistanceInVSM")||(name=="AionWorldSettings"&&fieldName=="ActiveAISFields")))||(kind=="BoolProperty"&&name=="PrimitiveComponent"&&(fieldName=="bAllowScreenSpaceMeshBlendSource"||fieldName=="bAllowScreenSpaceMeshBlendTarget"))))throw new Exception("Unreviewed new field: "+name+"."+fieldName+" "+kind);
++     type=new PropertyType(kind);
++    }
++    for(int i=0;i<count;i++)fresh.Add(index++,new PropertyInfo(i,fieldName,type,count));
++   }
++   if(old.Keys.Any(k=>!names.Contains(k)&&!(name=="MaterialInstanceBasePropertyOverrides"&&(k=="bOverride_bAllowDepthVelocityMaterial"||k=="bAllowDepthVelocityMaterial"))&&!(name=="PrimitiveComponent"&&(k=="bObjectClassification"||k=="AnamorphicLensFlareShape"))))throw new Exception("Removed existing field: "+name);
++   schema.Properties=fresh;schema.PropertyCount=index;
++  }
++  Console.Error.WriteLine("A2BC_RUNTIME_SCHEMAS verified "+seen.Count+" inheritance definitions");
++ }
++}

@@ -1,0 +1,999 @@
+{
+  "schema": "a2bc-terrain-labels-v1",
+  "source": {
+    "kind": "installed-steam-client",
+    "appId": 3393110,
+    "buildId": "25926599",
+    "region": "global"
+  },
+  "coordinateSpace": "map-local",
+  "worldProjectionVerified": false,
+  "maps": [
+    {
+      "name": "Verteron",
+      "mapKey": "World_L_A",
+      "validatedTiles": 64,
+      "labels": [
+        {
+          "id": "WorldMap_Name_AbandonedWindBreezeOffice",
+          "name": "Abandoned Wind Breeze Office",
+          "x": 447.13245,
+          "y": 646.096667
+        },
+        {
+          "id": "WorldMap_Name_AlertGuardPost",
+          "name": "Alert Observation Post",
+          "x": 651.977539,
+          "y": 539.672852
+        },
+        {
+          "id": "WorldMap_Name_AltamiaHighlandEastern",
+          "name": "Eastern Altamia Highland",
+          "x": 665.649414,
+          "y": 552.734375
+        },
+        {
+          "id": "WorldMap_Name_AltamiaHighlandWestern",
+          "name": "Western Altamia Highland",
+          "x": 556.152344,
+          "y": 596.679688
+        },
+        {
+          "id": "WorldMap_Name_AltamiaHighland_BeastHunteCampsite",
+          "name": "Beast Hunter Campsite",
+          "x": 554.6875,
+          "y": 645.629883
+        },
+        {
+          "id": "WorldMap_Name_AltamiaHighland_Southern",
+          "name": "Southern Altamia Highland",
+          "x": 540.893555,
+          "y": 671.508789
+        },
+        {
+          "id": "WorldMap_Name_Altamiacanyon",
+          "name": "Altamia Canyon",
+          "x": 601.928711,
+          "y": 601.318359
+        },
+        {
+          "id": "WorldMap_Name_AncientZumionTempleSite",
+          "name": "Ancient Zumion Temple Site",
+          "x": 636.244751,
+          "y": 571.475696
+        },
+        {
+          "id": "WorldMap_Name_AstinCompanyCamp",
+          "name": "Astin Mercenaries Base",
+          "x": 419.042804,
+          "y": 606.54762
+        },
+        {
+          "id": "WorldMap_Name_BeachOutpost",
+          "name": "Coastal Camp",
+          "x": 384.245276,
+          "y": 460.532688
+        },
+        {
+          "id": "WorldMap_Name_BellnithsCampsite",
+          "name": "Marsh Legion Campsite",
+          "x": 493.98649,
+          "y": 396.445776
+        },
+        {
+          "id": "WorldMap_Name_BreezeDeliveryWorkshop",
+          "name": "Eastern Shugo Station",
+          "x": 461.547852,
+          "y": 566.563666
+        },
+        {
+          "id": "WorldMap_Name_BreezeDistributionStation",
+          "name": "Dawn Legion Temporary Outpost",
+          "x": 471.980505,
+          "y": 555.690691
+        },
+        {
+          "id": "WorldMap_Name_CantasValley",
+          "name": "Western Cantas Valley",
+          "x": 379.606604,
+          "y": 442.588352
+        },
+        {
+          "id": "WorldMap_Name_CantasValleyEastern",
+          "name": "Eastern Cantas Valley",
+          "x": 413.647961,
+          "y": 419.729956
+        },
+        {
+          "id": "WorldMap_Name_CantasValleyOutpost",
+          "name": "Valley Outpost",
+          "x": 389.73844,
+          "y": 403.769995
+        },
+        {
+          "id": "WorldMap_Name_CanyonCampsite",
+          "name": "Canyon Campsite",
+          "x": 597.857759,
+          "y": 580.481515
+        },
+        {
+          "id": "WorldMap_Name_CanyonPlateauCamp",
+          "name": "Highland's End Campsite",
+          "x": 574.425867,
+          "y": 702.6526
+        },
+        {
+          "id": "WorldMap_Name_CecilCampsite",
+          "name": "Hideout in Front of the Ruins",
+          "x": 449.951172,
+          "y": 483.032227
+        },
+        {
+          "id": "WorldMap_Name_ChaserCamp",
+          "name": "Notos Legion Outpost",
+          "x": 638.988037,
+          "y": 442.58269
+        },
+        {
+          "id": "WorldMap_Name_CollapsedObservatory",
+          "name": "Collapsed Verteron Barrier Tower",
+          "x": 492.399576,
+          "y": 364.341272
+        },
+        {
+          "id": "WorldMap_Name_CollapsedPillarShelter",
+          "name": "Collapsed Pillar",
+          "x": 490.975201,
+          "y": 500.0
+        },
+        {
+          "id": "WorldMap_Name_ContaminatedSanctuary",
+          "name": "Contaminated Sanctum",
+          "x": 690.429688,
+          "y": 539.672852
+        },
+        {
+          "id": "WorldMap_Name_DawnLegionBase",
+          "name": "Dawn Legion Base",
+          "x": 368.164062,
+          "y": 382.8125
+        },
+        {
+          "id": "WorldMap_Name_DestroyedTempleSite",
+          "name": "Destroyed Temple Site",
+          "x": 645.263672,
+          "y": 523.803711
+        },
+        {
+          "id": "WorldMap_Name_DranaPlantation",
+          "name": "Drana Plantation",
+          "x": 637.329102,
+          "y": 410.27832
+        },
+        {
+          "id": "WorldMap_Name_DranaTransporthub",
+          "name": "Drana Transport Hub",
+          "x": 652.988989,
+          "y": 424.534595
+        },
+        {
+          "id": "WorldMap_Name_DundunmongsShelter",
+          "name": "Dundu's Rest",
+          "x": 457.797473,
+          "y": 482.298735
+        },
+        {
+          "id": "WorldMap_Name_EasternTolbasForest",
+          "name": "Eastern Tolbas Forest",
+          "x": 459.909863,
+          "y": 581.605249
+        },
+        {
+          "id": "WorldMap_Name_EllunRiverGrassland",
+          "name": "Ellun River Meadow",
+          "x": 453.125,
+          "y": 429.80957
+        },
+        {
+          "id": "WorldMap_Name_EllunRiverMarshEastern",
+          "name": "Contaminated Marsh",
+          "x": 510.960732,
+          "y": 394.74447
+        },
+        {
+          "id": "WorldMap_Name_EllunRiverMarshSpiritsRetreat",
+          "name": "Spirit's Rest",
+          "x": 539.794922,
+          "y": 370.483398
+        },
+        {
+          "id": "WorldMap_Name_EllunRiverMarshWestern",
+          "name": "Ellun River Marsh",
+          "x": 475.954861,
+          "y": 396.313428
+        },
+        {
+          "id": "WorldMap_Name_EllunRiver_Middle",
+          "name": "Ellun River Midstream",
+          "x": 448.794939,
+          "y": 468.026367
+        },
+        {
+          "id": "WorldMap_Name_EllunRiver_Middle_AnguishHill",
+          "name": "Anguish Hill",
+          "x": 394.822881,
+          "y": 490.806758
+        },
+        {
+          "id": "WorldMap_Name_GardenofMiraju",
+          "name": "Garden of the Illusion God",
+          "x": 622.070312,
+          "y": 691.040039
+        },
+        {
+          "id": "WorldMap_Name_HillofPurification",
+          "name": "Hill of Purification",
+          "x": 700.005933,
+          "y": 550.150159
+        },
+        {
+          "id": "WorldMap_Name_IslandOfEternity",
+          "name": "Eternal Isle",
+          "x": 230.401819,
+          "y": 797.979919
+        },
+        {
+          "id": "WorldMap_Name_IslandofCrimson",
+          "name": "Crimson Isle",
+          "x": 613.891602,
+          "y": 248.901367
+        },
+        {
+          "id": "WorldMap_Name_IslandofCrimsonCamp",
+          "name": "Crimson Isle Outpost",
+          "x": 612.752258,
+          "y": 264.723193
+        },
+        {
+          "id": "WorldMap_Name_KrakaFootPath",
+          "name": "Kraka Footpath",
+          "x": 619.628906,
+          "y": 473.754883
+        },
+        {
+          "id": "WorldMap_Name_KrakaFootPathCamp",
+          "name": "Kraka Footpath Campsite",
+          "x": 625.244141,
+          "y": 496.459961
+        },
+        {
+          "id": "WorldMap_Name_MarshGarrison",
+          "name": "Marsh Outpost",
+          "x": 470.426921,
+          "y": 412.681128
+        },
+        {
+          "id": "WorldMap_Name_MercenaryCampsite",
+          "name": "Illusion Cavaliers' Campsite",
+          "x": 476.552661,
+          "y": 444.762345
+        },
+        {
+          "id": "WorldMap_Name_NahidArmyGarrison",
+          "name": "Nahid Brigade Fortress",
+          "x": 675.78125,
+          "y": 352.905273
+        },
+        {
+          "id": "WorldMap_Name_OldShelterOfPilgrim",
+          "name": "Pilgrim's Rest",
+          "x": 597.045898,
+          "y": 680.053711
+        },
+        {
+          "id": "WorldMap_Name_OwllauDeportation",
+          "name": "Forest of Exiles",
+          "x": 430.745386,
+          "y": 645.814697
+        },
+        {
+          "id": "WorldMap_Name_OwllauVillage",
+          "name": "Aullaeu Village",
+          "x": 460.701145,
+          "y": 613.954656
+        },
+        {
+          "id": "WorldMap_Name_OwllauVillageBorderArea",
+          "name": "Aullaeu Village Border",
+          "x": 471.462793,
+          "y": 590.445697
+        },
+        {
+          "id": "WorldMap_Name_PamosFarm",
+          "name": "Pamos Farm",
+          "x": 422.900513,
+          "y": 469.484243
+        },
+        {
+          "id": "WorldMap_Name_PilgrimsRidgePath",
+          "name": "Pilgrim's Ridge",
+          "x": 507.324219,
+          "y": 553.710938
+        },
+        {
+          "id": "WorldMap_Name_RedForest",
+          "name": "Scarlet Forest",
+          "x": 595.703125,
+          "y": 381.958008
+        },
+        {
+          "id": "WorldMap_Name_RedForestCamp",
+          "name": "Scarlet Forest Observation Site",
+          "x": 591.039054,
+          "y": 368.578345
+        },
+        {
+          "id": "WorldMap_Name_RefugeeCampsite",
+          "name": "Eastern Cantas Campsite",
+          "x": 416.593909,
+          "y": 409.75144
+        },
+        {
+          "id": "WorldMap_Name_RelicExplorationCamp",
+          "name": "Ruin Exploration Campsite",
+          "x": 420.043945,
+          "y": 495.227363
+        },
+        {
+          "id": "WorldMap_Name_RockHillGuardPost",
+          "name": "Rock Hill Outpost",
+          "x": 542.724609,
+          "y": 571.411133
+        },
+        {
+          "id": "WorldMap_Name_RockTombHill",
+          "name": "Rock Tomb Hill",
+          "x": 538.452148,
+          "y": 617.1875
+        },
+        {
+          "id": "WorldMap_Name_ShelterforLabourers",
+          "name": "Laborer's Rest Stop",
+          "x": 603.329375,
+          "y": 431.097534
+        },
+        {
+          "id": "WorldMap_Name_SteepGuardPost",
+          "name": "Steep Guard Post",
+          "x": 403.166174,
+          "y": 389.731909
+        },
+        {
+          "id": "WorldMap_Name_TolbasForest_Halmomong",
+          "name": "Northern Shugo Station",
+          "x": 426.635742,
+          "y": 549.316406
+        },
+        {
+          "id": "WorldMap_Name_TolbasForest_NightlyDewCave",
+          "name": "Night Dew Cave",
+          "x": 434.766509,
+          "y": 595.630029
+        },
+        {
+          "id": "WorldMap_Name_TolbasForest_Northern",
+          "name": "Northern Tolbas Forest",
+          "x": 431.101953,
+          "y": 560.921885
+        },
+        {
+          "id": "WorldMap_Name_TolbasForest_Southern",
+          "name": "Southern Tolbas Forest",
+          "x": 415.094263,
+          "y": 592.993799
+        },
+        {
+          "id": "WorldMap_Name_VerteronCitadelRuin",
+          "name": "Verteron Fortress Ruins",
+          "x": 479.858398,
+          "y": 506.366862
+        },
+        {
+          "id": "WorldMap_Name_VerteronCitadelRuin_DestroyedAbyssGate",
+          "name": "Destroyed Abyss Gate",
+          "x": 523.054443,
+          "y": 500.733368
+        },
+        {
+          "id": "WorldMap_Name_WindBreezeFarm",
+          "name": "Southern Shugo Station",
+          "x": 417.871753,
+          "y": 570.890613
+        },
+        {
+          "id": "WorldMap_Name_WindBreezeHeadquarters",
+          "name": "Wind Breeze Merchants HQ",
+          "x": 401.576343,
+          "y": 546.222998
+        },
+        {
+          "id": "WorldMap_Name_WindBreezeStreetStall",
+          "name": "Cantas Valley Base",
+          "x": 359.587073,
+          "y": 436.118628
+        },
+        {
+          "id": "WorldMap_Name_ZumionVillage",
+          "name": "Zumion Village",
+          "x": 573.852539,
+          "y": 509.155273
+        }
+      ],
+      "unresolvedLabels": [
+        "WorldMap_Name_CampsiteofGustino",
+        "WorldMap_Name_DestroyedTempleSite2",
+        "WorldMap_Name_RuinResearchCampsite",
+        "WorldMap_Name_Test",
+        "WorldMap_Name_ZumionTemple"
+      ]
+    },
+    {
+      "name": "Altgard",
+      "mapKey": "World_D_A",
+      "validatedTiles": 64,
+      "labels": [
+        {
+          "id": "WorldMap_Name_AbandonedCamp",
+          "name": "Abandoned Site",
+          "x": 499.146292,
+          "y": 497.291785
+        },
+        {
+          "id": "WorldMap_Name_AbandonedCampsite",
+          "name": "Abandoned Campsite",
+          "x": 630.175037,
+          "y": 594.224243
+        },
+        {
+          "id": "WorldMap_Name_AmuntasHideout",
+          "name": "Amunta's Hideout",
+          "x": 710.84303,
+          "y": 571.242377
+        },
+        {
+          "id": "WorldMap_Name_BasfeltRuins",
+          "name": "Basfelt Ruins",
+          "x": 696.388757,
+          "y": 393.842407
+        },
+        {
+          "id": "WorldMap_Name_BasfeltWaterfall",
+          "name": "Basfelt Waterfall",
+          "x": 667.240967,
+          "y": 336.415173
+        },
+        {
+          "id": "WorldMap_Name_BlackClawVillage",
+          "name": "Black Claw Village",
+          "x": 612.154028,
+          "y": 687.608032
+        },
+        {
+          "id": "WorldMap_Name_CalderonCanyon",
+          "name": "Calderon Canyon",
+          "x": 421.113367,
+          "y": 432.190717
+        },
+        {
+          "id": "WorldMap_Name_CheckpointofGarolik",
+          "name": "Galorik's Inspection Area",
+          "x": 381.958008,
+          "y": 379.02832
+        },
+        {
+          "id": "WorldMap_Name_ColdwindShelter",
+          "name": "Briskwind Shelter",
+          "x": 550.662346,
+          "y": 353.379578
+        },
+        {
+          "id": "WorldMap_Name_CollapsedGully",
+          "name": "Collapsed Chasm",
+          "x": 431.574963,
+          "y": 530.683734
+        },
+        {
+          "id": "WorldMap_Name_CollapsedHallOfFame",
+          "name": "Collapsed Hall Of Fame",
+          "x": 667.406482,
+          "y": 703.477173
+        },
+        {
+          "id": "WorldMap_Name_CreionCamp",
+          "name": "Creion Campsite",
+          "x": 380.249023,
+          "y": 412.109375
+        },
+        {
+          "id": "WorldMap_Name_CreviceCave",
+          "name": "Fissure Cave",
+          "x": 733.455103,
+          "y": 386.9776
+        },
+        {
+          "id": "WorldMap_Name_DestroyedSite",
+          "name": "Temporary Retreat",
+          "x": 317.154602,
+          "y": 485.987224
+        },
+        {
+          "id": "WorldMap_Name_Dranactus",
+          "name": "Dranactus",
+          "x": 570.150189,
+          "y": 296.580432
+        },
+        {
+          "id": "WorldMap_Name_DredgionCrashSite",
+          "name": "Dredgion Crash Site",
+          "x": 400.878906,
+          "y": 402.709961
+        },
+        {
+          "id": "WorldMap_Name_EasternGribadeCanyon",
+          "name": "Eastern Gribade Highland",
+          "x": 723.558826,
+          "y": 576.524048
+        },
+        {
+          "id": "WorldMap_Name_ElimsShelter",
+          "name": "Elim's Rest",
+          "x": 443.730774,
+          "y": 560.299553
+        },
+        {
+          "id": "WorldMap_Name_EndStall",
+          "name": "Outskirts Stall",
+          "x": 653.125952,
+          "y": 719.412524
+        },
+        {
+          "id": "WorldMap_Name_FadedStump",
+          "name": "Faded Stump",
+          "x": 576.886096,
+          "y": 393.125891
+        },
+        {
+          "id": "WorldMap_Name_FafniteDeposit",
+          "name": "Fafnite Deposit",
+          "x": 660.203259,
+          "y": 548.000742
+        },
+        {
+          "id": "WorldMap_Name_FangsHideout",
+          "name": "Fang Hideout",
+          "x": 325.229199,
+          "y": 440.296106
+        },
+        {
+          "id": "WorldMap_Name_FierceFightHill",
+          "name": "Battlescar Mound",
+          "x": 609.149133,
+          "y": 344.030579
+        },
+        {
+          "id": "WorldMap_Name_ForestsHideout",
+          "name": "Forest Hideout",
+          "x": 485.009048,
+          "y": 521.116257
+        },
+        {
+          "id": "WorldMap_Name_FugitiveVillage",
+          "name": "Safe Haven",
+          "x": 393.188477,
+          "y": 343.017578
+        },
+        {
+          "id": "WorldMap_Name_GatesofFafnir",
+          "name": "Mahindel Cliff",
+          "x": 671.841333,
+          "y": 477.96696
+        },
+        {
+          "id": "WorldMap_Name_GraveKeeperTent",
+          "name": "Gravekeeper Camp",
+          "x": 314.086914,
+          "y": 405.517578
+        },
+        {
+          "id": "WorldMap_Name_GraveOfZemurru",
+          "name": "Zemurru's Tomb",
+          "x": 658.224341,
+          "y": 644.351978
+        },
+        {
+          "id": "WorldMap_Name_GuardiansAbode",
+          "name": "Healing Spring",
+          "x": 524.647939,
+          "y": 430.764705
+        },
+        {
+          "id": "WorldMap_Name_HiddenCave",
+          "name": "Hidden Cave",
+          "x": 574.676904,
+          "y": 256.991638
+        },
+        {
+          "id": "WorldMap_Name_HunterCamp",
+          "name": "Guide Rest Stop",
+          "x": 585.33974,
+          "y": 417.809558
+        },
+        {
+          "id": "WorldMap_Name_IdunsLake",
+          "name": "Idun's Lake",
+          "x": 694.145898,
+          "y": 614.976196
+        },
+        {
+          "id": "WorldMap_Name_ImpetusiumSquare",
+          "name": "Impetusium Square",
+          "x": 690.463647,
+          "y": 695.621301
+        },
+        {
+          "id": "WorldMap_Name_IslandOfSpirit",
+          "name": "Spirit Isle",
+          "x": 772.973389,
+          "y": 218.168494
+        },
+        {
+          "id": "WorldMap_Name_IslandofImmortality",
+          "name": "Immortal Isle",
+          "x": 255.216296,
+          "y": 779.810278
+        },
+        {
+          "id": "WorldMap_Name_KumricaCellar",
+          "name": "Kumrica's Cellar",
+          "x": 601.488513,
+          "y": 693.711548
+        },
+        {
+          "id": "WorldMap_Name_LaborerOutpost",
+          "name": "Steel Hammer Workcamp",
+          "x": 649.706287,
+          "y": 560.654907
+        },
+        {
+          "id": "WorldMap_Name_LagtaFortress",
+          "name": "Lagta Fortress",
+          "x": 497.478555,
+          "y": 698.98479
+        },
+        {
+          "id": "WorldMap_Name_MahindelRiver",
+          "name": "Mahindel River",
+          "x": 631.800513,
+          "y": 507.572595
+        },
+        {
+          "id": "WorldMap_Name_MinushanSite",
+          "name": "Minushan Site",
+          "x": 535.609197,
+          "y": 497.295179
+        },
+        {
+          "id": "WorldMap_Name_MoslanForest",
+          "name": "Moslan Forest",
+          "x": 444.698702,
+          "y": 539.456501
+        },
+        {
+          "id": "WorldMap_Name_MudCamp",
+          "name": "Mire Campsite",
+          "x": 403.076172,
+          "y": 443.481445
+        },
+        {
+          "id": "WorldMap_Name_MuninBridge",
+          "name": "Munin's Bridge",
+          "x": 395.874023,
+          "y": 476.44043
+        },
+        {
+          "id": "WorldMap_Name_MuqakasTent",
+          "name": "Muqaka's Quarters",
+          "x": 586.466804,
+          "y": 672.959595
+        },
+        {
+          "id": "WorldMap_Name_NornirsLodge",
+          "name": "Nornir Assembly",
+          "x": 592.683545,
+          "y": 473.958313
+        },
+        {
+          "id": "WorldMap_Name_NorthSlaveCamp",
+          "name": "North Laborer's Tent",
+          "x": 556.46795,
+          "y": 291.477515
+        },
+        {
+          "id": "WorldMap_Name_OldSanctum",
+          "name": "Neglected Crematorium",
+          "x": 290.899719,
+          "y": 387.22381
+        },
+        {
+          "id": "WorldMap_Name_PlundererCamp",
+          "name": "Canyon Dispatch Area",
+          "x": 433.71582,
+          "y": 407.714844
+        },
+        {
+          "id": "WorldMap_Name_PurificatoryForest",
+          "name": "Purifying Forest",
+          "x": 566.350574,
+          "y": 409.710779
+        },
+        {
+          "id": "WorldMap_Name_QuairerkCamp",
+          "name": "Quai Campsite",
+          "x": 367.553711,
+          "y": 416.992188
+        },
+        {
+          "id": "WorldMap_Name_SanctumWatchpost",
+          "name": "Sanctum Outpost",
+          "x": 296.78313,
+          "y": 482.216448
+        },
+        {
+          "id": "WorldMap_Name_SearcherRock",
+          "name": "Searcher Rock",
+          "x": 437.988281,
+          "y": 427.001953
+        },
+        {
+          "id": "WorldMap_Name_SecretRendezvousPoint",
+          "name": "Secret Rendezvous Point",
+          "x": 612.474841,
+          "y": 676.621704
+        },
+        {
+          "id": "WorldMap_Name_Seggurheim",
+          "name": "Uruthumheim",
+          "x": 527.706111,
+          "y": 468.671724
+        },
+        {
+          "id": "WorldMap_Name_ShadeofOdar",
+          "name": "Odar's Shade",
+          "x": 442.654978,
+          "y": 500.002871
+        },
+        {
+          "id": "WorldMap_Name_ShatteredRuins",
+          "name": "Destroyed Ruins",
+          "x": 684.185376,
+          "y": 363.82489
+        },
+        {
+          "id": "WorldMap_Name_ShulackStreetStall",
+          "name": "Shulak Street Stall",
+          "x": 657.844214,
+          "y": 424.136292
+        },
+        {
+          "id": "WorldMap_Name_SilenceHill",
+          "name": "Silent Hill",
+          "x": 311.215161,
+          "y": 426.685498
+        },
+        {
+          "id": "WorldMap_Name_SouthGribadeHill",
+          "name": "Southern Gribade Highland",
+          "x": 673.37854,
+          "y": 629.814172
+        },
+        {
+          "id": "WorldMap_Name_SouthSlaveCamp",
+          "name": "South Laborer's Tent",
+          "x": 556.48588,
+          "y": 313.183154
+        },
+        {
+          "id": "WorldMap_Name_StealerCamp",
+          "name": "Graverobber Campsite",
+          "x": 671.145251,
+          "y": 383.179657
+        },
+        {
+          "id": "WorldMap_Name_SteelHammerCamp",
+          "name": "Steel Hammer Base",
+          "x": 687.856433,
+          "y": 501.325537
+        },
+        {
+          "id": "WorldMap_Name_SteelHammerTradersPost",
+          "name": "Steel Hammer Merchants HQ",
+          "x": 701.754626,
+          "y": 500.302925
+        },
+        {
+          "id": "WorldMap_Name_TemporaryBase",
+          "name": "Temporary Investigation Base",
+          "x": 425.170898,
+          "y": 396.850586
+        },
+        {
+          "id": "WorldMap_Name_TraneinHill",
+          "name": "Tranein Highland",
+          "x": 372.190088,
+          "y": 463.563965
+        },
+        {
+          "id": "WorldMap_Name_TraneinPond",
+          "name": "Tranein Pond",
+          "x": 353.149414,
+          "y": 468.505859
+        },
+        {
+          "id": "WorldMap_Name_UnderCliff",
+          "name": "Steel Hammer Temporary Trading Post",
+          "x": 701.212598,
+          "y": 635.212573
+        },
+        {
+          "id": "WorldMap_Name_UnnamedCemetery",
+          "name": "Nameless Cemetery",
+          "x": 316.539233,
+          "y": 377.046338
+        },
+        {
+          "id": "WorldMap_Name_VictoryDaevasStatue",
+          "name": "Victorious Daeva's Statue",
+          "x": 517.033972,
+          "y": 444.390413
+        },
+        {
+          "id": "WorldMap_Name_Watcherstent",
+          "name": "Watcher's Tent",
+          "x": 374.190955,
+          "y": 451.962296
+        },
+        {
+          "id": "WorldMap_Name_WesternGribadeCanyon",
+          "name": "Western Gribade Highland",
+          "x": 644.48136,
+          "y": 615.202429
+        }
+      ],
+      "unresolvedLabels": [
+        "WorldMap_Name_EastSlaveCamp",
+        "WorldMap_Name_Impetusium",
+        "WorldMap_Name_IslandOfSpirit_camp",
+        "WorldMap_Name_TraneinHill2"
+      ]
+    },
+    {
+      "name": "Chaotic Lower Reshanta",
+      "mapKey": "Abyss_Reshanta_A",
+      "validatedTiles": 16,
+      "labels": [
+        {
+          "id": "WorldMap_Name_BlackShardZone",
+          "name": "Black Fragments Area",
+          "x": 559.904751,
+          "y": 440.309014
+        },
+        {
+          "id": "WorldMap_Name_DestroyedDebris",
+          "name": "Devastated Remnants",
+          "x": 446.552148,
+          "y": 554.432048
+        },
+        {
+          "id": "WorldMap_Name_PrimumLanding",
+          "name": "Latesran Eastern Root",
+          "x": 617.145427,
+          "y": 385.759009
+        },
+        {
+          "id": "WorldMap_Name_RootsofReshanta",
+          "name": "Reshanta's Root",
+          "x": 500.535508,
+          "y": 468.352607
+        },
+        {
+          "id": "WorldMap_Name_SulfurTreeIsland",
+          "name": "Sulfur Tree Island",
+          "x": 388.226338,
+          "y": 405.611604
+        },
+        {
+          "id": "WorldMap_Name_TeminonLanding",
+          "name": "Latesran Western Root",
+          "x": 389.398567,
+          "y": 607.82332
+        },
+        {
+          "id": "WorldMap_Name_WingsofSielArchipelago",
+          "name": "Archipelago of Siel's Wings",
+          "x": 605.02062,
+          "y": 577.273965
+        }
+      ],
+      "unresolvedLabels": []
+    },
+    {
+      "name": "Chaotic Middle Reshanta",
+      "mapKey": "Abyss_Reshanta_C",
+      "validatedTiles": 4,
+      "labels": [
+        {
+          "id": "WorldMap_Name_AR3_BlackShardZone",
+          "name": "Eroded Fragment Area",
+          "x": 482.17883,
+          "y": 766.893774
+        },
+        {
+          "id": "WorldMap_Name_AR3_DestroyedDebris",
+          "name": "Steel Titan's Grave",
+          "x": 517.95695,
+          "y": 241.096973
+        },
+        {
+          "id": "WorldMap_Name_AR3_PrimumLanding",
+          "name": "Latesran Eastern Ridge",
+          "x": 784.559082,
+          "y": 495.117188
+        },
+        {
+          "id": "WorldMap_Name_AR3_RootsofReshanta",
+          "name": "Corroded Heart",
+          "x": 511.627663,
+          "y": 460.574243
+        },
+        {
+          "id": "WorldMap_Name_AR3_SulfurTreeIsland",
+          "name": "Contaminated Marsh",
+          "x": 479.74998,
+          "y": 614.460986
+        },
+        {
+          "id": "WorldMap_Name_AR3_TeminonLanding",
+          "name": "Latesran Western Ridge",
+          "x": 238.740576,
+          "y": 488.993788
+        },
+        {
+          "id": "WorldMap_Name_AR3_WingsofSielArchipelago",
+          "name": "Distorted Old Growth Forest",
+          "x": 519.53125,
+          "y": 367.965801
+        }
+      ],
+      "unresolvedLabels": []
+    }
+  ],
+  "sourceSha256": {
+    "regions": "5870a67bf73bd10c1e85d96d9a23298b8495b156aa9df9134ef01310bf64bff2",
+    "english": "7ab5258b29fec3d18aebf9d0725ca80016deb9de3c11d2b002a688d1cdc68d2b",
+    "WorldMap_Abyss_Reshanta_A": "1e8b613aec6a9c0afb6c0f7c2d4c552a2cca933c0b0945e6cca1f675340a7d86",
+    "WorldMap_Abyss_Reshanta_A_Design": "3bcb507ec55d3b8fe2971454b24d4269e67040c347609a2a2f7a081fe8b38c41",
+    "WorldMap_Abyss_Reshanta_C": "d356c259e9f645584eebd0540fe567f24a2b83a4c073b8c37d9d5301ec7748c9",
+    "WorldMap_Abyss_Reshanta_C_Design": "209c468f712550650f6f410b8dc7f0f3d4a7ae6ab730dd796433ade1841b4743",
+    "WorldMap_World_D_A": "00584e384fd3ef880fa7fd09599867179c828adeccbcc279ebf3d612881c30d8",
+    "WorldMap_World_D_A_Design": "e35c6198cf80a8bb02bf1c6da9cbf6d6ce4c8ce442194a975d69358380b4e62b",
+    "WorldMap_World_D_Starter": "ea3f48b5fd908615918f26656ff910149881325a2c0bf2c9aaf12e2054ab5159",
+    "WorldMap_World_D_Starter_Design": "76f83c64336cc9fcf06c0cc6267ebc034b5d4f99d6736261521267cf3d62d5b9",
+    "WorldMap_World_L_A": "4e2f4e057cf04d72922f29c7383f2a141c2ba15267612590b26012a1e223efab",
+    "WorldMap_World_L_A_Design": "5bd9573010adb9efe02b39c45055f6ba021ae9fccfee6a8525d9bc6dd3f3e896",
+    "WorldMap_World_L_Starter": "a43cbc8d7e7afffb7ac6b5aba30d6219e84711d986c076eb1ead39d4379e29d9",
+    "WorldMap_World_L_Starter_Design": "53c10f7f9b67931c1f8f43b5fabb42defbe41966f0d00aee097f1397da8053b2",
+    "audit0": "8a38711e488d2dfd5cd1701e8d34672afba5f202fc378a4c9d6e214ae42cf386",
+    "audit1": "ac9eadd796072f3778584efa88d739ca14b1ad9b2fb583beab02bcc7f75c6990",
+    "audit2": "b731a7cc069a06a8c7dfd45f997d662c89b349554b7eae26d2132073e6aa2875"
+  }
+}

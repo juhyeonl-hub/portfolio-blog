@@ -2,7 +2,18 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {moduleUrl} from './modules.mjs';
-const {visibleTerrainTiles: tiles}=await import(moduleUrl(readFileSync('lib/terrain-map.ts','utf8')));
+const {visibleTerrainTiles: tiles, terrainLabelNames}=await import(moduleUrl(readFileSync('lib/terrain-map.ts','utf8')));
+const closeLabels=[{id:'a',name:'First region',x:500,y:500},{id:'b',name:'Other region',x:550,y:500}];
+assert.equal(terrainLabelNames(closeLabels,1).size,1);
+assert.equal(terrainLabelNames(closeLabels,8).size,2);
+const labels=JSON.parse(readFileSync('lib/data/terrain-labels.json'));
+assert.deepEqual(labels.maps.map(m=>m.labels.length),[69,71,7,7]);
+assert.deepEqual(labels.maps.map(m=>m.unresolvedLabels.length),[5,4,0,0]);
+assert.equal(labels.worldProjectionVerified,false);assert.equal(labels.coordinateSpace,'map-local');
+for(const map of labels.maps){
+ assert.equal(new Set(map.labels.map(l=>l.id)).size,map.labels.length);
+ for(const l of map.labels)assert.ok(l.name && l.x>=0 && l.x<=1000 && l.y>=0 && l.y<=1000);
+}
 assert.equal(tiles({x:0,y:0,zoom:1},8).length,64);
 assert.deepEqual(tiles({x:500,y:500,zoom:8},8),[{x:4,y:4,left:500,top:500,width:125}]);
 assert.equal(tiles({x:510,y:510,zoom:8},8).length,4);
