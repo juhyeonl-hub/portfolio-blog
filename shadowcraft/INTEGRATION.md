@@ -340,3 +340,25 @@ The runtime supplement requires matching catalog version, node ID/position and
 primary stat key/value/format. Recommendations remain the existing heuristic;
 no saved plan or catalog is rewritten. `board-effects.mjs`, Python generator
 tests and `shadowcraft/tests/board_effects.py` cover validation and display.
+
+### Official quests, dungeons and pets
+
+Global Data now has an explicit-load quest/dungeon/pet browser. The snapshot
+contains 1,429 quest identities and summaries, 733 dungeon/map references and
+209 pets. VehicleList is the client's internal pet table: official English
+UI_VEHICLE_TITLE and UI_VEHICLE_TAB_VEHICLE strings both say `Pets`.
+The export joins 2,553 quest-step records, 400 acquisition NPCs and 424
+completion NPCs; every referenced NPC, next quest and dungeon map exists.
+It does not interpret reward groups, level gates, coordinates or combat stats.
+Missing dungeon titles (25) are shown explicitly instead of invented.
+
+```sh
+python3 shadowcraft/operations/build-journal-index.py /path/to/decoded/Table /path/to/L10NString.json 25926599 frontend/public/shadowcraft/data/journal-index.json
+SHADOWCRAFT_TEST_URL=http://127.0.0.1:5175/lab/shadowcraft/ python3 shadowcraft/tests/journal_database.py
+```
+
+The generator records hashes for Quest, QuestString, QuestStep, Dungeon, Map,
+NpcData, VehicleList and English localization. Broken references and duplicate
+IDs fail before output replacement. The browser validates the Global source,
+loads only on request, supports retry, and writes no localStorage or backend data.
+Research-only decoder sources and private configuration are not shipped.
