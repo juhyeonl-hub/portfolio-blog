@@ -1,0 +1,6582 @@
+{
+  "source": {
+    "kind": "installed-steam-client",
+    "appId": 3393110,
+    "buildId": "25926599",
+    "region": "global",
+    "language": "en-US",
+    "validation": "structural-and-reference-checks",
+    "liveAvailabilityVerified": false,
+    "inputSha256": {
+      "SkillEffect": "b8e684baf08a951be36901dfde3c338b130c0d0a9600a132701a2157830d689d",
+      "SkillAbnormalEffect": "3a1fd036d2c2e9ff9f1df6302b0bdbe0c52ff7ac9942a2b6f7f14c689b3c7bcb",
+      "Item": "c8fab5786e6a64eefb83ccc41bf2d3a536c6b8f0061b65006a5506b469f87d53",
+      "CraftRecipe": "ea70a908d6041abfa8de8100ad7af2b1d5a74d4a4558d6832ba90707bc3fcba6",
+      "Skill": "27dc1e18575324777c6144d6aeae2fdd9d7517eb7b43e952ccc9d387e64ce277",
+      "SkillList": "2016263a50c1aa06f8f7a71b3bfe854e3cb8b61596602b91aeeaadcd2cadf6df",
+      "SkillAcquireData": "7726078889488431b67ceb80cc07e0addaa51f7b43cc97fb6977f2dd9ed40f3e",
+      "English": "7ab5258b29fec3d18aebf9d0725ca80016deb9de3c11d2b002a688d1cdc68d2b"
+    }
+  },
+  "inputSha256": {
+    "ClientIndex": "3eaf1e29118d53a9aeead6bf89ccb9828264d4bcb377dfe684c81b8d8eca82d4",
+    "Skill": "27dc1e18575324777c6144d6aeae2fdd9d7517eb7b43e952ccc9d387e64ce277",
+    "English": "7ab5258b29fec3d18aebf9d0725ca80016deb9de3c11d2b002a688d1cdc68d2b",
+    "SkillEffect": "b8e684baf08a951be36901dfde3c338b130c0d0a9600a132701a2157830d689d",
+    "SkillEffectLv": "196186cf00d6e5550e6c1c302b7629eeee5c056ab876bcb319091cbd958efac9",
+    "SkillAbnormalEffect": "3a1fd036d2c2e9ff9f1df6302b0bdbe0c52ff7ac9942a2b6f7f14c689b3c7bcb",
+    "SkillAbnormalEffectLv": "3f5ad7399609d7afe4a92c8f66d142755892c30f4ea3774c794fb5b59bd8d8fb"
+  },
+  "tableRows": {
+    "SkillEffect": 31629,
+    "SkillEffectLv": 78564,
+    "SkillAbnormalEffect": 12771,
+    "SkillAbnormalEffectLv": 16751
+  },
+  "scope": "Explicit direct se/se_dmg/abe links only; excludes nested references. Group and level identity only, not override semantics, formulas, or in-game validation.",
+  "effects": {
+    "se": {
+      "records": [
+        {
+          "effectId": 1101000011,
+          "group": "Gladiator_Skill001_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1102000011,
+          "group": "Gladiator_Skill002_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1105000011,
+          "group": "Gladiator_Skill005_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1108000011,
+          "group": "Gladiator_Skill008_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1108000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1110000011,
+          "group": "Gladiator_Skill010_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1110000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1111000811,
+          "group": "Gladiator_Skill011_LvUp_1",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1113000011,
+          "group": "Gladiator_Skill013_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1117000011,
+          "group": "Gladiator_Skill017_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1119000011,
+          "group": "Gladiator_Skill019_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1120000011,
+          "group": "Gladiator_Skill020_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1120000022,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1124000011,
+          "group": "Gladiator_Skill024_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1124000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1124001015,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1125000011,
+          "group": "Gladiator_Skill025_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1126000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1128000011,
+          "group": "Gladiator_Skill028_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1129000021,
+          "group": "Gladiator_Skill029_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1129000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1130000011,
+          "group": "Gladiator_Skill030_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1130000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1134000011,
+          "group": "Gladiator_Skill034_LvUp_01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1136000021,
+          "group": "Gladiator_Skill036_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1136000032,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1138000012,
+          "group": "Gladiator_Skill038_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1138000911,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1139000011,
+          "group": "Gladiator_Skill039_LvUp_01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1139000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1139000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1139000811,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1140000011,
+          "group": "Gladiator_Skill040_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1141000011,
+          "group": "Gladiator_Skill041_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1141000711,
+          "group": "Gladiator_Skill041_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1143000011,
+          "group": "Gladiator_Skill043_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1143000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1145000011,
+          "group": "Gladiator_Skill045_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1145000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1170000021,
+          "group": "Gladiator_Skill037_LvUp_01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1170000025,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1172000711,
+          "group": "Gladiator_Passive002_LvUp_SE2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1173000711,
+          "group": "Gladiator_Passive003_LvUp_SE2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1173000712,
+          "group": "Gladiator_Passive003_LvUp_SE3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1173000811,
+          "group": "Gladiator_Passive003_LvUp_SE6",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1177000711,
+          "group": "Gladiator_Passive007_LvUp_SE2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1178000711,
+          "group": "Gladiator_Passive008_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1179000711,
+          "group": "Gladiator_Passive009_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1179000811,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1180000711,
+          "group": "Gladiator_Passive010_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1180000811,
+          "group": "Gladiator_Passive010_LvUp_Sys_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1180001012,
+          "group": "Gladiator_Passive010_LvUp_Sys_4",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1201000011,
+          "group": "Templar_Skill001_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1204000011,
+          "group": "Templar_Skill004_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1207000021,
+          "group": "Templar_Skill007_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1207000022,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1207000711,
+          "group": "Templar_Skill007_LvUp_SE",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1209000011,
+          "group": "Templar_Skill009_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1209000021,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1209000311,
+          "group": "Templar_Skill009_Charge03_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1210000011,
+          "group": "Templar_Skill010_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1210000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1211000811,
+          "group": "Templar_Skill011_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1212000011,
+          "group": "Templar_Skill012_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1212000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1212000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1213000011,
+          "group": "Templar_Skill013_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1213000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1219000011,
+          "group": "Templar_Skill019_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1220000011,
+          "group": "Templar_Skill020_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1222000011,
+          "group": "Templar_Skill022_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1222000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1223000011,
+          "group": "Templar_Skill023_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1223000021,
+          "group": "Templar_Skill023_LvUp_Heal",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1224000011,
+          "group": "Templar_Skill024_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1224000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1224000811,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1225000011,
+          "group": "Templar_Skill025_LvUp_Party",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1226000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1227000011,
+          "group": "Templar_Skill027_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1227000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1230000011,
+          "group": "Templar_Skill030_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1230000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1231000011,
+          "group": "Templar_Skill031_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1231000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1232000011,
+          "group": "Templar_Skill032_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1234000011,
+          "group": "Templar_Skill034_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1235000011,
+          "group": "Templar_Skill035_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1235000021,
+          "group": "Templar_Skill035_LvUp_Heal",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1235000022,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1241000011,
+          "group": "Templar_Skill041_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1241000015,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1243000021,
+          "group": "Templar_Skill043_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1243000022,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1245000011,
+          "group": "Templar_Skill045_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1270000021,
+          "group": "Templar_GlideSkill_01_LvUp_01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1270000025,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1272000111,
+          "group": "Templar_Passive002_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1273000111,
+          "group": "Templar_Passive003_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1275000111,
+          "group": "Templar_Passive005_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1277000711,
+          "group": "Templar_Passive007_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1278000111,
+          "group": "Templar_Passive008_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1279000111,
+          "group": "Templar_Passive009_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1279000211,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1280000211,
+          "group": "Templar_Passive010_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1301000011,
+          "group": "Assassin_Skill001_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1302000011,
+          "group": "Assassin_Skill002_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1302000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1305000021,
+          "group": "Assassin_Skill005_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1305000022,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1306000011,
+          "group": "Assassin_Skill006_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1307000021,
+          "group": "Assassin_Skill007_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1307000022,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1308000811,
+          "group": "Assassin_Skill008_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1310000011,
+          "group": "Assassin_Skill010_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1310000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1313000011,
+          "group": "Assassin_Skill013_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1313000013,
+          "group": "Assassin_Skill013_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1313000015,
+          "group": "Assassin_Skill013_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1313000017,
+          "group": "Assassin_Skill013_LvUp_03",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1313000019,
+          "group": "Assassin_Skill013_LvUp_04",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1313000021,
+          "group": "Assassin_Skill013_LvUp_05",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1313000023,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1313000025,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1313000027,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1313000029,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1313000031,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1314000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1314000021,
+          "group": "Assassin_Skill014_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1318000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1321000011,
+          "group": "Assassin_Skill021_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1321000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1322000041,
+          "group": "Assassin_Skill022_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1322000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1323000021,
+          "group": "Assassin_Skill023_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1323000022,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1323000024,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1325000011,
+          "group": "Assassin_Skill025_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1325000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1326000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1327000011,
+          "group": "Assassin_Skill027_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1327000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1328000021,
+          "group": "Assassin_Skill028_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1328000711,
+          "group": "Assassin_Skill028_LvUp_SE_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1330000011,
+          "group": "Assassin_Skill030_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1330000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1331000011,
+          "group": "Assassin_Skill031_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1334000011,
+          "group": "Assassin_Skill034_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1335000011,
+          "group": "Assassin_Skill035_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1336000021,
+          "group": "Assassin_Skill036_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1336000022,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1337000011,
+          "group": "Assassin_Skill037_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1339000011,
+          "group": "Assassin_Skill039_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1370000021,
+          "group": "Assassin_GlideSkill_01_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1370000025,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1371000711,
+          "group": "Assassin_Passive001_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1372000711,
+          "group": "Assassin_Passive002_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1372000713,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1372001011,
+          "group": "Assassin_Passive002_LvUp_SE_3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1373000711,
+          "group": "Assassin_Passive003_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1377000811,
+          "group": "Assassin_Passive007_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1378000711,
+          "group": "Assassin_Passive008_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1379000711,
+          "group": "Assassin_Passive009_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1379000811,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1380000711,
+          "group": "Assassin_Passive010_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1401000011,
+          "group": "Ranger_Skill001_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1401000311,
+          "group": "Ranger_Skill001_Charge03_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1402000011,
+          "group": "Ranger_Skill002_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1405000011,
+          "group": "Ranger_Skill005_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1405000012,
+          "group": "Ranger_Skill005_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1406000011,
+          "group": "Ranger_Skill006_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1406000012,
+          "group": "Ranger_Skill006_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1407000011,
+          "group": "Ranger_Skill007_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1407000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1408000011,
+          "group": "Ranger_Skill008_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1409000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1409001021,
+          "group": "Ranger_Skill009_A_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1411000011,
+          "group": "Ranger_Skill011_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1411000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1412000021,
+          "group": "Ranger_Skill012_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1413000011,
+          "group": "Ranger_Skill013_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1413000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1415000011,
+          "group": "Ranger_Skill015_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1415000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1416000011,
+          "group": "Ranger_Skill016_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1416000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1417000111,
+          "group": "Ranger_Skill017_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1417000112,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1418000111,
+          "group": "Ranger_Skill018_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1418000112,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1419000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1422000011,
+          "group": "Ranger_Skill022_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1426000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1427000011,
+          "group": "Ranger_Skill027_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1427000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1431000011,
+          "group": "Ranger_Skill031_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1433000011,
+          "group": "Ranger_Skill033_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1434000011,
+          "group": "Ranger_Skill034_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1435000011,
+          "group": "Ranger_Skill035_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1436000011,
+          "group": "Ranger_Skill036_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1438000011,
+          "group": "Ranger_Skill038_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1438000711,
+          "group": "Ranger_Skill038_LvUp_SE",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1470000021,
+          "group": "Ranger_GlideSkill_01_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1470000025,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1471000711,
+          "group": "Ranger_Passive001_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1472000711,
+          "group": "Ranger_Passive002_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1473000711,
+          "group": "Ranger_Passive003_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1477000711,
+          "group": "Ranger_Passive007_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1478000811,
+          "group": "Ranger_Passive008_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1479000711,
+          "group": "Ranger_Passive009_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1479000811,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1480000711,
+          "group": "Ranger_Passive010_LvUp_SE_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1501000011,
+          "group": "Sorcerer_Skill001_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1504000011,
+          "group": "Sorcerer_Skill004_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1505000011,
+          "group": "Sorcerer_Skill005_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1506000011,
+          "group": "Sorcerer_Skill006_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1506000311,
+          "group": "Sorcerer_Skill006_LvUp_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1509000011,
+          "group": "Sorcerer_Skill009_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1509000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1511000011,
+          "group": "Sorcerer_Skill011_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1511000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1512000011,
+          "group": "Sorcerer_Skill012_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1513000011,
+          "group": "Sorcerer_Skill013_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1513000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1514000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1515000011,
+          "group": "Sorcerer_Skill015_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1515000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1516000011,
+          "group": "Sorcerer_Skill016_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1516000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1520000211,
+          "group": "Sorcerer_Skill020_LvUp_SE2",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1520000311,
+          "group": "Sorcerer_Skill020_LvUp_SE1",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1521000011,
+          "group": "Sorcerer_Skill021_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1522000011,
+          "group": "Sorcerer_Skill022_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1523000011,
+          "group": "Sorcerer_Skill023_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1523000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1524000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1528000211,
+          "group": "Sorcerer_Skill028_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1528000312,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1530000011,
+          "group": "Sorcerer_Skill030_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1530000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1531000011,
+          "group": "Sorcerer_Skill031_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1532000011,
+          "group": "Sorcerer_Skill032_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1532000711,
+          "group": "Sorcerer_Skill032_LvUp_Sys",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1536000011,
+          "group": "Sorcerer_Skill036_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1539000211,
+          "group": "Sorcerer_Skill039_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1539000212,
+          "group": "Sorcerer_Skill039_LvUp_02",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1540000011,
+          "group": "Sorcerer_Skill040_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1541000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1541000112,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1570000021,
+          "group": "Sorcerer_Skill037_LvUp_01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1570000025,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1571000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1571000811,
+          "group": "Sorcerer_Passive002_LvUp_SE3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1573000711,
+          "group": "Sorcerer_Passive010_LvUp_SE2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1575000711,
+          "group": "Sorcerer_Passive008_LvUp_SE2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1576000711,
+          "group": "Sorcerer_Passive009_LvUp_SE2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1578000711,
+          "group": "Sorcerer_Passive014_LvUp_SE2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1579000711,
+          "group": "Sorcerer_Passive015_LvUp_SE2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1579000811,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1580000711,
+          "group": "Sorcerer_Passive016_LvUp_SE2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1600110111,
+          "group": "Elementalist_Skill014_LvUp_Fire",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1600110511,
+          "group": "Elementalist_Skill014_LvUp_Water",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1600110911,
+          "group": "Elementalist_Skill014_LvUp_Wind",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1600111311,
+          "group": "Elementalist_Skill014_LvUp_Earth",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1600111711,
+          "group": "Elementalist_Skill014_LvUp_Ancient",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1600130111,
+          "group": "Elementalist_Skill024_LvUp_Fire",
+          "status": "linked",
+          "levelCount": 29,
+          "firstLevel": 2,
+          "lastLevel": 30,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1600130511,
+          "group": "Elementalist_Skill024_LvUp_Water",
+          "status": "linked",
+          "levelCount": 29,
+          "firstLevel": 2,
+          "lastLevel": 30,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1600130911,
+          "group": "Elementalist_Skill024_LvUp_Earth",
+          "status": "linked",
+          "levelCount": 29,
+          "firstLevel": 2,
+          "lastLevel": 30,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1600131311,
+          "group": "Elementalist_Skill024_LvUp_Wind",
+          "status": "linked",
+          "levelCount": 29,
+          "firstLevel": 2,
+          "lastLevel": 30,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1600131711,
+          "group": "Elementalist_Skill024_LvUp_Ancient",
+          "status": "linked",
+          "levelCount": 29,
+          "firstLevel": 2,
+          "lastLevel": 30,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1601000011,
+          "group": "Elementalist_Skill001_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1604000011,
+          "group": "Elementalist_Skill004_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1606000011,
+          "group": "Elementalist_Skill006_LvUp",
+          "status": "linked",
+          "levelCount": 29,
+          "firstLevel": 2,
+          "lastLevel": 30,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1606000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1606000111,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1607000011,
+          "group": "Elementalist_Skill007_LvUp_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1607000013,
+          "group": "Elementalist_Skill007_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1608000011,
+          "group": "Elementalist_Skill008_LvUp",
+          "status": "linked",
+          "levelCount": 29,
+          "firstLevel": 2,
+          "lastLevel": 30,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1608000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1610000121,
+          "group": "Elementalist_Skill010_LvUp_Fire",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1611000111,
+          "group": "Elementalist_Skill011_LvUp_Water",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1612000025,
+          "group": "Elementalist_Skill012_LvUp_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1612000111,
+          "group": "Elementalist_Skill012_LvUp_Wind",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1613000121,
+          "group": "Elementalist_Skill013_LvUp_Earth",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1613000131,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1614000011,
+          "group": "Elementalist_Skill014_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1614000013,
+          "group": "Elementalist_Skill014_LvUp_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1615000011,
+          "group": "Elementalist_Skill015_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1615000013,
+          "group": "Elementalist_Skill015_LvUp_2",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1615110011,
+          "group": "Elementalist_Skill015_LvUp_Fire",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1615210011,
+          "group": "Elementalist_Skill015_LvUp_Water",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1615310011,
+          "group": "Elementalist_Skill015_LvUp_Earth",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1615410011,
+          "group": "Elementalist_Skill015_LvUp_Wind",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1615510011,
+          "group": "Elementalist_Skill015_LvUp_Ancient",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1617000011,
+          "group": "Elementalist_Skill017_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1619000011,
+          "group": "Elementalist_Skill019_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1620000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1622000011,
+          "group": "Elementalist_Skill022_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1622000012,
+          "group": "Elementalist_Skill022_LvUp_2",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1623000013,
+          "group": "Elementalist_Skill023_LvUp_2",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1623000111,
+          "group": "Elementalist_Skill023_LvUp_Dispel1",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1623000211,
+          "group": "Elementalist_Skill023_LvUp_Dispel2",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1624000011,
+          "group": "Elementalist_Skill024_LvUp",
+          "status": "linked",
+          "levelCount": 29,
+          "firstLevel": 2,
+          "lastLevel": 30,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1625000111,
+          "group": "Elementalist_Skill025_LvUp_Ancient",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1626000011,
+          "group": "Elementalist_Skill026_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1626000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1630000011,
+          "group": "Elementalist_Skill030_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1633000011,
+          "group": "Elementalist_Skill033_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1633000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1634000011,
+          "group": "Elementalist_Skill034_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1636000011,
+          "group": "Elementalist_Skill036_LvUp",
+          "status": "linked",
+          "levelCount": 29,
+          "firstLevel": 2,
+          "lastLevel": 30,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1637000011,
+          "group": "Elementalist_Skill037_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1637000111,
+          "group": "Elementalist_Skill037_System_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1670000021,
+          "group": "Elementalist_GlideSkill_01_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1670000025,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1673000111,
+          "group": "Elementalist_Passive009_LvUp_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1674000111,
+          "group": "Elementalist_Passive006_LvUp_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1675000111,
+          "group": "Elementalist_Passive002_LvUp_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1675000211,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1677000111,
+          "group": "Elementalist_Passive005_LvUp_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1678000111,
+          "group": "Elementalist_Passive013_LvUp_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1679000111,
+          "group": "Elementalist_Passive014_LvUp_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1679000211,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1680000111,
+          "group": "Elementalist_Passive015_LvUp_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1699000211,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1699000311,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1701000011,
+          "group": "Cleric_Skill001_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1704000011,
+          "group": "Cleric_Skill004_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1704000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1706000011,
+          "group": "Cleric_Skill006_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1706000311,
+          "group": "Cleric_Skill006_LvUp_Step03",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1707000011,
+          "group": "Cleric_Skill007_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1707000013,
+          "group": "Cleric_Skill007_LvUp_DOT",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1708000011,
+          "group": "Cleric_Skill008_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1708000013,
+          "group": "Cleric_Skill008_LvUp_DOT",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1708000014,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1709000011,
+          "group": "Cleric_Skill009_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1710000011,
+          "group": "Cleric_Skill010_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1712000011,
+          "group": "Cleric_Skill012_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1715000211,
+          "group": "Cleric_Skill015_LvUP",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1716000011,
+          "group": "Cleric_Skill047_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1716000611,
+          "group": "Cleric_Skill047_LvUp_Heal",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1719000011,
+          "group": "Cleric_Skill019_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1719000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1727000012,
+          "group": "Cleric_Skill027_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1727000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1728000011,
+          "group": "Cleric_Skill028_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1729000012,
+          "group": "Cleric_Skill029_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1730000011,
+          "group": "Cleric_Skill030_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1730000013,
+          "group": "Cleric_Skill030_LvUp_Dot",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1735000011,
+          "group": "Cleric_Skill035_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1735001015,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1737000011,
+          "group": "Cleric_Skill037_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1740000011,
+          "group": "Cleric_Skill040_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1740000012,
+          "group": "Cleric_Skill040_LvUp_Dot",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1742000011,
+          "group": "Cleric_Skill042_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1743000011,
+          "group": "Cleric_Skill043_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1744000011,
+          "group": "Cleric_Skill046_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1744000711,
+          "group": "Cleric_Skill046_LvUp_Damage",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1770000021,
+          "group": "Cleric_GlideSkill_LvUp_01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1770000025,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1772000111,
+          "group": "Cleric_Passive002_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1773000111,
+          "group": "Cleric_Passive003_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1776000111,
+          "group": "Cleric_Passive006_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1777000111,
+          "group": "Cleric_Passive007_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1779000111,
+          "group": "Cleric_Passive009_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1779000211,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1780000111,
+          "group": "Cleric_Passive010_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1801000011,
+          "group": "Chanter_Skill001_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1804000011,
+          "group": "Chanter_Skill004_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1804000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1806000011,
+          "group": "Chanter_Skill006_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1806000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1806000014,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1808000021,
+          "group": "Chanter_Skill008_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1808000112,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1808000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1809000021,
+          "group": "Chanter_Skill009_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1809000022,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1810000011,
+          "group": "Chanter_Skill010_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1810000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1810000811,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1812000011,
+          "group": "Chanter_Skill012_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1812000012,
+          "group": "Chanter_Skill012_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1812000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1813000021,
+          "group": "Chanter_Skill043_LvUp_01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1813000023,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1814000711,
+          "group": "Chanter_Skill014_LvUp_02",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1815000011,
+          "group": "Chanter_Skill015_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1815000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1815000014,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1816000211,
+          "group": "Chanter_Skill016_LvUp_Heal",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1817000011,
+          "group": "Chanter_Skill017_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1820000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1821000022,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1821000024,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1821001021,
+          "group": "Chanter_Skill021_LvUp_A1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1822000011,
+          "group": "Chanter_Skill022_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1822001015,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1823000011,
+          "group": "Chanter_Skill023_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1823000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1824000011,
+          "group": "Chanter_Skill024_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1825000011,
+          "group": "Chanter_Skill025_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1829000011,
+          "group": "Chanter_Skill029_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1829000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1829000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1830000011,
+          "group": "Chanter_Skill030_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1833000011,
+          "group": "Chanter_Skill033_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1842000011,
+          "group": "Chanter_Skill042_LvUp_01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1842000021,
+          "group": "Chanter_Skill042_LvUp_02",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1844000011,
+          "group": "Chanter_Skill044_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1844000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1870000021,
+          "group": "Chanter_GlideSkill_LvUp_01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1870000025,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1872000111,
+          "group": "Chanter_Passive002_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1873000111,
+          "group": "Chanter_Passive003_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1873000211,
+          "group": "Chanter_Passive003_LvUp_03",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1873000311,
+          "group": "Chanter_Passive003_LvUp_04",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1877000111,
+          "group": "Chanter_Passive007_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1878000111,
+          "group": "Chanter_Passive008_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1879000111,
+          "group": "Chanter_Passive009_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1879000211,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1880000111,
+          "group": "Chanter_Passive010_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        }
+      ],
+      "counts": {
+        "linked": 296,
+        "no-explicit-group": 127,
+        "missing-group": 0
+      }
+    },
+    "abe": {
+      "records": [
+        {
+          "effectId": 1000000412,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1108000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1108000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1111000014,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1113000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1125000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1138000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1138000911,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1138000912,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1139000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1139000811,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1139000812,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1140000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1171000011,
+          "group": "Gladiator_Passive001_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1171000012,
+          "group": "Gladiator_Passive001_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1171000013,
+          "group": "Gladiator_Passive001_LvUp_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1171000014,
+          "group": "Gladiator_Passive001_LvUp_AB4",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1171000015,
+          "group": "Gladiator_Passive001_LvUp_AB5",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1172000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1172000017,
+          "group": "Gladiator_Passive002_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1173000011,
+          "group": "Gladiator_Passive004_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1173000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1174000011,
+          "group": "Gladiator_Passive007_LvUP_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1174000013,
+          "group": "Gladiator_Passive007_LvUP_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1175000011,
+          "group": "Gladiator_Passive003_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1175000012,
+          "group": "Gladiator_Passive003_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1175000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1175000014,
+          "group": "Gladiator_Passive003_LvUp_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1176000011,
+          "group": "Gladiator_Passive009_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1176000012,
+          "group": "Gladiator_Passive009_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1178000012,
+          "group": "Gladiator_Passive013_LvUp_AB6",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1178000711,
+          "group": "Gladiator_Passive013_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1178000712,
+          "group": "Gladiator_Passive013_LvUp_AB4",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1179000011,
+          "group": "Gladiator_Passive014_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1179000012,
+          "group": "Gladiator_Passive014_LvUp_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1179000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1179000711,
+          "group": "Gladiator_Passive014_LvUp_AB4",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1179000712,
+          "group": "Gladiator_Passive014_LvUp_AB5",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1179000811,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1180000811,
+          "group": "Gladiator_Passive015_LvUp_AB4",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1207000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1209000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1209000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1209000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1211000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1212000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1212000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1219000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1219000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1220000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1223000011,
+          "group": "Templar_Skill023_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1225000011,
+          "group": "Templar_Skill025_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1225000021,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1225000022,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1227000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1230003711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1232000011,
+          "group": "Templar_Skill032_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1235000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1235000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1241000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1271000011,
+          "group": "Templar_Passive001_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1271000012,
+          "group": "Templar_Passive001_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1271000013,
+          "group": "Templar_Passive001_LvUp_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1272000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1272000013,
+          "group": "Templar_Passive002_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1273000011,
+          "group": "Templar_Passive003_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1273000013,
+          "group": "Templar_Passive003_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1274000011,
+          "group": "Templar_Passive004_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1274000013,
+          "group": "Templar_Passive004_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1275000011,
+          "group": "Templar_Passive005_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1275000111,
+          "group": "Templar_Passive005_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1276000011,
+          "group": "Templar_Passive006_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1276000012,
+          "group": "Templar_Passive006_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1277000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1277000013,
+          "group": "Templar_Passive007_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1277000711,
+          "group": "Templar_Passive007_LvUp_AB2_1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1278000011,
+          "group": "Templar_Passive008_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1278000013,
+          "group": "Templar_Passive008_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1278000111,
+          "group": "Templar_Passive008_LvUp_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1278000112,
+          "group": "Templar_Passive008_LvUp_AB4",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1279000011,
+          "group": "Templar_Passive009_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1279000012,
+          "group": "Templar_Passive009_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1279000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1279000111,
+          "group": "Templar_Passive009_LvUp_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1279000112,
+          "group": "Templar_Passive009_LvUp_AB4",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1279000211,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1280000011,
+          "group": "Templar_Passive010_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1280000121,
+          "group": "Templar_Passive010_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1280000123,
+          "group": "Templar_Passive010_LvUp_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1322003711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1331000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1337000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1339000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1371000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1371000012,
+          "group": "Assassin_Passive001_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1371000013,
+          "group": "Assassin_Passive001_LvUp_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1371000014,
+          "group": "Assassin_Passive001_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1372000011,
+          "group": "Assassin_Passive002_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1372000013,
+          "group": "Assassin_Passive002_LvUp_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1372000023,
+          "group": "Assassin_Passive002_LvUp_AB8",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1372001011,
+          "group": "Assassin_Passive002_LvUp_AB8_1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1373000011,
+          "group": "Assassin_Passive003_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1373000713,
+          "group": "Assassin_Passive003_LvUp_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1374000011,
+          "group": "Assassin_Passive004_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1374000013,
+          "group": "Assassin_Passive004_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1374000015,
+          "group": "Assassin_Passive004_LvUp_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1375000011,
+          "group": "Assassin_Passive005_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1376000011,
+          "group": "Assassin_Passive006_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1376000012,
+          "group": "Assassin_Passive006_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1377000011,
+          "group": "Assassin_Passive007_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1378000011,
+          "group": "Assassin_Passive008_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1378000711,
+          "group": "Assassin_Passive008_LvUp_AB1_2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1378000712,
+          "group": "Assassin_Passive008_LvUp_AB1_3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1379000011,
+          "group": "Assassin_Passive009_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1379000012,
+          "group": "Assassin_Passive009_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1379000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1379000811,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1380000011,
+          "group": "Assassin_Passive010_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1405002013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1409000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1411000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1411000712,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1411000713,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1422000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1422000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1431000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1435000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1435000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1435000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1438000011,
+          "group": "Ranger_Skill038_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1471000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1471000013,
+          "group": "Ranger_Passive001_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1471000015,
+          "group": "Ranger_Passive001_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1472000011,
+          "group": "Ranger_Passive002_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1473000011,
+          "group": "Ranger_Passive003_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1473000012,
+          "group": "Ranger_Passive003_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1473000711,
+          "group": "Ranger_Passive003_LvUp_AB2_1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1474000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1474000013,
+          "group": "Ranger_Passive004_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1474000015,
+          "group": "Ranger_Passive004_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1474000017,
+          "group": "Ranger_Passive004_LvUp_AB3",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1475000011,
+          "group": "Ranger_Passive005_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1476000011,
+          "group": "Ranger_Passive006_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1477000011,
+          "group": "Ranger_Passive007_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1478000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1478000012,
+          "group": "Ranger_Passive008_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1479000011,
+          "group": "Ranger_Passive009_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1479000012,
+          "group": "Ranger_Passive009_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1479000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1479000811,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1480000011,
+          "group": "Ranger_Passive010_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1514000014,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1516000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1516000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1520000211,
+          "group": "Sorcerer_Skill012_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1523000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1523000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1523000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1523000014,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1539000011,
+          "group": "Sorcerer_Skill039_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1540000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1540000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1571000011,
+          "group": "Sorcerer_Passive002_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1571000012,
+          "group": "Sorcerer_Passive002_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1572000011,
+          "group": "Sorcerer_Passive001_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1572000012,
+          "group": "Sorcerer_Passive001_LvUp_AB5",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1572000013,
+          "group": "Sorcerer_Passive001_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1573000011,
+          "group": "Sorcerer_Passive010_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1574000011,
+          "group": "Sorcerer_Passive006_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1574000017,
+          "group": "Sorcerer_Passive006_LvUp_AB03",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1574000023,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1574000029,
+          "group": "Sorcerer_Passive006_LvUp_AB02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1575000011,
+          "group": "Sorcerer_Passive008_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1575000012,
+          "group": "Sorcerer_Passive008_LvUp_AB07",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1575000013,
+          "group": "Sorcerer_Passive008_LvUp_AB08",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1575000711,
+          "group": "Sorcerer_Passive008_LvUp_AB03",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1576000011,
+          "group": "Sorcerer_Passive009_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1576000012,
+          "group": "Sorcerer_Passive009_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1577000011,
+          "group": "Sorcerer_Passive005_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1578000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1578000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1578000021,
+          "group": "Sorcerer_Passive014_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1579000011,
+          "group": "Sorcerer_Passive015_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1579000012,
+          "group": "Sorcerer_Passive015_LvUp_AB2",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1579000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1579000811,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1580000011,
+          "group": "Sorcerer_Passive016_LvUp_AB1",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1617000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1617000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1617000111,
+          "group": "Elementalist_Skill017_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1619000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1619000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1619000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1619000014,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1636000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1636000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1637000011,
+          "group": "Elementalist_Skill037_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1637000041,
+          "group": "Elementalist_Skill037_LvUp_AB02",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1671000011,
+          "group": "Elementalist_Passive004_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1671000012,
+          "group": "Elementalist_Passive004_LvUp_AB01_PvP",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1671000021,
+          "group": "Elementalist_Passive004_LvUp_AB02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1672000011,
+          "group": "Elementalist_Passive007_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1673000011,
+          "group": "Elementalist_Passive009_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1674000011,
+          "group": "Elementalist_Passive006_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1674000012,
+          "group": "Elementalist_Passive006_LvUp_AB02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1675000012,
+          "group": "Elementalist_Passive011_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1676000011,
+          "group": "Elementalist_Passive003_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1676000012,
+          "group": "Elementalist_Passive003_LvUp_AB02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1677000011,
+          "group": "Elementalist_Passive005_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1677000016,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1678000111,
+          "group": "Elementalist_Passive013_LvUp_AB06",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1679000011,
+          "group": "Elementalist_Passive014_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1679000012,
+          "group": "Elementalist_Passive014_LvUp_AB02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1679000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1679000211,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1680000011,
+          "group": "Elementalist_Passive015_LvUp_AB01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1707000011,
+          "group": "Cleric_Skill007_LvUp_DOT",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1707000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1707000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1708000011,
+          "group": "Cleric_Skill008_LvUp_DOT",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1708000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1708000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1709000011,
+          "group": "Cleric_Skill009_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1716000011,
+          "group": "Cleric_Skill047_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1730000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1730000012,
+          "group": "Cleric_Skill030_LvUp_DOT",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1740000011,
+          "group": "Cleric_Skill040_LvUp_Dot",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1741000111,
+          "group": "Cleric_Skill041_LvUp_01_PVE",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1741000112,
+          "group": "Cleric_Skill041_LvUp_01_PVP",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1742000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1742000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1743000011,
+          "group": "Cleric_Skill043_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1744000011,
+          "group": "Cleric_Skill046_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1771000011,
+          "group": "Cleric_Passive001_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1771000012,
+          "group": "Cleric_Passive001_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1772000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1772000012,
+          "group": "Cleric_Passive002_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1773000011,
+          "group": "Cleric_Passive003_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1773000018,
+          "group": "Cleric_Passive003_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1773000025,
+          "group": "Cleric_Passive003_LvUp_03",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1774000011,
+          "group": "Cleric_Passive004_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1775000011,
+          "group": "Cleric_Passive005_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1775000012,
+          "group": "Cleric_Passive005_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1776000011,
+          "group": "Cleric_Passive006_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1776000111,
+          "group": "Cleric_Passive006_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1777000011,
+          "group": "Cleric_Passive007_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1777000111,
+          "group": "Cleric_Passive007_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1777000112,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1778000011,
+          "group": "Cleric_Passive008_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1778000018,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1779000011,
+          "group": "Cleric_Passive009_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1779000012,
+          "group": "Cleric_Passive009_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1779000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1779000111,
+          "group": "Cleric_Passive009_LvUp_03_PVE",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1779000112,
+          "group": "Cleric_Passive009_LvUp_03_PVP",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1779000211,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1780000011,
+          "group": "Cleric_Passive010_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1808003711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1812000011,
+          "group": "Chanter_Skill012_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1813000021,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1814000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1816000111,
+          "group": "Chanter_Skill016_LvUp_01",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1816000112,
+          "group": "Chanter_Skill016_LvUp_02",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1819000111,
+          "group": "Chanter_Skill019_LvUp_01_PVE",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1819000112,
+          "group": "Chanter_Skill019_LvUp_01_PVP",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1824000011,
+          "group": "Chanter_Skill024_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1825000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1825000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1825000111,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1825000112,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1829000711,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1842000011,
+          "group": "Chanter_Skill042_LvUp",
+          "status": "linked",
+          "levelCount": 24,
+          "firstLevel": 2,
+          "lastLevel": 25,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1844000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1871000011,
+          "group": "Chanter_Passive001_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1871000012,
+          "group": "Chanter_Passive001_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1871000013,
+          "group": "Chanter_Passive001_LvUp_03",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1872000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1872000013,
+          "group": "Chanter_Passive002_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1873000011,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1873000012,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1873000211,
+          "group": "Chanter_Passive003_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1873000311,
+          "group": "Chanter_Passive003_LvUp_03",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1874000011,
+          "group": "Chanter_Passive004_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1874000012,
+          "group": "Chanter_Passive004_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1875000011,
+          "group": "Chanter_Passive005_LvUp_01_PVE",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1875000012,
+          "group": "Chanter_Passive005_LvUp_01_PVP",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1875000013,
+          "group": "Chanter_Passive005_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1875000014,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1876000011,
+          "group": "Chanter_Passive006_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1876000012,
+          "group": "Chanter_Passive006_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1877000011,
+          "group": "Chanter_Passive007_LvUp",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1878000011,
+          "group": "Chanter_Passive008_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1878000111,
+          "group": "Chanter_Passive008_LvUp_02_PVE",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1878000112,
+          "group": "Chanter_Passive008_LvUp_02_PVP",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1879000011,
+          "group": "Chanter_Passive009_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1879000012,
+          "group": "Chanter_Passive009_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1879000013,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1879000111,
+          "group": "Chanter_Passive009_LvUp_03_PVE",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1879000112,
+          "group": "Chanter_Passive009_LvUp_03_PVP",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1879000211,
+          "group": "None",
+          "status": "no-explicit-group",
+          "levelCount": 0,
+          "firstLevel": null,
+          "lastLevel": null,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1880000011,
+          "group": "Chanter_Passive010_LvUp_01",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        },
+        {
+          "effectId": 1880000012,
+          "group": "Chanter_Passive010_LvUp_02",
+          "status": "linked",
+          "levelCount": 39,
+          "firstLevel": 2,
+          "lastLevel": 40,
+          "internalGaps": []
+        }
+      ],
+      "counts": {
+        "linked": 188,
+        "no-explicit-group": 114,
+        "missing-group": 0
+      }
+    }
+  }
+}

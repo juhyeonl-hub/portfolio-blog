@@ -439,3 +439,11 @@ portfolio-blog/
 메모리 매핑 조사 결과: 관리자 권한 jmap 직접 읽기는 `0x8007012B`, Microsoft 서명 ProcDump 11.1/12.02 복제 방식 및 12.02 단일 캡처는 `0x800707D1`로 실패했다. 덤프·새 매핑 파일은 생성되지 않았다. 복제 실패 직후에는 대상 프로세스가 조회됐지만 단일 캡처 후 최종 확인에서는 조회되지 않았다. 종료 원인과 도구 실행의 인과관계는 확정하지 않는다. 반복 실행을 멈췄고, 결과만 `operations/runtime-mapping-attempt.json`에 기록했다. 원본 메모리나 계정 정보를 Git/외부로 전송하지 않았다.
 
 운영 검증: `97b256a`, Vercel `portfolio-blog-n70414wvb-xxjuon-4682s-projects.vercel.app` Ready 및 운영 도메인 연결 확인. 운영 데이터베이스·두 지역 지형 브라우저 검사 통과(각 지역 64개 타일 성공 응답, 기본 수치, 상세 이동, 오류 재시도, 저장 보존). 효과 테이블을 포함해 재생성한 인덱스는 커밋 파일과 바이트 단위로 일치했다.
+
+#### Explicit effect growth reference audit (2026-10-16)
+- Extracted SkillAbnormalEffectLv directly from installed Global files: 16,751 rows. Retained research JSON outside the application alongside the prior 78,564 SkillEffectLv rows.
+- Added reproducible audit of direct se/se_dmg/abe references in the 280 playable skill descriptions and traits. Shared Skill/English/base-effect inputs must match the shipped index hashes. Growth tables have independent recorded hashes; extraction establishes their build provenance.
+- 296/423 unique general effect references and 188/302 abnormal effect references have explicit growth groups; all resolve, with no internal level gaps. Remaining 127/114 have no explicit group. This is not evidence that their final values are level invariant. Nested references are excluded explicitly.
+- Validate positive unique row IDs, unique group/level pairs and bounded levels; missing base references or snapshot mismatch fail. Missing growth groups are reported and return nonzero. No inferred fallback, interpolation, damage formula or live level application added.
+- Validation: Python 73 tests, frontend 19 suites and production build passed. Existing chunk-size/plugin-timing warnings remain. No application, database, saved plan or runtime-memory changes.
+- Remaining evidence: establish replacement/additive semantics and which effective skill level selects each row, including specialization/gear overrides, against authoritative behavior or controlled in-game samples. New runtime mapping remains unavailable; this audit does not complete the overall project.
