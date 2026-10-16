@@ -1,0 +1,56 @@
+{
+  "checkedDate": "2026-10-17",
+  "scope": "Global Steam per-server field boss live timestamps",
+  "status": "blocked-no-usable-live-feed",
+  "sources": [
+    {
+      "name": "Aion2Timers community feed",
+      "url": "https://www.aion2timers.com/api/fieldboss.php?action=feed&server=eu-siel",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "result": "HTML explicitly identifies an automated-access gate; no JSON boss records obtained. No alternate user-agent, proxy or gate bypass attempted.",
+      "integration": "not-connected"
+    },
+    {
+      "name": "MythosOfs tracker",
+      "url": "https://github.com/MythosOfs/aion2-tracker",
+      "result": "Public README and source describe Aion2Timers feed, 60-second refresh and estimated flags. This is a consumer of the same feed, not an independent source.",
+      "integration": "reference-only"
+    },
+    {
+      "name": "Grimvane",
+      "url": "https://aion2.grimvane.app/api/v1/field-bosses",
+      "documentation": "https://aion2.grimvane.app/privacy",
+      "httpStatus": 401,
+      "contentType": "application/json; charset=utf-8",
+      "error": "missing_key",
+      "result": "Documented endpoint supplies 48 bosses with location/level/respawn period; API key required. No evidence it supplies a global per-server live kill feed. Personal timers are a separate authenticated endpoint.",
+      "integration": "not-connected"
+    },
+    {
+      "name": "AbyssLogs",
+      "url": "https://abysslogs.com",
+      "documentation": "https://github.com/karim-mo/aion2-abysslogs-dps-meter",
+      "result": "Public website and published frontend identify api.abysslogs.com/v1 but inspected frontend has no field-boss or respawn feed endpoint. Meter documentation lists field-boss alerts; no usable public server feed discovered.",
+      "integration": "not-connected"
+    },
+    {
+      "name": "Gamers4Life",
+      "url": "https://gamers4.life/aion-2/bot-discord",
+      "result": "Provider documents Discord boss/event commands. No public JSON feed endpoint established; a Discord bot is not evidence of an embeddable live data API.",
+      "integration": "not-connected"
+    }
+  ],
+  "requiredEvidence": [
+    "Provider-supported accessible read endpoint or authorized API access",
+    "Real Global server identifiers mapped to our region/server/faction IDs",
+    "Boss identity, source timestamp, next-spawn or observed state, estimated flag and freshness semantics"
+  ],
+  "nextAction": "Obtain supported live feed access from Aion2Timers/AbyssLogs before implementing and publishing automatic countdowns. A static respawn interval alone is insufficient.",
+  "unchanged": [
+    "No production code/deployment changes",
+    "No player uploads or local collectors started",
+    "No messages sent to providers",
+    "No speculative respawn times published"
+  ]
+}
