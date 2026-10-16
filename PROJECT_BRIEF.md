@@ -490,3 +490,11 @@ portfolio-blog/
 계승 제작 검증: Python 89개, 프런트 19묶음, TypeScript, ESLint, 빌드 및 백엔드 24개 통과. 공식 데이터베이스 브라우저 검사는 계승 후보별 이동·기존 재료 계산·잘못된 입력·탭 이동·모바일·저장 보존·재시도를 통과했다. 이름이 같은 후보 두 개를 구분하도록 아이템 ID를 함께 표시했다.
 
 지도 운영 검증: `715d742`, Vercel `portfolio-blog-cxj8xfbz9-xxjuon-4682s-projects.vercel.app` Ready 및 `juhyeonl.dev` 연결 확인. 운영 6지역 지형/154개 지역명·토글·확대·재시도·모바일·저장 보존 검사 통과.
+
+#### User crafting curve observation (2026-10-16)
+- User reported 건룡왕의활, Jewelcrafting professional Lv5 requirement, current beginner Lv20, and approximate expected-probability bands over proficiency gaps 0 and 10–65 (57 points). These are preview values, not actual craft trial outcomes.
+- Reproducible audit finds 28 Global rate groups matching every reported integer band under floor(raw Rate / 1,000,000). Linked bow recipes 211043001/221043001 have raw mastery 55 and products True Dragon Lord Bow / Star Dragon Lord Bow. Shared curves and absent Korean localization do not uniquely resolve the reported item/faction.
+- Example table percentages under this scale: gap 0 = 67.506212, 10 = 79.033485, 44 = 94.008885, 65 = 94.639789. This strongly supports the scale at approximate precision; it does not independently verify exact decimal display, tier conversion, modifiers, negative-gap behavior or caps. Current beginner Lv20 is not gap 20. No live success-rate field changed.
+- Added audit script, sanitized observation artifact, and boundary/missing/invalid/duplicate checks.
+- Prior 9cfcfe2 production deployment Ready and production client-database browser acceptance passed (including succession candidates and stored-data preservation).
+- Validation: Python 92 tests and all 19 frontend suites passed; all 57 reported points match both linked bow curves. No application bundle or saved-data changes.

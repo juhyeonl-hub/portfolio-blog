@@ -1,0 +1,291 @@
+{
+  "observationDate": "2026-10-16",
+  "reportedItemName": "건룡왕의활",
+  "reportedRequirement": "세공 전문 Lv5 이상",
+  "reportedCurrentMastery": "입문 Lv20",
+  "observedPoints": {
+    "0": 67,
+    "10": 79,
+    "11": 80,
+    "12": 81,
+    "13": 81,
+    "14": 82,
+    "15": 83,
+    "16": 83,
+    "17": 84,
+    "18": 85,
+    "19": 85,
+    "20": 86,
+    "21": 86,
+    "22": 87,
+    "23": 88,
+    "24": 88,
+    "25": 88,
+    "26": 89,
+    "27": 89,
+    "28": 90,
+    "29": 90,
+    "30": 90,
+    "31": 90,
+    "32": 90,
+    "33": 91,
+    "34": 91,
+    "35": 92,
+    "36": 92,
+    "37": 92,
+    "38": 92,
+    "39": 92,
+    "40": 92,
+    "41": 93,
+    "42": 93,
+    "43": 93,
+    "44": 94,
+    "45": 94,
+    "46": 94,
+    "47": 94,
+    "48": 94,
+    "49": 94,
+    "50": 94,
+    "51": 94,
+    "52": 94,
+    "53": 94,
+    "54": 94,
+    "55": 94,
+    "56": 94,
+    "57": 94,
+    "58": 94,
+    "59": 94,
+    "60": 94,
+    "61": 94,
+    "62": 94,
+    "63": 94,
+    "64": 94,
+    "65": 94
+  },
+  "comparison": "floor(raw Rate / 1000000) equals approximate reported percent",
+  "sourceHashes": {
+    "CraftRecipe.json": "2818e5a0f11183debcaf70b6a5206663d4cbc64fe678970508ef10299b91e8ba",
+    "CraftRecipeRate.json": "9bdc35af624cd48aba9fcee50c4e819fd7b38c5d298073e72c42b8ca291833fa"
+  },
+  "matchingGroups": [
+    "Prob_Basic_111013001",
+    "Prob_Basic_111023001",
+    "Prob_Basic_111033001",
+    "Prob_Basic_111063001",
+    "Prob_Basic_111113001",
+    "Prob_Basic_121013001",
+    "Prob_Basic_121023001",
+    "Prob_Basic_121033001",
+    "Prob_Basic_121063001",
+    "Prob_Basic_121113001",
+    "Prob_Basic_211043001",
+    "Prob_Basic_211103001",
+    "Prob_Basic_213033001",
+    "Prob_Basic_221043001",
+    "Prob_Basic_221103001",
+    "Prob_Basic_223033001",
+    "Prob_Basic_311053001",
+    "Prob_Basic_311093001",
+    "Prob_Basic_321053001",
+    "Prob_Basic_321093001",
+    "Prob_Basic_412013001",
+    "Prob_Basic_412023001",
+    "Prob_Basic_412033001",
+    "Prob_Basic_412043001",
+    "Prob_Basic_422013001",
+    "Prob_Basic_422023001",
+    "Prob_Basic_422033001",
+    "Prob_Basic_422043001"
+  ],
+  "matchingRecipes": [
+    {
+      "id": 111013001,
+      "product": "equip_wp_Sword_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Blacksmithing",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_111013001"
+    },
+    {
+      "id": 111023001,
+      "product": "equip_wp_Greatsword_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Blacksmithing",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_111023001"
+    },
+    {
+      "id": 111033001,
+      "product": "equip_wp_Dagger_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Blacksmithing",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_111033001"
+    },
+    {
+      "id": 111063001,
+      "product": "equip_wp_Mace_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Blacksmithing",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_111063001"
+    },
+    {
+      "id": 121013001,
+      "product": "equip_wp_Sword_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Blacksmithing",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_121013001"
+    },
+    {
+      "id": 121023001,
+      "product": "equip_wp_Greatsword_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Blacksmithing",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_121023001"
+    },
+    {
+      "id": 121033001,
+      "product": "equip_wp_Dagger_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Blacksmithing",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_121033001"
+    },
+    {
+      "id": 121063001,
+      "product": "equip_wp_Mace_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Blacksmithing",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_121063001"
+    },
+    {
+      "id": 211043001,
+      "product": "equip_wp_Bow_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Jewelcrafting",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_211043001"
+    },
+    {
+      "id": 211103001,
+      "product": "equip_wp_Staff_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Jewelcrafting",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_211103001"
+    },
+    {
+      "id": 213033001,
+      "product": "equip_acc_Ring_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Jewelcrafting",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_213033001"
+    },
+    {
+      "id": 221043001,
+      "product": "equip_wp_Bow_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Jewelcrafting",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_221043001"
+    },
+    {
+      "id": 221103001,
+      "product": "equip_wp_Staff_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Jewelcrafting",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_221103001"
+    },
+    {
+      "id": 223033001,
+      "product": "equip_acc_Ring_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Jewelcrafting",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_223033001"
+    },
+    {
+      "id": 311053001,
+      "product": "equip_wp_Magicbook_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Alchemy",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_311053001"
+    },
+    {
+      "id": 311093001,
+      "product": "equip_wp_Orb_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Alchemy",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_311093001"
+    },
+    {
+      "id": 321053001,
+      "product": "equip_wp_Magicbook_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Alchemy",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_321053001"
+    },
+    {
+      "id": 321093001,
+      "product": "equip_wp_Orb_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Alchemy",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_321093001"
+    },
+    {
+      "id": 412013001,
+      "product": "equip_ar_Torso_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Tailoring",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_412013001"
+    },
+    {
+      "id": 412023001,
+      "product": "equip_ar_Pants_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Tailoring",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_412023001"
+    },
+    {
+      "id": 412033001,
+      "product": "equip_ar_Helmet_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Tailoring",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_412033001"
+    },
+    {
+      "id": 412043001,
+      "product": "equip_ar_Shoulder_L_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Tailoring",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_412043001"
+    },
+    {
+      "id": 422013001,
+      "product": "equip_ar_Torso_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Tailoring",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_422013001"
+    },
+    {
+      "id": 422023001,
+      "product": "equip_ar_Pants_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Tailoring",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_422023001"
+    },
+    {
+      "id": 422033001,
+      "product": "equip_ar_Helmet_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Tailoring",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_422033001"
+    },
+    {
+      "id": 422043001,
+      "product": "equip_ar_Shoulder_D_u_craftdraconic_001a_s",
+      "category": "ECraftCategory::Tailoring",
+      "masteryLevel": 55,
+      "rateGroup": "Prob_Basic_422043001"
+    }
+  ],
+  "limits": [
+    "Approximate observation supports the proposed scale, not exact decimals.",
+    "Shared curves do not uniquely identify the reported item or faction.",
+    "Current mastery is not the proficiency gap; tier conversion is unverified.",
+    "No claim about live modifiers, negative gaps, caps, or unobserved recipes."
+  ],
+  "applicationSuccessRatesChanged": false
+}
