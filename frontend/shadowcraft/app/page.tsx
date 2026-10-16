@@ -8,6 +8,7 @@ import ClassGuide from './class-guide';
 import PointBudgetPanel from './point-budget';
 import GearPanel from './gear-panel';
 import MapPanel from './map-panel';
+import LiveDps from './live-dps';
 import SteamActivity from './steam-activity';
 import BuildLibraryPanel from './build-library';
 import SharedBuildView,{ShareBuildPanel} from './build-share';
@@ -21,7 +22,7 @@ import serverDirectory from '@/lib/data/servers.json';
 import {queryArmory} from '@/lib/armory-client';
 const savedServers=serverDirectory as Record<string, {serverId:number;serverName:string;raceId:number}[]>;
 import {type Skill,type Node,type Catalog,type Plan,emptyPlan,applyRecommended,equipmentBonus,updatePlan,finalLevel,boardBonus,totals,skillCost,maxBase,ascensionGate,slots,recommendSpecs,equipped,cheapestPath,connected} from '@/lib/planner';
-const tabs=[{id:'public-builds',name:'공개 빌드',icon:BookOpen},{id:'activity',name:'Steam 접속 현황',icon:Cloud},{id:'builds',name:'빌드 보관함',icon:BookOpen},{id:'gear',name:'내 장비 & 성장',icon:Shield},{id:'skills',name:'스킬 & 특화',icon:Swords},{id:'daevanion',name:'데바니온',icon:Waypoints},{id:'macro',name:'매크로 & 키 배치',icon:Keyboard},{id:'rotation',name:'보스전 운영',icon:BookOpen},{id:'map',name:'지도 & 수집',icon:Waypoints},{id:'database',name:'글로벌 데이터',icon:BookOpen},{id:'updates',name:'업데이트',icon:History}];
+const tabs=[{id:'live-dps',name:'실측 DPS',icon:Zap},{id:'public-builds',name:'공개 빌드',icon:BookOpen},{id:'activity',name:'Steam 접속 현황',icon:Cloud},{id:'builds',name:'빌드 보관함',icon:BookOpen},{id:'gear',name:'내 장비 & 성장',icon:Shield},{id:'skills',name:'스킬 & 특화',icon:Swords},{id:'daevanion',name:'데바니온',icon:Waypoints},{id:'macro',name:'매크로 & 키 배치',icon:Keyboard},{id:'rotation',name:'보스전 운영',icon:BookOpen},{id:'map',name:'지도 & 수집',icon:Waypoints},{id:'database',name:'글로벌 데이터',icon:BookOpen},{id:'updates',name:'업데이트',icon:History}];
 function Icon({skill,size=42}:{skill?:{iconPath:string;name?:string};size?:number}){return skill?<img className="skill-icon" style={{width:size,height:size}} src={'/shadowcraft/game'+skill.iconPath} alt={skill.name||''} onError={e=>{const el=e.currentTarget;if(!el.dataset.fallback){el.dataset.fallback='1';el.src='https://cdn-hosted.gaming.tools/aion2'+skill.iconPath}else el.style.visibility='hidden'}}/>:<span className="skill-placeholder" style={{width:size,height:size}}><Swords size={size*.5}/></span>}
 function prettyDate(s?:string){if(!s)return '아직 확인 전';return new Date(s).toLocaleString('ko-KR',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}
 function safeNum(v:string,max=9999){return Math.min(max,Math.max(0,Math.floor(Number(v)||0)))}
@@ -79,6 +80,7 @@ function Workshop({classKey,initialCatalog,onClassChange}:{classKey:string;initi
  <div hidden={tab!=='public-builds'}><PublicBuilds active={tab==='public-builds'}/></div>
  <div hidden={tab!=='activity'}><SteamActivity active={tab==='activity'}/></div>
  {tab==='builds'&&<><BuildLibraryPanel classKey={classKey} catalogVersion={catalog.version||'미확인'} plan={plan} onApply={setPlan}/><ShareBuildPanel catalog={catalog} plan={plan}/></>}
+ {tab==='live-dps'&&<LiveDps/>}
  <div hidden={tab!=='map'}><MapPanel/></div>
  <div hidden={tab!=='database'}><ClientDatabase key={databaseSkill.revision} active={tab==='database'} initialSkillId={databaseSkill.id}/></div>
  {tab==='gear'&&<GearPanel catalog={catalog} plan={plan} onEdit={edit}/>}

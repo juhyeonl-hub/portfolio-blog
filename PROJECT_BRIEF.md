@@ -520,10 +520,19 @@ portfolio-blog/
 ## Current product scope — user decision 2026-10-16
 This decision supersedes prior whole-reference-site parity requirements and historical completion blockers.
 - Remove crafting from the active product: calculator tab, recipe browsing and recipe links. Preserve source data and existing plans.
-- Exclude predictive final combat/DPS simulation. Proc-triggered cooldown resets and rotations make a simplistic estimate unsuitable. A damage meter is NOT commissioned by this discussion.
+- Exclude predictive final combat/DPS simulation. Proc-triggered cooldown resets and rotations make a simplistic estimate unsuitable. The subsequent user clarification explicitly includes a measured real-time DPS meter; predictive DPS remains excluded.
 - Retain the eight-class build planner, equipment comparison, save/share, official skill/item reference and map/location work.
 - Do not build a real-time leaderboard or server congestion mirror.
 - Direction for a later character-reference feature: inspect a chosen public character's equipment/build, compare with one's own and explicitly apply supported fields. Do not claim ranking status without evidence or overwrite plans automatically. Full equipment availability still needs investigation.
 - Immediate acceptance: no crafting tab or recipe navigation in the product; item/skill browsing, import and stored plans remain functional. Map world-position projection remains a priority.
 
 범위 변경 검증: 프런트 19묶음, TypeScript·ESLint·빌드, 데이터베이스/8직업 통합 브라우저 검사 통과. 제작 진입점 부재, 아이템·스킬 조회, 모바일·재시도·저장 보존 확인. 기존 대형 번들 경고 유지. 원본 데이터 및 개인 계획 형식은 변경하지 않았다.
+
+## Measured DPS — approved clarification 2026-10-16
+- Include actual real-time damage totals and DPS from observed combat events; exclude simulated rotation/proc damage.
+- First acceptance gate: identify and validate a Global-compatible event source with timestamps and actual damage. Inspect existing open-source collectors and local logs before choosing an integration. No invented live feed or simulated data labelled as real.
+- Preserve map/location and public character reference direction, existing storage and product exclusions.
+
+Measured DPS implementation: independent local-only read adapter for A2Tools v1 streaming snapshots, opt-in UI with strict validation and stale/disconnected states. Raw capture and source keys stay on the game PC; no uploads or storage. A2Tools/Npcap installation confirmation requested for Windows system driver changes. Synthetic tests establish transport behavior only, not live combat accuracy.
+
+Validation: Python99, frontend20 suites, typecheck/lint/build, synthetic transport browser and eight-class integration passed. Live combat validation remains pending collector setup.
