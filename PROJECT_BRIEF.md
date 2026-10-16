@@ -461,3 +461,5 @@ portfolio-blog/
 - Public official character JS inspection confirms the documented item request path but provides no Global ranking-list implementation. The attempted Global ranking page redirects to official 404. Earlier API empty samples remain inconclusive; no fabricated leaderboard added.
 
 확장 작업 검증: Python 78개, 프런트 19묶음, TypeScript, ESLint, 운영 빌드, 퀘스트 보상/직업별 보상/권장 정보 브라우저 검사, 6지역 지형 브라우저 검사, 기존 8직업 통합 검사 통과. 기존 대형 청크·플러그인 처리 시간 경고 유지.
+
+운영 검증: `549a0c2` 배포 `portfolio-blog-g6iffjpub-xxjuon-4682s-projects.vercel.app` Ready 및 `juhyeonl.dev` 연결 확인. 운영 퀘스트/직업별 보상·6지역 지도·8직업 통합 브라우저 검사 통과. 운영 journal-index는 로컬 재생성 파일과 SHA-256 `2a2b713de32cfe71daeb26c8bdc1d4f3c2b95d0adb9edba8ef873e0354b59485`로 일치한다. 백엔드 기존 24개 테스트도 재실행해 통과했다. 신규 서버상태 후보 axsddlr/aion2_api는 README의 Caveats에서 Gaming.Tools HTML 수집을 명시하므로 공식 수집 경로로 채택하지 않았다.
