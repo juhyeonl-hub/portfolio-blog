@@ -1,5 +1,7 @@
 import {useEffect, useMemo, useState} from 'react';
 
+import NpcDatabase from './npc-database';
+
 import {parseClientIndex, type ClientIndex} from '../lib/client-index';
 
 export default function ClientDatabase({active}: {active: boolean}) {
@@ -43,6 +45,7 @@ export default function ClientDatabase({active}: {active: boolean}) {
   return <section className="client-database card" aria-label="글로벌 클라이언트 데이터베이스">
     <h2>글로벌 클라이언트 데이터베이스</h2>
     <p>설치된 Steam 클라이언트에서 읽은 아이템·스킬·제작 재료입니다. 클라이언트에는 현재 서버에서 사용할 수 없는 항목도 포함될 수 있습니다.</p>
+    <NpcDatabase active={active}/>
     {loading && <p role="status">클라이언트 데이터를 불러오는 중…</p>}
     {error && <div role="alert">{error} <button className="button ghost" onClick={() => setRetry(v => v + 1)}>다시 불러오기</button></div>}
     {data && <>

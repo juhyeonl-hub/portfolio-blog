@@ -363,3 +363,10 @@ portfolio-blog/
 - Official crafting deployment `5daa3bb` is Ready at `portfolio-blog-rndvjpp62-xxjuon-4682s-projects.vercel.app`; production official-attempt acceptance and eight-class integration passed with no page errors or plan uploads.
 - Final validation: 44 Python tests, all 14 frontend suites, TypeScript and production build passed. Eight-class compound-effect browser acceptance passed after the version guard; mobile inspector screenshot inspected. Regeneration exactly matches the committed overlay. Existing bundle-size warning remains.
 - Published `29b4a5e`: Vercel production Ready (`portfolio-blog-e961h0g4u-xxjuon-4682s-projects.vercel.app`). Production eight-class compound-effect and official crafting browser acceptance both passed. This verifies these incremental changes only; the full-site completion boundary above remains open.
+
+#### Official NPC identity browser (2026-10-16)
+- Added an independently normalized Global Steam build 25926599 NPC identity index: 13,495 unique IDs, five source classifications and 895 explicitly missing English names. Record source hashes; expose no inferred combat statistics, coordinates or live availability.
+- Separate explicit-load NPC panel under Global Data supports English name/ID search, type filters, 30-row pages, selection details, malformed-response rejection and retry. Existing catalogs and localStorage are untouched.
+- Unit validation: all 15 frontend suites and 47 Python tests passed; TypeScript and production build passed with existing chunk-size warning. Existing client database browser regression passed. NPC browser initially used the wrong tab label; corrected to the actual Global Data label.
+- This completes identity browsing only. NPC locations/quests and the previously documented full-site completion boundary remain open.
+- NPC browser acceptance passed lazy loading, malformed response/retry, pagination, Citizen filter (3,755), ID search including unnamed entries, empty search, 390px layout and byte-identical localStorage. Explicit accessible names corrected the select label ambiguity.
