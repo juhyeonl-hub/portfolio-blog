@@ -505,3 +505,5 @@ portfolio-blog/
 - Link 622 recipes to explicit curves; 476 recipes without groups display unavailable. Preserve raw integer rates, source table hash and the observationally supported divisor 1,000,000. Display approximate percentages rounded to two decimals. No automatic tier conversion, cap extrapolation, fees, combo odds, modifiers or live success claim.
 - Reset gap to zero on recipe navigation; retain separate attempt-based material quantities. No storage writes, API or database changes.
 - Shared preview is available both in the official crafting calculator and recipe database. Baseline regressions: Python 94, frontend 19 suites, backend 24 and 16 browser suites passed; final shared-component build/type/lint and crafting acceptance are verified before release.
+
+운영 검증 완료: 코드 커밋 `8e4b57a`, Vercel `portfolio-blog-1hjqlmffl-xxjuon-4682s-projects.vercel.app` Ready 및 `juhyeonl.dev` 연결 확인. 운영 제작 계산기·클라이언트 데이터베이스·8직업 통합 브라우저 검사 통과. 확률 입력/미등록/범위 오류/재료비/모바일/기존 저장 보존 확인. 운영 client-index는 재생성본과 바이트 단위 일치(SHA-256 `5cc31fa61622c34d366e9ab635d8d9f7f06dc11be4fb8d2b28c842654abf6f08`). 전체 사이트의 미확인 데이터와 추가 기능 한계는 그대로 남으며 이 릴리스가 이를 해결했다는 뜻은 아니다.
