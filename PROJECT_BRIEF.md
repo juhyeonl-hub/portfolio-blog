@@ -539,3 +539,10 @@ Validation: Python99, frontend20 suites, typecheck/lint/build, synthetic transpo
 
 운영 배포: `313b85e`, `portfolio-blog-7273wz1hl-xxjuon-4682s-projects.vercel.app` Ready, juhyeonl.dev 연결 확인. Git 자동 배포가 목록에 나타나지 않아 추적 파일만 임시 디렉터리로 내보내 수동 배포했다(개인 미추적 문서 제외). 운영 합성 통신 검사 및 다운로드 도구 원본 일치 통과.
 실제 소켓 검사: 운영 HTTPS → loopback HTTP는 초기 브라우저 로컬 네트워크 권한 거부로 실패했다. 동일 테스트 브라우저에서 local-network-access 권한을 부여한 뒤 인증·CORS 연결 성공. 보안 비활성화 없이 권한 전 차단/허용 후 성공을 재현했다. 이 검사도 합성 피해값이며 실제 게임 정확도를 검증하지 않는다. 테스트 파일 `tests/live_dps_socket.py`. Windows 수집기/드라이버 설치 확인은 대기 중.
+
+### Approved Windows collector installation (2026-10-16)
+- User approved A2Tools + Npcap installation. A2Tools 2.0.67 MSI downloaded from its GitHub release; SHA-256 matches published digest `6c4cc87bc86f32a2d7227bd595aed1ccef72b7cf962debda67883dc9aac2c7e6`. MSI itself is unsigned. Installation returned 0 and Windows uninstall registry confirms 2.0.67.
+- Preseeded dpsMeter.autoUpload=false before first launch; existing settings preserved. Collector has not been launched for capture.
+- Npcap 1.89 downloaded from npcap.com, Authenticode Valid/Nmap Software LLC, SHA-256 `8aed85e900d783d1308506e919587d3e540451947af8a82f2d04f819e44305cc`. Opened normal GUI installer with WinPcap compatibility and administrator-only capture selected; raw Wi-Fi monitor mode off; no-kill enabled. Free edition has no silent install. Wizard completion is pending user interaction; no driver installation success claimed.
+- Prepared Windows Python 3.11 local bridge launcher under the user's Local AppData/a2bc. It reads the current stream key locally, refuses auto-upload enabled settings and prints only a separate bridge session key to its own terminal. Not started yet. No secrets, installers or raw combat records committed/uploaded.
+- Next: confirm Npcap installer exit/service/DLL, launch collector with auto-upload disabled, then verify real local snapshots and actual combat. Current blocking input is the open Npcap wizard, not renewed installation permission.
