@@ -1,10 +1,21 @@
 type NpcReference = {id: string; name: string | null} | null;
-export type QuestEntry = {id: string; name: string | null; kind: string; race: string; summary: string | null; stepCount: number; acquireNpc: NpcReference; completeNpc: NpcReference; nextId: string | null};
-export type DungeonEntry = {id: string; name: string | null; kind: string; mapId: string; mapName: string | null};
+export type RewardItem = {id: string; name: string | null; count: number; enchantLevel: number};
+export type RewardContent = {items: RewardItem[]; normalItems: RewardItem[]; selectionItems: RewardItem[]; randomGroup: string | null};
+export type QuestRewards = RewardContent & {experience: number; classRewards?: (RewardContent & {classKey: string})[]};
+export type QuestEntry = {id: string; name: string | null; kind: string; race: string; summary: string | null; stepCount: number; acquireNpc: NpcReference; completeNpc: NpcReference; nextId: string | null; rewards?: QuestRewards | null; levels?: {unlock: number; recommended: number; additionalConditions: number}};
+export type DungeonEntry = {id: string; name: string | null; kind: string; mapId: string; mapName: string | null; recommendation?: {level: number; minMembers: number; maxMembers: number; difficulty: string}};
 export type PetEntry = {id: string; name: string | null; kind: string};
 export type JournalIndex = {schema: 'a2bc-journal-index-v1'; source: {buildId: string}; quests: QuestEntry[]; dungeons: DungeonEntry[]; pets: PetEntry[]};
 const id = (v: unknown): v is string => typeof v === 'string' && /^[1-9]\d*$/.test(v);
 const text = (v: unknown) => v === null || (typeof v === 'string' && !!v.trim() && v.length <= 20000);
+const count = (v: unknown, max = 1_000_000_000): v is number => Number.isSafeInteger(v) && (v as number) >= 0 && (v as number) <= max;
+function checkRewards(r: RewardContent) {
+  if (!r || (r.randomGroup !== null && (typeof r.randomGroup !== 'string' || !/^[A-Za-z0-9_]{1,200}$/.test(r.randomGroup)))) throw Error('Invalid quest reward');
+  for (const list of [r.items, r.normalItems, r.selectionItems]) {
+    if (!Array.isArray(list) || list.length > 100) throw Error('Invalid reward list');
+    for (const item of list) if (!item || !id(item.id) || !text(item.name) || !count(item.count) || item.count === 0 || !count(item.enchantLevel, 100)) throw Error('Invalid reward item');
+  }
+}
 export function parseJournalIndex(input: unknown): JournalIndex {
   const data = input as JournalIndex;
   const source = data?.source as Record<string, unknown> | undefined;
@@ -19,9 +30,30 @@ export function parseJournalIndex(input: unknown): JournalIndex {
   }
   const ids = new Set(data.quests.map(q => q.id));
   for (const q of data.quests) {
+    if (q.levels !== undefined && (!q.levels || !count(q.levels.unlock, 100) || !count(q.levels.recommended, 100) || !count(q.levels.additionalConditions, 100))) throw Error('Invalid quest levels');
+    if (q.rewards !== undefined && q.rewards !== null) {
+      const r = q.rewards;
+      if (!count(r.experience)) throw Error('Invalid reward experience');
+      checkRewards(r);
+      if (r.classRewards !== undefined) {
+        if (!Array.isArray(r.classRewards) || r.classRewards.length > 8) throw Error('Invalid class rewards');
+        const classes = new Set<string>();
+        for (const entry of r.classRewards) {
+          checkRewards(entry);
+          if (!['gladiator', 'templar', 'assassin', 'ranger', 'sorcerer', 'elementalist', 'cleric', 'chanter'].includes(entry.classKey) || classes.has(entry.classKey)) throw Error('Invalid class reward');
+          classes.add(entry.classKey);
+        }
+      }
+    }
     for (const npc of [q.acquireNpc, q.completeNpc]) if (npc !== null && (!npc || !id(npc.id) || !text(npc.name))) throw Error('Invalid quest NPC');
     if (!['All', 'Light', 'Dark'].includes(q.race) || !text(q.summary) || !Number.isSafeInteger(q.stepCount) || q.stepCount < 0 || q.stepCount > 10000 || (q.nextId !== null && (!id(q.nextId) || !ids.has(q.nextId)))) throw Error('Invalid quest reference');
   }
-  for (const d of data.dungeons) if (!id(d.mapId) || !text(d.mapName)) throw Error('Invalid dungeon map');
+  for (const d of data.dungeons) {
+    if (!id(d.mapId) || !text(d.mapName)) throw Error('Invalid dungeon map');
+    if (d.recommendation !== undefined) {
+      const r = d.recommendation;
+      if (!r || !count(r.level, 100) || !count(r.minMembers, 100) || !count(r.maxMembers, 100) || r.minMembers > r.maxMembers || typeof r.difficulty !== 'string' || !/^[A-Za-z][A-Za-z0-9_]*$/.test(r.difficulty)) throw Error('Invalid dungeon recommendation');
+    }
+  }
   return data;
 }

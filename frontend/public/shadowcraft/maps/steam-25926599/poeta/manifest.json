@@ -1,0 +1,294 @@
+{
+  "schema": "a2bc-terrain-v1",
+  "name": "Poeta",
+  "mapKey": "World_L_Starter",
+  "gridSize": 4,
+  "source": {
+    "kind": "installed-steam-client",
+    "appId": 3393110,
+    "buildId": "25926599",
+    "region": "global"
+  },
+  "basePath": "/shadowcraft/maps/steam-25926599/poeta",
+  "sourceTilePixels": 1024,
+  "displayTilePixels": 1024,
+  "worldProjectionVerified": false,
+  "markerSupport": false,
+  "settingsSha256": "07031c24f8b6c4e431f864fc039da6061cc9075ee3439ef0a7bd96c78789d68b",
+  "seams": [
+    {
+      "x": 0,
+      "y": 0,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 1.698568
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 1.329427
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 3.833984
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 13.968424
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 6.813477
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 2.399414
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 2.359049
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 2.88737
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 1.961914
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 6.657227
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 8.728841
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 4.195312
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 4.945638
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 2.823893
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 1.679036
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 1.996745
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 1.780273
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 9.309896
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 2.249674
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 2.407878
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 2.187174
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 1.510091
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 15.712891
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 3.475911
+    }
+  ],
+  "tiles": [
+    {
+      "x": 0,
+      "y": 0,
+      "file": "0_0.webp",
+      "sourceSha256": "30902a2dae36eb50a530f665cce181a6ab9c265516b7b1aaf7b6bee097568d19",
+      "sha256": "49664aaf12016ab0729b7c3f2e3f607692928043522767cc1bb119dfa3101af4",
+      "bytes": 24688
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "file": "0_1.webp",
+      "sourceSha256": "99c03eae6ecf2108b2373b25508dfcfb0ca0bec0d2426099af9a34aed4f8e814",
+      "sha256": "2aaa473b05d5121aae6a4d44065801c98ef5807b252c59d91b0b21eccf7881f7",
+      "bytes": 42488
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "file": "0_2.webp",
+      "sourceSha256": "782d54d59539af4826e001b2997b72b7e886b052b01e5df272719944047b0f53",
+      "sha256": "e3faa3ecb318a8a1027458a925386b9481e31cc04e7794914153a83f8331d727",
+      "bytes": 55710
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "file": "0_3.webp",
+      "sourceSha256": "7e8e79e433a6ba2b2a43aa8ecd98e6c59db06ed54ae6dca6d003998ec0d1fc90",
+      "sha256": "d459de7e6cd433650523c18e1f6ad9ab25d38dc20938ea8460b8149d94d8686b",
+      "bytes": 29222
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "file": "1_0.webp",
+      "sourceSha256": "b70dc3622129bacc0c2f716ab71d9a014ee8b73a191d99f7e06219e83ece667e",
+      "sha256": "59baaec9ce28b5b71f9ca4bfde1950aa9901983466ed30cc76746074d6d2b755",
+      "bytes": 37620
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "file": "1_1.webp",
+      "sourceSha256": "d2d95de4293bcd58788fc64d98df4601d8e32809378ccf5c0ace08b30de4410f",
+      "sha256": "a66a29d4c47bc75cb3af11ca732961543f19ab9ce69c123be75b653d7584fdd2",
+      "bytes": 110244
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "file": "1_2.webp",
+      "sourceSha256": "a9efb9cd42497c89ec488c97f202f960b6da6578e775b4d82221a6943f1150d0",
+      "sha256": "83b0f39a21fdc3d321b63b2280173642c8f7c17cbaf344240602d6edce26e0ed",
+      "bytes": 156104
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "file": "1_3.webp",
+      "sourceSha256": "982d626073f9df73230dc941493998bccb758e27a5c5fb9739281e8dae114fee",
+      "sha256": "57ea165967d34f9a1fb4ede184d1e6f1e1f813a0da443b064d4333e0c4b45f9e",
+      "bytes": 45002
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "file": "2_0.webp",
+      "sourceSha256": "d1c6ab1243ec3181e5503f81edf82c448746eb0307432431149b8820c1fe3acb",
+      "sha256": "23ca715982a5b4050f80baa1d695be5aa6c86ba10cdbcbd0ea881dd690d0b950",
+      "bytes": 35330
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "file": "2_1.webp",
+      "sourceSha256": "8cbbe2def94ae0c29ccdd036d77d1237392d1ea57e72faa627ccf4c385905e29",
+      "sha256": "400492072be09a65b3836ce77f2329e2441bb6c8191fa023cbfa3196de9eed66",
+      "bytes": 95360
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "file": "2_2.webp",
+      "sourceSha256": "017a1f10d724268ccc9cf4d02b7b41874b2d5bfa008d62ac168e5f5651b9f62f",
+      "sha256": "4ad3c9f61433ead82fa8d0926cd389a2f6de7555693335072c5f4a9c9ed5f581",
+      "bytes": 94244
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "file": "2_3.webp",
+      "sourceSha256": "235a0ea014564e075e0eb13e855a69a8a4a25050ef577cde57d6f8cc28d5307a",
+      "sha256": "3d029f52cb1806a8a0b3d6664e3ef8a1b9d0506bc2170a8167dc49c12fc12a09",
+      "bytes": 49504
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "file": "3_0.webp",
+      "sourceSha256": "d064b9cf21375909e8eab984f4f43b2b41acc719ec0db0b380ac6b96fe4ea467",
+      "sha256": "c7579b6c614a1f9f16f77cd5337abef11e5260a8c1b1e6184aa63eba2b010331",
+      "bytes": 60768
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "file": "3_1.webp",
+      "sourceSha256": "ac4f91520792f09e9ae19445695c9f01867977c816c6b66ea79c8984365a1780",
+      "sha256": "367b50c7326df3c02fd3a8f9074fbed83077bb66c18c23e88f8795e813035aaf",
+      "bytes": 33638
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "file": "3_2.webp",
+      "sourceSha256": "5e5f6f6596c78422f1a184cafe2b668593b8fbf3bc4eac13fd8b7822bdddd2da",
+      "sha256": "34c457815a94e45407ebb3529cee6101fbd6b0d0d0235730bc1d4733d1f9edfd",
+      "bytes": 54188
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "file": "3_3.webp",
+      "sourceSha256": "5f5019c15bb18f710faf48e6c52e3ca3e5f0a8d9fd8f65005a1bc9be3dfd691e",
+      "sha256": "f1937e3a8420968142b56f1f2dcbc24784d2deb64baf6b44c48850aef422f8cd",
+      "bytes": 58754
+    }
+  ]
+}

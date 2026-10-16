@@ -27,3 +27,16 @@ assert.ok(Math.max(...alt.seams.map(s=>s.rgbMeanAbsoluteDifference))<=11);
 assert.deepEqual(new Set(alt.tiles.map(t=>`${t.x}_${t.y}`)),new Set(tiles({x:0,y:0,zoom:1},8).map(t=>`${t.x}_${t.y}`)));
 for(const t of alt.tiles){const bytes=readFileSync(altRoot+'/'+t.file);assert.equal(createHash('sha256').update(bytes).digest('hex'),t.sha256);assert.equal(bytes.length,t.bytes);}
 console.log('Altgard: 64 Global tiles, 112 seams, metadata and all hashes PASS');
+
+for(const [slug,key,grid,limit] of [['poeta','World_L_Starter',4,16],['ishalgen','World_D_Starter',5,8],['reshanta-lower','Abyss_Reshanta_A',4,15],['reshanta-middle','Abyss_Reshanta_C',2,6]]){
+ const root='../public/shadowcraft/maps/steam-25926599/'+slug;
+ const m=JSON.parse(readFileSync(root+'/manifest.json'));
+ assert.equal(m.mapKey,key);assert.equal(m.gridSize,grid);assert.equal(m.sourceTilePixels,1024);
+ assert.equal(m.tiles.length,grid*grid);assert.equal(m.seams.length,2*grid*(grid-1));
+ assert.equal(m.markerSupport,false);assert.equal(m.worldProjectionVerified,false);
+ assert.ok(Math.max(...m.seams.map(s=>s.rgbMeanAbsoluteDifference))<=limit);
+ assert.deepEqual(JSON.parse(readFileSync('lib/data/terrain-'+slug+'.json')),Object.fromEntries(['name','source','gridSize','basePath'].map(k=>[k,m[k]])));
+ assert.deepEqual(new Set(m.tiles.map(t=>`${t.x}_${t.y}`)),new Set(tiles({x:0,y:0,zoom:1},grid).map(t=>`${t.x}_${t.y}`)));
+ for(const tile of m.tiles){const bytes=readFileSync(root+'/'+tile.file);assert.equal(createHash('sha256').update(bytes).digest('hex'),tile.sha256);assert.equal(bytes.length,tile.bytes);}
+}
+console.log('Six Global terrain regions: 189 tile identities/hashes, dimensions, seams and metadata PASS');

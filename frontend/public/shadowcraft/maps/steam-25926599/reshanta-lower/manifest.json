@@ -1,0 +1,294 @@
+{
+  "schema": "a2bc-terrain-v1",
+  "name": "Chaotic Lower Reshanta",
+  "mapKey": "Abyss_Reshanta_A",
+  "gridSize": 4,
+  "source": {
+    "kind": "installed-steam-client",
+    "appId": 3393110,
+    "buildId": "25926599",
+    "region": "global"
+  },
+  "basePath": "/shadowcraft/maps/steam-25926599/reshanta-lower",
+  "sourceTilePixels": 1024,
+  "displayTilePixels": 1024,
+  "worldProjectionVerified": false,
+  "markerSupport": false,
+  "settingsSha256": "114881d4c220b2fb54ac0eed498d2fa2b0038895af9ac8fea80f4827106d7f08",
+  "seams": [
+    {
+      "x": 0,
+      "y": 0,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 1.911784
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 1.442057
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 1.858724
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 14.467122
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 2.67513
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 5.84668
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 2.196289
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 2.746094
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 1.916016
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 3.327148
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 10.490234
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 3.049154
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 4.05013
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 3.134766
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 3.315104
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 3.698568
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 4.091797
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 9.957682
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 2.666667
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 2.030924
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 2.086589
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 2.881836
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 14.71224
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 3.559245
+    }
+  ],
+  "tiles": [
+    {
+      "x": 0,
+      "y": 0,
+      "file": "0_0.webp",
+      "sourceSha256": "f1a3aa7b72aeb641717350c1d16e2198ae7d21f890aa99a0fec0eee9f556636e",
+      "sha256": "981d1bbb7a494057484fd3612845b9ad7e7d3e664f347c7b29885f4fe49250fb",
+      "bytes": 60190
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "file": "0_1.webp",
+      "sourceSha256": "d901987022e4dae2e12eaee111a0b6ec277df3daa17d24f48ab924ed2f70531d",
+      "sha256": "a918a829b422bd211d66940a86308d38210082fe55566a2a5dfbe4fd6e8e4f6c",
+      "bytes": 34090
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "file": "0_2.webp",
+      "sourceSha256": "05bf85909dc25b25b713276b6ecc2d377f1d2739fd3fbf0a9a00386db02454e8",
+      "sha256": "e314fe4c2208c4e3d489244e8dd35f14c281056906b014357833025885018268",
+      "bytes": 32312
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "file": "0_3.webp",
+      "sourceSha256": "753708b83c82cf4411d2cc25e4d79d7e66c4709e26e4e19c9a754d7af45c0f5a",
+      "sha256": "feead5af4af3982660d790589c11c149e3245e6ccb7df88a780b5fa99592d2c4",
+      "bytes": 26888
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "file": "1_0.webp",
+      "sourceSha256": "1da26933bb3f374938c69748690b045ab3571317985d4c6af947bada88c13c70",
+      "sha256": "9614670a4c7f8e820e99924c582a400326efec7984360572a887434173bf4e67",
+      "bytes": 36560
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "file": "1_1.webp",
+      "sourceSha256": "12b8d4d1084202d512555c21de7100209cd1c1986fd0e0dbf1ba17cebc098613",
+      "sha256": "845ddff6405766065bc4153e96a8148cb73cf0a8b3a33abae0cf61b08d5fa57a",
+      "bytes": 89500
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "file": "1_2.webp",
+      "sourceSha256": "75a127c99a89daf25f3687c985aaac88ba1d9905cf3f312c7b4645f84ab8ee8d",
+      "sha256": "7826724ec00f6bcd59b6e07a5d4bb074e76d266dd58c1d9290eb382f3900ca52",
+      "bytes": 84708
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "file": "1_3.webp",
+      "sourceSha256": "c97638dfbd6cb34e57c67a9ed036df90fd7b636cf399b707c3e47f320538f0e8",
+      "sha256": "96629187ae6020e562c2357e8d10dd6cc3652c5e150c7f38deaaeb6302e6b61f",
+      "bytes": 36390
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "file": "2_0.webp",
+      "sourceSha256": "3e8601e77c2e699008ee3bc00572aee770075004d109301801ce7cf541472b83",
+      "sha256": "9a7ace6bac5667239c4977bd5d9eaeea11b855087bfc55ae846af8206ab1a126",
+      "bytes": 39568
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "file": "2_1.webp",
+      "sourceSha256": "1473165963176700e07a31412d16a7e30cc8c89ab4dc16d5da2d46bc60fd13e9",
+      "sha256": "a40ed5eb303e3a80d38499dd9686c9b82b81124538d12e51365a3bcba21e62cc",
+      "bytes": 105798
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "file": "2_2.webp",
+      "sourceSha256": "8e752e24f3d2f8739cff5388025944dd31e9797e5969df0bc1b3cbc904a96a6d",
+      "sha256": "02fcbdd598ef6c8dfbde67cfe7c168c39228614d18b9b7bd9a364272c1db0585",
+      "bytes": 101188
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "file": "2_3.webp",
+      "sourceSha256": "85cd385cf7ebeb244cc359d9f895f8f58c832346daa386d925bf952a12efe618",
+      "sha256": "81cd54e4cbcb52896a64cdfc699d2bf1f3f2ff8a58350ffdd454c265132d60ee",
+      "bytes": 42934
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "file": "3_0.webp",
+      "sourceSha256": "2644e0b1fb4a76bc6a08f43829afe89313175a2d03783817d381043f5137f777",
+      "sha256": "8313648d406c9a5bb96a1231e1c10cc31e2e2c8662d5212acaa03b153b3a9f08",
+      "bytes": 29938
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "file": "3_1.webp",
+      "sourceSha256": "9909b3707e96ed1b893427dccc23bfb43cb43d3320055f6dfe4b018bb491c2fe",
+      "sha256": "a0c4ce7413cc66930a2197cb77238af4fe9212e910128a376d3adb38273a675c",
+      "bytes": 37590
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "file": "3_2.webp",
+      "sourceSha256": "5c0dc594a52821d85dd95705b7355e0ca4ea5584e5839fa96f6eb2b02a3c10aa",
+      "sha256": "7ebeb15aa0ef996eb87344fe95fcfadc7032fddfa00448f3ab5a40ccc5e66c07",
+      "bytes": 50782
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "file": "3_3.webp",
+      "sourceSha256": "8955db9cad08230fc64bdbba44b2e829423ff25d5d35fcdf26513b6adae06cfb",
+      "sha256": "24ba83e71a878644bdebe70903161123befaa2f7fce2163628a36a8d70fe6661",
+      "bytes": 53734
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Chaotic Middle Reshanta",
+  "source": {
+    "kind": "installed-steam-client",
+    "appId": 3393110,
+    "buildId": "25926599",
+    "region": "global"
+  },
+  "gridSize": 2,
+  "basePath": "/shadowcraft/maps/steam-25926599/reshanta-middle"
+}

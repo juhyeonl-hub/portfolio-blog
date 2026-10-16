@@ -12,7 +12,7 @@ class TerrainAssetsTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name);self.source=self.root/'source';self.source.mkdir()
-        for name,value in [('GRID',2),('PIXELS',8)]:
+        for name,value in [('MAPS', {**module.MAPS, 'World_L_A': ('Verteron','verteron',2,8,10), 'World_D_A': ('Altgard','altgard',2,1024,11)}),('PIXELS',8)]:
             p=patch.object(module,name,value);p.start();self.addCleanup(p.stop)
         for x in range(2):
             for y in range(2):Image.new('RGB',(8,8),(20,30,40)).save(self.source/f'World_L_A_{x:02}_{y:02}.png')
@@ -55,3 +55,11 @@ class TerrainAssetsTests(unittest.TestCase):
         self.settings.write_text(json.dumps({'Properties':{'Data':{'WorldMapDataTableKey':'other'}}}))
         with self.assertRaises(ValueError):module.package(self.source,self.settings,self.out)
         self.assertFalse(self.out.exists())
+    def test_reviewed_region_grids(self):
+        for key,(_,_,grid,_,_) in module.MAPS.items():
+            data={'Properties':{'Data':{'WorldMapDataTableKey':key,'SectorSize':{'X':grid,'Y':grid},'SectorTextureSize':8}}}
+            self.settings.write_text(json.dumps(data))
+            self.assertEqual(module.validate_settings(self.settings),key)
+            data['Properties']['Data']['SectorSize']['Y']+=1
+            self.settings.write_text(json.dumps(data))
+            with self.subTest(key=key),self.assertRaises(ValueError):module.validate_settings(self.settings)

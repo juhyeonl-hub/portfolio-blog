@@ -1,15 +1,20 @@
 import {useRef, useState} from 'react';
 import verteron from '../lib/data/terrain-catalog.json';
 import altgard from '../lib/data/terrain-altgard.json';
+import poeta from '../lib/data/terrain-poeta.json';
+import ishalgen from '../lib/data/terrain-ishalgen.json';
+import reshantaLower from '../lib/data/terrain-reshanta-lower.json';
+import reshantaMiddle from '../lib/data/terrain-reshanta-middle.json';
 import {constrainMapView, zoomMap, type MapView} from '../lib/world-map';
 import {visibleTerrainTiles} from '../lib/terrain-map';
+const terrains: Record<string, typeof verteron> = {verteron, altgard, poeta, ishalgen, 'reshanta-lower': reshantaLower, 'reshanta-middle': reshantaMiddle};
 
 export default function TerrainPanel() {
   const [selected, setSelected] = useState('verteron');
-  const terrain = selected === 'altgard' ? altgard : verteron;
+  const terrain = terrains[selected] ?? verteron;
   return <section className="terrain-panel" aria-label="공식 글로벌 지형 지도">
     <label>공식 지형 지역<select aria-label="공식 지형 지역" value={selected} onChange={e => setSelected(e.target.value)}>
-      <option value="verteron">Verteron</option><option value="altgard">Altgard</option>
+      {Object.entries(terrains).map(([key, value]) => <option key={key} value={key}>{value.name}</option>)}
     </select></label>
     <TerrainView key={selected} terrain={terrain}/>
   </section>;

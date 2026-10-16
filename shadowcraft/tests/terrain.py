@@ -58,6 +58,23 @@ with sync_playwright() as p:
     canvas=panel.get_by_role('group',name='Verteron 지형 이미지',exact=True)
     expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
     assert page.evaluate('JSON.stringify({...localStorage})')==before
+    for slug,name,count in [('poeta','Poeta',16),('ishalgen','Ishalgen',25),('reshanta-lower','Chaotic Lower Reshanta',16),('reshanta-middle','Chaotic Middle Reshanta',4)]:
+        panel.get_by_label('공식 지형 지역',exact=True).select_option(slug)
+        expect(panel.get_by_role('group')).to_have_count(0)
+        panel.get_by_role('button',name=f'공식 {name} 지형 열기',exact=True).click()
+        canvas=panel.get_by_role('group',name=f'{name} 지형 이미지',exact=True)
+        expect(canvas.locator('image')).to_have_count(count)
+        expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
+        for _ in range(200):
+            if len({u for u,status in tiles if status==200 and '/'+slug+'/' in u})==count:break
+            page.wait_for_timeout(100)
+        assert len({u for u,status in tiles if status==200 and '/'+slug+'/' in u})==count
+        expect(panel.get_by_role('alert')).to_have_count(0)
+        panel.get_by_role('button',name='지형 지도 확대',exact=True).click()
+        expect(canvas).to_have_attribute('viewBox','250 250 500 500')
+        canvas.focus();page.keyboard.press('ArrowRight')
+        expect(canvas).to_have_attribute('viewBox','300 250 500 500')
+        assert page.evaluate('JSON.stringify({...localStorage})')==before
     page.set_viewport_size({'width':390,'height':844})
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
     canvas.screenshot(path='/tmp/a2bc-official-terrain.png')

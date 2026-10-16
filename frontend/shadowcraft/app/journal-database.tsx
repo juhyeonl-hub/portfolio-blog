@@ -1,6 +1,23 @@
 import {useEffect, useState} from 'react';
-import {parseJournalIndex, type JournalIndex} from '../lib/journal-index';
+import {parseJournalIndex, type JournalIndex, type QuestRewards, type RewardContent} from '../lib/journal-index';
 const races: Record<string, string> = {All: '공통', Light: '천족', Dark: '마족'};
+function Rewards({rewards}: {rewards: QuestRewards | null | undefined}) {
+  if (rewards === undefined) return <p>이 데이터 버전에는 퀘스트 보상 정보가 없습니다.</p>;
+  if (rewards === null) return <p>연결된 보상 레코드가 없습니다. 보상이 없다는 뜻은 아닙니다.</p>;
+  return <section aria-label="퀘스트 보상"><h4>클라이언트에 등록된 보상</h4>
+    <p>경험치 {rewards.experience.toLocaleString()}</p>
+    <RewardLists rewards={rewards}/>
+    {!!rewards.classRewards?.length && <div aria-label="직업별 퀘스트 보상"><h5>직업별 보상 · 해당 직업만</h5>{rewards.classRewards.map(entry => <details key={entry.classKey}><summary>{classNames[entry.classKey]}</summary><RewardLists rewards={entry}/></details>)}</div>}
+  </section>;
+}
+const classNames: Record<string, string> = {gladiator: '검성', templar: '수호성', assassin: '살성', ranger: '궁성', sorcerer: '마도성', elementalist: '정령성', cleric: '치유성', chanter: '호법성'};
+function RewardLists({rewards}: {rewards: RewardContent}) {
+  return <>
+    {([{label: '기본 보상', items: rewards.items}, {label: '일반 아이템 보상', items: rewards.normalItems}, {label: '선택 보상 후보', items: rewards.selectionItems}]).map(group => <div key={group.label}><h5>{group.label}</h5>{group.items.length ? <ul>{group.items.map((item, index) => <li key={`${item.id}:${index}`}>{item.name ?? `아이템 ${item.id}`} × {item.count.toLocaleString()}{item.enchantLevel > 0 ? ` · 강화 +${item.enchantLevel}` : ''}</li>)}</ul> : <p>등록된 항목 없음</p>}</div>)}
+    {!!rewards.selectionItems.length && <p>선택 후보 목록이며 모든 아이템을 함께 받는다는 뜻은 아닙니다.</p>}
+    {rewards.randomGroup && <p>무작위 보상 그룹이 추가로 연결돼 있습니다. 구성과 확률은 아직 확인되지 않았습니다.</p>}
+  </>;
+}
 export default function JournalDatabase({active}: {active: boolean}) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<JournalIndex | null>(null);
@@ -30,7 +47,7 @@ export default function JournalDatabase({active}: {active: boolean}) {
   const next = quest?.nextId ? data?.quests.find(q => q.id === quest.nextId) : undefined;
   return <section aria-label="공식 퀘스트·던전·펫 목록">
     <h3>공식 퀘스트·던전·펫 목록</h3>
-    <p>글로벌 클라이언트의 영문 이름·설명과 원본 분류입니다. 테스트용·비활성 항목이 포함될 수 있으며 실제 입장 조건과 보상은 확인되지 않았습니다.</p>
+    <p>글로벌 클라이언트의 영문 이름·설명과 등록된 퀘스트 보상입니다. 테스트용·비활성 항목이 포함될 수 있으며 실제 서버의 지급 여부와 추가 조건은 확인되지 않았습니다.</p>
     <button className="button ghost" aria-expanded={open} onClick={() => setOpen(v => !v)}>{open ? '퀘스트·던전·펫 닫기' : '퀘스트·던전·펫 열기'}</button>
     {open && <>
       {!data && !error && <p role="status">퀘스트·던전·펫을 불러오는 중…</p>}
@@ -46,7 +63,10 @@ export default function JournalDatabase({active}: {active: boolean}) {
           <div className="database-detail" aria-label="퀘스트·던전·펫 상세">
             {!selected && <p>목록에서 항목을 선택하세요.</p>}
             {quest && <><h4>{quest.name ?? '이름 미확인'}</h4><p>ID {quest.id} · {quest.kind} · {races[quest.race]}</p><p>{quest.summary ?? '설명 미확인'}</p><p>원본 단계 레코드 {quest.stepCount}개</p>{quest.acquireNpc && <p>시작 NPC: {quest.acquireNpc.name ?? '이름 미확인'} · {quest.acquireNpc.id}</p>}{quest.completeNpc && <p>완료 NPC: {quest.completeNpc.name ?? '이름 미확인'} · {quest.completeNpc.id}</p>}{next ? <button className="button ghost" onClick={() => {setQuery(next.id); setKind(''); setPage(0); setSelected(next.id);}}>다음 퀘스트: {next.name ?? next.id}</button> : <p>등록된 다음 퀘스트 없음</p>}</>}
+            {quest?.levels && <div aria-label="퀘스트 레벨 조건"><p>시작 레벨 {quest.levels.unlock || '미지정'} · 권장 레벨 {quest.levels.recommended || '미지정'}</p>{quest.levels.additionalConditions > 0 && <p>추가 시작 조건 {quest.levels.additionalConditions}개가 있습니다. 레벨만으로 시작 가능 여부를 판단할 수 없습니다.</p>}</div>}
+            {quest && <Rewards rewards={quest.rewards}/>}
             {pet && <><h4>{pet.name ?? '이름 미확인'}</h4><p>ID {pet.id} · {pet.kind}</p><p>공식 펫 목록의 원본 분류입니다. 획득 경로·능력치·성장 확률은 검증되지 않았습니다.</p></>}
+            {dungeon?.recommendation && <div aria-label="던전 권장 정보"><p>권장 레벨 {dungeon.recommendation.level || '미지정'} · 난이도 {dungeon.recommendation.difficulty === 'None' ? '미지정' : dungeon.recommendation.difficulty}</p><p>{dungeon.recommendation.maxMembers > 0 ? `권장 인원 ${dungeon.recommendation.minMembers}–${dungeon.recommendation.maxMembers}명` : '권장 인원 미지정'}</p><p>권장 정보이며 입장 가능 여부나 입장 제한을 뜻하지 않습니다.</p></div>}
             {dungeon && <><h4>{dungeon.name ?? '이름 미확인'}</h4><p>ID {dungeon.id} · {dungeon.kind}</p><p>연결 맵: {dungeon.mapName ?? '이름 미확인'} · {dungeon.mapId}</p></>}
           </div></div>
       </>}

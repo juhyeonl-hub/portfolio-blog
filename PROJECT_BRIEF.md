@@ -447,3 +447,17 @@ portfolio-blog/
 - Validate positive unique row IDs, unique group/level pairs and bounded levels; missing base references or snapshot mismatch fail. Missing growth groups are reported and return nonzero. No inferred fallback, interpolation, damage formula or live level application added.
 - Validation: Python 73 tests, frontend 19 suites and production build passed. Existing chunk-size/plugin-timing warnings remain. No application, database, saved plan or runtime-memory changes.
 - Remaining evidence: establish replacement/additive semantics and which effective skill level selects each row, including specialization/gear overrides, against authoritative behavior or controlled in-game samples. New runtime mapping remains unavailable; this audit does not complete the overall project.
+
+#### Quest rewards and journal recommendations (2026-10-16)
+- Linked all 1,321 QuestReward group IDs to quests, resolving every explicit reward item against the installed Global Item table. Display experience and separate base, normal and choice candidates. 108 quests without reward rows remain explicitly unknown; 340 random groups remain unexpanded, without fabricated odds.
+- Extracted QuestClassReward (112 rows / 14 quests / 8 classes) from the same installed Global build. Display class-specific reward sections separately; do not merge all classes into a player's rewards. Source hashes include both reward tables and Item.
+- Display quest unlock/recommended levels and presence of additional conditions, plus dungeon recommended levels, member ranges and difficulty. Zero is unspecified; recommendations do not establish admission or live availability. Preserve v1 compatibility and all saved plans.
+- Validation: Python 77 tests, frontend 19 suites, typecheck, ESLint, build and journal browser acceptance passed. Eight-class integration passed. Existing bundle-size/plugin-timing warnings remain. No backend/database changes.
+
+#### Six-region official terrain coverage (2026-10-16)
+- Extracted and visually reviewed Poeta (4×4), Ishalgen (5×5), Chaotic Lower Reshanta (4×4) and Chaotic Middle Reshanta (2×2), all from Steam build 25926599. Names match Map IDs 1000, 1100, 20 and 22 respectively.
+- Package 61 additional 1024px tiles (3,901,684 bytes); retain source hashes, decoded settings hashes, actual dimensions and seam measurements. Reviewed max RGB seam differences: 15.712891, 7.926107, 14.712240 and 5.143229. Existing region thresholds unchanged.
+- Six-region selection reuses isolated lazy viewer state; 189 tiles total. World projection and marker support remain unverified/disabled. Static client content does not establish live availability. Source PNGs/settings archived outside the application.
+- Public official character JS inspection confirms the documented item request path but provides no Global ranking-list implementation. The attempted Global ranking page redirects to official 404. Earlier API empty samples remain inconclusive; no fabricated leaderboard added.
+
+확장 작업 검증: Python 78개, 프런트 19묶음, TypeScript, ESLint, 운영 빌드, 퀘스트 보상/직업별 보상/권장 정보 브라우저 검사, 6지역 지형 브라우저 검사, 기존 8직업 통합 검사 통과. 기존 대형 청크·플러그인 처리 시간 경고 유지.

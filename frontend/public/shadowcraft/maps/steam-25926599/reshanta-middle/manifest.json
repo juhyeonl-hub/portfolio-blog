@@ -1,0 +1,78 @@
+{
+  "schema": "a2bc-terrain-v1",
+  "name": "Chaotic Middle Reshanta",
+  "mapKey": "Abyss_Reshanta_C",
+  "gridSize": 2,
+  "source": {
+    "kind": "installed-steam-client",
+    "appId": 3393110,
+    "buildId": "25926599",
+    "region": "global"
+  },
+  "basePath": "/shadowcraft/maps/steam-25926599/reshanta-middle",
+  "sourceTilePixels": 1024,
+  "displayTilePixels": 1024,
+  "worldProjectionVerified": false,
+  "markerSupport": false,
+  "settingsSha256": "8c149ec15ad19527ef8934d3ac2cf7c0a1184ab868293c9fdbdfea0b61571249",
+  "seams": [
+    {
+      "x": 0,
+      "y": 0,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 5.143229
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 4.128581
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "direction": "right",
+      "rgbMeanAbsoluteDifference": 3.929688
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "direction": "below",
+      "rgbMeanAbsoluteDifference": 5.038737
+    }
+  ],
+  "tiles": [
+    {
+      "x": 0,
+      "y": 0,
+      "file": "0_0.webp",
+      "sourceSha256": "89e6453cf56287f8c1a0fbadac068e04c3ca2d5757766550a16f3aae440c7f71",
+      "sha256": "313be49bae4e1f022d552d6e976e102b2254c2c7899f8bea8a4cca7fa7b9c792",
+      "bytes": 104632
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "file": "0_1.webp",
+      "sourceSha256": "ab0ea72b74e211e61f74f1db4ae825df17d2454c060cc62d8d24a21ae419bd99",
+      "sha256": "d52fcb34811a72d6b6998799a8d0f32443915729c0a69e16049940dae1228e00",
+      "bytes": 80142
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "file": "1_0.webp",
+      "sourceSha256": "d88b9d7347c776aa08af67433bede589ebf069b8669a5f8733f05b53890fbd56",
+      "sha256": "7b1846bf3898cd1578aedb8a65d5322ca8f51e0f17eabba3c6bf5d123c1f820c",
+      "bytes": 84148
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "file": "1_1.webp",
+      "sourceSha256": "fa0d523836dc41d6aeffe93a1c51348dddb1cb1a1526716936e29bb35de904ce",
+      "sha256": "abee1e9b454e805af6157857032fcb844152d843917cd239d6dd174158b1486b",
+      "bytes": 109898
+    }
+  ]
+}
