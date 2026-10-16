@@ -386,3 +386,11 @@ Exit 0 means only that all observed indexes have mapped types. It does not
 validate field semantics or package consumption: AionWorldSettings illustrates
 this distinction, with covered indexes but 64 unread bytes in the strict audit.
 Do not enable production projection or markers from this preflight alone.
+
+### Named build library, recipe references and Steam activity
+
+- **빌드 보관함**: each class has up to 20 local named snapshots at `a2bc-build-library-v1:<class>`. Applying a preview first saves the current plan as recovery. Entry export uses the existing `shadowcraft-v1` file format. Existing plan keys remain unchanged. Corrupt storage is not overwritten; storage failure prevents apply; Web Locks plus byte comparison protect concurrent tabs. Secure-context Web Locks support is required for writes. Browser data deletion still removes local snapshots; export important builds.
+- **글로벌 데이터**: item details expose producing/consuming recipes; recipe material buttons navigate to item details using reviewed official IDs.
+- **Steam 접속 현황**: `GET /api/public/shadowcraft/activity` reads official Steam `ISteamUserStats/GetNumberOfCurrentPlayers/v1/` for app 3393110. One-minute backend cache includes failed attempts; initial failure returns 502, later failure returns last known count with its original `checkedAt` and `stale:true`. No plan writes, accounts, DB migration or new credentials. This is the whole Steam app count, not per-server online status.
+- Tests: `python3 shadowcraft/tests/build_library.py`, `recipe_links.py`, `steam_activity.py`; set `SHADOWCRAFT_TEST_URL` for production. Activity browser cases use controlled fixtures; verify the actual endpoint separately. Backend service cases are in `SteamActivityServiceTest`.
+- Deployment uses **systemd `portfolio-blog`**, as documented in `OPERATIONS.md`; legacy ops `start.sh`/`stop.sh` PID files do not track the current service.

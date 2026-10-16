@@ -41,6 +41,10 @@ export default function ClientDatabase({active}: {active: boolean}) {
   const recipe = section === 'recipes' ? data?.recipes.find(r => r.id === selected) : undefined;
   const item = section === 'items' ? items.get(selected) : undefined;
   const skill = section === 'skills' ? data?.skills.find(s => s.id === selected) : undefined;
+  const producedBy = item ? data?.recipes.filter(r => r.itemId === item.id) ?? [] : [];
+  const usedBy = item ? data?.recipes.filter(r => r.ingredients.some(i => i.itemId === item.id)) ?? [] : [];
+  const recipeGroups = [{label: '생산 제작법', rows: producedBy}, {label: '재료로 쓰는 제작법', rows: usedBy}];
+  function navigate(kind: 'items' | 'recipes', id: string) {setSection(kind); setSelected(id); setQuery(id); setFilter(''); setPage(0); setAttempts('1');}
   const count = /^\d+$/.test(attempts) ? Number(attempts) : NaN;
   const validCount = Number.isSafeInteger(count) && count >= 1 && count <= 10000;
   return <section className="client-database card" aria-label="글로벌 클라이언트 데이터베이스">
@@ -62,7 +66,7 @@ export default function ClientDatabase({active}: {active: boolean}) {
         <div className="database-pages"><button className="button ghost" disabled={page === 0} onClick={() => setPage(v => v - 1)}>이전</button><span>{page + 1} / {Math.max(1, Math.ceil(matches.length / 30))}</span><button className="button ghost" disabled={(page + 1) * 30 >= matches.length} onClick={() => setPage(v => v + 1)}>다음</button></div></div>
         <div className="database-detail" aria-label="데이터 상세">
           {!selected && <p>목록에서 항목을 선택하세요.</p>}
-          {item && <><h3>{item.name}</h3><p>ID {item.id} · {item.kind} · {item.grade} · 아이템 레벨 {item.level}</p></>}
+          {item && <><h3>{item.name}</h3><p>ID {item.id} · {item.kind} · {item.grade} · 아이템 레벨 {item.level}</p><p>제작법 등록 여부를 보여줍니다. 현재 서버의 획득 가능 여부나 성공 확률은 확인되지 않았습니다.</p>{recipeGroups.map(({label, rows}) => <details key={label}><summary>{label} ({rows.length}개)</summary>{rows.length ? <ul>{rows.map(r => <li key={r.id}><button className="button ghost" onClick={() => navigate('recipes', r.id)}>{items.get(r.itemId)?.name ?? r.itemId} · {r.category} · {r.race} · {r.id}</button></li>)}</ul> : <p>등록된 제작법이 없습니다.</p>}</details>)}</>}
           {skill && <><h3>{skill.name}</h3><p>ID {skill.id} · {skill.classKey}</p><h4>레벨별 습득 조건</h4><p>포인트는 해당 레벨을 배울 때 드는 비용입니다. 승급 조건은 클라이언트 원본 코드로 표시합니다.</p>
             {skill.learning ? <ol className="skill-learning-list">{skill.learning.map(row => <li key={row.level}>
               <strong>스킬 Lv.{row.level}</strong><span>캐릭터 Lv.{row.requiredCharacterLevel} · {row.autoLearn ? '자동 습득' : '직접 습득'}</span>
@@ -74,7 +78,7 @@ export default function ClientDatabase({active}: {active: boolean}) {
             <p>기본 생산 수량 {recipe.outputQuantity}개 · 요구 숙련도 {recipe.masteryLevel}</p>
             <p>{recipe.hasCombo ? '연속 제작 결과가 존재합니다. ' : ''}성공 확률과 수수료는 미확정입니다. 아래는 입력한 시도 횟수에 필요한 재료이며 성공 수량 예측이 아닙니다.</p>
             <label>제작 시도 횟수<input inputMode="numeric" value={attempts} onChange={e => setAttempts(e.target.value)}/></label>
-            {!validCount ? <p role="alert">시도 횟수는 1~10000의 정수로 입력하세요.</p> : <ul>{recipe.ingredients.map((ingredient, i) => <li key={`${ingredient.itemId}-${i}`}>{items.get(ingredient.itemId)?.name ?? ingredient.itemId} × {(ingredient.quantity * count).toLocaleString()}{ingredient.enchant > 0 ? ` (강화 +${ingredient.enchant})` : ''}</li>)}</ul>}
+            {!validCount ? <p role="alert">시도 횟수는 1~10000의 정수로 입력하세요.</p> : <ul>{recipe.ingredients.map((ingredient, i) => <li key={`${ingredient.itemId}-${i}`}><button className="button ghost" onClick={() => navigate('items', ingredient.itemId)}>{items.get(ingredient.itemId)?.name ?? ingredient.itemId}</button> × {(ingredient.quantity * count).toLocaleString()}{ingredient.enchant > 0 ? ` (강화 +${ingredient.enchant})` : ''}</li>)}</ul>}
           </>}
         </div>
       </div>

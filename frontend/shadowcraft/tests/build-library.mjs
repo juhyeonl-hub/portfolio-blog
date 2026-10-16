@@ -1,0 +1,33 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {moduleUrl,planner} from './modules.mjs';
+const memoryUrl=moduleUrl(readFileSync('lib/plan-memory.ts','utf8'));
+const {parseLibrary,writeLibrary,snapshot,libraryKey}=await import(moduleUrl(readFileSync('lib/build-library.ts','utf8').replace("'./plan-memory'",JSON.stringify(memoryUrl))));
+const map=new Map();const storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)};
+for(const key of ['assassin','gladiator','templar','ranger','elementalist','sorcerer','cleric','chanter']) {
+ const catalog=JSON.parse(readFileSync(`lib/data/catalogs/${key}.json`,'utf8'));
+ const plan=planner.emptyPlan(catalog);
+ const entry=snapshot(plan,key,' Original ',catalog.version,key);
+ const state=parseLibrary(null,key);state.entries.push(entry);
+ const raw=writeLibrary(storage,key,null,state);
+ plan.level=1;
+ assert.equal(parseLibrary(raw,key).entries[0].name,'Original');
+ assert.notEqual(entry.plan,plan);
+ assert.throws(()=>writeLibrary(storage,key,null,state),/다른 탭/);
+ assert.equal(storage.getItem(libraryKey(key)),raw);
+ const broken=structuredClone(state);broken.entries[0].plan.classKey='unknown';
+ assert.throws(()=>writeLibrary(storage,key,raw,broken));
+ assert.equal(storage.getItem(libraryKey(key)),raw);
+ const duplicate=structuredClone(state);duplicate.entries.push(duplicate.entries[0]);assert.throws(()=>parseLibrary(JSON.stringify(duplicate),key));
+ const full=structuredClone(state);full.entries=Array.from({length:21},(_,i)=>({...entry,id:String(i)}));assert.throws(()=>writeLibrary(storage,key,raw,full));
+ const denied={...storage,setItem:()=>{throw Error('QuotaExceeded')}};
+ assert.throws(()=>writeLibrary(denied,key,raw,state),/QuotaExceeded/);
+ assert.equal(storage.getItem(libraryKey(key)),raw);
+ const recovered={...state,recovery:snapshot({...entry.plan,level:12},key,'Recovery',catalog.version,'recovery')};
+ const recoveredRaw=writeLibrary(storage,key,raw,recovered);
+ assert.equal(parseLibrary(recoveredRaw,key).recovery.plan.level,12);
+}
+for(const raw of ['{','null','{}','x'.repeat(2000001)])assert.throws(()=>parseLibrary(raw,'assassin'));
+assert.throws(()=>libraryKey('unknown'));
+assert.equal(map.size,8);
+console.log('Build library: 8-class isolation, snapshots/recovery, invalid data, collisions, limits and quota failures PASS');
