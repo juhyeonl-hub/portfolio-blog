@@ -96,3 +96,5 @@
 7. **남은 완료 조건**: 일치하는 공식 클라이언트 스키마 또는 독립 좌표 대조 자료, 공식 전투/제작 필드 의미 검증, 공개 빌드·랭킹 등 남은 전체 사이트 기능 구현 및 수용 검사. 추정값으로 미검증 기능을 완료 처리하지 않는다.
 
 공식 API 참고: [Steam GetNumberOfCurrentPlayers](https://partner.steamgames.com/doc/webapi/ISteamUserStats#GetNumberOfCurrentPlayers). 기존 카탈로그를 모두 공식 데이터로 대체한 것은 아니다.
+
+운영 검증 추가: `945ccf7` 배포 `portfolio-blog-hpq8hmapn-xxjuon-4682s-projects.vercel.app` Ready 및 운영 도메인 연결 확인. 운영 보관함·제작법 연결·Steam 오류 처리·8직업 통합 검사 통과, 실제 Steam API와 UI 응답 확인. ESLint 통과. 모바일 스크린샷에서 새 패널이 탭보다 위에 배치된 문제를 발견해 기존 탭 콘텐츠 위치로 옮겼다. 배치 위치 회귀 단언을 추가했고 보관함·Steam 브라우저 검사, 타입 검사·운영 빌드가 다시 통과했다.

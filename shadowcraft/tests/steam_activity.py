@@ -19,6 +19,7 @@ with sync_playwright() as p:
     page.get_by_role('tab',name='Steam 접속 현황',exact=True).click()
     panel=page.get_by_role('region',name='Steam 글로벌 접속 현황',exact=True)
     expect(panel.get_by_text('42명',exact=True)).to_be_visible()
+    assert panel.bounding_box()['y'] > page.get_by_role('tablist').bounding_box()['y']
     timestamp=panel.get_by_text('마지막 확인:',exact=False).inner_text()
     status[0]=502
     panel.get_by_role('button',name='접속 현황 다시 확인').click()
