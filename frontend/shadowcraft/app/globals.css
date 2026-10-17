@@ -87,3 +87,5 @@
 .event-timer-card.event-timer-card-imminent{border-color:#ff626b;box-shadow:inset 0 0 0 1px #ff626b;border-radius:10px}
 
 .character-equipment{margin:12px 0;padding:14px}.character-equipment summary{cursor:pointer;font-weight:600}.character-equipment p{margin:10px 0;font-size:12px;line-height:1.6}.character-equipment ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}.character-equipment li{display:grid;gap:5px;padding:10px;background:#202331;border-radius:7px;overflow-wrap:anywhere}.character-equipment li span{font-size:12px;color:#b5b2c4}
+
+.character-comparison{margin:16px 0;border-top:1px solid #343846;padding-top:12px}.character-comparison h4{margin:12px 0 8px}.character-comparison p{font-size:12px;line-height:1.7}.comparison-scroll{overflow-x:auto;max-width:100%}.character-comparison table{border-collapse:collapse;width:100%;font-size:12px;min-width:440px}.character-comparison th,.character-comparison td{padding:8px;border:1px solid #343846;text-align:left;overflow-wrap:anywhere}.comparison-changed{background:#292339}

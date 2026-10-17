@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {moduleUrl} from './modules.mjs';
+const {compareCharacters}=await import(moduleUrl(readFileSync('lib/character-comparison.ts','utf8')));
+const a={equipment:[{id:1,slotPos:1,slotPosName:'MainHand',name:'Sword',enchantLevel:10,exceedLevel:0}],skills:[{id:1,name:'Strike',skillLevel:10,equip:1}],nodes:['1','2'],failedBoards:[]};
+const b=structuredClone(a);b.equipment[0].enchantLevel=12;b.skills[0].equip=0;b.nodes=['2','3'];
+const before=JSON.stringify([a,b]);let result=compareCharacters(a,b);
+assert(result.sections.every(s=>s.rows[0].changed));assert.deepEqual(result.nodes,{common:1,currentOnly:1,savedOnly:1});assert.equal(JSON.stringify([a,b]),before);
+assert(compareCharacters(a,a).sections.every(s=>s.rows.every(r=>!r.changed)));
+assert(compareCharacters(null,b).sections.every(s=>s.unavailable));
+assert.equal(compareCharacters({...a,failedBoards:['31']},b).nodes,null);
+assert.equal(compareCharacters({...a,failedBoards:undefined},b).nodes,null);
+assert(compareCharacters({...a,equipment:[...a.equipment,...a.equipment]},b).sections[0].unavailable);
+assert(compareCharacters({...a,skills:[{id:1,name:{},skillLevel:10,equip:1}]},b).sections[1].unavailable);
+const other=structuredClone(a);other.equipment[0].slotPos=2;
+result=compareCharacters(a,other);assert.equal(result.sections[0].rows[0].saved,'조회 정보 없음');
+console.log('Character comparison: stable identities, unknowns, malformed/duplicates, incomplete boards and nonmutation PASS');

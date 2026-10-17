@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import type {Plan} from '../lib/planner';
+import CharacterComparison from './character-comparison';
 import {libraryKey, parseLibrary, snapshot, writeLibrary, type BuildLibrary, type SavedBuild} from '../lib/build-library';
 export default function BuildLibraryPanel({classKey, catalogVersion, plan, onApply}: {classKey: string; catalogVersion: string; plan: Plan; onApply: (plan: Plan) => void}) {
   const [state,setState] = useState<{raw:string|null; data:BuildLibrary}|null>(null);
@@ -57,7 +58,7 @@ export default function BuildLibraryPanel({classKey, catalogVersion, plan, onApp
       <div className="database-list">{state.data.entries.map(entry=><div key={entry.id}><button onClick={()=>{setPending(entry);setRemoving(null);setMessage('');}}><strong>{entry.name}</strong><small>Lv.{entry.plan.level} · {entry.plan.mode==='safe'?'안정형':'공격형'} · {entry.plan.character?.profile?.characterName||'캐릭터 미연결'} · {new Date(entry.savedAt).toLocaleString('ko-KR')}</small></button><button className="button ghost" aria-label={entry.name+' 보관본 내보내기'} onClick={()=>download(entry)}>내보내기</button><button className="button ghost" aria-label={entry.name+' 보관본 삭제'} onClick={()=>{setRemoving(entry.id);setPending(null);}}>삭제</button></div>)}</div>
       {removing&&<div role="group" aria-label="보관본 삭제 확인"><p>선택한 보관본을 삭제합니다. 현재 적용된 계획은 유지됩니다.</p><button className="button ghost" onClick={async()=>{if(await write({...state.data,entries:state.data.entries.filter(e=>e.id!==removing)})){setRemoving(null);setMessage('보관본을 삭제했습니다.');}}}>보관본 삭제 확인</button><button className="button ghost" onClick={()=>setRemoving(null)}>삭제 취소</button></div>}
       {state.data.recovery&&<button className="button ghost" onClick={()=>{setPending(state.data.recovery);setRemoving(null);}}>복원 직전 계획 보기</button>}
-      {pending&&<div className="database-detail" aria-label="빌드 복원 미리보기"><h3>{pending.name}</h3><p>Lv.{pending.plan.level} · {pending.plan.mode==='safe'?'안정형':'공격형'} · 보관 당시 데이터 {pending.catalogVersion}</p><p>적용하면 현재 캐릭터·장비·포인트·검색 조건이 보관 당시 값으로 바뀝니다. 직전 계획은 복구용으로 저장합니다.</p>{pending.catalogVersion!==catalogVersion&&<p>현재 데이터 버전과 다릅니다. 적용 후 배분과 잠긴 조건을 확인하세요.</p>}<button className="button primary" onClick={apply}>이 빌드 적용</button><button className="button ghost" onClick={()=>setPending(null)}>복원 취소</button></div>}
+      {pending&&<div className="database-detail" aria-label="빌드 복원 미리보기"><h3>{pending.name}</h3><p>Lv.{pending.plan.level} · {pending.plan.mode==='safe'?'안정형':'공격형'} · 보관 당시 데이터 {pending.catalogVersion}</p><p>적용하면 현재 캐릭터·장비·포인트·검색 조건이 보관 당시 값으로 바뀝니다. 직전 계획은 복구용으로 저장합니다.</p>{pending.catalogVersion!==catalogVersion&&<p>현재 데이터 버전과 다릅니다. 적용 후 배분과 잠긴 조건을 확인하세요.</p>}<CharacterComparison key={pending.id} current={plan.character} saved={pending.plan.character}/><button className="button primary" onClick={apply}>이 빌드 적용</button><button className="button ghost" onClick={()=>setPending(null)}>복원 취소</button></div>}
     </>}
   </section>;
 }
