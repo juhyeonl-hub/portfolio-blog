@@ -9,6 +9,7 @@ with sync_playwright() as p:
  errors=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
+ page.route('**/api/public/shadowcraft/boss-timers?*',lambda r:r.fulfill(status=503,json={}))
  page.clock.install(time=datetime(2026,10,17,8,50,0,tzinfo=timezone.utc))
  page.goto(URL)
  header=page.get_by_role('region',name='고정 콘텐츠 타이머')
@@ -25,7 +26,7 @@ with sync_playwright() as p:
  page.get_by_role('button',name='시간표 저장',exact=True).click()
  card=header.locator('.event-timer-card').filter(has_text='가르투아')
  expect(card).to_contain_text('등록 시간표')
- expect(header.locator('.event-timer-card').filter(has_text='라그타')).to_contain_text('시간표 미등록')
+ expect(header.locator('.event-timer-card').filter(has_text='라그타')).to_contain_text('조회 실패')
  page.clock.pause_at(datetime(2026,10,17,9,0,1,tzinfo=timezone.utc))
  page.clock.run_for(1000)
  expect(card.locator('strong')).to_have_text('12:59:58')

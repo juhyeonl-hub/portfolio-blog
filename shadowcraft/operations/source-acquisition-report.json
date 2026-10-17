@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-10-17T02:04:50.908461+00:00",
+  "status": "partial-acquisition-not-full-completion",
+  "snapshotDirectory": "shadowcraft/source-snapshots/20261017T020426092232Z",
+  "snapshotManifest": "shadowcraft/source-snapshots/20261017T020426092232Z/manifest.json",
+  "acquiredFiles": 40,
+  "hashesVerified": 40,
+  "official": {
+    "serverCount": 106,
+    "regions": {
+      "eu": 46,
+      "nae": 18,
+      "naw": 10,
+      "la": 12,
+      "as": 20
+    },
+    "updateListingCount": 2,
+    "updateHasMore": false,
+    "rankingResponses": 30,
+    "rankingRecords": 0,
+    "rankingScope": "one server per faction per region; content types 1,3,21 only",
+    "characterData": "existing on-demand integration; not bulk downloaded",
+    "fullGameDatabase": "no confirmed website export"
+  },
+  "mythos": {
+    "commit": "ea5554e75ee6c5dbf90b1da0d9c3d5bbe17dfd18",
+    "licenseFile": "shadowcraft/source-snapshots/20261017T020426092232Z/mythos-LICENSE.txt",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "index.html"
+    ],
+    "embeddedBossRecords": 49,
+    "embeddedChecklistRecords": 21,
+    "embeddedEventRecords": 3,
+    "publication": "not imported into runtime; upstream data provenance and accuracy need separate review"
+  },
+  "unacquired": {
+    "grimvane": "developer-key-required; not-acquired",
+    "gamingTools": "original-bulk-content-permission-not-obtained; not-acquired",
+    "aion2Timers": "previously-confirmed-automated-access-gate; not-retried-or-bypassed"
+  },
+  "conflicts": [
+    {
+      "field": "respawnHours",
+      "bosses": [
+        "Gartua",
+        "Lagta"
+      ],
+      "mythos": 24,
+      "grimvane": 12,
+      "resolution": "unresolved; not published as Global verified values"
+    },
+    {
+      "field": "respawnHours",
+      "bosses": [
+        "Dartan",
+        "Kashapa"
+      ],
+      "mythos": 12,
+      "grimvane": 6,
+      "resolution": "unresolved; not published as Global verified values"
+    }
+  ],
+  "references": {
+    "grimvane": "https://aion2.grimvane.app/privacy",
+    "gamingTools": "https://gaming.tools/pages/terms-and-conditions",
+    "mythos": "https://github.com/MythosOfs/aion2-tracker",
+    "aion2Timers": "https://www.aion2timers.com/world-boss-timer/",
+    "wiki": "https://aion2.fandom.com/wiki/AION2_Wiki"
+  },
+  "wikiAssessment": "Indexed pages contain class lists and introductory system/world pages; homepage still describes a future release. Full current skill stats, coordinates and Global-version completeness not established; direct access blocked by robots.",
+  "tests": {
+    "pythonOperations": 106,
+    "frontendSuites": 21,
+    "snapshotSha256": 40
+  },
+  "production": "unchanged; snapshots excluded from Git and hosting; no provider messages sent"
+}

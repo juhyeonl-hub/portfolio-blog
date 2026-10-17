@@ -26,3 +26,7 @@ Thumbs.db
 uploads/
 test-uploads/
 .vercel
+
+# Local research responses (not reviewed for publication)
+shadowcraft/source-snapshots/
+shadowcraft/operations/__pycache__/
