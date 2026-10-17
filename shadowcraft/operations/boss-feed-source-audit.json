@@ -1,7 +1,7 @@
 {
   "checkedDate": "2026-10-17",
   "scope": "Global Steam per-server field boss live timestamps",
-  "status": "blocked-no-usable-live-feed",
+  "status": "a2tools-feed-connected",
   "sources": [
     {
       "name": "Aion2Timers community feed",
@@ -39,6 +39,14 @@
       "url": "https://gamers4.life/aion-2/bot-discord",
       "result": "Provider documents Discord boss/event commands. No public JSON feed endpoint established; a Discord bot is not evidence of an embeddable live data API.",
       "integration": "not-connected"
+    },
+    {
+      "name": "A2Tools public CDN feed",
+      "url": "https://cdn.a2tools.app/feeds/boss-timers/1301.json",
+      "documentation": "https://github.com/taengu/A2Tools-DPS-Meter/blob/main/src-tauri/src/plugins/mod.rs",
+      "httpStatus": 200,
+      "result": "Actual JSON received for representative Global IDs 1101,1201,1301,1401,1501. Independent one-minute demand cache, four faction-specific records; no game uploads or collector started. Explicit application User-Agent used. External service guarantee/redistribution grant not established by GPL code license.",
+      "integration": "production-verified"
     }
   ],
   "requiredEvidence": [
@@ -46,11 +54,5 @@
     "Real Global server identifiers mapped to our region/server/faction IDs",
     "Boss identity, source timestamp, next-spawn or observed state, estimated flag and freshness semantics"
   ],
-  "nextAction": "Obtain supported live feed access from Aion2Timers/AbyssLogs before implementing and publishing automatic countdowns. A static respawn interval alone is insufficient.",
-  "unchanged": [
-    "No production code/deployment changes",
-    "No player uploads or local collectors started",
-    "No messages sent to providers",
-    "No speculative respawn times published"
-  ]
+  "nextAction": "Monitor source coverage and freshness; no fabricated spawn state when nextSpawn is absent or elapsed."
 }
