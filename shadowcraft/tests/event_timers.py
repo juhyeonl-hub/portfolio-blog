@@ -45,7 +45,7 @@ with sync_playwright() as p:
  page.get_by_label('타르탄 고정',exact=True).uncheck()
  page.get_by_role('button',name='시간표 저장',exact=True).click()
  expect(header.locator('.event-timer-card')).to_have_count(5)
- expect(header.locator('.event-timer-card').filter(has_text='시공의 균열')).to_contain_text('시간표 미등록')
+ expect(header.locator('.event-timer-card').filter(has_text='시공의 균열')).to_contain_text('서버 기준 · 참고 일정')
  stored=json.loads(page.evaluate("localStorage.getItem('a2bc-event-timers-v1')"))
  assert stored['profiles']['eu:1301']['times']['gartua']=='09:00,22:00'
  assert stored['profiles']['eu:1302']['times']['gartua']=='12:00'

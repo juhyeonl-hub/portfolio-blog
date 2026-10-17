@@ -47,6 +47,12 @@
       "httpStatus": 200,
       "result": "Actual JSON received for representative Global IDs 1101,1201,1301,1401,1501. Independent one-minute demand cache, four faction-specific records; no game uploads or collector started. Explicit application User-Agent used. External service guarantee/redistribution grant not established by GPL code license.",
       "integration": "production-verified"
+    },
+    {
+      "name": "A2Tools Event Timers reference schedule",
+      "url": "https://github.com/taengu/A2Tools-Plugins/tree/main/plugins/event-timers",
+      "result": "README and generated schedule.js agree: Rift at server 02:00 then every 3h. Regional clocks specified. Community client-extracted reference, not independently verified official schedule. Independent implementation of schedule facts; no upstream code copied.",
+      "integration": "reference-default"
     }
   ],
   "requiredEvidence": [
@@ -54,5 +60,64 @@
     "Real Global server identifiers mapped to our region/server/faction IDs",
     "Boss identity, source timestamp, next-spawn or observed state, estimated flag and freshness semantics"
   ],
-  "nextAction": "Monitor source coverage and freshness; no fabricated spawn state when nextSpawn is absent or elapsed."
+  "nextAction": "Monitor missing/elapsed observations; do not fabricate boss times. Rift defaults now have attributed reference schedule.",
+  "coverageCheck": {
+    "checkedAt": "2026-10-17T14:25:37.049833+00:00",
+    "scope": "One server per faction per region; 10 of 106 servers, 40 boss records",
+    "allFourNextSpawnPresent": true,
+    "servers": [
+      {
+        "region": "eu",
+        "server": 1301,
+        "race": 1
+      },
+      {
+        "region": "eu",
+        "server": 2301,
+        "race": 2
+      },
+      {
+        "region": "nae",
+        "server": 1101,
+        "race": 1
+      },
+      {
+        "region": "nae",
+        "server": 2101,
+        "race": 2
+      },
+      {
+        "region": "naw",
+        "server": 1201,
+        "race": 1
+      },
+      {
+        "region": "naw",
+        "server": 2201,
+        "race": 2
+      },
+      {
+        "region": "la",
+        "server": 1401,
+        "race": 1
+      },
+      {
+        "region": "la",
+        "server": 2401,
+        "race": 2
+      },
+      {
+        "region": "as",
+        "server": 1501,
+        "race": 1
+      },
+      {
+        "region": "as",
+        "server": 2501,
+        "race": 2
+      }
+    ],
+    "productionEU1301": "HTTP200; all four nextSpawn timestamps present; refreshFailed=false",
+    "limitation": "Point-in-time sample. No continuous or all-server completeness guarantee."
+  }
 }

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl} from './modules.mjs';
-const {parseTimes,parseSettings,emptySettings,emptyServer,nextOccurrence,countdown,scheduleMinutes,nextZonedOccurrence,nextTimerOccurrence}=await import(moduleUrl(readFileSync('lib/event-timers.ts','utf8')));
+const {parseTimes,parseSettings,emptySettings,emptyServer,nextOccurrence,countdown,scheduleMinutes,nextContentOccurrence,nextZonedOccurrence,nextTimerOccurrence}=await import(moduleUrl(readFileSync('lib/event-timers.ts','utf8')));
 assert.deepEqual(parseTimes('21:00, 09:00 09:00'),[540,1260]);
 for(const x of ['24:00','12:60','9:00','12:00oops'])assert.throws(()=>parseTimes(x));
 const now=Date.parse('2026-10-17T23:59:59Z');
@@ -15,7 +15,7 @@ assert.equal(countdown(now+1000,now),'00:00:01');
 assert.equal(countdown(now-1000,now),'00:00:00');
 assert.equal(scheduleMinutes('shugo',emptyServer()).length,24);
 assert.deepEqual(scheduleMinutes('gartua',emptyServer()),[]);
-assert.deepEqual(scheduleMinutes('dimension',{...emptyServer(),dimension:'rift'}),[]);
+assert.deepEqual(scheduleMinutes('dimension',{...emptyServer(),dimension:'rift'}),[120,300,480,660,840,1020,1200,1380]);
 assert.deepEqual(scheduleMinutes('shugo',{...emptyServer(),times:{shugo:''}}),[]);
 const settings={...emptySettings(),server:'1301',profiles:{'eu:1301':{...emptyServer(),offset:0,times:{gartua:'09:00'}}}};
 assert.deepEqual(parseSettings(JSON.stringify(settings)),settings);
@@ -34,3 +34,13 @@ assert.equal(nextTimerOccurrence(now,[0],{...emptyServer(),offset:0}),nextOccurr
 assert.equal(parseSettings(JSON.stringify({...settings,profiles:{'eu:1301':{...emptyServer(),timeZone:'Asia/Seoul'}}})).profiles['eu:1301'].timeZone,'Asia/Seoul');
 assert.throws(()=>parseSettings(JSON.stringify({...settings,profiles:{'eu:1301':{...emptyServer(),timeZone:'Mars/Unknown'}}})));
 console.log('Country time zones: Seoul, Helsinki summer/winter, DST gap/fold, exact boundary, legacy offset and validation PASS');
+
+const rift={...emptyServer(),dimension:'rift',timeZone:'Asia/Seoul'};
+const instant=Date.parse('2026-10-17T00:01:00Z');
+for(const [region,time] of [['eu','03:00'],['nae','03:00'],['naw','03:00'],['la','02:00'],['as','02:00']]){
+  assert.equal(nextContentOccurrence(instant,'dimension',rift,region),Date.parse(`2026-10-17T${time}:00Z`));
+}
+assert.equal(nextContentOccurrence(instant,'dimension',{...rift,times:{dimension:'11:00'}},'eu'),Date.parse('2026-10-17T02:00:00Z'));
+assert.equal(nextContentOccurrence(instant,'dimension',{...rift,times:{dimension:''}},'eu'),null);
+assert.equal(nextContentOccurrence(instant,'dimension',rift,'unknown'),null);
+console.log('Regional default rifts, visitor clock independence, explicit manual/empty overrides PASS');

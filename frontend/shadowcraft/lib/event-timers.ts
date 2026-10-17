@@ -39,9 +39,9 @@ export function parseSettings(raw:string):TimerSettings{
 }
 export function scheduleMinutes(id:TimerId,p:ServerTimers):number[]{
  if(p.times[id]!==undefined)return parseTimes(p.times[id]!);
- // Community reference, not an official live server feed. Rift anchors are unknown.
+ // Reference facts: A2Tools-Plugins/plugins/event-timers/README.md (2026-10-17).
  if(id==='shugo')return Array.from({length:24},(_,h)=>h*60);
- if(id==='dimension'&&p.dimension==='invasion')return Array.from({length:24},(_,h)=>h*60+30);
+ if(id==='dimension')return p.dimension==='invasion'?Array.from({length:24},(_,h)=>h*60+30):Array.from({length:8},(_,i)=>(2+i*3)*60);
  return [];
 }
 export function nextOccurrence(now:number,minutes:number[],offset:number|null):number|null{
@@ -81,4 +81,13 @@ export function nextZonedOccurrence(now:number,minutes:number[],timeZone:string)
 }
 export function nextTimerOccurrence(now:number,minutes:number[],profile:ServerTimers):number|null{
  return profile.timeZone?nextZonedOccurrence(now,minutes,profile.timeZone):nextOccurrence(now,minutes,profile.offset);
+}
+
+// Independent schedule conversion; provider reference clocks, not the visitor's clock.
+const REGION_CLOCKS:Record<string,string>={eu:'Europe/Berlin',nae:'America/New_York',naw:'America/Los_Angeles',la:'America/Sao_Paulo',as:'Asia/Seoul'};
+export function nextContentOccurrence(now:number,id:TimerId,profile:ServerTimers,region:string):number|null{
+ const minutes=scheduleMinutes(id,profile);
+ if(profile.times[id]!==undefined)return nextTimerOccurrence(now,minutes,profile);
+ const zone=REGION_CLOCKS[region];
+ return zone?nextZonedOccurrence(now,minutes,zone):null;
 }
