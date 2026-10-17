@@ -79,12 +79,25 @@
       "scope": "One open board verified; not every class/board"
     }
   },
-  "existingIntegration": "Armory backend currently exposes profile/stats/skills/boards/nodes but omits equipment response list; equipment support still needed for ranker copying.",
+  "existingIntegration": "Armory now exposes equipment list alongside profile/stats/skills/boards/nodes; read-only preview, no automatic mapping into planned gear.",
   "snapshot": "shadowcraft/source-snapshots/ranker-audit-20261017T215551Z",
   "nextRequiredEvidence": [
     "Accessible roster with rank metric, region/server, class, character identity and observation date",
     "Verify all eight classes and equipment completeness before describing builds as exact copies",
     "Establish specialization selection availability; do not infer selected traits from unlocked skill levels"
   ],
-  "runtimeChanges": false
+  "runtimeChanges": false,
+  "followUp": {
+    "checkedDate": "2026-10-18",
+    "independentClientDocumentation": {
+      "url": "https://github.com/nuriland/aion2-api",
+      "finding": "Maintainer README reports NC public ranking boards removed in 2026 and ErrNoSeason until restored. Corroborates our empty/null-season samples; third-party report, not official announcement."
+    },
+    "sampleLeaderboardMethodology": {
+      "url": "https://www.reddit.com/r/Aion2/comments/1wvo1t1/aion_2_armory_profile_character_database/",
+      "finding": "Shugo.GG author describes combat-power leaderboard based on characters looked up on the site. Such sample ranking is not an exhaustive official global top ten."
+    },
+    "equipmentIntegration": "Production preview deployed; unmocked browser successfully displayed five equipment entries and 308 Daevanion nodes for a public EU Ranger, retained after reload. Existing manual gear unchanged.",
+    "timeoutFix": "Official profile request measured 5.39s; per-request timeout raised from 5s to 8s, timeout response differentiated as 504. Backend29 tests passed."
+  }
 }
