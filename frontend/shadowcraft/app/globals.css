@@ -82,3 +82,6 @@
 .event-timer-card{min-width:138px}.event-timer-card strong{font-size:14px}
 
 .faction-picker{display:flex;gap:8px;margin-top:6px}.faction-picker button{flex:1;min-width:70px}.faction-picker button[aria-pressed=true]{border-color:#bfa2ff;background:#332b48;color:#eee}
+
+/* Highlight upcoming timers without changing card dimensions. */
+.event-timer-card.event-timer-card-imminent{border-color:#ff626b;box-shadow:inset 0 0 0 1px #ff626b;border-radius:10px}
