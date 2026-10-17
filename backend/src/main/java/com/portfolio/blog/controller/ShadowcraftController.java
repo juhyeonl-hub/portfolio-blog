@@ -122,6 +122,8 @@ public class ShadowcraftController {
                 out.set("profile",info.path("profile"));
                 out.set("stats",info.path("stat").path("statList"));
                 out.set("skills",equipment.path("skill").path("skillList"));
+                JsonNode items=equipment.path("equipment").path("equipmentList");
+                out.set("equipment",items.isArray()?items:mapper.nullNode());
                 out.set("boards",info.path("daevanion").path("boardList"));
                 out.set("nodes",nodes);
                 out.set("failedBoards",failed);

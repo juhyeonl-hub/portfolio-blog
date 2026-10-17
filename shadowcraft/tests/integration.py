@@ -45,12 +45,17 @@ with sync_playwright() as p:
   body=json.loads(route.request.post_data); action=body['action']
   if action=='servers':route.fulfill(json={'servers':[{'serverId':1316,'serverName':'Test','raceId':1}]})
   elif action=='search':route.fulfill(json={'characters':[{'characterId':'abcde123','serverId':1316,'name':'검증캐릭터','level':45,'serverName':'Test','race':1}]})
-  else:route.fulfill(json={'profile':{'characterName':'검증캐릭터','characterLevel':45,'serverName':'Test'},'nodes':[],'skills':[],'failedBoards':[],'region':'eu'})
+  else:route.fulfill(json={'profile':{'characterName':'검증캐릭터','characterLevel':45,'serverName':'Test'},'nodes':[],'skills':[],'failedBoards':[],'region':'eu','equipment':[{'id':11001,'name':'검증용 단검','slotPos':1,'slotPosName':'MainHand','enchantLevel':12,'exceedLevel':2}]})
  page.route('**/api/public/shadowcraft/armory',armory)
+ gear_before=json.loads(page.evaluate("localStorage.getItem('shadowcraft-plan-v1')")).get('gear')
  page.get_by_role('button',name='캐릭터 불러오기',exact=True).click()
  page.locator('.modal input[placeholder="정확한 이름을 입력하세요"]').fill('검증캐릭터')
  page.get_by_role('button',name='검색',exact=True).click();page.locator('.search-results button').first.click()
  expect(page.locator('.character-main h3')).to_contain_text('검증캐릭터')
+ page.locator('.character-equipment summary').click()
+ expect(page.locator('.character-equipment')).to_contain_text('검증용 단검')
+ expect(page.locator('.character-equipment')).to_contain_text('강화 +12 · 초월 +2')
+ assert json.loads(page.evaluate("localStorage.getItem('shadowcraft-plan-v1')")).get('gear')==gear_before
  page.get_by_role('button',name=re.compile('캐릭터.*불러오기|다시 불러오기|캐릭터 변경')).first.click()
 
  page.locator('.recent-characters button').first.click()
