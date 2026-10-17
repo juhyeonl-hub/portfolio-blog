@@ -28,15 +28,15 @@ public class PublicBuildService {
         String where=" WHERE (? = TRUE OR published = TRUE) AND (? = '' OR class_key = ?) AND LOWER(title) LIKE ? ESCAPE '!'";
         String search="%"+query.toLowerCase(Locale.ROOT).replace("!","!!").replace("%","!%").replace("_","!_")+"%";
         Long count=jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_public_builds"+where,Long.class,admin,key,key,search);
-        var rows=jdbc.query("SELECT id,title,description,class_key,catalog_version,published,revision,updated_at FROM shadowcraft_public_builds"+where+" ORDER BY updated_at DESC,id LIMIT 20 OFFSET ?",(r,n)->{
-            ObjectNode row=mapper.createObjectNode();row.put("id",r.getString("id")).put("title",r.getString("title")).put("description",r.getString("description")).put("classKey",r.getString("class_key")).put("catalogVersion",r.getString("catalog_version")).put("published",r.getBoolean("published")).put("revision",r.getLong("revision")).put("updatedAt",r.getTimestamp("updated_at").toInstant().toString());return row;
+        var rows=jdbc.query("SELECT b.*, (SELECT username FROM shadowcraft_members WHERE id=b.author_id) AS author, (SELECT COUNT(*) FROM shadowcraft_build_votes WHERE build_id=b.id) AS votes FROM shadowcraft_public_builds b"+where+" ORDER BY updated_at DESC,id LIMIT 20 OFFSET ?",(r,n)->{
+            ObjectNode row=mapper.createObjectNode();row.put("authorId",r.getString("author_id")).put("author",r.getString("author")).put("votes",r.getLong("votes"));row.put("id",r.getString("id")).put("title",r.getString("title")).put("description",r.getString("description")).put("classKey",r.getString("class_key")).put("catalogVersion",r.getString("catalog_version")).put("published",r.getBoolean("published")).put("revision",r.getLong("revision")).put("updatedAt",r.getTimestamp("updated_at").toInstant().toString());return row;
         },admin,key,key,search,page*20);
         return new Listing(rows,page,count==null?0:count,count==null?0:(count+19)/20);
     }
     public ObjectNode get(String id,boolean admin) {
         validId(id);
-        var rows=jdbc.query("SELECT * FROM shadowcraft_public_builds WHERE id = ? AND (? = TRUE OR published = TRUE)",(r,n)->{
-            ObjectNode row=mapper.createObjectNode();row.put("id",id).put("title",r.getString("title")).put("description",r.getString("description")).put("published",r.getBoolean("published")).put("revision",r.getLong("revision")).put("updatedAt",r.getTimestamp("updated_at").toInstant().toString());
+        var rows=jdbc.query("SELECT b.*, (SELECT username FROM shadowcraft_members WHERE id=b.author_id) AS author, (SELECT COUNT(*) FROM shadowcraft_build_votes WHERE build_id=b.id) AS votes FROM shadowcraft_public_builds b WHERE id = ? AND (? = TRUE OR published = TRUE)",(r,n)->{
+            ObjectNode row=mapper.createObjectNode();row.put("authorId",r.getString("author_id")).put("author",r.getString("author")).put("votes",r.getLong("votes"));row.put("id",id).put("title",r.getString("title")).put("description",r.getString("description")).put("published",r.getBoolean("published")).put("revision",r.getLong("revision")).put("updatedAt",r.getTimestamp("updated_at").toInstant().toString());
             try {row.set("shared",mapper.readTree(r.getString("payload")));}catch(Exception e){throw new IllegalStateException("Stored build unavailable");}return row;
         },id,admin);
         if(rows.isEmpty())throw new ResponseStatusException(HttpStatus.NOT_FOUND,"공개된 빌드를 찾을 수 없습니다.");

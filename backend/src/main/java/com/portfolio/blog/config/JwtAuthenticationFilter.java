@@ -18,9 +18,11 @@ import java.util.List;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
+    private final com.portfolio.blog.service.MemberSessionService memberSessions;
 
-    public JwtAuthenticationFilter(JwtService jwtService) {
+    public JwtAuthenticationFilter(JwtService jwtService, com.portfolio.blog.service.MemberSessionService memberSessions) {
         this.jwtService = jwtService;
+        this.memberSessions = memberSessions;
     }
 
     @Override
@@ -31,7 +33,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
-            if (jwtService.isTokenValid(token)) {
+            if (token.startsWith("a2bc_")) {
+                String memberId = memberSessions.member(token);
+                if (memberId != null) SecurityContextHolder.getContext().setAuthentication(
+                    new UsernamePasswordAuthenticationToken(memberId, null, List.of(new SimpleGrantedAuthority("ROLE_MEMBER"))));
+            } else if (jwtService.isTokenValid(token)) {
                 String username = jwtService.extractUsername(token);
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                         username, null, List.of(new SimpleGrantedAuthority("ROLE_ADMIN"))

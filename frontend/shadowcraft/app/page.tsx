@@ -1,3 +1,4 @@
+import {MemberProvider} from './community';
 'use client';
 import {useEffect,useMemo,useState} from 'react';
 import {Swords,Shield,ChevronRight,ChevronDown,ArrowUpRight,Search,RefreshCw,Check,Plus,Minus,SlidersHorizontal,Download,Upload,X,Info,AlertTriangle,MousePointer2,Waypoints,Keyboard,BookOpen,History,UserRound,Cloud,Target,CheckCircle2,Lock,ExternalLink,Zap,PanelLeftClose} from 'lucide-react';
@@ -85,7 +86,7 @@ function Workshop({classKey,initialCatalog,onClassChange}:{classKey:string;initi
  {isOver&&<div className="notice amber-notice"><AlertTriangle size={17}/>현재 계획이 포인트 예산을 초과합니다. 총 보유량을 확인한 뒤 추천 배분을 다시 계산하거나 투자를 줄이세요.</div>}
  {review&&<div className="notice amber-notice"><AlertTriangle size={17}/>새 데이터가 반영되었습니다. 추천 조합은 {BASELINE} 기준이므로 변경된 특화를 확인하세요.<button onClick={()=>setTab('updates')}>변경 기록 보기 →</button></div>}
  <div className="notice violet-notice"><Shield size={16}/><span>장비 보너스: {plan.gear?.mode==='current'?'현재 장비 합산':plan.gear?.mode==='target'?'목표 장비 가정':'스킬별 직접 입력'} · 장비를 등록하면 특화 해금과 성장 목표를 비교할 수 있습니다.</span><button onClick={()=>setTab('gear')}>내 장비 입력 →</button></div><div className="page-tabs" role="tablist">{tabs.filter(t=>tab!=='quick'||['quick','public-builds','builds','map','database'].includes(t.id)).map(t=><button role="tab" aria-selected={tab===t.id} key={t.id} onClick={()=>setTab(t.id)} className={tab===t.id?'active':''}><t.icon size={16}/>{t.name}</button>)}</div>
- <div hidden={tab!=='public-builds'}><PublicBuilds active={tab==='public-builds'}/></div>
+ <div hidden={tab!=='public-builds'}><PublicBuilds active={tab==='public-builds'} catalog={catalog} plan={plan}/></div>
  <div hidden={tab!=='activity'}><SteamActivity active={tab==='activity'}/></div>
  {tab==='builds'&&<><BuildLibraryPanel classKey={classKey} catalogVersion={catalog.version||'미확인'} plan={plan} onApply={setPlan}/><ShareBuildPanel catalog={catalog} plan={plan}/></>}
  {tab==='quick'&&<QuickBuild catalog={catalog} plan={plan} onApply={next=>{setUndo({before:plan,after:next});setPlan(next);setViewCurrent(false);notify('빌드를 적용했습니다. 적용 전으로 되돌릴 수 있습니다.')}} onEdit={setTab}/>}
@@ -124,7 +125,7 @@ function Workshop({classKey,initialCatalog,onClassChange}:{classKey:string;initi
 export default function Page(){
  const [hash,setHash]=useState(()=>location.hash);
  useEffect(()=>{const changed=()=>setHash(location.hash);window.addEventListener('hashchange',changed);return()=>window.removeEventListener('hashchange',changed);},[]);
- return <><EventTimers/>{hash.startsWith('#published=')?<PublishedBuildView id={hash.slice(11)}/>:hash.startsWith('#build=')?<SharedBuildView hash={hash}/>:<PlannerPage/>}</>;
+ return <MemberProvider><EventTimers/>{hash.startsWith('#published=')?<PublishedBuildView id={hash.slice(11)}/>:hash.startsWith('#build=')?<SharedBuildView hash={hash}/>:<PlannerPage/>}</MemberProvider>;
 }
 function PlannerPage(){
  const [selected,setSelected]=useState('assassin'),[catalogs,setCatalogs]=useState<Record<string,Catalog>>({assassin:assassinInitial as Catalog}),[loadError,setLoadError]=useState(''),[retry,setRetry]=useState(0);

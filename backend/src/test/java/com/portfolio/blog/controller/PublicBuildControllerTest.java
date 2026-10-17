@@ -23,8 +23,8 @@ class PublicBuildControllerTest {
  @BeforeEach void setup()throws Exception {
   jdbc.execute("CREATE TABLE IF NOT EXISTS shadowcraft_catalogs(class_key VARCHAR(32) PRIMARY KEY,payload TEXT NOT NULL)");
   jdbc.execute("DELETE FROM shadowcraft_catalogs");
-  jdbc.execute("DROP TABLE IF EXISTS shadowcraft_public_builds");
-  try(var input=new ClassPathResource("db/migration/V13__shadowcraft_public_builds.sql").getInputStream()){for(String sql:new String(input.readAllBytes(),StandardCharsets.UTF_8).split(";"))if(!sql.isBlank())jdbc.execute(sql);}
+  for(String table:new String[]{"shadowcraft_build_comments","shadowcraft_build_votes","shadowcraft_member_sessions","shadowcraft_public_builds","shadowcraft_members"})jdbc.execute("DROP TABLE IF EXISTS "+table);
+  for(String migration:new String[]{"V13__shadowcraft_public_builds.sql","V14__shadowcraft_community.sql"})try(var input=new ClassPathResource("db/migration/"+migration).getInputStream()){for(String sql:new String(input.readAllBytes(),StandardCharsets.UTF_8).split(";"))if(!sql.isBlank())jdbc.execute(sql);}
  }
  private ObjectNode payload(String key)throws Exception {
   ObjectNode request=mapper.createObjectNode().put("title","Example 100%_ build").put("description","Reviewed allocation").put("published",false);
