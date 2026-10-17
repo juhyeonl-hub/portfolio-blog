@@ -18,6 +18,9 @@ import java.util.concurrent.Semaphore;
 
 @RestController
 public class ShadowcraftController {
+    // Observed official profile latency exceeds five seconds. Three sequential stages fit the 30s browser budget.
+    private static final Duration LOOKUP_TIMEOUT=Duration.ofSeconds(8);
+    private static final org.slf4j.Logger log=org.slf4j.LoggerFactory.getLogger(ShadowcraftController.class);
     @org.springframework.beans.factory.annotation.Value("${app.shadowcraft.news-refresh-enabled:false}")
     private boolean newsRefreshEnabled;
     private final ShadowcraftService service;
@@ -135,7 +138,8 @@ public class ShadowcraftController {
             return bad("지원하지 않는 조회입니다.");
         } catch(org.springframework.web.server.ResponseStatusException e) { return bad(e.getReason()); }
         catch(com.fasterxml.jackson.core.JsonProcessingException e) { return bad("조회 입력을 확인하세요."); }
-        catch(Exception e) { return ResponseEntity.status(502).body(Map.of("error","공개 전투정보실 조회 실패 · 저장된 계획은 유지됩니다. 잠시 후 다시 시도하세요.")); }
+        catch(java.net.http.HttpTimeoutException e) { log.warn("Armory lookup timed out"); return ResponseEntity.status(504).body(Map.of("error","공식 캐릭터 조회 응답이 지연되고 있습니다. 저장된 계획은 유지됩니다. 잠시 후 다시 조회하세요.")); }
+        catch(Exception e) { log.warn("Armory lookup failed: {}",e.getClass().getSimpleName()); return ResponseEntity.status(502).body(Map.of("error","공개 전투정보실 조회 실패 · 저장된 계획은 유지됩니다. 잠시 후 다시 시도하세요.")); }
         finally { lookups.release(); }
     }
     @ExceptionHandler(org.springframework.web.server.ResponseStatusException.class)
@@ -150,7 +154,7 @@ public class ShadowcraftController {
     private static String enc(String s) { return URLEncoder.encode(s,StandardCharsets.UTF_8); }
     private JsonNode get(String url) throws Exception {
         synchronized(cache) { Cached hit=cache.get(url); if(hit!=null && System.currentTimeMillis()-hit.at<300_000) return hit.data; }
-        HttpRequest request=HttpRequest.newBuilder(URI.create(url)).timeout(Duration.ofSeconds(5)).header("Accept","application/json").build();
+        HttpRequest request=HttpRequest.newBuilder(URI.create(url)).timeout(LOOKUP_TIMEOUT).header("Accept","application/json").build();
         HttpResponse<InputStream> response=client.send(request,HttpResponse.BodyHandlers.ofInputStream());
         JsonNode data;
         try(InputStream stream=response.body()) {
