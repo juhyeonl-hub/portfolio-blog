@@ -1,0 +1,90 @@
+{
+  "checkedDate": "2026-10-18",
+  "status": "blocked-on-verified-ranking-roster",
+  "scope": "Global Steam ranker source and character field availability; no ranking/build publication",
+  "ranking": {
+    "officialPage": "https://aion2.plaync.com/en-us/characters/index?region=eu",
+    "pageFinding": "Official character search loaded; no ranking navigation link found. Guessed /en-us/ranking redirected to 404.",
+    "api": "https://aion2.plaync.com/api/ranking/list",
+    "parameters": {
+      "rankingContentsType": 1,
+      "rankingType": 0,
+      "lang": "en-US"
+    },
+    "samples": [
+      {
+        "region": "eu",
+        "serverId": 1301,
+        "rankingCount": 0,
+        "season": null
+      },
+      {
+        "region": "nae",
+        "serverId": 1101,
+        "rankingCount": 0,
+        "season": null
+      },
+      {
+        "region": "naw",
+        "serverId": 1201,
+        "rankingCount": 0,
+        "season": null
+      },
+      {
+        "region": "la",
+        "serverId": 1401,
+        "rankingCount": 0,
+        "season": null
+      },
+      {
+        "region": "as",
+        "serverId": 1501,
+        "rankingCount": 0,
+        "season": null
+      }
+    ],
+    "interpretation": "Only these requests were tested. Empty responses do not establish that no official ranking exists or that parameters are authoritative."
+  },
+  "alternative": {
+    "url": "https://questlog.gg/aion-2/en/armory/rankings?region=eu",
+    "result": "Browser returned explicit Cloudflare blocked page; no roster acquired or bypass attempted."
+  },
+  "characterCapabilities": {
+    "search": "Public Global character search returned results",
+    "profile": "Region/server/class/level/combatPower available; sample ranking.rankingList null",
+    "equipment": "Items, slots, enchant/exceed levels available; advanced sample returned only 5 entries, completeness not assumed",
+    "itemDetails": "One item endpoint returned mainStats, subSkills and set; not all item types validated",
+    "skills": {
+      "count": 35,
+      "fields": [
+        "acquired",
+        "category",
+        "equip",
+        "icon",
+        "id",
+        "name",
+        "needLevel",
+        "skillLevel"
+      ],
+      "specializationSelections": "Not present in sampled skill list; other routes unverified"
+    },
+    "daevanion": {
+      "nodeCount": 225,
+      "openNodes": 64,
+      "fields": [
+        "nodeList",
+        "openSkillEffectList",
+        "openStatEffectList"
+      ],
+      "scope": "One open board verified; not every class/board"
+    }
+  },
+  "existingIntegration": "Armory backend currently exposes profile/stats/skills/boards/nodes but omits equipment response list; equipment support still needed for ranker copying.",
+  "snapshot": "shadowcraft/source-snapshots/ranker-audit-20261017T215551Z",
+  "nextRequiredEvidence": [
+    "Accessible roster with rank metric, region/server, class, character identity and observation date",
+    "Verify all eight classes and equipment completeness before describing builds as exact copies",
+    "Establish specialization selection availability; do not infer selected traits from unlocked skill levels"
+  ],
+  "runtimeChanges": false
+}
