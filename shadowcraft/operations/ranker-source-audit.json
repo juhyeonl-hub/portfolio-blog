@@ -98,6 +98,12 @@
       "finding": "Shugo.GG author describes combat-power leaderboard based on characters looked up on the site. Such sample ranking is not an exhaustive official global top ten."
     },
     "equipmentIntegration": "Production preview deployed; unmocked browser successfully displayed five equipment entries and 308 Daevanion nodes for a public EU Ranger, retained after reload. Existing manual gear unchanged.",
-    "timeoutFix": "Official profile request measured 5.39s; per-request timeout raised from 5s to 8s, timeout response differentiated as 504. Backend29 tests passed."
+    "timeoutFix": "Official profile request measured 5.39s; per-request timeout raised from 5s to 8s, timeout response differentiated as 504. Backend29 tests passed.",
+    "shugoAccess": {
+      "leaderboard": "https://shugo.gg/leaderboard",
+      "faq": "https://shugo.gg/faq",
+      "terms": "https://shugo.gg/terms",
+      "finding": "Leaderboard and FAQ readable. FAQ explicitly says no public API, profile-open sample ranking, and character skill specialization choices not exposed by NC API. Terms section 2 prohibits automated collection and redistribution. No roster dataset, scraper, integration, or external contact created."
+    }
   }
 }
