@@ -6,6 +6,10 @@ export function groupRankers(rows:Ranker[]){
  for(const row of rows){const ids=[...new Set(row.skills.filter(s=>s.category==='Dp'&&s.equip===1).map(s=>String(s.id)))].sort();const key=ids.join(',');const group=groups.get(key)||{ids,members:[]};group.members.push(row);groups.set(key,group)}
  return [...groups.values()].sort((a,b)=>b.members.length-a.members.length);
 }
+export function compareRankerSkills(left:readonly string[],right:readonly string[]){
+ const a=new Set(left),b=new Set(right);
+ return {shared:[...a].filter(id=>b.has(id)).sort(),leftOnly:[...a].filter(id=>!b.has(id)).sort(),rightOnly:[...b].filter(id=>!a.has(id)).sort()};
+}
 // Public final skill levels include unknown equipment bonuses; never infer base investment.
 export function previewRankerBoards(catalog:Catalog,plan:Plan,ranker:Ranker,profile:any):Plan{
  const p=profile?.profile;

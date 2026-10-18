@@ -1,7 +1,7 @@
 import {useEffect,useRef,useState} from 'react';
 import type {Catalog,Plan} from '../lib/planner';
 import {totals} from '../lib/planner';
-import {groupRankers,previewRankerBoards,type Ranker} from '../lib/ranker-builds';
+import {groupRankers,compareRankerSkills,previewRankerBoards,type Ranker} from '../lib/ranker-builds';
 import {queryArmory} from '../lib/armory-client';
 import snapshot from '../lib/data/rankers.json';
 import skillGuides from '../lib/data/ranker-skill-guides.json';
@@ -11,6 +11,7 @@ import CharacterComparison from './character-comparison';
 export default function RankerBuilds({catalog,plan,onApply}:{catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void}){
  const rows=(snapshot.entries as Ranker[]).filter(r=>r.classKey===catalog.classKey);
  const [selectedId,setSelectedId]=useState('');
+ const [compareLeft,setCompareLeft]=useState<string|null>(null),[compareRight,setCompareRight]=useState<string|null>(null);
  const selected=rows.find(r=>r.characterId===selectedId);
  const [live,setLive]=useState<any>(null),[loading,setLoading]=useState(false),[error,setError]=useState('');
  const [preview,setPreview]=useState<{source:Plan;next:Plan}|null>(null);
@@ -19,6 +20,9 @@ export default function RankerBuilds({catalog,plan,onApply}:{catalog:Catalog;pla
  for(const row of rows)for(const item of new Map(row.equipment.map(item=>[item.id,item])).values()){const entry=itemUsage.get(item.id)||{name:item.name,count:0};entry.count++;itemUsage.set(item.id,entry)}
  const commonItems=[...itemUsage.values()].sort((a,b)=>b.count-a.count).slice(0,6);
  const groups=groupRankers(rows),candidate=preview?.source===plan?preview.next:null;
+ const left=groups.find(g=>g.ids.join(',')===compareLeft)||groups[0];
+ const right=groups.find(g=>g.ids.join(',')===compareRight)||groups[1]||groups[0];
+ const difference=compareRankerSkills(left?.ids||[],right?.ids||[]);
  const skillName=(id:string)=>catalog.skills.find(s=>s.id===id)?.name||rows.flatMap(r=>r.skills).find(s=>String(s.id)===id)?.name||id;
  const guidance=(ids:string[])=>{
   const notes=skillGuides.skills.filter(s=>s.classKey===catalog.classKey&&ids.includes(s.id));
@@ -32,7 +36,7 @@ export default function RankerBuilds({catalog,plan,onApply}:{catalog:Catalog;pla
  return <section className="panel ranker-builds" aria-label="랭커 빌드 분석">
   <div className="section-heading"><div><span className="eyebrow">OBSERVED BUILDS</span><h2>상위 캐릭터 세팅 살펴보기</h2><p>전투력 표본 상위 10명 · 선택한 직업</p></div><a href={snapshot.source} target="_blank" rel="noreferrer">순위 출처 ↗</a></div>
   <p className="subtle">AION2 Tier List의 글로벌 전투력 상위 500명 표본에서 직업별 10명을 골랐습니다. 공식 전체 순위·DPS 순위가 아닙니다. 명단 확인 {new Date(snapshot.fetchedAt).toLocaleString('ko-KR')} · 수동 갱신</p>
-  <details className="ranker-analysis"><summary>10명의 공통 구성과 빌드 분기 ({groups.length}가지)</summary><p>공개된 장착 Dp 스킬 조합으로 묶었습니다. 특화·스킬 운용은 공개되지 않아 조합만으로 성능이나 콘텐츠 적합성을 단정하지 않습니다.</p><h3>자주 사용하는 장비</h3><ul>{commonItems.map(item=><li key={item.name}>{item.name} · {item.count}/10명</li>)}</ul>{groups.map((g,i)=><article key={g.ids.join(',')}><h3>구성 {i+1} · {g.members.length}/10명</h3><p>{g.ids.map(skillName).join(' · ')||'공개된 장착 Dp 스킬 없음'}</p><p>사용 캐릭터: {g.members.map(r=>r.name).join(', ')}</p>{guidance(g.ids)}</article>)}</details>
+  <details className="ranker-analysis"><summary>10명의 공통 구성과 빌드 분기 ({groups.length}가지)</summary><p>공개된 장착 Dp 스킬 조합으로 묶었습니다. 특화·스킬 운용은 공개되지 않아 조합만으로 성능이나 콘텐츠 적합성을 단정하지 않습니다.</p>{left&&right&&<section className="ranker-compare" aria-label="빌드 구성 비교"><h3>두 구성 비교</h3><p>사용자 수는 이 표본의 선택 빈도입니다. 성능 순위가 아닙니다. 비교해도 내 빌드는 바뀌지 않습니다.</p><div className="ranker-compare-grid">{([{label:'기준 구성',value:left,set:setCompareLeft},{label:'비교 구성',value:right,set:setCompareRight}]).map(choice=><label key={choice.label}>{choice.label}<select aria-label={choice.label} value={choice.value.ids.join(',')} onChange={e=>choice.set(e.target.value)}>{groups.map((g,i)=><option key={g.ids.join(',')} value={g.ids.join(',')}>구성 {i+1} · {g.members.length}명 · {g.ids.length}개 기술</option>)}</select></label>)}</div><details className="ranker-shared"><summary>공통 기술 {difference.shared.length}개</summary><p>{difference.shared.map(skillName).join(' · ')||'없음'}</p></details><div className="ranker-compare-grid">{([{label:'기준 구성에만 있는 기술',ids:difference.leftOnly},{label:'비교 구성에만 있는 기술',ids:difference.rightOnly}]).map(side=><div className="ranker-difference" key={side.label}><h4>{side.label} · {side.ids.length}개</h4><p>{side.ids.map(skillName).join(' · ')||'없음'}</p>{side.ids.length>0&&guidance(side.ids)}</div>)}</div>{!difference.leftOnly.length&&!difference.rightOnly.length&&<p role="status">두 구성의 공개 장착 기술이 같습니다.</p>}</section>}<h3>자주 사용하는 장비</h3><ul>{commonItems.map(item=><li key={item.name}>{item.name} · {item.count}/10명</li>)}</ul>{groups.map((g,i)=><article key={g.ids.join(',')}><h3>구성 {i+1} · {g.members.length}/10명</h3><p>{g.ids.map(skillName).join(' · ')||'공개된 장착 Dp 스킬 없음'}</p><p>사용 캐릭터: {g.members.map(r=>r.name).join(', ')}</p>{guidance(g.ids)}</article>)}</details>
   <div className="ranker-list">{rows.map(row=><button className={'button secondary '+(selected===row?'selected':'')} key={row.characterId} aria-pressed={selected===row} onClick={()=>inspect(row)}><b>{row.rank}. {row.name}</b><span>{row.region.toUpperCase()} · {row.serverName} · {row.race===1?'천족':'마족'}</span><small>명단 전투력 {row.combatPower.toLocaleString()} · 표본 전체 {row.sampleRank}위</small></button>)}</div>
   {selected&&<div className="ranker-detail"><h3>{selected.name} 세팅</h3><a href={selected.sourceProfile} target="_blank" rel="noreferrer">명단 원본 캐릭터 ↗</a><p>장비·스킬 확인 {new Date(selected.verifiedAt).toLocaleString('ko-KR')} · 당시 공식 전투력 {selected.currentCombatPower.toLocaleString()}</p>
    <CharacterEquipment equipment={live?.equipment||selected.equipment}/>

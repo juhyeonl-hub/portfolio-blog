@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl,plannerUrl,classesUrl,planner} from './modules.mjs';
-const {groupRankers,previewRankerBoards}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
+const {groupRankers,compareRankerSkills,previewRankerBoards}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
 const c=JSON.parse(readFileSync('lib/data/catalogs/assassin.json'));
 c.classKey='assassin';
 const p={...planner.emptyPlan(c),pointBudget:{sp:9999,stigma:9999,crystal:9999,battle:9999}};
@@ -33,3 +33,13 @@ for(const guide of guides.skills){
 }
 for(const key of new Set(snapshot.entries.map(r=>r.classKey)))assert(guides.skills.filter(s=>s.classKey===key).length>=3);
 console.log('Ranker guidance: all eight classes, equipped IDs and exact Global source evidence PASS');
+
+const left=['b','a','b'],right=['c','b'];
+assert.deepEqual(compareRankerSkills(left,right),{shared:['b'],leftOnly:['a'],rightOnly:['c']});
+assert.deepEqual(left,['b','a','b']);assert.deepEqual(right,['c','b']);
+assert.deepEqual(compareRankerSkills([],[]),{shared:[],leftOnly:[],rightOnly:[]});
+assert.deepEqual(compareRankerSkills(['a'],['a']),{shared:['a'],leftOnly:[],rightOnly:[]});
+assert.deepEqual(compareRankerSkills([],['b','a']),{shared:[],leftOnly:[],rightOnly:['a','b']});
+const observedIds=new Set(snapshot.entries.flatMap(r=>r.skills.filter(s=>s.category==='Dp'&&s.equip===1).map(s=>String(s.id))));
+assert.deepEqual(new Set(guides.skills.map(s=>s.id)),observedIds);
+console.log('Ranker comparison: overlap, duplicates, empty/identical sets, immutability and complete observed guidance coverage PASS');

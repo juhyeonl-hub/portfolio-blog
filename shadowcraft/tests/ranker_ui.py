@@ -41,6 +41,21 @@ with sync_playwright() as p:
    expect(panel.locator('.ranker-list button')).to_have_count(10)
    expect(panel.locator('.ranker-detail')).to_have_count(0)
    panel.locator('.ranker-analysis > summary').click()
+   compare=panel.get_by_role('region',name='빌드 구성 비교',exact=True)
+   selectors=[compare.get_by_label('기준 구성',exact=True),compare.get_by_label('비교 구성',exact=True)]
+   values=selectors[0].locator('option').evaluate_all('(nodes)=>nodes.map(n=>n.value)')
+   assert selectors[0].input_value()==values[0]
+   assert selectors[1].input_value()==values[min(1,len(values)-1)]
+   unchanged=page.evaluate('(key)=>localStorage.getItem(key)',key)
+   for a,b in [(0,len(values)-1),(len(values)-1,0),(0,0)]:
+    selectors[0].select_option(values[a]);selectors[1].select_option(values[b])
+    left,right=set(filter(None,values[a].split(','))),set(filter(None,values[b].split(',')))
+    expect(compare.locator('.ranker-shared > summary')).to_have_text(f'공통 기술 {len(left&right)}개')
+    expect(compare.locator('.ranker-difference > h4').nth(0)).to_have_text(f'기준 구성에만 있는 기술 · {len(left-right)}개')
+    expect(compare.locator('.ranker-difference > h4').nth(1)).to_have_text(f'비교 구성에만 있는 기술 · {len(right-left)}개')
+    if a==b:expect(compare.get_by_role('status')).to_have_text('두 구성의 공개 장착 기술이 같습니다.')
+    assert page.evaluate('(key)=>localStorage.getItem(key)',key)==unchanged
+   selectors[1].select_option(values[min(1,len(values)-1)])
    guidance=panel.locator('.ranker-guidance').filter(has=page.locator('h4')).first
    guidance.locator(':scope > summary').click()
    expect(guidance.locator('h4').first).to_be_visible()
@@ -55,4 +70,4 @@ with sync_playwright() as p:
   assert not errors,errors
   page.close()
  browser.close()
-print('PASS eight classes/top10, preview/cancel/apply/undo preservation, class switch isolation and mobile')
+print('PASS eight classes/top10, guidance, group comparison/reset/nonmutation, preview/cancel/apply/undo preservation and mobile')

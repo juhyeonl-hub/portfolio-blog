@@ -17,6 +17,46 @@
       "evidenceSha256": "fe8fc68c246f53158e79c30589fd3246b2172dd0bec04fc52d0fad1a1052fd78"
     },
     {
+      "id": "11110000",
+      "classKey": "gladiator",
+      "title": "막기 대응",
+      "advantage": "일시적으로 무기 방어를 보장하고 방어 시 정신력과 스태미나를 회복합니다.",
+      "situation": "공격을 받아내야 하는 순간",
+      "caution": "짧은 방어 효과이므로 공격 시점에 맞춰야 합니다.",
+      "evidence": "Temporarily increases Block Damage Reduction by 100% and guarantees Parry. Restores 110 MP and Stamina once on Parry.",
+      "evidenceSha256": "4fc6c31fe7d99345c0cb2106d1582f4d046a42eb4ad599927cff4e0d439f86b9"
+    },
+    {
+      "id": "11130000",
+      "classKey": "gladiator",
+      "title": "충격 저항",
+      "advantage": "충격 계열 저항을 높입니다.",
+      "situation": "충격 계열 상태이상이 있는 전투",
+      "caution": "완전 면역이나 모든 상태이상 저항을 뜻하지 않습니다.",
+      "evidence": "Increases Impact-type Resist by 50% for 10s.",
+      "evidenceSha256": "2a4703170e2def047d0979b74b325d8249bd8ab5720366c1aa9379f1d22ebafc"
+    },
+    {
+      "id": "11250000",
+      "classKey": "gladiator",
+      "title": "공격·명중 강화",
+      "advantage": "자신의 공격력과 명중을 높입니다.",
+      "situation": "공격을 집중할 구간",
+      "caution": "공격력 증가 수치는 미확인이라 피해 증가량을 추정하지 않습니다.",
+      "evidence": "Increases the caster's Attack by [unresolved value]% and Accuracy by 100 for 10s.",
+      "evidenceSha256": "fefc24b29d8744b1234f0db8e7560b53e627d32e87818839f061271bf90d840a"
+    },
+    {
+      "id": "11340000",
+      "classKey": "gladiator",
+      "title": "광역 흡혈",
+      "advantage": "주변 여러 적을 공격하고 체력을 흡수합니다.",
+      "situation": "근접 적 무리와 싸우며 체력을 보충할 때",
+      "caution": "흡수량이 확정되지 않아 필요한 회복을 전부 대신한다고 볼 수 없습니다.",
+      "evidence": "Deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m and absorbs [unresolved value]% HP.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "8a321a2a1538720a2ba21f8b390c997e93c4c67a8e5f98810bcf15f64056f772"
+    },
+    {
       "id": "11380000",
       "classKey": "gladiator",
       "title": "위기 대응",
@@ -25,6 +65,16 @@
       "caution": "일부 강력한 공격은 막지 못하며 무적 중첩 제한이 있습니다.",
       "evidence": "The caster becomes immune to damage and status effects for 3s. Increases PvE Damage Tolerance by 50% and PvP Damage Tolerance by 25% for 3s when the effect ends.\n\nCannot block certain powerful attacks. Unaffected by cooldown increase effects.\nTenaciousness, Salvation, and Barrier Spell effects cannot be applied for 30s if Invincibility stacking is blocked.",
       "evidenceSha256": "461f346590f932115c05d4ea2b0a741afeba6fd38128feff2978b9c072c54382"
+    },
+    {
+      "id": "11390000",
+      "classKey": "gladiator",
+      "title": "공방 연계",
+      "advantage": "대상의 공격력을 낮추고 자신의 피해 증폭을 높이며 후속 공격 기회를 만듭니다.",
+      "situation": "공격과 적 약화를 함께 이어갈 구간",
+      "caution": "공격력 감소는 수호성 도발의 위축 효과와 중첩되지 않습니다.",
+      "evidence": "Deals [unresolved value]-[unresolved value] damage to a target within 4m. Inflicts Wounded for 10s on hit, reducing the enemy's Attack by 10%, and increases the caster's PvE Damage Boost by 10% and PvP Damage Boost by 5% for 10s. Triggers [Overhead Slam] on the target for 10s on hit.\nWounded does not stack with the Shrink effect from the Templar skill [Taunt].\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "8884a81917338b5289da5d5b1e68917d09a6acf7fba120343c2c17b047e5a2e8"
     },
     {
       "id": "11400000",
@@ -37,6 +87,66 @@
       "evidenceSha256": "0b2155c68e8baa1542a4517bbab53c1ed7444bc1274d1b54defb856d451f1247"
     },
     {
+      "id": "11410000",
+      "classKey": "gladiator",
+      "title": "근접 지속 공격",
+      "advantage": "자신 주변의 여러 적에게 지속 피해를 줍니다.",
+      "situation": "적 무리와 근접전을 유지할 때",
+      "caution": "적이 효과 범위를 벗어나면 계속 맞는다고 가정할 수 없습니다.",
+      "evidence": "Deals [unresolved value]-[unresolved value] Damage over Time to up to 4 enemies within 3m of the caster for 10s.",
+      "evidenceSha256": "c4fb579f92f88a81ccb4c9d04f692b3da84ecff1e09cc9e28b5bafb1e3aa28bc"
+    },
+    {
+      "id": "12070000",
+      "classKey": "templar",
+      "title": "돌진·방어 연계",
+      "advantage": "돌진 공격에 넘어짐과 보호막, 심판 연계 기회가 있습니다.",
+      "situation": "접근하면서 공격과 방어를 이어갈 때",
+      "caution": "넘어짐은 대상에 따라 적용 조건이 다르며 보호막은 적중 조건입니다.",
+      "evidence": "Rushes to a target within 20m and deals [unresolved value]-[unresolved value] damage. Has a 75% chance to inflict Knockdown for 3s. Grants a Protective Shield that blocks damage equaling 5% Max HP for 5s on hit. Triggers [Judgment] for 3s.\n100% chance to inflict Knockdown on NPC targets.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "94df5dfcf4ffd40af70be2ad8c053bbf53b3debe7a3af59c5e041e81fb23d196"
+    },
+    {
+      "id": "12110000",
+      "classKey": "templar",
+      "title": "방패 방어 대응",
+      "advantage": "일시적으로 방패 방어를 보장하고 방어 시 정신력과 스태미나를 회복합니다.",
+      "situation": "공격을 받아내야 하는 순간",
+      "caution": "짧은 방어 효과이므로 공격 시점에 맞춰야 합니다.",
+      "evidence": "Temporarily increases Block Damage Reduction by 100% and guarantees Block. Restores 110 MP and Stamina once on Block.",
+      "evidenceSha256": "c9eefe1c7a071a11d78c59cedc68dfebf6d5f9513e715185fd7986e628c1805f"
+    },
+    {
+      "id": "12120000",
+      "classKey": "templar",
+      "title": "적대치·약화",
+      "advantage": "적대치를 높이고 대상의 공격력과 명중을 낮춥니다.",
+      "situation": "적의 공격을 맡으면서 피해를 줄일 때",
+      "caution": "플레이어 대상 도발은 확률 효과입니다.",
+      "evidence": "Deals [unresolved value]-[unresolved value] damage to a target within 20m and increases Enmity. Inflict Shrink for 15s on hit and has a 50% chance to inflict Taunt for 3s if the target is a player.\nShrink: Reduces Accuracy by 200 and Attack by 10%\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "26c85c60569a946915e7e16ad9ba1d3c5c21da507ba7e0e6fa49e351f884c5bd"
+    },
+    {
+      "id": "12190000",
+      "classKey": "templar",
+      "title": "피해 내성",
+      "advantage": "자신의 PvE·PvP 피해 내성을 높입니다.",
+      "situation": "피해가 몰리는 구간",
+      "caution": "피해 면역 효과는 아니므로 회피할 패턴까지 받아내지 마세요.",
+      "evidence": "Increases PvE Damage Tolerance by 30% and PvP Damage Tolerance by 15% for 10s.\n\nUnaffected by cooldown increase effects.",
+      "evidenceSha256": "f125e093fd6ee1e758a594fa534d7568d1f00f4a95ce75eb82bfb839066d1c14"
+    },
+    {
+      "id": "12200000",
+      "classKey": "templar",
+      "title": "충격 저항",
+      "advantage": "충격 계열 저항을 높입니다.",
+      "situation": "충격 계열 상태이상이 있는 전투",
+      "caution": "완전 면역이나 모든 상태이상 저항을 뜻하지 않습니다.",
+      "evidence": "Increases Impact-type Resist by 50% for 10s.",
+      "evidenceSha256": "2a4703170e2def047d0979b74b325d8249bd8ab5720366c1aa9379f1d22ebafc"
+    },
+    {
       "id": "12220000",
       "classKey": "templar",
       "title": "적 모으기",
@@ -45,6 +155,16 @@
       "caution": "끌어오기·속박 적용 여부를 확인하세요.",
       "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 7m of the target, pulling them in front of the caster. Inflicts Root for 3s.\n\n20 Stagger Gauge Damage",
       "evidenceSha256": "be4e3c4fd12c4708600ae39ad6fe564fd313731f380a90e17bc41b8a729a6ec7"
+    },
+    {
+      "id": "12230000",
+      "classKey": "templar",
+      "title": "체력 보강",
+      "advantage": "최대 체력을 높이고 즉시 체력을 회복합니다.",
+      "situation": "생존 여유와 즉시 회복이 필요할 때",
+      "caution": "회복과 최대 체력 증가는 각각의 효과이며 무적은 아닙니다.",
+      "evidence": "Increases Max HP by 5.4% for 120s and immediately restores HP by 5.4% of Max HP.\n\nNot affected by buff dispel effects.",
+      "evidenceSha256": "6da020c4d2a7459d69e200c5839f588dc41a9706267bc0f34635106ef72b484d"
     },
     {
       "id": "12250000",
@@ -57,6 +177,16 @@
       "evidenceSha256": "145c6fbdb67de8ae3a162bbb5de410a0c5d10e4d961da70dfc40d0e2c918fd00"
     },
     {
+      "id": "12310000",
+      "classKey": "templar",
+      "title": "광역 기절·그로기",
+      "advantage": "여러 적을 공격하며 기절과 그로기 게이지 피해가 있습니다.",
+      "situation": "적 무리 제어나 그로기 게이지 공략",
+      "caution": "기절 적용 가능 여부와 대상별 확률을 확인하세요.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m of the target with a 50% chance to inflict Stun for 3s.\n100% chance to inflict Stun on NPC targets.\n\n50 Stagger Gauge Damage",
+      "evidenceSha256": "4ee5b2d801fe718d9b9625085b723f5a4e186b8471e1ed7539dd40389e383372"
+    },
+    {
       "id": "12320000",
       "classKey": "templar",
       "title": "파티 보호막",
@@ -67,6 +197,86 @@
       "evidenceSha256": "ecf02491ef78673bd2f6d297fa245589c4bcf68542bd6b995671dfb17e04d503"
     },
     {
+      "id": "12410000",
+      "classKey": "templar",
+      "title": "방어 약화·조건부 공격",
+      "advantage": "여러 적의 방어력을 낮추며 충격 상태의 대상에게 추가 피해를 줍니다.",
+      "situation": "적 약화와 상태이상 연계를 함께 할 때",
+      "caution": "충격 상태 조건이 없으면 추가 피해 조건을 충족하지 못합니다.",
+      "evidence": "Deals  [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m and reduces Defense by 30% for 5s. Deals 20% more damage on attacking a target inflicted with Impact-type status.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "775d98315cf6d53321341f9e403492cc80dfdab80918a893a4fa8cd89a94bfc6"
+    },
+    {
+      "id": "12450000",
+      "classKey": "templar",
+      "title": "방어 기반 공격 강화",
+      "advantage": "방어력에 비례해 공격력을 높입니다.",
+      "situation": "방어 능력치를 활용해 집중 공격할 때",
+      "caution": "실제 증가량을 확인하지 않고 방어력 투자가 항상 유리하다고 판단하지 마세요.",
+      "evidence": "Increases Attack proportional to Defense for 10s.",
+      "evidenceSha256": "a49f8dd575b31c6d3de4ca6ed586c004722de4df87e35a7f5130610dff9b61d2"
+    },
+    {
+      "id": "12700000",
+      "classKey": "templar",
+      "title": "광역 제어·방어",
+      "advantage": "여러 적을 공격해 기절을 유발하고 적중 수에 따라 방어력을 높입니다.",
+      "situation": "여러 적을 동시에 상대할 때",
+      "caution": "방어력 증가에 상한이 있고 기절은 대상별 적용 조건이 다릅니다.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m with a 30% chance to inflict Stun for 3s.\n100% chance to inflict Stun on NPC targets.\n\nIncreases Defense by up to 20% proportional to the number of targets hit.",
+      "evidenceSha256": "4c41a91cd3e0c89394ee839c12eb7c504073b2a373ae205cbc2bb55f7461a8bd"
+    },
+    {
+      "id": "13020000",
+      "classKey": "assassin",
+      "title": "원거리 둔화",
+      "advantage": "원거리 대상을 공격하고 이동 속도를 낮춥니다.",
+      "situation": "추격하거나 접근을 늦출 때",
+      "caution": "둔화 적용 가능 여부를 확인하세요.",
+      "evidence": "Deals [unresolved value]-[unresolved value] damage to a target within 20m and inflicts Slow, which reduces Move Speed by 40% for 5s.\n\n15 Stagger Gauge Damage",
+      "evidenceSha256": "be4114630837eaf1765baa55a390d2a4c33ea49057a85b3d5e9f9c17c5f3c198"
+    },
+    {
+      "id": "13080000",
+      "classKey": "assassin",
+      "title": "순간 회피",
+      "advantage": "짧은 시간 피해 회피를 보장하고 회피 시 정신력과 스태미나를 회복합니다.",
+      "situation": "공격이 들어오는 순간 대응",
+      "caution": "효과 시간이 짧아 사용 시점이 중요합니다.",
+      "evidence": "Grants guaranteed evasion of all damage for a brief duration. Restores 110 MP and Stamina once on Evasion.",
+      "evidenceSha256": "14657c2392ceee7f5bf99b6b6542351268b7792ae7f51e950680401573f59f41"
+    },
+    {
+      "id": "13140000",
+      "classKey": "assassin",
+      "title": "후퇴·은신",
+      "advantage": "대상을 공격한 뒤 뒤로 이동하며 짧게 은신합니다.",
+      "situation": "근접 공격 후 위치를 다시 잡을 때",
+      "caution": "뒤쪽의 위험 구역과 착지 위치를 확인하세요.",
+      "evidence": "Deals [unresolved value]-[unresolved value] damage to a target within 4m. The caster moves back and gains Stealth for 3s.",
+      "evidenceSha256": "a18ce6ce481b6c1172e2d84ac6446347a25bc7d97bc7050af30374a0b0cb105d"
+    },
+    {
+      "id": "13180000",
+      "classKey": "assassin",
+      "title": "비전투 은신",
+      "advantage": "전투에 들어가기 전에 은신할 수 있습니다.",
+      "situation": "전투 전 접근과 위치 선정",
+      "caution": "전투 중 사용할 수 없고 전투 진입 시 해제됩니다.",
+      "evidence": "Grants Stealth for 20s.\nCannot be used in combat and the effect is removed upon entering combat.",
+      "evidenceSha256": "ab2bfda6a5b0a69675f374b054f62fa0dde0e1a31a143786f28a1c74215671a2"
+    },
+    {
+      "id": "13250000",
+      "classKey": "assassin",
+      "title": "실명 제어",
+      "advantage": "대상을 공격하고 실명을 부여합니다.",
+      "situation": "실명이 적용되는 대상 제어",
+      "caution": "대상의 면역 여부를 확인해야 합니다.",
+      "evidence": "Deals [unresolved value]-[unresolved value] to a target within 10m and inflicts Blind for 5s.\n\n15 Stagger Gauge Damage",
+      "evidenceSha256": "2aa64c7d812f65546ce5cafdf131d1a94e45f58c5c1fd6b9cdea929cd6c1bb87"
+    },
+    {
       "id": "13270000",
       "classKey": "assassin",
       "title": "문양 준비",
@@ -75,6 +285,26 @@
       "caution": "후속 문양 소비 기술과 사용 순서를 맞춰야 합니다.",
       "evidence": "Deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m and engraves 5 Insignias for 10s.\n\n50 Stagger Gauge Damage",
       "evidenceSha256": "d37309cce9d222e1191c7360a8f63592234fb881269c6b67928ac799d31c8807"
+    },
+    {
+      "id": "13280000",
+      "classKey": "assassin",
+      "title": "접근·강화 제거",
+      "advantage": "돌진해 강화 효과를 제거하고 제거에 따른 추가 피해를 줍니다.",
+      "situation": "제거 가능한 강화 효과를 가진 적에게 접근할 때",
+      "caution": "제거할 효과가 없으면 추가 피해 조건을 충족하지 못합니다.",
+      "evidence": "Rushes to a target within 20m and deals [unresolved value]-[unresolved value] damage, removing 1 buff.\n\nDeals [unresolved value]-[unresolved value] extra damage based on the number of buffs removed.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "e2fc9960507c91bfc77b93a7deec508578923bb89f26b1fa467ccc3877fb5a81"
+    },
+    {
+      "id": "13300000",
+      "classKey": "assassin",
+      "title": "후방 공격·재사용 방해",
+      "advantage": "대상의 스킬 재사용 대기시간을 늘리고 후방에서 추가 피해를 줍니다.",
+      "situation": "후방 위치를 유지할 수 있는 전투",
+      "caution": "일부 기술은 재사용 증가의 영향을 받지 않으며 후방 조건도 필요합니다.",
+      "evidence": "Deals [unresolved value]-[unresolved value] damage to a target within 4m and increases all of the target's skill cooldowns by 5% of their duration. Increases damage by 30% if attacking from behind the target.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "244d7ad654c6dd3f231d19f56ccc1506663ea9bce77b1391c268674663d25ba1"
     },
     {
       "id": "13310000",
@@ -97,6 +327,56 @@
       "evidenceSha256": "656a3b1db7cafae1c2dd00f458e2ebdd139fd63d20694014999b7ede4e43e5f7"
     },
     {
+      "id": "13390000",
+      "classKey": "assassin",
+      "title": "공격 속도 강화",
+      "advantage": "자신의 전투 속도를 높입니다.",
+      "situation": "공격을 집중할 수 있는 구간",
+      "caution": "지속시간 안에 공격하지 못하면 활용도가 떨어집니다.",
+      "evidence": "Increases the caster's Combat Speed by 20% for 10s.",
+      "evidenceSha256": "0b2155c68e8baa1542a4517bbab53c1ed7444bc1274d1b54defb856d451f1247"
+    },
+    {
+      "id": "14060000",
+      "classKey": "ranger",
+      "title": "광역 지속 공격",
+      "advantage": "여러 적에게 지속 피해를 주며 대상 이동 시 지속 피해가 증가합니다.",
+      "situation": "움직이는 적 무리 상대",
+      "caution": "상대가 실제로 이동하는지와 효과 유지 여부를 확인하세요.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] Fire damage to up to 4 enemies within 4m. Inflicts Crimson Flames for 10s.\nCrimson Flames: Takes [unresolved value]-[unresolved value] Fire Damage over Time every 1s. Damage over Time amount increases when targets move.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "5d79b4fca82dcbe4bb81780a4bacd2f131725e64734a08e87c322ce199a1c77f"
+    },
+    {
+      "id": "14120000",
+      "classKey": "ranger",
+      "title": "근접 거리 조절",
+      "advantage": "대상 뒤로 이동해 밀쳐내고 자신은 뒤로 물러납니다.",
+      "situation": "붙은 적과 거리를 다시 벌릴 때",
+      "caution": "이동 경로와 밀쳐내기 적용 여부를 확인하세요.",
+      "evidence": "Moves behind a target within 5m and deals [unresolved value]-[unresolved value] Wind damage and inflicts Knock Back. The caster moves back.",
+      "evidenceSha256": "52fb3271d292b72ba2ec5ca6959e582a56af5aa8a36a59afa5b0995076b0dca1"
+    },
+    {
+      "id": "14160000",
+      "classKey": "ranger",
+      "title": "봉쇄 제어",
+      "advantage": "대상을 공격하고 봉쇄를 부여합니다.",
+      "situation": "봉쇄가 적용되는 대상 제어",
+      "caution": "대상별 적용 확률과 면역을 확인하세요.",
+      "evidence": "Deals [unresolved value]-[unresolved value] Wind damage to a target within 20m. Has a 75% chance to inflict Seal for 5s.\n100% chance to inflict Seal on NPC targets.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "a138a839c76097a36c45d3fb792f85ca52fd8cf09446d53e565e6fddc0883e9d"
+    },
+    {
+      "id": "14180000",
+      "classKey": "ranger",
+      "title": "함정 제어",
+      "advantage": "자기 위치에 함정을 설치해 밟은 적들을 공중으로 띄웁니다.",
+      "situation": "적의 접근 경로를 제어할 때",
+      "caution": "적이 함정 위치를 밟아야 하므로 설치 위치가 중요합니다.",
+      "evidence": "Sets an explosive trap at the caster's location. The trap lasts for 30 seconds and deals [unresolved value]-[unresolved value] Earth damage to up to 4 enemies within 5m when stepped on. Inflicts Airborne for 3s.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "a79c9e49f138dbc59c646e7b082585cc56bfef1258088f069185d82f37cf4ae1"
+    },
+    {
       "id": "14220000",
       "classKey": "ranger",
       "title": "명중·치명타 강화",
@@ -105,6 +385,26 @@
       "caution": "실제 피해 증가는 상대와 현재 능력치에 따라 달라집니다.",
       "evidence": "Increases the caster's Critical Hit by 200 and Accuracy by 100 for 10s.",
       "evidenceSha256": "7891429a984db45cad72c8450ddb398f6808c6e6ed4eaa1b98cfff80bd7b7b74"
+    },
+    {
+      "id": "14270000",
+      "classKey": "ranger",
+      "title": "광역 기절·그로기",
+      "advantage": "여러 적을 공격하며 기절과 그로기 게이지 피해가 있습니다.",
+      "situation": "적 무리 제어나 그로기 게이지 공략",
+      "caution": "기절 적용 가능 여부와 대상별 확률을 확인하세요.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] Wind damage to up to 4 enemies within 4m of the target. Has a 50% chance to inflict Stun for 3s.\n100% chance to inflict Stun on NPC targets.\n\n50 Stagger Gauge Damage",
+      "evidenceSha256": "031f30c1e690179ad4b897328c4e5e3b29a045ddd982490b59ef3f3d7110e2ab"
+    },
+    {
+      "id": "14310000",
+      "classKey": "ranger",
+      "title": "공격 강화",
+      "advantage": "자신의 공격력을 높입니다.",
+      "situation": "공격을 집중할 구간",
+      "caution": "효과 중 공격할 기회를 확보해야 합니다.",
+      "evidence": "Increases the caster's Attack by 20% for 10s.",
+      "evidenceSha256": "783c60b0b03ded641b2799ee222d9421bdc541faa909ae1bbe7b7090b731f758"
     },
     {
       "id": "14350000",
@@ -127,6 +427,36 @@
       "evidenceSha256": "e93f3a9348c5eadb4f3e7ac29787a8a64b810bcf703e369b564cb95b48fa74ef"
     },
     {
+      "id": "14380000",
+      "classKey": "ranger",
+      "title": "보조 공격·흡혈",
+      "advantage": "소환 구체가 확률적으로 보조 공격과 체력 흡수를 합니다.",
+      "situation": "공격을 이어가며 체력 보충을 노릴 때",
+      "caution": "확률 발동이라 확정 공격 횟수나 회복량으로 계산하지 마세요.",
+      "evidence": "Summons an orb that provides supporting fire for 15s near the caster. The orb has a 25% chance to fire a shot dealing [unresolved value]-[unresolved value] Wind damage and absorbing [unresolved value]% HP.\n\nFiring Cooldown: 0.5s",
+      "evidenceSha256": "856b8d5a4745db512588facda95d54b36ff72fafc8800eec637b107f87c0c4ff"
+    },
+    {
+      "id": "15120000",
+      "classKey": "sorcerer",
+      "title": "원거리 광역 공격",
+      "advantage": "대상 주변의 여러 적에게 수속성 피해를 줍니다.",
+      "situation": "모여 있는 적 무리를 원거리에서 공격할 때",
+      "caution": "공격 범위와 대상 수에 제한이 있습니다.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] Water damage to up to 4 enemies within 4m of the target.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "bf95840548607152e974210329a64522207939028971f0b9435b998b2d1a3841"
+    },
+    {
+      "id": "15130000",
+      "classKey": "sorcerer",
+      "title": "봉쇄 제어",
+      "advantage": "대상을 공격하고 봉쇄를 부여합니다.",
+      "situation": "봉쇄가 적용되는 대상 제어",
+      "caution": "대상별 적용 확률과 면역을 확인하세요.",
+      "evidence": "Deals [unresolved value]-[unresolved value] Water damage to a target within 20m with a 75% chance to inflict Seal for 5s.\n100% chance to inflict Seal on NPC targets. \n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "d85c11a296bbd3f1ac999246ff0b4ccbd94948a534f630e7cbebd27e8c46020b"
+    },
+    {
       "id": "15140000",
       "classKey": "sorcerer",
       "title": "대상 제어",
@@ -135,6 +465,36 @@
       "caution": "대상을 공격하면 변신이 해제됩니다.",
       "evidence": "Polymorphs a target within 20m into a tree for 10s, reducing their Fire Tolerance by 20%, while the caster moves back. Polymorph is canceled if the target is attacked.\n\n20 Stagger Gauge Damage",
       "evidenceSha256": "e8ceff4ea66414a350efbe26f870a5af0e4ed7a38a4fd067cd60c3d1264f00ff"
+    },
+    {
+      "id": "15160000",
+      "classKey": "sorcerer",
+      "title": "보호막·피해 내성",
+      "advantage": "보호막과 피해 내성을 얻고 효과가 끝날 때 스태미나를 회복합니다.",
+      "situation": "미리 방어를 준비할 수 있는 구간",
+      "caution": "보호막 크기는 미확인이므로 흡수 가능한 피해를 단정하지 마세요.",
+      "evidence": "Grants a [unresolved value]% Max HP Protective Shield for 60s. Increases PvE Damage Tolerance by 10% and PvP Damage Tolerance by 5% for the shield's duration, and restores 300 Stamina when the effect ends.",
+      "evidenceSha256": "d6bcb43c4b77413c081f4dd7d381c8d80cdf532ad40ce2cc3c77d253a27d243a"
+    },
+    {
+      "id": "15200000",
+      "classKey": "sorcerer",
+      "title": "광역 둔화·지속 공격",
+      "advantage": "폭풍으로 여러 적을 둔화시키며 이동 시 피해가 증가하는 지속 효과를 부여합니다.",
+      "situation": "적 무리의 움직임을 제어하며 공격할 때",
+      "caution": "설치 위치와 대상의 이동·면역 여부가 중요합니다.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] Water damage, inflicting Slow on up to 4 enemies within 5m. Summons a Cold Storm at the target's location for 7s, inflicting Frostbite.\nFrostbite: Deals [unresolved value]-[unresolved value] Water Damage over Time every 1s for 10s. The Damage over Time amount increases when targets move.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "c0858ad0c043e3dde3b4a388ce16f301f0a94bd4ab73c870aea37e8d9d50e744"
+    },
+    {
+      "id": "15230000",
+      "classKey": "sorcerer",
+      "title": "정신력 조건 방어",
+      "advantage": "피해 내성을 높이고 정신력 조건을 만족하면 피해를 체력과 정신력으로 나눕니다.",
+      "situation": "정신력을 확보한 상태의 위험 구간",
+      "caution": "정신력 조건이 깨지면 피해 분담을 계속 받는다고 가정할 수 없습니다.",
+      "evidence": "Increases the caster's PvE Damage Tolerance by 20%, PvP Damage Tolerance by 10%, and grants a 5% chance to inflict Frost for 3s on enemies that attack the caster from within 7m for 10s. Grants Magic Displacement while MP is 50% or more for the duration.\nMagic Displacement: Damage taken by the caster is divided, directing 50% to HP and 10% to MP.\n\nUnaffected by cooldown increase effects.",
+      "evidenceSha256": "14fd34749dd75e4999bac56e05550e0fc3fb4e02fe9d213e2cc085ff6cafeec9"
     },
     {
       "id": "15320000",
@@ -147,6 +507,26 @@
       "evidenceSha256": "08468e250b3f21648b02671dbbc7fcbb5c2f89400653174cbc37973d9be37a9d"
     },
     {
+      "id": "15360000",
+      "classKey": "sorcerer",
+      "title": "단일 공격·그로기",
+      "advantage": "원거리 단일 대상에게 화속성 피해와 그로기 게이지 피해를 줍니다.",
+      "situation": "단일 대상의 그로기 게이지 공략",
+      "caution": "실제 피해량은 미확인이며 다른 기술보다 강하다고 단정하지 않습니다.",
+      "evidence": "Deals [unresolved value]-[unresolved value] Fire damage to a target within 20m.\n\n50 Stagger Gauge Damage",
+      "evidenceSha256": "f5f16fd5849689136d5eb7c19e260aad02cb332641fa101f8ea845fc8dd5220f"
+    },
+    {
+      "id": "15390000",
+      "classKey": "sorcerer",
+      "title": "범위 지속 공격",
+      "advantage": "불벽 범위의 적에게 이동 시 피해가 증가하는 지속 효과를 부여합니다.",
+      "situation": "적의 이동 경로를 따라 공격할 때",
+      "caution": "불벽의 폭과 지속시간에 맞춰 위치를 잡아야 합니다.",
+      "evidence": "Summon a Fire Wall that lasts for 3s at the location of a target within 20m. Deals [unresolved value]-[unresolved value] Fire damage and inflicts Embers on up to 4 enemies within the Fire Wall area (1x10m) for 10s.\nEmbers: Deals [unresolved value]-[unresolved value] Fire Damage over Time every 1s for 10s. Damage over Time amount increases when targets move.",
+      "evidenceSha256": "629a27ad142718346afb032668866c85bdc40dd767ca3208d1ba9d5b74bf5365"
+    },
+    {
       "id": "15400000",
       "classKey": "sorcerer",
       "title": "속성 공격 강화",
@@ -155,6 +535,46 @@
       "caution": "다른 속성까지 강화한다고 해석하지 마세요.",
       "evidence": "Increases the caster's Fire Attack by 20% and Water Attack by 20% for 10s.",
       "evidenceSha256": "0feab7085f079c9681bf9c60d10683c5b071b2ba62e17f8670ae9ac76d7b0032"
+    },
+    {
+      "id": "15410000",
+      "classKey": "sorcerer",
+      "title": "위기 대응·후퇴",
+      "advantage": "동면 중 피해와 상태이상에 면역이 되고 해제 시 회복하며 후퇴합니다.",
+      "situation": "위험 구간을 넘기고 위치를 다시 잡을 때",
+      "caution": "일부 강력한 공격은 막지 못하고 해제 후 이동 위치도 확인해야 합니다.",
+      "evidence": "Grants Hibernation to the caster for 5s. The caster becomes immune to damage and status effects while Hibernation is active.\nUsing [Remove Hibernation] while Hibernation is active immediately removes the effect, restores 20% Max HP, and moves the caster backward.\n\nCannot block certain powerful attacks and is unaffected by cooldown increase effects.",
+      "evidenceSha256": "5fab1ec864060d7a5617c7195f47ca1269cbf329db79a950fa071dbff83549e2"
+    },
+    {
+      "id": "15700000",
+      "classKey": "sorcerer",
+      "title": "광역 제어·방어",
+      "advantage": "여러 적을 공격해 빙결을 유발하고 적중 수에 따라 방어력을 높입니다.",
+      "situation": "여러 적을 동시에 상대할 때",
+      "caution": "방어력 증가에 상한이 있고 빙결은 대상별 적용 조건이 다릅니다.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m, with a 30% chance to inflict Frost for 3s.\n100% chance to land Frost on NPC targets.\n\nIncreases Defense by up to 20% proportional to the number of targets hit.",
+      "evidenceSha256": "11b9db20cec14d35b4fb50d014cd41f103e11ea705e99445e7da08f0f0026831"
+    },
+    {
+      "id": "16060000",
+      "classKey": "elementalist",
+      "title": "자원 보충",
+      "advantage": "대상의 정신력에 피해를 주며 자신의 체력과 정신력을 보충합니다.",
+      "situation": "공격하며 자원 회복이 필요할 때",
+      "caution": "체력 흡수량이 미확인이라 긴급 회복량을 보장하지 않습니다.",
+      "evidence": "Deals [unresolved value]-[unresolved value] damage and 300 MP damage to a target within 20m. Absorbs [unresolved value]% HP and restores 300 MP.",
+      "evidenceSha256": "8a14948a2e32c4a48d5719b8fef5fba7de5e6c8a5316b8f63b1cc37db240043b"
+    },
+    {
+      "id": "16150000",
+      "classKey": "elementalist",
+      "title": "정령 협공·약화",
+      "advantage": "정령 협공과 지속 피해를 주며 정령에게 받는 피해를 높입니다.",
+      "situation": "정령 공격을 이어갈 수 있는 전투",
+      "caution": "협공의 범위와 상태이상은 정령 종류에 따라 달라집니다.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m of the target, inflicting Corrode for 20s.\n\nCorrode: Increases damage taken from the Spirit by 10% and deals [unresolved value]-[unresolved value] Damage over Time every 1s\n\nThe Spirit joins for a coordinated assault.\nFire: [unresolved value]-[unresolved value] AoE damage and Knockdown\nWater: [unresolved value]-[unresolved value] damage and Slow\nEarth: [unresolved value]-[unresolved value] damage and Seal\nWind: [unresolved value]-[unresolved value] AoE damage and Stun\nAncient: [unresolved value]-[unresolved value] AoE damage and Knockdown\n\n10 Stagger Gauge Damage",
+      "evidenceSha256": "b7edbf1554b034e2ad034d5320110d3592ec22e04040a57c52021a240496f2fe"
     },
     {
       "id": "16170000",
@@ -167,6 +587,16 @@
       "evidenceSha256": "67915191504429e589a3fcd54449ba5e0661b1c2b40be5febebdfb1970fd6298"
     },
     {
+      "id": "16190000",
+      "classKey": "elementalist",
+      "title": "정령 공방·회복",
+      "advantage": "자신과 정령의 피해 증폭·내성을 높이고 주기적으로 회복합니다.",
+      "situation": "정령과 함께 공격·생존을 강화할 때",
+      "caution": "주기 회복량이 미확인이므로 즉시 큰 회복을 대신한다고 보지 마세요.",
+      "evidence": "Increases PvE Damage Boost by 20%, PvP Damage Boost by 10%, PvE Damage Tolerance by 20%, PvP Damage Tolerance by 10%, and restores [unresolved value]-[unresolved value] HP every 1s for 10s to the caster and Spirit.\n\nUnaffected by cooldown increase effects.",
+      "evidenceSha256": "fae9a77f8435dd6fae3f235ceae16c1f4265bf7d74414f3b32700e68b67634cc"
+    },
+    {
       "id": "16230000",
       "classKey": "elementalist",
       "title": "강화 효과 제거",
@@ -175,6 +605,16 @@
       "caution": "제거할 효과가 없으면 추가 피해 조건을 충족하지 못합니다.",
       "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m of the target, removing up to 2 buffs.\n\nDeals [unresolved value]-[unresolved value] extra damage based on the number of buffs removed.\n\n20 Stagger Gauge Damage",
       "evidenceSha256": "72b55949a10136ad2b8853aab1c9ff4e61657461e957895fb9ef44358599af45"
+    },
+    {
+      "id": "16240000",
+      "classKey": "elementalist",
+      "title": "정령 협공·그로기",
+      "advantage": "정령이 함께 공격하고 그로기 게이지 피해를 줍니다.",
+      "situation": "정령과 함께 그로기 게이지를 공략할 때",
+      "caution": "정령 종류에 따라 단일·광역 공격 형태가 달라집니다.",
+      "evidence": "Deals [unresolved value]-[unresolved value] damage to a target within 20m.\n\nThe Spirit joins you in a coordinated assault.\nFire: [unresolved value]-[unresolved value] AoE damage\nWater: [unresolved value]-[unresolved value] damage\nEarth: [unresolved value]-[unresolved value] damage\nWind: [unresolved value]-[unresolved value] AoE damage\nAncient: [unresolved value]-[unresolved value] AoE damage\n\n50 Stagger Gauge Damage",
+      "evidenceSha256": "48290a7c3f6667030ff01856de3f11013b76db5000894b6b54a6df2780039fbe"
     },
     {
       "id": "16250000",
@@ -187,6 +627,26 @@
       "evidenceSha256": "1f70a58105ecfd032be8fb4c81afff73bce7d4fb459102b8112d3830ae0b054a"
     },
     {
+      "id": "16260000",
+      "classKey": "elementalist",
+      "title": "봉쇄 제어",
+      "advantage": "대상을 공격하고 확률적으로 봉쇄를 부여합니다.",
+      "situation": "봉쇄가 적용되는 대상 제어",
+      "caution": "봉쇄는 확률 효과이므로 반드시 걸린다고 가정하지 마세요.",
+      "evidence": "Deals [unresolved value]-[unresolved value] damage to a target within 20m, with a 75% chance to inflict Seal for 5s.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "962e50e6b4549afca71cdf233fe1e546d6b4f648920f55af81f979185f87d871"
+    },
+    {
+      "id": "16370000",
+      "classKey": "elementalist",
+      "title": "추가 공격",
+      "advantage": "공격 적중 시 확률적으로 추가 피해가 발생합니다.",
+      "situation": "공격을 이어갈 수 있는 구간",
+      "caution": "발동 간격과 확률이 있어 모든 타격마다 추가 피해가 발생하지는 않습니다.",
+      "evidence": "Has a 50% chance to deal [unresolved value]-[unresolved value] extra damage to enemies on landing an attack for 10s.\n\nCooldown: 1s",
+      "evidenceSha256": "c005f0a4e7387083ed56997a5224d1dcddde3c1e89222a485d6381e864d3e586"
+    },
+    {
       "id": "17160000",
       "classKey": "cleric",
       "title": "지속 파티 회복",
@@ -195,6 +655,36 @@
       "caution": "주기 회복이므로 즉시 큰 회복을 대신한다고 보지 마세요.",
       "evidence": "Grants Benevolence to the caster for 20s. Restores [unresolved value]-[unresolved value] HP every 2s to the caster and party members within 40m for the duration.",
       "evidenceSha256": "c704832c2cd84ad02a1180cdefb7178729eab4927b0c5066f049b97c805fe29e"
+    },
+    {
+      "id": "17270000",
+      "classKey": "cleric",
+      "title": "위기 대응",
+      "advantage": "잠시 피해와 상태이상에 면역이 됩니다.",
+      "situation": "위험 패턴 대응",
+      "caution": "일부 강력한 공격은 막지 못하며 무적 중첩 제한이 있습니다.",
+      "evidence": "The caster is immune to damage and status effects for 3s.\n\nCannot block certain powerful attacks. Unaffected by cooldown increase effects.\nTenaciousness, Salvation, Barrier Spell effects, and Unstoppable effect cannot be applied for 30s if Invincibility stacking is blocked.",
+      "evidenceSha256": "566ef4ffd0710517fc36201fc876c6ba68449a9b33a5e8b9e893715fb00df301"
+    },
+    {
+      "id": "17280000",
+      "classKey": "cleric",
+      "title": "단일 공격·그로기",
+      "advantage": "원거리 단일 대상에게 땅속성 피해와 그로기 게이지 피해를 줍니다.",
+      "situation": "파티가 안전할 때 그로기 게이지 공략",
+      "caution": "회복·보호가 필요한 상황과 공격 기회를 함께 판단하세요.",
+      "evidence": "Deals [unresolved value]-[unresolved value] Earth damage to a target within 20m.\n\n50 Stagger Gauge Damage",
+      "evidenceSha256": "ea4e82544d407ba56745830c7f3a24e0bedf0fe239cf898148e8ef3f72efbcff"
+    },
+    {
+      "id": "17300000",
+      "classKey": "cleric",
+      "title": "광역 회복 방해",
+      "advantage": "여러 적에게 지속 피해를 주며 받는 치유와 물약 회복을 낮춥니다.",
+      "situation": "회복하는 적 무리를 압박할 때",
+      "caution": "회복 감소가 적용되는 대상인지 확인하세요.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] Earth damage to up to 4 enemies within 4m of the target. Deals [unresolved value] damage every 1s and reduces enemy Incoming Heal and HP Potion Recovery by 60% for 20s.",
+      "evidenceSha256": "941a4dac75ce4d87af389c7396675515fb0d63eff42f42252076276f796e4b64"
     },
     {
       "id": "17390000",
@@ -207,6 +697,16 @@
       "evidenceSha256": "00a728b538674787247ec05851a6f73c507aa09afb575b1ce25cffed34564402"
     },
     {
+      "id": "17400000",
+      "classKey": "cleric",
+      "title": "단일 지속 공격",
+      "advantage": "대상에게 땅속성 피해와 지속 피해를 줍니다.",
+      "situation": "한 대상을 계속 공략할 때",
+      "caution": "지속 효과가 끝까지 유지되는지 확인하세요.",
+      "evidence": "Deals [unresolved value]-[unresolved value] Earth damage to a target within 20m and [unresolved value] damage every 1s for 10s.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "57bdaf595cb11b9b0dcf8d74de8182d426ae591634fb9c47d1374eb5281b52a0"
+    },
+    {
       "id": "17410000",
       "classKey": "cleric",
       "title": "파티 공방 지원",
@@ -215,6 +715,66 @@
       "caution": "호법성의 불패의 진언 피해 증폭과 중첩되지 않으며 높은 레벨 효과가 적용됩니다.",
       "evidence": "Increases PvE Damage Boost and PvE Damage Tolerance by 10.5% and PvP Damage Boost and PvP Damage Tolerance by 5.25% for the caster and nearby party members.\n\nDoes not stack with the Damage Boost effect from the Chanter skill [Undefeated Mantra] and only the highest skill level effect applies. If both skills are the same level, Undefeated Mantra will be applied.",
       "evidenceSha256": "5539805bd5caae668539ccf76a97ed891a0372dc82c9b07d1c7eba7ad740cc1f"
+    },
+    {
+      "id": "17420000",
+      "classKey": "cleric",
+      "title": "파티 피해 내성",
+      "advantage": "자신과 주변 파티원의 PvE·PvP 피해 내성을 높입니다.",
+      "situation": "파티 피해가 몰리는 구간",
+      "caution": "파티원이 효과 범위 안에 있어야 하며 피해 면역은 아닙니다.",
+      "evidence": "Increases PvE Damage Tolerance by 20% and PvP Damage Tolerance by 10% for 10s for the caster and party members within 40m.\n\nUnaffected by cooldown increase effects.",
+      "evidenceSha256": "7ccf7dd130b4d62c121fcda2f8b3c604f955d0da36d288bd3241cb37a45eaa57"
+    },
+    {
+      "id": "17430000",
+      "classKey": "cleric",
+      "title": "공격 강화",
+      "advantage": "자신의 공격력을 높입니다.",
+      "situation": "공격을 집중할 구간",
+      "caution": "파티 회복·보호가 필요한 상황과 공격 기회를 함께 판단하세요.",
+      "evidence": "Increases Attack by 20% for 10s.",
+      "evidenceSha256": "2b13693bd8da6211808c9a74815ef64f5a5c772785518eabaac3c5f8fe431385"
+    },
+    {
+      "id": "17440000",
+      "classKey": "cleric",
+      "title": "소환 보조 공격",
+      "advantage": "자신을 따라오는 소환체가 같은 대상을 공격합니다.",
+      "situation": "소환체와 함께 공격을 이어갈 때",
+      "caution": "공격 범위와 공격 간격이 있으며 실제 피해량은 미확인입니다.",
+      "evidence": "Summons a Noble Aura near the caster that lasts for 300s. The Aura follows the caster and attacks their target together.\n\nDeals [unresolved value]-[unresolved value] damage to a target within 20m.\nAura Attack Cooldown: 2s",
+      "evidenceSha256": "81cf700d7017ee12f4bbae607b1744a625969f39fdcc8283f42f7338c9eec594"
+    },
+    {
+      "id": "18130000",
+      "classKey": "chanter",
+      "title": "접근·방어 약화",
+      "advantage": "돌진해 방어력을 낮추고 충격 상태 대상에게 추가 피해를 줍니다.",
+      "situation": "접근과 상태이상 연계를 함께 할 때",
+      "caution": "추가 피해에는 충격 상태 조건이 필요합니다.",
+      "evidence": "Rushes to a target within 20m and deals [unresolved value]-[unresolved value] damage and reduces their Defense by 30% for 5s. Increases damage by 20% to targets afflicted with an Impact-type status.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "84a7390fb8a53c9396293eed31027e67e0297ba8de266749cfcdaa17e4b53ea0"
+    },
+    {
+      "id": "18140000",
+      "classKey": "chanter",
+      "title": "막기 대응",
+      "advantage": "일시적으로 막기를 보장하고 방어 시 정신력과 스태미나를 회복합니다.",
+      "situation": "공격을 받아내야 하는 순간",
+      "caution": "짧은 방어 효과이므로 공격 시점에 맞춰야 합니다.",
+      "evidence": "Temporarily increases Block Damage Reduction by 100% and guarantees Block. Restores 110 MP and Stamina once on Block.",
+      "evidenceSha256": "c9eefe1c7a071a11d78c59cedc68dfebf6d5f9513e715185fd7986e628c1805f"
+    },
+    {
+      "id": "18160000",
+      "classKey": "chanter",
+      "title": "파티 이동·회복",
+      "advantage": "파티원의 이동 속도를 높이고 공격 적중 시 확률 회복을 제공합니다.",
+      "situation": "이동하며 전투를 이어가는 파티",
+      "caution": "회복은 확률 효과이고 발동 간격이 있어 확정 회복으로 보지 마세요.",
+      "evidence": "Increases Move Speed by 10.5% and grants a 15% chance to restore  [unresolved value]-[unresolved value] HP on landing an attack to the caster and nearby party members.\n\nHealing Cooldown: 1s",
+      "evidenceSha256": "3dcd81af26e14161ed6dd3115872596346c5c740598974517945de02fdfbead4"
     },
     {
       "id": "18170000",
@@ -237,6 +797,26 @@
       "evidenceSha256": "e478e39c0a33964d05f2137b1fc609b874b193330c67b397cf2294aa943c0ff4"
     },
     {
+      "id": "18230000",
+      "classKey": "chanter",
+      "title": "광역 봉쇄·연계",
+      "advantage": "여러 적을 공격해 봉쇄를 유발하고 후속 기술 기회를 엽니다.",
+      "situation": "제어와 후속 공격을 연결할 때",
+      "caution": "봉쇄 적용 조건과 짧은 후속 기술 사용 시간을 확인하세요.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m. Has a 50% chance to inflict Seal for 5s.\n100% chance to inflict Seal on NPC targets.\n\n[Dark Crush] becomes available for 3s on skill use.",
+      "evidenceSha256": "abc06f2f1a6ac4827b7f942e270befbdc27e3f36ae64af8b43fe8ea0b00e7dd7"
+    },
+    {
+      "id": "18240000",
+      "classKey": "chanter",
+      "title": "파티 보호막",
+      "advantage": "자신과 주변 파티원에게 보호막을 부여합니다.",
+      "situation": "파티가 피해를 받기 전 준비",
+      "caution": "파티원이 보호 범위 안에 있어야 합니다.",
+      "evidence": "Grants a Protective Shield that blocks damage equaling 16% of Max HP for 20s to the caster and nearby party members within 40m.",
+      "evidenceSha256": "07c8b9939aaa43c92f9fe679fa51df9aa348209bbfd0d61c7a3ffe42b0586da4"
+    },
+    {
       "id": "18250000",
       "classKey": "chanter",
       "title": "파티 속도·재사용 지원",
@@ -245,6 +825,46 @@
       "caution": "치유성 대지의 축복 효과가 있으면 이 효과를 받을 수 없습니다.",
       "evidence": "Increases Combat Speed by 20% and reduces skill cooldowns by 20% for 10s.\nIncreases Combat Speed by 20% and reduces skill cooldowns by 10% for party members within 40m.\n\nCannot receive effect of [Power of the Storm] if Cleric skill [Earth's Blessing] effect is active.",
       "evidenceSha256": "6fd52db2f0bf152861f8c6b5ec936aba37248dfefcb488cd898435f33d86430b"
+    },
+    {
+      "id": "18330000",
+      "classKey": "chanter",
+      "title": "광역 공격·연계",
+      "advantage": "여러 적을 공격하고 후속 기술 사용 기회를 엽니다.",
+      "situation": "적 무리를 공격하며 연계를 이어갈 때",
+      "caution": "후속 기술을 사용할 수 있는 시간이 짧습니다.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m.\n\n[Dark Crush] becomes available for 3s on skill use.",
+      "evidenceSha256": "b1e08f13d8367a7e9ea21ad113408e4aad49c55e9236a1fca0f732f99e443241"
+    },
+    {
+      "id": "18420000",
+      "classKey": "chanter",
+      "title": "체력 보강",
+      "advantage": "최대 체력을 높이고 즉시 체력을 회복합니다.",
+      "situation": "생존 여유와 즉시 회복이 필요할 때",
+      "caution": "회복과 최대 체력 증가는 각각의 효과이며 무적은 아닙니다.",
+      "evidence": "Increases the caster's Max HP by 5.4% for 120s and immediately restores 5.4% HP.\n\nNot affected by buff dispel effects.",
+      "evidenceSha256": "b5b723c5c7448ebe346f1ff4c2fbe423957160e97562c2accd88deca1a6a9d28"
+    },
+    {
+      "id": "18440000",
+      "classKey": "chanter",
+      "title": "파티 위기 대응",
+      "advantage": "잠시 자신과 파티원의 체력이 일정 비율 아래로 떨어지는 것을 막습니다.",
+      "situation": "파티가 큰 피해를 받는 순간",
+      "caution": "일부 강력한 공격은 막지 못하며 중첩 제한이 있습니다.",
+      "evidence": "Prevents the HP of the caster and party members within 40m from falling below 10% for 3s.\n\nCannot block certain powerful attacks. Unaffected by cooldown increase effects.\nTenaciousness, Salvation, Barrier Spell effects, and Unstoppable effect cannot be applied for 30s if Invincibility stacking is blocked.",
+      "evidenceSha256": "e70319fb9e8a4e3033ec1df595d8a89a02b6730a2336019fbfadf86a205230c4"
+    },
+    {
+      "id": "18700000",
+      "classKey": "chanter",
+      "title": "광역 제어·방어",
+      "advantage": "여러 적을 공격해 기절을 유발하고 적중 수에 따라 방어력을 높입니다.",
+      "situation": "여러 적을 동시에 상대할 때",
+      "caution": "방어력 증가에 상한이 있고 기절은 대상별 적용 조건이 다릅니다.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m of the target, with a 30% chance to inflict Stun for 3s.\n100% chance to inflict Stun on NPC targets.\n\nIncreases Defense by up to 20% proportional to the number of targets hit.",
+      "evidenceSha256": "bb5137b7dcdf3e9ea98b2a55f188930087e7e3498ff93ea8e9d556d03ed3a2a1"
     }
   ]
 }
