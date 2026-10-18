@@ -1,4 +1,5 @@
 import {useEffect, useRef, useState} from 'react';
+import MapMarkerIcon from './map-marker-icon';
 import verteron from '../lib/data/terrain-catalog.json';
 import altgard from '../lib/data/terrain-altgard.json';
 import poeta from '../lib/data/terrain-poeta.json';
@@ -144,13 +145,13 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       {previewOn && <>
         <fieldset className="map-layers" aria-label="지도 표시 항목">
           <legend>표시할 항목 · 여러 개 선택 가능</legend>
-          {Object.entries(previewKinds).map(([key,category])=>{
+          {Object.entries(previewKinds).map(([key])=>{
             const count=preview.filter(row=>row.kind===key).length;
             return <label key={key}><input type="checkbox" aria-label={previewKindLabel(key)}
               disabled={count===0} checked={enabledKinds.has(key)}
               onChange={e=>{const next=new Set(enabledKinds);if(e.target.checked)next.add(key);else next.delete(key);
                 setEnabledKinds(next);setPreviewSelection('');setPage(0);}}/>
-              <span aria-hidden="true" style={{color:category.color}}>●</span>
+              <MapMarkerIcon kind={key} region={terrainName}/>
               {previewKindLabel(key)} ({count})</label>;
           })}
         </fieldset>
@@ -203,6 +204,7 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
         <button className="button ghost" onClick={()=>setView(terrainLocationView(selectedLabel))}>선택 위치로 이동</button>
         <button className="button ghost" onClick={()=>setSelectedLocation('')}>위치 선택 해제</button></p>}
       {failed.size>0 && <p role="alert">지형 이미지 {failed.size}개를 불러오지 못했습니다. <button className="button ghost" onClick={()=>{setFailed(new Set());setRetry(v=>v+1);}}>지형 다시 불러오기</button></p>}
+      <p className="subtle">게임 원본 아이콘으로 구분합니다. 히든큐브는 원본 아이템 이미지, 깃털은 전용 아이콘 확인 전까지 공용 오브젝트 아이콘을 사용합니다.</p>
       <p>+/− 버튼이나 마우스 휠로 확대·축소하고, 드래그 또는 방향키로 이동하세요. 마커를 선택하면 상세와 확인 기록을 볼 수 있습니다.</p>
       <div className="terrain-map-frame"><svg ref={canvasRef} className="map-canvas terrain-canvas" role="group" aria-label={`${terrainName} 지형 이미지`} tabIndex={0} viewBox={`${view.x} ${view.y} ${size} ${size}`}
         onKeyDown={e=>{const delta:Record<string,[number,number]>={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]};if(Object.hasOwn(delta,e.key)){e.preventDefault();const [x,y]=delta[e.key];setView(v=>constrainMapView({...v,x:v.x+x*size/10,y:v.y+y*size/10}));}}}
@@ -213,14 +215,15 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
         {tiles.map(tile=>{const id=`${tile.x}_${tile.y}`;return <image key={`${retry}-${id}`} x={tile.left} y={tile.top} width={tile.width} height={tile.width}
           href={`${basePath}/${id}.webp`} preserveAspectRatio="none" pointerEvents="none"
           onError={()=>setFailed(old=>new Set([...old,id]))} onLoad={()=>setFailed(old=>{if(!old.has(id))return old;const next=new Set(old);next.delete(id);return next;})}/>;})}
-        {previewOn && previewDraw.map(row=><circle key={row.id} data-preview-marker={row.kind}
-          cx={row.x} cy={row.y} r={(row.id===previewSelection?14:10)/Math.sqrt(view.zoom)}
-          fill={previewKinds[row.kind]?.color ?? '#fff'} opacity={completed.has(row.id)?.4:1} stroke="#11141b" strokeWidth={1/Math.sqrt(view.zoom)}
-          role="button" tabIndex={0} aria-label={`${row.name} 후보 위치`} aria-pressed={row.id===previewSelection}
+        {previewOn && previewDraw.map(row=>{const markerSize=(row.id===previewSelection?44:34)/Math.sqrt(view.zoom);return <g key={row.id} data-preview-marker={row.kind}
+          opacity={completed.has(row.id)?.4:1} role="button" tabIndex={0} aria-label={`${row.name} 후보 위치`} aria-pressed={row.id===previewSelection}
           onPointerDown={e=>e.stopPropagation()} onClick={()=>focusPreview(row)}
           onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();focusPreview(row);}}}>
-          <title>{row.name} · 미검증 후보 위치</title></circle>)}
-        {previewOn && nearbyFocus && <circle cx={nearbyFocus.x} cy={nearbyFocus.y} r={16/Math.sqrt(view.zoom)} fill="#5eead4" stroke="#fff" strokeWidth={3/Math.sqrt(view.zoom)} aria-label={`가까운 이동 지점: ${nearbyFocus.name}`}><title>{nearbyFocus.name}</title></circle>}
+          <title>{row.name} · {previewKindLabel(row.kind)} · 미검증 후보 위치</title>
+          <rect x={row.x-markerSize/2} y={row.y-markerSize/2} width={markerSize} height={markerSize} rx={4/Math.sqrt(view.zoom)} fill="transparent" stroke={row.id===previewSelection?'#fff':'none'} strokeWidth={2/Math.sqrt(view.zoom)}/>
+          <MapMarkerIcon kind={row.kind} region={terrainName} x={row.x-markerSize/2} y={row.y-markerSize/2} size={markerSize}/>
+        </g>})}
+        {previewOn && nearbyFocus && <g aria-label={`가까운 이동 지점: ${nearbyFocus.name}`} pointerEvents="none"><title>{nearbyFocus.name}</title><rect x={nearbyFocus.x-24/Math.sqrt(view.zoom)} y={nearbyFocus.y-24/Math.sqrt(view.zoom)} width={48/Math.sqrt(view.zoom)} height={48/Math.sqrt(view.zoom)} fill="#5eead433" stroke="#5eead4" strokeWidth={2/Math.sqrt(view.zoom)}/><MapMarkerIcon kind="teleport" region={terrainName} x={nearbyFocus.x-22/Math.sqrt(view.zoom)} y={nearbyFocus.y-22/Math.sqrt(view.zoom)} size={44/Math.sqrt(view.zoom)}/></g>}
         {selectedLabel && <circle aria-label={`선택 위치: ${selectedLabel.name}`} cx={selectedLabel.x} cy={selectedLabel.y}
           r={10 / Math.sqrt(view.zoom)} fill="#fbbf2433" stroke="#fbbf24" strokeWidth={2 / Math.sqrt(view.zoom)} pointerEvents="none"/>}
         {showLabels && labels.map(label=><g key={label.id} aria-label={label.name}>
@@ -231,7 +234,7 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       </svg>
       {previewOn && chosenPreview && <section ref={detailRef} className="map-detail terrain-marker-card" aria-label="선택한 마커 정보">
         <button className="button ghost small" aria-label="마커 정보 닫기" onClick={()=>{setPreviewSelection('');setNearbyId('');}}>닫기 ×</button>
-        <h3>{chosenPreview.name}</h3><p>{previewKindLabel(chosenPreview.kind)} · {terrainName}</p>
+        <h3><MapMarkerIcon kind={chosenPreview.kind} region={terrainName}/> {chosenPreview.name}</h3><p>{previewKindLabel(chosenPreview.kind)} · {terrainName}</p>
         {chosenPreview.locationType==='area-center' && <p>주둔지 구역 중심입니다. 입구·NPC 위치가 아니며 구역 안에서 탐험 퀘스트를 확인하세요.</p>}
         <label className="map-check"><input type="checkbox" checked={completed.has(chosenPreview.id)} onChange={()=>markPreview(chosenPreview.id)}/>이 위치 확인 완료</label>
         <button className="button ghost small" onClick={()=>{setNearbyId('');focusPreview(chosenPreview);}}>후보 위치로 돌아가기</button>

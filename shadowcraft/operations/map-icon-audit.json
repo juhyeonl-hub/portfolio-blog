@@ -1,0 +1,205 @@
+{
+  "buildId": "25926599",
+  "source": "Installed official Global Steam client; Texture2D PNG exports unchanged",
+  "files": {
+    "TeleportArtifact_Light_Engraved": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/TeleportArtifact_Light_Engraved.png",
+      "width": 128,
+      "height": 128,
+      "viewBox": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "sha256": "16d35061b8ae7dac64c0dad9884da3d376e95f0e541525da50184fa69418fc44",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Icon/UT_Marker_TeleportArtifact_Light_Engraved.uasset"
+    },
+    "TeleportArtifact_Dark_Engraved": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/TeleportArtifact_Dark_Engraved.png",
+      "width": 128,
+      "height": 128,
+      "viewBox": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "sha256": "5123a524e3e7b8647f1944608baf228c38ea9bf6178e03643e31e48d649cc2f8",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Icon/UT_Marker_TeleportArtifact_Dark_Engraved.uasset"
+    },
+    "Gather": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/Gather.png",
+      "width": 128,
+      "height": 128,
+      "viewBox": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "sha256": "4fe34bd60d1cbe287a79937b9c1b44d2f270d6581d1eb3b34c154614587a3619",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Icon/UT_Marker_Gather.uasset"
+    },
+    "Exploration_Seal": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/Exploration_Seal.png",
+      "width": 128,
+      "height": 128,
+      "viewBox": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "sha256": "16d6850f968db3495474aa0a96bfe4ce6adfd8c574aed305dd6b8374a9d627bf",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Icon/UT_Marker_Exploration_Seal.uasset"
+    },
+    "Exploration_Occupation": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/Exploration_Occupation.png",
+      "width": 128,
+      "height": 128,
+      "viewBox": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "sha256": "0aa4bda7c3e487d7e0ac71a4ea869c37a89de8dc54f90a0ed4de9e6ae0ed859f",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Icon/UT_Marker_Exploration_Occupation.uasset"
+    },
+    "Dungeon": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/Dungeon.png",
+      "width": 128,
+      "height": 128,
+      "viewBox": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "sha256": "a29207ecc3034208af9d3dc82b77ae02e0496de4c0485661426bfb70e768b40b",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Icon/UT_Marker_Dungeon.uasset"
+    },
+    "Rift": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/Rift.png",
+      "width": 128,
+      "height": 128,
+      "viewBox": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "sha256": "e601be7367fe32ca349d62c28f2f39232474d842f059c128c2d9f9aa79631049",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Icon/UT_Marker_Rift.uasset"
+    },
+    "Monolith_Light": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/Monolith_Light.png",
+      "width": 128,
+      "height": 128,
+      "viewBox": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "sha256": "a60321150df376f214e7096e55e78de99025ed244a0bcc692f722222cbf88f05",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Icon/UT_Marker_Monolith_Light.uasset"
+    },
+    "Monolith_Dark": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/Monolith_Dark.png",
+      "width": 128,
+      "height": 128,
+      "viewBox": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "sha256": "0756403117c5a4540232d92106b617b50d78828eeb30bbd6f30ce62c73c4e639",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Icon/UT_Marker_Monolith_Dark.uasset"
+    },
+    "Envobj": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/Envobj.png",
+      "width": 128,
+      "height": 128,
+      "viewBox": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "sha256": "08d8d6b5d7fa271150685608e38b417b442fddb4be1b9a921944331cb278dbf3",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Icon/UT_Marker_Envobj.uasset"
+    },
+    "HiddenCube": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/HiddenCube.png",
+      "width": 256,
+      "height": 256,
+      "viewBox": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "sha256": "c4a75d934544e043d8d62ffd637895bc38f157dbb8d3f77cae953de3998b0f86",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Item/ETC/P_Img_HiddenCube_01.uasset"
+    },
+    "worldmap-atlas": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/worldmap-atlas.png",
+      "width": 512,
+      "height": 512,
+      "viewBox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "sha256": "43b4bb9553393cefd98e4e2b1eb85dc4f8611f8dd87d1ccff135aa14b5c7e59a",
+      "sourceAsset": "AION2/Content/UI/Resource/Sprite/FWindow_WorldMap/Atlas_FWindow_WorldMap.uasset"
+    }
+  },
+  "mappingNotes": {
+    "teleport": "WorldMapFilterType TeleportArtifact ImageLight/ImageDark; glyph does not represent player unlock state",
+    "sealed": "Exploration Seal IncompleteIconType and corresponding texture name",
+    "stronghold": "Exploration OccupationTerritory IncompleteIconType and Occupation texture name",
+    "npc": "FWindow_WorldMap NPC PaperSprite baked UV rectangle",
+    "named": "FWindow_WorldMap Monster PaperSprite; generic monster, not guessed boss classification",
+    "cube": "HiddenCube_01 item texture; not certified world-map glyph",
+    "trace": "Generic official Envobj marker; dedicated feather glyph not resolved"
+  },
+  "unresolved": "UIIcon.dat schema mismatch; UI_ImageTable_Marker exported no rows. No inferred dedicated trace icon.",
+  "coordinateStatus": "Unchanged; user approximate visual match is not independent control-point certification",
+  "sprites": {
+    "NPC": {
+      "sourceAsset": "/Game/UI/Resource/Sprite/FWindow_WorldMap/UT_FWindow_WorldMap_NPC_Sprite",
+      "bakedUV": {
+        "X": 134.0,
+        "Y": 2.0
+      },
+      "bakedDimensions": {
+        "X": 100.0,
+        "Y": 100.0
+      },
+      "texture": {
+        "ObjectName": "Texture2D'Atlas_FWindow_WorldMap:Texture2D_0'",
+        "ObjectPath": "/Game/UI/Resource/Sprite/FWindow_WorldMap/Atlas_FWindow_WorldMap.1"
+      }
+    },
+    "Monster": {
+      "sourceAsset": "/Game/UI/Resource/Sprite/FWindow_WorldMap/UT_FWindow_WorldMap_Monster_Sprite",
+      "bakedUV": {
+        "X": 238.0,
+        "Y": 2.0
+      },
+      "bakedDimensions": {
+        "X": 100.0,
+        "Y": 100.0
+      },
+      "texture": {
+        "ObjectName": "Texture2D'Atlas_FWindow_WorldMap:Texture2D_0'",
+        "ObjectPath": "/Game/UI/Resource/Sprite/FWindow_WorldMap/Atlas_FWindow_WorldMap.1"
+      }
+    }
+  }
+}

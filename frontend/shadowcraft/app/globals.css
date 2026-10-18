@@ -109,3 +109,5 @@
 .terrain-marker-card h3{margin:4px 0;font-size:17px}.terrain-marker-card h4{margin:12px 0 8px}.terrain-marker-card p{font-size:12px;margin:6px 0}.terrain-marker-card>button:first-child{float:right}.terrain-marker-card>button{margin:3px}.terrain-marker-card .map-check{font-size:13px}
 @media(max-width:700px){.home-destinations{grid-template-columns:1fr}.home-intro{padding:22px}.terrain-marker-card{position:relative;bottom:auto;left:auto;width:100%;max-height:320px;margin-top:8px}}
 .page-tabs{max-width:100%;overflow-x:auto}.page-tabs>button{flex-shrink:0}
+.map-layers label>svg{flex-shrink:0}.terrain-marker-card h3>svg{vertical-align:middle}
+.terrain-canvas [data-preview-marker]:focus-visible>rect{stroke:#fff;stroke-width:2px}

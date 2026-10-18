@@ -169,3 +169,13 @@ assert.deepEqual(nearestTeleports(points,target).map(row=>row.id),['b','a','z'])
 assert.equal(points.length,6);
 assert.deepEqual(nearestTeleports([target],target),[]);
 assert.deepEqual(nearestTeleports([],target),[]);
+
+const mapIcons=JSON.parse(readFileSync('lib/data/map-icons.json'));
+for(const kind of ['teleport','gather','named','npc','sealed','stronghold','dungeon','rift','monolith','cube','trace'])assert.ok(mapIcons[kind],kind);
+for(const icon of Object.values(mapIcons)){
+ const bytes=readFileSync('../public'+icon.src);
+ assert.equal(createHash('sha256').update(bytes).digest('hex'),icon.sha256);
+ assert.deepEqual([...bytes.subarray(0,8)],[137,80,78,71,13,10,26,10]);
+ assert.equal(bytes.readUInt32BE(16),icon.width);assert.equal(bytes.readUInt32BE(20),icon.height);
+ const [x,y,w,h]=icon.viewBox;assert.ok(x>=0&&y>=0&&w>0&&h>0&&x+w<=icon.width&&y+h<=icon.height);
+}

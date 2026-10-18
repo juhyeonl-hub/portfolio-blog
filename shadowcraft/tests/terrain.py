@@ -18,7 +18,7 @@ with sync_playwright() as p:
     page.route('**/maps/steam-25926599/verteron/4_4.webp',lambda r:r.fulfill(status=404,body='missing'))
     panel.get_by_role('button',name='공식 Verteron 지형 열기',exact=True).click()
     canvas=panel.get_by_role('group',name='Verteron 지형 이미지',exact=True)
-    expect(canvas.locator('image')).to_have_count(64)
+    expect(canvas.locator(':scope > image')).to_have_count(64)
     expect(canvas.locator('[data-preview-marker="teleport"]')).to_have_count(61)
     expect(canvas.locator('circle:not([data-preview-marker])')).to_have_count(69)
     assert 0 < canvas.locator('text').count() < 69, 'dense labels must not overlap'
@@ -49,7 +49,7 @@ with sync_playwright() as p:
     expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
     panel.get_by_role('button',name='지형 지도 확대',exact=True).click()
     expect(canvas).to_have_attribute('viewBox','250 250 500 500')
-    expect(canvas.locator('image')).to_have_count(16)
+    expect(canvas.locator(':scope > image')).to_have_count(16)
     canvas.focus();page.keyboard.press('ArrowRight')
     expect(canvas).to_have_attribute('viewBox','300 250 500 500')
     box=canvas.bounding_box();page.mouse.move(box['x']+box['width']*.85,box['y']+box['height']*.85);page.mouse.down();page.mouse.move(box['x']+box['width']*.95,box['y']+box['height']*.85);page.mouse.up()
@@ -63,7 +63,7 @@ with sync_playwright() as p:
     canvas=panel.get_by_role('group',name='Altgard 지형 이미지',exact=True)
     expect(canvas.locator('circle:not([data-preview-marker])')).to_have_count(71)
     expect(panel.get_by_role('checkbox',name='지역명 표시 (71)',exact=True)).to_be_checked()
-    expect(canvas.locator('image')).to_have_count(64)
+    expect(canvas.locator(':scope > image')).to_have_count(64)
     for _ in range(200):
         if len({u for u,status in tiles if status==200 and '/altgard/' in u})==64: break
         page.wait_for_timeout(100)
@@ -71,7 +71,7 @@ with sync_playwright() as p:
     expect(panel.get_by_role('alert')).to_have_count(0)
     canvas.screenshot(path='/tmp/a2bc-altgard-browser.png')
     expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
-    assert all('/altgard/' in x for x in canvas.locator('image').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))'))
+    assert all('/altgard/' in x for x in canvas.locator(':scope > image').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))'))
     panel.get_by_role('button',name='지형 지도 확대',exact=True).click()
     expect(canvas).to_have_attribute('viewBox','250 250 500 500')
     panel.get_by_label('공식 지형 지역',exact=True).select_option('verteron')
@@ -84,7 +84,7 @@ with sync_playwright() as p:
         expect(panel.get_by_role('group')).to_have_count(0)
         panel.get_by_role('button',name=f'공식 {name} 지형 열기',exact=True).click()
         canvas=panel.get_by_role('group',name=f'{name} 지형 이미지',exact=True)
-        expect(canvas.locator('image')).to_have_count(count)
+        expect(canvas.locator(':scope > image')).to_have_count(count)
         expect(canvas.locator('circle:not([data-preview-marker])')).to_have_count(7 if slug.startswith('reshanta') else 0)
         expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
         for _ in range(200):
