@@ -8,6 +8,7 @@ import reshantaMiddle from '../lib/data/terrain-reshanta-middle.json';
 import terrainLabels from '../lib/data/terrain-labels.json';
 import {constrainMapView, zoomMap, type MapView} from '../lib/world-map';
 import {visibleTerrainTiles, terrainLabelNames, searchTerrainLocations, terrainLocationView} from '../lib/terrain-map';
+import {previewMatches, visiblePreview, type SpawnPreview} from '../lib/spawn-preview';
 const terrains: Record<string, typeof verteron> = {verteron, altgard, poeta, ishalgen, 'reshanta-lower': reshantaLower, 'reshanta-middle': reshantaMiddle};
 
 export default function TerrainPanel() {
@@ -30,6 +31,26 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
   const [showLabels, setShowLabels] = useState(true);
   const [query, setQuery] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
+  const [preview, setPreview] = useState<SpawnPreview[]>([]);
+  const [previewOn, setPreviewOn] = useState(false);
+  const [previewLoading, setPreviewLoading] = useState(false);
+  const [previewError, setPreviewError] = useState(false);
+  const [previewKind, setPreviewKind] = useState('teleport');
+  const [previewQuery, setPreviewQuery] = useState('');
+  const [previewSelection, setPreviewSelection] = useState('');
+  const previewResults = previewMatches(preview, previewKind, previewQuery);
+  const previewVisible = visiblePreview(previewResults, view);
+  const chosenPreview = previewResults.find(row=>row.id===previewSelection);
+  async function togglePreview() {
+    if(previewOn){setPreviewOn(false);return;}
+    setPreviewError(false);setPreviewLoading(true);
+    try {
+      const {default: data} = await import('../lib/data/spawn-preview.json');
+      const map=data.maps.find(row=>row.name===terrainName);
+      if(!map || data.worldProjectionVerified !== false) throw Error('Invalid preview');
+      setPreview(map.markers);setPreviewOn(true);setOpen(true);
+    } catch {setPreviewError(true);} finally {setPreviewLoading(false);}
+  }
   const regionLabels = terrainLabels.maps.find(map=>map.name === terrainName);
   const labels = regionLabels?.labels ?? [];
   const labelNames = terrainLabelNames(labels, view.zoom);
@@ -54,6 +75,24 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       </select></label>
       {query.trim() && <p role="status">검색 결과 {matches.length}개</p>}
     </div>}
+    {['Verteron','Altgard'].includes(terrainName) && <div className="notice">
+      <div><strong>실험: 채집·이동 지점 미리보기</strong>
+      <p>공식 클라이언트의 후보 위치입니다. 지도상의 위치 정확도는 미검증이며 실제 출현·이용 가능 여부를 뜻하지 않습니다.</p>
+      <button className="button secondary" disabled={previewLoading} aria-expanded={previewOn} onClick={()=>void togglePreview()}>
+        {previewLoading?'위치 자료 불러오는 중':previewOn?'실험 위치 숨기기':'실험 위치 보기'}</button>
+      {previewError && <p role="alert">위치 자료를 불러오지 못했습니다. 다시 시도해 주세요.</p>}
+      {previewOn && <>
+        <label>위치 종류<select aria-label="실험 위치 종류" value={previewKind} onChange={e=>{setPreviewKind(e.target.value);setPreviewSelection('');}}>
+          <option value="teleport">이동 지점</option><option value="gather">채집물</option></select></label>
+        <label>이름 검색<input aria-label="실험 위치 검색" type="search" maxLength={100} value={previewQuery} onChange={e=>{setPreviewQuery(e.target.value);setPreviewSelection('');}}/></label>
+        <label>후보 위치<select aria-label="실험 위치 선택" value={chosenPreview?.id ?? ''} onChange={e=>{const row=previewResults.find(item=>item.id===e.target.value);if(!row)return;setPreviewSelection(row.id);setView(terrainLocationView(row));setOpen(true);}}>
+          <option value="">후보 선택</option>{previewResults.slice(0,200).map((row,i)=><option key={row.id} value={row.id}>{row.name} · {i+1}</option>)}
+        </select></label>
+        <p role="status">검색 결과 {previewResults.length}개 · 현재 화면 {previewVisible.length}개{previewVisible.length>400?' · 지도에는 앞 400개 표시, 확대하거나 검색해 주세요.':''}{previewResults.length>200?' · 선택 목록은 앞 200개입니다.':''}</p>
+        {chosenPreview && <p>선택: {chosenPreview.name} · 원본 위치 {chosenPreview.world.map(v=>Math.round(v)).join(', ')} · 후보 지점이며 출현 보장 없음</p>}
+      </>}
+      </div>
+    </div>}
     {open && <>
       <div className="map-toolbar"><button className="button ghost" aria-label="지형 지도 축소" disabled={view.zoom===1} onClick={()=>setView(v=>zoomMap(v,v.zoom/2))}>−</button>
         <span>{view.zoom}배</span><button className="button ghost" aria-label="지형 지도 확대" disabled={view.zoom===8} onClick={()=>setView(v=>zoomMap(v,v.zoom*2))}>+</button>
@@ -74,6 +113,10 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
         {tiles.map(tile=>{const id=`${tile.x}_${tile.y}`;return <image key={`${retry}-${id}`} x={tile.left} y={tile.top} width={tile.width} height={tile.width}
           href={`${basePath}/${id}.webp`} preserveAspectRatio="none" pointerEvents="none"
           onError={()=>setFailed(old=>new Set([...old,id]))} onLoad={()=>setFailed(old=>{if(!old.has(id))return old;const next=new Set(old);next.delete(id);return next;})}/>;})}
+        {previewOn && previewVisible.slice(0,400).map(row=><circle key={row.id} data-preview-marker={row.kind}
+          cx={row.x} cy={row.y} r={(row.id===previewSelection?6:3)/Math.sqrt(view.zoom)}
+          fill={row.kind==='teleport'?'#5eead4':'#fbbf24'} stroke="#11141b" strokeWidth={1/Math.sqrt(view.zoom)} pointerEvents="none">
+          <title>{row.name} · 미검증 후보 위치</title></circle>)}
         {selectedLabel && <circle aria-label={`선택 위치: ${selectedLabel.name}`} cx={selectedLabel.x} cy={selectedLabel.y}
           r={10 / Math.sqrt(view.zoom)} fill="#fbbf2433" stroke="#fbbf24" strokeWidth={2 / Math.sqrt(view.zoom)} pointerEvents="none"/>}
         {showLabels && labels.map(label=><g key={label.id} aria-label={label.name}>

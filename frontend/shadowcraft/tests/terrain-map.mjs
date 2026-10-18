@@ -59,3 +59,16 @@ assert.deepEqual(terrainLocationView(closeLabels[0]),{x:375,y:375,zoom:4});
 assert.deepEqual(terrainLocationView({id:'edge',name:'Edge',x:0,y:1000}),{x:0,y:750,zoom:4});
 for (const x of [-1,1001,NaN,Infinity]) assert.throws(()=>terrainLocationView({id:'bad',name:'Bad',x,y:0}));
 console.log('Terrain search and location focus: bounds and invalid coordinates PASS');
+const {previewMatches,visiblePreview}=await import(moduleUrl(readFileSync('lib/spawn-preview.ts','utf8')));
+const preview=JSON.parse(readFileSync('lib/data/spawn-preview.json'));
+assert.equal(preview.worldProjectionVerified,false);
+assert.equal(preview.region,'global');
+assert.deepEqual(preview.maps.map(m=>m.markers.length),[2794,2753]);
+for(const map of preview.maps){
+ assert.equal(new Set(map.markers.map(m=>m.id)).size,map.markers.length);
+ for(const row of map.markers){assert.ok(['gather','teleport'].includes(row.kind));assert.ok(row.x>=0 && row.x<=1000 && row.y>=0 && row.y<=1000);assert.ok(row.world.every(Number.isFinite));}
+ assert.equal(previewMatches(map.markers,'teleport','').length,61);
+ assert.equal(previewMatches(map.markers,'gather','no such item 12345').length,0);
+ assert.equal(visiblePreview(map.markers,{x:0,y:0,zoom:1}).length,map.markers.length);
+}
+console.log('Experimental spawn data: identity, boundaries, explicit unverified status, categories, filters PASS');

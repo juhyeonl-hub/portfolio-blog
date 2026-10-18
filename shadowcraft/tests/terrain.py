@@ -112,6 +112,26 @@ with sync_playwright() as p:
     expect(panel.get_by_role('searchbox')).to_have_value('')
     expect(panel.get_by_role('button',name='선택 위치로 이동',exact=True)).to_have_count(0)
     assert page.evaluate('JSON.stringify({...localStorage})')==before
+    expect(panel.locator('[data-preview-marker]')).to_have_count(0)
+    panel.get_by_role('button',name='실험 위치 보기',exact=True).click()
+    expect(panel.get_by_role('button',name='실험 위치 숨기기',exact=True)).to_be_visible()
+    expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(61)
+    panel.get_by_label('실험 위치 종류',exact=True).select_option('gather')
+    expect(panel.locator('[data-preview-marker="gather"]')).to_have_count(400)
+    panel.get_by_label('실험 위치 검색',exact=True).fill('no such item 12345')
+    expect(panel.locator('[data-preview-marker]')).to_have_count(0)
+    panel.get_by_label('실험 위치 검색',exact=True).fill('')
+    choices=panel.get_by_label('실험 위치 선택',exact=True)
+    choices.select_option(choices.locator('option').nth(1).get_attribute('value'))
+    expect(panel.get_by_role('group',name='Altgard 지형 이미지',exact=True)).to_have_attribute('viewBox',__import__('re').compile(r'.* 250 250$'))
+    assert 0 < panel.locator('[data-preview-marker]').count() <= 400
+    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+    panel.get_by_role('button',name='실험 위치 숨기기',exact=True).click()
+    expect(panel.locator('[data-preview-marker]')).to_have_count(0)
+    panel.get_by_label('공식 지형 지역',exact=True).select_option('verteron')
+    expect(panel.get_by_role('button',name='실험 위치 보기',exact=True)).to_be_visible()
+    expect(panel.locator('[data-preview-marker]')).to_have_count(0)
+    assert page.evaluate('JSON.stringify({...localStorage})')==before
     panel.screenshot(path='/tmp/a2bc-official-terrain.png')
     assert not errors,errors
     assert not posts,posts
