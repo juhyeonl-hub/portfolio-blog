@@ -161,3 +161,11 @@ for(const map of preview.maps) {
  assert.equal(previewMatches(map.markers,new Set(['gather']),'no such resource',excluded).length,0);
 }
 console.log('Gathering resource counts and independent exact-name filters PASS');
+
+const {nearestTeleports}=await import(moduleUrl(readFileSync('lib/spawn-preview.ts','utf8')));
+const target={id:'self',kind:'teleport',x:0,y:0};
+const points=[target,{id:'z',kind:'teleport',x:2,y:0},{id:'a',kind:'teleport',x:0,y:2},{id:'b',kind:'teleport',x:1,y:0},{id:'far',kind:'teleport',x:9,y:9},{id:'npc',kind:'npc',x:0,y:0}];
+assert.deepEqual(nearestTeleports(points,target).map(row=>row.id),['b','a','z']);
+assert.equal(points.length,6);
+assert.deepEqual(nearestTeleports([target],target),[]);
+assert.deepEqual(nearestTeleports([],target),[]);

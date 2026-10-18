@@ -97,3 +97,15 @@
 .community-discussion textarea,details.card form textarea {min-height:90px;}
 .community-discussion article {border-top:1px solid #334155;margin-top:16px;padding-top:8px;}
 .community-account input,.community-discussion input,.community-discussion textarea,details.card form input,details.card form textarea {background:#171c2b;color:#e7e9f1;border:1px solid #34394b;border-radius:8px;padding:10px;font:inherit;}
+
+/* Home entry and map-local details; existing planner/storage remain shared. */
+.a2bc-home{display:grid;gap:20px}.home-intro{padding:32px;background:linear-gradient(120deg,#27243f,#171c27)}
+.home-intro h1{font-size:clamp(24px,4vw,40px);margin:14px 0}.home-intro p{margin-bottom:22px}
+.home-destinations{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.home-destinations article{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:24px}
+.home-destinations h2,.home-shortcuts h2{font-size:19px}.home-destinations p{flex:1;color:var(--muted);line-height:1.7}
+.home-shortcuts{padding:24px}.home-shortcuts>div{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.terrain-map-frame{position:relative}.terrain-marker-card{position:absolute;bottom:12px;left:12px;z-index:2;width:min(380px,calc(100% - 24px));max-height:45%;overflow:auto;background:#161b27f5;border:1px solid #5eead466;border-radius:12px;padding:14px;box-shadow:0 8px 24px #0008}
+.terrain-marker-card h3{margin:4px 0;font-size:17px}.terrain-marker-card h4{margin:12px 0 8px}.terrain-marker-card p{font-size:12px;margin:6px 0}.terrain-marker-card>button:first-child{float:right}.terrain-marker-card>button{margin:3px}.terrain-marker-card .map-check{font-size:13px}
+@media(max-width:700px){.home-destinations{grid-template-columns:1fr}.home-intro{padding:22px}.terrain-marker-card{position:relative;bottom:auto;left:auto;width:100%;max-height:320px;margin-top:8px}}
+.page-tabs{max-width:100%;overflow-x:auto}.page-tabs>button{flex-shrink:0}

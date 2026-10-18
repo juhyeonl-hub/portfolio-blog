@@ -41,3 +41,11 @@ export function previewGatherKinds(rows: SpawnPreview[]) {
   for(const row of rows)if(row.kind==='gather')counts.set(row.name,(counts.get(row.name) ?? 0)+1);
   return [...counts].sort(([a],[b])=>a.localeCompare(b,'en')).map(([name,count])=>({name,count}));
 }
+
+/** Same-map, planar proximity only; caller supplies the full region, not filtered layers. */
+export function nearestTeleports(rows: SpawnPreview[], target: SpawnPreview) {
+  return rows.filter(row=>row.kind==='teleport' && row.id!==target.id)
+    .map(row=>({row,distance:(row.x-target.x)**2+(row.y-target.y)**2}))
+    .sort((a,b)=>a.distance-b.distance || a.row.id.localeCompare(b.row.id))
+    .slice(0,3).map(item=>item.row);
+}

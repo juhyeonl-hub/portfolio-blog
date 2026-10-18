@@ -9,6 +9,7 @@ with sync_playwright() as p:
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
  page.goto(URL)
+ page.get_by_role('tab',name='빌드 선택',exact=True).click()
  for key,name in zip(['assassin','gladiator','templar','ranger','elementalist','sorcerer','cleric','chanter'],['살성','검성','수호성','궁성','정령성','마도성','치유성','호법성']):
   page.locator('.class-picker button').filter(has_text=name).click()
   expect(page.get_by_role('region',name='간편 빌드 선택')).to_be_visible()
@@ -35,6 +36,7 @@ with sync_playwright() as p:
   if before:assert restored==json.loads(before)
   else:assert restored.get('pointBudget')!=saved['pointBudget']
   page.reload()
+  page.get_by_role('tab',name='빌드 선택',exact=True).click()
   expect(page.get_by_role('region',name='간편 빌드 선택')).to_be_visible()
   assert json.loads(page.evaluate('(key)=>localStorage.getItem(key)',storage))==restored
  page.set_viewport_size({'width':390,'height':844})
