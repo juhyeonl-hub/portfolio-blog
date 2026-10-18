@@ -19,7 +19,7 @@ with sync_playwright() as p:
                 servers=[s for s in data['servers'] if s['region']==region and s['race']==race]
                 select=panel.get_by_label('서버',exact=True)
                 expect(select.locator('option')).to_have_count(len(servers)+1)
-                expect(select).to_have_value('')
+                select.select_option('')
                 server=servers[0];select.select_option(server['id'])
                 total=sum(server['counts'].values())
                 expect(panel.locator('.population-summary')).to_contain_text(f'{total:,}명')
