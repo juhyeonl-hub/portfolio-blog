@@ -137,8 +137,8 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       {query.trim() && <p role="status">검색 결과 {matches.length}개</p>}
     </div>}
     </div>
-    {<div className="terrain-controls">
-      <div><strong>지도 표시 항목</strong>
+    {<details className="terrain-controls" open>
+      <summary>지도 표시 항목</summary><div>
       <button className="button secondary" disabled={previewLoading} aria-expanded={previewOn} onClick={()=>void togglePreview()}>
         {previewLoading?'위치 자료 불러오는 중':previewOn?'마커 숨기기':'마커 보기'}</button>
       {previewError && <p role="alert">위치 자료를 불러오지 못했습니다. 다시 시도해 주세요.</p>}
@@ -193,7 +193,7 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
 
       </>}
       </div>
-    </div>}
+    </details>}
     {open && <div className="terrain-stage">
       <div className="map-toolbar"><button className="button ghost" aria-label="지형 지도 축소" disabled={view.zoom===1} onClick={()=>setView(v=>zoomMap(v,v.zoom/2))}>−</button>
         <span>{Number(view.zoom.toFixed(1))}배</span><button className="button ghost" aria-label="지형 지도 확대" disabled={view.zoom===8} onClick={()=>setView(v=>zoomMap(v,v.zoom*2))}>+</button>

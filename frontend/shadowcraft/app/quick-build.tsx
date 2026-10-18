@@ -14,8 +14,8 @@ export default function QuickBuild({catalog,plan,onApply,onEdit}:{catalog:Catalo
  function invalidate(){setPreview(null);setError('')}
  function prepare(){try{setPreview({source:plan,catalog,next:recommendBuild(catalog,{...plan,mode,level,pointBudget:points,ascensionGrade3Confirmed:ascended})});setError('')}catch{setError('배분을 만들지 못했습니다. 레벨과 포인트를 확인해 주세요.')}}
  return <section className="panel quick-build" aria-label="간편 빌드 선택">
-  <h2>빌드를 고르고, 한 번에 적용하세요</h2>
-  <p>스킬·특화·데바니온을 함께 배분합니다. 캐릭터 연결이나 장비 입력 없이도 먼저 살펴볼 수 있습니다.</p>
+  <div className="quick-build-heading"><span className="eyebrow">{profile.name} · BUILD PLANNER</span><h2>플레이 스타일을 선택하세요</h2></div>
+  <p>유형을 고르고 미리 본 뒤 적용하세요. 세부 설정은 언제든 조정할 수 있습니다.</p>
   <p className="subtle">현재 제공: 기본 가이드 · 상위 랭커 10명 분석 빌드는 아직 준비되지 않았습니다.</p>
   <div className="quick-build-options">{(['safe','damage'] as const).map(value=><button key={value} aria-pressed={mode===value} className={'button secondary '+(mode===value?'selected':'')} onClick={()=>{setMode(value);invalidate()}}><strong>{value==='safe'?'안정형':'공격형'}</strong><span>{value==='safe'?'생존 능력치도 고려한 보스전 입문':'공격 관련 효과를 우선하는 보스전 배분'}</span><small>{value==='safe'?'공격 효과보다 생존 노드를 더 고려합니다.':'위험한 패턴은 직접 피해야 합니다.'}</small></button>)}</div>
   <p className="subtle">{profile.name}의 핵심 스킬을 우선합니다. {plan.classKey!=='assassin'&&'두 유형의 스킬·스티그마 구성은 같고 데바니온 우선순위가 다릅니다. '}실제 포인트와 장비에 따라 결과가 같을 수 있습니다.</p>
