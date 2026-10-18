@@ -1,11 +1,11 @@
 import {useState} from 'react';
 import icons from '../lib/data/map-icons.json';
+import {mapIconKey} from '../lib/map-icon-key';
 import {previewKinds} from '../lib/spawn-preview';
 
 /** Original PNGs; atlas sprites use their exported baked UV rectangle. */
-export default function MapMarkerIcon({kind,region='',x=0,y=0,size=24}:{kind:string;region?:string;x?:number;y?:number;size?:number}) {
-  const dark=region==='Altgard'||region==='Ishalgen';
-  const key=dark&&(kind==='teleport'||kind==='monolith')?kind+'Dark':kind;
+export default function MapMarkerIcon({kind,region='',objectId,x=0,y=0,size=24}:{kind:string;region?:string;objectId?:number;x?:number;y?:number;size?:number}) {
+  const key=mapIconKey(kind,region,objectId);
   const icon=icons[key as keyof typeof icons];
   const [failed,setFailed]=useState('');
   return <svg x={x} y={y} width={size} height={size} viewBox={icon?.viewBox.join(' ') ?? '0 0 100 100'} overflow="hidden" aria-hidden="true" focusable="false" pointerEvents="none">

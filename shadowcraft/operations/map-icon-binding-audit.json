@@ -1,0 +1,807 @@
+{
+  "buildId": "25926599",
+  "rowCounts": {
+    "UIIcon": 205,
+    "UI_ImageTable": 1189,
+    "UI_ImageTable_Marker": 465
+  },
+  "schemaFix": [
+    "UIIconTableItem.TransparentMapZOrder",
+    "UIImageDataRow.ResourceObject_Global",
+    "UIImageDataRow.ResourceObject_Global_Mobile"
+  ],
+  "imageRows": {
+    "Worldmap_Gather": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Sprite/FWindow_WorldMap/UT_FWindow_WorldMap_Gather_Sprite.UT_FWindow_WorldMap_Gather_Sprite",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_NPC": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Sprite/FWindow_WorldMap/UT_FWindow_WorldMap_NPC_Sprite.UT_FWindow_WorldMap_NPC_Sprite",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_Monster": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Sprite/FWindow_WorldMap/UT_FWindow_WorldMap_Monster_Sprite.UT_FWindow_WorldMap_Monster_Sprite",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_Monster_Boss_Aggressive": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Icon/UT_Marker_Monster_Boss_Aggressive.UT_Marker_Monster_Boss_Aggressive",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_Shop": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Icon/UT_Marker_Shop.UT_Marker_Shop",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_Storage": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Icon/UT_Marker_Storage.UT_Marker_Storage",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_AbyssTeleportArtifact_Unengraved": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Icon/UT_Marker_AbyssTeleportArtifact_Unengraved.UT_Marker_AbyssTeleportArtifact_Unengraved",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_TeleportArtifact_Light_Engraved": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Icon/UT_Marker_TeleportArtifact_Light_Engraved.UT_Marker_TeleportArtifact_Light_Engraved",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_TeleportArtifact_Dark_Engraved": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Icon/UT_Marker_TeleportArtifact_Dark_Engraved.UT_Marker_TeleportArtifact_Dark_Engraved",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_Dungeon": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Icon/UT_Marker_Dungeon.UT_Marker_Dungeon",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_Rift": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Icon/UT_Marker_Rift.UT_Marker_Rift",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_Exploration_Seal": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Icon/UT_Marker_Exploration_Seal.UT_Marker_Exploration_Seal",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_Exploration_OccupationTerritory": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Icon/UT_Marker_Exploration_Occupation.UT_Marker_Exploration_Occupation",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_Monolith_Light": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Icon/UT_Marker_Monolith_Light.UT_Marker_Monolith_Light",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "Worldmap_Monolith_Dark": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Icon/UT_Marker_Monolith_Dark.UT_Marker_Monolith_Dark",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    },
+    "HiddenCube_Popup_Image_HiddenCube": {
+      "ResourceObject": {
+        "AssetPathName": "/Game/UI/Resource/Texture/Item/ETC/P_Img_HiddenCube_01.P_Img_HiddenCube_01",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N[1]": [],
+      "ResourceObject_Global[2]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObject_Mobile[3]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      },
+      "ResourceObjects_L10N_Mobile[4]": [],
+      "ResourceObject_Global_Mobile[5]": {
+        "AssetPathName": "",
+        "SubPathString": ""
+      }
+    }
+  },
+  "iconRows": [
+    {
+      "IconType": "EIconType::Shop",
+      "ImageKeyList[1]": [
+        "NamePlate_Shop",
+        "NamePlate_Shop",
+        "TargetInfo_NPC_Shop",
+        "Action_Shop",
+        "Minimap_Shop",
+        "Worldmap_Shop",
+        "Shop",
+        "None",
+        "None",
+        "Worldmap_Shop"
+      ],
+      "MinimapZOrder[2]": 3,
+      "TransparentMapZOrder[3]": 5
+    },
+    {
+      "IconType": "EIconType::Storage",
+      "ImageKeyList[1]": [
+        "NamePlate_Storage",
+        "NamePlate_Storage",
+        "TargetInfo_NPC_Storage",
+        "Action_Storage",
+        "Minimap_Storage",
+        "Worldmap_Storage",
+        "Storage",
+        "None",
+        "None",
+        "Worldmap_Storage"
+      ],
+      "MinimapZOrder[2]": 3,
+      "TransparentMapZOrder[3]": 5
+    },
+    {
+      "IconType": "EIconType::DefaultEnv",
+      "ImageKeyList[1]": [
+        "None",
+        "None",
+        "None",
+        "Action_Interaction",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "MinimapZOrder[2]": 2,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::HeroMonster",
+      "ImageKeyList[1]": [
+        "None",
+        "None",
+        "None",
+        "None",
+        "Minimap_Monster_Boss_Aggressive",
+        "Worldmap_Monster_Boss_Aggressive",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Monster_Boss_Aggressive"
+      ],
+      "MinimapZOrder[2]": 2,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::LegendMonster",
+      "ImageKeyList[1]": [
+        "None",
+        "None",
+        "None",
+        "None",
+        "Minimap_Monster_Boss_Aggressive",
+        "Worldmap_Monster_Boss_Aggressive",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Monster_Boss_Aggressive"
+      ],
+      "MinimapZOrder[2]": 3,
+      "TransparentMapZOrder[3]": 5
+    },
+    {
+      "IconType": "EIconType::HeroMonster_Aggressive",
+      "ImageKeyList[1]": [
+        "None",
+        "None",
+        "None",
+        "None",
+        "Minimap_Monster_Boss_Aggressive",
+        "Worldmap_Monster_Boss_Aggressive",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Monster_Boss_Aggressive"
+      ],
+      "MinimapZOrder[2]": 4,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::LegendMonster_Aggressive",
+      "ImageKeyList[1]": [
+        "None",
+        "None",
+        "None",
+        "None",
+        "Minimap_Monster_Boss_Aggressive",
+        "Worldmap_Monster_Boss_Aggressive",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Monster_Boss_Aggressive"
+      ],
+      "MinimapZOrder[2]": 5,
+      "TransparentMapZOrder[3]": 5
+    },
+    {
+      "IconType": "EIconType::Dungeon",
+      "ImageKeyList[1]": [
+        "Worldmap_Dungeon",
+        "NamePlate_Dungeon",
+        "NamePlate_Dungeon",
+        "None",
+        "Minimap_Dungeon",
+        "Worldmap_Dungeon",
+        "None",
+        "None",
+        "Contents_Navigator_DailyDungeon",
+        "Worldmap_Dungeon"
+      ],
+      "MinimapZOrder[2]": 3,
+      "TransparentMapZOrder[3]": 5
+    },
+    {
+      "IconType": "EIconType::Gather_Vegetable",
+      "ImageKeyList[1]": [
+        "NamePlate_Gather",
+        "NamePlate_Gather",
+        "TargetInfo_Gather_Vegetable",
+        "Action_Gather",
+        "Minimap_Gather_Force",
+        "Worldmap_Gather",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Gather"
+      ],
+      "MinimapZOrder[2]": 2,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::Gather_Berry",
+      "ImageKeyList[1]": [
+        "NamePlate_Gather",
+        "NamePlate_Gather",
+        "TargetInfo_Gather_Berry",
+        "Action_Gather",
+        "Minimap_Gather_Force",
+        "Worldmap_Gather",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Gather"
+      ],
+      "MinimapZOrder[2]": 2,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::Gather_Shellfish",
+      "ImageKeyList[1]": [
+        "NamePlate_Gather",
+        "NamePlate_Gather",
+        "TargetInfo_Gather_Shellfish",
+        "Action_Gather",
+        "Minimap_Gather_Force",
+        "Worldmap_Gather",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Gather"
+      ],
+      "MinimapZOrder[2]": 2,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::Gather_Metal",
+      "ImageKeyList[1]": [
+        "NamePlate_Gather",
+        "NamePlate_Gather",
+        "TargetInfo_Gather_Metal",
+        "Action_Gather",
+        "Minimap_Gather_Force",
+        "Worldmap_Gather",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Gather"
+      ],
+      "MinimapZOrder[2]": 2,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::Gather_RareMetal",
+      "ImageKeyList[1]": [
+        "NamePlate_Gather",
+        "NamePlate_Gather",
+        "TargetInfo_Gather_RareMetal",
+        "Action_Gather",
+        "Minimap_Gather_Force",
+        "Worldmap_Gather",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Gather"
+      ],
+      "MinimapZOrder[2]": 2,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::Gather_Jewelry",
+      "ImageKeyList[1]": [
+        "NamePlate_Gather",
+        "NamePlate_Gather",
+        "TargetInfo_Gather_Jewelry",
+        "Action_Gather",
+        "Minimap_Gather_Force",
+        "Worldmap_Gather",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Gather"
+      ],
+      "MinimapZOrder[2]": 2,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::Gather_Tree",
+      "ImageKeyList[1]": [
+        "NamePlate_Gather",
+        "NamePlate_Gather",
+        "TargetInfo_Gather_Tree",
+        "Action_Gather",
+        "Minimap_Gather_Force",
+        "Worldmap_Gather",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Gather"
+      ],
+      "MinimapZOrder[2]": 2,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::Gather_Flower",
+      "ImageKeyList[1]": [
+        "NamePlate_Gather",
+        "NamePlate_Gather",
+        "TargetInfo_Gather_Flower",
+        "Action_Gather",
+        "Minimap_Gather_Force",
+        "Worldmap_Gather",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Gather"
+      ],
+      "MinimapZOrder[2]": 2,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::Gather_Herb",
+      "ImageKeyList[1]": [
+        "NamePlate_Gather",
+        "NamePlate_Gather",
+        "TargetInfo_Gather_Herb",
+        "Action_Gather",
+        "Minimap_Gather_Force",
+        "Worldmap_Gather",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Gather"
+      ],
+      "MinimapZOrder[2]": 2,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::Gather_Od",
+      "ImageKeyList[1]": [
+        "NamePlate_Gather",
+        "NamePlate_Gather",
+        "TargetInfo_Gather_Od",
+        "Action_Gather",
+        "Minimap_Gather_Od",
+        "Worldmap_Gather",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Gather"
+      ],
+      "MinimapZOrder[2]": 2,
+      "TransparentMapZOrder[3]": 4
+    },
+    {
+      "IconType": "EIconType::Rift",
+      "ImageKeyList[1]": [
+        "Worldmap_Rift",
+        "None",
+        "None",
+        "None",
+        "Minimap_Rift",
+        "Worldmap_Rift",
+        "None",
+        "None",
+        "Contents_Navigator_Rift",
+        "Worldmap_Rift"
+      ],
+      "MinimapZOrder[2]": 5,
+      "TransparentMapZOrder[3]": 7
+    },
+    {
+      "IconType": "EIconType::Exploration_Seal",
+      "ImageKeyList[1]": [
+        "Exploration_Seal",
+        "None",
+        "None",
+        "None",
+        "Minimap_Exploration_Seal",
+        "Worldmap_Exploration_Seal",
+        "None",
+        "Minimap_Tooltip_Exploration_Seal",
+        "Contents_Navigator_Seal",
+        "Worldmap_Exploration_Seal"
+      ],
+      "MinimapZOrder[2]": 8,
+      "TransparentMapZOrder[3]": 8
+    },
+    {
+      "IconType": "EIconType::Exploration_OccupationTerritory",
+      "ImageKeyList[1]": [
+        "Exploration_OccupationTerritory",
+        "None",
+        "None",
+        "None",
+        "Minimap_Exploration_OccupationTerritory",
+        "Worldmap_Exploration_OccupationTerritory",
+        "None",
+        "Minimap_Tooltip_Exploration_OccupationTerritory",
+        "Contents_Navigator_OccupationTerritory",
+        "Worldmap_Exploration_OccupationTerritory"
+      ],
+      "MinimapZOrder[2]": 8,
+      "TransparentMapZOrder[3]": 8
+    },
+    {
+      "IconType": "EIconType::TeleportArtifact_Working_Engraved_Light",
+      "ImageKeyList[1]": [
+        "Worldmap_TeleportArtifact_Light_Engraved",
+        "None",
+        "None",
+        "None",
+        "Minimap_TeleportArtifact_Light_Engraved",
+        "Worldmap_TeleportArtifact_Light_Engraved",
+        "None",
+        "None",
+        "None",
+        "Worldmap_TeleportArtifact_Light_Engraved"
+      ],
+      "MinimapZOrder[2]": 5,
+      "TransparentMapZOrder[3]": 7
+    },
+    {
+      "IconType": "EIconType::TeleportArtifact_Working_Engraved_Dark",
+      "ImageKeyList[1]": [
+        "Worldmap_TeleportArtifact_Dark_Engraved",
+        "None",
+        "None",
+        "None",
+        "Minimap_TeleportArtifact_Dark_Engraved",
+        "Worldmap_TeleportArtifact_Dark_Engraved",
+        "None",
+        "None",
+        "None",
+        "Worldmap_TeleportArtifact_Dark_Engraved"
+      ],
+      "MinimapZOrder[2]": 5,
+      "TransparentMapZOrder[3]": 7
+    },
+    {
+      "IconType": "EIconType::Monolith_Light_Unlock",
+      "ImageKeyList[1]": [
+        "Worldmap_Monolith_Light",
+        "None",
+        "None",
+        "None",
+        "Minimap_Monolith_Light",
+        "Worldmap_Monolith_Light",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Monolith_Light"
+      ],
+      "MinimapZOrder[2]": 1,
+      "TransparentMapZOrder[3]": 3
+    },
+    {
+      "IconType": "EIconType::Monolith_Dark_Unlock",
+      "ImageKeyList[1]": [
+        "Worldmap_Monolith_Dark",
+        "None",
+        "None",
+        "None",
+        "Minimap_Monolith_Dark",
+        "Worldmap_Monolith_Dark",
+        "None",
+        "None",
+        "None",
+        "Worldmap_Monolith_Dark"
+      ],
+      "MinimapZOrder[2]": 1,
+      "TransparentMapZOrder[3]": 3
+    },
+    {
+      "IconType": "EIconType::TeleportArtifact_Working_NotEngraved_Blue",
+      "ImageKeyList[1]": [
+        "Worldmap_AbyssTeleportArtifact_Unengraved",
+        "None",
+        "None",
+        "None",
+        "Minimap_AbyssTeleportArtifact_Unengraved",
+        "Worldmap_AbyssTeleportArtifact_Unengraved",
+        "None",
+        "None",
+        "None",
+        "Worldmap_AbyssTeleportArtifact_Unengraved"
+      ],
+      "MinimapZOrder[2]": 0,
+      "TransparentMapZOrder[3]": 0
+    },
+    {
+      "IconType": "EIconType::TeleportArtifact_Working_NotEngraved_Purple",
+      "ImageKeyList[1]": [
+        "Worldmap_AbyssTeleportArtifact_Unengraved",
+        "None",
+        "None",
+        "None",
+        "Minimap_AbyssTeleportArtifact_Unengraved",
+        "Worldmap_AbyssTeleportArtifact_Unengraved",
+        "None",
+        "None",
+        "None",
+        "Worldmap_AbyssTeleportArtifact_Unengraved"
+      ],
+      "MinimapZOrder[2]": 0,
+      "TransparentMapZOrder[3]": 0
+    }
+  ],
+  "sourceHashes": {
+    "UIIcon": "d0bd90dcd832027134b23c14e0df929c06a1d0009f0ce34d8418a4d91b975051",
+    "UI_ImageTable": "102af4abaec4d10fcdfb78773d00d1880e6866532a1c6926614646830ec21916",
+    "UI_ImageTable_Marker": "a5a4f5378b52bf5ed693fa724761d62aa13ba3c56f604d485674ef34ad6f18c1"
+  },
+  "unresolved": {
+    "cube": "Only popup/item art resolved. No dedicated world-map image assignment located.",
+    "trace": "No dedicated world-map image assignment located. Do not substitute wing equipment or MonolithFragment icons."
+  },
+  "sourceScope": "Read-only local schema metadata from the running Steam game; installed asset tables redecoded. No account/session data, memory dumps or addresses included.",
+  "npcPolicy": "NpcData.NpcSubType HeroMonster -> UIIcon HeroMonster world-map key. Citizen BuySell/Storage -> general Shop/Storage role icons; specialized shop inventory icon variants are not inferred."
+}

@@ -1,0 +1,104 @@
+[
+  {
+    "Name": "UIImageDataRow",
+    "Super": "TableRowBase",
+    "Properties": [
+      {
+        "Name": "ResourceObject",
+        "Type": "SoftObjectProperty",
+        "Signature": "SoftObject",
+        "ArrayDim": 1,
+        "Offset": 8,
+        "Flags": 7881299347898373
+      },
+      {
+        "Name": "ResourceObjects_L10N",
+        "Type": "MapProperty",
+        "Signature": "Map",
+        "ArrayDim": 1,
+        "Offset": 48,
+        "Flags": 5629499534213125
+      },
+      {
+        "Name": "ResourceObject_Global",
+        "Type": "SoftObjectProperty",
+        "Signature": "SoftObject",
+        "ArrayDim": 1,
+        "Offset": 128,
+        "Flags": 7881299347898373
+      },
+      {
+        "Name": "ResourceObject_Mobile",
+        "Type": "SoftObjectProperty",
+        "Signature": "SoftObject",
+        "ArrayDim": 1,
+        "Offset": 168,
+        "Flags": 7881299347898373
+      },
+      {
+        "Name": "ResourceObjects_L10N_Mobile",
+        "Type": "MapProperty",
+        "Signature": "Map",
+        "ArrayDim": 1,
+        "Offset": 208,
+        "Flags": 5629499534213125
+      },
+      {
+        "Name": "ResourceObject_Global_Mobile",
+        "Type": "SoftObjectProperty",
+        "Signature": "SoftObject",
+        "ArrayDim": 1,
+        "Offset": 288,
+        "Flags": 7881299347898373
+      }
+    ]
+  },
+  {
+    "Name": "TableRowBase",
+    "Super": null,
+    "Properties": []
+  },
+  {
+    "Name": "UIIconTableItem",
+    "Super": "AionTableItem",
+    "Properties": [
+      {
+        "Name": "IconType",
+        "Type": "EnumProperty",
+        "Signature": "Enum<EIconType>",
+        "ArrayDim": 1,
+        "Offset": 8,
+        "Flags": 6755469234274816
+      },
+      {
+        "Name": "ImageKeyList",
+        "Type": "ArrayProperty",
+        "Signature": "Array<Name>",
+        "ArrayDim": 1,
+        "Offset": 16,
+        "Flags": 4503599627371008
+      },
+      {
+        "Name": "MinimapZOrder",
+        "Type": "IntProperty",
+        "Signature": "Int",
+        "ArrayDim": 1,
+        "Offset": 32,
+        "Flags": 6755469234274816
+      },
+      {
+        "Name": "TransparentMapZOrder",
+        "Type": "IntProperty",
+        "Signature": "Int",
+        "ArrayDim": 1,
+        "Offset": 36,
+        "Flags": 6755469234274816
+      }
+    ]
+  },
+  {
+    "Name": "AionTableItem",
+    "Super": null,
+    "Properties": []
+  }
+]

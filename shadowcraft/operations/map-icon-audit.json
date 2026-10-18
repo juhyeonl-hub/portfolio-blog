@@ -163,12 +163,13 @@
     "teleport": "WorldMapFilterType TeleportArtifact ImageLight/ImageDark; glyph does not represent player unlock state",
     "sealed": "Exploration Seal IncompleteIconType and corresponding texture name",
     "stronghold": "Exploration OccupationTerritory IncompleteIconType and Occupation texture name",
-    "npc": "FWindow_WorldMap NPC PaperSprite baked UV rectangle",
-    "named": "FWindow_WorldMap Monster PaperSprite; generic monster, not guessed boss classification",
+    "npc": "Default official Worldmap_NPC; BuySell and Storage have object-ID role overrides. See map-icon-binding-audit.json.",
+    "named": "NpcData HeroMonster/LegendMonster -> UIIcon HeroMonster/LegendMonster -> Worldmap_Monster_Boss_Aggressive. No numeric Grade guessing.",
     "cube": "HiddenCube_01 item texture; not certified world-map glyph",
-    "trace": "Generic official Envobj marker; dedicated feather glyph not resolved"
+    "trace": "Generic official Envobj marker; dedicated feather glyph not resolved",
+    "gather": "Corrected to UI_ImageTable_Marker.Worldmap_Gather -> official FWindow_WorldMap Gather sprite, not TargetInfo_Gather texture"
   },
-  "unresolved": "UIIcon.dat schema mismatch; UI_ImageTable_Marker exported no rows. No inferred dedicated trace icon.",
+  "unresolved": "UIIcon and UIImageDataRow schema mismatch resolved via read-only live structural metadata; tables now decode 205/1189/465 rows. Dedicated cube/trace world-map assignments remain unresolved.",
   "coordinateStatus": "Unchanged; user approximate visual match is not independent control-point certification",
   "sprites": {
     "NPC": {
@@ -201,5 +202,6 @@
         "ObjectPath": "/Game/UI/Resource/Sprite/FWindow_WorldMap/Atlas_FWindow_WorldMap.1"
       }
     }
-  }
+  },
+  "currentBindings": "map-icon-binding-audit.json; runtime display manifest frontend/shadowcraft/lib/data/map-icons.json contains current hashes/UVs; original file entries retained as export history."
 }

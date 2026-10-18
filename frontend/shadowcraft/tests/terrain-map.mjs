@@ -179,3 +179,14 @@ for(const icon of Object.values(mapIcons)){
  assert.equal(bytes.readUInt32BE(16),icon.width);assert.equal(bytes.readUInt32BE(20),icon.height);
  const [x,y,w,h]=icon.viewBox;assert.ok(x>=0&&y>=0&&w>0&&h>0&&x+w<=icon.width&&y+h<=icon.height);
 }
+const npcIcons=JSON.parse(readFileSync('lib/data/map-npc-icons.json'));
+const {mapIconKey}=await import(moduleUrl(readFileSync('lib/map-icon-key.ts','utf8').replace("import npcIcons from './data/map-npc-icons.json';",'const npcIcons='+JSON.stringify(npcIcons)+';')));
+for(const [id,kind] of Object.entries(npcIcons))assert.equal(mapIconKey('npc','Verteron',Number(id)),kind);
+assert.equal(mapIconKey('gather','Verteron',Number(Object.keys(npcIcons)[0])),'gather');
+assert.equal(mapIconKey('npc','Verteron',-1),'npc');
+assert.equal(mapIconKey('teleport','Chaotic Lower Reshanta'),'teleportAbyss');
+assert.equal(mapIconKey('teleport','Chaotic Middle Reshanta'),'teleportAbyss');
+assert.equal(mapIconKey('teleport','Altgard'),'teleportDark');
+assert.equal(mapIconKey('monolith','Ishalgen'),'monolithDark');
+assert.deepEqual(mapIcons.gather.viewBox,[238,106,100,100]);
+assert.equal(mapIcons.gather.src,mapIcons.npc.src);

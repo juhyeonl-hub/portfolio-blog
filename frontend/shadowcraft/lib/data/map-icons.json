@@ -24,16 +24,16 @@
     "sha256": "5123a524e3e7b8647f1944608baf228c38ea9bf6178e03643e31e48d649cc2f8"
   },
   "gather": {
-    "src": "/shadowcraft/maps/steam-25926599/icons/Gather.png",
-    "width": 128,
-    "height": 128,
+    "src": "/shadowcraft/maps/steam-25926599/icons/worldmap-atlas.png",
+    "width": 512,
+    "height": 512,
     "viewBox": [
-      0,
-      0,
-      128,
-      128
+      238,
+      106,
+      100,
+      100
     ],
-    "sha256": "4fe34bd60d1cbe287a79937b9c1b44d2f270d6581d1eb3b34c154614587a3619"
+    "sha256": "43b4bb9553393cefd98e4e2b1eb85dc4f8611f8dd87d1ccff135aa14b5c7e59a"
   },
   "sealed": {
     "src": "/shadowcraft/maps/steam-25926599/icons/Exploration_Seal.png",
@@ -144,15 +144,51 @@
     "sha256": "43b4bb9553393cefd98e4e2b1eb85dc4f8611f8dd87d1ccff135aa14b5c7e59a"
   },
   "named": {
-    "src": "/shadowcraft/maps/steam-25926599/icons/worldmap-atlas.png",
-    "width": 512,
-    "height": 512,
+    "src": "/shadowcraft/maps/steam-25926599/icons/Worldmap_Monster_Boss_Aggressive.png",
+    "width": 128,
+    "height": 128,
     "viewBox": [
-      238,
-      2,
-      100,
-      100
+      0,
+      0,
+      128,
+      128
     ],
-    "sha256": "43b4bb9553393cefd98e4e2b1eb85dc4f8611f8dd87d1ccff135aa14b5c7e59a"
+    "sha256": "4c1e79f1e6062fe88967965ee005d9b84601a6c66b928a7bc7fca10da9ecdd68"
+  },
+  "shop": {
+    "src": "/shadowcraft/maps/steam-25926599/icons/Worldmap_Shop.png",
+    "width": 128,
+    "height": 128,
+    "viewBox": [
+      0,
+      0,
+      128,
+      128
+    ],
+    "sha256": "67e53b9691a132fa676ef3a7f3770ff67b7082b554a510aa99acb11158b0860e"
+  },
+  "storage": {
+    "src": "/shadowcraft/maps/steam-25926599/icons/Worldmap_Storage.png",
+    "width": 128,
+    "height": 128,
+    "viewBox": [
+      0,
+      0,
+      128,
+      128
+    ],
+    "sha256": "fa95b11df908c2cd4f046eb4651c8a9500c7c389c72825fe651cc1bd479930fd"
+  },
+  "teleportAbyss": {
+    "src": "/shadowcraft/maps/steam-25926599/icons/Worldmap_AbyssTeleportArtifact_Unengraved.png",
+    "width": 128,
+    "height": 128,
+    "viewBox": [
+      0,
+      0,
+      128,
+      128
+    ],
+    "sha256": "2fec92e7dba14c33b7c6c24a6720271f353325e85456d890c8add1ce0fc86f01"
   }
 }
