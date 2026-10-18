@@ -90,3 +90,17 @@ for (const map of preview.maps) {
  if(['Verteron','Altgard'].includes(map.name))assert.deepEqual(map.namedAudit,{spawners:24,exactFieldTableMatches:24});
  assert.equal(map.plane.uiTileLayoutVerified,true);assert.equal(map.plane.worldProjectionVerified,false);
 }
+
+// Multi-select is a union, intersects text search, and an empty selection hides everything.
+for (const map of preview.maps) {
+ const enabled=new Set(['cube','teleport']);
+ const selected=previewMatches(map.markers,enabled,'');
+ assert.deepEqual(selected,map.markers.filter(row=>enabled.has(row.kind)));
+ assert.equal(previewMatches(map.markers,new Set(),'').length,0);
+ assert.deepEqual(previewMatches(map.markers,enabled,'HIDDEN CUBE'),
+   map.markers.filter(row=>row.kind==='cube' && row.name.toLowerCase().includes('hidden cube')));
+ // Layer labels must not change the canonical completion-storage identity.
+ const progress=previewProgressDataset(map.name,map.markers);
+ assert.deepEqual(progress.categories.map(c=>c.name),
+   ['이동 지점','채집물','네임드 몬스터','NPC','던전 입구','균열','모노리스','큐브','Empyrean Trace']);
+}

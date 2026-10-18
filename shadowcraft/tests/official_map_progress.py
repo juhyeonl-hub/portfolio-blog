@@ -17,7 +17,8 @@ with sync_playwright() as p:
         expect(panel.get_by_role('button',name='실험 위치 숨기기',exact=True)).to_be_visible()
         return panel
     panel=open_map()
-    panel.get_by_label('실험 위치 종류',exact=True).select_option('npc')
+    panel.get_by_role('button',name='항목 전체 끄기',exact=True).click()
+    panel.get_by_role('checkbox',name='NPC',exact=True).check()
     choices=panel.get_by_label('실험 위치 선택',exact=True)
     first=choices.locator('option').nth(1).get_attribute('value')
     panel.get_by_role('button',name='위치 다음 페이지',exact=True).click()
@@ -34,7 +35,8 @@ with sync_playwright() as p:
     expect(panel.get_by_label('이 위치 확인 완료',exact=True)).to_have_count(0)
     panel.get_by_label('확인한 위치 숨기기',exact=True).uncheck()
     expect(panel.get_by_label('이 위치 확인 완료',exact=True)).to_be_checked()
-    panel.get_by_label('실험 위치 종류',exact=True).select_option('named')
+    panel.get_by_role('button',name='항목 전체 끄기',exact=True).click()
+    panel.get_by_role('checkbox',name='네임드 몬스터',exact=True).check()
     panel.get_by_role('button',name='지형 전체 보기',exact=True).click()
     marker=panel.locator('[data-preview-marker="named"]').first
     marker.focus();page.keyboard.press('Enter')
@@ -48,7 +50,7 @@ with sync_playwright() as p:
     assert page.evaluate('(k)=>localStorage.getItem(k)',key)==saved
     for slug,count in [('poeta',55),('ishalgen',70),('reshanta-lower',548),('reshanta-middle',196)]:
         panel=open_map(slug)
-        panel.get_by_label('실험 위치 종류',exact=True).select_option('all')
+        panel.get_by_role('button',name='항목 전체 켜기',exact=True).click()
         expect(panel.locator('[data-preview-marker]')).to_have_count(min(400,count))
         choices=panel.get_by_label('실험 위치 선택',exact=True)
         choices.select_option(choices.locator('option').nth(1).get_attribute('value'))

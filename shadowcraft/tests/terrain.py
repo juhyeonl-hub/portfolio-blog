@@ -34,6 +34,18 @@ with sync_playwright() as p:
         if len({u for u,status in tiles if status==200})==64: break
         page.wait_for_timeout(100)
     assert len({u for u,status in tiles if status==200})==64
+    # Wheel zoom anchors at the cursor and must not scroll the page.
+    canvas.scroll_into_view_if_needed()
+    box=canvas.bounding_box()
+    page.mouse.move(box['x']+box['width']*.25,box['y']+box['height']*.25)
+    scroll=page.evaluate('scrollY')
+    page.mouse.wheel(0,-120)
+    expect(canvas).to_have_attribute('viewBox',__import__('re').compile(r'.* 500 500$'))
+    coords=list(map(float,canvas.get_attribute('viewBox').split()))
+    assert abs(coords[0]-125)<2 and abs(coords[1]-125)<2,coords
+    assert abs(page.evaluate('scrollY')-scroll)<2
+    page.mouse.wheel(0,120)
+    expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
     panel.get_by_role('button',name='지형 지도 확대',exact=True).click()
     expect(canvas).to_have_attribute('viewBox','250 250 500 500')
     expect(canvas.locator('image')).to_have_count(16)
@@ -116,8 +128,22 @@ with sync_playwright() as p:
     panel.get_by_role('button',name='실험 위치 보기',exact=True).click()
     expect(panel.get_by_role('button',name='실험 위치 숨기기',exact=True)).to_be_visible()
     expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(61)
-    panel.get_by_label('실험 위치 종류',exact=True).select_option('gather')
+    panel.get_by_role('button',name='항목 전체 끄기',exact=True).click()
+    panel.get_by_role('checkbox',name='채집물',exact=True).check()
     expect(panel.locator('[data-preview-marker="gather"]')).to_have_count(400)
+    # Independent layers combine, then toggle off without affecting the others.
+    panel.get_by_role('button',name='항목 전체 끄기',exact=True).click()
+    expect(panel.locator('[data-preview-marker]')).to_have_count(0)
+    expect(panel.get_by_text('표시할 항목을 체크해 주세요.',exact=True)).to_be_visible()
+    panel.get_by_role('checkbox',name='이동 지점',exact=True).check()
+    panel.get_by_role('checkbox',name='네임드 몬스터',exact=True).check()
+    expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(61)
+    expect(panel.locator('[data-preview-marker="named"]')).to_have_count(24)
+    panel.get_by_role('checkbox',name='이동 지점',exact=True).uncheck()
+    expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(0)
+    expect(panel.locator('[data-preview-marker="named"]')).to_have_count(24)
+    panel.get_by_role('button',name='항목 전체 끄기',exact=True).click()
+    panel.get_by_role('checkbox',name='채집물',exact=True).check()
     panel.get_by_label('실험 위치 검색',exact=True).fill('no such item 12345')
     expect(panel.locator('[data-preview-marker]')).to_have_count(0)
     panel.get_by_label('실험 위치 검색',exact=True).fill('')

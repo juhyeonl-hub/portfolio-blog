@@ -1,8 +1,8 @@
 import type {MapView} from './world-map';
 export type SpawnPreview = {id:string;name:string;kind:string;x:number;y:number;world:number[];spawnId:string;objectId:number};
-export function previewMatches(rows: SpawnPreview[], kind: string, query: string) {
+export function previewMatches(rows: SpawnPreview[], kind: string | ReadonlySet<string>, query: string) {
   const words=query.trim().toLowerCase().split(/\s+/).filter(Boolean);
-  return rows.filter(row=>(kind==='all' || row.kind===kind) && words.every(word=>row.name.toLowerCase().includes(word)));
+  return rows.filter(row=>(typeof kind === 'string' ? kind==='all' || row.kind===kind : kind.has(row.kind)) && words.every(word=>row.name.toLowerCase().includes(word)));
 }
 export function visiblePreview(rows: SpawnPreview[], view: MapView) {
   const size=1000/view.zoom;
