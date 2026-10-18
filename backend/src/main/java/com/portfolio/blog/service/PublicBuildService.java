@@ -23,14 +23,19 @@ public class PublicBuildService {
     }
     public record Listing(List<ObjectNode> items,int page,long totalElements,long totalPages) {}
     public Listing list(boolean admin,String key,String query,int page) {
+        return list(admin,key,query,page,"","latest");
+    }
+    public Listing list(boolean admin,String key,String query,int page,String author,String sort) {
+        if(!author.isEmpty())validId(author);
+        if(!Set.of("latest","votes").contains(sort))bad("정렬 조건을 확인하세요.");
         if(page<0||page>10000||query.length()>80)bad("검색 조건을 확인하세요.");
         if(!key.isEmpty())catalogs.profile(key);
-        String where=" WHERE (? = TRUE OR published = TRUE) AND (? = '' OR class_key = ?) AND LOWER(title) LIKE ? ESCAPE '!'";
+        String where=" WHERE (? = TRUE OR published = TRUE) AND (? = '' OR class_key = ?) AND LOWER(title) LIKE ? ESCAPE '!' AND (? = '' OR author_id = ?)";
         String search="%"+query.toLowerCase(Locale.ROOT).replace("!","!!").replace("%","!%").replace("_","!_")+"%";
-        Long count=jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_public_builds"+where,Long.class,admin,key,key,search);
-        var rows=jdbc.query("SELECT b.*, (SELECT username FROM shadowcraft_members WHERE id=b.author_id) AS author, (SELECT COUNT(*) FROM shadowcraft_build_votes WHERE build_id=b.id) AS votes FROM shadowcraft_public_builds b"+where+" ORDER BY updated_at DESC,id LIMIT 20 OFFSET ?",(r,n)->{
+        Long count=jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_public_builds"+where,Long.class,admin,key,key,search,author,author);
+        var rows=jdbc.query("SELECT b.*, (SELECT username FROM shadowcraft_members WHERE id=b.author_id) AS author, (SELECT COUNT(*) FROM shadowcraft_build_votes WHERE build_id=b.id) AS votes FROM shadowcraft_public_builds b"+where+(sort.equals("votes")?" ORDER BY votes DESC,updated_at DESC,id":" ORDER BY updated_at DESC,id")+" LIMIT 20 OFFSET ?",(r,n)->{
             ObjectNode row=mapper.createObjectNode();row.put("authorId",r.getString("author_id")).put("author",r.getString("author")).put("votes",r.getLong("votes"));row.put("id",r.getString("id")).put("title",r.getString("title")).put("description",r.getString("description")).put("classKey",r.getString("class_key")).put("catalogVersion",r.getString("catalog_version")).put("published",r.getBoolean("published")).put("revision",r.getLong("revision")).put("updatedAt",r.getTimestamp("updated_at").toInstant().toString());return row;
-        },admin,key,key,search,page*20);
+        },admin,key,key,search,author,author,page*20);
         return new Listing(rows,page,count==null?0:count,count==null?0:(count+19)/20);
     }
     public ObjectNode get(String id,boolean admin) {

@@ -90,4 +90,17 @@ class CommunityControllerTest {
   assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_build_votes",Integer.class)).isEqualTo(1);
  }
 
+ @Test void authorFilterAndRecommendationOrder()throws Exception {
+  String one=register("filter_one"),two=register("filter_two"),first=create(one),second=create(two);
+  mvc.perform(put(API+"/builds/"+first+"/vote").header("Authorization","Bearer "+two)).andExpect(status().isOk());
+  String author=jdbc.queryForObject("SELECT id FROM shadowcraft_members WHERE username='filter_one'",String.class);
+  mvc.perform(get(PUBLIC).param("sort","votes")).andExpect(status().isOk()).andExpect(jsonPath("$.items[0].id").value(first));
+  mvc.perform(get(PUBLIC).param("author",author)).andExpect(status().isOk()).andExpect(jsonPath("$.totalElements").value(1)).andExpect(jsonPath("$.items[0].id").value(first));
+  mvc.perform(get(PUBLIC).param("author","invalid")).andExpect(status().isBadRequest());
+  mvc.perform(get(PUBLIC).param("sort","unknown")).andExpect(status().isBadRequest());
+  var revised=payload().put("revision",0);((ObjectNode)revised.path("shared").path("plan")).put("level",44);
+  mvc.perform(put(API+"/builds/"+first).header("Authorization","Bearer "+one).contentType("application/json").content(revised.toString())).andExpect(status().isOk()).andExpect(jsonPath("$.shared.plan.level").value(44)).andExpect(jsonPath("$.votes").value(1));
+  mvc.perform(get(PUBLIC+"/"+second)).andExpect(jsonPath("$.shared.plan.level").value(45));
+ }
+
 }

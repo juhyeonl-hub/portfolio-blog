@@ -14,7 +14,7 @@ public class PublicBuildController {
     private final PublicBuildService service;private final ObjectMapper mapper;
     public PublicBuildController(PublicBuildService service,ObjectMapper mapper){this.service=service;this.mapper=mapper;}
     @GetMapping("/api/public/shadowcraft/builds")
-    public ResponseEntity<?> list(@RequestParam(defaultValue="",name="class")String key,@RequestParam(defaultValue="")String q,@RequestParam(defaultValue="0")int page){return response(service.list(false,key,q,page));}
+    public ResponseEntity<?> list(@RequestParam(defaultValue="",name="class")String key,@RequestParam(defaultValue="")String q,@RequestParam(defaultValue="0")int page,@RequestParam(defaultValue="")String author,@RequestParam(defaultValue="latest")String sort){return response(service.list(false,key,q,page,author,sort));}
     @GetMapping("/api/admin/shadowcraft/builds")
     public ResponseEntity<?> adminList(@RequestParam(defaultValue="",name="class")String key,@RequestParam(defaultValue="")String q,@RequestParam(defaultValue="0")int page){return response(service.list(true,key,q,page));}
     @GetMapping("/api/public/shadowcraft/builds/{id}")

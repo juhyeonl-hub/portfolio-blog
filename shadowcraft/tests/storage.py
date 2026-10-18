@@ -5,15 +5,21 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
 ROOT=Path(__file__).resolve().parents[2]
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
+def open_settings(page):
+ page.locator('.sidebar .nav').filter(has_text='스킬 & 특화').click()
+ page.locator('.planner-context summary').click()
+ if page.locator('.point-entry input').count()==0:
+  page.get_by_role('button',name='내 포인트 입력',exact=False).click()
+
 with sync_playwright() as p:
  browser=p.chromium.launch(headless=True);ctx=browser.new_context();page=ctx.new_page();held=[];errors=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.route('**/api/public/shadowcraft/catalog?*',lambda r:held.append(r))
- page.goto(URL,wait_until='domcontentloaded');page.wait_for_selector('.point-entry input');page.locator('.point-entry input').first.fill('77')
+ page.goto(URL,wait_until='domcontentloaded');open_settings(page);page.wait_for_selector('.point-entry input');page.locator('.point-entry input').first.fill('77')
  assert held
  held[0].fulfill(json=json.loads((ROOT/'backend/src/main/resources/shadowcraft/assassin.json').read_text()))
  expect(page.locator('.point-entry input').first).to_have_value('77')
- page.close();page=ctx.new_page();page.route('**/api/**',lambda r:r.fulfill(status=503,json={'error':'offline'}));page.goto(URL,wait_until='domcontentloaded')
+ page.close();page=ctx.new_page();page.route('**/api/**',lambda r:r.fulfill(status=503,json={'error':'offline'}));page.goto(URL,wait_until='domcontentloaded');open_settings(page)
  expect(page.locator('.point-entry input').first).to_have_value('77')
  page.locator('.sidebar .nav').filter(has_text='업데이트').click()
  before=page.evaluate("localStorage.getItem('shadowcraft-plan-v1')")
@@ -28,7 +34,7 @@ with sync_playwright() as p:
  ctx.close()
  blocked=browser.new_context();blocked.add_init_script("Storage.prototype.getItem=function(){throw new Error('blocked')};Storage.prototype.setItem=function(){throw new Error('blocked')}")
  b=blocked.new_page();b.route('**/api/**',lambda r:r.fulfill(status=503,json={'error':'offline'}));b.on('pageerror',lambda e:errors.append(str(e)))
- b.goto(URL,wait_until='domcontentloaded');b.locator('.point-entry input').first.fill('55')
+ b.goto(URL,wait_until='domcontentloaded');open_settings(b);b.locator('.point-entry input').first.fill('55')
  expect(b.locator('.save-status')).to_contain_text('기기 저장 실패')
  expect(b.locator('.point-entry input').first).to_have_value('55')
  assert not errors,errors

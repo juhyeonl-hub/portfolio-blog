@@ -7,7 +7,7 @@ URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft
 fixture=Path(__file__).resolve().parents[1]/'fixtures/gear-tooltip-preprocessed.png'
 with sync_playwright() as p:
  browser=p.chromium.launch(headless=True)
- context=browser.new_context(permissions=['clipboard-read','clipboard-write']); page=context.new_page(); errors=[]; writes=[]
+ context=browser.new_context(viewport={'width':1440,'height':1400},permissions=['clipboard-read','clipboard-write']); page=context.new_page(); errors=[]; writes=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('request',lambda r:writes.append(r.url) if r.method in ['POST','PUT'] else None)
  page.route('**/api/**',lambda r:r.fulfill(status=503,json={'error':'offline'}))
@@ -19,6 +19,8 @@ with sync_playwright() as p:
  page.keyboard.press('Control+V');page.get_by_role('button',name='인식 중지',exact=True).wait_for(timeout=15000);page.get_by_role('button',name='인식 중지',exact=True).click()
  expect(page.get_by_role('status')).to_contain_text('인식을 중지했습니다')
  box=page.locator('.ocr-image');box.scroll_into_view_if_needed();r=box.bounding_box()
+ # Keep the tall fixture's drag endpoints in the visible viewport below the pinned header.
+ assert page.evaluate('(p)=>document.elementFromPoint(p.x,p.y)?.closest(".ocr-image")!==null',{'x':r['x']+r['width']*.1,'y':r['y']+r['height']*.1})
  page.mouse.move(r['x']+r['width']*.1,r['y']+r['height']*.1);page.mouse.down();page.mouse.move(r['x']+r['width']*.8,r['y']+r['height']*.8,steps=8);page.mouse.up()
  assert '70%' in page.locator('.ocr-selection').get_attribute('style'),page.locator('.ocr-selection').get_attribute('style')
  page.get_by_role('button',name='선택 영역 다시 읽기',exact=True).click();page.get_by_role('button',name='인식 중지',exact=True).click()
