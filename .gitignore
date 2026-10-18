@@ -30,3 +30,6 @@ test-uploads/
 # Local research responses (not reviewed for publication)
 shadowcraft/source-snapshots/
 shadowcraft/operations/__pycache__/
+
+# Shared agent local reports and verification artifacts
+/.agents/

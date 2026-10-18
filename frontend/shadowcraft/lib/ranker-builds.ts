@@ -30,3 +30,23 @@ export function previewRankerBoards(catalog:Catalog,plan:Plan,ranker:Ranker,prof
  for(const skill of catalog.skills){const level=finalLevel(catalog,next,skill);next.specs[skill.id]=(plan.specs[skill.id]||[]).filter(id=>skill.specializations.some(s=>s.id===id&&s.requiredParentLevel<=level)).slice(0,slots(skill,level))}
  return next;
 }
+
+export type RankerEquipment=Ranker['equipment'][number];
+function equipmentBySlot(value:unknown):Map<number,RankerEquipment>|null{
+ if(!Array.isArray(value)||value.length>80)return null;
+ const result=new Map<number,RankerEquipment>();
+ for(const item of value){
+  if(!item||!Number.isSafeInteger(item.id)||item.id<=0||typeof item.name!=='string'||!item.name.length||item.name.length>200||!Number.isSafeInteger(item.slotPos)||item.slotPos<=0||typeof item.slotPosName!=='string'||item.slotPosName.length>80||![item.enchantLevel,item.exceedLevel].every((n:number)=>Number.isSafeInteger(n)&&n>=0&&n<=999)||result.has(item.slotPos))return null;
+  result.set(item.slotPos,item);
+ }
+ return result;
+}
+export function compareRankerEquipment(left:unknown,right:unknown){
+ const a=equipmentBySlot(left),b=equipmentBySlot(right);
+ const slots=[...new Set([...(a?.keys()||[]),...(b?.keys()||[])])].sort((x,y)=>x-y);
+ return {leftValid:a!==null,rightValid:b!==null,rows:slots.map(slot=>{
+  const left=a?.get(slot),right=b?.get(slot);
+  const status=!left||!right?'unknown':left.id===right.id&&left.enchantLevel===right.enchantLevel&&left.exceedLevel===right.exceedLevel?'same':'different';
+  return {slot,left,right,status};
+ })};
+}

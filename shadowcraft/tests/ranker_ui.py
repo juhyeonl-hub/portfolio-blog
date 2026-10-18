@@ -25,6 +25,9 @@ with sync_playwright() as p:
   page.get_by_role('button',name='빌드 적용 전으로 되돌리기',exact=True).click()
   before=page.evaluate('(key)=>localStorage.getItem(key)',key)
   panel.locator('.ranker-list button').first.click()
+  panel.locator('.ranker-preparation > summary').click()
+  expect(panel.locator('.ranker-preparation li')).to_have_count(4)
+  panel.locator('.ranker-preparation > summary').click()
   panel.get_by_role('button',name='데바니온 따라하기 미리보기',exact=True).click()
   expect(panel.get_by_role('button',name='이 데바니온 배치 적용')).to_be_visible()
   assert page.evaluate('(key)=>localStorage.getItem(key)',key)==before
@@ -40,6 +43,24 @@ with sync_playwright() as p:
    page.locator('.class-picker button').filter(has_text=name).click()
    expect(panel.locator('.ranker-list button')).to_have_count(10)
    expect(panel.locator('.ranker-detail')).to_have_count(0)
+   equipment=panel.locator('.ranker-equipment-compare')
+   equipment.locator(':scope > summary').click()
+   first=equipment.get_by_label('기준 캐릭터',exact=True)
+   second=equipment.get_by_label('비교 캐릭터',exact=True)
+   ids=first.locator('option').evaluate_all('(nodes)=>nodes.map(n=>n.value)')
+   assert first.input_value()==ids[0] and second.input_value()==ids[1]
+   old_plan=page.evaluate('(key)=>localStorage.getItem(key)',key)
+   status=equipment.get_by_role('status').inner_text()
+   first.select_option(ids[1]);second.select_option(ids[0])
+   expect(equipment.get_by_role('status')).to_have_text(status)
+   second.select_option(ids[1])
+   expect(equipment.locator('.ranker-equipment-row')).to_have_count(0)
+   expect(equipment.get_by_text('확인된 장비·강화·초월이 같습니다.',exact=True)).to_be_visible()
+   equipment.get_by_role('checkbox').uncheck()
+   assert equipment.locator('.ranker-equipment-row').count()>0
+   assert page.evaluate('(key)=>localStorage.getItem(key)',key)==old_plan
+   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+   equipment.locator(':scope > summary').click()
    panel.locator('.ranker-analysis > summary').click()
    compare=panel.get_by_role('region',name='빌드 구성 비교',exact=True)
    selectors=[compare.get_by_label('기준 구성',exact=True),compare.get_by_label('비교 구성',exact=True)]

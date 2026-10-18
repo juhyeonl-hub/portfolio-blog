@@ -1,3 +1,6 @@
+<!-- shared-agent-workflow-v1 -->
+@AGENT_WORKFLOW.md
+
 # CLAUDE - Project Agent Operating Rules
 
 ---

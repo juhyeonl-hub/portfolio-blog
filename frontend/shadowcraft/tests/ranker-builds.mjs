@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl,plannerUrl,classesUrl,planner} from './modules.mjs';
-const {groupRankers,compareRankerSkills,previewRankerBoards}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
+const {groupRankers,compareRankerSkills,compareRankerEquipment,previewRankerBoards}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
 const c=JSON.parse(readFileSync('lib/data/catalogs/assassin.json'));
 c.classKey='assassin';
 const p={...planner.emptyPlan(c),pointBudget:{sp:9999,stigma:9999,crystal:9999,battle:9999}};
@@ -43,3 +43,17 @@ assert.deepEqual(compareRankerSkills([],['b','a']),{shared:[],leftOnly:[],rightO
 const observedIds=new Set(snapshot.entries.flatMap(r=>r.skills.filter(s=>s.category==='Dp'&&s.equip===1).map(s=>String(s.id))));
 assert.deepEqual(new Set(guides.skills.map(s=>s.id)),observedIds);
 console.log('Ranker comparison: overlap, duplicates, empty/identical sets, immutability and complete observed guidance coverage PASS');
+const ring={id:100,name:'Ring',slotPos:1,slotPosName:'Ring 1',enchantLevel:10,exceedLevel:2};
+const rings=[ring,{...ring,slotPos:2,slotPosName:'Ring 2'}];
+const saved=JSON.stringify(rings);
+assert.deepEqual(compareRankerEquipment(rings,rings).rows.map(r=>r.status),['same','same']);
+assert.equal(compareRankerEquipment([ring],[{...ring,enchantLevel:11}]).rows[0].status,'different');
+assert.equal(compareRankerEquipment([ring],[{...ring,exceedLevel:3}]).rows[0].status,'different');
+assert.equal(compareRankerEquipment([ring],[{...ring,id:101}]).rows[0].status,'different');
+assert.equal(compareRankerEquipment([ring],[]).rows[0].status,'unknown');
+for(const bad of [null,{},[ring,ring],[{...ring,enchantLevel:-1}],[{...ring,slotPos:0}],[{...ring,id:NaN}],[{...ring,name:null}]]){
+ const result=compareRankerEquipment(bad,rings);assert.equal(result.leftValid,false);assert(result.rows.every(r=>r.status==='unknown'));
+}
+assert.deepEqual(compareRankerEquipment([],[]).rows,[]);
+assert.equal(JSON.stringify(rings),saved);
+console.log('Ranker equipment: slot identity, repeated item IDs, level differences, missing/malformed inputs and nonmutation PASS');
