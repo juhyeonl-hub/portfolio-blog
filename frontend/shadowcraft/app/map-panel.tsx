@@ -59,7 +59,7 @@ export default function MapPanel() {
   return <section className="map-panel card" aria-label="지도 탐색">
     <h2>지도 & 수집 기록</h2>
     <TerrainPanel/>
-    <h3>사용자 지도와 수집 기록</h3>
+    <details className="optional-panel"><summary>사용자 지도 파일 가져오기</summary>
     <div className="notice amber-notice">직접 만든 지도 파일을 추가로 열 수 있습니다. 가져온 파일의 위치는 검증되지 않으며, 위 지형 지도의 기록과 따로 저장합니다.</div>
     <label className="map-field">지도 파일 가져오기<input type="file" accept=".json,application/json" aria-label="지도 파일 가져오기" onChange={e => {void importFile(e.target.files?.[0]); e.target.value = '';}}/></label>
     <p>파일은 서버에 전송되지 않습니다. 완료 체크는 이 브라우저에 저장합니다. 새로고침·직업 변경 후에는 같은 지도 파일을 다시 가져오세요.</p>
@@ -93,5 +93,6 @@ export default function MapPanel() {
       {!visible.length && <p role="status">표시할 위치가 없습니다. 검색어와 분류를 확인하세요.</p>}
       {visible.length > 100 && <p>목록은 처음 100개를 표시합니다. 검색어와 분류를 좁혀 주세요.</p>}
     </>}
+    </details>
   </section>;
 }

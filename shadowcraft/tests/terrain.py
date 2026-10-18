@@ -58,7 +58,7 @@ with sync_playwright() as p:
     expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
     assert page.evaluate('JSON.stringify({...localStorage})')==before
     panel.get_by_label('공식 지형 지역',exact=True).select_option('altgard')
-    expect(panel.get_by_role('group')).to_have_count(0)
+    expect(panel.locator('svg[role=group]')).to_have_count(0)
     panel.get_by_role('button',name='공식 Altgard 지형 열기',exact=True).click()
     canvas=panel.get_by_role('group',name='Altgard 지형 이미지',exact=True)
     expect(canvas.locator('circle:not([data-preview-marker])')).to_have_count(71)
@@ -81,7 +81,7 @@ with sync_playwright() as p:
     assert page.evaluate('JSON.stringify({...localStorage})')==before
     for slug,name,count in [('poeta','Poeta',16),('ishalgen','Ishalgen',25),('reshanta-lower','Chaotic Lower Reshanta',16),('reshanta-middle','Chaotic Middle Reshanta',4)]:
         panel.get_by_label('공식 지형 지역',exact=True).select_option(slug)
-        expect(panel.get_by_role('group')).to_have_count(0)
+        expect(panel.locator('svg[role=group]')).to_have_count(0)
         panel.get_by_role('button',name=f'공식 {name} 지형 열기',exact=True).click()
         canvas=panel.get_by_role('group',name=f'{name} 지형 이미지',exact=True)
         expect(canvas.locator(':scope > image')).to_have_count(count)

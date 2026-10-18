@@ -11,6 +11,9 @@ fixture = {'schema': 'a2bc-map-v1', 'region': 'global', 'coordinates': 'normaliz
 url = os.environ.get('SHADOWCRAFT_TEST_URL', 'http://127.0.0.1:5173/lab/shadowcraft/')
 
 def upload(panel, data):
+    details=panel.locator('details.optional-panel')
+    if details.get_attribute('open') is None:
+        details.locator('summary').click()
     panel.get_by_label('지도 파일 가져오기', exact=True).set_input_files(
         {'name': 'synthetic-map.json', 'mimeType': 'application/json', 'buffer': json.dumps(data).encode()})
 
@@ -24,6 +27,7 @@ with sync_playwright() as p:
     page.goto(url)
     page.get_by_role('tab', name='지도 & 수집', exact=True).click()
     panel = page.get_by_role('region', name='지도 탐색', exact=True)
+    panel.locator('details.optional-panel > summary').click()
     expect(panel.get_by_text('표시할 지도가 없습니다', exact=True)).to_be_visible()
     before = page.evaluate("Object.fromEntries(Object.entries(localStorage).filter(([key]) => key.startsWith('shadowcraft-plan-')))")
     upload(panel, fixture)

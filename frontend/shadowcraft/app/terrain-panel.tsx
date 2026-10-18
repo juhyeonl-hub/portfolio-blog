@@ -120,10 +120,10 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
   },[open]);
   const size = 1000 / view.zoom;
   const tiles = visibleTerrainTiles(view, gridSize);
-  return <div>
-    <h3>{terrainName} 지형 지도</h3>
-    <p>공식 글로벌 Steam 클라이언트 · 빌드 {source.buildId} · 지형 이미지 {gridSize * gridSize}개</p>
-    <p>지형을 확대하고 이동할 수 있습니다. 수집물·NPC의 월드 좌표 정합성은 아직 검증 중이며, 아래에서 가져온 사용자 지도와 겹쳐 표시하지 않습니다.</p>
+  return <div className={open?"terrain-workspace terrain-workspace-open":"terrain-workspace"}>
+    <div className="terrain-overview"><h3>{terrainName} 지형 지도</h3>
+    <p className="subtle">위치는 확인 중인 후보입니다. 실제 출현 여부는 게임에서 확인하세요.</p>
+    <details className="terrain-source"><summary>지도 출처와 데이터 안내</summary><p>공식 글로벌 Steam 클라이언트 · 빌드 {source.buildId} · 지형 이미지 {gridSize * gridSize}개. 수집물·NPC의 좌표는 대조 중입니다. 사용자 지도 파일과는 별도로 표시합니다.</p></details>
     <button className="button secondary" aria-expanded={open} onClick={() => {if(open)setOpen(false);else showTerrain();drag.current=null;}}>{open ? '공식 지형 닫기' : `공식 ${terrainName} 지형 열기`}</button>
     {labels.length > 0 && <div className="terrain-search">
       <label>지역명 검색<input type="search" aria-label="공식 지도 지역명 검색" value={query} maxLength={100}
@@ -136,9 +136,9 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       </select></label>
       {query.trim() && <p role="status">검색 결과 {matches.length}개</p>}
     </div>}
-    {<div className="notice">
-      <div><strong>지도 마커 · 위치 확인 중</strong>
-      <p>공식 클라이언트의 후보 위치입니다. 지도상의 위치 정확도는 미검증이며 실제 출현·이용 가능 여부를 뜻하지 않습니다.</p>
+    </div>
+    {<div className="terrain-controls">
+      <div><strong>지도 표시 항목</strong>
       <button className="button secondary" disabled={previewLoading} aria-expanded={previewOn} onClick={()=>void togglePreview()}>
         {previewLoading?'위치 자료 불러오는 중':previewOn?'마커 숨기기':'마커 보기'}</button>
       {previewError && <p role="alert">위치 자료를 불러오지 못했습니다. 다시 시도해 주세요.</p>}
@@ -194,7 +194,7 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       </>}
       </div>
     </div>}
-    {open && <>
+    {open && <div className="terrain-stage">
       <div className="map-toolbar"><button className="button ghost" aria-label="지형 지도 축소" disabled={view.zoom===1} onClick={()=>setView(v=>zoomMap(v,v.zoom/2))}>−</button>
         <span>{Number(view.zoom.toFixed(1))}배</span><button className="button ghost" aria-label="지형 지도 확대" disabled={view.zoom===8} onClick={()=>setView(v=>zoomMap(v,v.zoom*2))}>+</button>
         <button className="button ghost" onClick={()=>setView({x:0,y:0,zoom:1})}>지형 전체 보기</button>
@@ -204,8 +204,8 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
         <button className="button ghost" onClick={()=>setView(terrainLocationView(selectedLabel))}>선택 위치로 이동</button>
         <button className="button ghost" onClick={()=>setSelectedLocation('')}>위치 선택 해제</button></p>}
       {failed.size>0 && <p role="alert">지형 이미지 {failed.size}개를 불러오지 못했습니다. <button className="button ghost" onClick={()=>{setFailed(new Set());setRetry(v=>v+1);}}>지형 다시 불러오기</button></p>}
-      <p className="subtle">글로벌 클라이언트 원본 아이콘을 사용합니다. 상점·창고·영웅 몬스터는 대상에 맞게 구분합니다. 깃털은 원본 깃털 지도 아이콘, 히든큐브는 원본 큐브 그림으로 표시합니다.</p>
-      <p>+/− 버튼이나 마우스 휠로 확대·축소하고, 드래그 또는 방향키로 이동하세요. 마커를 선택하면 상세와 확인 기록을 볼 수 있습니다.</p>
+
+      <p className="map-help">휠로 확대 · 드래그로 이동 · 마커를 눌러 상세 보기</p>
       <div className="terrain-map-frame"><svg ref={canvasRef} className="map-canvas terrain-canvas" role="group" aria-label={`${terrainName} 지형 이미지`} tabIndex={0} viewBox={`${view.x} ${view.y} ${size} ${size}`}
         onKeyDown={e=>{const delta:Record<string,[number,number]>={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]};if(Object.hasOwn(delta,e.key)){e.preventDefault();const [x,y]=delta[e.key];setView(v=>constrainMapView({...v,x:v.x+x*size/10,y:v.y+y*size/10}));}}}
         onPointerDown={e=>{if(e.button!==0)return;drag.current={id:e.pointerId,x:e.clientX,y:e.clientY,width:e.currentTarget.getBoundingClientRect().width,view};e.currentTarget.setPointerCapture(e.pointerId);}}
@@ -245,6 +245,6 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
         <p className="subtle">지도상 직선거리 순입니다. 실제 이동 경로·해금·이용 가능 여부는 게임에서 확인하세요. 위치는 대조 중인 후보이며 출현을 보장하지 않습니다.</p>
       </section>}
       </div>
-    </>}
+    </div>}
   </div>;
 }

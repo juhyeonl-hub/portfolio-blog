@@ -111,3 +111,58 @@
 .page-tabs{max-width:100%;overflow-x:auto}.page-tabs>button{flex-shrink:0}
 .map-layers label>svg{flex-shrink:0}.terrain-marker-card h3>svg{vertical-align:middle}
 .terrain-canvas [data-preview-marker]:focus-visible>rect{stroke:#fff;stroke-width:2px}
+
+/* Keep the workspace focused on the current task. */
+.shell .content{padding-top:20px}
+.shell .sidebar{padding-top:24px}
+.shell .side-caption{margin-top:28px;margin-bottom:10px}
+.shell .nav{padding:10px 12px;margin-bottom:3px}
+.shell .topbar{height:58px}
+.workspace-meta{display:flex;justify-content:space-between;gap:16px;align-items:start;margin-bottom:20px;font-size:12px;color:var(--muted)}
+.workspace-meta details{max-width:440px;text-align:right}
+.workspace-meta summary,.optional-panel>summary,.terrain-source>summary{cursor:pointer;color:var(--muted)}
+.workspace-meta p{font-size:12px;line-height:1.7;margin-top:8px}
+.optional-panel{border-top:1px solid var(--line);padding:18px 0;margin-top:20px}
+.optional-panel>summary{font-size:13px}
+.terrain-panel{padding:20px;border-color:var(--line)}
+.terrain-panel>label{display:flex;align-items:center;gap:12px;font-size:13px}
+.terrain-overview h3{margin:16px 0 6px}.terrain-overview p{font-size:12px}
+.terrain-source{font-size:12px;margin:8px 0 14px}
+.terrain-controls{padding:16px;border:1px solid var(--line);border-radius:10px;margin-top:16px;background:#151822;min-width:0}
+.terrain-controls>div>strong{display:block;margin-bottom:10px}
+.terrain-controls p{font-size:12px}.terrain-controls .map-layers{border:0;padding:12px 0;gap:10px;font-size:12px}
+.terrain-controls .map-toolbar{flex-wrap:wrap;gap:8px}
+.terrain-controls input[type=search],.terrain-controls select{max-width:100%;width:100%;margin:6px 0 12px}
+.terrain-stage{min-width:0}.terrain-stage .map-toolbar{flex-wrap:wrap;margin:16px 0 8px}
+.terrain-stage .map-help{font-size:12px;color:var(--muted);margin:8px 0}
+.home-intro{background:#191d29;padding:28px;border-color:#34364a}
+.home-intro h1{font-size:clamp(24px,3vw,34px)}
+.home-destinations article{padding:22px;gap:12px}.home-shortcuts{padding:20px}
+.event-timer-card{padding:6px 10px;gap:2px;background:#191d29}
+.event-timer-card small{font-size:9px}.event-timer-header{padding-top:6px;padding-bottom:6px}
+@media(min-width:761px){.shell .page-tabs{display:none}}
+@media(min-width:1200px){
+ .terrain-workspace-open{display:grid;grid-template-columns:250px minmax(0,1fr);gap:0 20px;align-items:start}
+ .terrain-overview{grid-column:1/-1}
+ .terrain-controls{max-height:740px;overflow:auto}
+ .terrain-controls .map-layers{display:grid;grid-template-columns:1fr}
+ .terrain-controls .map-layers legend{font-size:11px;color:var(--muted);margin-bottom:4px}
+ .terrain-stage{grid-column:2;grid-row:2}
+}
+@media(max-width:760px){
+ .shell .content{padding-top:16px}.workspace-meta{margin-bottom:12px;font-size:11px}
+ .workspace-meta details{max-width:65%}.shell .page-tabs{gap:20px;margin-bottom:20px}
+ .terrain-panel{padding:12px}.terrain-panel>label{flex-wrap:wrap}
+ .terrain-search{display:grid;gap:8px}.terrain-search input,.terrain-search select{width:100%;min-width:0}
+ .terrain-controls{padding:12px}.terrain-controls .map-layers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 8px}
+ .terrain-controls .map-layers label{font-size:11px;gap:5px}
+}
+.terrain-overview{display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px;padding-top:12px}
+.terrain-overview h3{margin:0;font-size:14px}.terrain-overview>.subtle{margin:0;font-size:11px}
+.terrain-overview>.terrain-source{margin:0}.terrain-overview>.terrain-search{flex-basis:100%;margin:0}
+.terrain-overview>.button{margin-left:auto}
+.terrain-stage>p:not(.map-help){font-size:11px;color:var(--muted);margin:6px 0}
+.shell .sidebar nav>.nav:nth-child(6),.shell .sidebar nav>.nav:nth-child(11){margin-top:16px}
+@media(max-width:760px){.terrain-overview{gap:8px}.terrain-overview>.button{margin-left:0}.terrain-overview>.subtle{flex-basis:100%}}
+.event-timer-card{grid-template-columns:auto 1fr;align-items:center;column-gap:8px;min-width:180px}
+.event-timer-card strong{text-align:right;font-size:13px}.event-timer-card small{grid-column:1/-1}

@@ -30,6 +30,7 @@ with sync_playwright() as p:
  page.clock.pause_at(datetime(2026,10,17,9,0,1,tzinfo=timezone.utc))
  page.clock.run_for(1000)
  expect(card.locator('strong')).to_have_text('12:59:58')
+ page.get_by_role('tab',name='빌드 선택',exact=True).click()
  page.locator('.class-picker button').filter(has_text='검성').click()
  expect(header).to_contain_text('Siel')
  before=page.evaluate("localStorage.getItem('a2bc-event-timers-v1')")
@@ -50,6 +51,7 @@ with sync_playwright() as p:
  assert stored['profiles']['eu:1301']['times']['gartua']=='09:00,22:00'
  assert stored['profiles']['eu:1302']['times']['gartua']=='12:00'
  page.set_viewport_size({'width':390,'height':844})
+ page.get_by_role('tab',name='빌드 선택',exact=True).click()
  page.get_by_role('button',name='이 빌드 미리보기',exact=True).click()
  page.evaluate('window.scrollTo(0,document.body.scrollHeight)')
  assert abs(header.bounding_box()['y'])<=1
