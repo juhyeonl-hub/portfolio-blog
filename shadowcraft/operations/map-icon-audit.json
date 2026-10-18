@@ -166,7 +166,7 @@
     "npc": "Default official Worldmap_NPC; BuySell and Storage have object-ID role overrides. See map-icon-binding-audit.json.",
     "named": "NpcData HeroMonster/LegendMonster -> UIIcon HeroMonster/LegendMonster -> Worldmap_Monster_Boss_Aggressive. No numeric Grade guessing.",
     "cube": "HiddenCube_01 item texture; not certified world-map glyph",
-    "trace": "Generic official Envobj marker; dedicated feather glyph not resolved",
+    "trace": "Original MonolithFragment feather world-map texture, visually inspected; complete variant used for local completion. See map-icon-reference-audit.json for remaining runtime binding uncertainty.",
     "gather": "Corrected to UI_ImageTable_Marker.Worldmap_Gather -> official FWindow_WorldMap Gather sprite, not TargetInfo_Gather texture"
   },
   "unresolved": "Cube uses original Global popup art, not a certified map glyph. Trace now uses original MonolithFragment feather texture after visual inspection of public map reference; runtime per-object linkage remains unproven. See reference follow-up.",

@@ -800,7 +800,7 @@
   },
   "unresolved": {
     "cube": "Only popup/item art resolved. No dedicated world-map image assignment located.",
-    "trace": "No dedicated world-map image assignment located. Do not substitute wing equipment or MonolithFragment icons."
+    "trace": "Direct EnvObj-to-worldmap assignment still unproven. Follow-up visual inspection confirmed MonolithFragment is feather artwork; the previous exclusion based on its name was incorrect. Original texture and complete variant now used; see map-icon-reference-audit.json."
   },
   "sourceScope": "Read-only local schema metadata from the running Steam game; installed asset tables redecoded. No account/session data, memory dumps or addresses included.",
   "npcPolicy": "NpcData.NpcSubType HeroMonster -> UIIcon HeroMonster world-map key. Citizen BuySell/Storage -> general Shop/Storage role icons; specialized shop inventory icon variants are not inferred.",
