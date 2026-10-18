@@ -77,9 +77,10 @@ def validate_entries(entries):
 
 if __name__=='__main__':
     servers=json.loads((ROOT/'frontend/shadowcraft/lib/data/servers.json').read_text())
+    ranking_fetched_at=datetime.now(timezone.utc).isoformat()
     entries=parse_leaders(fetch(SOURCE),servers)
     with ThreadPoolExecutor(max_workers=2) as pool:entries=list(pool.map(verify,entries))
     validate_entries(entries)
-    result={'source':SOURCE,'scope':'global-indexed-top500-class-top10','metric':'combat-power','fetchedAt':datetime.now(timezone.utc).isoformat(),'entries':entries}
+    result={'source':SOURCE,'scope':'global-indexed-top500-class-top10','metric':'combat-power','fetchedAt':ranking_fetched_at,'verifiedAt':datetime.now(timezone.utc).isoformat(),'entries':entries}
     output=ROOT/'frontend/shadowcraft/lib/data/rankers.json';tmp=output.with_suffix('.tmp');tmp.write_text(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n');tmp.replace(output)
     print('Saved 80 verified public profiles; review before deployment')

@@ -1,5 +1,6 @@
 import importlib.util,json,unittest
 from pathlib import Path
+from datetime import datetime
 root=Path(__file__).resolve().parents[2]
 spec=importlib.util.spec_from_file_location('rankers',root/'shadowcraft/operations/import_rankers.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
 class Tests(unittest.TestCase):
@@ -8,6 +9,9 @@ class Tests(unittest.TestCase):
  def test_snapshot(self):
   data=json.loads((root/'frontend/shadowcraft/lib/data/rankers.json').read_text());rows=data['entries']
   m.validate_entries(rows)
+  if "verifiedAt" in data:
+   start,end=map(datetime.fromisoformat,[data["fetchedAt"],data["verifiedAt"]])
+   self.assertTrue(all(start<=datetime.fromisoformat(r["verifiedAt"])<=end for r in rows))
   self.assertEqual(len(rows),80)
   self.assertEqual(len({(r['region'],r['serverId'],r['characterId']) for r in rows}),80)
   for key in m.KEYS.values():

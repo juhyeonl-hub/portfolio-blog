@@ -50,3 +50,17 @@ export function compareRankerEquipment(left:unknown,right:unknown){
   return {slot,left,right,status};
  })};
 }
+
+export function rankerObservationTime(value:unknown){
+ if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/.test(value)||!Number.isFinite(Date.parse(value)))return '시각 미확인';
+ return new Intl.DateTimeFormat('ko-KR',{dateStyle:'medium',timeStyle:'long'}).format(new Date(value));
+}
+export function rankerDisplaySkills(value:unknown):Ranker['skills']|null{
+ if(!Array.isArray(value)||value.length>100)return null;
+ const ids=new Set<number>();
+ for(const s of value){
+  if(!s||!Number.isSafeInteger(s.id)||s.id<=0||ids.has(s.id)||typeof s.name!=='string'||!s.name.length||s.name.length>200||!['Active','Passive','Dp'].includes(s.category)||!Number.isSafeInteger(s.skillLevel)||s.skillLevel<0||s.skillLevel>999||![0,1].includes(s.equip))return null;
+  ids.add(s.id);
+ }
+ return value;
+}

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl,plannerUrl,classesUrl,planner} from './modules.mjs';
-const {groupRankers,compareRankerSkills,compareRankerEquipment,previewRankerBoards}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
+const {groupRankers,compareRankerSkills,compareRankerEquipment,previewRankerBoards,rankerObservationTime,rankerDisplaySkills}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
 const c=JSON.parse(readFileSync('lib/data/catalogs/assassin.json'));
 c.classKey='assassin';
 const p={...planner.emptyPlan(c),pointBudget:{sp:9999,stigma:9999,crystal:9999,battle:9999}};
@@ -57,3 +57,13 @@ for(const bad of [null,{},[ring,ring],[{...ring,enchantLevel:-1}],[{...ring,slot
 assert.deepEqual(compareRankerEquipment([],[]).rows,[]);
 assert.equal(JSON.stringify(rings),saved);
 console.log('Ranker equipment: slot identity, repeated item IDs, level differences, missing/malformed inputs and nonmutation PASS');
+
+assert.equal(rankerObservationTime(undefined),'시각 미확인');
+assert.equal(rankerObservationTime('invalid'),'시각 미확인');
+assert.equal(rankerObservationTime('2026-10-19T12:00:00'),'시각 미확인');
+assert.notEqual(rankerObservationTime('2026-10-19T12:00:00Z'),'시각 미확인');
+const liveSkill={id:123,name:'live skill',category:'Active',skillLevel:40,equip:1};
+assert.deepEqual(rankerDisplaySkills([liveSkill]),[liveSkill]);
+assert.deepEqual(rankerDisplaySkills([]),[]);
+for(const bad of [null,{},[liveSkill,liveSkill],[{...liveSkill,skillLevel:-1}],[{...liveSkill,category:'unknown'}]])assert.equal(rankerDisplaySkills(bad),null);
+console.log('Ranker observation: timezone-aware timestamps and live skill schema validation PASS');
