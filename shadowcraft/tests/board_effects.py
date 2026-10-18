@@ -12,6 +12,7 @@ with sync_playwright() as p:
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
     page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5175/lab/shadowcraft/'))
+    page.get_by_role('tab',name='데바니온',exact=True).click()
     rules=json.loads((root/'frontend/shadowcraft/lib/data/board-effects.json').read_text())['rules']
     for key,name in names:
         page.locator('.class-picker button').filter(has_text=name).click()

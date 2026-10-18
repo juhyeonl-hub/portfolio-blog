@@ -211,3 +211,39 @@
  .home-utility-links{grid-template-columns:1fr}.home-utility-links button{padding:14px 4px}
  .terrain-controls .map-layers label{padding:6px 4px}.quick-build-heading h2{font-size:21px}
 }
+
+/* Detailed editors share the hub's hierarchy; calculations remain unchanged. */
+.editor-budget{display:flex;align-items:center;gap:24px;padding:14px 18px;margin:16px 0 22px;border:1px solid #343648;border-radius:10px;background:#171b25;flex-wrap:wrap}
+.editor-budget>div:not(.editor-budget-actions){display:grid;grid-template-columns:auto auto;align-items:center;gap:4px 14px}
+.editor-budget span{font-size:12px;color:var(--muted)}.editor-budget strong{font-size:18px;font-variant-numeric:tabular-nums}
+.editor-budget strong small{font-size:12px;color:var(--muted);font-weight:400}.editor-budget>div>small{grid-column:1/-1;font-size:11px;color:#aaa6b9}
+.editor-budget .over strong,.editor-budget .over>small{color:#f5b980}
+.editor-budget-actions{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+.skill-editor>.button,.board-editor>.button{margin-bottom:18px}
+.skill-editor .section-heading h2,.board-editor .section-heading h2{font-size:25px;letter-spacing:-.5px}
+.skill-editor .section-heading p,.board-editor .section-heading p{font-size:13px;line-height:1.7}
+.skill-editor .toolbar{gap:14px;flex-wrap:wrap}.skill-editor .search-input{max-width:240px;flex:1;min-width:130px}
+.skill-editor .skill-table{border-color:#303644;border-radius:12px;overflow:hidden}
+.skill-editor .skill-row.expanded{background:#1b1e2b}.skill-editor .skill-row.expanded .skill-name strong{color:#cfb9f1}
+.skill-editor .skill-details{border-top:1px solid #343346;padding:18px}
+.skill-editor .spec-title{margin:18px 0 12px}.skill-editor .spec{padding:12px;border-radius:8px;font-size:12px;line-height:1.7}
+.skill-editor .spec[aria-pressed=true]{border-color:#a88acb;background:#302540}
+.skill-editor .spec-recommend{flex-wrap:wrap;background:#171b25;border-color:#343648}
+.editor-guide{padding:18px!important}.editor-guide>summary{font-size:13px;font-weight:600;cursor:pointer;list-style-position:inside}
+.editor-guide[open]>summary{margin-bottom:14px}.editor-guide p{font-size:12px;line-height:1.7}
+.skill-editor .right-rail,.board-editor .right-rail{align-content:start}
+.board-editor .board-tabs{gap:8px;flex-wrap:wrap}.board-editor .board-tabs button{border-radius:8px}
+.board-editor .board-tabs button[aria-pressed=true]{border-color:#b497e9;background:#2a243a}
+.board-editor .node-inspector{border-color:#64517f;background:#1d1b2b;border-radius:12px}
+.board-editor .node-inspector h3{font-size:19px;line-height:1.5}.board-editor .node-facts{background:#151822;border-radius:8px;padding:10px 12px}
+.board-editor .node-facts span:last-child b{color:#d0b8f3;font-size:17px}
+.skill-editor button:focus-visible,.board-editor button:focus-visible,.editor-guide>summary:focus-visible{outline:2px solid #c4abf4;outline-offset:2px}
+@media(max-width:760px){
+ .editor-budget{gap:12px;padding:12px}.editor-budget>div:not(.editor-budget-actions){flex:1;gap:4px 8px}.editor-budget strong{font-size:16px}
+ .editor-budget-actions{width:100%;margin-left:0}.editor-budget-actions .button{flex:1;justify-content:center}
+ .skill-editor .section-heading,.board-editor .section-heading{align-items:flex-start;flex-direction:column;gap:12px}
+ .skill-editor .skill-details{padding:12px}.skill-editor .spec-recommend{align-items:flex-start}
+ .skill-editor .toolbar{gap:10px}.skill-editor .search-input{max-width:none}
+ .skill-editor .right-rail,.board-editor .right-rail{grid-template-columns:minmax(0,1fr)}
+ .board-editor .board-tabs button{flex:1;min-width:90px}
+}
