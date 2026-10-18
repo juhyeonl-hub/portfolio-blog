@@ -1,8 +1,8 @@
 import type {MapView} from './world-map';
 export type SpawnPreview = {id:string;name:string;kind:string;x:number;y:number;world:number[];spawnId:string;objectId:number;locationType?:string;questId?:number};
-export function previewMatches(rows: SpawnPreview[], kind: string | ReadonlySet<string>, query: string) {
+export function previewMatches(rows: SpawnPreview[], kind: string | ReadonlySet<string>, query: string, excludedGatherNames: ReadonlySet<string> = new Set()) {
   const words=query.trim().toLowerCase().split(/\s+/).filter(Boolean);
-  return rows.filter(row=>(typeof kind === 'string' ? kind==='all' || row.kind===kind : kind.has(row.kind)) && words.every(word=>row.name.toLowerCase().includes(word)));
+  return rows.filter(row=>(typeof kind === 'string' ? kind==='all' || row.kind===kind : kind.has(row.kind)) && (row.kind!=='gather' || !excludedGatherNames.has(row.name)) && words.every(word=>row.name.toLowerCase().includes(word)));
 }
 export function visiblePreview(rows: SpawnPreview[], view: MapView) {
   const size=1000/view.zoom;
@@ -34,4 +34,10 @@ export function previewPage(rows: SpawnPreview[], page: number, selected: string
   const result=rows.slice(current*200,(current+1)*200);
   const picked=rows.find(row=>row.id===selected);
   return {pages,current,rows:picked && !result.some(row=>row.id===selected)?[picked,...result]:result};
+}
+
+export function previewGatherKinds(rows: SpawnPreview[]) {
+  const counts=new Map<string,number>();
+  for(const row of rows)if(row.kind==='gather')counts.set(row.name,(counts.get(row.name) ?? 0)+1);
+  return [...counts].sort(([a],[b])=>a.localeCompare(b,'en')).map(([name,count])=>({name,count}));
 }

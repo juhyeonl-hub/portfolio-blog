@@ -25,8 +25,8 @@ with sync_playwright() as p:
         page.get_by_role('tab', name='지도 & 수집', exact=True).click()
         panel = page.get_by_role('region', name='공식 글로벌 지형 지도', exact=True)
         panel.get_by_label('공식 지형 지역', exact=True).select_option(slug)
-        panel.get_by_role('button', name='실험 위치 보기', exact=True).click()
-        expect(panel.get_by_role('button', name='실험 위치 숨기기', exact=True)).to_be_visible()
+        panel.get_by_role('button', name='마커 보기', exact=True).click()
+        expect(panel.get_by_role('button', name='마커 숨기기', exact=True)).to_be_visible()
         panel.get_by_role('button', name='항목 전체 끄기', exact=True).click()
         return panel
 

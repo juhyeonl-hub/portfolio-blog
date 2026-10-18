@@ -146,3 +146,18 @@ for(const map of preview.maps) {
  }
 }
 console.log('Sealed/stronghold coverage and lossless legacy progress migration PASS');
+
+const {previewGatherKinds}=await import(moduleUrl(readFileSync('lib/spawn-preview.ts','utf8')));
+for(const map of preview.maps) {
+ const kinds=previewGatherKinds(map.markers);
+ assert.equal(kinds.reduce((n,row)=>n+row.count,0),map.markers.filter(r=>r.kind==='gather').length);
+ assert.equal(kinds.length,new Set(map.markers.filter(r=>r.kind==='gather').map(r=>r.name)).size);
+ if(['Verteron','Altgard'].includes(map.name))assert.equal(kinds.length,13);
+ const excluded=new Set(kinds.filter(r=>r.name!=='Ruby').map(r=>r.name));
+ const matches=previewMatches(map.markers,new Set(['gather','teleport']),'',excluded);
+ assert.ok(matches.every(r=>r.kind==='teleport' || r.name==='Ruby'));
+ assert.equal(matches.filter(r=>r.kind==='teleport').length,map.markers.filter(r=>r.kind==='teleport').length);
+ assert.equal(previewMatches(map.markers,new Set(['gather']),'',new Set(kinds.map(r=>r.name))).length,0);
+ assert.equal(previewMatches(map.markers,new Set(['gather']),'no such resource',excluded).length,0);
+}
+console.log('Gathering resource counts and independent exact-name filters PASS');

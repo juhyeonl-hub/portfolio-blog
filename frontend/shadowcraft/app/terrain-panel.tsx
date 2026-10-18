@@ -9,7 +9,7 @@ import terrainLabels from '../lib/data/terrain-labels.json';
 import legacyProgressKeys from '../lib/data/map-progress-legacy.json';
 import {constrainMapView, zoomMap, mapProgressKey, loadMapProgressWithLegacy, saveMapProgress, type MapView} from '../lib/world-map';
 import {visibleTerrainTiles, terrainLabelNames, searchTerrainLocations, terrainLocationView} from '../lib/terrain-map';
-import {previewMatches, visiblePreview, previewKinds, previewKindLabel, previewPage, previewProgressDataset, type SpawnPreview} from '../lib/spawn-preview';
+import {previewMatches, visiblePreview, previewKinds, previewGatherKinds, previewKindLabel, previewPage, previewProgressDataset, type SpawnPreview} from '../lib/spawn-preview';
 const terrains: Record<string, typeof verteron> = {verteron, altgard, poeta, ishalgen, 'reshanta-lower': reshantaLower, 'reshanta-middle': reshantaMiddle};
 
 export default function TerrainPanel() {
@@ -37,6 +37,8 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewError, setPreviewError] = useState(false);
   const [enabledKinds, setEnabledKinds] = useState<Set<string>>(new Set(['teleport']));
+  const [excludedGatherNames, setExcludedGatherNames] = useState<Set<string>>(new Set());
+  const gatherKinds = previewGatherKinds(preview);
   const [previewQuery, setPreviewQuery] = useState('');
   const [previewSelection, setPreviewSelection] = useState('');
   const [page, setPage] = useState(0);
@@ -45,12 +47,12 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
   const [storageNotice, setStorageNotice] = useState('');
   const progressKey = useRef('');
   const writable = useRef(false);
-  const previewResults = previewMatches(preview, enabledKinds, previewQuery).filter(row=>!hideCompleted || !completed.has(row.id));
+  const previewResults = previewMatches(preview, enabledKinds, previewQuery, excludedGatherNames).filter(row=>!hideCompleted || !completed.has(row.id));
   const paged = previewPage(previewResults, page, previewSelection);
   const previewVisible = visiblePreview(previewResults, view);
   const chosenPreview = previewResults.find(row=>row.id===previewSelection);
   const previewDraw = [...previewVisible.filter(row=>row.id===previewSelection),...previewVisible.filter(row=>row.id!==previewSelection)].slice(0,400);
-  async function togglePreview() {
+  async function togglePreview(openMap = true) {
     if(previewOn){setPreviewOn(false);return;}
     setPreviewError(false);setPreviewLoading(true);
     try {
@@ -64,8 +66,12 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       progressKey.current=key;writable.current=progress.writable;
       setCompleted(new Set(progress.completed));
       setStorageNotice(progress.writable?'':'저장된 기록을 읽지 못했습니다. 기존 기록은 유지하고 이번 변경은 화면에서만 기억합니다.');
-      setPreview(map.markers);setPreviewOn(true);setOpen(true);
+      setPreview(map.markers);setPreviewOn(true);if(openMap)setOpen(true);
     } catch {setPreviewError(true);} finally {setPreviewLoading(false);}
+  }
+  function showTerrain() {
+    setOpen(true);drag.current=null;
+    if(!previewOn && !previewLoading)void togglePreview(false);
   }
   function focusPreview(row: SpawnPreview) {
     setPreviewSelection(row.id);setView(terrainLocationView(row));setOpen(true);drag.current=null;
@@ -111,23 +117,23 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
     <h3>{terrainName} 지형 지도</h3>
     <p>공식 글로벌 Steam 클라이언트 · 빌드 {source.buildId} · 지형 이미지 {gridSize * gridSize}개</p>
     <p>지형을 확대하고 이동할 수 있습니다. 수집물·NPC의 월드 좌표 정합성은 아직 검증 중이며, 아래에서 가져온 사용자 지도와 겹쳐 표시하지 않습니다.</p>
-    <button className="button secondary" aria-expanded={open} onClick={() => {setOpen(v=>!v); drag.current=null;}}>{open ? '공식 지형 닫기' : `공식 ${terrainName} 지형 열기`}</button>
+    <button className="button secondary" aria-expanded={open} onClick={() => {if(open)setOpen(false);else showTerrain();drag.current=null;}}>{open ? '공식 지형 닫기' : `공식 ${terrainName} 지형 열기`}</button>
     {labels.length > 0 && <div className="terrain-search">
       <label>지역명 검색<input type="search" aria-label="공식 지도 지역명 검색" value={query} maxLength={100}
         placeholder="예: Guard Post" onChange={e=>setQuery(e.target.value)}/></label>
       <label>검색한 위치<select aria-label="공식 지도 검색 결과" value={matches.some(label=>label.id===selectedLocation) ? selectedLocation : ''}
         onChange={e=>{const label=labels.find(item=>item.id===e.target.value);if(!label)return;
-          setSelectedLocation(label.id);setView(terrainLocationView(label));setShowLabels(true);setOpen(true);drag.current=null;}}>
+          setSelectedLocation(label.id);setView(terrainLocationView(label));setShowLabels(true);showTerrain();}}>
         <option value="">{matches.length ? `위치 선택 (${matches.length}개)` : '검색 결과 없음'}</option>
         {matches.map(label=><option key={label.id} value={label.id}>{label.name}</option>)}
       </select></label>
       {query.trim() && <p role="status">검색 결과 {matches.length}개</p>}
     </div>}
     {<div className="notice">
-      <div><strong>실험: 공식 위치 미리보기</strong>
+      <div><strong>지도 마커 · 위치 확인 중</strong>
       <p>공식 클라이언트의 후보 위치입니다. 지도상의 위치 정확도는 미검증이며 실제 출현·이용 가능 여부를 뜻하지 않습니다.</p>
       <button className="button secondary" disabled={previewLoading} aria-expanded={previewOn} onClick={()=>void togglePreview()}>
-        {previewLoading?'위치 자료 불러오는 중':previewOn?'실험 위치 숨기기':'실험 위치 보기'}</button>
+        {previewLoading?'위치 자료 불러오는 중':previewOn?'마커 숨기기':'마커 보기'}</button>
       {previewError && <p role="alert">위치 자료를 불러오지 못했습니다. 다시 시도해 주세요.</p>}
       {previewOn && <>
         <fieldset className="map-layers" aria-label="지도 표시 항목">
@@ -143,9 +149,25 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
           })}
         </fieldset>
         <div className="map-toolbar">
-          <button className="button ghost" onClick={()=>{setEnabledKinds(new Set(preview.map(row=>row.kind)));setPreviewSelection('');setPage(0);}}>항목 전체 켜기</button>
+          <button className="button ghost" onClick={()=>{setEnabledKinds(new Set(preview.map(row=>row.kind)));setExcludedGatherNames(new Set());setPreviewSelection('');setPage(0);}}>항목 전체 켜기</button>
           <button className="button ghost" onClick={()=>{setEnabledKinds(new Set());setPreviewSelection('');setPage(0);}}>항목 전체 끄기</button>
         </div>
+        {enabledKinds.has('gather') && gatherKinds.length>0 && <details className="gather-filters">
+          <summary>채집물 종류 선택 · {gatherKinds.length-excludedGatherNames.size}/{gatherKinds.length}종 표시</summary>
+          <fieldset className="map-layers" aria-label="채집 자원별 표시">
+            <legend>원하는 자원만 체크하세요</legend>
+            {gatherKinds.map(({name,count})=><label key={name}>
+              <input type="checkbox" aria-label={`채집물 ${name}`} checked={!excludedGatherNames.has(name)}
+                onChange={e=>{const next=new Set(excludedGatherNames);if(e.target.checked)next.delete(name);else next.add(name);
+                  setExcludedGatherNames(next);setPreviewSelection('');setPage(0);}}/>
+              {name} ({count})</label>)}
+          </fieldset>
+          <div className="map-toolbar">
+            <button className="button ghost" onClick={()=>{setExcludedGatherNames(new Set());setPreviewSelection('');setPage(0);}}>채집물 전체 켜기</button>
+            <button className="button ghost" onClick={()=>{setExcludedGatherNames(new Set(gatherKinds.map(row=>row.name)));setPreviewSelection('');setPage(0);}}>채집물 전체 끄기</button>
+          </div>
+          <p>글로벌 원본 자원명으로 구분합니다. 마커를 선택하면 해당 자원 이름을 볼 수 있습니다.</p>
+        </details>}
         {enabledKinds.size===0 && <p role="status">표시할 항목을 체크해 주세요.</p>}
         <p>봉인던전은 입구, 주둔지는 구역 중심을 표시합니다. 깃털은 Empyrean Trace의 통칭입니다. 항목 옆 숫자는 조건별 배치를 포함한 후보 지점 수이며 현재 출현·수집 가능 수가 아닙니다.</p>
         <label>이름 검색<input aria-label="실험 위치 검색" type="search" maxLength={100} value={previewQuery} onChange={e=>{setPreviewQuery(e.target.value);setPreviewSelection('');setPage(0);}}/></label>
@@ -190,7 +212,7 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
           href={`${basePath}/${id}.webp`} preserveAspectRatio="none" pointerEvents="none"
           onError={()=>setFailed(old=>new Set([...old,id]))} onLoad={()=>setFailed(old=>{if(!old.has(id))return old;const next=new Set(old);next.delete(id);return next;})}/>;})}
         {previewOn && previewDraw.map(row=><circle key={row.id} data-preview-marker={row.kind}
-          cx={row.x} cy={row.y} r={(row.id===previewSelection?6:3)/Math.sqrt(view.zoom)}
+          cx={row.x} cy={row.y} r={(row.id===previewSelection?14:10)/Math.sqrt(view.zoom)}
           fill={previewKinds[row.kind]?.color ?? '#fff'} opacity={completed.has(row.id)?.4:1} stroke="#11141b" strokeWidth={1/Math.sqrt(view.zoom)}
           role="button" tabIndex={0} aria-label={`${row.name} 후보 위치`} aria-pressed={row.id===previewSelection}
           onPointerDown={e=>e.stopPropagation()} onClick={()=>focusPreview(row)}
