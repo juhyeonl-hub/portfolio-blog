@@ -1,0 +1,163 @@
+{
+  "schema": "a2bc-map-completion-audit-v1",
+  "buildId": "25926599",
+  "sourceHashesVerified": 27,
+  "categories": [
+    "cube",
+    "dungeon",
+    "gather",
+    "monolith",
+    "named",
+    "npc",
+    "rift",
+    "sealed",
+    "stronghold",
+    "teleport",
+    "trace"
+  ],
+  "categoryEvidence": {
+    "sealed": "Dungeon.DungeonType Seal -> Map.MapId -> Map.EntranceName -> MapEntrance.ID -> EnvObjData.UsageValue; source references, not matching names",
+    "stronghold": "Quest.ExplorationType OccupationTerritory -> AcquireMapId/SubZone condition -> Subzone.Name/ID -> MapData.SubzoneVolumeInfoMap; area centers, not entrances",
+    "trace": "Official GodFragment resource IDs with Normal usage; display alias feathers corroborated by https://aion2.gg/map/empyrean-traces (2026-10-18); no coordinates copied"
+  },
+  "projection": {
+    "method": "(world / (SectorWorldSize / SectorPlaneSize) - planeOrigin) / planeSpan",
+    "worldUnitsPerPlaneUnit": 99.609375,
+    "priorApproximation": 100,
+    "uiTileLayoutVerified": true,
+    "worldProjectionVerified": false,
+    "remainingEvidence": "Independent in-game world-to-texture landmarks; sector-ratio/unit tests and UI geometry do not prove live placement or server availability."
+  },
+  "maps": [
+    {
+      "name": "Verteron",
+      "markers": 7253,
+      "kinds": {
+        "npc": 2315,
+        "gather": 2733,
+        "named": 24,
+        "dungeon": 28,
+        "cube": 1440,
+        "sealed": 61,
+        "teleport": 61,
+        "rift": 15,
+        "trace": 559,
+        "monolith": 2,
+        "stronghold": 15
+      },
+      "categoryAudit": {
+        "sealedEntrances": 61,
+        "strongholdAreas": 15
+      }
+    },
+    {
+      "name": "Altgard",
+      "markers": 7623,
+      "kinds": {
+        "npc": 2795,
+        "trace": 559,
+        "monolith": 2,
+        "dungeon": 28,
+        "rift": 15,
+        "sealed": 61,
+        "teleport": 61,
+        "named": 24,
+        "gather": 2692,
+        "cube": 1371,
+        "stronghold": 15
+      },
+      "categoryAudit": {
+        "sealedEntrances": 61,
+        "strongholdAreas": 15
+      }
+    },
+    {
+      "name": "Poeta",
+      "markers": 55,
+      "kinds": {
+        "npc": 53,
+        "teleport": 1,
+        "dungeon": 1
+      },
+      "categoryAudit": {
+        "sealedEntrances": 0,
+        "strongholdAreas": 0
+      }
+    },
+    {
+      "name": "Ishalgen",
+      "markers": 70,
+      "kinds": {
+        "npc": 66,
+        "teleport": 3,
+        "dungeon": 1
+      },
+      "categoryAudit": {
+        "sealedEntrances": 0,
+        "strongholdAreas": 0
+      }
+    },
+    {
+      "name": "Chaotic Lower Reshanta",
+      "markers": 548,
+      "kinds": {
+        "dungeon": 6,
+        "named": 16,
+        "trace": 200,
+        "gather": 240,
+        "monolith": 2,
+        "teleport": 2,
+        "npc": 82
+      },
+      "categoryAudit": {
+        "sealedEntrances": 0,
+        "strongholdAreas": 0
+      }
+    },
+    {
+      "name": "Chaotic Middle Reshanta",
+      "markers": 196,
+      "kinds": {
+        "dungeon": 6,
+        "named": 8,
+        "trace": 100,
+        "monolith": 2,
+        "teleport": 2,
+        "npc": 78
+      },
+      "categoryAudit": {
+        "sealedEntrances": 0,
+        "strongholdAreas": 0
+      }
+    }
+  ],
+  "sourceSha256": {
+    "AION2/Content/Data/Table/EnvObjData.json": "518b640941cd35df468ece43f4e723741564334a57b04dd6139b7a1ef5e08346",
+    "AION2/Content/Data/Table/NpcData.json": "3eeb4271008ccaa9df0e032bb1616c1417fa01dd2532dfe778c41d3953afe9e5",
+    "AION2/Content/Data/Table/Dungeon.json": "14dba142459824da48396c37f41d5014b90da9494a60ce4a30d7fc6f5d89815a",
+    "AION2/Content/Data/Table/Map.json": "1df1a14efda65d4a0d1f4421e7da4da24f09d980d6c9f5f8286e0082770dabf4",
+    "AION2/Content/Data/Table/MapEntrance.json": "c46ecdf46a7802fa4af6b5ea7c83c3a58a286b7a8fdaf0d4ca3b0948dcfb8c80",
+    "AION2/Content/Data/Table/Quest.json": "634d8491895ce290817b1e41f8b7c1feb5ceb2967d6a3369b650f17c1d5137f0",
+    "AION2/Content/Data/Table/Subzone.json": "f271ab69b04198f186b5eb0567c5a041e9ea63a989ec0342f9d3f6e648caf993",
+    "AION2/Content/Data/Table/WorldMapFieldNamed.json": "0c30c0a8ab3f2f143ab18f9dce2125afbfa3521a7f4dd0395427cf6c9d63a47b",
+    "English.json": "7ab5258b29fec3d18aebf9d0725ca80016deb9de3c11d2b002a688d1cdc68d2b",
+    "AION2/Content/Data/Map/World/World_L/World_L_A/MapData.json": "1ad2f35ad63afe98f36761eab3d12125e19223da3560b73b5022b80c63ecb351",
+    "AION2/Content/Data/WorldMap/World_L_A.json": "9502569673408a5a5b406384fe0cfd418e99eff6f3f377041c4e89668efd1dfc",
+    "UI/WorldMap/World_L_A/WorldMap_World_L_A.json": "4e2f4e057cf04d72922f29c7383f2a141c2ba15267612590b26012a1e223efab",
+    "AION2/Content/Data/Map/World/World_D/World_D_A/MapData.json": "49d17d2fbff3ee756f40230abfac8ea6d298fc3080e10485a0ea105f65b8197f",
+    "AION2/Content/Data/WorldMap/World_D_A.json": "b3c804cbd6eadc6c52a106a8df0c53c55cb6c42276cef3e6ea5416fd95bb124b",
+    "UI/WorldMap/World_D_A/WorldMap_World_D_A.json": "00584e384fd3ef880fa7fd09599867179c828adeccbcc279ebf3d612881c30d8",
+    "AION2/Content/Data/Map/World/World_L/World_L_Starter/MapData.json": "4761faaff06b0c87408cb68ff27bebdb638d109d5b27f282ec674ce94b42cb55",
+    "AION2/Content/Data/WorldMap/World_L_Starter.json": "32bb69ba4d1a207eb72f53632fb7ffddc778cb4e96e15848e338442e849a5eae",
+    "UI/WorldMap/World_L_Starter/WorldMap_World_L_Starter.json": "a43cbc8d7e7afffb7ac6b5aba30d6219e84711d986c076eb1ead39d4379e29d9",
+    "AION2/Content/Data/Map/World/World_D/World_D_Starter/MapData.json": "f2264688740d5d46f86d0c5eaf022021d7a0d43184ef4e7d65efb94a83bfd8b9",
+    "AION2/Content/Data/WorldMap/World_D_Starter.json": "9d9b44480105271303376a893c493f87e2722ab4ddf6aecf507a1176180e10d2",
+    "UI/WorldMap/World_D_Starter/WorldMap_World_D_Starter.json": "ea3f48b5fd908615918f26656ff910149881325a2c0bf2c9aaf12e2054ab5159",
+    "AION2/Content/Data/Map/Intersever/Abyss/Abyss_Reshanta_A/MapData.json": "7b3b38baa9654c115282d60b9b36cf1356cf97533921b794d4c686112390643c",
+    "AION2/Content/Data/WorldMap/Abyss_Reshanta_A.json": "cbe830df2eea43fa926b9f1030a852751f426bd743f83890e464b94eb5d1767b",
+    "UI/WorldMap/Abyss_Reshanta_A/WorldMap_Abyss_Reshanta_A.json": "1e8b613aec6a9c0afb6c0f7c2d4c552a2cca933c0b0945e6cca1f675340a7d86",
+    "AION2/Content/Data/Map/Intersever/Abyss/Abyss_Reshanta_C/MapData.json": "7dadf29fe9676f271458f183ef0fc115c4d68d1cdb2b5843634ffdb359c3eae7",
+    "AION2/Content/Data/WorldMap/Abyss_Reshanta_C.json": "64cc0ac972ee22d7d3cc834f6bb01c765bc4c37ebf62b55d553063826d81331f",
+    "UI/WorldMap/Abyss_Reshanta_C/WorldMap_Abyss_Reshanta_C.json": "d356c259e9f645584eebd0540fe567f24a2b83a4c073b8c37d9d5301ec7748c9"
+  }
+}

@@ -56,6 +56,15 @@ export function loadMapProgress(storage: StoragePort, key: string, dataset: MapD
   } catch { return {completed: [], writable: false}; }
 }
 
+/** Read-only migration: a current record, even empty/corrupt, always takes precedence.
+ * Legacy bytes remain untouched; the next explicit mark saves the new revision. */
+export function loadMapProgressWithLegacy(storage: StoragePort, key: string, dataset: MapDataset, legacyKey?: string) {
+  try {
+    if(storage.getItem(key)!==null || !legacyKey || legacyKey===key) return loadMapProgress(storage,key,dataset);
+    return loadMapProgress(storage,legacyKey,dataset);
+  } catch {return {completed:[] as string[],writable:false};}
+}
+
 export function saveMapProgress(storage: StoragePort, key: string, completed: string[]): boolean {
   try { storage.setItem(key, JSON.stringify({schema: 'a2bc-map-progress-v1', completed})); return true; }
   catch { return false; }

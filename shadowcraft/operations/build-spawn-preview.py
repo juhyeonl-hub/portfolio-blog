@@ -19,7 +19,66 @@ _tiles = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_tiles)
 
 
-def extract(data, objects, english, npcs=None, origin=(-4096, -4096), span=8192):
+
+def sealed_entrances(dungeons, maps, entrances):
+    """Explicit Dungeon Seal -> Map -> MapEntrance reference chain, never name matching."""
+    by_map = {row['ID']['Value']: row for row in maps}
+    by_entrance = {row['Name']: row for row in entrances}
+    if len(by_map) != len(maps) or len(by_entrance) != len(entrances):
+        raise ValueError('Duplicate map or entrance identity')
+    result = set()
+    for dungeon in dungeons:
+        if dungeon['DungeonType'] != 'EDungeonType::Seal':
+            continue
+        map_row = by_map.get(dungeon['MapId']['Value'])
+        if not map_row or map_row['EntranceName'] not in by_entrance:
+            raise ValueError('Unresolved sealed dungeon entrance')
+        result.add(str(by_entrance[map_row['EntranceName']]['ID']['Value']))
+    return result
+
+
+def strongholds(data, quests, subzones, english, origin, span, world_scale=100):
+    """Place one area-center marker per explicit occupation quest and referenced volume."""
+    by_name = {row['Name']: row for row in subzones if row['MapId']['Value'] == data['MapId']}
+    volumes = {}
+    for row in data['SubzoneVolumeInfoMap']:
+        value = row['Value']
+        volumes.setdefault(value['SubzoneTableId'], []).append(value)
+    result, seen = [], set()
+    for quest in quests:
+        if quest['ExplorationType'] != 'EExplorationType::OccupationTerritory' or quest['AcquireMapId']['Value'] != data['MapId']:
+            continue
+        conditions = [c['Value'] for c in quest['AcquirableConditions'] if c['Type'] == 'EQuestAcquirableCondition::SubZone']
+        if not conditions:
+            raise ValueError('Stronghold has no subzone reference')
+        for condition in conditions:
+            zone = by_name.get(condition)
+            if not zone or zone['ID']['Value'] not in volumes:
+                raise ValueError('Unresolved stronghold subzone')
+            zone_id = zone['ID']['Value']
+            desc = zone['DisplayName']['Key']
+            name = english.get(desc) or english.get('String_' + desc + '_body')
+            if not name:
+                raise ValueError('Unnamed stronghold')
+            for volume in volumes[zone_id]:
+                key = f"{data['MapId']}:stronghold:{zone_id}:{volume['LabelName']}"
+                if key in seen:
+                    continue
+                seen.add(key)
+                xyz = [volume['Location'][axis] for axis in ('X', 'Y', 'Z')]
+                if any(type(v) not in (float, int) or not math.isfinite(v) for v in xyz):
+                    raise ValueError('Invalid stronghold coordinate')
+                x, y = [(v / world_scale - start) / span * 1000 for v, start in zip(xyz[:2], origin)]
+                if not (0 <= x <= 1000 and 0 <= y <= 1000):
+                    raise ValueError('Stronghold outside terrain')
+                result.append({'id': key, 'name': name, 'kind': 'stronghold', 'entity': 'area',
+                               'x': round(x, 5), 'y': round(y, 5), 'world': xyz,
+                               'spawnId': volume['LabelName'], 'objectId': zone_id,
+                               'questId': quest['ID']['Value'], 'locationType': 'area-center'})
+    return result
+
+
+def extract(data, objects, english, npcs=None, origin=(-4096, -4096), span=8192, sealed=None, world_scale=100):
     result, seen = [], set()
     skipped = {'missingName': 0, 'outOfBounds': 0, 'duplicateReferences': 0}
     for spawn in data['SpawnInfoList']:
@@ -30,6 +89,8 @@ def extract(data, objects, english, npcs=None, origin=(-4096, -4096), span=8192)
             obj = objects.get(ref['Value'])
             if obj:
                 kind = KINDS.get(obj['Usage'])
+                if kind == 'dungeon' and obj.get('UsageValue') in (sealed or set()):
+                    kind = 'sealed'
                 # Reviewed resource ID shared by three localized Hidden Cube object rows.
                 if obj.get('ResourceKey') == 'HiddenCube_01_V04':
                     kind = 'cube'
@@ -54,8 +115,8 @@ def extract(data, objects, english, npcs=None, origin=(-4096, -4096), span=8192)
                 xyz = [pos['Location'][axis] for axis in ('X', 'Y', 'Z')]
                 if any(type(v) not in (float, int) or not math.isfinite(v) for v in xyz):
                     raise ValueError('Invalid spawn coordinate')
-                # Candidate only: external methodology corroborates /100; not independently validated.
-                x, y = [(v / 100 - start) / span * 1000 for v, start in zip(xyz[:2], origin)]
+                # Convert with the official sector ratio; live world-to-texture checks remain separate.
+                x, y = [(v / world_scale - start) / span * 1000 for v, start in zip(xyz[:2], origin)]
                 if not (0 <= x <= 1000 and 0 <= y <= 1000):
                     skipped['outOfBounds'] += 1
                     continue
@@ -86,6 +147,12 @@ def build(root, packages):
     npcs = {r['ID']['Value']: r for r in npc_rows}
     if len(npcs) != len(npc_rows):
         raise ValueError('Duplicate NPC ID')
+    sealed = sealed_entrances(
+        read('AION2/Content/Data/Table/Dungeon.json')['Properties']['Data'],
+        read('AION2/Content/Data/Table/Map.json')['Properties']['Data'],
+        read('AION2/Content/Data/Table/MapEntrance.json')['Properties']['Data'])
+    quests = read('AION2/Content/Data/Table/Quest.json')['Properties']['Data']
+    subzones = read('AION2/Content/Data/Table/Subzone.json')['Properties']['Data']
     field_rows = read('AION2/Content/Data/Table/WorldMapFieldNamed.json')['Properties']['Data']
     english = read('English.json')['Entries']
     maps = []
@@ -101,6 +168,8 @@ def build(root, packages):
         if plane['grid'][0] != plane['grid'][1]:
             raise ValueError('Unsupported non-square map')
         span = plane['grid'][0] * plane['planeSize']
+        world_scale = settings['SectorWorldSize'] / settings['SectorPlaneSize']
+        plane['worldUnitsPerPlaneUnit'] = world_scale
         # Unknown field names remain unresolved: audit the exact tuple match, do not
         # infer schedules, tiers or live boss state from these columns.
         named_pairs = [(spawn['Name'], npcs[ref['Value']]['Name'])
@@ -109,11 +178,17 @@ def build(root, packages):
         joined = sum(sum(row['Unknown1_Int'] == map_id and row['Unknown2_Name'] == npc_name
                          and row['Unknown3_Name'] == spawn_name for row in field_rows) == 1
                      for spawn_name, npc_name in named_pairs)
+        extracted = extract(data, objects, english, npcs, plane['planeOrigin'], span, sealed, world_scale)
+        areas = strongholds(data, quests, subzones, english, plane['planeOrigin'], span, world_scale)
+        extracted['markers'].extend(areas)
+        if len({row['id'] for row in extracted['markers']}) != len(extracted['markers']):
+            raise ValueError('Duplicate combined marker identity')
         maps.append({'name': name, 'mapKey': key, 'plane': plane,
                      'namedAudit': {'spawners': len(named_pairs), 'exactFieldTableMatches': joined},
-                     **extract(data, objects, english, npcs, plane['planeOrigin'], span)})
+                     'categoryAudit': {'sealedEntrances': sum(row['kind'] == 'sealed' for row in extracted['markers']), 'strongholdAreas': len(areas)},
+                     **extracted})
     return {'schema': 'a2bc-spawn-preview-v1', 'buildId': '25926599', 'region': 'global',
-            'worldProjectionVerified': False, 'projection': 'candidate world/100, official per-map UI plane origin and size',
+            'worldProjectionVerified': False, 'projection': 'official SectorWorldSize/SectorPlaneSize ratio, per-map UI plane origin and size; live placement unverified',
             'maps': maps, 'sourceSha256': hashes}
 
 

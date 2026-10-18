@@ -6,9 +6,10 @@ import ishalgen from '../lib/data/terrain-ishalgen.json';
 import reshantaLower from '../lib/data/terrain-reshanta-lower.json';
 import reshantaMiddle from '../lib/data/terrain-reshanta-middle.json';
 import terrainLabels from '../lib/data/terrain-labels.json';
-import {constrainMapView, zoomMap, mapProgressKey, loadMapProgress, saveMapProgress, type MapView} from '../lib/world-map';
+import legacyProgressKeys from '../lib/data/map-progress-legacy.json';
+import {constrainMapView, zoomMap, mapProgressKey, loadMapProgressWithLegacy, saveMapProgress, type MapView} from '../lib/world-map';
 import {visibleTerrainTiles, terrainLabelNames, searchTerrainLocations, terrainLocationView} from '../lib/terrain-map';
-import {previewMatches, visiblePreview, previewKinds, previewPage, previewProgressDataset, type SpawnPreview} from '../lib/spawn-preview';
+import {previewMatches, visiblePreview, previewKinds, previewKindLabel, previewPage, previewProgressDataset, type SpawnPreview} from '../lib/spawn-preview';
 const terrains: Record<string, typeof verteron> = {verteron, altgard, poeta, ishalgen, 'reshanta-lower': reshantaLower, 'reshanta-middle': reshantaMiddle};
 
 export default function TerrainPanel() {
@@ -59,7 +60,7 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       const dataset=previewProgressDataset(terrainName,map.markers);
       const key=await mapProgressKey(dataset);
       let progress={completed:[] as string[],writable:false};
-      try {progress=loadMapProgress(localStorage,key,dataset);} catch { /* Storage unavailable. */ }
+      try {progress=loadMapProgressWithLegacy(localStorage,key,dataset,(legacyProgressKeys as Record<string,string>)[terrainName]);} catch { /* Storage unavailable. */ }
       progressKey.current=key;writable.current=progress.writable;
       setCompleted(new Set(progress.completed));
       setStorageNotice(progress.writable?'':'저장된 기록을 읽지 못했습니다. 기존 기록은 유지하고 이번 변경은 화면에서만 기억합니다.');
@@ -133,12 +134,12 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
           <legend>표시할 항목 · 여러 개 선택 가능</legend>
           {Object.entries(previewKinds).map(([key,category])=>{
             const count=preview.filter(row=>row.kind===key).length;
-            return <label key={key}><input type="checkbox" aria-label={key==='cube'?'히든큐브':category.name}
+            return <label key={key}><input type="checkbox" aria-label={previewKindLabel(key)}
               disabled={count===0} checked={enabledKinds.has(key)}
               onChange={e=>{const next=new Set(enabledKinds);if(e.target.checked)next.add(key);else next.delete(key);
                 setEnabledKinds(next);setPreviewSelection('');setPage(0);}}/>
               <span aria-hidden="true" style={{color:category.color}}>●</span>
-              {key==='cube'?'히든큐브':category.name} ({count})</label>;
+              {previewKindLabel(key)} ({count})</label>;
           })}
         </fieldset>
         <div className="map-toolbar">
@@ -146,7 +147,7 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
           <button className="button ghost" onClick={()=>{setEnabledKinds(new Set());setPreviewSelection('');setPage(0);}}>항목 전체 끄기</button>
         </div>
         {enabledKinds.size===0 && <p role="status">표시할 항목을 체크해 주세요.</p>}
-        <p>히든큐브·채집물·던전 입구 등 확보된 후보 위치를 표시합니다. 봉인던전의 별도 분류, 깃털, 주둔지 전용 위치는 아직 연결되지 않았습니다. Empyrean Trace는 원본 이름으로 표시합니다.</p>
+        <p>봉인던전은 입구, 주둔지는 구역 중심을 표시합니다. 깃털은 Empyrean Trace의 통칭입니다. 항목 옆 숫자는 조건별 배치를 포함한 후보 지점 수이며 현재 출현·수집 가능 수가 아닙니다.</p>
         <label>이름 검색<input aria-label="실험 위치 검색" type="search" maxLength={100} value={previewQuery} onChange={e=>{setPreviewQuery(e.target.value);setPreviewSelection('');setPage(0);}}/></label>
         <label>후보 위치<select aria-label="실험 위치 선택" value={chosenPreview?.id ?? ''} onChange={e=>{const row=previewResults.find(item=>item.id===e.target.value);if(!row)return;focusPreview(row);}}>
           <option value="">후보 선택</option>{paged.rows.map((row,i)=><option key={row.id} value={row.id}>{row.name} · {i+1}</option>)}
@@ -163,7 +164,8 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
         {chosenPreview && <div className="map-detail">
           <label className="map-check"><input type="checkbox" checked={completed.has(chosenPreview.id)} onChange={()=>markPreview(chosenPreview.id)}/>이 위치 확인 완료</label>
           <button className="button ghost" onClick={()=>focusPreview(chosenPreview)}>후보 위치로 돌아가기</button>
-          <p>선택: {chosenPreview.name} · 원본 위치 {chosenPreview.world.map(v=>Math.round(v)).join(', ')} · 후보 지점이며 출현 보장 없음</p><p>같은 이름의 여러 지점은 조건별·대체 배치일 수 있습니다.</p></div>}
+          {chosenPreview.locationType==='area-center' && <p>주둔지 구역 중심입니다. 입구·NPC 위치가 아니며 구역 안에서 탐험 퀘스트를 확인하세요.</p>}
+          <p>분류: {previewKindLabel(chosenPreview.kind)}</p><p>선택: {chosenPreview.name} · 원본 위치 {chosenPreview.world.map(v=>Math.round(v)).join(', ')} · 후보 지점이며 출현 보장 없음</p><p>같은 이름의 여러 지점은 조건별·대체 배치일 수 있습니다.</p></div>}
       </>}
       </div>
     </div>}

@@ -63,10 +63,10 @@ const {previewMatches,visiblePreview,previewPage,previewProgressDataset}=await i
 const preview=JSON.parse(readFileSync('lib/data/spawn-preview.json'));
 assert.equal(preview.worldProjectionVerified,false);
 assert.equal(preview.region,'global');
-assert.deepEqual(preview.maps.map(m=>m.markers.length),[7238,7608,55,70,548,196]);
+assert.deepEqual(preview.maps.map(m=>m.markers.length),[7253,7623,55,70,548,196]);
 for(const map of preview.maps){
  assert.equal(new Set(map.markers.map(m=>m.id)).size,map.markers.length);
- for(const row of map.markers){assert.ok(['gather','teleport','named','npc','dungeon','rift','monolith','cube','trace'].includes(row.kind));assert.ok(row.x>=0 && row.x<=1000 && row.y>=0 && row.y<=1000);assert.ok(row.world.every(Number.isFinite));}
+ for(const row of map.markers){assert.ok(['gather','teleport','named','npc','dungeon','rift','monolith','cube','trace','sealed','stronghold'].includes(row.kind));assert.ok(row.x>=0 && row.x<=1000 && row.y>=0 && row.y<=1000);assert.ok(row.world.every(Number.isFinite));}
  if(['Verteron','Altgard'].includes(map.name))assert.equal(previewMatches(map.markers,'teleport','').length,61);
  assert.equal(previewMatches(map.markers,'gather','no such item 12345').length,0);
  assert.equal(visiblePreview(map.markers,{x:0,y:0,zoom:1}).length,map.markers.length);
@@ -88,6 +88,7 @@ console.log('Official location categories, paging and progress identities PASS')
 for (const map of preview.maps) {
  assert.equal(previewMatches(map.markers,'all','').length,map.markers.length);
  if(['Verteron','Altgard'].includes(map.name))assert.deepEqual(map.namedAudit,{spawners:24,exactFieldTableMatches:24});
+ assert.equal(map.plane.worldUnitsPerPlaneUnit,102000/1024);
  assert.equal(map.plane.uiTileLayoutVerified,true);assert.equal(map.plane.worldProjectionVerified,false);
 }
 
@@ -99,8 +100,49 @@ for (const map of preview.maps) {
  assert.equal(previewMatches(map.markers,new Set(),'').length,0);
  assert.deepEqual(previewMatches(map.markers,enabled,'HIDDEN CUBE'),
    map.markers.filter(row=>row.kind==='cube' && row.name.toLowerCase().includes('hidden cube')));
- // Layer labels must not change the canonical completion-storage identity.
+ // Canonical labels are versioned; previously deployed identities are independently checked below.
  const progress=previewProgressDataset(map.name,map.markers);
  assert.deepEqual(progress.categories.map(c=>c.name),
-   ['이동 지점','채집물','네임드 몬스터','NPC','던전 입구','균열','모노리스','큐브','Empyrean Trace']);
+   ['이동 지점','채집물','네임드 몬스터','NPC','봉인던전','주둔지','던전 입구','균열','모노리스','큐브','Empyrean Trace']);
 }
+
+const {mapProgressKey,loadMapProgressWithLegacy,saveMapProgress}=await import(moduleUrl(readFileSync('lib/world-map.ts','utf8')));
+const legacy=JSON.parse(readFileSync('lib/data/map-progress-legacy.json'));
+// Python's round(...,5) uses ties-to-even. Exact binary halfway values have
+// a denominator dividing 64; JS toFixed otherwise agrees on these inputs.
+const legacyRound=value=>{
+ const scaled=value*100000;
+ return Number.isInteger(value*64) && scaled%1===.5
+   ? (Math.floor(scaled)%2===0?Math.floor(scaled):Math.ceil(scaled))/100000
+   : Number(value.toFixed(5));
+};
+for(const map of preview.maps) {
+ const current=previewProgressDataset(map.name,map.markers);
+ // Reconstruct the exact previous dataset, verifying migration keys against shipped source.
+ const old=previewProgressDataset(map.name,map.markers.filter(r=>r.kind!=='stronghold').map(r=>({...r,kind:r.kind==='sealed'?'dungeon':r.kind,
+   x:legacyRound((r.world[0]/100-map.plane.planeOrigin[0])/(map.plane.grid[0]*map.plane.planeSize)*1000),
+   y:legacyRound((r.world[1]/100-map.plane.planeOrigin[1])/(map.plane.grid[1]*map.plane.planeSize)*1000)})));
+ old.categories=old.categories.filter(c=>!['sealed','stronghold'].includes(c.id));
+ assert.equal(await mapProgressKey(old),legacy[map.name]);
+ const key=await mapProgressKey(current);
+ assert.notEqual(key,legacy[map.name]);
+ const bytes=new Map();
+ const storage={getItem:k=>bytes.get(k)??null,setItem:(k,v)=>bytes.set(k,v)};
+ const id=current.markers[0].id;
+ saveMapProgress(storage,legacy[map.name],[id]);
+ const prior=bytes.get(legacy[map.name]);
+ assert.deepEqual(loadMapProgressWithLegacy(storage,key,current,legacy[map.name]),{completed:[id],writable:true});
+ assert.equal(bytes.has(key),false);assert.equal(bytes.get(legacy[map.name]),prior);
+ saveMapProgress(storage,key,[]);
+ assert.deepEqual(loadMapProgressWithLegacy(storage,key,current,legacy[map.name]),{completed:[],writable:true});
+ bytes.set(key,'broken');
+ assert.equal(loadMapProgressWithLegacy(storage,key,current,legacy[map.name]).writable,false);
+ bytes.delete(key);bytes.set(legacy[map.name],'broken');
+ assert.equal(loadMapProgressWithLegacy(storage,key,current,legacy[map.name]).writable,false);
+ if(['Verteron','Altgard'].includes(map.name)) {
+   assert.equal(map.markers.filter(r=>r.kind==='sealed').length,61);
+   assert.equal(map.markers.filter(r=>r.kind==='stronghold').length,15);
+   assert.ok(map.markers.filter(r=>r.kind==='stronghold').every(r=>r.questId && r.locationType==='area-center'));
+ }
+}
+console.log('Sealed/stronghold coverage and lossless legacy progress migration PASS');
