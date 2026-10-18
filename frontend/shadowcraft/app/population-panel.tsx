@@ -3,7 +3,6 @@ import {ArrowUpRight} from 'lucide-react';
 import {CLASSES} from '../lib/classes';
 import snapshot from '../lib/data/population.json';
 import pairings from '../lib/data/server-pairs.json';
-import FactionPicker from './faction-picker';
 
 const regions=[['eu','유럽'],['nae','북미 동부'],['naw','북미 서부'],['la','남미'],['as','아시아']];
 const number=new Intl.NumberFormat('ko-KR');
@@ -13,6 +12,8 @@ export default function PopulationPanel(){
  const [serverId,setServerId]=useState('');
  const servers=snapshot.servers.filter(s=>s.region===region&&s.race===race);
  const selected=servers.find(s=>s.id===serverId);
+ const selectedPair=pairings.pairs.find(ids=>ids.includes(serverId));
+ const sides=[1,2].map(id=>({id,name:selected?snapshot.servers.find(s=>s.region===region&&s.race===id&&selectedPair?.includes(s.id))?.name||(id===1?'천족':'마족'):(id===1?'천족':'마족')}));
  function changeRace(value:number){
   if(value===race)return;
   const pair=pairings.pairs.find(ids=>ids.includes(serverId));
@@ -28,7 +29,11 @@ export default function PopulationPanel(){
   <div className="population-heading"><div><span className="eyebrow">SERVER & CLASS</span><h2>서버별 직업 분포</h2><p>내 서버에는 어떤 직업이 많을까요?</p></div><a className="button ghost small" href={snapshot.source} target="_blank" rel="noreferrer">외부 통계 보기 <ArrowUpRight size={14}/></a></div>
   <div className="population-filters">
    <label>지역<select aria-label="지역" value={region} onChange={e=>{setRegion(e.target.value);setServerId('')}}>{regions.map(([id,name])=><option key={id} value={id}>{name}</option>)}</select></label>
-   <div><span>종족</span><FactionPicker value={race} onChange={changeRace}/></div>
+   <div className="population-matchup-field"><span>{selected?'서버 대조':'종족'}</span><div className="population-matchup" role="group" aria-label="진영별 서버 대조">
+    <button type="button" data-race="1" aria-pressed={race===1} className={'button secondary '+(race===1?'selected':'')} onClick={()=>changeRace(1)}>{sides[0].name}</button>
+    <span className="population-versus">VS</span>
+    <button type="button" data-race="2" aria-pressed={race===2} className={'button secondary '+(race===2?'selected':'')} onClick={()=>changeRace(2)}>{sides[1].name}</button>
+   </div></div>
    <label>서버<select aria-label="서버" value={selected?.id||''} onChange={e=>setServerId(e.target.value)}><option value="">{race===1?'천족':'마족'} 전체 서버</option>{servers.map(s=><option key={s.id} value={s.id}>{s.name}</option>)}</select></label>
   </div>
   {selected&&<p className="population-pair-note">종족을 바꾸면 상대 서버로 전환됩니다. <a href={pairings.source} target="_blank" rel="noreferrer">매칭표 ↗</a> · {pairings.checkedAt} 확인</p>}

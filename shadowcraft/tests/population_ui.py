@@ -15,7 +15,7 @@ with sync_playwright() as p:
         for region in ['eu','nae','naw','la','as']:
             panel.get_by_label('지역',exact=True).select_option(region)
             for race,name in [(1,'천족'),(2,'마족')]:
-                panel.get_by_role('button',name=name,exact=True).click()
+                panel.locator(f'button[data-race="{race}"]').click()
                 servers=[s for s in data['servers'] if s['region']==region and s['race']==race]
                 select=panel.get_by_label('서버',exact=True)
                 expect(select.locator('option')).to_have_count(len(servers)+1)
