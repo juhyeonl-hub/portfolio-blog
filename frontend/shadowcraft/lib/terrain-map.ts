@@ -29,3 +29,20 @@ export function visibleTerrainTiles(view: MapView, gridSize: number) {
   }
   return result;
 }
+
+export type TerrainLocation = {id: string; name: string; x: number; y: number};
+
+export function searchTerrainLocations(labels: TerrainLocation[], query: string) {
+  const words = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+  return labels.filter(label => words.every(word => label.name.toLocaleLowerCase().includes(word)));
+}
+
+/** Center a verified map-local location without panning beyond the terrain. */
+export function terrainLocationView(location: TerrainLocation): MapView {
+  if (![location.x, location.y].every(v => Number.isFinite(v) && v >= 0 && v <= 1000)) {
+    throw Error('Invalid terrain location');
+  }
+  const zoom = 4, size = 1000 / zoom;
+  return {x: Math.max(0, Math.min(1000 - size, location.x - size / 2)),
+    y: Math.max(0, Math.min(1000 - size, location.y - size / 2)), zoom};
+}

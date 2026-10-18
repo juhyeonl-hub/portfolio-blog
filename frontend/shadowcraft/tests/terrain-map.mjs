@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {moduleUrl} from './modules.mjs';
-const {visibleTerrainTiles: tiles, terrainLabelNames}=await import(moduleUrl(readFileSync('lib/terrain-map.ts','utf8')));
+const {visibleTerrainTiles: tiles, terrainLabelNames,searchTerrainLocations,terrainLocationView}=await import(moduleUrl(readFileSync('lib/terrain-map.ts','utf8')));
 const closeLabels=[{id:'a',name:'First region',x:500,y:500},{id:'b',name:'Other region',x:550,y:500}];
 assert.equal(terrainLabelNames(closeLabels,1).size,1);
 assert.equal(terrainLabelNames(closeLabels,8).size,2);
@@ -51,3 +51,11 @@ for(const [slug,key,grid,limit] of [['poeta','World_L_Starter',4,16],['ishalgen'
  for(const tile of m.tiles){const bytes=readFileSync(root+'/'+tile.file);assert.equal(createHash('sha256').update(bytes).digest('hex'),tile.sha256);assert.equal(bytes.length,tile.bytes);}
 }
 console.log('Six Global terrain regions: 189 tile identities/hashes, dimensions, seams and metadata PASS');
+
+assert.deepEqual(searchTerrainLocations(closeLabels,'  FIRST region '),[closeLabels[0]]);
+assert.deepEqual(searchTerrainLocations(closeLabels,'missing'),[]);
+assert.equal(searchTerrainLocations(closeLabels,'   ').length,2);
+assert.deepEqual(terrainLocationView(closeLabels[0]),{x:375,y:375,zoom:4});
+assert.deepEqual(terrainLocationView({id:'edge',name:'Edge',x:0,y:1000}),{x:0,y:750,zoom:4});
+for (const x of [-1,1001,NaN,Infinity]) assert.throws(()=>terrainLocationView({id:'bad',name:'Bad',x,y:0}));
+console.log('Terrain search and location focus: bounds and invalid coordinates PASS');
