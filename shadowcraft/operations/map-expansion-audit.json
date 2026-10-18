@@ -1,0 +1,214 @@
+{
+  "date": "2026-10-18",
+  "steamBuildId": "25926599",
+  "installedBuildMatched": true,
+  "strictDecode": [
+    {
+      "virtual_path": "AION2/Content/Data/Map/Intersever/Abyss/Abyss_Reshanta_A/MapData.bin",
+      "status": "json",
+      "rows": "1",
+      "error": "",
+      "seconds": "0.27"
+    },
+    {
+      "virtual_path": "AION2/Content/Data/Map/Intersever/Abyss/Abyss_Reshanta_C/MapData.bin",
+      "status": "json",
+      "rows": "1",
+      "error": "",
+      "seconds": "0.3"
+    },
+    {
+      "virtual_path": "AION2/Content/Data/Map/World/World_D/World_D_Starter/MapData.bin",
+      "status": "json",
+      "rows": "1",
+      "error": "",
+      "seconds": "0.07"
+    },
+    {
+      "virtual_path": "AION2/Content/Data/Map/World/World_L/World_L_Starter/MapData.bin",
+      "status": "json",
+      "rows": "1",
+      "error": "",
+      "seconds": "0.05"
+    }
+  ],
+  "sourceHashesVerified": 22,
+  "worldProjectionVerified": false,
+  "maps": [
+    {
+      "name": "Verteron",
+      "mapKey": "World_L_A",
+      "markers": 7238,
+      "plane": {
+        "mapKey": "World_L_A",
+        "tileCount": 64,
+        "grid": [
+          8,
+          8
+        ],
+        "planeSize": 1024.0,
+        "planeOrigin": [
+          -4096.0,
+          -4096.0
+        ],
+        "uiTileLayoutVerified": true,
+        "worldProjectionVerified": false
+      },
+      "namedAudit": {
+        "spawners": 24,
+        "exactFieldTableMatches": 24
+      },
+      "skipped": {
+        "missingName": 843,
+        "outOfBounds": 0,
+        "duplicateReferences": 95
+      }
+    },
+    {
+      "name": "Altgard",
+      "mapKey": "World_D_A",
+      "markers": 7608,
+      "plane": {
+        "mapKey": "World_D_A",
+        "tileCount": 64,
+        "grid": [
+          8,
+          8
+        ],
+        "planeSize": 1024.0,
+        "planeOrigin": [
+          -4096.0,
+          -4096.0
+        ],
+        "uiTileLayoutVerified": true,
+        "worldProjectionVerified": false
+      },
+      "namedAudit": {
+        "spawners": 24,
+        "exactFieldTableMatches": 24
+      },
+      "skipped": {
+        "missingName": 840,
+        "outOfBounds": 0,
+        "duplicateReferences": 60
+      }
+    },
+    {
+      "name": "Poeta",
+      "mapKey": "World_L_Starter",
+      "markers": 55,
+      "plane": {
+        "mapKey": "World_L_Starter",
+        "tileCount": 16,
+        "grid": [
+          4,
+          4
+        ],
+        "planeSize": 1024.0,
+        "planeOrigin": [
+          -2048.0,
+          -2048.0
+        ],
+        "uiTileLayoutVerified": true,
+        "worldProjectionVerified": false
+      },
+      "namedAudit": {
+        "spawners": 0,
+        "exactFieldTableMatches": 0
+      },
+      "skipped": {
+        "missingName": 0,
+        "outOfBounds": 0,
+        "duplicateReferences": 0
+      }
+    },
+    {
+      "name": "Ishalgen",
+      "mapKey": "World_D_Starter",
+      "markers": 70,
+      "plane": {
+        "mapKey": "World_D_Starter",
+        "tileCount": 25,
+        "grid": [
+          5,
+          5
+        ],
+        "planeSize": 1024.0,
+        "planeOrigin": [
+          -3310.4112941176472,
+          -2590.1154509803923
+        ],
+        "uiTileLayoutVerified": true,
+        "worldProjectionVerified": false
+      },
+      "namedAudit": {
+        "spawners": 0,
+        "exactFieldTableMatches": 0
+      },
+      "skipped": {
+        "missingName": 0,
+        "outOfBounds": 0,
+        "duplicateReferences": 0
+      }
+    },
+    {
+      "name": "Chaotic Lower Reshanta",
+      "mapKey": "Abyss_Reshanta_A",
+      "markers": 548,
+      "plane": {
+        "mapKey": "Abyss_Reshanta_A",
+        "tileCount": 16,
+        "grid": [
+          4,
+          4
+        ],
+        "planeSize": 1024.0,
+        "planeOrigin": [
+          -2048.0,
+          -2048.0
+        ],
+        "uiTileLayoutVerified": true,
+        "worldProjectionVerified": false
+      },
+      "namedAudit": {
+        "spawners": 11,
+        "exactFieldTableMatches": 8
+      },
+      "skipped": {
+        "missingName": 0,
+        "outOfBounds": 0,
+        "duplicateReferences": 0
+      }
+    },
+    {
+      "name": "Chaotic Middle Reshanta",
+      "mapKey": "Abyss_Reshanta_C",
+      "markers": 196,
+      "plane": {
+        "mapKey": "Abyss_Reshanta_C",
+        "tileCount": 4,
+        "grid": [
+          2,
+          2
+        ],
+        "planeSize": 1024.0,
+        "planeOrigin": [
+          -1024.0,
+          -1024.0
+        ],
+        "uiTileLayoutVerified": true,
+        "worldProjectionVerified": false
+      },
+      "namedAudit": {
+        "spawners": 8,
+        "exactFieldTableMatches": 5
+      },
+      "skipped": {
+        "missingName": 0,
+        "outOfBounds": 0,
+        "duplicateReferences": 0
+      }
+    }
+  ],
+  "limitation": "UI tile transforms and decoder consumption verified; actual gameplay world-to-image correspondence remains unverified."
+}

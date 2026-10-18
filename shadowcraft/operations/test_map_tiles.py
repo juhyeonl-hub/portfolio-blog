@@ -44,6 +44,15 @@ class TilesTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'texture mismatch'):
             tiles.audit(self.settings, self.data)
 
+    def test_explicit_world_origin_supports_translated_grid(self):
+        self.settings.update(StartWorldLocation={'X':-49200,'Y':-51200},SectorWorldSize=102400)
+        self.data[1]['Properties']['RelativeLocation']['X']=20
+        result=tiles.audit(self.settings,self.data)
+        self.assertEqual(result['planeOrigin'],[-492, -512])
+        self.assertFalse(result['worldProjectionVerified'])
+        self.data[1]['Properties']['RelativeLocation']['X']=21
+        with self.assertRaises(ValueError):tiles.audit(self.settings,self.data)
+
     def test_index_and_dimensions(self):
         self.data[0]['Properties']['SectorIndex'] = {'X': 1, 'Y': 0}
         with self.assertRaises(ValueError):

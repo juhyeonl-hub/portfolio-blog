@@ -14,6 +14,10 @@ class PreviewTest(unittest.TestCase):
         row=mod.extract(self.data,self.objects,{'item':'Plant'})['markers'][0]
         self.assertEqual(row['id'],'1010:123:5:0');self.assertEqual(row['world'],[0,0,100])
         self.assertEqual((row['x'],row['y']),(500,500))
+    def test_projection_uses_verified_plane_extent(self):
+        row=mod.extract(self.data,self.objects,{'item':'Plant'},origin=(-100,-200),span=1000)['markers'][0]
+        self.assertEqual((row['x'],row['y']),(100,200))
+
     def test_unknown_name_and_category(self):
         self.assertEqual(mod.extract(self.data,self.objects,{})['skipped']['missingName'],1)
         self.objects[5]['Usage']='EEnvObjectUsage::Quest'

@@ -63,6 +63,7 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       progressKey.current=key;writable.current=progress.writable;
       setCompleted(new Set(progress.completed));
       setStorageNotice(progress.writable?'':'저장된 기록을 읽지 못했습니다. 기존 기록은 유지하고 이번 변경은 화면에서만 기억합니다.');
+      if(!map.markers.some(row=>row.kind===previewKind))setPreviewKind(map.markers[0]?.kind ?? 'teleport');
       setPreview(map.markers);setPreviewOn(true);setOpen(true);
     } catch {setPreviewError(true);} finally {setPreviewLoading(false);}
   }
@@ -101,7 +102,7 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       </select></label>
       {query.trim() && <p role="status">검색 결과 {matches.length}개</p>}
     </div>}
-    {['Verteron','Altgard'].includes(terrainName) && <div className="notice">
+    {<div className="notice">
       <div><strong>실험: 공식 위치 미리보기</strong>
       <p>공식 클라이언트의 후보 위치입니다. 지도상의 위치 정확도는 미검증이며 실제 출현·이용 가능 여부를 뜻하지 않습니다.</p>
       <button className="button secondary" disabled={previewLoading} aria-expanded={previewOn} onClick={()=>void togglePreview()}>
@@ -130,7 +131,6 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       </>}
       </div>
     </div>}
-    {!['Verteron','Altgard'].includes(terrainName) && <p>이 지역은 현재 지형만 제공합니다. 위치 원본이 연결되면 마커를 추가합니다.</p>}
     {open && <>
       <div className="map-toolbar"><button className="button ghost" aria-label="지형 지도 축소" disabled={view.zoom===1} onClick={()=>setView(v=>zoomMap(v,v.zoom/2))}>−</button>
         <span>{view.zoom}배</span><button className="button ghost" aria-label="지형 지도 확대" disabled={view.zoom===8} onClick={()=>setView(v=>zoomMap(v,v.zoom*2))}>+</button>

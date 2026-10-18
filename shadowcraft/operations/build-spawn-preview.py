@@ -1,5 +1,6 @@
 """Export opt-in candidate locations, never a verified world projection."""
 import hashlib
+import importlib.util
 import json
 import math
 from pathlib import Path
@@ -9,10 +10,16 @@ KINDS = {'EEnvObjectUsage::GatherSource': 'gather', 'EEnvObjectUsage::TeleportAr
          'EEnvObjectUsage::Rift': 'rift', 'EEnvObjectUsage::EnterDungeon': 'dungeon',
          'EEnvObjectUsage::PartyDungeon': 'dungeon', 'EEnvObjectUsage::Monolith': 'monolith',
          'EEnvObjectUsage::OdEnergyCube': 'cube'}
-MAPS = [('World_L_A', 'Verteron', 1010, 'World_L'), ('World_D_A', 'Altgard', 1110, 'World_D')]
+MAPS = [('World_L_A', 'Verteron', 1010, 'World/World_L'), ('World_D_A', 'Altgard', 1110, 'World/World_D'),
+        ('World_L_Starter', 'Poeta', 1000, 'World/World_L'), ('World_D_Starter', 'Ishalgen', 1100, 'World/World_D'),
+        ('Abyss_Reshanta_A', 'Chaotic Lower Reshanta', 20, 'Intersever/Abyss'),
+        ('Abyss_Reshanta_C', 'Chaotic Middle Reshanta', 22, 'Intersever/Abyss')]
+_spec = importlib.util.spec_from_file_location('map_tiles', Path(__file__).with_name('audit-map-tiles.py'))
+_tiles = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_tiles)
 
 
-def extract(data, objects, english, npcs=None):
+def extract(data, objects, english, npcs=None, origin=(-4096, -4096), span=8192):
     result, seen = [], set()
     skipped = {'missingName': 0, 'outOfBounds': 0, 'duplicateReferences': 0}
     for spawn in data['SpawnInfoList']:
@@ -26,7 +33,7 @@ def extract(data, objects, english, npcs=None):
                 # Reviewed resource ID shared by three localized Hidden Cube object rows.
                 if obj.get('ResourceKey') == 'HiddenCube_01_V04':
                     kind = 'cube'
-                if obj['Usage'] == 'EEnvObjectUsage::Normal' and obj.get('ResourceKey') in {'GodFragment_02', 'GodFragment_05'}:
+                if obj['Usage'] == 'EEnvObjectUsage::Normal' and obj.get('ResourceKey') in {'GodFragment_02', 'GodFragment_05', 'GodFragment_13', 'GodFragment_14'}:
                     kind = 'trace'
                 if kind:
                     entries.append((ref, obj, kind, 'object'))
@@ -48,7 +55,7 @@ def extract(data, objects, english, npcs=None):
                 if any(type(v) not in (float, int) or not math.isfinite(v) for v in xyz):
                     raise ValueError('Invalid spawn coordinate')
                 # Candidate only: external methodology corroborates /100; not independently validated.
-                x, y = [(v / 100 / 8192 + .5) * 1000 for v in xyz[:2]]
+                x, y = [(v / 100 - start) / span * 1000 for v, start in zip(xyz[:2], origin)]
                 if not (0 <= x <= 1000 and 0 <= y <= 1000):
                     skipped['outOfBounds'] += 1
                     continue
@@ -64,7 +71,7 @@ def extract(data, objects, english, npcs=None):
     return {'markers': result, 'skipped': skipped}
 
 
-def build(root):
+def build(root, packages):
     root = Path(root)
     hashes = {}
     def read(rel):
@@ -83,10 +90,17 @@ def build(root):
     english = read('English.json')['Entries']
     maps = []
     for key, name, map_id, folder in MAPS:
-        data = read(f'AION2/Content/Data/Map/World/{folder}/{key}/MapData.json')['Properties']['Data']
+        data = read(f'AION2/Content/Data/Map/{folder}/{key}/MapData.json')['Properties']['Data']
         settings = read(f'AION2/Content/Data/WorldMap/{key}.json')['Properties']['Data']
-        if data['MapId'] != map_id or settings['SectorSize'] != {'X': 8, 'Y': 8} or settings['SectorPlaneSize'] != 1024:
-            raise ValueError('Unreviewed map identity or grid')
+        if data['MapId'] != map_id or settings['WorldMapDataTableKey'] != key:
+            raise ValueError('Unexpected map identity')
+        ui_path = f'{key}/WorldMap_{key}.json'
+        raw_ui = (Path(packages) / ui_path).read_bytes()
+        hashes['UI/WorldMap/' + ui_path] = hashlib.sha256(raw_ui).hexdigest()
+        plane = _tiles.audit(settings, json.loads(raw_ui))
+        if plane['grid'][0] != plane['grid'][1]:
+            raise ValueError('Unsupported non-square map')
+        span = plane['grid'][0] * plane['planeSize']
         # Unknown field names remain unresolved: audit the exact tuple match, do not
         # infer schedules, tiers or live boss state from these columns.
         named_pairs = [(spawn['Name'], npcs[ref['Value']]['Name'])
@@ -95,15 +109,15 @@ def build(root):
         joined = sum(sum(row['Unknown1_Int'] == map_id and row['Unknown2_Name'] == npc_name
                          and row['Unknown3_Name'] == spawn_name for row in field_rows) == 1
                      for spawn_name, npc_name in named_pairs)
-        maps.append({'name': name, 'mapKey': key,
+        maps.append({'name': name, 'mapKey': key, 'plane': plane,
                      'namedAudit': {'spawners': len(named_pairs), 'exactFieldTableMatches': joined},
-                     **extract(data, objects, english, npcs)})
+                     **extract(data, objects, english, npcs, plane['planeOrigin'], span)})
     return {'schema': 'a2bc-spawn-preview-v1', 'buildId': '25926599', 'region': 'global',
-            'worldProjectionVerified': False, 'projection': 'candidate world/100, centered 8192 UI plane',
+            'worldProjectionVerified': False, 'projection': 'candidate world/100, official per-map UI plane origin and size',
             'maps': maps, 'sourceSha256': hashes}
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        raise SystemExit('Expected October decoded directory')
-    print(json.dumps(build(sys.argv[1]), ensure_ascii=False, separators=(',', ':'), allow_nan=False))
+    if len(sys.argv) != 3:
+        raise SystemExit('Expected October decoded and UI WorldMap directories')
+    print(json.dumps(build(*sys.argv[1:]), ensure_ascii=False, separators=(',', ':'), allow_nan=False))

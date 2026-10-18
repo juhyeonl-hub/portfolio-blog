@@ -9,6 +9,10 @@
         4
       ],
       "planeSize": 1024.0,
+      "planeOrigin": [
+        -2048.0,
+        -2048.0
+      ],
       "uiTileLayoutVerified": true,
       "worldProjectionVerified": false
     },
@@ -20,6 +24,10 @@
         2
       ],
       "planeSize": 1024.0,
+      "planeOrigin": [
+        -1024.0,
+        -1024.0
+      ],
       "uiTileLayoutVerified": true,
       "worldProjectionVerified": false
     },
@@ -31,14 +39,27 @@
         8
       ],
       "planeSize": 1024.0,
+      "planeOrigin": [
+        -4096.0,
+        -4096.0
+      ],
       "uiTileLayoutVerified": true,
       "worldProjectionVerified": false
     },
     {
       "mapKey": "World_D_Starter",
-      "uiTileLayoutVerified": false,
-      "worldProjectionVerified": false,
-      "failure": "Displaced tile"
+      "tileCount": 25,
+      "grid": [
+        5,
+        5
+      ],
+      "planeSize": 1024.0,
+      "planeOrigin": [
+        -3310.4112941176472,
+        -2590.1154509803923
+      ],
+      "uiTileLayoutVerified": true,
+      "worldProjectionVerified": false
     },
     {
       "mapKey": "World_L_A",
@@ -48,6 +69,10 @@
         8
       ],
       "planeSize": 1024.0,
+      "planeOrigin": [
+        -4096.0,
+        -4096.0
+      ],
       "uiTileLayoutVerified": true,
       "worldProjectionVerified": false
     },
@@ -59,6 +84,10 @@
         4
       ],
       "planeSize": 1024.0,
+      "planeOrigin": [
+        -2048.0,
+        -2048.0
+      ],
       "uiTileLayoutVerified": true,
       "worldProjectionVerified": false
     }

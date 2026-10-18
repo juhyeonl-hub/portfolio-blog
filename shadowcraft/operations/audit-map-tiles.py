@@ -23,6 +23,12 @@ def audit(settings, exports):
     size = number(settings['SectorPlaneSize'])
     if size <= 0:
         raise ValueError('Invalid plane size')
+    origin = [-dim * size / 2 for dim in dims]
+    if 'StartWorldLocation' in settings:
+        world_size = number(settings['SectorWorldSize'])
+        if world_size <= 0:
+            raise ValueError('Invalid world sector size')
+        origin = [number(settings['StartWorldLocation'][axis]) / world_size * size for axis in ('X', 'Y')]
     actors = [row for row in exports if row['Type'] == 'BP_WorldMapPlane_C']
     seen = set()
     for actor in actors:
@@ -48,8 +54,8 @@ def audit(settings, exports):
         cp = component['Properties']
         if 'AttachParent' in cp or any(number(v) != 0 for v in cp.get('RelativeRotation', {}).values()):
             raise ValueError('Unsupported component transform')
-        for axis, tile, dim in zip(('X', 'Y'), xy, dims):
-            expected = (tile + .5 - dim / 2) * size
+        for axis, tile, start in zip(('X', 'Y'), xy, origin):
+            expected = start + (tile + .5) * size
             if abs(number(cp['RelativeLocation'][axis]) - expected) > .01:
                 raise ValueError('Displaced tile')
         for ref in cp['OverrideMaterials']:
@@ -64,7 +70,7 @@ def audit(settings, exports):
             raise ValueError('Missing material')
     if len(seen) != dims[0] * dims[1]:
         raise ValueError('Incomplete tile grid')
-    return {'mapKey': key, 'tileCount': len(seen), 'grid': dims, 'planeSize': size,
+    return {'mapKey': key, 'tileCount': len(seen), 'grid': dims, 'planeSize': size, 'planeOrigin': origin,
             'uiTileLayoutVerified': True, 'worldProjectionVerified': False}
 
 

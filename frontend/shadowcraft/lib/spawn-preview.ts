@@ -11,7 +11,7 @@ export function visiblePreview(rows: SpawnPreview[], view: MapView) {
 
 export const previewKinds: Record<string, {name:string;color:string}> = {
   teleport:{name:'이동 지점',color:'#5eead4'}, gather:{name:'채집물',color:'#fbbf24'},
-  named:{name:'필드 네임드',color:'#fb7185'}, npc:{name:'NPC',color:'#a5b4fc'},
+  named:{name:'네임드 몬스터',color:'#fb7185'}, npc:{name:'NPC',color:'#a5b4fc'},
   dungeon:{name:'던전 입구',color:'#c084fc'}, rift:{name:'균열',color:'#38bdf8'},
   monolith:{name:'모노리스',color:'#fb923c'}, cube:{name:'큐브',color:'#f9a8d4'}, trace:{name:'Empyrean Trace',color:'#bef264'},
 };

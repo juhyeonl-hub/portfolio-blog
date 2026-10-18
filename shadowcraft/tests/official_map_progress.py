@@ -46,6 +46,15 @@ with sync_playwright() as p:
     panel=open_map()
     expect(panel.get_by_text('확인 기록 1개',exact=False)).to_be_visible()
     assert page.evaluate('(k)=>localStorage.getItem(k)',key)==saved
+    for slug,count in [('poeta',55),('ishalgen',70),('reshanta-lower',548),('reshanta-middle',196)]:
+        panel=open_map(slug)
+        panel.get_by_label('실험 위치 종류',exact=True).select_option('all')
+        expect(panel.locator('[data-preview-marker]')).to_have_count(min(400,count))
+        choices=panel.get_by_label('실험 위치 선택',exact=True)
+        choices.select_option(choices.locator('option').nth(1).get_attribute('value'))
+        expect(panel.get_by_label('이 위치 확인 완료',exact=True)).to_be_visible()
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+    panel=open_map()
     # Corrupt records are preserved, not silently overwritten by a checkbox.
     page.evaluate('(k)=>localStorage.setItem(k,"broken")',key)
     panel=open_map()
