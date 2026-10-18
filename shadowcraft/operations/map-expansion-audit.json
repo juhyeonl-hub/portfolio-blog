@@ -210,5 +210,21 @@
       }
     }
   ],
-  "limitation": "UI tile transforms and decoder consumption verified; actual gameplay world-to-image correspondence remains unverified."
+  "limitation": "UI tile transforms and decoder consumption verified; actual gameplay world-to-image correspondence remains unverified.",
+  "verification": {
+    "operationsTests": 118,
+    "frontendSuites": 23,
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "productionBrowsers": [
+      "six-map candidate search/selection/progress",
+      "six terrain maps and storage preservation"
+    ],
+    "code": "3e3c6f1",
+    "deployment": "dpl_HAJP24NBWuPcKCaxmZNwaZNAh2BC",
+    "deploymentState": "Ready",
+    "alias": "https://juhyeonl.dev",
+    "worldPositionAccuracy": "not independently verified"
+  }
 }
