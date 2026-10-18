@@ -2,13 +2,15 @@
 
 작성일: **2026-10-18 (Europe/Helsinki)**
 서비스: **aion2(Steam) build craft** · https://juhyeonl.dev/lab/shadowcraft/
-지도 최신 코드: `bc9d168` · 기존 커뮤니티/백엔드 기준: `24494f3` · 운영 확인 결과는 아래 배포 기록 참조.
+지도 최신 코드: `54115a1` · 기존 커뮤니티/백엔드 기준: `24494f3` · 운영 확인 결과는 아래 배포 기록 참조.
 
 **판정:** 블로그 통합, 8직업 플래너, 회원 빌드 커뮤니티, 캐릭터 조회·비교, 고정 타이머는 구현·검증했다. 이번에는 게시물의 실제 배분 교체, 내 게시물 필터, 추천순 정렬까지 마무리했다. 다만 **검증된 직업별 상위 10명 분석과 공식 보스·수집물 위치 자동 표시**는 아직 완료하지 못했다. 두 항목은 원본 근거 확보와 후속 구현이 필요하므로 전체 최초 요구를 모두 완료했다고 표시하지 않는다.
 
 아래 내용이 현재 판정이다. 문서 뒤의 10월 16~17일 기록은 과거 이력이며, 현재 범위·완료 상태로 읽지 않는다. 제작·예상 전투/DPS 계산·별도 딜미터기·실시간 순위표는 현재 활성 제품 범위에서 제외했다.
 
 ## 지도 요청 항목 최종 구현 — 2026-10-18
+
+사용 방법: **지도 & 수집 → 지역 선택 → 실험 위치 보기 → 원하는 종류 체크**. 마커 또는 후보 목록에서 위치를 선택하면 확대·상세·확인 완료 체크를 사용할 수 있다.
 
 **구현 범위:** 지원하는 공식 Global Steam 6개 지형에 11종 필터를 연결했다. 채집물, 히든큐브, 깃털(Empyrean Trace), 봉인던전, 주둔지, 이동 지점, 네임드, NPC, 기타 던전 입구, 균열, 모노리스를 독립적으로 표시/숨김 처리한다. 전체 켜기/끄기, 이름 검색, 위치 선택/상세, 확인 완료/숨김/복원, 페이지 이동, 1~8배 버튼·휠 확대와 드래그/방향키 이동을 지원한다.
 
@@ -27,6 +29,23 @@
 **완료 경계:** 요청한 종류의 필터·탐색·기록 기능은 구현했다. 그러나 모든 게임 정보 또는 실시간 출현을 보장하는 지도는 아니다. 실제 월드 좌표와 지형 텍스처의 대응은 게임 화면의 독립 대조가 남아 있어 `worldProjectionVerified=false`와 위치 미리보기 안내를 유지한다. 이번 확인 시 Windows에서 AION2 프로세스가 실행되지 않아 실게임 검증은 하지 못했다. 지원하지 않는 지역과 서버에서 비활성인 콘텐츠의 이용 가능 여부도 확정하지 않는다.
 
 검증: 작업 스크립트 121개 테스트, 프런트엔드 23개 테스트 묶음, 타입 검사·린트·빌드, 로컬 지도 브라우저 4종 통과. 새 분류·기존 저장 키 이전·모바일·손상/용량 초과 처리와 기존 사용자 지도의 보존을 확인했다. 기존 대형 청크 경고는 남아 있다.
+
+운영 확인: 코드 `54115a1`, 배포 `dpl_Gfv6vA7UM5BgwzrB68CkHm7djf84` Ready 및 `juhyeonl.dev` 연결 확인. 운영에서 신규 분류/이전 기록, 기존 위치 기록, 지형 조작 브라우저 3종 모두 통과했다. 백엔드 변경 없음.
+
+변경 파일:
+- `frontend/shadowcraft/app/terrain-panel.tsx`: 11종 필터, 주둔지 설명, 이전 기록 연결.
+- `frontend/shadowcraft/app/map-panel.tsx`: 사용자 지도 안내 정리.
+- `frontend/shadowcraft/lib/spawn-preview.ts`: 새 분류 및 깃털 표시 이름.
+- `frontend/shadowcraft/lib/world-map.ts`: 원본을 보존하는 저장 기록 이전.
+- `frontend/shadowcraft/lib/data/spawn-preview.json`: 공식 참조·좌표 변환을 반영한 후보 데이터.
+- `frontend/shadowcraft/lib/data/map-progress-legacy.json`: 이전 배포의 지역별 저장 키.
+- `frontend/shadowcraft/tests/terrain-map.mjs`: 분류·좌표·이전 저장 키 검증.
+- `shadowcraft/operations/build-spawn-preview.py`: 봉인던전·주둔지 참조 연결 및 공식 배율.
+- `shadowcraft/operations/test_spawn_preview.py`: 원본 참조·구역 격리·경계값 회귀 검사.
+- `shadowcraft/operations/map-completion-audit.json`: 출처·종류별 수량·검증 한계.
+- `shadowcraft/tests/official_map_categories.py`: 신규 분류와 이전 기록의 브라우저 검증.
+- `PROJECT_BRIEF.md`: 범위·결정·검증 기록.
+- `shadowcraft/A2BC_STATUS_REPORT.md`: 이 결과 보고서.
 
 근거: `operations/map-completion-audit.json`. 아래 이전 섹션의 “봉인던전·깃털·주둔지 미연결”, “9종”, “world/100”은 과거 상태이며 이 절로 대체된다.
 
