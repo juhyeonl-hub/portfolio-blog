@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-18",
+  "timezone": "Europe/Helsinki",
+  "codeCommit": "24494f3",
+  "deployment": "dpl_79w7Tk6jXdZGKxq3yBCSuPAXg6Sn",
+  "backendTests": 34,
+  "backendFailures": 0,
+  "frontendSuites": 23,
+  "typecheck": "passed",
+  "lint": "passed",
+  "build": "passed with existing chunk/plugin timing warnings",
+  "browserRegression": [
+    {
+      "test": "integration",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    },
+    {
+      "test": "storage",
+      "initialExitCode": 1,
+      "finalExitCode": 0,
+      "correction": "Use current sidebar navigation and explicitly open collapsed planner settings; all original preservation assertions retained."
+    },
+    {
+      "test": "quick_build",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    },
+    {
+      "test": "map",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    },
+    {
+      "test": "terrain",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    },
+    {
+      "test": "boss_timers",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    },
+    {
+      "test": "event_timers",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    },
+    {
+      "test": "timer_timezones",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    },
+    {
+      "test": "faction_servers",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    },
+    {
+      "test": "public_builds",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    },
+    {
+      "test": "build_share",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    },
+    {
+      "test": "character_comparison",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    },
+    {
+      "test": "build_library",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    },
+    {
+      "test": "ocr-inputs",
+      "initialExitCode": 1,
+      "finalExitCode": 0,
+      "correction": "Use viewport containing tall fixture drag endpoints below pinned header; real clipboard, pointer and upload assertions retained."
+    },
+    {
+      "test": "ocr",
+      "initialExitCode": 0,
+      "finalExitCode": 0
+    }
+  ],
+  "communityBrowser": "passed on local frontend and deployed frontend, both using isolated test backend",
+  "productionAuth": "unmocked public list, register, identity, denied admin access, logout passed; temporary account removed",
+  "productionListing": "sort=votes and valid author filters HTTP200",
+  "productionContentWritesTested": false,
+  "fullProjectComplete": false,
+  "remaining": [
+    "Verified Global per-class top-ten roster, specialization evidence and analysis implementation",
+    "Verified per-map world-to-image transform, POI source and automatic marker integration"
+  ],
+  "excludedCurrentScope": [
+    "crafting",
+    "predicted combat/DPS",
+    "live DPS collector",
+    "live leaderboard"
+  ]
+}
