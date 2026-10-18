@@ -1,0 +1,93 @@
+{
+  "format": "a2bc-map-tile-audit-v1",
+  "maps": [
+    {
+      "mapKey": "Abyss_Reshanta_A",
+      "tileCount": 16,
+      "grid": [
+        4,
+        4
+      ],
+      "planeSize": 1024.0,
+      "uiTileLayoutVerified": true,
+      "worldProjectionVerified": false
+    },
+    {
+      "mapKey": "Abyss_Reshanta_C",
+      "tileCount": 4,
+      "grid": [
+        2,
+        2
+      ],
+      "planeSize": 1024.0,
+      "uiTileLayoutVerified": true,
+      "worldProjectionVerified": false
+    },
+    {
+      "mapKey": "World_D_A",
+      "tileCount": 64,
+      "grid": [
+        8,
+        8
+      ],
+      "planeSize": 1024.0,
+      "uiTileLayoutVerified": true,
+      "worldProjectionVerified": false
+    },
+    {
+      "mapKey": "World_D_Starter",
+      "uiTileLayoutVerified": false,
+      "worldProjectionVerified": false,
+      "failure": "Displaced tile"
+    },
+    {
+      "mapKey": "World_L_A",
+      "tileCount": 64,
+      "grid": [
+        8,
+        8
+      ],
+      "planeSize": 1024.0,
+      "uiTileLayoutVerified": true,
+      "worldProjectionVerified": false
+    },
+    {
+      "mapKey": "World_L_Starter",
+      "tileCount": 16,
+      "grid": [
+        4,
+        4
+      ],
+      "planeSize": 1024.0,
+      "uiTileLayoutVerified": true,
+      "worldProjectionVerified": false
+    }
+  ],
+  "inputSha256": {
+    "Abyss_Reshanta_A": {
+      "settings": "cbe830df2eea43fa926b9f1030a852751f426bd743f83890e464b94eb5d1767b",
+      "package": "1e8b613aec6a9c0afb6c0f7c2d4c552a2cca933c0b0945e6cca1f675340a7d86"
+    },
+    "Abyss_Reshanta_C": {
+      "settings": "64cc0ac972ee22d7d3cc834f6bb01c765bc4c37ebf62b55d553063826d81331f",
+      "package": "d356c259e9f645584eebd0540fe567f24a2b83a4c073b8c37d9d5301ec7748c9"
+    },
+    "World_D_A": {
+      "settings": "b3c804cbd6eadc6c52a106a8df0c53c55cb6c42276cef3e6ea5416fd95bb124b",
+      "package": "00584e384fd3ef880fa7fd09599867179c828adeccbcc279ebf3d612881c30d8"
+    },
+    "World_D_Starter": {
+      "settings": "9d9b44480105271303376a893c493f87e2722ab4ddf6aecf507a1176180e10d2",
+      "package": "ea3f48b5fd908615918f26656ff910149881325a2c0bf2c9aaf12e2054ab5159"
+    },
+    "World_L_A": {
+      "settings": "9502569673408a5a5b406384fe0cfd418e99eff6f3f377041c4e89668efd1dfc",
+      "package": "4e2f4e057cf04d72922f29c7383f2a141c2ba15267612590b26012a1e223efab"
+    },
+    "World_L_Starter": {
+      "settings": "32bb69ba4d1a207eb72f53632fb7ffddc778cb4e96e15848e338442e849a5eae",
+      "package": "a43cbc8d7e7afffb7ac6b5aba30d6219e84711d986c076eb1ead39d4379e29d9"
+    }
+  },
+  "scope": "UI tile centers, indices and texture references only; no world spawn projection or UV verification."
+}
