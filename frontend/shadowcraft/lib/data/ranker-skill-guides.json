@@ -1,0 +1,250 @@
+{
+  "source": {
+    "kind": "installed-steam-client",
+    "buildId": "25926599",
+    "path": "/shadowcraft/data/client-index.json",
+    "scope": "base-client-descriptions; qualitative interpretation, not performance measurement"
+  },
+  "skills": [
+    {
+      "id": "11080000",
+      "classKey": "gladiator",
+      "title": "방어력·받는 치유 감소",
+      "advantage": "적을 약화시키면서 공격을 이어갈 수 있습니다.",
+      "situation": "집중 공격이나 회복하는 적 상대",
+      "caution": "약화 효과가 적용되는 대상인지 확인하세요.",
+      "evidence": "Deals [unresolved value]-[unresolved value] damage to a target within 20m and reduces Defense by 30% and Incoming Heal by 50% for 10s.\n\n5 Stagger Gauge Damage",
+      "evidenceSha256": "fe8fc68c246f53158e79c30589fd3246b2172dd0bec04fc52d0fad1a1052fd78"
+    },
+    {
+      "id": "11380000",
+      "classKey": "gladiator",
+      "title": "위기 대응",
+      "advantage": "일시적인 피해·상태이상 면역 뒤 피해 내성이 붙습니다.",
+      "situation": "위험 패턴 대응",
+      "caution": "일부 강력한 공격은 막지 못하며 무적 중첩 제한이 있습니다.",
+      "evidence": "The caster becomes immune to damage and status effects for 3s. Increases PvE Damage Tolerance by 50% and PvP Damage Tolerance by 25% for 3s when the effect ends.\n\nCannot block certain powerful attacks. Unaffected by cooldown increase effects.\nTenaciousness, Salvation, and Barrier Spell effects cannot be applied for 30s if Invincibility stacking is blocked.",
+      "evidenceSha256": "461f346590f932115c05d4ea2b0a741afeba6fd38128feff2978b9c072c54382"
+    },
+    {
+      "id": "11400000",
+      "classKey": "gladiator",
+      "title": "공격 속도 강화",
+      "advantage": "자신의 전투 속도를 높입니다.",
+      "situation": "공격을 집중할 수 있는 구간",
+      "caution": "지속시간 안에 공격하지 못하면 활용도가 떨어집니다.",
+      "evidence": "Increases the caster's Combat Speed by 20% for 10s.",
+      "evidenceSha256": "0b2155c68e8baa1542a4517bbab53c1ed7444bc1274d1b54defb856d451f1247"
+    },
+    {
+      "id": "12220000",
+      "classKey": "templar",
+      "title": "적 모으기",
+      "advantage": "여러 적을 앞으로 끌어오고 속박합니다.",
+      "situation": "여러 적을 모아 처리하는 전투",
+      "caution": "끌어오기·속박 적용 여부를 확인하세요.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 7m of the target, pulling them in front of the caster. Inflicts Root for 3s.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "be4e3c4fd12c4708600ae39ad6fe564fd313731f380a90e17bc41b8a729a6ec7"
+    },
+    {
+      "id": "12250000",
+      "classKey": "templar",
+      "title": "파티원 보호",
+      "advantage": "파티원이 받는 피해를 자신과 나눕니다.",
+      "situation": "파티원의 집중 피해 대응",
+      "caution": "자신도 피해를 부담하므로 체력과 거리를 확인하세요.",
+      "evidence": "Increases the caster's PvE Damage Tolerance by 20% and PvP Damage Tolerance by 10% and redirects damage taken by a party member within 40m each time they are attacked, sharing 50% to the caster and 50% to the attacked party member for 6s.\n\nUnaffected by cooldown increase effects.",
+      "evidenceSha256": "145c6fbdb67de8ae3a162bbb5de410a0c5d10e4d961da70dfc40d0e2c918fd00"
+    },
+    {
+      "id": "12320000",
+      "classKey": "templar",
+      "title": "파티 보호막",
+      "advantage": "자신과 주변 파티원에게 보호막을 부여합니다.",
+      "situation": "파티가 함께 피해를 받는 구간",
+      "caution": "파티원이 보호 범위 안에 있어야 합니다.",
+      "evidence": "Grants a Protective Shield that blocks damage equaling 41% of Max HP for 3s to the caster and nearby party members within 40m.",
+      "evidenceSha256": "ecf02491ef78673bd2f6d297fa245589c4bcf68542bd6b995671dfb17e04d503"
+    },
+    {
+      "id": "13270000",
+      "classKey": "assassin",
+      "title": "문양 준비",
+      "advantage": "여러 적을 공격하며 문양을 새깁니다.",
+      "situation": "문양을 활용하는 연계 준비",
+      "caution": "후속 문양 소비 기술과 사용 순서를 맞춰야 합니다.",
+      "evidence": "Deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m and engraves 5 Insignias for 10s.\n\n50 Stagger Gauge Damage",
+      "evidenceSha256": "d37309cce9d222e1191c7360a8f63592234fb881269c6b67928ac799d31c8807"
+    },
+    {
+      "id": "13310000",
+      "classKey": "assassin",
+      "title": "공격 집중",
+      "advantage": "심장 찌르기 재사용 대기시간을 없애고 추가 피해 효과를 줍니다.",
+      "situation": "짧은 집중 공격 구간",
+      "caution": "효과 지속 중 실제 공격 기회가 필요합니다.",
+      "evidence": "Removes [Heart Gore] cooldown and deals 20% of damage dealt as extra damage for 10s.",
+      "evidenceSha256": "5189512689e437d42580fd00857e1181b0ee7feac6a71bfd17f8b1865e988192"
+    },
+    {
+      "id": "13370000",
+      "classKey": "assassin",
+      "title": "이동 방해 대응",
+      "advantage": "둔화·속박을 해제하고 면역과 회피 증가를 얻습니다.",
+      "situation": "이동 방해가 있는 전투",
+      "caution": "모든 종류의 상태이상을 해제하는 기술은 아닙니다.",
+      "evidence": "Removes Slow and Root from the caster and increases the caster's Evasion by 200 for 10s. Grants Slow and Root Immunity.\n\nUnaffected by cooldown increase effects.",
+      "evidenceSha256": "656a3b1db7cafae1c2dd00f458e2ebdd139fd63d20694014999b7ede4e43e5f7"
+    },
+    {
+      "id": "14220000",
+      "classKey": "ranger",
+      "title": "명중·치명타 강화",
+      "advantage": "자신의 명중과 치명타를 높입니다.",
+      "situation": "집중 공격 구간",
+      "caution": "실제 피해 증가는 상대와 현재 능력치에 따라 달라집니다.",
+      "evidence": "Increases the caster's Critical Hit by 200 and Accuracy by 100 for 10s.",
+      "evidenceSha256": "7891429a984db45cad72c8450ddb398f6808c6e6ed4eaa1b98cfff80bd7b7b74"
+    },
+    {
+      "id": "14350000",
+      "classKey": "ranger",
+      "title": "피해 대응",
+      "advantage": "피해 내성과 치명타 저항을 얻고 조건부 피해 흡수가 가능합니다.",
+      "situation": "피해가 몰리는 구간",
+      "caution": "피해 흡수는 확률 효과이므로 확정 회복으로 보지 마세요.",
+      "evidence": "Increases the caster's PvE Damage Tolerance by 20%, PvP Damage Tolerance by 10%, and Critical Hit Resist by 200 for 6s. Grants Mother Nature's Embrace for the duration.\nMother Nature's Embrace: The caster has a 50% chance to absorb 25% of damage taken as HP.\n\nUnaffected by cooldown increase effects.",
+      "evidenceSha256": "9c6fa4c1ba3722c4017c73e6d4cb9c2de4a00c2de0f45f869cb7b9d43eead39a"
+    },
+    {
+      "id": "14360000",
+      "classKey": "ranger",
+      "title": "조건부 광역 공격",
+      "advantage": "여러 적을 공격하며 둔화·속박 대상에게 추가 피해를 줍니다.",
+      "situation": "둔화·속박이 가능한 적 무리",
+      "caution": "상태이상 조건이 없으면 추가 피해 조건을 충족하지 못합니다.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] Fire damage to up to 4 enemies within 4m. Increases damage by 20% to targets afflicted with Slow or Root.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "e93f3a9348c5eadb4f3e7ac29787a8a64b810bcf703e369b564cb95b48fa74ef"
+    },
+    {
+      "id": "15140000",
+      "classKey": "sorcerer",
+      "title": "대상 제어",
+      "advantage": "대상을 나무로 변신시키며 자신은 뒤로 이동합니다.",
+      "situation": "한 대상을 잠시 묶어 둘 상황",
+      "caution": "대상을 공격하면 변신이 해제됩니다.",
+      "evidence": "Polymorphs a target within 20m into a tree for 10s, reducing their Fire Tolerance by 20%, while the caster moves back. Polymorph is canceled if the target is attacked.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "e8ceff4ea66414a350efbe26f870a5af0e4ed7a38a4fd067cd60c3d1264f00ff"
+    },
+    {
+      "id": "15320000",
+      "classKey": "sorcerer",
+      "title": "지연 공격 연계",
+      "advantage": "폭발 전 대상이 자신에게 받는 피해를 증가시킵니다.",
+      "situation": "공격을 연속해서 넣을 수 있는 구간",
+      "caution": "폭발 전 공격을 이어갈 수 있는지 확인하세요.",
+      "evidence": "Deals [unresolved value]-[unresolved value] Fire damage to a target within 20m after 4s. Increases damage taken from the caster by 15% during the delay.",
+      "evidenceSha256": "08468e250b3f21648b02671dbbc7fcbb5c2f89400653174cbc37973d9be37a9d"
+    },
+    {
+      "id": "15400000",
+      "classKey": "sorcerer",
+      "title": "속성 공격 강화",
+      "advantage": "화속성과 수속성 공격을 높입니다.",
+      "situation": "해당 속성 기술을 집중할 구간",
+      "caution": "다른 속성까지 강화한다고 해석하지 마세요.",
+      "evidence": "Increases the caster's Fire Attack by 20% and Water Attack by 20% for 10s.",
+      "evidenceSha256": "0feab7085f079c9681bf9c60d10683c5b071b2ba62e17f8670ae9ac76d7b0032"
+    },
+    {
+      "id": "16170000",
+      "classKey": "elementalist",
+      "title": "정령과 피해 분담",
+      "advantage": "자신이 받는 피해를 소환 정령과 나눕니다.",
+      "situation": "정령이 있는 상태의 위험 구간",
+      "caution": "정령이 정해진 거리 안에 있어야 하며 정령 체력도 확인해야 합니다.",
+      "evidence": "Increases the Spirit's PvE Damage Tolerance by 20% and PvP Damage Tolerance by 10% for 4s, and redirects damage taken each time the Spiritmaster is attacked, sharing 50% to the Spiritmaster and 50% to the Spirit.\nThis effect is applied to the summoned Spirit with the highest HP. If HP is equal, it will be applied to the closer target. Damage is only shared if the Spirit is within 25m.\n\nUnaffected by cooldown increase effects.",
+      "evidenceSha256": "67915191504429e589a3fcd54449ba5e0661b1c2b40be5febebdfb1970fd6298"
+    },
+    {
+      "id": "16230000",
+      "classKey": "elementalist",
+      "title": "강화 효과 제거",
+      "advantage": "여러 적의 강화 효과를 제거하며 제거 수에 따른 추가 피해가 있습니다.",
+      "situation": "제거 가능한 강화 효과를 가진 적 상대",
+      "caution": "제거할 효과가 없으면 추가 피해 조건을 충족하지 못합니다.",
+      "evidence": "Selects a target within 20m and deals [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m of the target, removing up to 2 buffs.\n\nDeals [unresolved value]-[unresolved value] extra damage based on the number of buffs removed.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "72b55949a10136ad2b8853aab1c9ff4e61657461e957895fb9ef44358599af45"
+    },
+    {
+      "id": "16250000",
+      "classKey": "elementalist",
+      "title": "정령 공격·원소 공급",
+      "advantage": "고대 정령이 함께 공격하고 기술 사용 시 사대 원소 상태를 제공합니다.",
+      "situation": "정령 공격과 원소를 활용하는 연계",
+      "caution": "소환 지속시간과 정령의 기술 사용 주기를 고려해야 합니다.",
+      "evidence": "Summons an Ancient Spirit for 30s and grants Four Elements status each time the Ancient Spirit uses its skill.\nThe Ancient Spirit uses a skill on a target within 20m, dealing [unresolved value]-[unresolved value] damage to up to 4 enemies within 4m.\nThe Ancient Spirit fights alongside the caster using basic attacks and reuses its skill after 7 basic attacks. It is dismissed upon selecting the summon icon.\nEach skill level increases the Ancient Spirit's Attack, Defense, Accuracy, and Critical Hit by 2%.\n\n20 Stagger Gauge Damage",
+      "evidenceSha256": "1f70a58105ecfd032be8fb4c81afff73bce7d4fb459102b8112d3830ae0b054a"
+    },
+    {
+      "id": "17160000",
+      "classKey": "cleric",
+      "title": "지속 파티 회복",
+      "advantage": "자신과 주변 파티원을 주기적으로 회복합니다.",
+      "situation": "파티가 지속 피해를 받는 구간",
+      "caution": "주기 회복이므로 즉시 큰 회복을 대신한다고 보지 마세요.",
+      "evidence": "Grants Benevolence to the caster for 20s. Restores [unresolved value]-[unresolved value] HP every 2s to the caster and party members within 40m for the duration.",
+      "evidenceSha256": "c704832c2cd84ad02a1180cdefb7178729eab4927b0c5066f049b97c805fe29e"
+    },
+    {
+      "id": "17390000",
+      "classKey": "cleric",
+      "title": "파티 부활",
+      "advantage": "쓰러진 파티원을 부활시킵니다.",
+      "situation": "파티 전투의 전멸 방지·복구",
+      "caution": "부활 대상이 범위 안에 있어야 합니다.",
+      "evidence": "Resurrects a fallen party member within 40m of the caster.",
+      "evidenceSha256": "00a728b538674787247ec05851a6f73c507aa09afb575b1ce25cffed34564402"
+    },
+    {
+      "id": "17410000",
+      "classKey": "cleric",
+      "title": "파티 공방 지원",
+      "advantage": "주변 파티원의 피해 증폭과 피해 내성을 높입니다.",
+      "situation": "파티 공격·방어 지원",
+      "caution": "호법성의 불패의 진언 피해 증폭과 중첩되지 않으며 높은 레벨 효과가 적용됩니다.",
+      "evidence": "Increases PvE Damage Boost and PvE Damage Tolerance by 10.5% and PvP Damage Boost and PvP Damage Tolerance by 5.25% for the caster and nearby party members.\n\nDoes not stack with the Damage Boost effect from the Chanter skill [Undefeated Mantra] and only the highest skill level effect applies. If both skills are the same level, Undefeated Mantra will be applied.",
+      "evidenceSha256": "5539805bd5caae668539ccf76a97ed891a0372dc82c9b07d1c7eba7ad740cc1f"
+    },
+    {
+      "id": "18170000",
+      "classKey": "chanter",
+      "title": "파티 회복",
+      "advantage": "자신과 주변 파티원의 체력을 회복합니다.",
+      "situation": "파티 피해 직후 회복",
+      "caution": "회복량은 여기서 추정하지 않으므로 필요한 회복량을 별도로 확인하세요.",
+      "evidence": "Restores [unresolved value]-[unresolved value] HP for the caster and party members within 40m.",
+      "evidenceSha256": "1d68ede608d39897e7e73389998749eeb25eda667b10c298795cfc3fdda561a9"
+    },
+    {
+      "id": "18190000",
+      "classKey": "chanter",
+      "title": "파티 공방 지원",
+      "advantage": "주변 파티원의 피해 증폭과 피해 내성을 높입니다.",
+      "situation": "파티 공격·방어 지원",
+      "caution": "치유성의 보호의 빛 피해 증폭과 중첩되지 않으며 높은 레벨 효과가 적용됩니다.",
+      "evidence": "Increases PvE Damage Boost and PvE Damage Tolerance by 10.5% and PvP Damage Boost and PvP Damage Tolerance by 5.25% for the caster and nearby party members.\n\nDoes not stack with the Damage Boost effect from the Cleric skill [Light of Protection]; only the higher-level skill effect applies. If both skills are the same level, Undefeated Mantra takes precedence.",
+      "evidenceSha256": "e478e39c0a33964d05f2137b1fc609b874b193330c67b397cf2294aa943c0ff4"
+    },
+    {
+      "id": "18250000",
+      "classKey": "chanter",
+      "title": "파티 속도·재사용 지원",
+      "advantage": "자신과 파티원의 전투 속도를 높이고 스킬 재사용 대기시간을 줄입니다.",
+      "situation": "파티 집중 공격 구간",
+      "caution": "치유성 대지의 축복 효과가 있으면 이 효과를 받을 수 없습니다.",
+      "evidence": "Increases Combat Speed by 20% and reduces skill cooldowns by 20% for 10s.\nIncreases Combat Speed by 20% and reduces skill cooldowns by 10% for party members within 40m.\n\nCannot receive effect of [Power of the Storm] if Cleric skill [Earth's Blessing] effect is active.",
+      "evidenceSha256": "6fd52db2f0bf152861f8c6b5ec936aba37248dfefcb488cd898435f33d86430b"
+    }
+  ]
+}

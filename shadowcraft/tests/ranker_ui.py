@@ -40,6 +40,16 @@ with sync_playwright() as p:
    page.locator('.class-picker button').filter(has_text=name).click()
    expect(panel.locator('.ranker-list button')).to_have_count(10)
    expect(panel.locator('.ranker-detail')).to_have_count(0)
+   panel.locator('.ranker-analysis > summary').click()
+   guidance=panel.locator('.ranker-guidance').filter(has=page.locator('h4')).first
+   guidance.locator(':scope > summary').click()
+   expect(guidance.locator('h4').first).to_be_visible()
+   expect(guidance.get_by_text('활용 제안:',exact=True).first).to_be_visible()
+   guidance.locator('details > summary').first.click()
+   expect(guidance.get_by_text('글로벌 Steam 기본 설명',exact=False).first).to_be_visible()
+   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+   guidance.locator(':scope > summary').click()
+   panel.locator('.ranker-analysis > summary').click()
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
   page.screenshot(path=f'/tmp/a2bc-rankers-{width}.png',full_page=True)
   assert not errors,errors

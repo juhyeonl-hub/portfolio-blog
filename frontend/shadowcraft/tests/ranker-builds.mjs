@@ -17,3 +17,19 @@ assert.throws(()=>previewRankerBoards(c,{...p,pointBudget:{sp:0,stigma:0,crystal
 const rows=[{skills:[{id:1,category:'Dp',equip:1},{id:2,category:'Active',equip:1}]},{skills:[{id:1,category:'Dp',equip:1}]},{skills:[{id:3,category:'Dp',equip:1}]}];
 const groups=groupRankers(rows);assert.equal(groups.length,2);assert.equal(groups[0].members.length,2);
 console.log('Ranker follow: identity, missing/unknown boards, budgets, immutable preview and observed-skill grouping PASS');
+const guides=JSON.parse(readFileSync('lib/data/ranker-skill-guides.json'));
+const client=JSON.parse(readFileSync('../public/shadowcraft/data/client-index.json'));
+const snapshot=JSON.parse(readFileSync('lib/data/rankers.json'));
+const {createHash}=await import('node:crypto');
+assert.equal(guides.source.buildId,client.source.buildId);
+assert.equal(new Set(guides.skills.map(s=>s.id)).size,guides.skills.length);
+for(const guide of guides.skills){
+ const source=client.skills.find(s=>s.id===guide.id);
+ assert.equal(guide.classKey,source.classKey);
+ assert.equal(guide.evidence,source.description.text);
+ assert.equal(guide.evidenceSha256,createHash('sha256').update(guide.evidence).digest('hex'));
+ for(const field of ['advantage','situation','caution'])assert(guide[field].length>5);
+ assert(snapshot.entries.some(r=>r.classKey===guide.classKey&&r.skills.some(s=>String(s.id)===guide.id&&s.category==='Dp'&&s.equip===1)));
+}
+for(const key of new Set(snapshot.entries.map(r=>r.classKey)))assert(guides.skills.filter(s=>s.classKey===key).length>=3);
+console.log('Ranker guidance: all eight classes, equipped IDs and exact Global source evidence PASS');
