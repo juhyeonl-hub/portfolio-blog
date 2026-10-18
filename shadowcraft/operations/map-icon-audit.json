@@ -169,7 +169,7 @@
     "trace": "Generic official Envobj marker; dedicated feather glyph not resolved",
     "gather": "Corrected to UI_ImageTable_Marker.Worldmap_Gather -> official FWindow_WorldMap Gather sprite, not TargetInfo_Gather texture"
   },
-  "unresolved": "UIIcon and UIImageDataRow schema mismatch resolved via read-only live structural metadata; tables now decode 205/1189/465 rows. Dedicated cube/trace world-map assignments remain unresolved.",
+  "unresolved": "Cube uses original Global popup art, not a certified map glyph. Trace now uses original MonolithFragment feather texture after visual inspection of public map reference; runtime per-object linkage remains unproven. See reference follow-up.",
   "coordinateStatus": "Unchanged; user approximate visual match is not independent control-point certification",
   "sprites": {
     "NPC": {
@@ -203,5 +203,6 @@
       }
     }
   },
-  "currentBindings": "map-icon-binding-audit.json; runtime display manifest frontend/shadowcraft/lib/data/map-icons.json contains current hashes/UVs; original file entries retained as export history."
+  "currentBindings": "map-icon-binding-audit.json; runtime display manifest frontend/shadowcraft/lib/data/map-icons.json contains current hashes/UVs; original file entries retained as export history.",
+  "referenceFollowup": "map-icon-reference-audit.json"
 }

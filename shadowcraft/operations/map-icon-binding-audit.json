@@ -803,5 +803,6 @@
     "trace": "No dedicated world-map image assignment located. Do not substitute wing equipment or MonolithFragment icons."
   },
   "sourceScope": "Read-only local schema metadata from the running Steam game; installed asset tables redecoded. No account/session data, memory dumps or addresses included.",
-  "npcPolicy": "NpcData.NpcSubType HeroMonster -> UIIcon HeroMonster world-map key. Citizen BuySell/Storage -> general Shop/Storage role icons; specialized shop inventory icon variants are not inferred."
+  "npcPolicy": "NpcData.NpcSubType HeroMonster -> UIIcon HeroMonster world-map key. Citizen BuySell/Storage -> general Shop/Storage role icons; specialized shop inventory icon variants are not inferred.",
+  "referenceFollowup": "map-icon-reference-audit.json"
 }

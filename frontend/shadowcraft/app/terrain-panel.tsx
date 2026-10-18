@@ -204,7 +204,7 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
         <button className="button ghost" onClick={()=>setView(terrainLocationView(selectedLabel))}>선택 위치로 이동</button>
         <button className="button ghost" onClick={()=>setSelectedLocation('')}>위치 선택 해제</button></p>}
       {failed.size>0 && <p role="alert">지형 이미지 {failed.size}개를 불러오지 못했습니다. <button className="button ghost" onClick={()=>{setFailed(new Set());setRetry(v=>v+1);}}>지형 다시 불러오기</button></p>}
-      <p className="subtle">공식 월드맵 연결표에 맞춘 아이콘입니다. 상점·창고·영웅 몬스터는 대상에 맞게 구분합니다. 히든큐브·깃털은 전용 지도 아이콘을 확인하지 못해 대체 그림을 사용합니다.</p>
+      <p className="subtle">글로벌 클라이언트 원본 아이콘을 사용합니다. 상점·창고·영웅 몬스터는 대상에 맞게 구분합니다. 깃털은 원본 깃털 지도 아이콘, 히든큐브는 원본 큐브 그림으로 표시합니다.</p>
       <p>+/− 버튼이나 마우스 휠로 확대·축소하고, 드래그 또는 방향키로 이동하세요. 마커를 선택하면 상세와 확인 기록을 볼 수 있습니다.</p>
       <div className="terrain-map-frame"><svg ref={canvasRef} className="map-canvas terrain-canvas" role="group" aria-label={`${terrainName} 지형 이미지`} tabIndex={0} viewBox={`${view.x} ${view.y} ${size} ${size}`}
         onKeyDown={e=>{const delta:Record<string,[number,number]>={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]};if(Object.hasOwn(delta,e.key)){e.preventDefault();const [x,y]=delta[e.key];setView(v=>constrainMapView({...v,x:v.x+x*size/10,y:v.y+y*size/10}));}}}
@@ -221,7 +221,7 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
           onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();focusPreview(row);}}}>
           <title>{row.name} · {previewKindLabel(row.kind)} · 미검증 후보 위치</title>
           <rect x={row.x-markerSize/2} y={row.y-markerSize/2} width={markerSize} height={markerSize} rx={4/Math.sqrt(view.zoom)} fill="transparent" stroke={row.id===previewSelection?'#fff':'none'} strokeWidth={2/Math.sqrt(view.zoom)}/>
-          <MapMarkerIcon kind={row.kind} objectId={row.objectId} region={terrainName} x={row.x-markerSize/2} y={row.y-markerSize/2} size={markerSize}/>
+          <MapMarkerIcon kind={row.kind} objectId={row.objectId} completed={completed.has(row.id)} region={terrainName} x={row.x-markerSize/2} y={row.y-markerSize/2} size={markerSize}/>
         </g>})}
         {previewOn && nearbyFocus && <g aria-label={`가까운 이동 지점: ${nearbyFocus.name}`} pointerEvents="none"><title>{nearbyFocus.name}</title><rect x={nearbyFocus.x-24/Math.sqrt(view.zoom)} y={nearbyFocus.y-24/Math.sqrt(view.zoom)} width={48/Math.sqrt(view.zoom)} height={48/Math.sqrt(view.zoom)} fill="#5eead433" stroke="#5eead4" strokeWidth={2/Math.sqrt(view.zoom)}/><MapMarkerIcon kind="teleport" region={terrainName} x={nearbyFocus.x-22/Math.sqrt(view.zoom)} y={nearbyFocus.y-22/Math.sqrt(view.zoom)} size={44/Math.sqrt(view.zoom)}/></g>}
         {selectedLabel && <circle aria-label={`선택 위치: ${selectedLabel.name}`} cx={selectedLabel.x} cy={selectedLabel.y}
@@ -234,9 +234,9 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       </svg>
       {previewOn && chosenPreview && <section ref={detailRef} className="map-detail terrain-marker-card" aria-label="선택한 마커 정보">
         <button className="button ghost small" aria-label="마커 정보 닫기" onClick={()=>{setPreviewSelection('');setNearbyId('');}}>닫기 ×</button>
-        <h3><MapMarkerIcon kind={chosenPreview.kind} objectId={chosenPreview.objectId} region={terrainName}/> {chosenPreview.name}</h3><p>{previewKindLabel(chosenPreview.kind)} · {terrainName}</p>
+        <h3><MapMarkerIcon kind={chosenPreview.kind} objectId={chosenPreview.objectId} completed={completed.has(chosenPreview.id)} region={terrainName}/> {chosenPreview.name}</h3><p>{previewKindLabel(chosenPreview.kind)} · {terrainName}</p>
         {chosenPreview.locationType==='area-center' && <p>주둔지 구역 중심입니다. 입구·NPC 위치가 아니며 구역 안에서 탐험 퀘스트를 확인하세요.</p>}
-        {['cube','trace'].includes(chosenPreview.kind) && <p>아이콘 확인 중: {chosenPreview.kind==='cube'?'히든큐브 팝업 이미지':'공용 오브젝트 이미지'}로 표시하며, 인게임 지도와 같은 아이콘으로 검증된 것은 아닙니다.</p>}
+        {chosenPreview.kind==='cube' && <p className="subtle">히든큐브는 게임 원본 큐브 이미지로 표시합니다.</p>}
         <label className="map-check"><input type="checkbox" checked={completed.has(chosenPreview.id)} onChange={()=>markPreview(chosenPreview.id)}/>이 위치 확인 완료</label>
         <button className="button ghost small" onClick={()=>{setNearbyId('');focusPreview(chosenPreview);}}>후보 위치로 돌아가기</button>
         <h4>가까운 순간이동 지점</h4>

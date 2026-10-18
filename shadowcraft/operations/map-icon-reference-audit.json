@@ -1,0 +1,53 @@
+{
+  "buildId": 25926599,
+  "reference": "https://aion2atlas.com/interactive-map",
+  "referenceIcons": [
+    "https://storage.aion2atlas.com/icons/feather.webp",
+    "https://storage.aion2atlas.com/icons/hidden-cube.webp"
+  ],
+  "referenceSelection": "Independently selected public comparison; user specified other map websites but did not name one.",
+  "observations": [
+    "Atlas uses a gold feather silhouette and a small geometric cube. Global MonolithFragment texture is visibly a feather (white), with a cyan-check completed variant. Names alone previously caused this asset to be overlooked.",
+    "Use original Global feather textures without recoloring. Visual correspondence does not establish every runtime EnvObj binding.",
+    "Atlas cube differs from available Global HiddenCube popup art. Keep the original Global cube art; do not claim an exact Atlas cube match or dedicated in-game map binding."
+  ],
+  "assets": {
+    "trace": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/UT_Marker_MonolithFragment.png",
+      "width": 128,
+      "height": 128,
+      "viewBox": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "sha256": "915c82edcc335aa54dac9d82b9789fb189073bae6ded10c24de1966ee4f5bc23",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Icon/UT_Marker_MonolithFragment.uasset",
+      "imageKey": "Worldmap_MonolithFragment_Incomplete"
+    },
+    "traceComplete": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/UT_Marker_MonolithFragment_Complete.png",
+      "width": 128,
+      "height": 128,
+      "viewBox": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "sha256": "5759df459d7ee0e1696ec887177a7f3b166e32568e4fda43bdc86fe116679658",
+      "sourceAsset": "AION2/Content/UI/Resource/Texture/Icon/UT_Marker_MonolithFragment_Complete.uasset",
+      "imageKey": "Worldmap_MonolithFragment_Complete"
+    }
+  },
+  "preserved": [
+    "spawn dataset",
+    "coordinate projection",
+    "marker IDs",
+    "completion storage keys"
+  ],
+  "unresolved": [
+    "Exact live-game per-object icon binding for cube/trace; map position verification remains unchanged."
+  ]
+}

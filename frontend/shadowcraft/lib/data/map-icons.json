@@ -120,7 +120,7 @@
     "sha256": "c4a75d934544e043d8d62ffd637895bc38f157dbb8d3f77cae953de3998b0f86"
   },
   "trace": {
-    "src": "/shadowcraft/maps/steam-25926599/icons/Envobj.png",
+    "src": "/shadowcraft/maps/steam-25926599/icons/UT_Marker_MonolithFragment.png",
     "width": 128,
     "height": 128,
     "viewBox": [
@@ -129,7 +129,7 @@
       128,
       128
     ],
-    "sha256": "08d8d6b5d7fa271150685608e38b417b442fddb4be1b9a921944331cb278dbf3"
+    "sha256": "915c82edcc335aa54dac9d82b9789fb189073bae6ded10c24de1966ee4f5bc23"
   },
   "npc": {
     "src": "/shadowcraft/maps/steam-25926599/icons/worldmap-atlas.png",
@@ -190,5 +190,17 @@
       128
     ],
     "sha256": "2fec92e7dba14c33b7c6c24a6720271f353325e85456d890c8add1ce0fc86f01"
+  },
+  "traceComplete": {
+    "src": "/shadowcraft/maps/steam-25926599/icons/UT_Marker_MonolithFragment_Complete.png",
+    "width": 128,
+    "height": 128,
+    "viewBox": [
+      0,
+      0,
+      128,
+      128
+    ],
+    "sha256": "5759df459d7ee0e1696ec887177a7f3b166e32568e4fda43bdc86fe116679658"
   }
 }
