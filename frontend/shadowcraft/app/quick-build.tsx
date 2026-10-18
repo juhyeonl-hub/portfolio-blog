@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import {lazy,Suspense,useState} from 'react';
+const RankerBuilds=lazy(()=>import('./ranker-builds'));
 import {type Catalog,type Plan,pointLimits,totals,finalLevel} from '@/lib/planner';
 import {classProfile} from '@/lib/classes';
 import {recommendBuild} from '@/lib/recommendation';
@@ -13,10 +14,10 @@ export default function QuickBuild({catalog,plan,onApply,onEdit}:{catalog:Catalo
  const profile=classProfile(plan.classKey),before=totals(catalog,plan),after=candidate?totals(catalog,candidate):null;
  function invalidate(){setPreview(null);setError('')}
  function prepare(){try{setPreview({source:plan,catalog,next:recommendBuild(catalog,{...plan,mode,level,pointBudget:points,ascensionGrade3Confirmed:ascended})});setError('')}catch{setError('배분을 만들지 못했습니다. 레벨과 포인트를 확인해 주세요.')}}
- return <section className="panel quick-build" aria-label="간편 빌드 선택">
+ return <><Suspense fallback={<p role="status">상위 캐릭터 세팅 불러오는 중…</p>}><RankerBuilds catalog={catalog} plan={plan} onApply={onApply}/></Suspense><section className="panel quick-build" aria-label="간편 빌드 선택">
   <div className="quick-build-heading"><span className="eyebrow">{profile.name} · BUILD PLANNER</span><h2>플레이 스타일을 선택하세요</h2></div>
   <p>유형을 고르고 미리 본 뒤 적용하세요. 세부 설정은 언제든 조정할 수 있습니다.</p>
-  <p className="subtle">현재 제공: 기본 가이드 · 상위 랭커 10명 분석 빌드는 아직 준비되지 않았습니다.</p>
+  <p className="subtle">아래 안정형·공격형은 기본 추천 가이드입니다. 위 상위 캐릭터의 실제 세팅과 구분됩니다.</p>
   <div className="quick-build-options">{(['safe','damage'] as const).map(value=><button key={value} aria-pressed={mode===value} className={'button secondary '+(mode===value?'selected':'')} onClick={()=>{setMode(value);invalidate()}}><strong>{value==='safe'?'안정형':'공격형'}</strong><span>{value==='safe'?'생존 능력치도 고려한 보스전 입문':'공격 관련 효과를 우선하는 보스전 배분'}</span><small>{value==='safe'?'공격 효과보다 생존 노드를 더 고려합니다.':'위험한 패턴은 직접 피해야 합니다.'}</small></button>)}</div>
   <p className="subtle">{profile.name}의 핵심 스킬을 우선합니다. {plan.classKey!=='assassin'&&'두 유형의 스킬·스티그마 구성은 같고 데바니온 우선순위가 다릅니다. '}실제 포인트와 장비에 따라 결과가 같을 수 있습니다.</p>
   <details className="point-extras"><summary>내 레벨·포인트에 맞추기 (선택)</summary>
@@ -37,5 +38,5 @@ export default function QuickBuild({catalog,plan,onApply,onEdit}:{catalog:Catalo
    <div className="quick-actions"><button className="button primary" onClick={()=>{onApply(candidate);setPreview(null)}}>이 빌드 적용</button><button className="button ghost" onClick={()=>setPreview(null)}>미리보기 취소</button></div>
   </div>}
   <details className="quick-edit"><summary>직접 조정하고 싶어요 — 상세 편집</summary><div className="quick-actions">{[['skills','스킬·특화 편집'],['daevanion','데바니온 보드 편집'],['gear','장비 입력·비교']].map(([tab,label])=><button key={tab} className="button secondary" onClick={()=>onEdit(tab)}>{label}</button>)}</div></details>
- </section>;
+ </section></>;
 }
