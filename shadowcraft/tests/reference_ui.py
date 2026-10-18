@@ -1,4 +1,4 @@
-"""Responsive home shortcuts and map disclosure preserve the active workspace."""
+"""Full-width home, planner class entry and map disclosure preserve the active workspace."""
 import os
 from playwright.sync_api import sync_playwright,expect
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
@@ -12,13 +12,20 @@ with sync_playwright() as p:
         page.goto(URL)
         expect(page.get_by_role('region',name='a2bc 메인',exact=True)).to_be_visible()
         expect(page.get_by_role('tab')).to_have_count(13)
-        shortcuts=page.get_by_role('region',name='직업별 빌드 바로가기')
-        expect(shortcuts.get_by_role('button')).to_have_count(8)
+        expect(page.locator('.sidebar')).to_have_count(0)
+        expect(page.get_by_role('heading',name='어떤 직업으로 시작할까요?')).to_have_count(0)
+        assert page.locator('.shell > main').evaluate("el=>getComputedStyle(el).marginLeft")=='0px'
+        stats=page.get_by_role('region',name='서버별 직업 분포')
+        expect(stats.get_by_role('link',name='외부 통계 보기')).to_have_attribute('href','https://aion2tierlist.com/population')
+        page.get_by_role('button',name='내 빌드 시작하기').click()
+        expect(page.get_by_role('heading',name='어떤 직업으로 시작할까요?')).to_be_visible()
+        expect(page.locator('.class-picker button')).to_have_count(8)
         for name in ['검성','수호성','궁성','살성','정령성','마도성','치유성','호법성']:
-            shortcuts.get_by_role('button',name=name+' 빌드 시작',exact=True).click()
+            page.locator('.class-picker button').filter(has_text=name).click()
             expect(page.get_by_role('region',name='간편 빌드 선택')).to_be_visible()
             expect(page.locator('.class-picker button').filter(has_text=name)).to_have_attribute('aria-pressed','true')
-            page.get_by_role('tab',name='메인',exact=True).click()
+        page.get_by_role('tab',name='메인',exact=True).click()
+        expect(page.locator('.sidebar')).to_have_count(0)
         page.screenshot(path=f'/tmp/a2bc-reference-ui-home-{width}.png')
         page.get_by_role('button',name='지도 열기',exact=True).click()
         panel=page.get_by_role('region',name='공식 글로벌 지형 지도',exact=True)
@@ -39,4 +46,4 @@ with sync_playwright() as p:
         page.screenshot(path=f'/tmp/a2bc-reference-ui-map-{width}.png')
         page.close()
     browser.close()
-print('PASS desktop/mobile eight class shortcuts, all navigation, keyboard filter disclosure, zoom and stored-state preservation')
+print('PASS desktop/mobile full-width home, eight planner classes, external statistics entry, navigation, map filters and storage preservation')

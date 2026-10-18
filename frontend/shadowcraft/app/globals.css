@@ -247,3 +247,14 @@
  .skill-editor .right-rail,.board-editor .right-rail{grid-template-columns:minmax(0,1fr)}
  .board-editor .board-tabs button{flex:1;min-width:90px}
 }
+
+/* Home uses the whole workspace; editing retains the familiar sidebar. */
+.home-shell>main{margin-left:0;width:100%;min-width:0}
+.home-shell .content,.home-shell .a2bc-home{max-width:none}
+.home-shell .page-tabs{display:flex;gap:20px;overflow-x:auto;margin:0 0 24px;padding-bottom:10px}
+.home-shell .page-tabs button{flex-shrink:0}
+.home-population{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px}
+.home-population h2{font-size:21px;margin:8px 0}.home-population p{margin:0 0 10px;color:var(--muted)}
+.home-population small{display:block;max-width:650px;color:var(--muted);line-height:1.7}
+.home-population>a{flex-shrink:0}.planner-class-heading{margin:18px 0 12px}
+@media(max-width:760px){.home-population{align-items:flex-start;flex-direction:column;padding:20px}.home-shell .topbar .breadcrumb b{font-size:14px}}

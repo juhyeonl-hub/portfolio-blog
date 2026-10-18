@@ -1,11 +1,11 @@
 import {ArrowUpRight,BookOpen,Swords,Waypoints,Archive,Database,History} from 'lucide-react';
-import {CLASSES} from '../lib/classes';
 
-export default function HomePanel({onNavigate,onChooseClass,classKey}:{onNavigate:(tab:string)=>void;onChooseClass:(key:string)=>void;classKey:string}) {
+export default function HomePanel({onNavigate}:{onNavigate:(tab:string)=>void}) {
   return <section className="a2bc-home" aria-label="a2bc 메인">
     <header className="home-heading"><div><span className="eyebrow">AION 2 · STEAM GLOBAL</span><h1>빌드부터 탐험까지.</h1><p>내 직업의 세팅을 준비하고, 아트레이아를 둘러보세요.</p></div><button className="button primary" onClick={()=>onNavigate('quick')}>내 빌드 시작하기 <ArrowUpRight size={16}/></button></header>
-    <section className="home-professions" aria-label="직업별 빌드 바로가기"><div className="home-section-title"><h2>어떤 직업으로 시작할까요?</h2><span>8직업 빌드 플래너</span></div>
-      <div className="home-class-grid">{CLASSES.map(item=><button key={item.key} aria-label={item.name+' 빌드 시작'} aria-current={classKey===item.key?'true':undefined} className={classKey===item.key?'selected':''} onClick={()=>onChooseClass(item.key)}><img src={'/shadowcraft/game/images/ui/resource/texture/icon/ut_class_'+item.key+'_large.webp'} alt=""/><span>{item.name}</span></button>)}</div>
+    <section className="home-population panel" aria-label="서버별 직업 분포">
+      <div><span className="eyebrow">SERVER & CLASS</span><h2>서버별 직업 분포</h2><p>지역과 서버를 골라 직업 비율을 비교해 보세요.</p><small>AION2 Tier List가 수집한 글로벌 레벨 45 캐릭터 기준입니다. 서버 전체 인원이나 실시간 접속자 비율은 아닙니다.</small></div>
+      <a className="button secondary" href="https://aion2tierlist.com/population" target="_blank" rel="noreferrer">외부 통계 보기 <ArrowUpRight size={16}/></a>
     </section>
     <div className="home-section-title"><h2>자주 쓰는 도구</h2><span>계획 · 탐험 · 공유</span></div>
     <div className="home-destinations">
