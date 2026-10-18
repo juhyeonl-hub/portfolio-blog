@@ -59,16 +59,33 @@ assert.deepEqual(terrainLocationView(closeLabels[0]),{x:375,y:375,zoom:4});
 assert.deepEqual(terrainLocationView({id:'edge',name:'Edge',x:0,y:1000}),{x:0,y:750,zoom:4});
 for (const x of [-1,1001,NaN,Infinity]) assert.throws(()=>terrainLocationView({id:'bad',name:'Bad',x,y:0}));
 console.log('Terrain search and location focus: bounds and invalid coordinates PASS');
-const {previewMatches,visiblePreview}=await import(moduleUrl(readFileSync('lib/spawn-preview.ts','utf8')));
+const {previewMatches,visiblePreview,previewPage,previewProgressDataset}=await import(moduleUrl(readFileSync('lib/spawn-preview.ts','utf8')));
 const preview=JSON.parse(readFileSync('lib/data/spawn-preview.json'));
 assert.equal(preview.worldProjectionVerified,false);
 assert.equal(preview.region,'global');
-assert.deepEqual(preview.maps.map(m=>m.markers.length),[2794,2753]);
+assert.deepEqual(preview.maps.map(m=>m.markers.length),[7238, 7608]);
 for(const map of preview.maps){
  assert.equal(new Set(map.markers.map(m=>m.id)).size,map.markers.length);
- for(const row of map.markers){assert.ok(['gather','teleport'].includes(row.kind));assert.ok(row.x>=0 && row.x<=1000 && row.y>=0 && row.y<=1000);assert.ok(row.world.every(Number.isFinite));}
+ for(const row of map.markers){assert.ok(['gather','teleport','named','npc','dungeon','rift','monolith','cube','trace'].includes(row.kind));assert.ok(row.x>=0 && row.x<=1000 && row.y>=0 && row.y<=1000);assert.ok(row.world.every(Number.isFinite));}
  assert.equal(previewMatches(map.markers,'teleport','').length,61);
  assert.equal(previewMatches(map.markers,'gather','no such item 12345').length,0);
  assert.equal(visiblePreview(map.markers,{x:0,y:0,zoom:1}).length,map.markers.length);
 }
 console.log('Experimental spawn data: identity, boundaries, explicit unverified status, categories, filters PASS');
+
+for(const map of preview.maps){
+ const named=previewMatches(map.markers,'named','');assert.equal(named.length,24);
+ assert.ok(named.every(row=>row.id.endsWith(':npc')));
+ const first=previewPage(map.markers,0,'');const second=previewPage(map.markers,1,'');
+ assert.equal(first.rows.length,200);assert.equal(second.rows.length,200);
+ assert.ok(!first.rows.some(a=>second.rows.some(b=>a.id===b.id)));
+ assert.equal(previewPage(map.markers,99999,'').current,Math.ceil(map.markers.length/200)-1);
+ const selected=previewPage(map.markers,1,map.markers[0].id);assert.equal(selected.rows[0].id,map.markers[0].id);
+ const progress=previewProgressDataset(map.name,map.markers);assert.equal(progress.markers.length,map.markers.length);
+ assert.ok(progress.markers.every(row=>row.x>=0 && row.x<=1));
+}
+console.log('Official location categories, paging and progress identities PASS');
+for (const map of preview.maps) {
+ assert.equal(previewMatches(map.markers,'all','').length,map.markers.length);
+ assert.deepEqual(map.namedAudit,{spawners:24,exactFieldTableMatches:24});
+}

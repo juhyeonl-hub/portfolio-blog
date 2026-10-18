@@ -2,9 +2,29 @@ import type {MapView} from './world-map';
 export type SpawnPreview = {id:string;name:string;kind:string;x:number;y:number;world:number[];spawnId:string;objectId:number};
 export function previewMatches(rows: SpawnPreview[], kind: string, query: string) {
   const words=query.trim().toLowerCase().split(/\s+/).filter(Boolean);
-  return rows.filter(row=>row.kind===kind && words.every(word=>row.name.toLowerCase().includes(word)));
+  return rows.filter(row=>(kind==='all' || row.kind===kind) && words.every(word=>row.name.toLowerCase().includes(word)));
 }
 export function visiblePreview(rows: SpawnPreview[], view: MapView) {
   const size=1000/view.zoom;
   return rows.filter(row=>row.x>=view.x && row.x<=view.x+size && row.y>=view.y && row.y<=view.y+size);
+}
+
+export const previewKinds: Record<string, {name:string;color:string}> = {
+  teleport:{name:'이동 지점',color:'#5eead4'}, gather:{name:'채집물',color:'#fbbf24'},
+  named:{name:'필드 네임드',color:'#fb7185'}, npc:{name:'NPC',color:'#a5b4fc'},
+  dungeon:{name:'던전 입구',color:'#c084fc'}, rift:{name:'균열',color:'#38bdf8'},
+  monolith:{name:'모노리스',color:'#fb923c'}, cube:{name:'큐브',color:'#f9a8d4'}, trace:{name:'Empyrean Trace',color:'#bef264'},
+};
+/** Separate from planner/user-imported maps; hashing the canonical dataset isolates revisions. */
+export function previewProgressDataset(name: string, rows: SpawnPreview[]) {
+  return {schema:'a2bc-map-v1' as const,region:'global' as const,coordinates:'normalized-top-left' as const,
+    id:name,name,version:'25926599-preview',categories:Object.entries(previewKinds).map(([id,c])=>({id,name:c.name})),
+    markers:rows.map(row=>({id:row.id,name:row.name,categoryId:row.kind,x:row.x/1000,y:row.y/1000}))};
+}
+export function previewPage(rows: SpawnPreview[], page: number, selected: string) {
+  const pages=Math.max(1,Math.ceil(rows.length/200));
+  const current=Math.min(Math.max(0,page),pages-1);
+  const result=rows.slice(current*200,(current+1)*200);
+  const picked=rows.find(row=>row.id===selected);
+  return {pages,current,rows:picked && !result.some(row=>row.id===selected)?[picked,...result]:result};
 }
