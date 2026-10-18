@@ -1,0 +1,1705 @@
+{
+  "source": "https://aion2tierlist.com/population",
+  "methodology": "https://aion2tierlist.com/methodology",
+  "fetchedAt": "2026-10-18T18:23:07.816096+00:00",
+  "level": 45,
+  "scope": "indexed-characters",
+  "servers": [
+    {
+      "id": "as/ariel",
+      "region": "as",
+      "name": "Ariel",
+      "race": 1,
+      "counts": {
+        "assassin": 523,
+        "chanter": 2381,
+        "cleric": 1995,
+        "gladiator": 1387,
+        "ranger": 1167,
+        "sorcerer": 920,
+        "elementalist": 1019,
+        "templar": 1339
+      }
+    },
+    {
+      "id": "as/azphel",
+      "region": "as",
+      "name": "Azphel",
+      "race": 2,
+      "counts": {
+        "assassin": 829,
+        "chanter": 2846,
+        "cleric": 2113,
+        "gladiator": 1761,
+        "ranger": 1646,
+        "sorcerer": 1183,
+        "elementalist": 1649,
+        "templar": 2125
+      }
+    },
+    {
+      "id": "as/beritra",
+      "region": "as",
+      "name": "Beritra",
+      "race": 2,
+      "counts": {
+        "assassin": 893,
+        "chanter": 2443,
+        "cleric": 1596,
+        "gladiator": 2027,
+        "ranger": 1417,
+        "sorcerer": 1156,
+        "elementalist": 1803,
+        "templar": 2141
+      }
+    },
+    {
+      "id": "as/ereshkigal",
+      "region": "as",
+      "name": "Ereshkigal",
+      "race": 2,
+      "counts": {
+        "assassin": 930,
+        "chanter": 2389,
+        "cleric": 1581,
+        "gladiator": 2046,
+        "ranger": 1457,
+        "sorcerer": 1233,
+        "elementalist": 1678,
+        "templar": 2082
+      }
+    },
+    {
+      "id": "as/fregion",
+      "region": "as",
+      "name": "Fregion",
+      "race": 1,
+      "counts": {
+        "assassin": 689,
+        "chanter": 2106,
+        "cleric": 1757,
+        "gladiator": 1709,
+        "ranger": 1447,
+        "sorcerer": 1113,
+        "elementalist": 1606,
+        "templar": 1641
+      }
+    },
+    {
+      "id": "as/hadala",
+      "region": "as",
+      "name": "Hadala",
+      "race": 2,
+      "counts": {
+        "assassin": 541,
+        "chanter": 2143,
+        "cleric": 1114,
+        "gladiator": 1307,
+        "ranger": 917,
+        "sorcerer": 760,
+        "elementalist": 1283,
+        "templar": 1680
+      }
+    },
+    {
+      "id": "as/hithanya",
+      "region": "as",
+      "name": "Hithanya",
+      "race": 1,
+      "counts": {
+        "assassin": 508,
+        "chanter": 1862,
+        "cleric": 1412,
+        "gladiator": 1325,
+        "ranger": 1141,
+        "sorcerer": 807,
+        "elementalist": 1599,
+        "templar": 1839
+      }
+    },
+    {
+      "id": "as/israphel",
+      "region": "as",
+      "name": "Israphel",
+      "race": 2,
+      "counts": {
+        "assassin": 552,
+        "chanter": 4934,
+        "cleric": 4506,
+        "gladiator": 2147,
+        "ranger": 3114,
+        "sorcerer": 1141,
+        "elementalist": 3318,
+        "templar": 2167
+      }
+    },
+    {
+      "id": "as/kaisinel",
+      "region": "as",
+      "name": "Kaisinel",
+      "race": 1,
+      "counts": {
+        "assassin": 554,
+        "chanter": 2599,
+        "cleric": 1893,
+        "gladiator": 1469,
+        "ranger": 1397,
+        "sorcerer": 954,
+        "elementalist": 1932,
+        "templar": 2086
+      }
+    },
+    {
+      "id": "as/lumiel",
+      "region": "as",
+      "name": "Lumiel",
+      "race": 2,
+      "counts": {
+        "assassin": 550,
+        "chanter": 3127,
+        "cleric": 1970,
+        "gladiator": 1610,
+        "ranger": 1291,
+        "sorcerer": 1024,
+        "elementalist": 1741,
+        "templar": 1662
+      }
+    },
+    {
+      "id": "as/marchutan",
+      "region": "as",
+      "name": "Marchutan",
+      "race": 2,
+      "counts": {
+        "assassin": 687,
+        "chanter": 2634,
+        "cleric": 1661,
+        "gladiator": 1800,
+        "ranger": 1282,
+        "sorcerer": 1024,
+        "elementalist": 1664,
+        "templar": 1914
+      }
+    },
+    {
+      "id": "as/meslamtaeda",
+      "region": "as",
+      "name": "Meslamtaeda",
+      "race": 1,
+      "counts": {
+        "assassin": 669,
+        "chanter": 1991,
+        "cleric": 1688,
+        "gladiator": 1624,
+        "ranger": 1395,
+        "sorcerer": 1016,
+        "elementalist": 1689,
+        "templar": 1793
+      }
+    },
+    {
+      "id": "as/nania",
+      "region": "as",
+      "name": "Nania",
+      "race": 1,
+      "counts": {
+        "assassin": 482,
+        "chanter": 1883,
+        "cleric": 1236,
+        "gladiator": 1246,
+        "ranger": 926,
+        "sorcerer": 771,
+        "elementalist": 1454,
+        "templar": 1300
+      }
+    },
+    {
+      "id": "as/nemon",
+      "region": "as",
+      "name": "Nemon",
+      "race": 2,
+      "counts": {
+        "assassin": 628,
+        "chanter": 2562,
+        "cleric": 1405,
+        "gladiator": 1572,
+        "ranger": 1080,
+        "sorcerer": 885,
+        "elementalist": 1724,
+        "templar": 2505
+      }
+    },
+    {
+      "id": "as/nezekan",
+      "region": "as",
+      "name": "Nezekan",
+      "race": 1,
+      "counts": {
+        "assassin": 650,
+        "chanter": 3488,
+        "cleric": 3047,
+        "gladiator": 1841,
+        "ranger": 2141,
+        "sorcerer": 1069,
+        "elementalist": 2526,
+        "templar": 2303
+      }
+    },
+    {
+      "id": "as/siel",
+      "region": "as",
+      "name": "Siel",
+      "race": 1,
+      "counts": {
+        "assassin": 859,
+        "chanter": 5215,
+        "cleric": 5549,
+        "gladiator": 2771,
+        "ranger": 3798,
+        "sorcerer": 1902,
+        "elementalist": 2886,
+        "templar": 2611
+      }
+    },
+    {
+      "id": "as/triniel",
+      "region": "as",
+      "name": "Triniel",
+      "race": 2,
+      "counts": {
+        "assassin": 862,
+        "chanter": 4360,
+        "cleric": 3363,
+        "gladiator": 2246,
+        "ranger": 2340,
+        "sorcerer": 1282,
+        "elementalist": 2991,
+        "templar": 2825
+      }
+    },
+    {
+      "id": "as/vaizel",
+      "region": "as",
+      "name": "Vaizel",
+      "race": 1,
+      "counts": {
+        "assassin": 654,
+        "chanter": 3195,
+        "cleric": 2461,
+        "gladiator": 1906,
+        "ranger": 1976,
+        "sorcerer": 1224,
+        "elementalist": 2516,
+        "templar": 2452
+      }
+    },
+    {
+      "id": "as/yustiel",
+      "region": "as",
+      "name": "Yustiel",
+      "race": 1,
+      "counts": {
+        "assassin": 559,
+        "chanter": 2324,
+        "cleric": 1852,
+        "gladiator": 1624,
+        "ranger": 1273,
+        "sorcerer": 1156,
+        "elementalist": 1270,
+        "templar": 1247
+      }
+    },
+    {
+      "id": "as/zikel",
+      "region": "as",
+      "name": "Zikel",
+      "race": 2,
+      "counts": {
+        "assassin": 629,
+        "chanter": 4238,
+        "cleric": 3249,
+        "gladiator": 2095,
+        "ranger": 2398,
+        "sorcerer": 1050,
+        "elementalist": 3043,
+        "templar": 2402
+      }
+    },
+    {
+      "id": "eu/agnita",
+      "region": "eu",
+      "name": "Agnita",
+      "race": 2,
+      "counts": {
+        "assassin": 1354,
+        "chanter": 1356,
+        "cleric": 1270,
+        "gladiator": 1810,
+        "ranger": 1548,
+        "sorcerer": 1631,
+        "elementalist": 965,
+        "templar": 1190
+      }
+    },
+    {
+      "id": "eu/ariel",
+      "region": "eu",
+      "name": "Ariel",
+      "race": 1,
+      "counts": {
+        "assassin": 982,
+        "chanter": 1906,
+        "cleric": 2299,
+        "gladiator": 1759,
+        "ranger": 1882,
+        "sorcerer": 1621,
+        "elementalist": 1568,
+        "templar": 1483
+      }
+    },
+    {
+      "id": "eu/atiel",
+      "region": "eu",
+      "name": "Atiel",
+      "race": 2,
+      "counts": {
+        "assassin": 1383,
+        "chanter": 1514,
+        "cleric": 1269,
+        "gladiator": 1885,
+        "ranger": 1521,
+        "sorcerer": 1685,
+        "elementalist": 1101,
+        "templar": 1226
+      }
+    },
+    {
+      "id": "eu/azphel",
+      "region": "eu",
+      "name": "Azphel",
+      "race": 2,
+      "counts": {
+        "assassin": 1632,
+        "chanter": 3029,
+        "cleric": 2886,
+        "gladiator": 2571,
+        "ranger": 2651,
+        "sorcerer": 2051,
+        "elementalist": 2141,
+        "templar": 2017
+      }
+    },
+    {
+      "id": "eu/baba",
+      "region": "eu",
+      "name": "Baba",
+      "race": 2,
+      "counts": {
+        "assassin": 1541,
+        "chanter": 2343,
+        "cleric": 2170,
+        "gladiator": 2368,
+        "ranger": 2288,
+        "sorcerer": 2073,
+        "elementalist": 1418,
+        "templar": 1719
+      }
+    },
+    {
+      "id": "eu/bakarma",
+      "region": "eu",
+      "name": "Bakarma",
+      "race": 1,
+      "counts": {
+        "assassin": 911,
+        "chanter": 2325,
+        "cleric": 2128,
+        "gladiator": 1609,
+        "ranger": 1823,
+        "sorcerer": 1332,
+        "elementalist": 1158,
+        "templar": 1312
+      }
+    },
+    {
+      "id": "eu/beritra",
+      "region": "eu",
+      "name": "Beritra",
+      "race": 2,
+      "counts": {
+        "assassin": 1493,
+        "chanter": 2846,
+        "cleric": 2672,
+        "gladiator": 2464,
+        "ranger": 2494,
+        "sorcerer": 2046,
+        "elementalist": 2164,
+        "templar": 1919
+      }
+    },
+    {
+      "id": "eu/daminu",
+      "region": "eu",
+      "name": "Daminu",
+      "race": 1,
+      "counts": {
+        "assassin": 693,
+        "chanter": 1050,
+        "cleric": 1011,
+        "gladiator": 1215,
+        "ranger": 1177,
+        "sorcerer": 1049,
+        "elementalist": 869,
+        "templar": 800
+      }
+    },
+    {
+      "id": "eu/ereshkigal",
+      "region": "eu",
+      "name": "Ereshkigal",
+      "race": 2,
+      "counts": {
+        "assassin": 1697,
+        "chanter": 3215,
+        "cleric": 2948,
+        "gladiator": 2572,
+        "ranger": 2630,
+        "sorcerer": 2082,
+        "elementalist": 2370,
+        "templar": 2145
+      }
+    },
+    {
+      "id": "eu/fafnir",
+      "region": "eu",
+      "name": "Fafnir",
+      "race": 2,
+      "counts": {
+        "assassin": 1469,
+        "chanter": 1649,
+        "cleric": 1491,
+        "gladiator": 1960,
+        "ranger": 1619,
+        "sorcerer": 1676,
+        "elementalist": 1194,
+        "templar": 1287
+      }
+    },
+    {
+      "id": "eu/fregion",
+      "region": "eu",
+      "name": "Fregion",
+      "race": 1,
+      "counts": {
+        "assassin": 1020,
+        "chanter": 1862,
+        "cleric": 1842,
+        "gladiator": 1865,
+        "ranger": 1876,
+        "sorcerer": 1500,
+        "elementalist": 1444,
+        "templar": 1356
+      }
+    },
+    {
+      "id": "eu/gauss",
+      "region": "eu",
+      "name": "Gauss",
+      "race": 1,
+      "counts": {
+        "assassin": 881,
+        "chanter": 931,
+        "cleric": 980,
+        "gladiator": 1312,
+        "ranger": 1136,
+        "sorcerer": 1203,
+        "elementalist": 797,
+        "templar": 805
+      }
+    },
+    {
+      "id": "eu/hadala",
+      "region": "eu",
+      "name": "Hadala",
+      "race": 2,
+      "counts": {
+        "assassin": 1571,
+        "chanter": 1980,
+        "cleric": 1733,
+        "gladiator": 2144,
+        "ranger": 1922,
+        "sorcerer": 1841,
+        "elementalist": 1430,
+        "templar": 1708
+      }
+    },
+    {
+      "id": "eu/hithanya",
+      "region": "eu",
+      "name": "Hithanya",
+      "race": 1,
+      "counts": {
+        "assassin": 842,
+        "chanter": 1264,
+        "cleric": 1407,
+        "gladiator": 1373,
+        "ranger": 1342,
+        "sorcerer": 1192,
+        "elementalist": 990,
+        "templar": 895
+      }
+    },
+    {
+      "id": "eu/indnath",
+      "region": "eu",
+      "name": "Indnath",
+      "race": 2,
+      "counts": {
+        "assassin": 1315,
+        "chanter": 1425,
+        "cleric": 1261,
+        "gladiator": 1858,
+        "ranger": 1487,
+        "sorcerer": 1554,
+        "elementalist": 1059,
+        "templar": 1164
+      }
+    },
+    {
+      "id": "eu/ishtar",
+      "region": "eu",
+      "name": "Ishtar",
+      "race": 1,
+      "counts": {
+        "assassin": 802,
+        "chanter": 1060,
+        "cleric": 1075,
+        "gladiator": 1207,
+        "ranger": 1093,
+        "sorcerer": 1170,
+        "elementalist": 767,
+        "templar": 800
+      }
+    },
+    {
+      "id": "eu/israphel",
+      "region": "eu",
+      "name": "Israphel",
+      "race": 2,
+      "counts": {
+        "assassin": 1499,
+        "chanter": 4978,
+        "cleric": 5225,
+        "gladiator": 3042,
+        "ranger": 3965,
+        "sorcerer": 2093,
+        "elementalist": 4329,
+        "templar": 2164
+      }
+    },
+    {
+      "id": "eu/kaisinel",
+      "region": "eu",
+      "name": "Kaisinel",
+      "race": 1,
+      "counts": {
+        "assassin": 1458,
+        "chanter": 3557,
+        "cleric": 4269,
+        "gladiator": 2535,
+        "ranger": 3180,
+        "sorcerer": 2259,
+        "elementalist": 2729,
+        "templar": 2390
+      }
+    },
+    {
+      "id": "eu/kasaka",
+      "region": "eu",
+      "name": "Kasaka",
+      "race": 1,
+      "counts": {
+        "assassin": 828,
+        "chanter": 1139,
+        "cleric": 1181,
+        "gladiator": 1256,
+        "ranger": 1233,
+        "sorcerer": 1075,
+        "elementalist": 873,
+        "templar": 931
+      }
+    },
+    {
+      "id": "eu/kochi",
+      "region": "eu",
+      "name": "Kochi",
+      "race": 1,
+      "counts": {
+        "assassin": 952,
+        "chanter": 1156,
+        "cleric": 1238,
+        "gladiator": 1287,
+        "ranger": 1212,
+        "sorcerer": 1222,
+        "elementalist": 829,
+        "templar": 921
+      }
+    },
+    {
+      "id": "eu/kromede",
+      "region": "eu",
+      "name": "Kromede",
+      "race": 2,
+      "counts": {
+        "assassin": 1463,
+        "chanter": 2664,
+        "cleric": 2337,
+        "gladiator": 2177,
+        "ranger": 2236,
+        "sorcerer": 1775,
+        "elementalist": 1543,
+        "templar": 1690
+      }
+    },
+    {
+      "id": "eu/lamuatan",
+      "region": "eu",
+      "name": "Lamuatan",
+      "race": 1,
+      "counts": {
+        "assassin": 725,
+        "chanter": 764,
+        "cleric": 856,
+        "gladiator": 1165,
+        "ranger": 987,
+        "sorcerer": 1060,
+        "elementalist": 651,
+        "templar": 593
+      }
+    },
+    {
+      "id": "eu/ludra",
+      "region": "eu",
+      "name": "Ludra",
+      "race": 2,
+      "counts": {
+        "assassin": 1498,
+        "chanter": 2746,
+        "cleric": 2247,
+        "gladiator": 2317,
+        "ranger": 2150,
+        "sorcerer": 2021,
+        "elementalist": 1679,
+        "templar": 1948
+      }
+    },
+    {
+      "id": "eu/lumiel",
+      "region": "eu",
+      "name": "Lumiel",
+      "race": 2,
+      "counts": {
+        "assassin": 1695,
+        "chanter": 4831,
+        "cleric": 5193,
+        "gladiator": 3148,
+        "ranger": 3948,
+        "sorcerer": 2718,
+        "elementalist": 3018,
+        "templar": 2926
+      }
+    },
+    {
+      "id": "eu/luteros",
+      "region": "eu",
+      "name": "Luteros",
+      "race": 1,
+      "counts": {
+        "assassin": 865,
+        "chanter": 1107,
+        "cleric": 1222,
+        "gladiator": 1279,
+        "ranger": 1263,
+        "sorcerer": 1227,
+        "elementalist": 843,
+        "templar": 879
+      }
+    },
+    {
+      "id": "eu/marchutan",
+      "region": "eu",
+      "name": "Marchutan",
+      "race": 2,
+      "counts": {
+        "assassin": 1643,
+        "chanter": 3528,
+        "cleric": 3481,
+        "gladiator": 2736,
+        "ranger": 3026,
+        "sorcerer": 2107,
+        "elementalist": 2694,
+        "templar": 2213
+      }
+    },
+    {
+      "id": "eu/meslamtaeda",
+      "region": "eu",
+      "name": "Meslamtaeda",
+      "race": 1,
+      "counts": {
+        "assassin": 881,
+        "chanter": 2020,
+        "cleric": 1839,
+        "gladiator": 1544,
+        "ranger": 1605,
+        "sorcerer": 1304,
+        "elementalist": 1468,
+        "templar": 1523
+      }
+    },
+    {
+      "id": "eu/munin",
+      "region": "eu",
+      "name": "Munin",
+      "race": 2,
+      "counts": {
+        "assassin": 1487,
+        "chanter": 2155,
+        "cleric": 2015,
+        "gladiator": 2120,
+        "ranger": 2093,
+        "sorcerer": 1933,
+        "elementalist": 1541,
+        "templar": 1744
+      }
+    },
+    {
+      "id": "eu/nania",
+      "region": "eu",
+      "name": "Nania",
+      "race": 1,
+      "counts": {
+        "assassin": 1056,
+        "chanter": 1565,
+        "cleric": 1650,
+        "gladiator": 1648,
+        "ranger": 1732,
+        "sorcerer": 1552,
+        "elementalist": 1139,
+        "templar": 1292
+      }
+    },
+    {
+      "id": "eu/nathara",
+      "region": "eu",
+      "name": "Nathara",
+      "race": 1,
+      "counts": {
+        "assassin": 501,
+        "chanter": 606,
+        "cleric": 583,
+        "gladiator": 746,
+        "ranger": 682,
+        "sorcerer": 724,
+        "elementalist": 472,
+        "templar": 413
+      }
+    },
+    {
+      "id": "eu/nemon",
+      "region": "eu",
+      "name": "Nemon",
+      "race": 2,
+      "counts": {
+        "assassin": 1577,
+        "chanter": 2475,
+        "cleric": 2191,
+        "gladiator": 2423,
+        "ranger": 2319,
+        "sorcerer": 1985,
+        "elementalist": 1931,
+        "templar": 1966
+      }
+    },
+    {
+      "id": "eu/nezekan",
+      "region": "eu",
+      "name": "Nezekan",
+      "race": 1,
+      "counts": {
+        "assassin": 1138,
+        "chanter": 3288,
+        "cleric": 3676,
+        "gladiator": 2228,
+        "ranger": 2719,
+        "sorcerer": 1693,
+        "elementalist": 2851,
+        "templar": 1849
+      }
+    },
+    {
+      "id": "eu/odar",
+      "region": "eu",
+      "name": "Odar",
+      "race": 2,
+      "counts": {
+        "assassin": 1474,
+        "chanter": 1794,
+        "cleric": 1672,
+        "gladiator": 2085,
+        "ranger": 1877,
+        "sorcerer": 1756,
+        "elementalist": 1361,
+        "templar": 1517
+      }
+    },
+    {
+      "id": "eu/phernos",
+      "region": "eu",
+      "name": "Phernos",
+      "race": 1,
+      "counts": {
+        "assassin": 877,
+        "chanter": 1404,
+        "cleric": 1554,
+        "gladiator": 1572,
+        "ranger": 1691,
+        "sorcerer": 1427,
+        "elementalist": 1012,
+        "templar": 1139
+      }
+    },
+    {
+      "id": "eu/quai",
+      "region": "eu",
+      "name": "Quai",
+      "race": 2,
+      "counts": {
+        "assassin": 1444,
+        "chanter": 1813,
+        "cleric": 1595,
+        "gladiator": 1923,
+        "ranger": 1701,
+        "sorcerer": 1727,
+        "elementalist": 1613,
+        "templar": 1596
+      }
+    },
+    {
+      "id": "eu/siel",
+      "region": "eu",
+      "name": "Siel",
+      "race": 1,
+      "counts": {
+        "assassin": 1381,
+        "chanter": 4588,
+        "cleric": 4972,
+        "gladiator": 3004,
+        "ranger": 3631,
+        "sorcerer": 2065,
+        "elementalist": 4077,
+        "templar": 2098
+      }
+    },
+    {
+      "id": "eu/tahavatha",
+      "region": "eu",
+      "name": "Tahavatha",
+      "race": 1,
+      "counts": {
+        "assassin": 858,
+        "chanter": 1292,
+        "cleric": 1090,
+        "gladiator": 1359,
+        "ranger": 1125,
+        "sorcerer": 1121,
+        "elementalist": 862,
+        "templar": 927
+      }
+    },
+    {
+      "id": "eu/tassin",
+      "region": "eu",
+      "name": "Tassin",
+      "race": 2,
+      "counts": {
+        "assassin": 903,
+        "chanter": 985,
+        "cleric": 835,
+        "gladiator": 1269,
+        "ranger": 1002,
+        "sorcerer": 1100,
+        "elementalist": 688,
+        "templar": 868
+      }
+    },
+    {
+      "id": "eu/tiamat",
+      "region": "eu",
+      "name": "Tiamat",
+      "race": 1,
+      "counts": {
+        "assassin": 827,
+        "chanter": 1146,
+        "cleric": 1231,
+        "gladiator": 1420,
+        "ranger": 1177,
+        "sorcerer": 1216,
+        "elementalist": 823,
+        "templar": 934
+      }
+    },
+    {
+      "id": "eu/triniel",
+      "region": "eu",
+      "name": "Triniel",
+      "race": 2,
+      "counts": {
+        "assassin": 1766,
+        "chanter": 4925,
+        "cleric": 5155,
+        "gladiator": 3075,
+        "ranger": 3898,
+        "sorcerer": 2525,
+        "elementalist": 2843,
+        "templar": 2623
+      }
+    },
+    {
+      "id": "eu/tsenka",
+      "region": "eu",
+      "name": "Tsenka",
+      "race": 1,
+      "counts": {
+        "assassin": 771,
+        "chanter": 939,
+        "cleric": 1038,
+        "gladiator": 1179,
+        "ranger": 1155,
+        "sorcerer": 1071,
+        "elementalist": 755,
+        "templar": 840
+      }
+    },
+    {
+      "id": "eu/ulgorn",
+      "region": "eu",
+      "name": "Ulgorn",
+      "race": 2,
+      "counts": {
+        "assassin": 1415,
+        "chanter": 2310,
+        "cleric": 1681,
+        "gladiator": 2008,
+        "ranger": 1805,
+        "sorcerer": 1623,
+        "elementalist": 1637,
+        "templar": 1954
+      }
+    },
+    {
+      "id": "eu/vaizel",
+      "region": "eu",
+      "name": "Vaizel",
+      "race": 1,
+      "counts": {
+        "assassin": 1428,
+        "chanter": 3713,
+        "cleric": 4001,
+        "gladiator": 2660,
+        "ranger": 3299,
+        "sorcerer": 2157,
+        "elementalist": 2622,
+        "templar": 2157
+      }
+    },
+    {
+      "id": "eu/yustiel",
+      "region": "eu",
+      "name": "Yustiel",
+      "race": 1,
+      "counts": {
+        "assassin": 905,
+        "chanter": 1934,
+        "cleric": 2197,
+        "gladiator": 1699,
+        "ranger": 1770,
+        "sorcerer": 1338,
+        "elementalist": 1571,
+        "templar": 1437
+      }
+    },
+    {
+      "id": "eu/zemurru",
+      "region": "eu",
+      "name": "Zemurru",
+      "race": 2,
+      "counts": {
+        "assassin": 1505,
+        "chanter": 2532,
+        "cleric": 2240,
+        "gladiator": 2413,
+        "ranger": 2289,
+        "sorcerer": 2147,
+        "elementalist": 1765,
+        "templar": 1822
+      }
+    },
+    {
+      "id": "eu/zikel",
+      "region": "eu",
+      "name": "Zikel",
+      "race": 2,
+      "counts": {
+        "assassin": 1546,
+        "chanter": 4553,
+        "cleric": 4736,
+        "gladiator": 2878,
+        "ranger": 3924,
+        "sorcerer": 2218,
+        "elementalist": 3068,
+        "templar": 2403
+      }
+    },
+    {
+      "id": "la/ariel",
+      "region": "la",
+      "name": "Ariel",
+      "race": 1,
+      "counts": {
+        "assassin": 868,
+        "chanter": 1662,
+        "cleric": 1942,
+        "gladiator": 1310,
+        "ranger": 1533,
+        "sorcerer": 1390,
+        "elementalist": 1034,
+        "templar": 1281
+      }
+    },
+    {
+      "id": "la/azphel",
+      "region": "la",
+      "name": "Azphel",
+      "race": 2,
+      "counts": {
+        "assassin": 975,
+        "chanter": 970,
+        "cleric": 1083,
+        "gladiator": 1369,
+        "ranger": 1241,
+        "sorcerer": 1208,
+        "elementalist": 776,
+        "templar": 918
+      }
+    },
+    {
+      "id": "la/israphel",
+      "region": "la",
+      "name": "Israphel",
+      "race": 2,
+      "counts": {
+        "assassin": 1228,
+        "chanter": 1724,
+        "cleric": 1821,
+        "gladiator": 1578,
+        "ranger": 1818,
+        "sorcerer": 1396,
+        "elementalist": 1034,
+        "templar": 1315
+      }
+    },
+    {
+      "id": "la/kaisinel",
+      "region": "la",
+      "name": "Kaisinel",
+      "race": 1,
+      "counts": {
+        "assassin": 734,
+        "chanter": 779,
+        "cleric": 965,
+        "gladiator": 1021,
+        "ranger": 1029,
+        "sorcerer": 950,
+        "elementalist": 643,
+        "templar": 750
+      }
+    },
+    {
+      "id": "la/lumiel",
+      "region": "la",
+      "name": "Lumiel",
+      "race": 2,
+      "counts": {
+        "assassin": 1258,
+        "chanter": 1448,
+        "cleric": 1663,
+        "gladiator": 1676,
+        "ranger": 1714,
+        "sorcerer": 1526,
+        "elementalist": 1081,
+        "templar": 1367
+      }
+    },
+    {
+      "id": "la/marchutan",
+      "region": "la",
+      "name": "Marchutan",
+      "race": 2,
+      "counts": {
+        "assassin": 1057,
+        "chanter": 1112,
+        "cleric": 1243,
+        "gladiator": 1390,
+        "ranger": 1269,
+        "sorcerer": 1200,
+        "elementalist": 852,
+        "templar": 1020
+      }
+    },
+    {
+      "id": "la/nezekan",
+      "region": "la",
+      "name": "Nezekan",
+      "race": 1,
+      "counts": {
+        "assassin": 621,
+        "chanter": 806,
+        "cleric": 1038,
+        "gladiator": 907,
+        "ranger": 1038,
+        "sorcerer": 885,
+        "elementalist": 579,
+        "templar": 828
+      }
+    },
+    {
+      "id": "la/siel",
+      "region": "la",
+      "name": "Siel",
+      "race": 1,
+      "counts": {
+        "assassin": 909,
+        "chanter": 1385,
+        "cleric": 1737,
+        "gladiator": 1338,
+        "ranger": 1717,
+        "sorcerer": 1305,
+        "elementalist": 929,
+        "templar": 1207
+      }
+    },
+    {
+      "id": "la/triniel",
+      "region": "la",
+      "name": "Triniel",
+      "race": 2,
+      "counts": {
+        "assassin": 1219,
+        "chanter": 1364,
+        "cleric": 1318,
+        "gladiator": 1616,
+        "ranger": 1582,
+        "sorcerer": 1442,
+        "elementalist": 993,
+        "templar": 1117
+      }
+    },
+    {
+      "id": "la/vaizel",
+      "region": "la",
+      "name": "Vaizel",
+      "race": 1,
+      "counts": {
+        "assassin": 979,
+        "chanter": 895,
+        "cleric": 1133,
+        "gladiator": 1358,
+        "ranger": 1284,
+        "sorcerer": 1361,
+        "elementalist": 854,
+        "templar": 942
+      }
+    },
+    {
+      "id": "la/yustiel",
+      "region": "la",
+      "name": "Yustiel",
+      "race": 1,
+      "counts": {
+        "assassin": 728,
+        "chanter": 790,
+        "cleric": 955,
+        "gladiator": 1055,
+        "ranger": 975,
+        "sorcerer": 1000,
+        "elementalist": 675,
+        "templar": 773
+      }
+    },
+    {
+      "id": "la/zikel",
+      "region": "la",
+      "name": "Zikel",
+      "race": 2,
+      "counts": {
+        "assassin": 1011,
+        "chanter": 1515,
+        "cleric": 1797,
+        "gladiator": 1490,
+        "ranger": 1759,
+        "sorcerer": 1360,
+        "elementalist": 960,
+        "templar": 1289
+      }
+    },
+    {
+      "id": "nae/ariel",
+      "region": "nae",
+      "name": "Ariel",
+      "race": 1,
+      "counts": {
+        "assassin": 663,
+        "chanter": 1318,
+        "cleric": 1350,
+        "gladiator": 1091,
+        "ranger": 967,
+        "sorcerer": 882,
+        "elementalist": 938,
+        "templar": 1025
+      }
+    },
+    {
+      "id": "nae/azphel",
+      "region": "nae",
+      "name": "Azphel",
+      "race": 2,
+      "counts": {
+        "assassin": 1071,
+        "chanter": 2491,
+        "cleric": 1754,
+        "gladiator": 1616,
+        "ranger": 1265,
+        "sorcerer": 1264,
+        "elementalist": 1852,
+        "templar": 1942
+      }
+    },
+    {
+      "id": "nae/beritra",
+      "region": "nae",
+      "name": "Beritra",
+      "race": 2,
+      "counts": {
+        "assassin": 845,
+        "chanter": 1892,
+        "cleric": 1297,
+        "gladiator": 1309,
+        "ranger": 932,
+        "sorcerer": 1068,
+        "elementalist": 1984,
+        "templar": 1845
+      }
+    },
+    {
+      "id": "nae/ereshkigal",
+      "region": "nae",
+      "name": "Ereshkigal",
+      "race": 2,
+      "counts": {
+        "assassin": 878,
+        "chanter": 2139,
+        "cleric": 1320,
+        "gladiator": 1380,
+        "ranger": 980,
+        "sorcerer": 1078,
+        "elementalist": 1296,
+        "templar": 1759
+      }
+    },
+    {
+      "id": "nae/fregion",
+      "region": "nae",
+      "name": "Fregion",
+      "race": 1,
+      "counts": {
+        "assassin": 582,
+        "chanter": 1116,
+        "cleric": 915,
+        "gladiator": 921,
+        "ranger": 742,
+        "sorcerer": 787,
+        "elementalist": 773,
+        "templar": 859
+      }
+    },
+    {
+      "id": "nae/hithanya",
+      "region": "nae",
+      "name": "Hithanya",
+      "race": 1,
+      "counts": {
+        "assassin": 284,
+        "chanter": 614,
+        "cleric": 483,
+        "gladiator": 517,
+        "ranger": 363,
+        "sorcerer": 416,
+        "elementalist": 365,
+        "templar": 431
+      }
+    },
+    {
+      "id": "nae/israphel",
+      "region": "nae",
+      "name": "Israphel",
+      "race": 2,
+      "counts": {
+        "assassin": 1600,
+        "chanter": 4930,
+        "cleric": 5739,
+        "gladiator": 2958,
+        "ranger": 3240,
+        "sorcerer": 2179,
+        "elementalist": 4651,
+        "templar": 3107
+      }
+    },
+    {
+      "id": "nae/kaisinel",
+      "region": "nae",
+      "name": "Kaisinel",
+      "race": 1,
+      "counts": {
+        "assassin": 577,
+        "chanter": 2568,
+        "cleric": 1320,
+        "gladiator": 1034,
+        "ranger": 790,
+        "sorcerer": 716,
+        "elementalist": 1695,
+        "templar": 1883
+      }
+    },
+    {
+      "id": "nae/lumiel",
+      "region": "nae",
+      "name": "Lumiel",
+      "race": 2,
+      "counts": {
+        "assassin": 992,
+        "chanter": 4536,
+        "cleric": 2213,
+        "gladiator": 1582,
+        "ranger": 1225,
+        "sorcerer": 1207,
+        "elementalist": 2944,
+        "templar": 2678
+      }
+    },
+    {
+      "id": "nae/marchutan",
+      "region": "nae",
+      "name": "Marchutan",
+      "race": 2,
+      "counts": {
+        "assassin": 898,
+        "chanter": 2689,
+        "cleric": 1357,
+        "gladiator": 1302,
+        "ranger": 897,
+        "sorcerer": 1006,
+        "elementalist": 1853,
+        "templar": 2261
+      }
+    },
+    {
+      "id": "nae/meslamtaeda",
+      "region": "nae",
+      "name": "Meslamtaeda",
+      "race": 1,
+      "counts": {
+        "assassin": 574,
+        "chanter": 923,
+        "cleric": 858,
+        "gladiator": 891,
+        "ranger": 593,
+        "sorcerer": 706,
+        "elementalist": 752,
+        "templar": 842
+      }
+    },
+    {
+      "id": "nae/nemon",
+      "region": "nae",
+      "name": "Nemon",
+      "race": 2,
+      "counts": {
+        "assassin": 439,
+        "chanter": 906,
+        "cleric": 481,
+        "gladiator": 613,
+        "ranger": 373,
+        "sorcerer": 490,
+        "elementalist": 443,
+        "templar": 596
+      }
+    },
+    {
+      "id": "nae/nezekan",
+      "region": "nae",
+      "name": "Nezekan",
+      "race": 1,
+      "counts": {
+        "assassin": 1382,
+        "chanter": 3462,
+        "cleric": 3699,
+        "gladiator": 2346,
+        "ranger": 2457,
+        "sorcerer": 1886,
+        "elementalist": 2697,
+        "templar": 2517
+      }
+    },
+    {
+      "id": "nae/siel",
+      "region": "nae",
+      "name": "Siel",
+      "race": 1,
+      "counts": {
+        "assassin": 1522,
+        "chanter": 3944,
+        "cleric": 4487,
+        "gladiator": 2703,
+        "ranger": 2926,
+        "sorcerer": 2031,
+        "elementalist": 3377,
+        "templar": 2584
+      }
+    },
+    {
+      "id": "nae/triniel",
+      "region": "nae",
+      "name": "Triniel",
+      "race": 2,
+      "counts": {
+        "assassin": 1315,
+        "chanter": 3890,
+        "cleric": 2734,
+        "gladiator": 2170,
+        "ranger": 1801,
+        "sorcerer": 1639,
+        "elementalist": 3026,
+        "templar": 3146
+      }
+    },
+    {
+      "id": "nae/vaizel",
+      "region": "nae",
+      "name": "Vaizel",
+      "race": 1,
+      "counts": {
+        "assassin": 871,
+        "chanter": 2255,
+        "cleric": 2072,
+        "gladiator": 1581,
+        "ranger": 1388,
+        "sorcerer": 1258,
+        "elementalist": 1942,
+        "templar": 1892
+      }
+    },
+    {
+      "id": "nae/yustiel",
+      "region": "nae",
+      "name": "Yustiel",
+      "race": 1,
+      "counts": {
+        "assassin": 552,
+        "chanter": 1448,
+        "cleric": 1043,
+        "gladiator": 942,
+        "ranger": 769,
+        "sorcerer": 791,
+        "elementalist": 952,
+        "templar": 1125
+      }
+    },
+    {
+      "id": "nae/zikel",
+      "region": "nae",
+      "name": "Zikel",
+      "race": 2,
+      "counts": {
+        "assassin": 1665,
+        "chanter": 5511,
+        "cleric": 5306,
+        "gladiator": 2915,
+        "ranger": 3074,
+        "sorcerer": 2174,
+        "elementalist": 4191,
+        "templar": 3429
+      }
+    },
+    {
+      "id": "naw/israphel",
+      "region": "naw",
+      "name": "Israphel",
+      "race": 2,
+      "counts": {
+        "assassin": 1180,
+        "chanter": 4093,
+        "cleric": 4311,
+        "gladiator": 2587,
+        "ranger": 2651,
+        "sorcerer": 1653,
+        "elementalist": 4051,
+        "templar": 2112
+      }
+    },
+    {
+      "id": "naw/kaisinel",
+      "region": "naw",
+      "name": "Kaisinel",
+      "race": 1,
+      "counts": {
+        "assassin": 362,
+        "chanter": 893,
+        "cleric": 763,
+        "gladiator": 652,
+        "ranger": 542,
+        "sorcerer": 497,
+        "elementalist": 698,
+        "templar": 837
+      }
+    },
+    {
+      "id": "naw/lumiel",
+      "region": "naw",
+      "name": "Lumiel",
+      "race": 2,
+      "counts": {
+        "assassin": 700,
+        "chanter": 1476,
+        "cleric": 1054,
+        "gladiator": 1007,
+        "ranger": 791,
+        "sorcerer": 821,
+        "elementalist": 1029,
+        "templar": 1240
+      }
+    },
+    {
+      "id": "naw/marchutan",
+      "region": "naw",
+      "name": "Marchutan",
+      "race": 2,
+      "counts": {
+        "assassin": 610,
+        "chanter": 1151,
+        "cleric": 758,
+        "gladiator": 864,
+        "ranger": 557,
+        "sorcerer": 683,
+        "elementalist": 721,
+        "templar": 813
+      }
+    },
+    {
+      "id": "naw/nezekan",
+      "region": "naw",
+      "name": "Nezekan",
+      "race": 1,
+      "counts": {
+        "assassin": 475,
+        "chanter": 1690,
+        "cleric": 1414,
+        "gladiator": 899,
+        "ranger": 766,
+        "sorcerer": 673,
+        "elementalist": 1487,
+        "templar": 1491
+      }
+    },
+    {
+      "id": "naw/siel",
+      "region": "naw",
+      "name": "Siel",
+      "race": 1,
+      "counts": {
+        "assassin": 1132,
+        "chanter": 4424,
+        "cleric": 4703,
+        "gladiator": 2634,
+        "ranger": 2650,
+        "sorcerer": 1672,
+        "elementalist": 4228,
+        "templar": 2813
+      }
+    },
+    {
+      "id": "naw/triniel",
+      "region": "naw",
+      "name": "Triniel",
+      "race": 2,
+      "counts": {
+        "assassin": 687,
+        "chanter": 1446,
+        "cleric": 888,
+        "gladiator": 1046,
+        "ranger": 645,
+        "sorcerer": 744,
+        "elementalist": 945,
+        "templar": 1443
+      }
+    },
+    {
+      "id": "naw/vaizel",
+      "region": "naw",
+      "name": "Vaizel",
+      "race": 1,
+      "counts": {
+        "assassin": 600,
+        "chanter": 1468,
+        "cleric": 1070,
+        "gladiator": 977,
+        "ranger": 695,
+        "sorcerer": 764,
+        "elementalist": 1266,
+        "templar": 1177
+      }
+    },
+    {
+      "id": "naw/yustiel",
+      "region": "naw",
+      "name": "Yustiel",
+      "race": 1,
+      "counts": {
+        "assassin": 389,
+        "chanter": 689,
+        "cleric": 819,
+        "gladiator": 651,
+        "ranger": 496,
+        "sorcerer": 517,
+        "elementalist": 587,
+        "templar": 717
+      }
+    },
+    {
+      "id": "naw/zikel",
+      "region": "naw",
+      "name": "Zikel",
+      "race": 2,
+      "counts": {
+        "assassin": 670,
+        "chanter": 1906,
+        "cleric": 1619,
+        "gladiator": 1166,
+        "ranger": 958,
+        "sorcerer": 864,
+        "elementalist": 1705,
+        "templar": 1426
+      }
+    }
+  ]
+}
