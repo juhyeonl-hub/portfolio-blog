@@ -13,3 +13,11 @@
 
 User 2026-10-19 '진행' follows explicit recommendation to review, commit and deploy; authorization is for this release. No ongoing automatic deployment workflow is installed.
 See shadowcraft/A2BC_STATUS_REPORT.md for prior implementation evidence. The historic 'uncommitted/unreleased' section describes the prior turn, not the final release status.
+
+## Release completion — 2026-10-19
+- Last reviewed: 9cb4261 vs fa8af5d, isolated clean clone, official Codex read-only runner, NO_FINDINGS 0. No edits by reviewer.
+- Last verified: production1440/390 all8classes equipment compare/filter/reset/preparation plus existing group compare and board preview/cancel/apply/undo pass; controlled profile fixture. Existing full24suite/type/lint/build checks reused because no product code changed after verification. Production build passed.
+- Release: 9cb4261 pushed to main; dpl_7JfveKkmRqY16CXppsUdk2kmnyXc Ready, juhyeonl.dev alias confirmed.
+- Findings: none from review; existing bundle size warning and snapshot freshness limitation retained.
+- Uncommitted: only two pre-existing private untracked files after final documentation commit; excluded from release.
+- Next: this release complete. Snapshot refresh/freshness UX can be scoped separately. Blocker: none.
