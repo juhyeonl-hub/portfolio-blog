@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest @AutoConfigureMockMvc @ActiveProfiles("test")
 class SteamLoginControllerTest {
  static final String API="/api/community/auth/steam", ENDPOINT="https://steamcommunity.com/openid/login", STEAM="76561191234567890";
- @Autowired MockMvc mvc; @Autowired ObjectMapper mapper; @Autowired JdbcTemplate jdbc;
+ @Autowired MockMvc mvc; @Autowired ObjectMapper mapper; @Autowired JdbcTemplate jdbc; @Autowired org.springframework.security.crypto.password.PasswordEncoder passwords;
  @MockBean SteamOpenIdVerifier verifier;
  String address;
  @BeforeEach void setup(){
@@ -86,6 +86,17 @@ class SteamLoginControllerTest {
   for(String signed:List.of("op_endpoint,claimed_id,identity,response_nonce","claimed_id,identity,return_to","op_endpoint,claimed_id,return_to")){var p=assertion(start(),STEAM);p.put("openid.signed",signed);assertThat(callback(p)).endsWith("#steam-error=failed");}
   String c=code(callback(assertion(start(),"76561198765432101")),"steam-new");String name="Steam_Upper_"+(System.nanoTime()%100000);
   assertThat(postJson(API+"/register",Map.of("code",c,"username",name),200).path("member").path("username").asText()).isEqualTo(name.toLowerCase(java.util.Locale.ROOT));
+ }
+ @Test void reservedUsernamesAreRefusedForNewAccountsOnly()throws Exception{
+  for(String name:List.of("admin","site_admin","administrator","asbc_official","moderator1","ncsoft_kr","mod","root","juhyeonl"))postJson("/api/community/auth/register",Map.of("username",name,"password","testPassword123!"),409);
+  for(String name:List.of("dogma","model_fan","modern_gm"))member(name+"_"+(System.nanoTime()%100000));
+  String c=code(callback(assertion(start(),"76561198444444444")),"steam-new");
+  postJson(API+"/register",Map.of("code",c,"username","staff"),409);postJson(API+"/register",Map.of("code",c,"username","Admin_Team"),409);
+  postJson(API+"/register",Map.of("code",c,"username","fine_"+(System.nanoTime()%100000)),200);
+  // An account that already holds a reserved name (created before this rule) can still log in.
+  String legacy="admin_legacy_"+(System.nanoTime()%100000);
+  jdbc.update("INSERT INTO shadowcraft_members(id,username,password_hash,created_at) VALUES (?,?,?,CURRENT_TIMESTAMP)",UUID.randomUUID().toString(),legacy,passwords.encode("testPassword123!"));
+  postJson("/api/community/auth/login",Map.of("username",legacy,"password","testPassword123!"),200);
  }
  @Test void duplicateNameCanRetrySameCode()throws Exception{
   String name="dup_"+System.nanoTime();member(name);String c=code(callback(assertion(start(),STEAM)),"steam-new");

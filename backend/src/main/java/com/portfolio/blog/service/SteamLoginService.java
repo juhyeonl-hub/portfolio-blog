@@ -95,6 +95,8 @@ public class SteamLoginService {
         // Same normalisation as password signup: usernames are stored lowercase.
         String username=rawUsername==null?null:rawUsername.toLowerCase(Locale.ROOT);
         if(username==null||!username.matches("[a-z0-9_]{3,32}"))throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"아이디는 영문·숫자·밑줄 3~32자로 입력하세요.");
+        // Checked before the one-time code is consumed, so the user can retry with another name.
+        if(CommunityService.reservedUsername(username))throw new ResponseStatusException(HttpStatus.CONFLICT,"사용할 수 없는 아이디입니다.");
         Ticket t=take(registrations,code,browserSecret);if(t==null)throw expired();
         String id=UUID.randomUUID().toString();
         try{jdbc.update("INSERT INTO shadowcraft_members(id,username,password_hash,created_at) VALUES (?,?,?,?)",id,username,passwords.encode(randomCode()),Timestamp.from(Instant.now()));}

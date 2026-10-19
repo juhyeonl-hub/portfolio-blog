@@ -27,6 +27,16 @@ public class CommunityService {
         this.jdbc=jdbc;this.passwords=passwords;this.sessions=sessions;this.builds=builds;
         dummyHash=passwords.encode(UUID.randomUUID().toString());
     }
+    // Public author names that could impersonate the site, its staff or the game publisher.
+    // Contained words block any username that includes them; exact names block only that name,
+    // because short words would otherwise reject ordinary names (e.g. "mod" inside "model").
+    private static final List<String> RESERVED_PARTS = List.of("admin", "moderator", "official", "staff", "support", "ncsoft", "asbc");
+    private static final Set<String> RESERVED_NAMES = Set.of("root", "system", "mod", "mods", "steam", "aion", "aion2", "juhyeonl", "guest", "null", "undefined", "anonymous", "owner", "operator");
+    /** True for usernames new accounts may not take. Existing accounts are unaffected (login does not check this). */
+    public static boolean reservedUsername(String username) {
+        String name = username == null ? "" : username.toLowerCase(Locale.ROOT);
+        return RESERVED_NAMES.contains(name) || RESERVED_PARTS.stream().anyMatch(name::contains);
+    }
     public synchronized void throttle(String address) {
         long now=System.currentTimeMillis();
         attempts.values().forEach(a->a.removeIf(t->t<now-600_000));
@@ -43,6 +53,8 @@ public class CommunityService {
             fail(HttpStatus.BAD_REQUEST,"아이디는 영문·숫자·밑줄 3~32자, 비밀번호는 10자 이상 72바이트 이하로 입력하세요.");
         String id;
         if(register) {
+            // Same response as a taken name, so the reserved list is not revealed.
+            if(reservedUsername(username))fail(HttpStatus.CONFLICT,"사용할 수 없는 아이디입니다.");
             id=UUID.randomUUID().toString();
             try {jdbc.update("INSERT INTO shadowcraft_members(id,username,password_hash,created_at) VALUES (?,?,?,?)",id,username,passwords.encode(password),Timestamp.from(Instant.now()));}
             catch(DuplicateKeyException e){fail(HttpStatus.CONFLICT,"사용할 수 없는 아이디입니다.");}
