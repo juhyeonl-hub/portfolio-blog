@@ -69,7 +69,8 @@ def main(cache):
                     continue
                 row = {l: o['specs'][spec['id']][l] for l in ('en', 'ja') if numbers(o['specs'][spec['id']][l]) == numbers(spec['description'])}
                 if row:
-                    specs[spec['id']] = row
+                    # Keep the checked Korean source: the runtime uses official text only while it is unchanged.
+                    specs[spec['id']] = {'ko': spec['description'], **row}
         for board in catalog['boards']:
             for node in board['nodes']:
                 m = re.match(r'^스킬 레벨 상승 - (.+)$', node['name'])

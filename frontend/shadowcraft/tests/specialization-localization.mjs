@@ -71,6 +71,9 @@ console.log(`Specialization localization: ${matched}/${total} descriptions match
  assert.equal(translate('[침투] 적중 시 행동력 300 회복','fi','13360010'),'[Infiltrate] palauttaa osuessaan 300 Staminaa');
  assert.equal(translate('[침투] 적중 시 행동력 300 회복','ko','13360010'),'[침투] 적중 시 행동력 300 회복');
  assert.equal(translate('[침투] 사거리 10m 증가','ja'),'[侵入]の射程が10m増加');
+ // A changed server description must not show the old official effect for the same id.
+ assert.equal(translate('[침투] 적중 시 행동력 500 회복','en','13360010'),translate('[침투] 적중 시 행동력 500 회복','en'));
+ assert.notEqual(translate('[침투] 적중 시 행동력 500 회복','en','13360010'),officialText['13360010'].en);
  const num=s=>(s.replace(/(?<=\d),(?=\d{3})/g,'').match(/\d+(?:\.\d+)?/g)||[]).sort();
- let used=0;for(const file of readdirSync('lib/data/catalogs').filter(f=>f.endsWith('.json')))for(const skill of JSON.parse(readFileSync('lib/data/catalogs/'+file,'utf8')).skills)for(const spec of skill.specializations)for(const locale of ['en','ja']){const out=translate(spec.description,locale,spec.id);assert.deepEqual(num(out),num(spec.description),spec.id+' '+locale);if(officialText[spec.id]?.[locale]){used++;assert.equal(out,officialText[spec.id][locale]);}}
+ let used=0;for(const file of readdirSync('lib/data/catalogs').filter(f=>f.endsWith('.json')))for(const skill of JSON.parse(readFileSync('lib/data/catalogs/'+file,'utf8')).skills)for(const spec of skill.specializations)for(const locale of ['en','ja']){const out=translate(spec.description,locale,spec.id);assert.deepEqual(num(out),num(spec.description),spec.id+' '+locale);if(officialText[spec.id]?.[locale]){used++;assert.equal(officialText[spec.id].ko,spec.description);assert.equal(out,officialText[spec.id][locale]);}}
  console.log(`Official specialization text: ${used} en/ja entries used by id, numbers equal to the Korean catalog PASS`);}

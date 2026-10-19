@@ -126,3 +126,6 @@ Changes:
 - Kept: ディーヴァニオン (metabot leaves "Daevanion" in English; no official ja evidence either way), 天族/魔族 (no counter-evidence found).
 
 Verification: frontend suites incl. official-text checks (1693 en/ja entries used, numbers equal), typecheck, ESLint, build, diff check PASS. Browser 39/39 PASS. Japanese sweep of all 13 tabs: no Korean, no overflow; skill editor shows official text (e.g. 的中時に多段ヒット50%増加).
+
+## Release review — 2026-10-19
+Codex official review of 701ce52..3f911ee (review.mjs, isolated clean worktree): 1 finding (med). Official en/ja specialization text was returned by id alone, so a later server catalog change to the same id would keep showing the old effect in en/ja. Fixed: official-specializations.json now stores the checked Korean source (`ko`), and the runtime uses official text only while the current source equals it; otherwise the current source is translated. Tests cover the changed-source fallback and that every stored `ko` equals the catalog. Suites, typecheck, ESLint and build PASS. Re-review pending.
