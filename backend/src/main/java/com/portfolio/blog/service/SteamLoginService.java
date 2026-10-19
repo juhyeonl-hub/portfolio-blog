@@ -17,7 +17,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class SteamLoginService {
-    private record Ticket(String value, Instant expires) {}
+    /** value = member/SteamID; browser = SHA-256 of the per-browser secret kept in an HttpOnly cookie (CSRF binding). */
+    private record Ticket(String value, String browser, Instant expires) {}
+    /** Login URL plus the browser secret the controller must set as a cookie. */
+    public record Start(String url, String browserSecret) {}
     private final Map<String,Ticket> states=new HashMap<>(), logins=new HashMap<>(), registrations=new HashMap<>();
     private final SecureRandom random=new SecureRandom();
     private final JdbcTemplate jdbc;
@@ -34,26 +37,38 @@ public class SteamLoginService {
         this.publicUrl=publicUrl.replaceAll("/+$", "");this.planner=this.publicUrl+plannerPath;
     }
     private String randomCode(){byte[] bytes=new byte[32];random.nextBytes(bytes);return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);}
-    private synchronized String put(Map<String,Ticket> map,String value){
+    private static String digest(String secret){
+        try{return HexFormat.of().formatHex(java.security.MessageDigest.getInstance("SHA-256").digest(secret.getBytes(StandardCharsets.UTF_8)));}
+        catch(java.security.NoSuchAlgorithmException e){throw new IllegalStateException(e);}
+    }
+    public boolean secureCookie(){return publicUrl.startsWith("https://");}
+    // 300 s: one Steam round trip plus choosing a username; 10000 caps process-local memory under abuse.
+    private synchronized String put(Map<String,Ticket> map,String value,String browser){
         map.values().removeIf(t->!t.expires().isAfter(Instant.now()));
         if(map.size()>=10000)throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS,"잠시 후 다시 시도하세요.");
-        String code=randomCode();map.put(code,new Ticket(value,Instant.now().plusSeconds(300)));return code;
+        String code=randomCode();map.put(code,new Ticket(value,browser,Instant.now().plusSeconds(300)));return code;
     }
-    private synchronized Ticket take(Map<String,Ticket> map,String code){
-        Ticket t=map.remove(code);return t!=null&&t.expires().isAfter(Instant.now())?t:null;
+    /** Single use: the ticket is removed even when it belongs to another browser. */
+    private synchronized Ticket take(Map<String,Ticket> map,String code,String browserSecret){
+        if(code==null)return null;
+        Ticket t=map.remove(code);
+        if(t==null||!t.expires().isAfter(Instant.now())||browserSecret==null||browserSecret.isEmpty())return null;
+        return java.security.MessageDigest.isEqual(t.browser().getBytes(StandardCharsets.UTF_8),digest(browserSecret).getBytes(StandardCharsets.UTF_8))?t:null;
     }
     private String callbackUrl(String state){return publicUrl+"/api/community/auth/steam/callback?state="+state;}
-    public String start(String member){
-        String state=put(states,member);
+    public Start start(String member){
+        String secret=randomCode();
+        String state=put(states,member,digest(secret));
         var params=new LinkedHashMap<String,String>();
         params.put("openid.ns","http://specs.openid.net/auth/2.0");params.put("openid.mode","checkid_setup");
         params.put("openid.return_to",callbackUrl(state));params.put("openid.realm",publicUrl+"/");
         params.put("openid.identity","http://specs.openid.net/auth/2.0/identifier_select");params.put("openid.claimed_id",params.get("openid.identity"));
-        return verifier.endpoint()+"?"+params.entrySet().stream().map(e->URLEncoder.encode(e.getKey(),StandardCharsets.UTF_8)+"="+URLEncoder.encode(e.getValue(),StandardCharsets.UTF_8)).collect(java.util.stream.Collectors.joining("&"));
+        return new Start(verifier.endpoint()+"?"+params.entrySet().stream().map(e->URLEncoder.encode(e.getKey(),StandardCharsets.UTF_8)+"="+URLEncoder.encode(e.getValue(),StandardCharsets.UTF_8)).collect(java.util.stream.Collectors.joining("&")),secret);
     }
     @Transactional
-    public String callback(Map<String,String> params){
-        String state=params.get("state");Ticket ticket=take(states,state);
+    /** browserSecret comes from the cookie set at start/link: a URL forwarded to another browser is rejected. */
+    public String callback(Map<String,String> params,String browserSecret){
+        String state=params.get("state");Ticket ticket=take(states,state,browserSecret);
         if(ticket==null)return planner+"#steam-error=expired";
         String claimed=params.getOrDefault("openid.claimed_id","");
         if(!"id_res".equals(params.get("openid.mode"))||!verifier.endpoint().equals(params.get("openid.op_endpoint"))
@@ -72,15 +87,15 @@ public class SteamLoginService {
             try{link(steam,ticket.value());}catch(DuplicateKeyException e){return planner+"#steam-error=taken";}
             return planner+"#steam-linked=1";
         }
-        return planner+(owners.isEmpty()?"#steam-new="+put(registrations,steam):"#steam-code="+put(logins,owners.getFirst()));
+        return planner+(owners.isEmpty()?"#steam-new="+put(registrations,steam,ticket.browser()):"#steam-code="+put(logins,owners.getFirst(),ticket.browser()));
     }
-    public Map<String,Object> exchange(String code){Ticket t=take(logins,code);if(t==null)throw expired();return result(t.value());}
+    public Map<String,Object> exchange(String code,String browserSecret){Ticket t=take(logins,code,browserSecret);if(t==null)throw expired();return result(t.value());}
     @Transactional
-    public synchronized Map<String,Object> register(String code,String rawUsername){
+    public synchronized Map<String,Object> register(String code,String rawUsername,String browserSecret){
         // Same normalisation as password signup: usernames are stored lowercase.
         String username=rawUsername==null?null:rawUsername.toLowerCase(Locale.ROOT);
         if(username==null||!username.matches("[a-z0-9_]{3,32}"))throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"아이디는 영문·숫자·밑줄 3~32자로 입력하세요.");
-        Ticket t=take(registrations,code);if(t==null)throw expired();
+        Ticket t=take(registrations,code,browserSecret);if(t==null)throw expired();
         String id=UUID.randomUUID().toString();
         try{jdbc.update("INSERT INTO shadowcraft_members(id,username,password_hash,created_at) VALUES (?,?,?,?)",id,username,passwords.encode(randomCode()),Timestamp.from(Instant.now()));}
         catch(DuplicateKeyException e){synchronized(this){registrations.put(code,t);}throw new ResponseStatusException(HttpStatus.CONFLICT,"사용할 수 없는 아이디입니다.");}

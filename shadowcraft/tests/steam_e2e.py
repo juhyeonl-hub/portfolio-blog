@@ -26,10 +26,11 @@ class Fake(BaseHTTPRequestHandler):
                   'openid.response_nonce': nonce, 'openid.assoc_handle': '1234567890',
                   'openid.signed': 'signed,op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle', 'openid.sig': 'fake'}
         sep = '&' if '?' in q['openid.return_to'] else '?'
-        # Production reaches the callback through the Vercel /api rewrite. Browser routing cannot intercept a
-        # server redirect, so this hop goes straight to the isolated backend; openid.return_to stays the signed public URL.
-        hop = q['openid.return_to'].replace('http://localhost:5173', API)
-        self.send_response(302); self.send_header('Location', hop + sep + urlencode(params)); self.end_headers()
+        # Return through a client-side redirect: browser routing cannot intercept a server redirect, and the
+        # callback must reach the site origin so the Steam binding cookie is sent, as in production.
+        target = json.dumps(q['openid.return_to'] + sep + urlencode(params))
+        body = ('<!doctype html><script>location.replace(%s)</script>' % target).encode()
+        self.send_response(200); self.send_header('Content-Type', 'text/html'); self.end_headers(); self.wfile.write(body)
     def do_POST(self):
         body = {k: v[0] for k, v in parse_qs(self.rfile.read(int(self.headers['Content-Length'])).decode()).items()}
         ok = body.get('openid.mode') == 'check_authentication' and body.get('openid.response_nonce') in issued

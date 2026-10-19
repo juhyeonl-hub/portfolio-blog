@@ -32,14 +32,16 @@ class SteamLoginControllerTest {
   jdbc.update("DELETE FROM shadowcraft_member_steam");
   when(verifier.endpoint()).thenReturn(ENDPOINT);when(verifier.verify(anyMap())).thenReturn(true);
  }
+ /** The current test browser: the Steam binding cookie set by start/link, sent back like a real browser. */
+ jakarta.servlet.http.Cookie browser;
  Map<String,String> query(String url){var p=new HashMap<String,String>();for(String part:URI.create(url).getRawQuery().split("&")){var kv=part.split("=",2);p.put(URLDecoder.decode(kv[0],StandardCharsets.UTF_8),URLDecoder.decode(kv[1],StandardCharsets.UTF_8));}return p;}
- String start()throws Exception{return mvc.perform(get(API+"/start").with(r->{r.setRemoteAddr(address);return r;})).andExpect(status().isFound()).andExpect(header().string("Cache-Control","no-store")).andReturn().getResponse().getHeader("Location");}
+ String start()throws Exception{var res=mvc.perform(get(API+"/start").with(r->{r.setRemoteAddr(address);return r;})).andExpect(status().isFound()).andExpect(header().string("Cache-Control","no-store")).andReturn().getResponse();browser=res.getCookie("asbc_steam");assertThat(browser).isNotNull();assertThat(browser.isHttpOnly()).isTrue();return res.getHeader("Location");}
  Map<String,String> assertion(String url,String steam){var q=query(url);var p=new HashMap<String,String>();p.put("state",query(q.get("openid.return_to")).get("state"));p.put("openid.mode","id_res");p.put("openid.op_endpoint",ENDPOINT);p.put("openid.claimed_id","https://steamcommunity.com/openid/id/"+steam);p.put("openid.identity",p.get("openid.claimed_id"));p.put("openid.return_to",q.get("openid.return_to"));p.put("openid.signed","op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle");return p;}
- String callback(Map<String,String> p)throws Exception{var r=get(API+"/callback");p.forEach(r::param);return mvc.perform(r).andExpect(status().isFound()).andExpect(header().string("Cache-Control","no-store")).andReturn().getResponse().getHeader("Location");}
+ String callback(Map<String,String> p)throws Exception{var r=get(API+"/callback");p.forEach(r::param);if(browser!=null)r.cookie(browser);return mvc.perform(r).andExpect(status().isFound()).andExpect(header().string("Cache-Control","no-store")).andReturn().getResponse().getHeader("Location");}
  String code(String url,String kind){assertThat(url).startsWith("https://juhyeonl.dev/lab/shadowcraft/#"+kind+"=");return url.substring(url.indexOf('=')+1);}
- JsonNode postJson(String path,Map<String,String> body,int expected)throws Exception{return mapper.readTree(mvc.perform(post(path).with(r->{r.setRemoteAddr(address);return r;}).contentType("application/json").content(mapper.writeValueAsString(body))).andExpect(status().is(expected)).andExpect(header().string("Cache-Control","no-store")).andReturn().getResponse().getContentAsString());}
+ JsonNode postJson(String path,Map<String,String> body,int expected)throws Exception{var req=post(path);if(browser!=null)req.cookie(browser);return mapper.readTree(mvc.perform(req.with(r->{r.setRemoteAddr(address);return r;}).contentType("application/json").content(mapper.writeValueAsString(body))).andExpect(status().is(expected)).andExpect(header().string("Cache-Control","no-store")).andReturn().getResponse().getContentAsString());}
  JsonNode member(String name)throws Exception{return postJson("/api/community/auth/register",Map.of("username",name,"password","testPassword123!"),200);}
- String link(String token)throws Exception{return mapper.readTree(mvc.perform(post(API+"/link").header("Authorization","Bearer "+token)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString()).path("url").asText();}
+ String link(String token)throws Exception{var res=mvc.perform(post(API+"/link").header("Authorization","Bearer "+token)).andExpect(status().isOk()).andReturn().getResponse();browser=res.getCookie("asbc_steam");assertThat(browser).isNotNull();return mapper.readTree(res.getContentAsString()).path("url").asText();}
  @Test void startParametersAndLinkProtection()throws Exception{
   String url=start();assertThat(url).startsWith(ENDPOINT+"?");var p=query(url);
   assertThat(p).containsEntry("openid.realm","https://juhyeonl.dev/").containsEntry("openid.mode","checkid_setup").containsEntry("openid.ns","http://specs.openid.net/auth/2.0");
@@ -65,6 +67,20 @@ class SteamLoginControllerTest {
   assertThat(callback(assertion(link(token),STEAM))).endsWith("#steam-linked=1");assertThat(callback(assertion(link(token),STEAM))).endsWith("#steam-linked=1");
   assertThat(callback(assertion(link(token),"76561191234567891"))).endsWith("#steam-error=already");String other=member("pw_"+System.nanoTime()).path("token").asText();assertThat(callback(assertion(link(other),STEAM))).endsWith("#steam-error=taken");
   postJson("/api/community/auth/login",Map.of("username",name,"password","testPassword123!"),200);
+ }
+ @Test void flowsAreBoundToTheStartingBrowser()throws Exception{
+  // Login CSRF: a callback URL completed in another browser (no or different cookie) is rejected.
+  var p=assertion(start(),STEAM);browser=null;assertThat(callback(p)).endsWith("#steam-error=expired");
+  var q=assertion(start(),STEAM);var other=new jakarta.servlet.http.Cookie("asbc_steam","x".repeat(43));browser=other;assertThat(callback(q)).endsWith("#steam-error=expired");
+  // Codes issued to one browser cannot be redeemed by another, and are burned by the attempt.
+  String name="bind_"+System.nanoTime();String c=code(callback(assertion(start(),"76561198111111111")),"steam-new");var mine=browser;
+  browser=other;postJson(API+"/register",Map.of("code",c,"username",name),401);browser=mine;postJson(API+"/register",Map.of("code",c,"username",name),401);
+  String n=code(callback(assertion(start(),"76561198222222222")),"steam-new");postJson(API+"/register",Map.of("code",n,"username",name),200);
+  String login=code(callback(assertion(start(),"76561198222222222")),"steam-code");mine=browser;browser=other;postJson(API+"/exchange",Map.of("code",login),401);browser=mine;postJson(API+"/exchange",Map.of("code",login),401);
+  // Link CSRF: an attacker's link URL completed by a victim browser does not link the victim's Steam.
+  String attacker=member("atk_"+System.nanoTime()).path("token").asText();var url=link(attacker);var victim=new jakarta.servlet.http.Cookie("asbc_steam","v".repeat(43));browser=victim;
+  assertThat(callback(assertion(url,"76561198333333333"))).endsWith("#steam-error=expired");
+  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_member_steam WHERE steam_id=?",Integer.class,"76561198333333333")).isZero();
  }
  @Test void signedFieldsAndUsernameNormalisation()throws Exception{
   for(String signed:List.of("op_endpoint,claimed_id,identity,response_nonce","claimed_id,identity,return_to","op_endpoint,claimed_id,return_to")){var p=assertion(start(),STEAM);p.put("openid.signed",signed);assertThat(callback(p)).endsWith("#steam-error=failed");}

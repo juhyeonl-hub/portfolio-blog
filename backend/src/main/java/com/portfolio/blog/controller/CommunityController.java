@@ -28,15 +28,18 @@ public class CommunityController {
         return response(community.authenticate(input,action.equals("register")));
     }
     @GetMapping("/api/community/auth/steam/start")
-    public ResponseEntity<?> steamStart(HttpServletRequest request){community.throttle(request.getRemoteAddr()+"|steam");return redirect(steam.start(null));}
+    public ResponseEntity<?> steamStart(HttpServletRequest request){community.throttle(request.getRemoteAddr()+"|steam");var start=steam.start(null);return ResponseEntity.status(HttpStatus.FOUND).header(HttpHeaders.LOCATION,start.url()).header(HttpHeaders.SET_COOKIE,steamCookie(start.browserSecret(),300).toString()).cacheControl(CacheControl.noStore()).build();}
     @GetMapping("/api/community/auth/steam/callback")
-    public ResponseEntity<?> steamCallback(@RequestParam Map<String,String> params){return redirect(steam.callback(params));}
+    public ResponseEntity<?> steamCallback(@RequestParam Map<String,String> params,@CookieValue(value=STEAM_COOKIE,required=false)String browser){return redirect(steam.callback(params,browser));}
     @PostMapping("/api/community/auth/steam/exchange")
-    public ResponseEntity<?> steamExchange(HttpServletRequest request)throws Exception{JsonNode input=body(request);return response(steam.exchange(input==null?null:input.path("code").asText(null)));}
+    public ResponseEntity<?> steamExchange(HttpServletRequest request,@CookieValue(value=STEAM_COOKIE,required=false)String browser)throws Exception{JsonNode input=body(request);var result=steam.exchange(input==null?null:input.path("code").asText(null),browser);return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,steamCookie("",0).toString()).cacheControl(CacheControl.noStore()).body(result);}
     @PostMapping("/api/community/auth/steam/register")
-    public ResponseEntity<?> steamRegister(HttpServletRequest request)throws Exception{community.throttle(request.getRemoteAddr()+"|steam");JsonNode input=body(request);return response(steam.register(input==null?null:input.path("code").asText(null),input==null?null:input.path("username").asText(null)));}
+    public ResponseEntity<?> steamRegister(HttpServletRequest request,@CookieValue(value=STEAM_COOKIE,required=false)String browser)throws Exception{community.throttle(request.getRemoteAddr()+"|steam");JsonNode input=body(request);var result=steam.register(input==null?null:input.path("code").asText(null),input==null?null:input.path("username").asText(null),browser);return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,steamCookie("",0).toString()).cacheControl(CacheControl.noStore()).body(result);}
     @PostMapping("/api/community/auth/steam/link")
-    public ResponseEntity<?> steamLink(Authentication auth){return response(Map.of("url",steam.start(auth.getName())));}
+    public ResponseEntity<?> steamLink(Authentication auth){var start=steam.start(auth.getName());return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,steamCookie(start.browserSecret(),300).toString()).cacheControl(CacheControl.noStore()).body(Map.of("url",start.url()));}
+    // Browser binding for Steam sign-in (CSRF): HttpOnly, SameSite=Lax so it survives the top-level return from Steam.
+    private static final String STEAM_COOKIE="asbc_steam";
+    private ResponseCookie steamCookie(String value,long maxAgeSeconds){return ResponseCookie.from(STEAM_COOKIE,value).httpOnly(true).secure(steam.secureCookie()).sameSite("Lax").path("/api/community/auth/steam").maxAge(maxAgeSeconds).build();}
     private ResponseEntity<?> redirect(String url){return ResponseEntity.status(HttpStatus.FOUND).cacheControl(CacheControl.noStore()).location(java.net.URI.create(url)).build();}
     @GetMapping("/api/community/me")
     public ResponseEntity<?> me(Authentication auth){return response(community.member(auth.getName()));}
