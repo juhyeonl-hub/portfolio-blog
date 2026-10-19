@@ -15,7 +15,9 @@ class ContentPolicyTest {
                 "씨발 이게 뭐야", "ㅅㅂ 너무 어렵다", "병신같은 빌드", "개새끼야", "좆밥 빌드", "지랄하네", "한남충", "짱깨",
                 "윤석열 빌드", "이재명 지지", "도널드 트럼프", "김정은 만세",
                 "死ね", "キチガイかよ", "安倍晋三",
-                "vittu tää on huono", "huora", "neekeri")) {
+                "vittu tää on huono", "huora", "neekeri",
+                // number suffixes and digit substitutions on short words (Codex review)
+                "nazi88", "kkk123 crew", "dick99", "n4zi build", "s3x", "isis2026")) {
             assertThat(ContentPolicy.blocked(text)).as(text).isTrue();
         }
     }
@@ -28,7 +30,7 @@ class ContentPolicyTest {
                 "therapist-level healing", "bilberry pie", "cockpit view", "Scunthorpe", "Sussex guild",
                 "시발점에서 출발하세요", "시발역 근처", "트럼프 카드처럼 아껴 쓰세요", "살성 PvE 입문 빌드입니다", "이 빌드 좋아요",
                 "暗殺者のビルドです", "クソゲーじゃない", "Hyvä build, perkele!", "saatana mikä pomo", "Aho ja Virtanen kokeilivat",
-                "Nazir's guide", "Matti Aho")) {
+                "Nazir's guide", "Matti Aho", "patch 2.0.8", "level 40 build", "pvp2 arena", "class2 setup", "top10 rankers")) {
             assertThat(ContentPolicy.blocked(text)).as(text).isFalse();
         }
     }

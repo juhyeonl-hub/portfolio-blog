@@ -48,7 +48,11 @@ public final class ContentPolicy {
 
         List<String> words = new ArrayList<>();
         var m = WORD.matcher(lower);
-        while (m.find()) words.add(UsernamePolicy.normalise(m.group()));
+        while (m.find()) {
+            // Short words with a number attached ("nazi88", "dick99"): check the digit-separated parts too.
+            for (String part : m.group().split("[0-9]+")) if (UsernamePolicy.OFFENSIVE_TOKENS.contains(part)) return true;
+            words.add(UsernamePolicy.normalise(m.group()));
+        }
         for (int i = 0; i < words.size(); i++) {
             String w = words.get(i);
             if (UsernamePolicy.OFFENSIVE_TOKENS.contains(w)) return true;
