@@ -1,0 +1,3 @@
+# Same as vercel.json: OCR language data is served pre-compressed.
+/shadowcraft/ocr/lang/*
+  Content-Type: application/gzip

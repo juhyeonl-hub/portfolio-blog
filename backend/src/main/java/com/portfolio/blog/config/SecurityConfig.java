@@ -22,10 +22,14 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtFilter;
     private final ApiKeyAuthenticationFilter apiKeyFilter;
 
+    private final String extraOrigins;
+
     public SecurityConfig(JwtAuthenticationFilter jwtFilter,
-                          ApiKeyAuthenticationFilter apiKeyFilter) {
+                          ApiKeyAuthenticationFilter apiKeyFilter,
+                          @org.springframework.beans.factory.annotation.Value("${app.cors.extra-origins:}") String extraOrigins) {
         this.jwtFilter = jwtFilter;
         this.apiKeyFilter = apiKeyFilter;
+        this.extraOrigins = extraOrigins;
     }
 
     @Bean
@@ -54,7 +58,11 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOriginPatterns(List.of("http://localhost:*", "https://*.vercel.app", "https://juhyeonl.dev", "https://www.juhyeonl.dev"));
+        var origins = new java.util.ArrayList<>(List.of("http://localhost:*", "https://*.vercel.app", "https://juhyeonl.dev", "https://www.juhyeonl.dev"));
+        // ASBC's own domain (and its Cloudflare Pages previews) is added by configuration when it goes live,
+        // e.g. APP_CORS_EXTRA_ORIGINS=https://asbc.example,https://*.asbc-example.pages.dev
+        for (String origin : extraOrigins.split(",")) if (!origin.isBlank()) origins.add(origin.trim());
+        config.setAllowedOriginPatterns(origins);
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);

@@ -7188,5 +7188,120 @@
     "en": "The comment to report was not found.",
     "ja": "通報するコメントが見つかりません。",
     "fi": "Ilmoitettavaa kommenttia ei löytynyt."
+  },
+  "새 주소 안내": {
+    "en": "New address notice",
+    "ja": "新しいアドレスのお知らせ",
+    "fi": "Uuden osoitteen ilmoitus"
+  },
+  "ASBC가 새 주소로 이사했습니다.": {
+    "en": "ASBC has moved to a new address.",
+    "ja": "ASBCは新しいアドレスに移転しました。",
+    "fi": "ASBC on siirtynyt uuteen osoitteeseen."
+  },
+  "저장한 빌드·장비·지도 기록을 새 주소로 옮길 수 있습니다. 이 주소의 데이터는 지워지지 않습니다.": {
+    "en": "You can move your saved builds, gear and map records to the new address. Data at this address is not deleted.",
+    "ja": "保存したビルド・装備・マップ記録を新しいアドレスへ移せます。このアドレスのデータは削除されません。",
+    "fi": "Voit siirtää tallennetut hahmonkehitykset, varusteet ja karttamerkinnät uuteen osoitteeseen. Tämän osoitteen tietoja ei poisteta."
+  },
+  "내 데이터와 함께 새 주소로 이동": {
+    "en": "Move to the new address with my data",
+    "ja": "データと一緒に新しいアドレスへ移動",
+    "fi": "Siirry uuteen osoitteeseen tietojeni kanssa"
+  },
+  "데이터 없이 이동": {
+    "en": "Go without data",
+    "ja": "データなしで移動",
+    "fi": "Siirry ilman tietoja"
+  },
+  "새 창이 차단되었습니다. 팝업을 허용한 뒤 다시 눌러 주세요.": {
+    "en": "The new window was blocked. Allow pop-ups and try again.",
+    "ja": "新しいウィンドウがブロックされました。ポップアップを許可してもう一度押してください。",
+    "fi": "Uusi ikkuna estettiin. Salli ponnahdusikkunat ja yritä uudelleen."
+  },
+  "새 주소로 데이터를 보냈습니다. 새 창에서 가져오기를 확인하세요.": {
+    "en": "Your data was sent to the new address. Confirm the import in the new window.",
+    "ja": "新しいアドレスにデータを送りました。新しいウィンドウで読み込みを確認してください。",
+    "fi": "Tiedot lähetettiin uuteen osoitteeseen. Vahvista tuonti uudessa ikkunassa."
+  },
+  "새 주소를 열었습니다…": {
+    "en": "Opened the new address…",
+    "ja": "新しいアドレスを開きました…",
+    "fi": "Uusi osoite avattiin…"
+  },
+  "옛 주소 데이터 가져오기": {
+    "en": "Import data from the old address",
+    "ja": "旧アドレスのデータを読み込む",
+    "fi": "Tuo tiedot vanhasta osoitteesta"
+  },
+  "옛 주소에서 데이터를 받는 중…": {
+    "en": "Receiving data from the old address…",
+    "ja": "旧アドレスからデータを受信中…",
+    "fi": "Vastaanotetaan tietoja vanhasta osoitteesta…"
+  },
+  "직업별 계획 {0}개, 빌드 보관함 {1}개, 지도 기록 {2}개 등 총 {3}개 항목을 가져옵니다.": {
+    "en": "Importing {3} items in total, including {0} class plans, {1} saved-build libraries and {2} map records.",
+    "ja": "職業別プラン{0}件、ビルド保管庫{1}件、マップ記録{2}件など合計{3}項目を読み込みます。",
+    "fi": "Tuodaan yhteensä {3} kohdetta, mukaan lukien {0} hahmoluokkasuunnitelmaa, {1} tallennettujen hahmonkehitysten kirjastoa ja {2} karttamerkintää."
+  },
+  "옛 주소에 가져올 데이터가 없습니다.": {
+    "en": "There is no data to import at the old address.",
+    "ja": "旧アドレスに読み込むデータがありません。",
+    "fi": "Vanhassa osoitteessa ei ole tuotavia tietoja."
+  },
+  "이 주소에도 이미 다른 데이터가 {0}개 있습니다.": {
+    "en": "This address already has {0} items with different data.",
+    "ja": "このアドレスにも既に異なるデータが{0}件あります。",
+    "fi": "Tässä osoitteessa on jo {0} kohdetta, joiden tiedot eroavat."
+  },
+  "이 주소 데이터는 유지하고 나머지만 가져오기": {
+    "en": "Keep data here and import the rest",
+    "ja": "このアドレスのデータは残し、残りだけ読み込む",
+    "fi": "Säilytä tämän osoitteen tiedot ja tuo loput"
+  },
+  "옛 주소 데이터로 덮어쓰기": {
+    "en": "Overwrite with old-address data",
+    "ja": "旧アドレスのデータで上書き",
+    "fi": "Korvaa vanhan osoitteen tiedoilla"
+  },
+  "가져오기": {
+    "en": "Import",
+    "ja": "読み込む",
+    "fi": "Tuo"
+  },
+  "가져왔습니다.": {
+    "en": "Imported.",
+    "ja": "読み込みました。",
+    "fi": "Tuotu."
+  },
+  "가져왔습니다. 이 주소에 있던 다른 데이터 {0}개는 그대로 두었습니다.": {
+    "en": "Imported. {0} items that already had different data here were kept.",
+    "ja": "読み込みました。このアドレスにあった異なるデータ{0}件はそのまま残しました。",
+    "fi": "Tuotu. Tässä osoitteessa jo olleet {0} eriävää kohdetta säilytettiin."
+  },
+  "플래너 열기": {
+    "en": "Open the planner",
+    "ja": "プランナーを開く",
+    "fi": "Avaa suunnittelija"
+  },
+  "옛 주소에서 \"내 데이터와 함께 새 주소로 이동\"을 눌러 이 창을 열어 주세요.": {
+    "en": "Open this window from the old address with \"Move to the new address with my data\".",
+    "ja": "旧アドレスで「データと一緒に新しいアドレスへ移動」を押してこのウィンドウを開いてください。",
+    "fi": "Avaa tämä ikkuna vanhasta osoitteesta painikkeella ”Siirry uuteen osoitteeseen tietojeni kanssa”."
+  },
+  "받은 데이터 형식을 확인하지 못했습니다. 옛 주소에서 빌드 내보내기로 옮겨 주세요.": {
+    "en": "The received data could not be verified. Use Export build at the old address instead.",
+    "ja": "受信したデータの形式を確認できませんでした。旧アドレスでビルドの書き出しを使って移してください。",
+    "fi": "Vastaanotettuja tietoja ei voitu vahvistaa. Käytä vanhassa osoitteessa hahmonkehityksen vientiä."
+  },
+  "옛 주소에서 응답이 없습니다. 옛 주소 창에서 다시 시도해 주세요.": {
+    "en": "No response from the old address. Try again from the old address window.",
+    "ja": "旧アドレスから応答がありません。旧アドレスのウィンドウからもう一度お試しください。",
+    "fi": "Vanhasta osoitteesta ei tullut vastausta. Yritä uudelleen vanhan osoitteen ikkunasta."
+  },
+  "이 브라우저에 저장하지 못했습니다. 저장 공간이나 시크릿 모드를 확인하세요.": {
+    "en": "Could not save in this browser. Check storage space or private mode.",
+    "ja": "このブラウザに保存できませんでした。保存容量やシークレットモードを確認してください。",
+    "fi": "Tallennus tähän selaimeen epäonnistui. Tarkista tallennustila tai yksityinen tila."
   }
 }

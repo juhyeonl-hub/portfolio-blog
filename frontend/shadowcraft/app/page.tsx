@@ -1,5 +1,6 @@
 import {LocaleProvider,LanguageSelect,useLocale} from './locale';
-import {MemberProvider,MemberAccount,useMember,steamReturn} from './community';
+import {MemberProvider,MemberAccount,useMember,steamReturn} from './community'
+import {MoveBanner,TransferImport} from './origin-transfer';
 'use client';
 import {useEffect,useMemo,useState} from 'react';
 import {Swords,Shield,ChevronRight,ChevronDown,ArrowUpRight,Search,RefreshCw,Check,Plus,Minus,SlidersHorizontal,Download,Upload,X,Info,AlertTriangle,MousePointer2,Waypoints,Keyboard,BookOpen,History,UserRound,Cloud,Target,CheckCircle2,Lock,ExternalLink,Zap,PanelLeftClose} from 'lucide-react';
@@ -136,7 +137,7 @@ function AsbcFooter(){const {t}=useLocale();return <footer className="asbc-foote
 export default function Page(){
  const [hash,setHash]=useState(()=>location.hash);
  useEffect(()=>{const changed=()=>setHash(location.hash);window.addEventListener('hashchange',changed);return()=>window.removeEventListener('hashchange',changed);},[]);
- return <LocaleProvider><MemberProvider><EventTimers/>{(hash.startsWith('#published=')||hash.startsWith('#build='))&&<div className="asbc-share-toolbar"><a href="#">ASBC</a><LanguageSelect/></div>}{hash.startsWith('#published=')?<PublishedBuildView id={hash.slice(11)}/>:hash.startsWith('#build=')?<SharedBuildView hash={hash}/>:<PlannerPage/>}{(hash.startsWith('#published=')||hash.startsWith('#build='))&&<AsbcFooter/>}</MemberProvider></LocaleProvider>;
+ return <LocaleProvider><MemberProvider><MoveBanner/><TransferImport/><EventTimers/>{(hash.startsWith('#published=')||hash.startsWith('#build='))&&<div className="asbc-share-toolbar"><a href="#">ASBC</a><LanguageSelect/></div>}{hash.startsWith('#published=')?<PublishedBuildView id={hash.slice(11)}/>:hash.startsWith('#build=')?<SharedBuildView hash={hash}/>:<PlannerPage/>}{(hash.startsWith('#published=')||hash.startsWith('#build='))&&<AsbcFooter/>}</MemberProvider></LocaleProvider>;
 }
 function PlannerPage(){
  const {t}=useLocale();
