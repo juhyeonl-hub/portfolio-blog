@@ -27,16 +27,8 @@ public class CommunityService {
         this.jdbc=jdbc;this.passwords=passwords;this.sessions=sessions;this.builds=builds;
         dummyHash=passwords.encode(UUID.randomUUID().toString());
     }
-    // Public author names that could impersonate the site, its staff or the game publisher.
-    // Contained words block any username that includes them; exact names block only that name,
-    // because short words would otherwise reject ordinary names (e.g. "mod" inside "model").
-    private static final List<String> RESERVED_PARTS = List.of("admin", "moderator", "official", "staff", "support", "ncsoft", "asbc");
-    private static final Set<String> RESERVED_NAMES = Set.of("root", "system", "mod", "mods", "steam", "aion", "aion2", "juhyeonl", "guest", "null", "undefined", "anonymous", "owner", "operator");
-    /** True for usernames new accounts may not take. Existing accounts are unaffected (login does not check this). */
-    public static boolean reservedUsername(String username) {
-        String name = username == null ? "" : username.toLowerCase(Locale.ROOT);
-        return RESERVED_NAMES.contains(name) || RESERVED_PARTS.stream().anyMatch(name::contains);
-    }
+    /** True for usernames new accounts may not take (see UsernamePolicy). Login does not check this. */
+    public static boolean reservedUsername(String username) { return UsernamePolicy.blocked(username); }
     public synchronized void throttle(String address) {
         long now=System.currentTimeMillis();
         attempts.values().forEach(a->a.removeIf(t->t<now-600_000));

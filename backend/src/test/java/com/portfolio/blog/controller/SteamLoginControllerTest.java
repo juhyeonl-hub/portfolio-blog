@@ -89,7 +89,7 @@ class SteamLoginControllerTest {
  }
  @Test void reservedUsernamesAreRefusedForNewAccountsOnly()throws Exception{
   for(String name:List.of("admin","site_admin","administrator","asbc_official","moderator1","ncsoft_kr","mod","root","juhyeonl"))postJson("/api/community/auth/register",Map.of("username",name,"password","testPassword123!"),409);
-  for(String name:List.of("dogma","model_fan","modern_gm"))member(name+"_"+(System.nanoTime()%100000));
+  for(String name:List.of("dogma","model_fan","modern_g"))member(name+"_"+(System.nanoTime()%100000));
   String c=code(callback(assertion(start(),"76561198444444444")),"steam-new");
   postJson(API+"/register",Map.of("code",c,"username","staff"),409);postJson(API+"/register",Map.of("code",c,"username","Admin_Team"),409);
   postJson(API+"/register",Map.of("code",c,"username","fine_"+(System.nanoTime()%100000)),200);
