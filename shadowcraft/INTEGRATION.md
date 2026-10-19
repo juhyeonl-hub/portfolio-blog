@@ -510,3 +510,17 @@ UI preserves manual schedule overrides; choose “기본값” then save to use 
 ### Reference rift schedule and coverage follow-up (2026-10-17)
 Default Shugo, invasion and rift schedules now follow the regional server clock, independently of the visitor-selected clock used for manual overrides. Reference: https://github.com/taengu/A2Tools-Plugins/tree/main/plugins/event-timers (README, schedule.js and plugin.js). Rift: server 02:00, 05:00, 08:00, 11:00, 14:00, 17:00, 20:00, 23:00. Regional IANA zones: EU Berlin, NA East New York, NA West Los Angeles, LA Sao Paulo, Asia Seoul. Existing DST conversion is reused. This is an attributed community/client-derived reference, not independent official or in-game validation. Only next openings are shown, not portal entry windows. Explicit manual schedules and empty overrides remain unchanged. No upstream implementation code was copied.
 This supersedes the historical statement above that Rift has no default anchor. Ten representative servers (one per faction/region) returned all four boss nextSpawn fields in the coverage sample, including EU1301 Gartua; the deployed EU1301 API confirmed four timestamps. Coverage is point-in-time, not guaranteed for all servers. See operations/boss-feed-source-audit.json.
+
+## Official localized skill names and specialization text (2026-10-19)
+
+`frontend/shadowcraft/lib/data/skill-names.json` maps each catalog Korean skill name to `{en, ja}`. English always comes from `client-index.json` (installed Global client, en-US). Japanese comes from metabot.gg `ja_JP` skill pages, which mirror the official Global client text.
+
+`frontend/shadowcraft/lib/data/official-specializations.json` holds official en/ja specialization text keyed by specialization id. Each language is kept only when its numbers, with thousands separators removed, equal the Korean catalog description. Other specializations use the reviewed templates in `specialization-translations.json`. Skills whose metabot page disagrees with the client-index name are excluded (currently 18710000).
+
+Regenerate with a reusable page cache (fetches at most one request per second):
+
+```bash
+python3 shadowcraft/operations/build-official-specializations.py /path/to/metabot-cache
+```
+
+Finnish has no official client localization (AION2 Global ships 10 languages, not Finnish), so fi uses the official English names and terms.

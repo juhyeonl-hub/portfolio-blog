@@ -1,0 +1,1053 @@
+{
+ "각오": {
+  "en": "Determination",
+  "ja": "覚悟"
+ },
+ "강습 강타": {
+  "en": "Assault Smite",
+  "ja": "強襲強打"
+ },
+ "강습 공포": {
+  "en": "Assault Terror",
+  "ja": "強襲恐怖"
+ },
+ "강습 낙인": {
+  "en": "Assault Mark",
+  "ja": "強襲烙印"
+ },
+ "강습 맹격": {
+  "en": "Assault Fury",
+  "ja": "強襲猛撃"
+ },
+ "강습 습격": {
+  "en": "Assault Ambush",
+  "ja": "強襲襲撃"
+ },
+ "강습 일격": {
+  "en": "Assault Strike",
+  "ja": "強襲一撃"
+ },
+ "강습 자세": {
+  "en": "Assault Stance",
+  "ja": "強襲姿勢"
+ },
+ "강습 충격": {
+  "en": "Assault Shock",
+  "ja": "強襲衝撃"
+ },
+ "강습 폭격": {
+  "en": "Assault Bombardment",
+  "ja": "強襲爆撃"
+ },
+ "강제 결박": {
+  "en": "Forced Restraint",
+  "ja": "強制結縛"
+ },
+ "강철 보호막": {
+  "en": "Steel Barrier",
+  "ja": "鋼鉄のバリア"
+ },
+ "강화: 정령의 가호": {
+  "en": "Enhance: Spirit's Benediction",
+  "ja": "強化：精霊の加護"
+ },
+ "강화의 은혜": {
+  "en": "Grace of Enhancement",
+  "ja": "強化の恩恵"
+ },
+ "검기 난무": {
+  "en": "Sword Aura Rampage",
+  "ja": "剣気乱舞"
+ },
+ "겨울의 속박": {
+  "en": "Winter's Shackles",
+  "ja": "冬の束縛"
+ },
+ "격노 폭발": {
+  "en": "Rage Burst",
+  "ja": "激怒爆発"
+ },
+ "격노의 주문": {
+  "en": "Raging Spell",
+  "ja": "激怒の呪文"
+ },
+ "격앙": {
+  "en": "Fury",
+  "ja": "激昂"
+ },
+ "격파쇄": {
+  "en": "Onslaught",
+  "ja": "撃破砕"
+ },
+ "결계의 주문": {
+  "en": "Barrier Spell",
+  "ja": "結界の呪文"
+ },
+ "결박의 낙인": {
+  "en": "Ensnaring Mark",
+  "ja": "結縛の烙印"
+ },
+ "결박의 덫": {
+  "en": "Ensnaring Trap",
+  "ja": "結縛の罠"
+ },
+ "경계의 눈": {
+  "en": "Vigilant Eye",
+  "ja": "警戒の目"
+ },
+ "고결의 갑주": {
+  "en": "Noble Armor",
+  "ja": "高潔の甲冑"
+ },
+ "고결한 기운": {
+  "en": "Noble Aura",
+  "ja": "高潔な気"
+ },
+ "고취의 주문": {
+  "en": "Inspiring Spell",
+  "ja": "鼓舞の呪文"
+ },
+ "고통 차단": {
+  "en": "Block Pain",
+  "ja": "苦痛遮断"
+ },
+ "고통의 연쇄": {
+  "en": "Chain of Torment",
+  "ja": "苦痛の連鎖"
+ },
+ "공간 지배": {
+  "en": "Dimensional Control",
+  "ja": "空間支配"
+ },
+ "공격 준비": {
+  "en": "Attack Preparation",
+  "ja": "攻撃準備"
+ },
+ "공중 결박": {
+  "en": "Aerial Snare",
+  "ja": "空中結縛"
+ },
+ "공중 포박": {
+  "en": "Aerial Bind",
+  "ja": "空中捕縛"
+ },
+ "공포의 절규": {
+  "en": "Cry of Terror",
+  "ja": "恐怖の絶叫"
+ },
+ "광풍 화살": {
+  "en": "Gale Arrow",
+  "ja": "狂風の矢"
+ },
+ "구원": {
+  "en": "Salvation",
+  "ja": "救援"
+ },
+ "권능 폭발": {
+  "en": "Power Burst",
+  "ja": "権能爆発"
+ },
+ "균형의 갑옷": {
+  "en": "Armor of Balance",
+  "ja": "均衡の鎧"
+ },
+ "그리폰 화살": {
+  "en": "Griffon Arrow",
+  "ja": "グリフォンの矢"
+ },
+ "그림자 낙하": {
+  "en": "Shadow Fall",
+  "ja": "影落下"
+ },
+ "그림자 보행": {
+  "en": "Shadow Walk",
+  "ja": "影渡り"
+ },
+ "근성": {
+  "en": "Tenaciousness",
+  "ja": "根性"
+ },
+ "근접 사격": {
+  "en": "Melee Fire",
+  "ja": "近接射撃"
+ },
+ "기습": {
+  "en": "Ambush",
+  "ja": "奇襲"
+ },
+ "기습 자세": {
+  "en": "Ambush Stance",
+  "ja": "奇襲姿勢"
+ },
+ "기습 차기": {
+  "en": "Ambush Kick",
+  "ja": "奇襲蹴り"
+ },
+ "나선 베기": {
+  "en": "Spiral Slice",
+  "ja": "螺旋斬り"
+ },
+ "나포": {
+  "en": "Grapple",
+  "ja": "拿捕"
+ },
+ "내려 찍기": {
+  "en": "Overhead Slam",
+  "ja": "打ち下ろし"
+ },
+ "내려찍기": {
+  "en": "Overhead Slam",
+  "ja": "打ち下ろし"
+ },
+ "냉기 소환": {
+  "en": "Cold Snap",
+  "ja": "冷気召喚"
+ },
+ "냉기 충격": {
+  "en": "Cold Shock",
+  "ja": "冷気衝撃"
+ },
+ "냉기 폭풍": {
+  "en": "Cold Storm",
+  "ja": "冷気暴風"
+ },
+ "냉기의 로브": {
+  "en": "Robe of Cold",
+  "ja": "冷気のローブ"
+ },
+ "네자칸의 방패": {
+  "en": "Nezekan's Shield",
+  "ja": "ネザカンのシールド"
+ },
+ "노련한 반격": {
+  "en": "Experienced Counterstrike",
+  "ja": "巧みな反撃"
+ },
+ "단죄": {
+  "en": "Condemnation",
+  "ja": "断罪"
+ },
+ "단죄의 가호": {
+  "en": "Punishing Benediction",
+  "ja": "断罪の加護"
+ },
+ "대자연의 숨결": {
+  "en": "Mother Nature's Breath",
+  "ja": "大自然の息吹"
+ },
+ "대지의 로브": {
+  "en": "Robe of Earth",
+  "ja": "大地のローブ"
+ },
+ "대지의 약속": {
+  "en": "Earth's Promise",
+  "ja": "大地の約束"
+ },
+ "대지의 은총": {
+  "en": "Earth's Grace",
+  "ja": "大地の恩恵"
+ },
+ "대지의 응보": {
+  "en": "Earth's Retribution",
+  "ja": "大地の裁き"
+ },
+ "대지의 징벌": {
+  "en": "Earth Punishment",
+  "ja": "大地の懲罰"
+ },
+ "도발": {
+  "en": "Taunt",
+  "ja": "挑発"
+ },
+ "도약 찍기": {
+  "en": "Leaping Slam",
+  "ja": "跳躍突き落とし"
+ },
+ "독 바르기": {
+  "en": "Apply Poison",
+  "ja": "毒塗り"
+ },
+ "돌격 자세": {
+  "en": "Lunge Stance",
+  "ja": "突撃姿勢"
+ },
+ "돌진 격파": {
+  "en": "Rushing Smash",
+  "ja": "突進撃破"
+ },
+ "돌진 일격": {
+  "en": "Rush Strike",
+  "ja": "突進一撃"
+ },
+ "동면": {
+  "en": "Hibernation",
+  "ja": "冬眠"
+ },
+ "따뜻한 가호": {
+  "en": "Warm Benediction",
+  "ja": "暖かな加護"
+ },
+ "루미엘의 공간": {
+  "en": "Lumiel's Space",
+  "ja": "ルミエルの空間"
+ },
+ "마르쿠탄의 분노": {
+  "en": "Marchutan's Wrath",
+  "ja": "マルクタンの怒り"
+ },
+ "마법 강탈": {
+  "en": "Seize Magic",
+  "ja": "魔法強奪"
+ },
+ "마법 차단": {
+  "en": "Magic Block",
+  "ja": "魔法遮断"
+ },
+ "맹렬한 일격": {
+  "en": "Vicious Strike",
+  "ja": "猛烈な一撃"
+ },
+ "맹수의 송곳니": {
+  "en": "Savage Fang",
+  "ja": "猛獣の牙"
+ },
+ "맹수의 포효": {
+  "en": "Savage Roar",
+  "ja": "猛獣の咆哮"
+ },
+ "면죄": {
+  "en": "Absolution",
+  "ja": "免罪"
+ },
+ "멸화": {
+  "en": "Obliterate",
+  "ja": "滅火"
+ },
+ "명령: 대역": {
+  "en": "Command: Proxy",
+  "ja": "命令：身代わり"
+ },
+ "모욕의 포효": {
+  "en": "Insulting Roar",
+  "ja": "侮辱の咆哮"
+ },
+ "문양 폭발": {
+  "en": "Insignia Explosion",
+  "ja": "紋様爆発"
+ },
+ "바람의 약속": {
+  "en": "Wind's Promise",
+  "ja": "風の約束"
+ },
+ "바람의 활력": {
+  "en": "Wind Vigor",
+  "ja": "風の活力"
+ },
+ "바이젤의 권능": {
+  "en": "Vaizel's Authority",
+  "ja": "バイゼルの権能"
+ },
+ "발목 베기": {
+  "en": "Ankle Slice",
+  "ja": "足首斬り"
+ },
+ "방어 균열": {
+  "en": "Defense Break",
+  "ja": "防御亀裂"
+ },
+ "방패 강타": {
+  "en": "Shield Smite",
+  "ja": "シールド強打"
+ },
+ "방패 돌격": {
+  "en": "Shield Rush",
+  "ja": "シールド突撃"
+ },
+ "배후 강타": {
+  "en": "Rear Smite",
+  "ja": "背後強打"
+ },
+ "백열격": {
+  "en": "Incandescent Blow",
+  "ja": "百裂撃"
+ },
+ "벼락 난사": {
+  "en": "Lightning Strike Scattershot",
+  "ja": "稲妻乱射"
+ },
+ "벽력": {
+  "en": "Bolt",
+  "ja": "霹靂"
+ },
+ "보호의 갑옷": {
+  "en": "Protection Armor",
+  "ja": "保護の鎧"
+ },
+ "보호의 방패": {
+  "en": "Shield of Protection",
+  "ja": "保護のシールド"
+ },
+ "보호의 빛": {
+  "en": "Light of Protection",
+  "ja": "保護の光"
+ },
+ "보호진": {
+  "en": "Protection Circle",
+  "ja": "保護陣"
+ },
+ "봉인 화살": {
+  "en": "Sealing Arrow",
+  "ja": "封印の矢"
+ },
+ "분노의 파동": {
+  "en": "Wrath Wave",
+  "ja": "怒りの波動"
+ },
+ "분쇄 돌진": {
+  "en": "Fracturing Rush",
+  "ja": "粉砕突進"
+ },
+ "분쇄 파동": {
+  "en": "Crushing Wave",
+  "ja": "粉砕波動"
+ },
+ "분쇄격": {
+  "en": "Fracturing Blow",
+  "ja": "粉砕撃"
+ },
+ "불길의 축복": {
+  "en": "Flame Blessing",
+  "ja": "焔の祝福"
+ },
+ "불꽃 작살": {
+  "en": "Firestorm",
+  "ja": "炎の槍"
+ },
+ "불꽃 폭발": {
+  "en": "Blaze",
+  "ja": "炎爆発"
+ },
+ "불꽃 화살": {
+  "en": "Flame Arrow",
+  "ja": "炎の矢"
+ },
+ "불꽃의 로브": {
+  "en": "Robe of Flame",
+  "ja": "炎のローブ"
+ },
+ "불사의 장막": {
+  "en": "Immortal Veil",
+  "ja": "不死の帳"
+ },
+ "불의 장벽": {
+  "en": "Fire Wall",
+  "ja": "火の障壁"
+ },
+ "불의 표식": {
+  "en": "Fire Mark",
+  "ja": "火の印"
+ },
+ "불패의 진언": {
+  "en": "Undefeated Mantra",
+  "ja": "不敗のマントラ"
+ },
+ "비호의 방패": {
+  "en": "Warding Shield",
+  "ja": "庇護のシールド"
+ },
+ "비호의 일격": {
+  "en": "Warding Strike",
+  "ja": "庇護の一撃"
+ },
+ "빈틈 노리기": {
+  "en": "Exploit Weakness",
+  "ja": "隙突き"
+ },
+ "빙결": {
+  "en": "Frost",
+  "ja": "氷結"
+ },
+ "빙결 폭발": {
+  "en": "Frost Burst",
+  "ja": "氷結爆発"
+ },
+ "빙설의 갑주": {
+  "en": "Arctic Armor",
+  "ja": "氷雪の甲冑"
+ },
+ "빙하 강타": {
+  "en": "Glacial Smite",
+  "ja": "氷河強打"
+ },
+ "빠른 베기": {
+  "en": "Quick Slice",
+  "ja": "迅速斬り"
+ },
+ "사냥꾼의 결의": {
+  "en": "Hunter's Resolve",
+  "ja": "ハンターの決意"
+ },
+ "사냥꾼의 혼": {
+  "en": "Hunter's Soul",
+  "ja": "ハンターの魂"
+ },
+ "살기 파열": {
+  "en": "Murderous Burst",
+  "ja": "殺気破裂"
+ },
+ "생기 증발": {
+  "en": "Vitality Evaporation",
+  "ja": "生気蒸発"
+ },
+ "생명의 권능": {
+  "en": "Benevolence",
+  "ja": "生命の権能"
+ },
+ "생명의 축복": {
+  "en": "Blessing of Life"
+ },
+ "생존 의지": {
+  "en": "Survival Willpower",
+  "ja": "生存意志"
+ },
+ "생존 자세": {
+  "en": "Survival Stance",
+  "ja": "生存姿勢"
+ },
+ "섬광 난무": {
+  "en": "Flash Rampage",
+  "ja": "閃光乱舞"
+ },
+ "섬광 베기": {
+  "en": "Flash Slice",
+  "ja": "閃光斬り"
+ },
+ "섬멸": {
+  "en": "Annihilate",
+  "ja": "殲滅"
+ },
+ "소환 부활": {
+  "en": "Summon Resurrection",
+  "ja": "召喚復活"
+ },
+ "소환: 고대의 정령": {
+  "en": "Summon: Ancient Spirit",
+  "ja": "召喚：古代の精霊"
+ },
+ "소환: 땅의 정령": {
+  "en": "Summon: Earth Spirit",
+  "ja": "召喚：地の精霊"
+ },
+ "소환: 물의 정령": {
+  "en": "Summon: Water Spirit",
+  "ja": "召喚：水の精霊"
+ },
+ "소환: 바람의 정령": {
+  "en": "Summon: Wind Spirit",
+  "ja": "召喚：風の精霊"
+ },
+ "소환: 불의 정령": {
+  "en": "Summon: Fire Spirit",
+  "ja": "召喚：火の精霊"
+ },
+ "속박": {
+  "en": "Root",
+  "ja": "束縛"
+ },
+ "속박의 눈": {
+  "en": "Rooting Eye",
+  "ja": "束縛の眼"
+ },
+ "속사": {
+  "en": "Tempest Shot",
+  "ja": "速射"
+ },
+ "송곳 화살": {
+  "en": "Drill Dart",
+  "ja": "鋭穿の矢"
+ },
+ "쇠약의 맹타": {
+  "en": "Debilitating Smash",
+  "ja": "衰弱の猛打"
+ },
+ "수호의 인장": {
+  "en": "Guarding Seal",
+  "ja": "守護の印章"
+ },
+ "수호의 축복": {
+  "en": "Guardian Blessing",
+  "ja": "守護の祝福"
+ },
+ "신성 폭발": {
+  "en": "Divine Burst",
+  "ja": "神聖爆発"
+ },
+ "신성한 기운": {
+  "en": "Divine Aura",
+  "ja": "神聖な気"
+ },
+ "신속의 계약": {
+  "en": "Swift Contract",
+  "ja": "迅速の契約"
+ },
+ "심장 찌르기": {
+  "en": "Heart Gore",
+  "ja": "心臓突き"
+ },
+ "심판": {
+  "en": "Judgment",
+  "ja": "審判"
+ },
+ "심판의 번개": {
+  "en": "Judgment Thunder",
+  "ja": "審判の雷"
+ },
+ "십자 방어": {
+  "en": "Crossguard",
+  "ja": "十字防御"
+ },
+ "암검 투척": {
+  "en": "Throw Shadowblade",
+  "ja": "暗器投擲"
+ },
+ "암격쇄": {
+  "en": "Dark Crush",
+  "ja": "岩撃砕"
+ },
+ "암습": {
+  "en": "Shadowstrike",
+  "ja": "闇討"
+ },
+ "암영보": {
+  "en": "Shadowstep",
+  "ja": "暗影歩"
+ },
+ "약점 파악": {
+  "en": "Identify Weakness",
+  "ja": "弱点把握"
+ },
+ "약화의 낙인": {
+  "en": "Debilitating Mark",
+  "ja": "弱化の烙印"
+ },
+ "얼음 사슬": {
+  "en": "Ice Chain",
+  "ja": "氷鎖"
+ },
+ "연막탄": {
+  "en": "Smoke Bomb",
+  "ja": "煙幕弾"
+ },
+ "연속 난사": {
+  "en": "Rapid Scattershot",
+  "ja": "連続乱射"
+ },
+ "연속 난타": {
+  "en": "Pummel",
+  "ja": "連続乱打"
+ },
+ "연속 역류": {
+  "en": "Consecutive Countercurrent",
+  "ja": "連続逆流"
+ },
+ "열파격": {
+  "en": "Heat Wave Blow",
+  "ja": "裂波撃"
+ },
+ "영혼 동결": {
+  "en": "Soul Freeze",
+  "ja": "魂凍結"
+ },
+ "영혼의 절규": {
+  "en": "Soul's Cry",
+  "ja": "魂の絶叫"
+ },
+ "예리한 일격": {
+  "en": "Keen Strike",
+  "ja": "鋭利な一撃"
+ },
+ "올가미 화살": {
+  "en": "Snare Shot",
+  "ja": "捕縛の矢"
+ },
+ "원소 강화": {
+  "en": "Element Enhancement",
+  "ja": "元素強化"
+ },
+ "원소 결집": {
+  "en": "Element Unification",
+  "ja": "元素結集"
+ },
+ "원소 융합": {
+  "en": "Elemental Fusion",
+  "ja": "元素融合"
+ },
+ "유린의 검": {
+  "en": "Mocking Blade",
+  "ja": "蹂躙の剣"
+ },
+ "유스티엘의 권능": {
+  "en": "Yustiel's Power",
+  "ja": "ユスティエルの権能"
+ },
+ "육감 극대화": {
+  "en": "Heightened Sixth Sense",
+  "ja": "六感極大化"
+ },
+ "은신": {
+  "en": "Stealth",
+  "ja": "隠れ身"
+ },
+ "이중 갑옷": {
+  "en": "Second Skin",
+  "ja": "二重鎧"
+ },
+ "재생의 빛": {
+  "en": "Light of Regeneration",
+  "ja": "再生の光"
+ },
+ "저격": {
+  "en": "Snipe",
+  "ja": "狙撃"
+ },
+ "저주: 나무": {
+  "en": "Curse: Tree",
+  "ja": "呪い：木"
+ },
+ "저주의 구름": {
+  "en": "Cursed Cloud",
+  "ja": "呪いの雲"
+ },
+ "저항의 결의": {
+  "en": "Unyielding Resolve",
+  "ja": "抵抗の決意"
+ },
+ "저항의 은혜": {
+  "en": "Grace of Resistance",
+  "ja": "抵抗の恩恵"
+ },
+ "전우 보호": {
+  "en": "Comrade in Arms",
+  "ja": "戦友保護"
+ },
+ "전장의 깃발": {
+  "en": "Battlefield Banner",
+  "ja": "戦場の旗"
+ },
+ "절단의 맹타": {
+  "en": "Rending Blow",
+  "ja": "切断の猛打"
+ },
+ "정기 흡수": {
+  "en": "Absorb Essence",
+  "ja": "精気吸収"
+ },
+ "정령 강림": {
+  "en": "Spirit's Descent",
+  "ja": "精霊降臨"
+ },
+ "정령 교감": {
+  "en": "Spirit Communion",
+  "ja": "精霊交感"
+ },
+ "정령 보호": {
+  "en": "Spirit Protection",
+  "ja": "精霊保護"
+ },
+ "정령 타격": {
+  "en": "Spirit Strike",
+  "ja": "精霊打撃"
+ },
+ "정령 회생": {
+  "en": "Spirit Revitalization",
+  "ja": "精霊蘇生"
+ },
+ "정신 집중": {
+  "en": "Mental Focus",
+  "ja": "精神集中"
+ },
+ "제압 화살": {
+  "en": "Suppressing Arrow",
+  "ja": "制圧の矢"
+ },
+ "조준 화살": {
+  "en": "Deadshot",
+  "ja": "必中の矢"
+ },
+ "주신의 가호": {
+  "en": "Empyrean Lords' Benediction",
+  "ja": "神の加護"
+ },
+ "주신의 은총": {
+  "en": "Empyrean Lord's Grace",
+  "ja": "神の恩恵"
+ },
+ "주신의 징벌": {
+  "en": "Empyrean Lord's Punishment",
+  "ja": "神の懲罰"
+ },
+ "증폭의 기도": {
+  "en": "Prayer of Amplification",
+  "ja": "増幅の祈り"
+ },
+ "지연 폭발": {
+  "en": "Delayed Explosion",
+  "ja": "遅延爆発"
+ },
+ "지옥의 화염": {
+  "en": "Hellfire",
+  "ja": "地獄の火炎"
+ },
+ "지원 사격": {
+  "en": "Supporting Fire",
+  "ja": "支援射撃"
+ },
+ "지켈의 축복": {
+  "en": "Zikel's Blessing",
+  "ja": "ジケルの祝福"
+ },
+ "진동쇄": {
+  "en": "Tremor Crush",
+  "ja": "震動砕"
+ },
+ "질주의 진언": {
+  "en": "Sprint Mantra",
+  "ja": "疾走のマントラ"
+ },
+ "질풍 난무": {
+  "en": "Gust Rampage",
+  "ja": "疾風乱舞"
+ },
+ "질풍의 권능": {
+  "en": "Power of the Storm",
+  "ja": "疾風の権能"
+ },
+ "집중 막기": {
+  "en": "Focused Block",
+  "ja": "集中ガード"
+ },
+ "집중 방어": {
+  "en": "Focused Defense",
+  "ja": "集中防御"
+ },
+ "집중 포화": {
+  "en": "Concentrated Fire",
+  "ja": "集中砲火"
+ },
+ "집중의 기도": {
+  "en": "Prayer of Concentration",
+  "ja": "集中の祈り"
+ },
+ "집중의 기원": {
+  "en": "Wish of Concentration",
+  "ja": "集中の祈願"
+ },
+ "집중의 눈": {
+  "en": "Focused Eye",
+  "ja": "集中の眼"
+ },
+ "징벌": {
+  "en": "Punishment",
+  "ja": "懲罰"
+ },
+ "차단의 권능": {
+  "en": "Impeding Authority",
+  "ja": "遮断の権能"
+ },
+ "찬란한 가호": {
+  "en": "Radiant Benediction",
+  "ja": "煌めく加護"
+ },
+ "처형의 검": {
+  "en": "Executing Blade",
+  "ja": "処刑の剣"
+ },
+ "철벽 방어": {
+  "en": "Ironclad Defense",
+  "ja": "鉄壁防御"
+ },
+ "체력 강화": {
+  "en": "Enhance Health",
+  "ja": "HP強化"
+ },
+ "축복의 활": {
+  "en": "Bow of Blessing",
+  "ja": "祝福のボウ"
+ },
+ "충격 적중": {
+  "en": "Impact Hit",
+  "ja": "衝撃的中"
+ },
+ "충격 해제": {
+  "en": "Defiance",
+  "ja": "衝撃解除"
+ },
+ "치유력 강화": {
+  "en": "Healing Enhancement",
+  "ja": "治癒力強化"
+ },
+ "치유의 빛": {
+  "en": "Healing Light",
+  "ja": "治癒の光"
+ },
+ "침식": {
+  "en": "Corrode",
+  "ja": "侵食"
+ },
+ "침투": {
+  "en": "Infiltrate",
+  "ja": "侵入"
+ },
+ "카이시넬의 권능": {
+  "en": "Kaisinel's Power",
+  "ja": "カイジネルの権能"
+ },
+ "칼날 날리기": {
+  "en": "Blade Toss",
+  "ja": "刃飛ばし"
+ },
+ "쾌유의 광휘": {
+  "en": "Radiant Recovery",
+  "ja": "快癒の光輝"
+ },
+ "쾌유의 손길": {
+  "en": "Healing Touch",
+  "ja": "快癒の手"
+ },
+ "쾌유의 주문": {
+  "en": "Recuperation",
+  "ja": "快癒の呪文"
+ },
+ "타격쇄": {
+  "en": "Impactful Crush",
+  "ja": "打撃砕"
+ },
+ "트리니엘의 비수": {
+  "en": "Triniel's Dagger",
+  "ja": "トリニエルの刃"
+ },
+ "파괴 충동": {
+  "en": "Destructive Impulse",
+  "ja": "破壊衝動"
+ },
+ "파동격": {
+  "en": "Wave Blow",
+  "ja": "波動撃"
+ },
+ "파동의 갑주": {
+  "en": "Wave Armor",
+  "ja": "波動の甲冑"
+ },
+ "파멸의 맹타": {
+  "en": "Ruinous Blow",
+  "ja": "破滅の猛打"
+ },
+ "파멸의 목소리": {
+  "en": "Voice of Doom",
+  "ja": "破滅の声"
+ },
+ "파멸의 방패": {
+  "en": "Doom Shield",
+  "ja": "破滅のシールド"
+ },
+ "파열 화살": {
+  "en": "Burst Arrow",
+  "ja": "破裂の矢"
+ },
+ "포획": {
+  "en": "Poach",
+  "ja": "捕獲"
+ },
+ "폭발 화살": {
+  "en": "Explosive Arrow",
+  "ja": "爆発の矢"
+ },
+ "폭발의 덫": {
+  "en": "Explosion Trap",
+  "ja": "爆発の罠"
+ },
+ "폭풍 난무": {
+  "en": "Storm Rampage",
+  "ja": "暴風乱舞"
+ },
+ "표적 화살": {
+  "en": "Marking Shot",
+  "ja": "標的の矢"
+ },
+ "피의 흡수": {
+  "en": "Blood Absorption",
+  "ja": "血の吸収"
+ },
+ "협공: 부식": {
+  "en": "Jointstrike: Corrode",
+  "ja": "協力攻撃：腐食"
+ },
+ "협공: 저주": {
+  "en": "Jointstrike: Curse",
+  "ja": "協力攻撃：呪い"
+ },
+ "협공: 파멸의 공세": {
+  "en": "Jointstrike: Destructive Attack",
+  "ja": "協力攻撃：破滅の攻勢"
+ },
+ "혹한의 바람": {
+  "en": "Bittercold Wind",
+  "ja": "極寒の風"
+ },
+ "화살 난사": {
+  "en": "Arrow Scattershot",
+  "ja": "矢乱射"
+ },
+ "화살 폭풍": {
+  "en": "Arrow Storm",
+  "ja": "矢嵐"
+ },
+ "화염 난사": {
+  "en": "Flame Scattershot",
+  "ja": "火炎乱射"
+ },
+ "화염 전소": {
+  "en": "Combustion",
+  "ja": "火炎全焼"
+ },
+ "환영 분신": {
+  "en": "Illusive Clone",
+  "ja": "幻影分身"
+ },
+ "환영 화살": {
+  "en": "Illusory Arrow",
+  "ja": "幻影の矢"
+ },
+ "회복 차단": {
+  "en": "Heal Block",
+  "ja": "回復遮断"
+ },
+ "회생의 계약": {
+  "en": "Revitalization Contract",
+  "ja": "蘇生の契約"
+ },
+ "회오리 베기": {
+  "en": "Whirlwind Slice",
+  "ja": "旋風斬り"
+ },
+ "회전격": {
+  "en": "Spinning Strike",
+  "ja": "回転撃"
+ },
+ "회피 자세": {
+  "en": "Evasion Stance",
+  "ja": "回避姿勢"
+ },
+ "회피의 계약": {
+  "en": "Evasion Contract",
+  "ja": "回避の契約"
+ },
+ "흡인": {
+  "en": "Siphon",
+  "ja": "吸引"
+ },
+ "흡혈의 검": {
+  "en": "Lifestealing Blade",
+  "ja": "吸血の剣"
+ }
+}

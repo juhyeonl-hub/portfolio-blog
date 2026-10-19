@@ -1,0 +1,3421 @@
+{
+ "11010010": {
+  "en": "-20% MP consumed",
+  "ja": "MP消耗20%減少"
+ },
+ "11010020": {
+  "en": "+200 Block while using skill",
+  "ja": "スキル使用中はガード200増加"
+ },
+ "11010030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "11010040": {
+  "en": "Deals up to 12% more damage when less targets are hit",
+  "ja": "的中した対象が少ないほどダメージ量が最大12%増加"
+ },
+ "11010050": {
+  "en": "Restores 50 MP on landing a Critical Hit",
+  "ja": "クリティカル的中時にMP50回復"
+ },
+ "11020010": {
+  "en": "+20% MP restored",
+  "ja": "MP回復20%増加"
+ },
+ "11020030": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "11020040": {
+  "en": "-1s [Ruinous Blow] cooldown on hit",
+  "ja": "的中時に[破滅の猛打]の再使用時間1s減少"
+ },
+ "11020050": {
+  "ja": "4番連続スキル[無謀な一撃]追加"
+ },
+ "11050020": {
+  "en": "Restores 50 MP on landing a Critical Hit",
+  "ja": "クリティカル的中時にMP50回復"
+ },
+ "11050030": {
+  "en": "Up to +20% damage when more targets hit",
+  "ja": "的中した対象が多いほどダメージ量が最大20%増加"
+ },
+ "11050040": {
+  "en": "Resets cooldown on landing a Critical Hit",
+  "ja": "クリティカル的中時に再使用時間初期化"
+ },
+ "11050050": {
+  "en": "50% chance to pull",
+  "ja": "50%の確率で引き寄せ"
+ },
+ "11080010": {
+  "en": "+20% [Blade Toss] Incoming Heal reduction",
+  "ja": "[刃飛ばし]受ける治癒量20%追加減少"
+ },
+ "11080020": {
+  "en": "[Blade Toss] inflicts Slow for 5s",
+  "ja": "[刃飛ばし]5秒間、鈍化効果を付与"
+ },
+ "11080030": {
+  "en": "[Blade Toss] breaks Protective Shields",
+  "ja": "[刃飛ばし]バリア破壊"
+ },
+ "11080040": {
+  "en": "[Blade Dance] has 30% chance to inflict Knockdown for 3s",
+  "ja": "[刃の炎舞]30%の確率で3秒転倒を付与"
+ },
+ "11100010": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "11100020": {
+  "en": "+12.5m Range",
+  "ja": "射程12.5m増加"
+ },
+ "11100030": {
+  "en": "+30% Skill Critical Hit",
+  "ja": "スキル クリティカル30%増加"
+ },
+ "11100040": {
+  "en": "Extra damage on hit",
+  "ja": "的中時に追加ダメージ"
+ },
+ "11100050": {
+  "en": "Ignores Block and Evasion and lands as Multi-Hit",
+  "ja": "ガードと回避を無視して多段ヒットで的中"
+ },
+ "11110010": {
+  "en": "+1 consecutive use",
+  "ja": "連続発動+1回"
+ },
+ "11110020": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "11110030": {
+  "en": "+20% Move Speed for 3s on Parry",
+  "ja": "武器ガード成功時に3s間、移動速度20%増加"
+ },
+ "11110040": {
+  "ja": "武器ガード成功時に1回、HP10%回復"
+ },
+ "11130010": {
+  "en": "+20% Ailment-type and Mental-type Resist",
+  "ja": "肉体系と精神系抵抗20%増加"
+ },
+ "11130020": {
+  "en": "x1.5 [Blood Absorption] effect for the duration",
+  "ja": "持続時間中は[血の吸収]の効果1.5倍増加"
+ },
+ "11130030": {
+  "en": "x1.5 [Protection Armor] effect for the duration",
+  "ja": "持続時間中は[保護の鎧]の効果1.5倍増加"
+ },
+ "11130040": {
+  "en": "+50% Impact-type Resist increase",
+  "ja": "衝撃系抵抗50%追加増加"
+ },
+ "11170020": {
+  "en": "Changes to AoE Skill",
+  "ja": "広域スキルに変更"
+ },
+ "11170030": {
+  "ja": "2番連続スキル[叩き上げ]追加"
+ },
+ "11170040": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "11170050": {
+  "en": "Remove cooldown",
+  "ja": "再使用時間削除"
+ },
+ "11190010": {
+  "en": "Prepare for Battle effect on the caster for 3s",
+  "ja": "3s間、自分に戦闘準備効果"
+ },
+ "11190020": {
+  "en": "50% chance to trigger [Ankle Slice] on hit",
+  "ja": "[跳躍突き落とし]的中時に50%の確率で[足首斬り]活性化"
+ },
+ "11190030": {
+  "en": "Resets cooldown on defeating an enemy",
+  "ja": "敵を倒した時に[跳躍突き落とし]の再使用時間初期化"
+ },
+ "11190040": {
+  "en": "+20% PvE Damage Tolerance and +10 PvP Damage Tolerance for 3s",
+  "ja": "3s間、PvEダメージ耐性20%、PvPダメージ耐性10%増加"
+ },
+ "11190050": {
+  "en": "Changes to AoE skill and pulls in enemies",
+  "ja": "広域スキルに変更と引き寄せ"
+ },
+ "11200010": {
+  "en": "30% chance to inflict Knockdown for 3s on landing [Ankle Slice]",
+  "ja": "[足首斬り]30%の確率で3秒間、転倒"
+ },
+ "11200020": {
+  "ja": "2番連続スキル[足首撃破]追加"
+ },
+ "11200030": {
+  "en": "+16m [Ankle Slice] range",
+  "ja": "[足首斬り]射程16m増加"
+ },
+ "11200040": {
+  "en": "Ignores Block and Evasion and lands as Multi-Hit",
+  "ja": "ガードと回避を無視して多段ヒットで的中"
+ },
+ "11200050": {
+  "en": "25% chance to reset [Ankle Slice] cooldown on Block",
+  "ja": "ガード成功時に25%の確率で[足首斬り]の再使用時間初期化"
+ },
+ "11240010": {
+  "en": "Up to +20% damage when more targets hit",
+  "ja": "的中した対象が多いほどダメージ量が最大20%増加"
+ },
+ "11240020": {
+  "en": "Reduces Attack by 20% for 5s",
+  "ja": "5秒間、攻撃力20%減少を付与"
+ },
+ "11240030": {
+  "en": "Deals damage 1 additional time",
+  "ja": "1回追加ダメージ"
+ },
+ "11240040": {
+  "en": "+25% Knockdown Chance",
+  "ja": "転倒確率25%増加"
+ },
+ "11250010": {
+  "en": "+50% Stagger Gauge Damage",
+  "ja": "グロッキー ゲージ ダメージ量50%増加"
+ },
+ "11250020": {
+  "en": "+10% PvE Damage Boost and +5% PvP Damage Boost",
+  "ja": "PvEダメージ増幅10%、PvPダメージ増幅5%増加"
+ },
+ "11250030": {
+  "en": "+50% Multi-Hit chance",
+  "ja": "多段ヒット的中50%増加"
+ },
+ "11250040": {
+  "en": "+20% Status Effect Chance",
+  "ja": "状態異常的中確率20%増加"
+ },
+ "11260010": {
+  "ja": "2番連続スキル[怒り爆発]追加"
+ },
+ "11260020": {
+  "en": "Restores 1,000 Stamina on using [Defiance]",
+  "ja": "[衝撃解除]発動時に行動力1,000回復"
+ },
+ "11260030": {
+  "en": "Restores 20% HP on using [Defiance]",
+  "ja": "[衝撃解除]発動時にHP20%回復"
+ },
+ "11260040": {
+  "en": "+2s Tenacity duration",
+  "ja": "強靭さの持続時間2秒増加"
+ },
+ "11260050": {
+  "en": "+50% PvE Damage Tolerance and +25% PvP Damage Tolerance for Tenacity duration",
+  "ja": "強靭さの持続時間中はPvEダメージ耐性50%、PvPダメージ耐性25%増加"
+ },
+ "11280020": {
+  "en": "Restores 120 MP",
+  "ja": "MP120回復"
+ },
+ "11280030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "11280040": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "11280050": {
+  "en": "-1s all skill cooldowns on hit",
+  "ja": "的中時にすべてのスキル再使用時間1s減少"
+ },
+ "11290020": {
+  "en": "Changes to AoE damage on down strike",
+  "ja": "叩きつけた時に広域ダメージに変更"
+ },
+ "11290030": {
+  "en": "Adds 2 additional strikes",
+  "ja": "2回追加攻撃"
+ },
+ "11290040": {
+  "en": "+1s Knockdown duration",
+  "ja": "転倒の持続時間1秒増加"
+ },
+ "11290050": {
+  "en": "Ignores Block and Evasion and lands as Multi-Hit",
+  "ja": "ガードと回避を無視して多段ヒットで的中"
+ },
+ "11300010": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "11300020": {
+  "en": "+25% [Aerial Snare] Airborne Chance",
+  "ja": "[空中結縛]空中束縛確率25%増加"
+ },
+ "11300030": {
+  "en": "+100% damage to targets with Incapacitated Immunity",
+  "ja": "行動不可免疫の対象を攻撃時にダメージ量が100%増加"
+ },
+ "11300040": {
+  "ja": "2番連続スキル[強制落下]追加"
+ },
+ "11300050": {
+  "en": "-50% [Aerial Snare] cooldown",
+  "ja": "[空中結縛]再使用時間50%減少"
+ },
+ "11340010": {
+  "en": "Up to +20% damage when more targets hit",
+  "ja": "的中した対象が多いほどダメージ量が最大20%増加"
+ },
+ "11340020": {
+  "en": "Predation effect on party members for 20s",
+  "ja": "20s間、パーティー メンバーに搾取効果"
+ },
+ "11340030": {
+  "en": "-30s cooldown",
+  "ja": "再使用時間30秒減少"
+ },
+ "11340040": {
+  "en": "+5% HP absorbed",
+  "ja": "HP吸収5%追加増加"
+ },
+ "11360010": {
+  "en": "Restores 300 Stamina on hit",
+  "ja": "的中時に行動力300回復"
+ },
+ "11360020": {
+  "en": "+10m range",
+  "ja": "射程10m増加"
+ },
+ "11360030": {
+  "en": "Changes to Charge Skill and deals AoE damage",
+  "ja": "チャージ スキルに変更と広域ダメージ"
+ },
+ "11360040": {
+  "en": "-10s cooldown",
+  "ja": "[突進一撃]再使用時間10秒減少"
+ },
+ "11360050": {
+  "en": "+25% Knockdown Chance",
+  "ja": "転倒確率25%増加"
+ },
+ "11380010": {
+  "en": "+100% Incoming Heal",
+  "ja": "受ける治癒量100%増加"
+ },
+ "11380020": {
+  "en": "Restores 20% Max HP when the effect ends",
+  "ja": "[根性]の効果終了時に最大HPの20%回復"
+ },
+ "11380030": {
+  "en": "+20% Attack",
+  "ja": "攻撃力20%増加"
+ },
+ "11380040": {
+  "en": "Trigger [Tenaciousness] when afflicted with Impact-type status",
+  "ja": "衝撃系状態の時に[根性]を活性化"
+ },
+ "11390010": {
+  "en": "-15s [Rage Burst] cooldown",
+  "ja": "[激怒爆発]再使用時間15秒減少"
+ },
+ "11390020": {
+  "en": "+10% Attack reduction",
+  "ja": "攻撃力10%追加減少"
+ },
+ "11390030": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "11390040": {
+  "en": "+10% PvE Damage Boost increase and +5% PvP Damage Boost increase",
+  "ja": "PvEダメージ増幅10%、PvPダメージ増幅5%追加増加"
+ },
+ "11400010": {
+  "en": "+5% Double Chance for the duration",
+  "ja": "持続時間中は強打5%増加"
+ },
+ "11400020": {
+  "en": "Increases Move Speed by 20% for the duration",
+  "ja": "持続時間中は移動速度20%増加"
+ },
+ "11400030": {
+  "en": "x1.5 [Identify Weakness] effect for the duration",
+  "ja": "持続時間中は[弱点把握]の効果1.5倍増加"
+ },
+ "11400040": {
+  "en": "50% chance to reduce all skill cooldowns by 1s on Critical Hit for the duration",
+  "ja": "持続時間中はクリティカル時に50%の確率ですべてのスキル再使用時間1秒減少"
+ },
+ "11410020": {
+  "en": "x1.5 [Experienced Counterstrike] effect for the duration",
+  "ja": "持続時間中は[巧みな反撃]の効果1.5倍増加"
+ },
+ "11410030": {
+  "en": "x1.5 [Murderous Burst] effect for the duration",
+  "ja": "持続時間中は[殺気破裂]の効果1.5倍増加"
+ },
+ "11410040": {
+  "en": "Reflects 10% of damage taken",
+  "ja": "受けるダメージの10%反射"
+ },
+ "11430010": {
+  "en": "50% chance to inflict Root for 5s",
+  "ja": "5秒間、50%の確率で束縛効果を付与"
+ },
+ "11430020": {
+  "en": "-1,000 Stamina",
+  "ja": "行動力1,000減少"
+ },
+ "11430030": {
+  "en": "+2s Seal duration",
+  "ja": "封印の持続時間2秒増加"
+ },
+ "11430040": {
+  "en": "+25% Seal chance",
+  "ja": "封印確率25%増加"
+ },
+ "11450010": {
+  "en": "+2 max targets hit",
+  "ja": "最大的中対象2体増加"
+ },
+ "11450020": {
+  "ja": "2番連続スキル[破壊突進]追加"
+ },
+ "11450030": {
+  "en": "+20% Root Chance",
+  "ja": "束縛確率20%増加"
+ },
+ "11450040": {
+  "en": "50% chance to inflict Airborne for 3s",
+  "ja": "3秒間、50%の確率で空中束縛効果追加"
+ },
+ "11700010": {
+  "en": "+20% Attack for 5s on hit",
+  "ja": "的中時に5s間、攻撃力20%増加"
+ },
+ "11700020": {
+  "en": "500 MP damage on hit",
+  "ja": "的中時にMP500ダメージ"
+ },
+ "11700030": {
+  "en": "+10m range",
+  "ja": "射程10m増加"
+ },
+ "11700040": {
+  "en": "+20% Knockdown Chance",
+  "ja": "転倒確率20%増加"
+ },
+ "12010010": {
+  "en": "+20% MP restored",
+  "ja": "MP回復20%増加"
+ },
+ "12010030": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "12010040": {
+  "en": "-2s [Warding Strike] cooldown on hit",
+  "ja": "的中時に[庇護の一撃]の再使用時間2s減少"
+ },
+ "12010050": {
+  "ja": "4番連続スキル[威嚇の猛打]追加"
+ },
+ "12040010": {
+  "en": "-20% MP consumed",
+  "ja": "MP消耗20%減少"
+ },
+ "12040030": {
+  "en": "Deals up to 12% more damage when less targets are hit",
+  "ja": "的中した対象が少ないほどダメージ量が最大12%増加"
+ },
+ "12040040": {
+  "en": "-1s [Punishment] cooldown on hit",
+  "ja": "的中時に[懲罰]の再使用時間1s減少"
+ },
+ "12040050": {
+  "en": "[Punishing Strike] grants extra damage on hit",
+  "ja": "[戒めの一撃]的中時に追加ダメージ"
+ },
+ "12070010": {
+  "en": "Resets [Annihilate] cooldown on hit",
+  "ja": "的中時に[殲滅]の再使用時間初期化"
+ },
+ "12070020": {
+  "en": "+200 Block for 5s on hit",
+  "ja": "的中時に5s間、ガード200増加"
+ },
+ "12070030": {
+  "en": "Resets cooldown on defeating an enemy",
+  "ja": "敵を倒した時に再使用時間初期化"
+ },
+ "12070040": {
+  "en": "+25% Knockdown Chance",
+  "ja": "転倒確率25%増加"
+ },
+ "12090020": {
+  "en": "Inflicts Damage over Time to target on hit",
+  "ja": "的中時に対象に持続ダメージを付与"
+ },
+ "12090030": {
+  "en": "+30% Skill Speed",
+  "ja": "スキル速度30%増加"
+ },
+ "12090040": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "12090050": {
+  "en": "Ignores Block and Evasion and lands as a Critical Hit",
+  "ja": "ガードと回避を無視してクリティカルで的中"
+ },
+ "12100010": {
+  "en": "+1s Stun duration",
+  "ja": "気絶の持続時間1秒増加"
+ },
+ "12100020": {
+  "en": "Removes MP Cost and restores 200 MP on hit",
+  "ja": "MP消耗削除と的中時にMP200回復"
+ },
+ "12100030": {
+  "en": "50% chance to trigger [Debilitating Smash] on hit",
+  "ja": "的中時に50%の確率で[衰弱の猛打]活性化"
+ },
+ "12100040": {
+  "en": "-2s cooldown",
+  "ja": "再使用時間2秒減少"
+ },
+ "12100050": {
+  "en": "AoE Stun",
+  "ja": "広域気絶"
+ },
+ "12110010": {
+  "en": "+1 consecutive use",
+  "ja": "連続発動+1回"
+ },
+ "12110020": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "12110030": {
+  "en": "+20% Move Speed for 3s on Block",
+  "ja": "ガード成功時に3s間、移動速度20%増加"
+ },
+ "12110040": {
+  "ja": "ガード成功時に1回、HP10%を回復"
+ },
+ "12120010": {
+  "en": "Adds 10% PvE Damage Tolerance reduction and 5% PvP Damage Tolerance reduction effect to Shrink",
+  "ja": "萎縮にPvEダメージ耐性10%、PvPダメージ耐性5%減少効果追加"
+ },
+ "12120020": {
+  "en": "+10% Shrink Attack reduction",
+  "ja": "萎縮攻撃力10%追加減少"
+ },
+ "12120030": {
+  "en": "-5s cooldown",
+  "ja": "再使用時間5秒減少"
+ },
+ "12120040": {
+  "en": "+2s Taunt duration, +5s Shrink duration",
+  "ja": "挑発持続時間2秒増加、萎縮持続時間5秒増加"
+ },
+ "12130010": {
+  "en": "Moves to the target if target has Incapacitated Immunity",
+  "ja": "行動不可免疫対象の場合、対象に移動"
+ },
+ "12130020": {
+  "en": "-20% Status Effect Resist for 5s on hit",
+  "ja": "的中時に5s間、状態異常抵抗20%減少"
+ },
+ "12130030": {
+  "en": "Resets cooldown on defeating an enemy",
+  "ja": "敵を倒した時に再使用時間初期化"
+ },
+ "12130040": {
+  "en": "10% Max HP Protective Shield",
+  "ja": "最大HPの10%のバリア"
+ },
+ "12130050": {
+  "en": "50% chance to Stun for 3s",
+  "ja": "3s間、50%の確率で気絶"
+ },
+ "12190010": {
+  "en": "+10% all Element Tolerance for the duration",
+  "ja": "持続時間中は全属性耐性10%増加"
+ },
+ "12190020": {
+  "en": "+20% Block for the duration",
+  "ja": "持続時間中はガード20%増加"
+ },
+ "12190030": {
+  "en": "x1.5 [Ironclad Defense] effect for the duration",
+  "ja": "持続時間中は[鉄壁防御]の効果1.5倍"
+ },
+ "12190040": {
+  "en": "+20% PvE Damage Tolerance increase and +10% PvP Damage Tolerance increase",
+  "ja": "PvEダメージ耐性20%、PvPダメージ耐性10%追加増加"
+ },
+ "12200010": {
+  "en": "+20% Ailment-type, Mental-type Resist for the duration",
+  "ja": "持続時間中は肉体系、精神系抵抗20%増加"
+ },
+ "12200020": {
+  "en": "+20% Move Speed for the duration",
+  "ja": "持続時間中は移動速度20%増加"
+ },
+ "12200030": {
+  "en": "x1.5 [Warding Shield] effect for the duration",
+  "ja": "持続時間中は[庇護のシールド]の効果1.5倍増加"
+ },
+ "12200040": {
+  "en": "+50% Impact-type Resist increase",
+  "ja": "衝撃系抵抗50%追加増加"
+ },
+ "12220010": {
+  "en": "50% chance to inflict Stun for 3s on hit",
+  "ja": "的中時に50%の確率で3s間、気絶"
+ },
+ "12220020": {
+  "en": "20% of Max HP as Protective Shield for 10s on use",
+  "ja": "発動時に10s間、最大HPの20%のバリア獲得"
+ },
+ "12220030": {
+  "en": "-30s cooldown",
+  "ja": "再使用時間30秒減少"
+ },
+ "12220040": {
+  "en": "Up to +20% PvE Damage Tolerance and +10% PvP Damage Tolerance when more targets hit",
+  "ja": "的中した対象が多いほどPvEダメージ耐性が最大20%、PvPダメージ耐性が最大10%増加"
+ },
+ "12230010": {
+  "en": "+5% Defense for the duration",
+  "ja": "持続時間中は防御力5%増加"
+ },
+ "12230020": {
+  "en": "x1.5 [Insulting Roar] effect for the duration",
+  "ja": "持続時間中は[侮辱の咆哮]の効果1.5倍"
+ },
+ "12230030": {
+  "en": "x1.5 [Fury] effect for the duration",
+  "ja": "持続時間中は[激昂]の効果1.5倍"
+ },
+ "12230040": {
+  "en": "+10% Incoming Heal for the duration",
+  "ja": "持続時間中は受ける治癒量10%増加"
+ },
+ "12240020": {
+  "en": "Deals extra damage on attacking a target afflicted with Impact-type status",
+  "ja": "衝撃系状態の対象を攻撃時に追加ダメージ"
+ },
+ "12240030": {
+  "en": "Extra damage on hit",
+  "ja": "的中時に追加ダメージ"
+ },
+ "12240040": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "12240050": {
+  "en": "Remove cooldown",
+  "ja": "再使用時間削除"
+ },
+ "12250010": {
+  "ja": "持続時間中はHPが25%以下の状態で攻撃を受けた時に1回、最大HPの25%回復"
+ },
+ "12250020": {
+  "en": "x1.5 [Guarding Seal] Protective Shield effect for the duration",
+  "ja": "持続時間中は[守護の印章]のバリア効果1.5倍"
+ },
+ "12250030": {
+  "en": "x1.5 [Block Pain] effect for the duration",
+  "ja": "持続時間中は[苦痛遮断]の効果1.5倍増加"
+ },
+ "12250040": {
+  "en": "Restores 50% of caster's Max HP when the effect ends",
+  "ja": "効果終了時に自分は最大HPの50%回復"
+ },
+ "12260010": {
+  "ja": "2番連続スキル[生け捕り]追加"
+ },
+ "12260020": {
+  "en": "Restores 1,000 Stamina on using [Defiance]",
+  "ja": "[衝撃解除]発動時に行動力1,000回復"
+ },
+ "12260030": {
+  "en": "Restores 20% HP on using [Defiance]",
+  "ja": "[衝撃解除]発動時にHP20%回復"
+ },
+ "12260040": {
+  "en": "+2s Tenacity duration",
+  "ja": "強靭さの持続時間2秒増加"
+ },
+ "12260050": {
+  "en": "+50% PvE Damage Tolerance and +25% PvP Damage Tolerance for Tenacity duration",
+  "ja": "強靭さの持続時間中はPvEダメージ耐性50%、PvPダメージ耐性25%増加"
+ },
+ "12270010": {
+  "en": "30% chance to inflict Stun for 3s",
+  "ja": "30%の確率で3s間、気絶"
+ },
+ "12270020": {
+  "en": "+3s Debilitate duration",
+  "ja": "衰弱の持続時間3秒増加"
+ },
+ "12270030": {
+  "en": "-60% Incoming Heal during Debilitate",
+  "ja": "衰弱中は受ける治癒量60%減少"
+ },
+ "12270040": {
+  "en": "Ignores Block and Evasion and lands as Multi-Hit",
+  "ja": "ガードと回避を無視して多段ヒットで的中"
+ },
+ "12270050": {
+  "en": "25% chance to reset cooldown on Block",
+  "ja": "ガード成功時に25%の確率で再使用時間初期化"
+ },
+ "12300010": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "12300020": {
+  "en": "+20% Knockdown Chance",
+  "ja": "転倒確率20%増加"
+ },
+ "12300030": {
+  "en": "+100% damage to targets with Incapacitated Immunity",
+  "ja": "行動不可免疫の対象を攻撃時にダメージ量が100%増加"
+ },
+ "12300040": {
+  "en": "-10s cooldown",
+  "ja": "再使用時間10秒減少"
+ },
+ "12300050": {
+  "en": "Changes to AoE Skill",
+  "ja": "広域スキルに変更"
+ },
+ "12310010": {
+  "en": "Up to +20% damage when less targets hit",
+  "ja": "的中した対象が少ないほどダメージ量が最大20%増加"
+ },
+ "12310020": {
+  "en": "+50 Stagger Gauge Damage",
+  "ja": "グロッキー ゲージ ダメージ量50増加"
+ },
+ "12310030": {
+  "en": "+10% PvE Damage Boost and +5% PvP Damage Boost for 10s on hit",
+  "ja": "的中時に10s間、PvEダメージ増幅10%、PvPダメージ増幅5%増加"
+ },
+ "12310040": {
+  "en": "+25% Stun Chance",
+  "ja": "気絶確率25%増加"
+ },
+ "12320010": {
+  "en": "+20% all Element Tolerance for Protective Shield duration",
+  "ja": "バリア持続中は全属性耐性20%増加"
+ },
+ "12320020": {
+  "en": "+2s Protective Shield duration",
+  "ja": "バリアの持続時間2秒増加"
+ },
+ "12320030": {
+  "en": "+20% PvE Damage Tolerance and +10% PvP Damage Tolerance for Protective Shield duration",
+  "ja": "バリア持続中はPvEダメージ耐性20%、PvPダメージ耐性10%増加"
+ },
+ "12320040": {
+  "en": "Restores 20% of Max HP when Protective Shield is removed",
+  "ja": "バリア解除時に最大HPの20%回復"
+ },
+ "12340020": {
+  "en": "Restores 120 MP on hit",
+  "ja": "的中時にMPを120回復"
+ },
+ "12340030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "12340040": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "12340050": {
+  "en": "-1s to all skill cooldowns on hit",
+  "ja": "的中時にすべてのスキル再使用時間1s減少"
+ },
+ "12350010": {
+  "en": "-5s cooldown",
+  "ja": "再使用時間5秒減少"
+ },
+ "12350020": {
+  "en": "+100 Block during Warding",
+  "ja": "庇護中はガード100増加"
+ },
+ "12350030": {
+  "en": "Heal over Time during Warding",
+  "ja": "庇護中は持続回復効果"
+ },
+ "12350040": {
+  "en": "Adds PvE Damage Tolerance and PvP Damage Tolerance increase effect when more targets hit to Warding",
+  "ja": "的中した数が多いほど庇護のPvEダメージ耐性、PvPダメージ耐性効果増加"
+ },
+ "12350050": {
+  "en": "+10% PvE Damage Tolerance and +5% PvP Damage Tolerance to party members on skill use",
+  "ja": "スキル使用時にパーティー メンバーのPvEダメージ耐性10%、PvPダメージ耐性5%増加"
+ },
+ "12410010": {
+  "en": "-15s cooldown",
+  "ja": "再使用時間15秒減少"
+ },
+ "12410020": {
+  "en": "Inflict Exposed for 5s on hit",
+  "ja": "的中時に5s間、隙を付与"
+ },
+ "12410030": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "12410040": {
+  "en": "+30% damage on attacking a target inflicted with Impact-type status",
+  "ja": "衝撃系状態の対象を攻撃時にダメージ量30%増加"
+ },
+ "12430010": {
+  "en": "Restores 300 Stamina on hit",
+  "ja": "的中時に行動力300回復"
+ },
+ "12430020": {
+  "en": "+10m range",
+  "ja": "射程10m増加"
+ },
+ "12430030": {
+  "en": "Changes to Charge Skill and deals AoE damage",
+  "ja": "チャージ スキルに変更と広域ダメージ"
+ },
+ "12430040": {
+  "en": "-10s cooldown",
+  "ja": "再使用時間10秒減少"
+ },
+ "12430050": {
+  "en": "+25% Stun Chance",
+  "ja": "気絶確率25%増加"
+ },
+ "12450010": {
+  "en": "+10% Multi-Hit Chance for duration",
+  "ja": "持続時間中は多段ヒット的中10%増加"
+ },
+ "12450020": {
+  "en": "+10% Weapon Damage Boost for duration",
+  "ja": "持続時間中は武器ダメージ増幅10%増加"
+ },
+ "12450030": {
+  "en": "+20% Attack increase proportional to Defense",
+  "ja": "防御力に比例して攻撃力増加効果20%増加"
+ },
+ "12450040": {
+  "en": "-30s cooldown",
+  "ja": "再使用時間30秒減少"
+ },
+ "12700010": {
+  "en": "+20% Attack for 5s on hit",
+  "ja": "的中時に5s間、攻撃力20%増加"
+ },
+ "12700020": {
+  "en": "500 MP damage on hit",
+  "ja": "的中時にMP500ダメージ"
+ },
+ "12700030": {
+  "en": "+10m range",
+  "ja": "射程10m増加"
+ },
+ "12700040": {
+  "en": "+20% Stun Chance",
+  "ja": "気絶確率20%増加"
+ },
+ "13010010": {
+  "en": "+20% MP restored",
+  "ja": "MP回復20%増加"
+ },
+ "13010030": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "13010040": {
+  "en": "-1s [Insignia Explosion] cooldown on hit",
+  "ja": "的中時に[紋様爆発]の再使用時間1s減少"
+ },
+ "13010050": {
+  "en": "Ignores Block and Evasion and lands as a Critical Hit",
+  "ja": "ガードと回避を無視してクリティカルで的中"
+ },
+ "13020010": {
+  "ja": "2番連続スキル[暗器追跡]追加"
+ },
+ "13020020": {
+  "en": "Resets cooldown on defeating an enemy",
+  "ja": "敵を倒した時に再使用時間初期化"
+ },
+ "13020030": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "13020040": {
+  "en": "Changes to AoE Skill",
+  "ja": "広域スキルに変更"
+ },
+ "13050010": {
+  "en": "+2s Blind duration",
+  "ja": "失明の持続時間2秒増加"
+ },
+ "13050020": {
+  "en": "+6m Range",
+  "ja": "射程6m増加"
+ },
+ "13050030": {
+  "en": "Up to +20% damage when more targets hit",
+  "ja": "的中した対象が多いほどダメージ量が最大20%増加"
+ },
+ "13050040": {
+  "en": "+1 consecutive use",
+  "ja": "連続発動+1回"
+ },
+ "13050050": {
+  "en": "50% chance to rotate and inflict Stun for 3s on hitting a target afflicted with Blind",
+  "ja": "失明対象に的中時に50%の確率で3s間、回転させて気絶"
+ },
+ "13060010": {
+  "en": "Engraves 2 Insignias for 10s on landing as a Back attack",
+  "ja": "後方的中時に紋様2個を10s間、刻印"
+ },
+ "13060030": {
+  "en": "Breaks Protective Shields on hit",
+  "ja": "的中時にバリア破壊"
+ },
+ "13060040": {
+  "en": "50% chance to trigger [Whirlwind Slice] on hit",
+  "ja": "的中時に50%の確率で[旋風斬り]活性化"
+ },
+ "13060050": {
+  "en": "+2 consecutive uses",
+  "ja": "連続発動+2回"
+ },
+ "13070010": {
+  "en": "+1s Stun duration",
+  "ja": "気絶の持続時間1秒増加"
+ },
+ "13070020": {
+  "en": "+20% caster Critical Damage Boost for 10s on hit",
+  "ja": "的中時に10s間、自分のクリティカル ダメージ増幅20%増加"
+ },
+ "13070030": {
+  "en": "50% chance to inflict Seal for 5s on hit",
+  "ja": "的中時に50%の確率で5s間、封印"
+ },
+ "13070040": {
+  "en": "50% chance to inflict Root for 5s on hit",
+  "ja": "的中時に50%の確率で5s間、束縛"
+ },
+ "13070050": {
+  "en": "Changes to AoE Skill",
+  "ja": "広域スキルに変更"
+ },
+ "13080010": {
+  "en": "+1 consecutive use",
+  "ja": "連続発動+1回"
+ },
+ "13080020": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "13080030": {
+  "en": "+20% Move Speed for 3s on Evasion",
+  "ja": "回避成功時に3s間、移動速度20%増加"
+ },
+ "13080040": {
+  "ja": "回避成功時に1回、HP10%を回復"
+ },
+ "13100010": {
+  "en": "-20% MP consumed",
+  "ja": "MP消耗20%減少"
+ },
+ "13100020": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "13100030": {
+  "en": "Deals up to 12% more damage when less targets are hit",
+  "ja": "的中した対象が少ないほどダメージ量が最大12%増加"
+ },
+ "13100040": {
+  "en": "-1s [Shadowstrike] cooldown on hit",
+  "ja": "的中時に[闇討]の再使用時間1s減少"
+ },
+ "13100050": {
+  "en": "Pulls nearby targets on using [Savage Smash]",
+  "ja": "[猛獣の殴り飛ばし]使用時に周辺の対象を引き寄せる"
+ },
+ "13130010": {
+  "en": "Adds rotate effect",
+  "ja": "回転効果追加"
+ },
+ "13130020": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "13130030": {
+  "en": "Keep 2 stacks of Insignias after [Insignia Explosion]",
+  "ja": "[紋様爆発]後に紋様2重複刻印維持"
+ },
+ "13130040": {
+  "en": "+1s Stun duration",
+  "ja": "気絶の持続時間1秒増加"
+ },
+ "13130050": {
+  "en": "-3s cooldown",
+  "ja": "再使用時間3秒減少"
+ },
+ "13140010": {
+  "en": "40% chance to rotate and inflict Stun for 3s on hit",
+  "ja": "的中時に40%の確率で3s間、回転させて気絶"
+ },
+ "13140020": {
+  "en": "Engraves 5 Insignias for 10s on hit",
+  "ja": "的中時に紋様5個を10s間、刻印"
+ },
+ "13140030": {
+  "en": "+200 Evasion for 10s on use",
+  "ja": "使用すると10s間、自分の回避200増加"
+ },
+ "13140040": {
+  "en": "-15s cooldown",
+  "ja": "再使用時間15秒減少"
+ },
+ "13180010": {
+  "en": "Critical Hit on attack during Stealth",
+  "ja": "隠れ身中の攻撃時に確定クリティカル"
+ },
+ "13180020": {
+  "en": "+20% Move Speed for the duration",
+  "ja": "持続時間中は移動速度20%増加"
+ },
+ "13180030": {
+  "en": "Available in combat",
+  "ja": "戦闘状態に使用可能"
+ },
+ "13180040": {
+  "en": "Resets cooldown on player kill assists",
+  "ja": "PCを倒すのに関わると再使用時間初期化"
+ },
+ "13210010": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "13210020": {
+  "en": "Changes to AoE damage",
+  "ja": "広域ダメージに変更"
+ },
+ "13210030": {
+  "en": "+16m range",
+  "ja": "射程16m増加"
+ },
+ "13210040": {
+  "en": "+20% Stun Chance",
+  "ja": "気絶確率20%増加"
+ },
+ "13210050": {
+  "en": "25% chance to reset [Whirlwind Slice] cooldown on Evasion",
+  "ja": "回避成功時に25%の確率で[旋風斬り]の再使用時間初期化"
+ },
+ "13220020": {
+  "en": "Engraves 3 Insignias for 10s on hit",
+  "ja": "的中時に紋様3個を10s間、刻印"
+ },
+ "13220030": {
+  "en": "-5s cooldown",
+  "ja": "再使用時間5秒減少"
+ },
+ "13220040": {
+  "en": "+1s Knockdown duration",
+  "ja": "転倒の持続時間1秒増加"
+ },
+ "13220050": {
+  "en": "Can be used on targets afflicted with Blind",
+  "ja": "失明状態の対象に使用可能"
+ },
+ "13230010": {
+  "en": "+16m [Aerial Bind] range",
+  "ja": "[空中捕縛]射程16m増加"
+ },
+ "13230020": {
+  "ja": "2番連続スキル[空中殺法]追加"
+ },
+ "13230030": {
+  "en": "x1.5 [Ambush Stance] effect for 10s on first strike of [Aerial Bind]",
+  "ja": "[空中捕縛]最初の攻撃的中時に10s間、[奇襲姿勢]の効果1.5倍増加"
+ },
+ "13230040": {
+  "en": "-30s cooldown",
+  "ja": "再使用時間30秒減少"
+ },
+ "13250010": {
+  "en": "+10m range",
+  "ja": "射程10m増加"
+ },
+ "13250020": {
+  "en": "Changes to AoE Skill",
+  "ja": "広域スキルに変更"
+ },
+ "13250030": {
+  "en": "Inflicts Slow for 5s on hit",
+  "ja": "的中時に5s間、鈍化"
+ },
+ "13250040": {
+  "en": "+1 consecutive use",
+  "ja": "連続発動+1回"
+ },
+ "13260010": {
+  "ja": "2番連続スキル[暴風斬り]追加"
+ },
+ "13260020": {
+  "en": "Restores 1,000 Stamina on using [Defiance]",
+  "ja": "[衝撃解除]発動時に行動力1,000回復"
+ },
+ "13260030": {
+  "en": "Restores 20% HP on using [Defiance]",
+  "ja": "[衝撃解除]発動時にHP20%回復"
+ },
+ "13260040": {
+  "en": "+2s Tenacity duration",
+  "ja": "強靭さの持続時間2秒増加"
+ },
+ "13260050": {
+  "en": "+50% PvE Damage Tolerance and +25% PvP Damage Tolerance for Tenacity duration",
+  "ja": "強靭さの持続時間中はPvEダメージ耐性50%、PvPダメージ耐性25%増加"
+ },
+ "13270010": {
+  "en": "Up to +20% damage when more targets hit",
+  "ja": "的中した対象が多いほどダメージ量が最大20%増加"
+ },
+ "13270020": {
+  "en": "+50 Stagger Gauge Damage",
+  "ja": "グロッキー ゲージ ダメージ量50増加"
+ },
+ "13270030": {
+  "en": "+10% PvE Damage Boost and +5% PvP Damage Boost for 10s on hit",
+  "ja": "的中時に10s間、PvEダメージ増幅10%、PvPダメージ増幅5%増加"
+ },
+ "13270040": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "13280010": {
+  "en": "Removes up to 2 buffs",
+  "ja": "バフを最大2個まで除去"
+ },
+ "13280020": {
+  "en": "Rotates and inflicts Stun for 3s when removing 2 or more buffs",
+  "ja": "バフを2個以上除去すると3s間、回転させて気絶"
+ },
+ "13280030": {
+  "en": "Removes up to 3 buffs",
+  "ja": "バフを最大3個まで除去"
+ },
+ "13280040": {
+  "en": "-30s cooldown",
+  "ja": "再使用時間30秒減少"
+ },
+ "13300010": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "13300020": {
+  "en": "-10% all skill cooldowns on hit",
+  "ja": "的中時にすべてのスキル再使用時間10%減少"
+ },
+ "13300030": {
+  "en": "Resets cooldown on defeating an enemy with [Triniel's Dagger]",
+  "ja": "[トリニエルの刃]で敵を倒した時に再使用時間初期化"
+ },
+ "13300040": {
+  "en": "+3% all skill cooldowns",
+  "ja": "すべてのスキル再使用時間3%増加"
+ },
+ "13310010": {
+  "en": "+10% Status Effect Chance for the duration",
+  "ja": "持続時間中は状態異常的中10%増加"
+ },
+ "13310020": {
+  "en": "+20% Critical Damage Boost for the duration",
+  "ja": "持続時間中はクリティカル ダメージ増幅20%増加"
+ },
+ "13310030": {
+  "en": "x1.5 [Exploit Weakness] effect for the duration",
+  "ja": "持続時間中は[隙突き]の効果1.5倍増加"
+ },
+ "13310040": {
+  "en": "50% chance to deal extra damage on Critical Hit for the duration",
+  "ja": "持続時間中はクリティカル時に50%の確率で追加ダメージ"
+ },
+ "13340020": {
+  "en": "Restores 120 MP on hit",
+  "ja": "的中時にMP120回復"
+ },
+ "13340030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "13340040": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "13340050": {
+  "en": "-1s all skill cooldowns on hit",
+  "ja": "的中時にすべてのスキル再使用時間1s減少"
+ },
+ "13350020": {
+  "en": "Engraves 1 Insignia for 10s on hit",
+  "ja": "的中時に紋様1個を10s間、刻印"
+ },
+ "13350030": {
+  "en": "Up to +20% Critical Hit when less targets hit",
+  "ja": "的中した対象が少ないほどクリティカル最大20%増加"
+ },
+ "13350040": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "13350050": {
+  "en": "Resets [Heart Gore] cooldown on landing a Critical Hit",
+  "ja": "クリティカル的中時に[心臓突き]の再使用時間初期化"
+ },
+ "13360010": {
+  "en": "Restores 300 Stamina on landing [Infiltrate]",
+  "ja": "[侵入]的中時に行動力300回復"
+ },
+ "13360020": {
+  "en": "+10m [Infiltrate] range",
+  "ja": "[侵入]射程10m増加"
+ },
+ "13360030": {
+  "en": "Breaks Protective Shields on landing [Infiltrate]",
+  "ja": "[侵入]的中時にバリア破壊"
+ },
+ "13360040": {
+  "ja": "2番連続スキル[暗撃]追加"
+ },
+ "13360050": {
+  "en": "+20% [Infiltrate] Blind Chance",
+  "ja": "[侵入]失明確率20%増加"
+ },
+ "13370010": {
+  "en": "25% chance of Projectile Immunity for the duration",
+  "ja": "持続時間中は25%の確率で発射体免疫"
+ },
+ "13370020": {
+  "en": "+30% Move Speed for the duration",
+  "ja": "持続時間中は移動速度30%増加"
+ },
+ "13370030": {
+  "en": "50% chance to reduce all skill cooldowns by 1s on Evasion for the duration",
+  "ja": "持続時間中は回避時に50%の確率ですべてのスキル再使用時間1s減少"
+ },
+ "13370040": {
+  "en": "+100 Evasion increase",
+  "ja": "回避100追加増加"
+ },
+ "13390010": {
+  "en": "-20% MP Cost for the duration",
+  "ja": "持続時間中はMP消耗量20%減少"
+ },
+ "13390020": {
+  "en": "x1.5 [Rear Smite] effect for the duration",
+  "ja": "持続時間中は[背後強打]の効果1.5倍増加"
+ },
+ "13390030": {
+  "en": "x1.5 [Assault Stance] effect for the duration",
+  "ja": "持続時間中は[強襲姿勢]の効果1.5倍増加"
+ },
+ "13390040": {
+  "en": "+10% additional Combat Speed",
+  "ja": "戦闘速度10%追加増加"
+ },
+ "13700010": {
+  "en": "+20% Attack for 5s on hit",
+  "ja": "的中時に5s間、攻撃力20%増加"
+ },
+ "13700020": {
+  "en": "500 MP damage on hit",
+  "ja": "的中時にMP500ダメージ"
+ },
+ "13700030": {
+  "en": "+10m range",
+  "ja": "射程10m増加"
+ },
+ "13700040": {
+  "en": "+20% Blind Chance",
+  "ja": "失明確率20%増加"
+ },
+ "14010010": {
+  "en": "Removes MP consumed",
+  "ja": "MP消耗削除"
+ },
+ "14010020": {
+  "en": "+30% Skill Speed",
+  "ja": "スキル速度30%増加"
+ },
+ "14010030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "14010040": {
+  "en": "Ignores Block and Evasion and lands as Multi-Hit",
+  "ja": "ガードと回避を無視して多段ヒットで的中"
+ },
+ "14010050": {
+  "en": "[Deadshot] grants extra damage on hit",
+  "ja": "[必中の矢]的中時に追加ダメージ"
+ },
+ "14020010": {
+  "en": "+20% MP restored",
+  "ja": "MP回復20%増加"
+ },
+ "14020030": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "14020040": {
+  "en": "-1s [Deadshot] cooldown on hit",
+  "ja": "的中時に[必中の矢]の再使用時間1s減少"
+ },
+ "14020050": {
+  "ja": "4番連続スキル[疾風の矢]追加"
+ },
+ "14050020": {
+  "en": "+2s Bleed duration",
+  "ja": "出血の持続時間2秒増加"
+ },
+ "14050030": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "14050040": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "14050050": {
+  "en": "Activates [Drill Dart] 1 extra time",
+  "ja": "[鋭穿の矢]1回追加発動"
+ },
+ "14060010": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "14060020": {
+  "en": "+5s Damage over Time duration",
+  "ja": "持続ダメージの持続時間5秒増加"
+ },
+ "14060030": {
+  "en": "Enhanced Crimson Flames - Extra damage when hit while afflicted with Crimson Flames",
+  "ja": "紅炎状態強化 - 紅炎状態で攻撃を受けた時に追加ダメージ"
+ },
+ "14060040": {
+  "en": "-50% Damage over Time intervals",
+  "ja": "持続ダメージ間隔50%減少"
+ },
+ "14070010": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "14070020": {
+  "en": "+1s Stun duration",
+  "ja": "気絶の持続時間1秒増加"
+ },
+ "14070030": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "14070040": {
+  "en": "+20% Stun Chance",
+  "ja": "気絶確率20%増加"
+ },
+ "14070050": {
+  "en": "25% chance to reset cooldown on hit",
+  "ja": "[制圧の矢]的中時に25%の確率で再使用時間初期化"
+ },
+ "14080020": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "14080030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "14080040": {
+  "en": "Up to +20% damage when less targets hit",
+  "ja": "的中した対象が少ないほどダメージ量が最大20%増加"
+ },
+ "14080050": {
+  "en": "25% chance to reset cooldown on hit",
+  "ja": "[破裂の矢]的中時に25%の確率で再使用時間初期化"
+ },
+ "14090010": {
+  "en": "+5% Perfect Chance for the duration",
+  "ja": "持続時間中は完璧5%増加"
+ },
+ "14090020": {
+  "en": "30% chance to inflict Knock Back on hit",
+  "ja": "的中時に30%の確率でノックバックを付与"
+ },
+ "14090030": {
+  "en": "+5s duration",
+  "ja": "持続時間5秒増加"
+ },
+ "14090040": {
+  "en": "+1 consecutive use",
+  "ja": "連続発動+1回"
+ },
+ "14090050": {
+  "en": "Ignores Block and Evasion and lands as a Critical Hit",
+  "ja": "ガードと回避を無視してクリティカルで的中"
+ },
+ "14110010": {
+  "en": "+5s duration",
+  "ja": "持続時間5秒増加"
+ },
+ "14110020": {
+  "en": "50% chance to inflict Knock Back on hit",
+  "ja": "的中時に50%の確率でノックバックを付与"
+ },
+ "14110030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "14110040": {
+  "en": "Increases Combat Speed, PvE Damage Boost, and PvP Damage Boost when less targets hit",
+  "ja": "的中した対象が少ないほど戦闘速度、PvEダメージ増幅、PvPダメージ増幅効果増加"
+ },
+ "14110050": {
+  "en": "-10s cooldown",
+  "ja": "再使用時間10秒減少"
+ },
+ "14120010": {
+  "en": "+5m Range",
+  "ja": "射程5m増加"
+ },
+ "14120020": {
+  "en": "10% Max HP Protective Shield for 5s on hit",
+  "ja": "的中時に5s間、最大HPの10%のバリア"
+ },
+ "14120030": {
+  "en": "50% chance to inflict Stun for 3s on hit",
+  "ja": "的中時に50%の確率で3s間、気絶"
+ },
+ "14120040": {
+  "en": "+50% Stun Chance",
+  "ja": "気絶確率50%増加"
+ },
+ "14130010": {
+  "en": "+20% Move Speed reduction",
+  "ja": "[捕縛の矢]移動速度減少量20%増加"
+ },
+ "14130020": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "14130030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "14130040": {
+  "ja": "2番連続スキル[足枷の矢]追加"
+ },
+ "14130050": {
+  "en": "+2s Slow and Root duration",
+  "ja": "鈍化と束縛の持続時間2秒増加"
+ },
+ "14150010": {
+  "en": "+1s Blind duration",
+  "ja": "失明の持続時間1秒増加"
+ },
+ "14150020": {
+  "en": "Changes to AoE Skill",
+  "ja": "広域スキルに変更"
+ },
+ "14150030": {
+  "en": "Inflicts Slow for 5s on hit",
+  "ja": "的中時に5s間、鈍化"
+ },
+ "14150040": {
+  "en": "+1 consecutive use",
+  "ja": "連続発動+1回"
+ },
+ "14160010": {
+  "en": "50% chance to inflict Root for 5s on hit",
+  "ja": "的中時に50%の確率で5s間、束縛"
+ },
+ "14160020": {
+  "en": "-1,000 enemy Max Stamina for 5s on hit",
+  "ja": "的中時に5s間、最大行動力1,000減少"
+ },
+ "14160030": {
+  "en": "+2s Seal duration",
+  "ja": "封印の持続時間2秒増加"
+ },
+ "14160040": {
+  "en": "+25% Seal chance",
+  "ja": "封印確率25%増加"
+ },
+ "14170010": {
+  "en": "Pulls enemies on explosion",
+  "ja": "爆発時に敵を引き寄せる"
+ },
+ "14170020": {
+  "en": "+1s Stun duration",
+  "ja": "気絶の持続時間1秒増加"
+ },
+ "14170030": {
+  "en": "Extra damage after 3s on hit",
+  "ja": "的中時に3秒後追加ダメージ"
+ },
+ "14170040": {
+  "en": "+20% Stun Chance",
+  "ja": "気絶確率20%増加"
+ },
+ "14170050": {
+  "en": "+1 consecutive use",
+  "ja": "連続発動+1回"
+ },
+ "14180010": {
+  "ja": "2番連続スキル[退き斬り]追加"
+ },
+ "14180020": {
+  "en": "Removes up to 2 buffs",
+  "ja": "バフを最大2個まで除去"
+ },
+ "14180030": {
+  "en": "+1s Airborne duration",
+  "ja": "空中束縛の持続時間1秒増加"
+ },
+ "14180040": {
+  "en": "-30s cooldown",
+  "ja": "再使用時間30秒減少"
+ },
+ "14190010": {
+  "en": "Critical Hit on attack during Stealth",
+  "ja": "隠れ身中に攻撃時にクリティカル"
+ },
+ "14190020": {
+  "en": "+20% Move Speed for the duration",
+  "ja": "持続時間中は移動速度20%増加"
+ },
+ "14190030": {
+  "en": "Available in combat",
+  "ja": "戦闘状態に使用可能"
+ },
+ "14190040": {
+  "en": "+10s Stealth duration",
+  "ja": "隠れ身の持続時間10秒増加"
+ },
+ "14220010": {
+  "en": "+50% Multi-Hit Chance for duration",
+  "ja": "持続時間中は多段ヒット的中50%増加"
+ },
+ "14220020": {
+  "en": "Increases Attack proportional to Critical Hit for the duration",
+  "ja": "持続時間中はクリティカルに比例して攻撃力増加"
+ },
+ "14220030": {
+  "en": "+20% Critical Damage Boost for the duration",
+  "ja": "持続時間中はクリティカル ダメージ増幅20%増加"
+ },
+ "14220040": {
+  "en": "+7% Double Chance for the duration",
+  "ja": "持続時間中は強打7%増加"
+ },
+ "14260010": {
+  "ja": "2番連続スキル[雷の矢]追加"
+ },
+ "14260020": {
+  "en": "Restores 1,000 Stamina on using [Defiance]",
+  "ja": "[衝撃解除]発動時に行動力1,000回復"
+ },
+ "14260030": {
+  "en": "Restores 20% HP on using [Defiance]",
+  "ja": "[衝撃解除]発動時にHP20%回復"
+ },
+ "14260040": {
+  "en": "+2s Tenacity duration",
+  "ja": "強靭さの持続時間2秒増加"
+ },
+ "14260050": {
+  "en": "+50% PvE Damage Tolerance and +25% PvP Damage Tolerance for Tenacity duration",
+  "ja": "強靭さの持続時間中はPvEダメージ耐性50%、PvPダメージ耐性25%増加"
+ },
+ "14270010": {
+  "en": "Up to +20% max damage when more targets hit",
+  "ja": "的中した対象が多いほどダメージ量が最大20%増加"
+ },
+ "14270020": {
+  "en": "Inflicts Slow for 10s on hit",
+  "ja": "的中時に10s間、鈍化"
+ },
+ "14270030": {
+  "en": "+1s Stun duration",
+  "ja": "気絶の持続時間1秒増加"
+ },
+ "14270040": {
+  "en": "+25% Stun Chance",
+  "ja": "気絶確率25%増加"
+ },
+ "14310010": {
+  "en": "+10% Perfect Chance for the duration",
+  "ja": "持続時間中は完璧10%増加"
+ },
+ "14310020": {
+  "en": "x1.5 [Focused Eye] effect for the duration",
+  "ja": "持続時間中は[集中の眼]の効果1.5倍増加"
+ },
+ "14310030": {
+  "en": "x1.5 [Hunter's Soul] effect for the duration",
+  "ja": "持続時間中は[ハンターの魂]の効果1.5倍増加"
+ },
+ "14310040": {
+  "en": "50% chance to reduce all skill cooldowns by 1s on Critical Hit for the duration",
+  "ja": "持続時間中はクリティカル時に50%の確率ですべての再使用時間1s減少"
+ },
+ "14330020": {
+  "en": "Restores 120 MP on hit",
+  "ja": "的中時にMP120回復"
+ },
+ "14330030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "14330040": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "14330050": {
+  "en": "-1s all cooldowns on hit",
+  "ja": "的中時にすべての再使用時間1s減少"
+ },
+ "14340010": {
+  "en": "-20% MP consumed",
+  "ja": "MP消耗20%減少"
+ },
+ "14340020": {
+  "en": "+10% skill Critical Hit",
+  "ja": "スキル クリティカル10%増加"
+ },
+ "14340030": {
+  "en": "Deals up to 12% more damage when less targets are hit",
+  "ja": "的中した対象が少ないほどダメージ量が最大12%増加"
+ },
+ "14340040": {
+  "en": "5% chance to inflict Knock Back on Critical Hit",
+  "ja": "クリティカル的中時に5%の確率でノックバックを付与"
+ },
+ "14340050": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "14350010": {
+  "en": "Removes and grants immunity to Damage over Time effects",
+  "ja": "持続ダメージ状態解除と免疫効果追加"
+ },
+ "14350020": {
+  "en": "x1.5 [Vigilant Eye] effect for the duration",
+  "ja": "持続時間中は[警戒の目]の効果1.5倍増加"
+ },
+ "14350030": {
+  "en": "x1.5 [Unyielding Resolve] effect for the duration",
+  "ja": "持続時間中は[抵抗の決意]の効果1.5倍増加"
+ },
+ "14350040": {
+  "en": "+20% PvE Damage Tolerance increase and +10% PvP Damage Tolerance increase",
+  "ja": "PvEダメージ耐性20%、PvPダメージ耐性10%追加増加"
+ },
+ "14360010": {
+  "en": "-15s cooldown",
+  "ja": "再使用時間15秒減少"
+ },
+ "14360020": {
+  "en": "+10% additional damage to targets afflicted with Slow or Root",
+  "ja": "鈍化と束縛対象のダメージ量10%追加増加"
+ },
+ "14360030": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "14360040": {
+  "en": "+20% additional damage to targets afflicted with Slow or Root",
+  "ja": "鈍化と束縛対象のダメージ量20%追加増加"
+ },
+ "14380010": {
+  "en": "+25% activation chance",
+  "ja": "発動確率25%増加"
+ },
+ "14380020": {
+  "en": "+15s duration",
+  "ja": "持続時間15秒増加"
+ },
+ "14380030": {
+  "en": "-30s cooldown",
+  "ja": "再使用時間30秒減少"
+ },
+ "14380040": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "14700010": {
+  "en": "+20% Attack for 5s on hit",
+  "ja": "的中時に5s間、攻撃力20%増加"
+ },
+ "14700020": {
+  "en": "500 MP damage on hit",
+  "ja": "的中時にMP500ダメージ"
+ },
+ "14700030": {
+  "en": "+10m range",
+  "ja": "射程10m増加"
+ },
+ "14700040": {
+  "en": "+20% Stun Chance",
+  "ja": "気絶確率20%増加"
+ },
+ "15010020": {
+  "en": "Restores 120 MP",
+  "ja": "MP120回復"
+ },
+ "15010030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "15010040": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "15010050": {
+  "en": "-1s all skill cooldowns on hit",
+  "ja": "的中時にすべてのスキル再使用時間1s減少"
+ },
+ "15040010": {
+  "en": "-50% MP Cost",
+  "ja": "MP消耗50%減少"
+ },
+ "15040020": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "15040030": {
+  "en": "-60% Incoming Heal for 5s on hit",
+  "ja": "的中時に5s間、受ける治癒量60%減少"
+ },
+ "15040040": {
+  "en": "-2s [Hellfire] cooldown per fireball",
+  "ja": "槍ごとに[地獄の火炎]の再使用時間2秒減少"
+ },
+ "15040050": {
+  "en": "+15% damage per fireball, up to +75%",
+  "ja": "槍ごとにダメージ15%ずつ、最大75%まで増加"
+ },
+ "15050020": {
+  "en": "+50% MP restored",
+  "ja": "MP回復50%増加"
+ },
+ "15050030": {
+  "en": "Delayed Damage after 3s",
+  "ja": "3s後に遅延ダメージ"
+ },
+ "15050040": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "15050050": {
+  "en": "-3s [Wish of Concentration] cooldown on hit",
+  "ja": "的中時に[集中の祈願]の再使用時間3秒減少"
+ },
+ "15060010": {
+  "en": "+30% Skill Speed",
+  "ja": "スキル速度30%増加"
+ },
+ "15060020": {
+  "en": "Fire Damage over Time for 10s on hit",
+  "ja": "的中時に10s間、火属性持続ダメージ"
+ },
+ "15060030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "15060040": {
+  "en": "Ignores Block and Evasion and lands as Multi-Hit",
+  "ja": "ガードと回避を無視して多段ヒットで的中"
+ },
+ "15060050": {
+  "en": "-15s cooldown",
+  "ja": "再使用時間15秒減少"
+ },
+ "15090010": {
+  "en": "-20% MP Cost",
+  "ja": "MP消耗量20%減少"
+ },
+ "15090020": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "15090030": {
+  "en": "Deals up to 12% more damage when less targets are hit",
+  "ja": "的中した対象が少ないほどダメージ量が最大12%増加"
+ },
+ "15090040": {
+  "en": "-1s [Winter's Shackles] cooldown on hit",
+  "ja": "的中時に[冬の束縛]の再使用時間1秒減少"
+ },
+ "15090050": {
+  "en": "5% chance to inflict Frost for 2s on landing [Cold Wave]",
+  "ja": "[冷気波動]的中時に5%の確率で2秒氷結"
+ },
+ "15110010": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "15110020": {
+  "en": "30% chance to inflict Frost for 3s on landing [Winter's Shackles]",
+  "ja": "[冬の束縛]的中時に30%の確率で3秒間氷結"
+ },
+ "15110030": {
+  "en": "+20% PvE Damage Boost and +10% PvP Damage Boost for 5s on landing [Winter's Shackles]",
+  "ja": "[冬の束縛]的中時に5s間、PvEダメージ増幅20%、PvPダメージ増幅10%増加"
+ },
+ "15110040": {
+  "ja": "2番連続スキル[冬の幻影]追加"
+ },
+ "15110050": {
+  "en": "-15s [Winter's Shackles] cooldown",
+  "ja": "[冬の束縛]再使用時間15秒減少"
+ },
+ "15120010": {
+  "en": "Up to +20% damage when more targets hit",
+  "ja": "的中した対象が多いほどダメージ量が最大20%増加"
+ },
+ "15120020": {
+  "en": "-30s cooldown",
+  "ja": "再使用時間30秒減少"
+ },
+ "15120030": {
+  "en": "50% chance to inflict Frost for 3s",
+  "ja": "50%の確率で3秒間、氷結"
+ },
+ "15120040": {
+  "en": "Ignores Block and Evasion and lands as Multi-Hit",
+  "ja": "ガードと回避を無視して多段ヒットで的中"
+ },
+ "15130010": {
+  "en": "50% chance to inflict Root for 5s",
+  "ja": "5秒間、50%の確率で束縛効果を付与"
+ },
+ "15130020": {
+  "en": "-1,000 Stamina",
+  "ja": "行動力1,000減少"
+ },
+ "15130030": {
+  "en": "+2s Seal duration",
+  "ja": "封印の持続時間2秒増加"
+ },
+ "15130040": {
+  "en": "+25% Seal chance",
+  "ja": "封印確率25%増加"
+ },
+ "15140010": {
+  "en": "Increases number of hits required to remove Polymorph",
+  "ja": "変異解除に必要な被弾回数増加"
+ },
+ "15140020": {
+  "en": "-200 Block, Evasion for 10s when Polymorph ends",
+  "ja": "変異終了後に10秒間、ガードと回避200減少"
+ },
+ "15140030": {
+  "en": "-20% Impact-type Resist for 10s when Polymorph ends",
+  "ja": "変異終了後に10秒間、衝撃系抵抗20%減少"
+ },
+ "15140040": {
+  "en": "Inflicts debuff even if Polymorph is removed through attacks",
+  "ja": "攻撃による変異終了時でもデバフを付与"
+ },
+ "15150010": {
+  "en": "Restores 200 MP",
+  "ja": "MP200回復"
+ },
+ "15150020": {
+  "en": "-5s cooldown",
+  "ja": "再使用時間5秒減少"
+ },
+ "15150030": {
+  "en": "Reset [Frost Burst] cooldown on landing Frost",
+  "ja": "氷結的中時に[氷結爆発]の再使用時間初期化"
+ },
+ "15150040": {
+  "en": "+25% PC target Frost Chance",
+  "ja": "PC対象氷結確率25%増加"
+ },
+ "15150050": {
+  "en": "+1s Frost duration",
+  "ja": "氷結の持続時間1秒増加"
+ },
+ "15160010": {
+  "en": "+10% Move Speed",
+  "ja": "移動速度10%増加"
+ },
+ "15160020": {
+  "en": "HP Regen at fixed intervals",
+  "ja": "一定間隔でHP回復"
+ },
+ "15160030": {
+  "en": "+10% PvE Damage Tolerance increase and +5% PvP Damage Tolerance increase",
+  "ja": "PvEダメージ耐性10%、PvPダメージ耐性5%追加増加"
+ },
+ "15160040": {
+  "en": "-15s cooldown",
+  "ja": "再使用時間15秒減少"
+ },
+ "15200010": {
+  "en": "Enhanced Frostbite - Grants extra damage when landing an attack",
+  "ja": "凍傷状態強化 - 攻撃時に追加ダメージを付与"
+ },
+ "15200020": {
+  "en": "30% chance to inflict Root for 2s",
+  "ja": "30%の確率で2秒間、束縛状態を付与"
+ },
+ "15200030": {
+  "en": "+3s [Cold Storm] summoning duration",
+  "ja": "[冷気暴風]召喚時間3秒増加"
+ },
+ "15200040": {
+  "en": "+10s Frostbite duration",
+  "ja": "凍傷の持続時間10秒増加"
+ },
+ "15210010": {
+  "en": "+20% MP restored",
+  "ja": "MP回復20%増加"
+ },
+ "15210030": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "15210040": {
+  "en": "+5% Fire Damage Boost for 10s on activating [Pyroclasm]",
+  "ja": "[烈火]発動時に10s間、火属性ダメージ増幅5%増加"
+ },
+ "15210050": {
+  "en": "Reset [Blaze] cooldown on landing [Pyroclasm]",
+  "ja": "[烈火]的中時に[炎爆発]の再使用時間初期化"
+ },
+ "15220020": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "15220030": {
+  "en": "75% chance to Knock Back 2m",
+  "ja": "75%の確率で2mノックバック"
+ },
+ "15220040": {
+  "en": "Ignores Block and Evasion and lands as a Critical Hit",
+  "ja": "ガードと回避を無視してクリティカルで的中"
+ },
+ "15220050": {
+  "en": "50% chance to reset cooldown",
+  "ja": "50%確率で再使用時間初期化"
+ },
+ "15230010": {
+  "en": "+20% Impact-type Resist",
+  "ja": "衝撃系抵抗20%増加"
+ },
+ "15230020": {
+  "en": "x1.5 [Absorb Essence] effect",
+  "ja": "[精気吸収]パッシブ効果1.5倍増加"
+ },
+ "15230030": {
+  "en": "x1.5 [Robe of Cold] effect",
+  "ja": "[冷気のローブ]パッシブ効果1.5倍増加"
+ },
+ "15230040": {
+  "en": "+20% PvE Damage Tolerance increase and +10% PvP Damage Tolerance increase",
+  "ja": "PvEダメージ耐性20%、PvPダメージ耐性10%追加増加"
+ },
+ "15240010": {
+  "ja": "2番連続スキル[呪い：枯木]追加"
+ },
+ "15240020": {
+  "en": "Restores 1,000 Stamina on using [Defiance]",
+  "ja": "[衝撃解除]発動時に行動力1,000回復"
+ },
+ "15240030": {
+  "en": "Restores 20% HP on using [Defiance]",
+  "ja": "[衝撃解除]発動時にHP20%回復"
+ },
+ "15240040": {
+  "en": "+2s Tenacity duration",
+  "ja": "強靭さの持続時間2秒増加"
+ },
+ "15240050": {
+  "en": "+50% PvE Damage Tolerance and +25% PvP Damage Tolerance for Tenacity duration",
+  "ja": "強靭さの持続時間中はPvEダメージ耐性50%、PvPダメージ耐性25%増加"
+ },
+ "15280010": {
+  "en": "+1s [Bittercold Wind] summon duration",
+  "ja": "[極寒の風]召喚時間1秒増加"
+ },
+ "15280020": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "15280030": {
+  "en": "Pull effect",
+  "ja": "引き寄せ効果"
+ },
+ "15280040": {
+  "en": "Ignores Block and Evasion and lands as a Critical Hit",
+  "ja": "ガードと回避を無視してクリティカルで的中"
+ },
+ "15280050": {
+  "en": "-1s [Frost] cooldown on hit",
+  "ja": "的中時に[氷結]の再使用時間1秒減少"
+ },
+ "15300010": {
+  "en": "Up to +20% damage when more targets hit",
+  "ja": "的中した対象が多いほどダメージ量が最大20%増加"
+ },
+ "15300020": {
+  "ja": "2番連続スキル[奈落]追加"
+ },
+ "15300030": {
+  "en": "+1s [The Depths] Knockdown duration",
+  "ja": "[奈落]転倒の持続時間1秒増加"
+ },
+ "15300040": {
+  "en": "-30s [Lumiel's Space] cooldown",
+  "ja": "[ルミエルの空間]再使用時間30秒減少"
+ },
+ "15310010": {
+  "en": "Reduces MP Cost by 10%",
+  "ja": "MP消耗量10%減少"
+ },
+ "15310020": {
+  "en": "+10% additional Attack",
+  "ja": "攻撃力10%追加増加"
+ },
+ "15310030": {
+  "en": "+500 Max MP",
+  "ja": "最大MP500増加"
+ },
+ "15310040": {
+  "en": "+10% Combat Speed",
+  "ja": "戦闘速度10%増加"
+ },
+ "15310050": {
+  "en": "-10s all skill cooldowns",
+  "ja": "すべてのスキル再使用時間10秒減少"
+ },
+ "15320010": {
+  "en": "Restores 200 MP",
+  "ja": "MP200回復"
+ },
+ "15320020": {
+  "en": "-10s [Delayed Explosion] cooldown",
+  "ja": "[遅延爆発]再使用時間10秒減少"
+ },
+ "15320030": {
+  "en": "Changes to AoE Skill",
+  "ja": "広域スキルに変更"
+ },
+ "15320040": {
+  "en": "+10% additional Damage Taken",
+  "ja": "受けるダメージ量10%追加増加"
+ },
+ "15360010": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "15360030": {
+  "en": "75% chance to inflict Knock Back",
+  "ja": "75%の確率でノックバックを付与"
+ },
+ "15360040": {
+  "en": "Inflict Stun for 3s after Knock Back",
+  "ja": "ノックバックされた後に3秒間、気絶を付与"
+ },
+ "15390010": {
+  "en": "Enhanced Embers - Grants extra damage when landing an attack",
+  "ja": "残火状態強化 - 攻撃時に追加ダメージ"
+ },
+ "15390020": {
+  "en": "+2m wall width",
+  "ja": "障壁縦幅2m増加"
+ },
+ "15390030": {
+  "en": "+2s [Fire Wall] summoning duration",
+  "ja": "[火の障壁]召喚時間2秒増加"
+ },
+ "15390040": {
+  "en": "+10s Embers duration",
+  "ja": "残火の持続時間10秒増加"
+ },
+ "15400010": {
+  "en": "+200 Accuracy",
+  "ja": "命中200増加"
+ },
+ "15400020": {
+  "en": "x1.5 [Robe of Flame] effect",
+  "ja": "[炎のローブ]パッシブ効果1.5倍増加"
+ },
+ "15400030": {
+  "en": "x1.5 [Grace of Enhancement] effect",
+  "ja": "[強化の恩恵]パッシブ効果1.5倍増加"
+ },
+ "15400040": {
+  "en": "+10% additional Fire and Water Attack",
+  "ja": "火属性と水属性攻撃力10%追加増加"
+ },
+ "15410010": {
+  "en": "+100% Incoming Heal",
+  "ja": "受ける治癒量100%増加"
+ },
+ "15410020": {
+  "en": "Restores 5% Max HP every 1s for the duration",
+  "ja": "持続時間中は1秒間隔で最大HPの5%ずつ回復"
+ },
+ "15410030": {
+  "en": "+2s duration",
+  "ja": "持続時間2秒増加"
+ },
+ "15410040": {
+  "en": "Triggers when afflicted with Impact-type status",
+  "ja": "衝撃系状態の時に[冬眠]を活性化"
+ },
+ "15700010": {
+  "en": "+20% Attack for 5s on hit",
+  "ja": "的中時に5s間、攻撃力20%増加"
+ },
+ "15700020": {
+  "en": "500 MP damage on hit",
+  "ja": "的中時にMP500ダメージ"
+ },
+ "15700030": {
+  "en": "+10m range",
+  "ja": "射程10m増加"
+ },
+ "15700040": {
+  "en": "+20% Frost Chance",
+  "ja": "氷結確率20%増加"
+ },
+ "16010010": {
+  "en": "+20% MP restored",
+  "ja": "MP回復20%増加"
+ },
+ "16010030": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "16010040": {
+  "en": "+2% Attack on landing [Earth Tremor] (Up to 5 stacks)",
+  "ja": "[大地の震動]的中時に攻撃力2%増加(最大5回重複)"
+ },
+ "16010050": {
+  "en": "10% chance to remove 1 buff on landing [Earth Tremor]",
+  "ja": "[大地の震動]的中時に10%の確率で対象のバフ1個除去"
+ },
+ "16040010": {
+  "en": "-20% MP consumed",
+  "ja": "MP消耗20%減少"
+ },
+ "16040020": {
+  "en": "Deals up to 12% more damage when less targets are hit",
+  "ja": "的中した対象が少ないほどダメージ量が最大12%増加"
+ },
+ "16040030": {
+  "en": "+100 Skill Accuracy",
+  "ja": "スキル命中100増加"
+ },
+ "16040040": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "16040050": {
+  "ja": "2番連続スキル[灰の呼びかけ]追加"
+ },
+ "16060010": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "16060020": {
+  "en": "+5% HP absorbed",
+  "ja": "HP吸収5%増加"
+ },
+ "16060030": {
+  "en": "30% of Max HP as Protective Shield for 30s on use",
+  "ja": "発動時に30s間、最大HPの30%のバリア獲得"
+ },
+ "16060040": {
+  "en": "Stun for 3s on hit",
+  "ja": "的中時に3s間、気絶"
+ },
+ "16070010": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "16070020": {
+  "en": "Inflicts Root for 5s",
+  "ja": "5s間、束縛"
+ },
+ "16070030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "16070040": {
+  "en": "-10s cooldown",
+  "ja": "再使用時間10秒減少"
+ },
+ "16070050": {
+  "en": "+2s Fear duration",
+  "ja": "恐怖の持続時間2秒増加"
+ },
+ "16080010": {
+  "en": "Root for 5s on hit",
+  "ja": "的中時に5s間、束縛"
+ },
+ "16080020": {
+  "en": "Up to +20% damage when more targets hit",
+  "ja": "的中した対象が多いほどダメージ量が最大20%増加"
+ },
+ "16080030": {
+  "en": "+2s Fear duration",
+  "ja": "恐怖の持続時間2秒増加"
+ },
+ "16080040": {
+  "en": "+20% Fear Chance",
+  "ja": "恐怖確率20%増加"
+ },
+ "16100010": {
+  "en": "-50% MP Cost",
+  "ja": "MP消耗50%減少"
+ },
+ "16100020": {
+  "en": "+20% Fire Spirit Critical Hit damage",
+  "ja": "火の精霊のクリティカル ダメージ20%増加"
+ },
+ "16100030": {
+  "en": "10% chance to activate skill when Fire Spirit lands attack",
+  "ja": "火の精霊の攻撃的中時にスキル発動確率10%増加"
+ },
+ "16100040": {
+  "en": "5% chance to inflict Knockdown for 3s on landing Fire Spirit attack",
+  "ja": "火の精霊の攻撃的中時に5%の確率で3s間、転倒を付与"
+ },
+ "16100050": {
+  "en": "+20% Fire Spirit Stats",
+  "ja": "火の精霊の能力値20%増加"
+ },
+ "16110010": {
+  "en": "-50% MP Cost",
+  "ja": "MP消耗50%減少"
+ },
+ "16110020": {
+  "en": "+10% Water Spirit Attack",
+  "ja": "水の精霊の攻撃力10%増加"
+ },
+ "16110030": {
+  "en": "10% chance to activate skill when Water Spirit lands attack",
+  "ja": "水の精霊の攻撃的中時にスキル発動確率10%増加"
+ },
+ "16110040": {
+  "en": "5% chance to inflict Root for 2s on landing Water Spirit attack",
+  "ja": "水の精霊の攻撃的中時に5%の確率で2s間、束縛"
+ },
+ "16110050": {
+  "en": "+20% Water Spirit Stats",
+  "ja": "水の精霊の能力値20%増加"
+ },
+ "16120010": {
+  "en": "-50% MP Cost",
+  "ja": "MP消耗50%減少"
+ },
+ "16120020": {
+  "en": "+20% Wind Spirit Critical Hit",
+  "ja": "風の精霊のクリティカル20%増加"
+ },
+ "16120030": {
+  "en": "10% chance to activate skill when Wind Spirit lands attack",
+  "ja": "風の精霊の攻撃的中時にスキル発動確率10%増加"
+ },
+ "16120040": {
+  "en": "5% chance to reduce enemy Attack Speed by 30% for 10s on landing Wind Spirit attack",
+  "ja": "風の精霊の攻撃時に5%の確率で10s間、攻撃速度30%減少"
+ },
+ "16120050": {
+  "en": "+20% Wind Spirit Stats",
+  "ja": "風の精霊の能力値20%増加"
+ },
+ "16130010": {
+  "en": "-50% MP Cost",
+  "ja": "MP消耗50%減少"
+ },
+ "16130020": {
+  "en": "+20% PvE Damage Tolerance and +10 PvP Damage Tolerance to Earth Spirit",
+  "ja": "地の精霊のPvEダメージ耐性20%、PvPダメージ耐性10%増加"
+ },
+ "16130030": {
+  "en": "10% chance to activate skill when Earth Spirit lands attack",
+  "ja": "地の精霊の攻撃的中時にスキル発動確率10%増加"
+ },
+ "16130040": {
+  "en": "5% chance to restore 5% of Spirit HP when landing Earth Spirit attack",
+  "ja": "地の精霊の攻撃的中時に5%の確率で精霊のHP5%回復"
+ },
+ "16130050": {
+  "en": "+20% Earth Spirit Stats",
+  "ja": "地の精霊の能力値20%増加"
+ },
+ "16140010": {
+  "en": "+2s Curse duration",
+  "ja": "呪いの持続時間2秒増加"
+ },
+ "16140020": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "16140030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "16140040": {
+  "en": "-2s cooldown",
+  "ja": "再使用時間2秒減少"
+ },
+ "16140050": {
+  "en": "[Jointstrike: Curse] ignores Block and Evasion and lands as a Critical Hit",
+  "ja": "[協力攻撃：呪い]はガードと回避を無視してクリティカルで的中"
+ },
+ "16150010": {
+  "en": "+15% extra damage taken from Spirit during Corrode",
+  "ja": "腐食中は精霊から受けるダメージ15%追加増加"
+ },
+ "16150020": {
+  "en": "-20% Combat Speed on hit for 10s",
+  "ja": "的中時に10s間、戦闘速度20%減少"
+ },
+ "16150030": {
+  "en": "-70% Incoming Heal during Corrode",
+  "ja": "腐食中は受ける治癒量70%減少"
+ },
+ "16150040": {
+  "en": "+10s Corrode effect duration",
+  "ja": "腐食効果の持続時間10秒増加"
+ },
+ "16170010": {
+  "en": "+2s Command: Proxy duration",
+  "ja": "命令：身代わりの持続時間2秒増加"
+ },
+ "16170020": {
+  "en": "+10% PVP Damage Tolerance increase and +5% PvP Damage Tolerance increase to Spirit",
+  "ja": "精霊のPvEダメージ耐性10%、PvPダメージ耐性5%追加増加"
+ },
+ "16170030": {
+  "en": "x1.5 [Spirit Protection] effect during Command: Proxy",
+  "ja": "命令：身代わり持続中は[精霊保護]の効果1.5倍"
+ },
+ "16170040": {
+  "ja": "命令：身代わり持続中は毎秒ごとに精霊がHPの3%回復"
+ },
+ "16190010": {
+  "en": "Restores 10% of Max HP on cast",
+  "ja": "発動時にHPの10%回復"
+ },
+ "16190020": {
+  "en": "x1.5 [Spirit Strike] Damage Boost effect",
+  "ja": "パッシブ[精霊打撃]ダメージ増幅効果1.5倍増加"
+ },
+ "16190030": {
+  "en": "x1.5 activation chance and amount healed from [Spirit Communion]",
+  "ja": "[精霊交感]発動確率と回復量1.5倍増加"
+ },
+ "16190040": {
+  "en": "+25% PvE Damage Boost and Damage Tolerance, +12.5% PvP Damage Boost and Damage Tolerance for caster and Spirit",
+  "ja": "自分と精霊のPvEダメージ増幅、ダメージ耐性25%、PvPダメージ増幅、ダメージ耐性12.5%増加"
+ },
+ "16200010": {
+  "ja": "2番連続スキル[絶望の呪い]追加"
+ },
+ "16200020": {
+  "en": "Restores 1,000 Stamina on using [Defiance]",
+  "ja": "[衝撃解除]発動時に行動力1,000回復"
+ },
+ "16200030": {
+  "en": "Restores 20% HP on using [Defiance]",
+  "ja": "[衝撃解除]発動時にHP20%回復"
+ },
+ "16200040": {
+  "en": "+2s Tenacity duration",
+  "ja": "強靭さの持続時間2秒増加"
+ },
+ "16200050": {
+  "en": "+50% PvE Damage Tolerance and +25% PvP Damage Tolerance for Tenacity duration",
+  "ja": "強靭さの持続時間中はPvEダメージ耐性50%、PvPダメージ耐性25%増加"
+ },
+ "16220010": {
+  "en": "-1,000 enemy Max Stamina during Damage over Time",
+  "ja": "持続ダメージ中は最大行動力1,000減少"
+ },
+ "16220020": {
+  "en": "-20% Max HP of PC targets during Damage over Time",
+  "ja": "持続ダメージをPCに付与時に最大HP20%減少"
+ },
+ "16220030": {
+  "en": "+10s Damage over Time duration",
+  "ja": "持続ダメージの持続時間10秒増加"
+ },
+ "16220040": {
+  "en": "-30% Status Effect Resist during Damage over Time",
+  "ja": "持続ダメージ中は状態異常抵抗30%減少"
+ },
+ "16230010": {
+  "en": "Removes up to 3 buffs",
+  "ja": "バフを最大3個まで除去"
+ },
+ "16230020": {
+  "en": "Inflicts Seal for 5s when removing 3 or more buffs",
+  "ja": "バフを3個以上除去すると5秒間、封印"
+ },
+ "16230030": {
+  "en": "Removes up to 5 buffs",
+  "ja": "バフを最大5個まで除去"
+ },
+ "16230040": {
+  "en": "-30s cooldown",
+  "ja": "再使用時間30秒減少"
+ },
+ "16240010": {
+  "en": "Changes to Charge Skill, dealing up to 200% more [Jointstrike: Destructive Attack] damage",
+  "ja": "チャージ スキルに変更、[協力攻撃：破滅の攻勢]ダメージ量最大200%増加"
+ },
+ "16240020": {
+  "en": "+30% Skill Speed",
+  "ja": "スキル速度30%増加"
+ },
+ "16240030": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "16240040": {
+  "en": "Reset [Jointstrike: Curse] and [Jointstrike: Corrode] cooldown on landing [Jointstrike: Destructive Attack] first hit",
+  "ja": "[協力攻撃：破滅の攻勢]最初の攻撃的中時に[協力攻撃：呪い]と[協力攻撃：腐食]の再使用時間初期化"
+ },
+ "16250010": {
+  "en": "+10% Ancient Spirit Attack",
+  "ja": "古代の精霊の攻撃力10%増加"
+ },
+ "16250020": {
+  "en": "x1.5 [Spirit's Descent] activation chance and damage for 30s",
+  "ja": "30s間、[精霊降臨]の発動確率とダメージ量1.5倍増加"
+ },
+ "16250030": {
+  "en": "Ancient Spirit uses skill after 5 basic attacks",
+  "ja": "古代の精霊の通常攻撃5回後にスキル使用"
+ },
+ "16250040": {
+  "en": "+20% Ancient Spirit Stats",
+  "ja": "古代の精霊の能力値20%増加"
+ },
+ "16260010": {
+  "en": "50% chance to inflict Root for 5s on hit",
+  "ja": "的中時に50%の確率で5s間、束縛"
+ },
+ "16260020": {
+  "en": "-1,000 enemy Max Stamina for 5s on hit",
+  "ja": "的中時に5s間、最大行動力1,000減少"
+ },
+ "16260030": {
+  "en": "+2s Seal duration",
+  "ja": "封印の持続時間2秒増加"
+ },
+ "16260040": {
+  "en": "+25% Seal chance",
+  "ja": "封印確率25%増加"
+ },
+ "16300010": {
+  "en": "Changes to AoE Skill",
+  "ja": "広域スキルに変更"
+ },
+ "16300020": {
+  "en": "Extra damage after 3s on hit",
+  "ja": "的中時に3s後に追加ダメージ"
+ },
+ "16300030": {
+  "en": "+10 all Element Boost on hit",
+  "ja": "的中時に全属性増幅10%増加"
+ },
+ "16300040": {
+  "en": "Changes to Charge Skill, dealing up to 200% more damage",
+  "ja": "チャージ スキルに変更、ダメージ量最大200%増加"
+ },
+ "16300050": {
+  "ja": "25%の確率で4元素再獲得"
+ },
+ "16330010": {
+  "en": "+20% Slow effect",
+  "ja": "鈍化効果20%増加"
+ },
+ "16330020": {
+  "en": "Extra damage after 3s on hit",
+  "ja": "的中時に3s後に追加ダメージ"
+ },
+ "16330030": {
+  "en": "+50% Multi-Hit chance on hit",
+  "ja": "的中時に多段ヒット確率50%増加"
+ },
+ "16330040": {
+  "en": "Pull in nearby targets",
+  "ja": "対象を中心に引き寄せる"
+ },
+ "16330050": {
+  "en": "30% chance to inflict Root for 3s on hit",
+  "ja": "的中時に30%の確率で3s間、束縛"
+ },
+ "16340020": {
+  "en": "Restores 120 MP",
+  "ja": "MP120回復"
+ },
+ "16340030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "16340040": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "16340050": {
+  "en": "-1s all skill cooldowns on hit",
+  "ja": "的中時にすべてのスキル再使用時間1s減少"
+ },
+ "16360010": {
+  "en": "+150 Block and Evasion",
+  "ja": "ガードと回避150増加"
+ },
+ "16360020": {
+  "en": "+15% Status Effect Resist",
+  "ja": "状態異常抵抗15%増加"
+ },
+ "16360030": {
+  "en": "+150 Accuracy",
+  "ja": "命中150増加"
+ },
+ "16360040": {
+  "en": "+15% Status Effect Chance",
+  "ja": "状態異常的中15%増加"
+ },
+ "16370010": {
+  "en": "+100 Accuracy",
+  "ja": "命中100増加"
+ },
+ "16370020": {
+  "en": "+100 Critical Hit",
+  "ja": "クリティカル100増加"
+ },
+ "16370030": {
+  "en": "+10% Critical Damage Boost",
+  "ja": "クリティカル ダメージ増幅10%増加"
+ },
+ "16370040": {
+  "en": "-50% extra damage cooldown",
+  "ja": "追加ダメージの再使用時間50%減少"
+ },
+ "16700010": {
+  "en": "+20% caster's Attack for 5s",
+  "ja": "5s間、自分の攻撃力20%増加"
+ },
+ "16700020": {
+  "en": "500 MP damage on hit",
+  "ja": "的中時にMP500ダメージ"
+ },
+ "16700030": {
+  "en": "+10m range",
+  "ja": "射程10m増加"
+ },
+ "16700040": {
+  "en": "+20% Fear Chance",
+  "ja": "恐怖確率20%増加"
+ },
+ "17010010": {
+  "en": "+20% MP restored",
+  "ja": "MP回復20%増加"
+ },
+ "17010020": {
+  "en": "+20% [Discharge] Chain Skill trigger chance",
+  "ja": "[放電]連続スキル活性化確率20%増加"
+ },
+ "17010030": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "17010040": {
+  "en": "-7s [Bolt] cooldown on landing [Discharge]",
+  "ja": "[放電]的中時に[霹靂]の再使用時間7s減少"
+ },
+ "17010050": {
+  "en": "Ignores Block and Evasion",
+  "ja": "ガードと回避を無視して的中"
+ },
+ "17040010": {
+  "en": "-20% MP consumed",
+  "ja": "MP消耗20%減少"
+ },
+ "17040020": {
+  "en": "Deals up to 12% more damage when less targets are hit",
+  "ja": "的中した対象が少ないほどダメージ量が最大12%増加"
+ },
+ "17040030": {
+  "en": "-10% enemy Combat Speed for 5s on landing [Divine Punishment]",
+  "ja": "[天罰]的中時に5s間、戦闘速度10%減少を付与"
+ },
+ "17040040": {
+  "en": "10% chance to inflict Root for 2s on landing [Divine Punishment]",
+  "ja": "[天罰]的中時に10%の確率で2s間、束縛を付与"
+ },
+ "17040050": {
+  "en": "Activates [Divine Punishment] 1 extra time",
+  "ja": "[天罰]1回追加発動"
+ },
+ "17060010": {
+  "en": "30% chance to inflict Stun for 3s when fully charged",
+  "ja": "最大チャージ時に30%の確率で3s間、気絶を付与"
+ },
+ "17060020": {
+  "en": "+300 Skill Accuracy",
+  "ja": "スキル命中300増加"
+ },
+ "17060030": {
+  "en": "+30% Skill Speed",
+  "ja": "スキル速度30%増加"
+ },
+ "17060040": {
+  "en": "Up to +20% damage when less targets hit",
+  "ja": "的中した対象が少ないほど最大20%ダメージ増加"
+ },
+ "17060050": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "17070010": {
+  "en": "Slows target for 5s",
+  "ja": "5s間、対象を鈍化"
+ },
+ "17070020": {
+  "en": "+3s Damage over Time",
+  "ja": "持続ダメージ3秒増加"
+ },
+ "17070030": {
+  "en": "Has a 20% chance to inflict Knockdown on the target for 3s",
+  "ja": "20%の確率で3s間、対象を転倒"
+ },
+ "17070040": {
+  "en": "+10% PvE Damage Tolerance reduction and +5% PvP Damage Tolerance reduction",
+  "ja": "PvEダメージ耐性10%、PvPダメージ耐性5%追加減少"
+ },
+ "17070050": {
+  "en": "Ignores Block and Evasion and reduces Damage over Time interval by 50%",
+  "ja": "ガードと回避を無視して的中と持続ダメージ間隔50%減少"
+ },
+ "17080010": {
+  "en": "Removes MP Consumed and restores 150 MP",
+  "ja": "MP消耗削除とMP150回復"
+ },
+ "17080020": {
+  "en": "-15% target Defense for duration of Damage over Time",
+  "ja": "持続ダメージ中は対象の防御力15%減少"
+ },
+ "17080030": {
+  "en": "Has a 20% chance to inflict Stun on the target for 3s",
+  "ja": "20%の確率で3s間、対象を気絶"
+ },
+ "17080040": {
+  "en": "+10% PvE Damage Boost reduction and +5% PvP Damage Boost reduction",
+  "ja": "PvEダメージ増幅10%、PvPダメージ増幅5%追加減少"
+ },
+ "17080050": {
+  "en": "Ignores Block and Evasion and reduces Damage over Time interval by 50%",
+  "ja": "ガードと回避を無視して的中と持続ダメージ間隔50%減少"
+ },
+ "17090010": {
+  "en": "+5% Defense while healing",
+  "ja": "回復中は防御力5%増加"
+ },
+ "17090020": {
+  "en": "+20% amount healed when HP is 50% or less",
+  "ja": "HP50%以下の時に回復量20%増加"
+ },
+ "17090030": {
+  "en": "+5% Incoming Heal during healing",
+  "ja": "回復中は受ける治癒量5%増加"
+ },
+ "17090040": {
+  "en": "+5% Move Speed during healing",
+  "ja": "回復中は移動速度5%増加"
+ },
+ "17090050": {
+  "en": "+5% PvE Damage Tolerance and +2.5% PvP Damage Tolerance during healing",
+  "ja": "回復中はPvEダメージ耐性5%、PvPダメージ耐性2.5%増加"
+ },
+ "17100010": {
+  "en": "+2 consecutive uses",
+  "ja": "連続発動+2回"
+ },
+ "17100020": {
+  "en": "+20% amount healed when HP is 50% or less",
+  "ja": "HP50%以下の時に回復量20%増加"
+ },
+ "17100030": {
+  "en": "50% chance to remove 1 debuff",
+  "ja": "50%の確率でデバフを1個解除"
+ },
+ "17100040": {
+  "en": "+2% HP restored",
+  "ja": "HP2%追加回復"
+ },
+ "17100050": {
+  "en": "-2s cooldown",
+  "ja": "再使用時間2秒減少"
+ },
+ "17120010": {
+  "en": "Removes up to 2 debuffs",
+  "ja": "デバフ最大2個解除"
+ },
+ "17120020": {
+  "en": "+1 consecutive use",
+  "ja": "連続発動+1回"
+ },
+ "17120030": {
+  "en": "-3s cooldown",
+  "ja": "再使用時間3秒減少"
+ },
+ "17120040": {
+  "en": "+10% Incoming Heal for 10s",
+  "ja": "10s間、受ける治癒量10%増加"
+ },
+ "17120050": {
+  "en": "+5% HP restored",
+  "ja": "HP5%追加回復"
+ },
+ "17150010": {
+  "en": "-40% Move Speed for 3s to up to 4 enemies within 4m of the Aura",
+  "ja": "気を中心に4m内の最大4体の敵の移動速度を3s間、40%減少"
+ },
+ "17150020": {
+  "en": "Changes to AoE Skill",
+  "ja": "広域スキルに変更"
+ },
+ "17150030": {
+  "en": "+50% [Divine Aura] attacking speed",
+  "ja": "[神聖な気]発射速度50%増加"
+ },
+ "17150040": {
+  "en": "+3s [Divine Aura] duration",
+  "ja": "[神聖な気]持続時間3秒増加"
+ },
+ "17150050": {
+  "en": "-10s cooldown",
+  "ja": "再使用時間10秒減少"
+ },
+ "17160010": {
+  "en": "+10s duration",
+  "ja": "持続時間10秒増加"
+ },
+ "17160020": {
+  "en": "Restores 200 Stamina every 5s for the duration",
+  "ja": "持続時間中は5s間隔で行動力200回復"
+ },
+ "17160030": {
+  "en": "Restores 2% HP every 5s for the duration",
+  "ja": "持続時間中は5s間隔でHP2%回復"
+ },
+ "17160040": {
+  "en": "Cleansing effect every 5s for the duration",
+  "ja": "持続時間中は5s間隔で浄化効果"
+ },
+ "17190010": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "17190020": {
+  "en": "+2s Root duration",
+  "ja": "束縛の持続時間2秒増加"
+ },
+ "17190030": {
+  "en": "+25% Root chance",
+  "ja": "束縛確率25%増加"
+ },
+ "17190040": {
+  "en": "x2 Damage over Time on Root targets",
+  "ja": "束縛時に対象の持続ダメージ2倍増加"
+ },
+ "17240010": {
+  "ja": "2番連続スキル[再生の祝福]追加"
+ },
+ "17240020": {
+  "en": "Restores 1,000 Stamina on using [Defiance]",
+  "ja": "[衝撃解除]発動時に行動力1,000回復"
+ },
+ "17240030": {
+  "en": "Restores 10% HP on using [Defiance]",
+  "ja": "[衝撃解除]発動時にHP10%回復"
+ },
+ "17240040": {
+  "en": "+2s Tenacity duration",
+  "ja": "強靭さの持続時間2秒増加"
+ },
+ "17240050": {
+  "en": "+50% PvE Damage Tolerance and +25% PvP Damage Tolerance for Tenacity duration",
+  "ja": "強靭さの持続時間中はPvEダメージ耐性50%、PvPダメージ耐性25%増加"
+ },
+ "17270010": {
+  "en": "+100% Incoming Heal",
+  "ja": "受ける治癒量100%増加"
+ },
+ "17270020": {
+  "en": "Restores 20% of Max HP at the end of [Salvation]",
+  "ja": "[救援]終了時に最大HPの20%回復"
+ },
+ "17270030": {
+  "en": "Grants base effect of [Salvation] to the party member with the lowest HP",
+  "ja": "HPが一番低いパーティー メンバーに[救援]基本効果を付与"
+ },
+ "17270040": {
+  "en": "Triggers [Salvation] when afflicted with Impact-type status",
+  "ja": "衝撃系状態の時に[救援]活性化"
+ },
+ "17280010": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "17280020": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "17280030": {
+  "en": "75% chance to inflict Knock Back",
+  "ja": "75%の確率でノックバックを付与"
+ },
+ "17280040": {
+  "en": "75% chance to inflict Stun for 3s",
+  "ja": "75%の確率で3s間、気絶を付与"
+ },
+ "17290010": {
+  "en": "-30s cooldown",
+  "ja": "再使用時間30秒減少"
+ },
+ "17290020": {
+  "en": "Removes all debuffs",
+  "ja": "デバフをすべて除去"
+ },
+ "17290030": {
+  "en": "+5% HP restored",
+  "ja": "HP5%追加回復"
+ },
+ "17290040": {
+  "en": "Restores 1.5% HP every 2s for 10s",
+  "ja": "10s間、2s間隔でHPの1.5%追加回復"
+ },
+ "17300010": {
+  "en": "Up to +20% damage when more targets hit",
+  "ja": "的中した対象が多いほどダメージ量が最大20%増加"
+ },
+ "17300020": {
+  "en": "Removes Protective Shields on hit",
+  "ja": "的中時にバリア除去"
+ },
+ "17300030": {
+  "en": "-200 Critical Hit Resist for duration",
+  "ja": "持続時間中はクリティカル抵抗200減少"
+ },
+ "17300040": {
+  "en": "-50% Damage over Time intervals",
+  "ja": "持続ダメージ間隔50%減少"
+ },
+ "17350010": {
+  "en": "Restores 100 MP on hit",
+  "ja": "的中時にMP100回復"
+ },
+ "17350020": {
+  "en": "Up to +12% damage when less targets hit",
+  "ja": "的中した対象が少ないほど最大12%ダメージ増加"
+ },
+ "17350030": {
+  "en": "20% chance to inflict Root for 3s",
+  "ja": "20%の確率で3s間、束縛を付与"
+ },
+ "17350040": {
+  "en": "Resets cooldown on landing a Critical Hit with [Condemnation]",
+  "ja": "[断罪]クリティカル的中時に[断罪]の再使用時間初期化"
+ },
+ "17350050": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "17370020": {
+  "en": "Restores 120 MP",
+  "ja": "MP120回復"
+ },
+ "17370030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "17370040": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "17370050": {
+  "en": "-1s all skill cooldowns on hit",
+  "ja": "的中時にすべてのスキル再使用時間1s減少"
+ },
+ "17390010": {
+  "en": "-1s casting time",
+  "ja": "発動時間が1秒減少"
+ },
+ "17390020": {
+  "en": "Invincible for 3s after resurrection",
+  "ja": "復活後に3s間、無敵効果"
+ },
+ "17390030": {
+  "en": "Restores 20% of Max HP",
+  "ja": "最大HPの20%回復"
+ },
+ "17390040": {
+  "en": "Invincible for 5s after resurrection",
+  "ja": "復活後に5s間、無敵効果"
+ },
+ "17400010": {
+  "en": "[Condemnation] lands as a Critical Hit on targets afflicted with [Earth Punishment]",
+  "ja": "[大地の懲罰]の効果中の対象は[断罪]スキルが確定クリティカルで的中"
+ },
+ "17400020": {
+  "en": "+10% Double Chance to caster and +5% to party members from [Earth's Blessing]",
+  "ja": "[大地の祝福]自分の強打10%、パーティー メンバーの強打5%増加"
+ },
+ "17400030": {
+  "en": "+10% Attack and Defense to caster and +5% to party members from [Earth's Blessing]",
+  "ja": "[大地の祝福]自分の攻撃力と防御力が10%、パーティー メンバーの攻撃力と防御力が5%増加"
+ },
+ "17400040": {
+  "en": "+10s [Earth Punishment] and [Earth's Blessing] duration",
+  "ja": "[大地の懲罰]と[大地の祝福]の持続時間10秒増加"
+ },
+ "17410010": {
+  "en": "+10% Incoming Heal",
+  "ja": "受ける治癒量10%増加"
+ },
+ "17410020": {
+  "en": "+100 Accuracy",
+  "ja": "命中100増加"
+ },
+ "17410030": {
+  "en": "+10% Max HP",
+  "ja": "最大HP10%増加"
+ },
+ "17410040": {
+  "en": "+10% Perfect Chance",
+  "ja": "完璧10%増加"
+ },
+ "17420010": {
+  "en": "10% Max HP Protective Shield",
+  "ja": "最大HPの10%のバリア生成"
+ },
+ "17420020": {
+  "en": "+100 Block, Evasion",
+  "ja": "ガード、回避100増加"
+ },
+ "17420030": {
+  "en": "+20% Status Effect Resist",
+  "ja": "状態異常抵抗20%増加"
+ },
+ "17420040": {
+  "en": "+10% PvE Damage Tolerance increase and +5% PvP Damage Tolerance increase",
+  "ja": "PvEダメージ耐性10%、PvPダメージ耐性5%追加増加"
+ },
+ "17430010": {
+  "en": "+20% PvE Damage Boost and +10% PvP Damage Boost",
+  "ja": "PvEダメージ増幅20%、PvPダメージ増幅10%増加"
+ },
+ "17430020": {
+  "en": "x1.5 [Empyrean Lord's Grace] effect for the duration",
+  "ja": "持続時間中は[神の恩恵]の効果1.5倍増加"
+ },
+ "17430030": {
+  "en": "x1.5 [Earth's Grace] effect for the duration",
+  "ja": "持続時間中は[大地の恩恵]の効果1.5倍増加"
+ },
+ "17430040": {
+  "en": "+15% additional Attack",
+  "ja": "攻撃力15%追加増加"
+ },
+ "17440010": {
+  "en": "+200 Aura Critical Hit",
+  "ja": "気のクリティカル200増加"
+ },
+ "17440020": {
+  "en": "+20 damage to targets afflicted with Debilitating Mark",
+  "ja": "弱化の烙印状態の対象にダメージが20%増加"
+ },
+ "17440030": {
+  "en": "+30% damage to targets with Incapacitated Immunity",
+  "ja": "行動不可免疫の対象にダメージ30%増加"
+ },
+ "17440040": {
+  "en": "-1s Aura attack cooldown",
+  "ja": "気の攻撃の再使用時間1秒減少"
+ },
+ "17700010": {
+  "en": "+20% Attack for 5s on hit",
+  "ja": "的中時に5s間、攻撃力20%増加"
+ },
+ "17700020": {
+  "en": "500 MP damage on hit",
+  "ja": "的中時にMP500ダメージ"
+ },
+ "17700030": {
+  "en": "+10m range",
+  "ja": "射程10m増加"
+ },
+ "17700040": {
+  "en": "+20% Root Chance",
+  "ja": "束縛確率20%増加"
+ },
+ "18010010": {
+  "en": "+20% MP restored",
+  "ja": "MP回復20%増加"
+ },
+ "18010030": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "18010040": {
+  "en": "-1s [Spinning Strike] cooldown on hit",
+  "ja": "的中時に[回転撃]の再使用時間1s減少"
+ },
+ "18010050": {
+  "ja": "4番連続スキル[暴風砕]追加"
+ },
+ "18040010": {
+  "en": "-20% MP consumed",
+  "ja": "MP消耗20%減少"
+ },
+ "18040020": {
+  "en": "+200 Block while using skill",
+  "ja": "スキル使用中はガード200増加"
+ },
+ "18040030": {
+  "en": "Deals up to 12% more damage when less targets are hit",
+  "ja": "的中した対象が少ないほどダメージ量が最大12%増加"
+ },
+ "18040040": {
+  "en": "-200 enemy Accuracy for 3s on landing Bursting Blow",
+  "ja": "[破裂撃]的中時に3s間、命中200減少を付与"
+ },
+ "18040050": {
+  "en": "Ignores Block and Evasion and lands as Multi-Hit",
+  "ja": "ガードと回避を無視して多段ヒットで的中"
+ },
+ "18060010": {
+  "en": "Changes to AoE damage",
+  "ja": "広域ダメージに変更"
+ },
+ "18060020": {
+  "en": "+1s [Impactful Crush] Stun duration",
+  "ja": "[打撃砕]気絶の持続時間が1秒増加"
+ },
+ "18060030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "18060040": {
+  "en": "+30% Skill Speed",
+  "ja": "スキル速度30%増加"
+ },
+ "18060050": {
+  "en": "+20% [Impactful Crush] Stun Chance",
+  "ja": "[打撃砕]気絶確率が20%増加"
+ },
+ "18080010": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "18080020": {
+  "en": "+6m Range",
+  "ja": "射程6m増加"
+ },
+ "18080030": {
+  "en": "+1s Knockdown duration",
+  "ja": "転倒時間1秒増加"
+ },
+ "18080040": {
+  "en": "-15% target's PvE Damage Boost and -7.5% PvP Damage Boost for 10s",
+  "ja": "10s間、対象のPvEダメージ増幅15%、PvPダメージ増幅7.5%減少"
+ },
+ "18080050": {
+  "en": "-5s cooldown",
+  "ja": "再使用時間5秒減少"
+ },
+ "18090010": {
+  "en": "-20% target's Impact-type Resist for 5s",
+  "ja": "5s間、対象の衝撃系抵抗20%減少"
+ },
+ "18090020": {
+  "en": "Changes to Charge Skill, dealing up to 200% more damage",
+  "ja": "チャージ スキルに変更され、ダメージ量最大200%増加"
+ },
+ "18090030": {
+  "en": "50% chance to trigger [Heat Wave Blow] on hit",
+  "ja": "[突進撃破]的中時に50%の確率で[裂波撃]活性化"
+ },
+ "18090040": {
+  "en": "Resets cooldown on defeating an enemy",
+  "ja": "敵を倒した時に再使用時間初期化"
+ },
+ "18090050": {
+  "en": "Ignores Block and Evasion and lands as Multi-Hit",
+  "ja": "ガードと回避を無視して多段ヒットで的中"
+ },
+ "18100020": {
+  "en": "Deals extra damage on attacking a target afflicted with Impact-type status",
+  "ja": "衝撃系対象を攻撃時に追加ダメージ"
+ },
+ "18100030": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "18100040": {
+  "ja": "2番連続スキル[貫通砕]追加"
+ },
+ "18100050": {
+  "en": "Removes [Dark Crush] cooldown",
+  "ja": "[岩撃砕]再使用時間削除"
+ },
+ "18120010": {
+  "en": "+1 consecutive use and Heal over Time can stack up to 2 times",
+  "ja": "連続発動+1回および持続回復最大2個重複"
+ },
+ "18120030": {
+  "en": "+4s healing duration",
+  "ja": "回復持続時間4秒増加"
+ },
+ "18120040": {
+  "en": "+5% HP restored",
+  "ja": "HP5%追加回復"
+ },
+ "18120050": {
+  "en": "-3s cooldown",
+  "ja": "再使用時間3秒減少"
+ },
+ "18130010": {
+  "en": "-15s cooldown",
+  "ja": "再使用時間15秒減少"
+ },
+ "18130020": {
+  "en": "Inflict Exposed for 5s on hit",
+  "ja": "的中時に5s間、隙を付与"
+ },
+ "18130030": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "18130040": {
+  "en": "+30% additional Impact-type Status target damage",
+  "ja": "衝撃系状態異常の対象のダメージ量30%追加増加"
+ },
+ "18140010": {
+  "en": "+1 consecutive use",
+  "ja": "連続発動+1回"
+ },
+ "18140020": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "18140030": {
+  "en": "+20% Move Speed for 3s on Block",
+  "ja": "ガード成功時に3s間、移動速度20%増加"
+ },
+ "18140040": {
+  "ja": "武器ガード成功時に1回、HP5%回復"
+ },
+ "18150010": {
+  "en": "40% chance to inflict Stun for 3s",
+  "ja": "40%の確率で3s間、気絶を付与"
+ },
+ "18150020": {
+  "en": "+20% Seal Chance",
+  "ja": "封印的中確率が20%増加"
+ },
+ "18150030": {
+  "en": "Up to +20% damage when more targets hit",
+  "ja": "的中した対象が多いほどダメージ量が最大20%増加"
+ },
+ "18150040": {
+  "en": "Ignores Block and Evasion and lands as Multi-Hit",
+  "ja": "ガードと回避を無視して多段ヒットで的中"
+ },
+ "18150050": {
+  "en": "25% chance to reset [Heat Wave Blow] cooldown on Block",
+  "ja": "ガード成功時に25%の確率で[裂波撃]の再使用時間初期化"
+ },
+ "18160010": {
+  "en": "+10% Incoming Heal",
+  "ja": "受ける治癒量10%増加"
+ },
+ "18160020": {
+  "en": "+30% Natural Stamina Regen",
+  "ja": "行動力自然回復30%増加"
+ },
+ "18160030": {
+  "en": "+50% amount restored when HP is 50% or less",
+  "ja": "HP50%以下の時にHP回復量50%増加"
+ },
+ "18160040": {
+  "en": "+10% Restoration",
+  "ja": "再生10%増加"
+ },
+ "18170010": {
+  "en": "+20% amount healed when HP is 50% or less",
+  "ja": "HP50%以下の時に回復量20%増加"
+ },
+ "18170020": {
+  "en": "Restores 1,000 Stamina",
+  "ja": "行動力1,000回復"
+ },
+ "18170040": {
+  "en": "+5% HP restored",
+  "ja": "HP5%追加回復"
+ },
+ "18190010": {
+  "en": "+100 Critical Hit",
+  "ja": "クリティカル100増加"
+ },
+ "18190020": {
+  "en": "+100 Accuracy",
+  "ja": "命中100増加"
+ },
+ "18190030": {
+  "en": "+5% Critical Damage Boost",
+  "ja": "クリティカル ダメージ増幅5%増加"
+ },
+ "18190040": {
+  "en": "+5% Double Chance",
+  "ja": "強打5%増加"
+ },
+ "18200010": {
+  "ja": "2番連続スキル[強撃砕]追加"
+ },
+ "18200020": {
+  "en": "Restores 1,000 Stamina on using [Defiance]",
+  "ja": "[衝撃解除]発動時に行動力1,000回復"
+ },
+ "18200030": {
+  "en": "Restores 10% HP on using [Defiance]",
+  "ja": "[衝撃解除]発動時にHP10%回復"
+ },
+ "18200040": {
+  "en": "+2s Tenacity duration",
+  "ja": "強靭さの持続時間2秒増加"
+ },
+ "18200050": {
+  "en": "+50% PvE Damage Tolerance and +25% PvP Damage Tolerance for Tenacity duration",
+  "ja": "強靭さの持続時間中はPvEダメージ耐性50%、PvPダメージ耐性25%増加"
+ },
+ "18210010": {
+  "en": "Restores 300 Stamina on hit",
+  "ja": "的中時に行動力300回復"
+ },
+ "18210020": {
+  "en": "+10m [Tremor Crush] range",
+  "ja": "[震動砕]射程10m増加"
+ },
+ "18210030": {
+  "en": "+50% Multi-Hit on hit",
+  "ja": "的中時に多段ヒット50%増加"
+ },
+ "18210040": {
+  "ja": "2番連続スキル[激動砕]追加"
+ },
+ "18210050": {
+  "en": "+25% [Tremor Crush] Stun Chance",
+  "ja": "[震動砕]気絶確率25%増加"
+ },
+ "18220010": {
+  "en": "Up to +20% damage when more targets hit",
+  "ja": "的中した対象が多いほどダメージ量が最大20%増加"
+ },
+ "18220020": {
+  "en": "+20% Skill Speed",
+  "ja": "スキル速度20%増加"
+ },
+ "18220030": {
+  "en": "Critical Hit on hit",
+  "ja": "的中時に確定クリティカル"
+ },
+ "18220040": {
+  "en": "+25% Knockdown Chance",
+  "ja": "転倒確率25%増加"
+ },
+ "18230010": {
+  "en": "50% chance to inflict Root",
+  "ja": "50%の確率で束縛効果を付与"
+ },
+ "18230020": {
+  "en": "50% chance to inflict -1,000 enemy Max Stamina",
+  "ja": "50%の確率で最大行動力1,000減少を付与"
+ },
+ "18230030": {
+  "en": "+3s Seal, Root, Max Stamina reduction effect",
+  "ja": "封印、束縛、最大行動力減少効果3秒増加"
+ },
+ "18230040": {
+  "en": "+25% Seal, Root, Max Stamina reduction chance",
+  "ja": "封印、束縛、最大行動力減少確率25%増加"
+ },
+ "18240010": {
+  "en": "+15% Defense",
+  "ja": "防御力15%増加"
+ },
+ "18240020": {
+  "en": "+10% Incoming Heal",
+  "ja": "受ける治癒量10%増加"
+ },
+ "18240030": {
+  "en": "+10% PvE Damage Tolerance, +5% PvP Damage Tolerance",
+  "ja": "PvEダメージ耐性10%、PvPダメージ耐性5%増加"
+ },
+ "18240040": {
+  "en": "Restores 7% of Max HP when Protective Shield ends or is broken",
+  "ja": "バリア終了、または破壊時に最大HPの7%回復"
+ },
+ "18250010": {
+  "en": "-30s cooldown",
+  "ja": "再使用時間30秒減少"
+ },
+ "18250020": {
+  "en": "+200 Accuracy",
+  "ja": "命中200増加"
+ },
+ "18250030": {
+  "en": "+200 Critical Hit",
+  "ja": "クリティカル200増加"
+ },
+ "18250040": {
+  "en": "+20% Caster Attack and +10% party member Attack",
+  "ja": "自分の攻撃力20%、パーティー メンバーの攻撃力10%増加"
+ },
+ "18290010": {
+  "en": "-5s cooldown",
+  "ja": "再使用時間5秒減少"
+ },
+ "18290020": {
+  "en": "+10% Heal Boost (up to 20%)",
+  "ja": "治癒増幅10%増加(最大20%)"
+ },
+ "18290030": {
+  "en": "Up to +20% damage when less targets hit",
+  "ja": "的中した対象が少ないほどダメージ量が最大20%増加"
+ },
+ "18290040": {
+  "en": "40% chance to inflict Seal for 3s",
+  "ja": "40%の確率で3s間、封印効果を付与"
+ },
+ "18290050": {
+  "en": "Ignores Block and Evasion and lands as a Critical Hit",
+  "ja": "ガードと回避を無視してクリティカルで的中"
+ },
+ "18300020": {
+  "en": "Restores 120 MP",
+  "ja": "MP120回復"
+ },
+ "18300030": {
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更"
+ },
+ "18300040": {
+  "en": "Multi-Hit on hit",
+  "ja": "的中時に必ず多段ヒット"
+ },
+ "18300050": {
+  "en": "-1s all skill cooldowns on hit",
+  "ja": "的中時にすべてのスキル再使用時間1s減少"
+ },
+ "18330010": {
+  "en": "Up to +20% damage when less targets hit",
+  "ja": "的中した対象が少ないほどダメージ量が最大20%増加"
+ },
+ "18330020": {
+  "en": "50% chance to inflict Stun for 3s",
+  "ja": "50%の確率で3s間、気絶を付与"
+ },
+ "18330030": {
+  "en": "-70% Incoming Heal and Potion Recovery",
+  "ja": "受ける治癒量とポーション回復量70%減少"
+ },
+ "18330040": {
+  "en": "+25% additional Stun Chance",
+  "ja": "気絶確率25%追加増加"
+ },
+ "18420010": {
+  "en": "+10% Status Effect Resist",
+  "ja": "状態異常抵抗10%増加"
+ },
+ "18420020": {
+  "en": "x1.5 [Crossguard] effect for the duration",
+  "ja": "持続時間中は[十字防御]の効果1.5倍増加"
+ },
+ "18420030": {
+  "en": "x1.5 [Wind's Promise] effect for the duration",
+  "ja": "持続時間中は[風の約束]の効果1.5倍増加"
+ },
+ "18420040": {
+  "en": "+10% Incoming Heal",
+  "ja": "受ける治癒量10%増加"
+ },
+ "18440010": {
+  "en": "Restores 10% HP when effect expires naturally",
+  "ja": "効果自然終了時にHP10%回復"
+ },
+ "18440020": {
+  "en": "+10% PvE Damage Tolerance and +5% PvP Damage Tolerance for 10s when effect expires naturally",
+  "ja": "効果自然終了時に10s間、PvEダメージ耐性10%、PvPダメージ耐性5%増加"
+ },
+ "18440030": {
+  "en": "+10% HP limit",
+  "ja": "HP固定10%増加"
+ },
+ "18440040": {
+  "en": "+1s effect duration",
+  "ja": "効果持続時間1秒増加"
+ },
+ "18700010": {
+  "en": "+20% Attack for 5s on hit",
+  "ja": "的中時に5s間、攻撃力20%増加"
+ },
+ "18700020": {
+  "en": "500 MP damage on hit",
+  "ja": "的中時にMP500ダメージ"
+ },
+ "18700030": {
+  "en": "+10m range",
+  "ja": "射程10m増加"
+ },
+ "18700040": {
+  "en": "+20% Stun Chance",
+  "ja": "気絶確率20%増加"
+ }
+}

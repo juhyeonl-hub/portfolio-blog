@@ -1,0 +1,2984 @@
+[
+ {
+  "source": "재시전 시간 {0}초 감소",
+  "en": "-{0}s cooldown",
+  "ja": "再使用時間が{0}秒短縮",
+  "fi": "Palautumisaika lyhenee {0} sekuntia"
+ },
+ {
+  "source": "생명력 {0}% 흡수",
+  "en": "Absorbs {0}% HP",
+  "ja": "HPを{0}%吸収",
+  "fi": "Imee {0}% HP:tä"
+ },
+ {
+  "source": "이동 가능 스킬로 변경",
+  "en": "Changes to mobile skill",
+  "ja": "移動可能スキルに変更",
+  "fi": "Taitoa voi käyttää liikkeessä"
+ },
+ {
+  "source": "스킬 속도 {0}% 증가",
+  "en": "+{0}% Skill Speed",
+  "ja": "スキル速度が{0}%増加",
+  "fi": "Taidon nopeus kasvaa {0}%"
+ },
+ {
+  "source": "적중 시 다단 히트 {0}% 증가",
+  "en": "+{0}% Multi-Hit on hit",
+  "ja": "的中時、多段ヒットが{0}%増加",
+  "fi": "Moniosuma kasvaa {0}% osuttaessa"
+ },
+ {
+  "source": "사거리 {0}m 증가",
+  "en": "+{0}m range",
+  "ja": "射程が{0}m増加",
+  "fi": "Kantama kasvaa {0}m"
+ },
+ {
+  "source": "적중 시 확정 다단 히트",
+  "en": "Guaranteed Multi-Hit on hit",
+  "ja": "的中時、確定で多段ヒット",
+  "fi": "Osuma on varmasti moniosuma"
+ },
+ {
+  "source": "적중 시 확정 치명타",
+  "en": "Guaranteed Critical Hit on hit",
+  "ja": "的中時、確定でクリティカル",
+  "fi": "Osuma on varmasti kriittinen"
+ },
+ {
+  "source": "정신력 소모 {0}% 감소",
+  "en": "-{0}% MP Cost",
+  "ja": "MP消耗が{0}%減少",
+  "fi": "MP-kulutus vähenee {0}%"
+ },
+ {
+  "source": "연속 시전 +{0}회",
+  "en": "+{0} consecutive use(s)",
+  "ja": "連続発動回数が{0}回増加",
+  "fi": "Peräkkäisten käyttökertojen määrä kasvaa {0}"
+ },
+ {
+  "source": "기절 확률 {0}% 증가",
+  "en": "+{0}% Stun Chance",
+  "ja": "気絶確率が{0}%増加",
+  "fi": "Tainnutuksen todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "정신력 회복 {0}% 증가",
+  "en": "+{0}% MP restored",
+  "ja": "MP回復が{0}%増加",
+  "fi": "MP-palautuminen kasvaa {0}%"
+ },
+ {
+  "source": "광역 스킬로 변경",
+  "en": "Changes to AoE skill",
+  "ja": "広域スキルに変更",
+  "fi": "Muuttuu aluetaidoksi"
+ },
+ {
+  "source": "강인함 유지 시간 {0}초 증가",
+  "en": "+{0}s Tenacity duration",
+  "ja": "強靭さの持続時間が{0}秒増加",
+  "fi": "Sitkeyden kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "강인함 유지 시간 동안 PVE 피해 내성 {0}%, PVP 피해 내성 {1}% 증가",
+  "en": "+{0}% PvE Damage Tolerance and +{1}% PvP Damage Tolerance while Tenacity lasts",
+  "ja": "強靭さの持続中、PvEダメージ耐性が{0}%、PvPダメージ耐性が{1}%増加",
+  "fi": "Sitkeyden aikana PvE-vahingonkestävyys kasvaa {0}% ja PvP-vahingonkestävyys {1}%"
+ },
+ {
+  "source": "적중 시 정신력 {0} 피해",
+  "en": "Deals {0} MP damage on hit",
+  "ja": "的中時、MPに{0}ダメージ",
+  "fi": "Aiheuttaa osumalla {0} MP-vahinkoa"
+ },
+ {
+  "source": "막기 및 회피를 무시하고 다단 히트로 적중",
+  "en": "Ignores Block and Evasion and lands as Multi-Hit",
+  "ja": "ガードと回避を無視して多段ヒットで命中",
+  "fi": "Ohittaa torjunnan ja väistön; osuu moniosumana"
+ },
+ {
+  "source": "적중 시 모든 스킬 재시전 시간 {0}s 감소",
+  "en": "Reduces all skill cooldowns by {0}s on hit",
+  "ja": "的中時、すべてのスキルの再使用時間が{0}秒短縮",
+  "fi": "Osuma lyhentää kaikkien taitojen palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "적중 시 {0}s 동안 공격력 {1}% 증가",
+  "en": "On hit, +{1}% Attack for {0}s",
+  "ja": "的中時、{0}秒間、攻撃力が{1}%増加",
+  "fi": "Osuma lisää hyökkäysvoimaa {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "정신력 {0} 회복",
+  "en": "Restores {0} MP",
+  "ja": "MPを{0}回復",
+  "fi": "Palauttaa {0} MP:tä"
+ },
+ {
+  "source": "받는 치유량 {0}% 증가",
+  "en": "+{0}% Incoming Heal",
+  "ja": "受ける回復量が{0}%増加",
+  "fi": "Vastaanotettu parannus kasvaa {0}%"
+ },
+ {
+  "source": "막기 및 회피를 무시하고 치명타로 적중",
+  "en": "Ignores Block and Evasion and lands as a Critical Hit",
+  "ja": "ガードと回避を無視してクリティカルで命中",
+  "fi": "Ohittaa torjunnan ja väistön; osuu kriittisenä osumana"
+ },
+ {
+  "source": "기절 유지 시간 {0}초 증가",
+  "en": "+{0}s Stun duration",
+  "ja": "気絶の持続時間が{0}秒増加",
+  "fi": "Tainnutuksen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "넘어짐 확률 {0}% 증가",
+  "en": "+{0}% Knockdown Chance",
+  "ja": "転倒確率が{0}%増加",
+  "fi": "Kaatamisen todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "명중 {0} 증가",
+  "en": "+{0} Accuracy",
+  "ja": "命中が{0}増加",
+  "fi": "Tarkkuus kasvaa {0}"
+ },
+ {
+  "source": "적중 대상 수가 적을수록 피해량 최대 {0}% 증가",
+  "en": "Deals up to {0}% more damage when fewer targets are hit",
+  "ja": "的中した対象が少ないほどダメージが増加（最大{0}%）",
+  "fi": "Mitä vähemmän kohteita osuu, sitä enemmän vahinko kasvaa, enintään {0}%"
+ },
+ {
+  "source": "적중 대상 수가 많을수록 피해량 최대 {0}% 증가",
+  "en": "Deals up to {0}% more damage when more targets are hit",
+  "ja": "的中した対象が多いほどダメージが増加（最大{0}%）",
+  "fi": "Mitä enemmän kohteita osuu, sitä enemmän vahinko kasvaa, enintään {0}%"
+ },
+ {
+  "source": "강화 마법을 최대 {0}개까지 제거",
+  "en": "Removes up to {0} buffs",
+  "ja": "強化魔法を最大{0}個解除",
+  "fi": "Poistaa enintään {0} vahvistusloitsua"
+ },
+ {
+  "source": "유지 시간 동안 이동 속도 {0}% 증가",
+  "en": "+{0}% Move Speed for the duration",
+  "ja": "持続中、移動速度が{0}%増加",
+  "fi": "Liikkumisnopeus kasvaa {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "생명력 {0}% 추가 회복",
+  "en": "Restores an additional {0}% HP",
+  "ja": "HPを追加で{0}%回復",
+  "fi": "Palauttaa lisäksi {0}% HP:tä"
+ },
+ {
+  "source": "PVE 피해 내성 {0}%, PVP 피해 내성 {1}% 추가 증가",
+  "en": "Additional +{0}% PvE Damage Tolerance and +{1}% PvP Damage Tolerance",
+  "ja": "PvEダメージ耐性が追加で{0}%、PvPダメージ耐性が追加で{1}%増加",
+  "fi": "Lisää PvE-vahingonkestävyyttä vielä {0}% ja PvP-vahingonkestävyyttä {1}%"
+ },
+ {
+  "source": "적중 시 {0}%의 확률로 {1}s 동안 속박",
+  "en": "{0}% chance to inflict Root for {1}s on hit",
+  "ja": "的中時、{0}%の確率で{1}秒間束縛",
+  "fi": "Osuma sitoo kohteen {1} sekunniksi {0}% todennäköisyydellä"
+ },
+ {
+  "source": "적 처치 시 재시전 시간 초기화",
+  "en": "Resets cooldown on defeating an enemy",
+  "ja": "敵を倒すと再使用時間をリセット",
+  "fi": "Palautumisaika nollautuu vihollisen kuollessa"
+ },
+ {
+  "source": "[충격 해제] 시전 시 행동력 {0} 회복",
+  "en": "Restores {0} Stamina on using [충격 해제]",
+  "ja": "[충격 해제]使用時、行動力を{0}回復",
+  "fi": "[충격 해제] palauttaa käytettäessä {0} Staminaa"
+ },
+ {
+  "source": "[충격 해제] 시전 시 생명력 {0}% 회복",
+  "en": "Restores {0}% HP on using [충격 해제]",
+  "ja": "[충격 해제]使用時、HPを{0}%回復",
+  "fi": "[충격 해제] palauttaa käytettäessä {0}% HP:stä"
+ },
+ {
+  "source": "봉인 유지 시간 {0}초 증가",
+  "en": "+{0}s Seal duration",
+  "ja": "封印の持続時間が{0}秒増加",
+  "fi": "Sinetin kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "봉인 확률 {0}% 증가",
+  "en": "+{0}% Seal Chance",
+  "ja": "封印確率が{0}%増加",
+  "fi": "Sinetin todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "유지 시간 {0}초 증가",
+  "en": "+{0}s duration",
+  "ja": "持続時間が{0}秒増加",
+  "fi": "Kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "적중 시 문양 {0}개를 {1}s 동안 각인",
+  "en": "Engraves {0} Insignias for {1}s on hit",
+  "ja": "的中時、紋様を{0}個、{1}秒間刻印",
+  "fi": "Osuma kaivertaa {0} tunnusmerkkiä {1} sekunniksi"
+ },
+ {
+  "source": "적중 시 정신력 {0} 회복",
+  "en": "Restores {0} MP on hit",
+  "ja": "的中時、MPを{0}回復",
+  "fi": "Osuma palauttaa {0} MP:tä"
+ },
+ {
+  "source": "적중 시 {0}s 동안 둔화",
+  "en": "Inflicts Slow for {0}s on hit",
+  "ja": "的中時、{0}秒間鈍化",
+  "fi": "Osuma hidastaa kohdetta {0} sekunnin ajan"
+ },
+ {
+  "source": "{0}%의 확률로 {1}s 동안 기절 부여",
+  "en": "{0}% chance to inflict Stun for {1}s",
+  "ja": "{0}%の確率で{1}秒間気絶を付与",
+  "fi": "{0}% todennäköisyys tainnuttaa {1} sekunniksi"
+ },
+ {
+  "source": "적중 시 행동력 {0} 회복",
+  "en": "Restores {0} Stamina on hit",
+  "ja": "的中時、行動力を{0}回復",
+  "fi": "Osuma palauttaa {0} Staminaa"
+ },
+ {
+  "source": "생명력 {0}% 이하일 때 회복량 {1}% 증가",
+  "en": "+{1}% amount restored when HP is {0}% or less",
+  "ja": "HPが{0}%以下のとき、回復量が{1}%増加",
+  "fi": "Palautuva määrä kasvaa {1}%, kun HP on enintään {0}%"
+ },
+ {
+  "source": "상태이상 저항 {0}% 증가",
+  "en": "+{0}% Status Effect Resist",
+  "ja": "状態異常抵抗が{0}%増加",
+  "fi": "Tilavaikutusten vastustus kasvaa {0}%"
+ },
+ {
+  "source": "적중 대상이 적을수록 피해량 최대 {0}% 증가",
+  "en": "Deals up to {0}% more damage when fewer targets are hit",
+  "ja": "的中した対象が少ないほどダメージが増加（最大{0}%）",
+  "fi": "Mitä vähemmän kohteita osuu, sitä enemmän vahinko kasvaa, enintään {0}%"
+ },
+ {
+  "source": "적중 대상이 많을 수록 피해량 최대 {0}% 증가",
+  "en": "Deals up to {0}% more damage when more targets are hit",
+  "ja": "的中した対象が多いほどダメージが増加（最大{0}%）",
+  "fi": "Mitä enemmän kohteita osuu, sitä enemmän vahinko kasvaa, enintään {0}%"
+ },
+ {
+  "source": "광역 피해로 변경",
+  "en": "Changes to AoE damage",
+  "ja": "広域ダメージに変更",
+  "fi": "Muuttuu aluevahingoksi"
+ },
+ {
+  "source": "실명 유지 시간 {0}초 증가",
+  "en": "+{0}s Blind duration",
+  "ja": "失明の持続時間が{0}秒増加",
+  "fi": "Sokaisun kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "넘어짐 유지 시간 {0}초 증가",
+  "en": "+{0}s Knockdown duration",
+  "ja": "転倒の持続時間が{0}秒増加",
+  "fi": "Kaatamisen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "그로기 게이지 피해량 {0} 증가",
+  "en": "+{0} Stagger Gauge Damage",
+  "ja": "グロッキー ゲージ ダメージ量が{0}増加",
+  "fi": "Horjutusmittarin vahinko kasvaa {0}"
+ },
+ {
+  "source": "적중 시 {0}s 동안 PVE 피해 증폭 {1}%, PVP 피해 증폭 {2}% 증가",
+  "en": "On hit, +{1}% PvE Damage Boost and +{2}% PvP Damage Boost for {0}s",
+  "ja": "的中時、{0}秒間、PvEダメージ増幅が{1}%、PvPダメージ増幅が{2}%増加",
+  "fi": "Osuma lisää PvE-vahingon vahvistusta {1}% ja PvP-vahingon vahvistusta {2}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "전투 상태에서 사용 가능",
+  "en": "Can be used in combat",
+  "ja": "戦闘状態で使用可能",
+  "fi": "Voidaan käyttää taistelun aikana"
+ },
+ {
+  "source": "유지 시간 동안 치명타 피해 증폭 {0}% 증가",
+  "en": "+{0}% Critical Damage Boost for the duration",
+  "ja": "持続中、クリティカルダメージ増幅が{0}%増加",
+  "fi": "Kriittisen vahingon vahvistus kasvaa {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "스킬 사용 중 막기 {0} 증가",
+  "en": "+{0} Block while using skill",
+  "ja": "スキル使用中、ガードが{0}増加",
+  "fi": "Torjunta kasvaa {0} taitoa käytettäessä"
+ },
+ {
+  "source": "막기 및 회피를 무시하고 다단히트로 적중",
+  "en": "Ignores Block and Evasion and lands as Multi-Hit",
+  "ja": "ガードと回避を無視して多段ヒットで命中",
+  "fi": "Ohittaa torjunnan ja väistön; osuu moniosumana"
+ },
+ {
+  "source": "약화 마법 최대 {0}개 해제",
+  "en": "Removes up to {0} debuffs",
+  "ja": "弱化魔法を最大{0}個解除",
+  "fi": "Poistaa enintään {0} heikennysloitsua"
+ },
+ {
+  "source": "치명타 {0} 증가",
+  "en": "+{0} Critical Hit",
+  "ja": "クリティカルが{0}増加",
+  "fi": "Kriittinen osuma kasvaa {0}"
+ },
+ {
+  "source": "치명타 피해 증폭 {0}% 증가",
+  "en": "+{0}% Critical Damage Boost",
+  "ja": "クリティカルダメージ増幅が{0}%増加",
+  "fi": "Kriittisen vahingon vahvistus kasvaa {0}%"
+ },
+ {
+  "source": "막기 성공 시 {0}s 동안 이동 속도 {1}% 증가",
+  "en": "+{1}% Move Speed for {0}s on Block",
+  "ja": "ガード成功時、{0}秒間、移動速度が{1}%増加",
+  "fi": "Onnistunut torjunta lisää liikkumisnopeutta {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "무기막기 성공 시 생명력 {0}% {1}회 회복",
+  "en": "Restores {0}% HP {1} time(s) on Parry",
+  "ja": "武器ガード成功時、HPを{0}%、{1}回回復",
+  "fi": "Onnistunut asetorjunta palauttaa {0}% HP:stä {1} kertaa"
+ },
+ {
+  "source": "적중 시 {0}s 동안 허점 부여",
+  "en": "Inflicts Exposed for {0}s on hit",
+  "ja": "的中時、{0}秒間、隙を付与",
+  "fi": "Osuma aiheuttaa paljastumisen {0} sekunniksi"
+ },
+ {
+  "source": "정신력 소모량 {0}% 감소",
+  "en": "-{0}% MP Cost",
+  "ja": "MP消耗量が{0}%減少",
+  "fi": "MP-kulutus vähenee {0}%"
+ },
+ {
+  "source": "공격력 {0}% 추가 증가",
+  "en": "+{0}% additional Attack",
+  "ja": "攻撃力が追加で{0}%増加",
+  "fi": "Hyökkäysvoima kasvaa vielä {0}%"
+ },
+ {
+  "source": "{0}%의 확률로 밀려남 부여",
+  "en": "{0}% chance to inflict Knock Back",
+  "ja": "{0}%の確率でノックバックを付与",
+  "fi": "{0}% todennäköisyys työntää kohde taaksepäin"
+ },
+ {
+  "source": "{0}초 동안 {1}% 확률로 속박 효과 부여",
+  "en": "{1}% chance to inflict Root for {0}s",
+  "ja": "{0}秒間、{1}%の確率で束縛効果を付与",
+  "fi": "{1}% todennäköisyys sitoa kohde {0} sekunniksi"
+ },
+ {
+  "source": "행동력 {0} 감소",
+  "en": "-{0} Stamina",
+  "ja": "行動力が{0}減少",
+  "fi": "Stamina vähenee {0}"
+ },
+ {
+  "source": "적중 대상이 많을수록 피해량 최대 {0}% 증가",
+  "en": "Deals up to {0}% more damage when more targets are hit",
+  "ja": "的中した対象が多いほどダメージが増加（最大{0}%）",
+  "fi": "Mitä enemmän kohteita osuu, sitä enemmän vahinko kasvaa, enintään {0}%"
+ },
+ {
+  "source": "막기 및 회피를 무시하고 적중 및 지속 피해 간격 {0}% 감소",
+  "en": "Ignores Block and Evasion and reduces Damage over Time interval by {0}%",
+  "ja": "ガードと回避を無視して命中し、持続ダメージの間隔が{0}%減少",
+  "fi": "Ohittaa torjunnan ja väistön, ja jatkuvan vahingon väli lyhenee {0}%"
+ },
+ {
+  "source": "적중 대상 수가 적을수록 최대 {0}% 피해 증가",
+  "en": "Deals up to {0}% more damage when fewer targets are hit",
+  "ja": "的中した対象が少ないほどダメージが増加（最大{0}%）",
+  "fi": "Mitä vähemmän kohteita osuu, sitä enemmän vahinko kasvaa, enintään {0}%"
+ },
+ {
+  "source": "스킬 명중 {0} 증가",
+  "en": "+{0} skill Accuracy",
+  "ja": "スキル命中が{0}増加",
+  "fi": "Taidon tarkkuus kasvaa {0}"
+ },
+ {
+  "source": "PVE 피해 증폭 {0}%, PVP 피해 증폭 {1}% 증가",
+  "en": "+{0}% PvE Damage Boost and +{1}% PvP Damage Boost",
+  "ja": "PvEダメージ増幅が{0}%、PvPダメージ増幅が{1}%増加",
+  "fi": "PvE-vahingon vahvistus kasvaa {0}% ja PvP-vahingon vahvistus {1}%"
+ },
+ {
+  "source": "부활 후 {0}s 동안 무적 효과",
+  "en": "Invincibility for {0}s after resurrection",
+  "ja": "復活後、{0}秒間無敵効果",
+  "fi": "Haavoittumattomuus {0} sekunnin ajan henkiinherätyksen jälkeen"
+ },
+ {
+  "source": "지속 피해 간격 {0}% 감소",
+  "en": "-{0}% Damage over Time interval",
+  "ja": "持続ダメージの間隔が{0}%減少",
+  "fi": "Jatkuvan vahingon väli lyhenee {0}%"
+ },
+ {
+  "source": "속박 확률 {0}% 증가",
+  "en": "+{0}% Root Chance",
+  "ja": "束縛確率が{0}%増加",
+  "fi": "Sidonnan todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "스킬 치명타 {0}% 증가",
+  "en": "+{0}% skill Critical Hit",
+  "ja": "スキルのクリティカルが{0}%増加",
+  "fi": "Taidon kriittinen osuma kasvaa {0}%"
+ },
+ {
+  "source": "적중한 대상 수가 적을수록 피해량 최대 {0}% 증가",
+  "en": "Deals up to {0}% more damage when fewer targets are hit",
+  "ja": "的中した対象が少ないほどダメージが増加（最大{0}%）",
+  "fi": "Mitä vähemmän kohteita osuu, sitä enemmän vahinko kasvaa, enintään {0}%"
+ },
+ {
+  "source": "유지 시간 동안 완벽 {0}% 증가",
+  "en": "+{0}% Perfect Chance for the duration",
+  "ja": "持続中、パーフェクトが{0}%増加",
+  "fi": "Täydellisen iskun todennäköisyys kasvaa {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "적중 시 {0}%의 확률로 밀려남 부여",
+  "en": "{0}% chance to inflict Knock Back on hit",
+  "ja": "的中時、{0}%の確率でノックバックを付与",
+  "fi": "Osumalla {0}% todennäköisyys työntää kohde taaksepäin"
+ },
+ {
+  "source": "유지 시간 동안 다단 히트 적중 {0}% 증가",
+  "en": "+{0}% Multi-Hit Chance for the duration",
+  "ja": "持続中、多段ヒット的中が{0}%増加",
+  "fi": "Moniosuman todennäköisyys kasvaa {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "유지 시간 동안 강타 {0}% 증가",
+  "en": "+{0}% Double Chance for the duration",
+  "ja": "持続中、強打が{0}%増加",
+  "fi": "Tuplaiskun todennäköisyys kasvaa {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "적중 시 {0}%의 확률로 {1}s 동안 기절",
+  "en": "{0}% chance to inflict Stun for {1}s on hit",
+  "ja": "的中時、{0}%の確率で{1}秒間気絶",
+  "fi": "Osumalla {0}% todennäköisyys tainnuttaa {1} sekunniksi"
+ },
+ {
+  "source": "적중 시 {0}s 동안 최대 행동력 {1} 감소",
+  "en": "Reduces max Stamina by {1} for {0}s on hit",
+  "ja": "的中時、{0}秒間、最大行動力が{1}減少",
+  "fi": "Osuma vähentää maksimi-Staminaa {1} {0} sekunnin ajaksi"
+ },
+ {
+  "source": "지속 피해 유지 시간 {0}초 증가",
+  "en": "+{0}s Damage over Time duration",
+  "ja": "持続ダメージの持続時間が{0}秒増加",
+  "fi": "Jatkuvan vahingon kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "둔화 및 속박 대상 피해량 {0}% 추가 증가",
+  "en": "+{0}% additional damage to targets afflicted with Slow and Root",
+  "ja": "鈍化および束縛状態の対象へのダメージが追加で{0}%増加",
+  "fi": "Vahinko hidastettuihin ja sidottuihin kohteisiin kasvaa vielä {0}%"
+ },
+ {
+  "source": "치명타 적중 시 정신력 {0} 회복",
+  "en": "Restores {0} MP on landing a Critical Hit",
+  "ja": "クリティカル時、MPを{0}回復",
+  "fi": "Kriittinen osuma palauttaa {0} MP:tä"
+ },
+ {
+  "source": "재시전 시간 삭제",
+  "en": "Removes cooldown",
+  "ja": "再使用時間を削除",
+  "fi": "Poistaa palautumisajan"
+ },
+ {
+  "source": "차지 스킬로 변경 및 광역 피해",
+  "en": "Changes to Charge Skill with AoE damage",
+  "ja": "チャージスキルに変更し、広域ダメージ",
+  "fi": "Muuttuu lataustaidoksi ja aiheuttaa aluevahinkoa"
+ },
+ {
+  "source": "행동불가 면역 대상 공격 시 피해량 {0}% 증가",
+  "en": "+{0}% damage on attacking targets with Incapacitated Immunity",
+  "ja": "行動不能免疫の対象を攻撃時、ダメージが{0}%増加",
+  "fi": "Vahinko kasvaa {0}% hyökätessä kohteisiin, joilla on toimintakyvyttömyysimmuniteetti"
+ },
+ {
+  "source": "적중 시 추가 피해",
+  "en": "Extra damage on hit",
+  "ja": "的中時、追加ダメージ",
+  "fi": "Osuma aiheuttaa lisävahinkoa"
+ },
+ {
+  "source": "충격계 저항 {0}% 추가 증가",
+  "en": "+{0}% additional Impact-type Resist",
+  "ja": "衝撃系抵抗が追加で{0}%増加",
+  "fi": "Iskutyyppisten vaikutusten vastustus kasvaa vielä {0}%"
+ },
+ {
+  "source": "시전 시 {0}s 동안 최대 생명력의 {1}%만큼 보호막 획득",
+  "en": "Gains a Protective Shield equal to {1}% of max HP for {0}s on use",
+  "ja": "使用時、{0}秒間、最大HPの{1}%分のバリアを獲得",
+  "fi": "Käytettäessä saa {0} sekunniksi suojakilven, joka vastaa {1}% maksimi-HP:stä"
+ },
+ {
+  "source": "적중 시 {0}s 후 추가 피해",
+  "en": "Extra damage after {0}s on hit",
+  "ja": "的中時、{0}秒後に追加ダメージ",
+  "fi": "Osuma aiheuttaa lisävahinkoa {0} sekunnin kuluttua"
+ },
+ {
+  "source": "공포 유지 시간 {0}초 증가",
+  "en": "+{0}s Fear duration",
+  "ja": "恐怖の持続時間が{0}秒増加",
+  "fi": "Pelon kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "공포 확률 {0}% 증가",
+  "en": "+{0}% Fear Chance",
+  "ja": "恐怖確率が{0}%増加",
+  "fi": "Pelon todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "적중 시 [문양 폭발] 재시전 시간 {0}s 감소",
+  "en": "-{0}s [문양 폭발] cooldown on hit",
+  "ja": "的中時、[문양 폭발]の再使用時間が{0}秒短縮",
+  "fi": "Osuma lyhentää taidon [문양 폭발] palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "적중 시 [암습] 재시전 시간 {0}s 감소",
+  "en": "-{0}s [암습] cooldown on hit",
+  "ja": "的中時、[암습]の再使用時間が{0}秒短縮",
+  "fi": "Osuma lyhentää taidon [암습] palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "[맹수의 후려치기] 사용 시 주변 대상을 끌어당김",
+  "en": "Pulls in nearby targets on using [맹수의 후려치기]",
+  "ja": "[맹수의 후려치기]使用時、周囲の対象を引き寄せる",
+  "fi": "[맹수의 후려치기] vetää lähellä olevat kohteet luokseen käytettäessä"
+ },
+ {
+  "source": "적중 시 {0}s 동안 자신의 치명타 피해 증폭 {1}% 증가",
+  "en": "On hit, +{1}% own Critical Damage Boost for {0}s",
+  "ja": "的中時、{0}秒間、自身のクリティカルダメージ増幅が{1}%増加",
+  "fi": "Osuma lisää omaa kriittisen vahingon vahvistusta {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "적중 시 {0}%의 확률로 {1}s 동안 봉인",
+  "en": "{0}% chance to inflict Seal for {1}s on hit",
+  "ja": "的中時、{0}%の確率で{1}秒間封印",
+  "fi": "Osumalla {0}% todennäköisyys sinetöidä kohde {1} sekunniksi"
+ },
+ {
+  "source": "후방 적중 시 문양 {0}개를 {1}s 동안 각인",
+  "en": "Engraves {0} Insignias for {1}s on landing as a Back attack",
+  "ja": "背後的中時、紋様を{0}個、{1}秒間刻印",
+  "fi": "Selkäosuma kaivertaa {0} tunnusmerkkiä {1} sekunniksi"
+ },
+ {
+  "source": "적중 시 보호막 파괴",
+  "en": "Breaks Protective Shields on hit",
+  "ja": "的中時、バリアを破壊",
+  "fi": "Osuma rikkoo suojakilvet"
+ },
+ {
+  "source": "적중 시 {0}%의 확률로 [회오리 베기] 활성화",
+  "en": "{0}% chance to trigger [회오리 베기] on hit",
+  "ja": "的中時、{0}%の確率で[회오리 베기]を活性化",
+  "fi": "Osumalla {0}% todennäköisyys aktivoida [회오리 베기]"
+ },
+ {
+  "source": "적중 대상 수가 적을수록 치명타 최대 {0}% 증가",
+  "en": "Up to +{0}% Critical Hit when fewer targets are hit",
+  "ja": "的中した対象が少ないほどクリティカルが増加（最大{0}%）",
+  "fi": "Mitä vähemmän kohteita osuu, sitä enemmän kriittinen osuma kasvaa, enintään {0}%"
+ },
+ {
+  "source": "치명타 적중 시 [심장 찌르기] 재시전 시간 초기화",
+  "en": "Resets [심장 찌르기] cooldown on landing a Critical Hit",
+  "ja": "クリティカル時、[심장 찌르기]の再使用時間をリセット",
+  "fi": "Kriittinen osuma nollaa taidon [심장 찌르기] palautumisajan"
+ },
+ {
+  "source": "회피 성공 시 {0}%의 확률로 [회오리 베기] 재시전 시간 초기화",
+  "en": "{0}% chance to reset [회오리 베기] cooldown on Evasion",
+  "ja": "回避成功時、{0}%の確率で[회오리 베기]の再使用時間をリセット",
+  "fi": "Onnistunut väistö nollaa {0}% todennäköisyydellä taidon [회오리 베기] palautumisajan"
+ },
+ {
+  "source": "실명 대상 적중 시 {0}%의 확률로 {1}s 동안 회전시키며 기절",
+  "en": "On hitting a Blinded target, {0}% chance to spin and Stun it for {1}s",
+  "ja": "失明状態の対象に的中時、{0}%の確率で{1}秒間回転させて気絶",
+  "fi": "Sokaistuun kohteeseen osuttaessa {0}% todennäköisyys pyörittää ja tainnuttaa se {1} sekunniksi"
+ },
+ {
+  "source": "[침투] 적중 시 행동력 {0} 회복",
+  "en": "Restores {0} Stamina on landing [침투]",
+  "ja": "[침투]的中時、行動力を{0}回復",
+  "fi": "[침투] palauttaa osuessaan {0} Staminaa"
+ },
+ {
+  "source": "[침투] 사거리 {0}m 증가",
+  "en": "+{0}m [침투] range",
+  "ja": "[침투]の射程が{0}m増加",
+  "fi": "Taidon [침투] kantama kasvaa {0}m"
+ },
+ {
+  "source": "[침투] 적중 시 보호막 파괴",
+  "en": "Breaks Protective Shields on landing [침투]",
+  "ja": "[침투]的中時、バリアを破壊",
+  "fi": "[침투] rikkoo osuessaan suojakilvet"
+ },
+ {
+  "source": "{0}번 연속기 [암격] 추가",
+  "en": "Adds Chain Skill {0} [암격]",
+  "ja": "連続スキル{0}番目[암격]を追加",
+  "fi": "Lisää ketjutaidon {0}: [암격]"
+ },
+ {
+  "source": "[침투]의 실명 확률 {0}% 증가",
+  "en": "+{0}% [침투] Blind Chance",
+  "ja": "[침투]の失明確率が{0}%増加",
+  "fi": "Taidon [침투] sokaisun todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "실명 상태 대상에게 사용 가능",
+  "en": "Can be used on targets afflicted with Blind",
+  "ja": "失明状態の対象に使用可能",
+  "fi": "Voidaan käyttää sokaistuihin kohteisiin"
+ },
+ {
+  "source": "회전 효과 추가",
+  "en": "Adds Spin effect",
+  "ja": "回転効果を追加",
+  "fi": "Lisää pyörimisvaikutuksen"
+ },
+ {
+  "source": "[문양 폭발] 후 문양 {0}중첩 각인 유지",
+  "en": "Keeps {0} Insignia stacks engraved after [문양 폭발]",
+  "ja": "[문양 폭발]後、紋様{0}重ねの刻印を維持",
+  "fi": "[문양 폭발] jälkeen {0} tunnusmerkin pinoa pysyy kaiverrettuna"
+ },
+ {
+  "source": "{0}번 연속기 [폭풍 베기] 추가",
+  "en": "Adds Chain Skill {0} [폭풍 베기]",
+  "ja": "連続スキル{0}番目[폭풍 베기]を追加",
+  "fi": "Lisää ketjutaidon {0}: [폭풍 베기]"
+ },
+ {
+  "source": "유지 시간 동안 정신력 소모량 {0}% 감소",
+  "en": "-{0}% MP Cost for the duration",
+  "ja": "持続中、MP消耗量が{0}%減少",
+  "fi": "MP-kulutus vähenee {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "유지 시간 동안 [배후 강타] 효과 {0}배 증가",
+  "en": "x{0} [배후 강타] effect for the duration",
+  "ja": "持続中、[배후 강타]の効果が{0}倍",
+  "fi": "Taidon [배후 강타] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 [강습 자세] 효과 {0}배 증가",
+  "en": "x{0} [강습 자세] effect for the duration",
+  "ja": "持続中、[강습 자세]の効果が{0}倍",
+  "fi": "Taidon [강습 자세] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "전투 속도 {0}% 추가 증가",
+  "en": "+{0}% additional Combat Speed",
+  "ja": "戦闘速度が追加で{0}%増加",
+  "fi": "Taistelunopeus kasvaa vielä {0}%"
+ },
+ {
+  "source": "회피 성공 시 {0}s 동안 이동 속도 {1}% 증가",
+  "en": "+{1}% Move Speed for {0}s on Evasion",
+  "ja": "回避成功時、{0}秒間、移動速度が{1}%増加",
+  "fi": "Onnistunut väistö lisää liikkumisnopeutta {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "회피 성공 시 생명력 {0}% {1}회 회복",
+  "en": "Restores {0}% HP {1} time(s) on Evasion",
+  "ja": "回避成功時、HPを{0}%、{1}回回復",
+  "fi": "Onnistunut väistö palauttaa {0}% HP:stä {1} kertaa"
+ },
+ {
+  "source": "강화 마법 {0}개 이상 제거 시 {1}s 동안 회전시키며 기절",
+  "en": "Spins and Stuns for {1}s when {0} or more buffs are removed",
+  "ja": "強化魔法を{0}個以上解除すると{1}秒間回転させて気絶",
+  "fi": "Kun vähintään {0} vahvistusloitsua poistetaan, kohde pyörii ja tainnutetaan {1} sekunniksi"
+ },
+ {
+  "source": "은신 중 공격 시 확정 치명타",
+  "en": "Guaranteed Critical Hit when attacking from Stealth",
+  "ja": "隠身中に攻撃すると確定でクリティカル",
+  "fi": "Hyökkäys näkymättömänä on varmasti kriittinen osuma"
+ },
+ {
+  "source": "PC 처치 관여 시 재시전 시간 초기화",
+  "en": "Resets cooldown on participating in defeating a player",
+  "ja": "PC撃破に関与すると再使用時間をリセット",
+  "fi": "Palautumisaika nollautuu, kun osallistut pelaajahahmon kukistamiseen"
+ },
+ {
+  "source": "{0}번 연속기 [암검 추적] 추가",
+  "en": "Adds Chain Skill {0} [암검 추적]",
+  "ja": "連続スキル{0}番目[암검 추적]を追加",
+  "fi": "Lisää ketjutaidon {0}: [암검 추적]"
+ },
+ {
+  "source": "적중 시 모든 스킬 재시전 시간 {0}% 감소",
+  "en": "Reduces all skill cooldowns by {0}% on hit",
+  "ja": "的中時、すべてのスキルの再使用時間が{0}%短縮",
+  "fi": "Osuma lyhentää kaikkien taitojen palautumisaikaa {0}%"
+ },
+ {
+  "source": "[트리니엘의 비수]로 적 처치 시 재시전 시간 초기화",
+  "en": "Resets cooldown on defeating an enemy with [트리니엘의 비수]",
+  "ja": "[트리니엘의 비수]で敵を倒すと再使用時間をリセット",
+  "fi": "Palautumisaika nollautuu, kun vihollinen kukistetaan taidolla [트리니엘의 비수]"
+ },
+ {
+  "source": "모든 스킬의 재시전 시간 {0}% 증가",
+  "en": "+{0}% cooldown for all skills",
+  "ja": "すべてのスキルの再使用時間が{0}%増加",
+  "fi": "Kaikkien taitojen palautumisaika pitenee {0}%"
+ },
+ {
+  "source": "[공중 포박] 사거리 {0}m 증가",
+  "en": "+{0}m [공중 포박] range",
+  "ja": "[공중 포박]の射程が{0}m増加",
+  "fi": "Taidon [공중 포박] kantama kasvaa {0}m"
+ },
+ {
+  "source": "{0}번 연속기 [공중 살법] 추가",
+  "en": "Adds Chain Skill {0} [공중 살법]",
+  "ja": "連続スキル{0}番目[공중 살법]を追加",
+  "fi": "Lisää ketjutaidon {0}: [공중 살법]"
+ },
+ {
+  "source": "[공중 포박] 첫 타 적중 시 {0}s 동안 [기습 자세] 효과 {1}배 증가",
+  "en": "x{1} [기습 자세] effect for {0}s on landing the first hit of [공중 포박]",
+  "ja": "[공중 포박]の初撃的中時、{0}秒間[기습 자세]の効果が{1}倍に増加",
+  "fi": "Kun taidon [공중 포박] ensimmäinen isku osuu, taidon [기습 자세] vaikutus kasvaa {1}-kertaiseksi {0} sekunnin ajaksi"
+ },
+ {
+  "source": "유지 시간 동안 상태이상 적중 {0}% 증가",
+  "en": "+{0}% Status Effect Chance for the duration",
+  "ja": "持続中、状態異常的中が{0}%増加",
+  "fi": "Tilavaikutusten osumatodennäköisyys kasvaa {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "유지 시간 동안 [빈틈 노리기] 효과 {0}배 증가",
+  "en": "x{0} [빈틈 노리기] effect for the duration",
+  "ja": "持続中、[빈틈 노리기]の効果が{0}倍",
+  "fi": "Taidon [빈틈 노리기] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 치명타 시 {0}% 확률로 추가 피해",
+  "en": "{0}% chance of extra damage on Critical Hit for the duration",
+  "ja": "持続中、クリティカル時に{0}%の確率で追加ダメージ",
+  "fi": "Vaikutuksen aikana kriittinen osuma aiheuttaa {0}% todennäköisyydellä lisävahinkoa"
+ },
+ {
+  "source": "유지 시간 동안 {0}% 확률로 발사체 면역",
+  "en": "{0}% chance to be immune to projectiles for the duration",
+  "ja": "持続中、{0}%の確率で投射体を無効化",
+  "fi": "Vaikutuksen aikana {0}% todennäköisyys olla immuuni ammuksille"
+ },
+ {
+  "source": "유지 시간 동안 회피 시 {0}% 확률로 모든 스킬 재시전 시간 {1}s 감소",
+  "en": "For the duration, {0}% chance to reduce all skill cooldowns by {1}s on Evasion",
+  "ja": "持続中、回避時に{0}%の確率ですべてのスキルの再使用時間が{1}秒短縮",
+  "fi": "Vaikutuksen aikana väistö lyhentää {0}% todennäköisyydellä kaikkien taitojen palautumisaikaa {1} sekuntia"
+ },
+ {
+  "source": "회피 {0} 추가 증가",
+  "en": "+{0} additional Evasion",
+  "ja": "回避が追加で{0}増加",
+  "fi": "Väistö kasvaa vielä {0}"
+ },
+ {
+  "source": "실명 확률 {0}% 증가",
+  "en": "+{0}% Blind Chance",
+  "ja": "失明確率が{0}%増加",
+  "fi": "Sokaisun todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "적중 시 {0}%의 확률로 {1}s 동안 회전시키며 기절",
+  "en": "{0}% chance to spin and Stun the target for {1}s on hit",
+  "ja": "的中時、{0}%の確率で{1}秒間回転させて気絶",
+  "fi": "Osumalla {0}% todennäköisyys pyörittää ja tainnuttaa kohde {1} sekunniksi"
+ },
+ {
+  "source": "사용 시 {0}s 동안 자신의 회피 {1} 증가",
+  "en": "+{1} own Evasion for {0}s on use",
+  "ja": "使用時、{0}秒間、自身の回避が{1}増加",
+  "fi": "Käytettäessä oma väistö kasvaa {1} {0} sekunnin ajaksi"
+ },
+ {
+  "source": "적중 시 [회전격] 재시전 시간 {0}s 감소",
+  "en": "-{0}s [회전격] cooldown on hit",
+  "ja": "的中時、[회전격]の再使用時間が{0}秒短縮",
+  "fi": "Osuma lyhentää taidon [회전격] palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "{0}번 연속기 [폭풍쇄] 추가",
+  "en": "Adds Chain Skill {0} [폭풍쇄]",
+  "ja": "連続スキル{0}番目[폭풍쇄]を追加",
+  "fi": "Lisää ketjutaidon {0}: [폭풍쇄]"
+ },
+ {
+  "source": "[파열격] 적중 시 {0}s 동안 명중 {1} 감소 부여",
+  "en": "Inflicts -{1} Accuracy for {0}s on landing [파열격]",
+  "ja": "[파열격]的中時、{0}秒間、命中{1}減少を付与",
+  "fi": "[파열격] vähentää osuessaan tarkkuutta {1} {0} sekunnin ajaksi"
+ },
+ {
+  "source": "{0}s 동안 대상의 충격계 저항 {1}% 감소",
+  "en": "-{1}% target Impact-type Resist for {0}s",
+  "ja": "{0}秒間、対象の衝撃系抵抗が{1}%減少",
+  "fi": "Kohteen iskutyyppisten vaikutusten vastustus vähenee {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "차지 스킬로 변경되고 피해량 최대 {0}% 증가",
+  "en": "Changes to Charge Skill, dealing up to {0}% more damage",
+  "ja": "チャージスキルに変更され、ダメージが最大{0}%増加",
+  "fi": "Muuttuu lataustaidoksi, ja vahinko kasvaa enintään {0}%"
+ },
+ {
+  "source": "[돌진 격파] 적중 시 {0}%의 확률로 [열파격] 활성화",
+  "en": "{0}% chance to trigger [열파격] on landing [돌진 격파]",
+  "ja": "[돌진 격파]的中時、{0}%の確率で[열파격]を活性化",
+  "fi": "[돌진 격파] aktivoi osuessaan taidon [열파격] {0}% todennäköisyydellä"
+ },
+ {
+  "source": "[타격쇄] 기절 유지 시간이 {0}초 증가",
+  "en": "+{0}s [타격쇄] Stun duration",
+  "ja": "[타격쇄]の気絶持続時間が{0}秒増加",
+  "fi": "Taidon [타격쇄] tainnutuksen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "[타격쇄] 기절 확률이 {0}% 증가",
+  "en": "+{0}% [타격쇄] Stun Chance",
+  "ja": "[타격쇄]の気絶確率が{0}%増加",
+  "fi": "Taidon [타격쇄] tainnutuksen todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "충격계 대상 공격 시 추가 피해",
+  "en": "Deals extra damage on attacking a target afflicted with Impact-type status",
+  "ja": "衝撃系状態の対象を攻撃時、追加ダメージ",
+  "fi": "Aiheuttaa lisävahinkoa hyökätessä iskutyyppisestä tilasta kärsivään kohteeseen"
+ },
+ {
+  "source": "{0}번 연속기 [관통쇄] 추가",
+  "en": "Adds Chain Skill {0} [관통쇄]",
+  "ja": "連続スキル{0}番目[관통쇄]を追加",
+  "fi": "Lisää ketjutaidon {0}: [관통쇄]"
+ },
+ {
+  "source": "[암격쇄] 재시전 시간 삭제",
+  "en": "Removes [암격쇄] cooldown",
+  "ja": "[암격쇄]の再使用時間を削除",
+  "fi": "Poistaa taidon [암격쇄] palautumisajan"
+ },
+ {
+  "source": "봉인 적중 확률이 {0}% 증가",
+  "en": "+{0}% Seal hit chance",
+  "ja": "封印の命中確率が{0}%増加",
+  "fi": "Sinetin osumatodennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "막기 성공 시 {0}%의 확률로 [열파격] 재시전 시간 초기화",
+  "en": "{0}% chance to reset [열파격] cooldown on Block",
+  "ja": "ガード成功時、{0}%の確率で[열파격]の再使用時間をリセット",
+  "fi": "Onnistunut torjunta nollaa {0}% todennäköisyydellä taidon [열파격] palautumisajan"
+ },
+ {
+  "source": "연속 시전 +{0}회 및 지속 회복 최대 {1}개 중첩",
+  "en": "+{0} consecutive use(s) and Heal over Time can stack up to {1} times",
+  "ja": "連続使用+{0}回、持続回復が最大{1}個まで重複",
+  "fi": "+{0} peräkkäistä käyttökertaa, ja jatkuva parannus voi kasautua enintään {1} kertaa"
+ },
+ {
+  "source": "회복 지속 시간 {0}초 증가",
+  "en": "+{0}s healing duration",
+  "ja": "回復の持続時間が{0}秒増加",
+  "fi": "Parannuksen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "[진동쇄] 사거리 {0}m 증가",
+  "en": "+{0}m [진동쇄] range",
+  "ja": "[진동쇄]の射程が{0}m増加",
+  "fi": "Taidon [진동쇄] kantama kasvaa {0}m"
+ },
+ {
+  "source": "{0}번 연속기 [격동쇄] 추가",
+  "en": "Adds Chain Skill {0} [격동쇄]",
+  "ja": "連続スキル{0}番目[격동쇄]を追加",
+  "fi": "Lisää ketjutaidon {0}: [격동쇄]"
+ },
+ {
+  "source": "[진동쇄] 기절 확률 {0}% 증가",
+  "en": "+{0}% [진동쇄] Stun Chance",
+  "ja": "[진동쇄]の気絶確率が{0}%増加",
+  "fi": "Taidon [진동쇄] tainnutuksen todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "넘어짐 시간 {0}초 증가",
+  "en": "+{0}s Knockdown time",
+  "ja": "転倒時間が{0}秒増加",
+  "fi": "Kaatamisen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "{0}s 동안 대상의 PVE 피해 증폭 {1}%, PVP 피해 증폭 {2}% 감소",
+  "en": "-{1}% target PvE Damage Boost and -{2}% PvP Damage Boost for {0}s",
+  "ja": "{0}秒間、対象のPvEダメージ増幅が{1}%、PvPダメージ増幅が{2}%減少",
+  "fi": "Kohteen PvE-vahingon vahvistus vähenee {1}% ja PvP-vahingon vahvistus {2}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "치유 증폭 {0}% 증가 (최대 {1}%)",
+  "en": "+{0}% Heal Boost (up to {1}%)",
+  "ja": "治癒増幅が{0}%増加（最大{1}%）",
+  "fi": "Parannuksen vahvistus kasvaa {0}% (enintään {1}%)"
+ },
+ {
+  "source": "{0}%의 확률로 {1}s 동안 봉인 효과 부여",
+  "en": "{0}% chance to inflict Seal for {1}s",
+  "ja": "{0}%の確率で{1}秒間封印効果を付与",
+  "fi": "{0}% todennäköisyys sinetöidä kohde {1} sekunniksi"
+ },
+ {
+  "source": "{0}번 연속기 [강격쇄] 추가",
+  "en": "Adds Chain Skill {0} [강격쇄]",
+  "ja": "連続スキル{0}番目[강격쇄]を追加",
+  "fi": "Lisää ketjutaidon {0}: [강격쇄]"
+ },
+ {
+  "source": "강타 {0}% 증가",
+  "en": "+{0}% Double Chance",
+  "ja": "強打が{0}%増加",
+  "fi": "Tuplaiskun todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "행동력 자연 회복 {0}% 증가",
+  "en": "+{0}% Natural Stamina Regen",
+  "ja": "行動力自然回復が{0}%増加",
+  "fi": "Staminan luonnollinen palautuminen kasvaa {0}%"
+ },
+ {
+  "source": "생명력 {0}% 이하일 때 생명력 회복량 {1}% 증가",
+  "en": "+{1}% HP restored when HP is {0}% or less",
+  "ja": "HPが{0}%以下のとき、HP回復量が{1}%増加",
+  "fi": "HP:n palautuva määrä kasvaa {1}%, kun HP on enintään {0}%"
+ },
+ {
+  "source": "재생 {0}% 증가",
+  "en": "+{0}% Restoration",
+  "ja": "再生が{0}%増加",
+  "fi": "Uusiutuminen kasvaa {0}%"
+ },
+ {
+  "source": "충격계 상태이상 대상 피해량 {0}% 추가 증가",
+  "en": "+{0}% additional damage to targets afflicted with Impact-type status",
+  "ja": "衝撃系状態異常の対象へのダメージが追加で{0}%増加",
+  "fi": "Vahinko iskutyyppisestä tilasta kärsiviin kohteisiin kasvaa vielä {0}%"
+ },
+ {
+  "source": "받는 치유량 및 물약 회복량 {0}% 감소",
+  "en": "-{0}% Incoming Heal and potion recovery",
+  "ja": "受ける回復量とポーション回復量が{0}%減少",
+  "fi": "Vastaanotettu parannus ja juomien palautus vähenevät {0}%"
+ },
+ {
+  "source": "기절 확률 {0}% 추가 증가",
+  "en": "+{0}% additional Stun Chance",
+  "ja": "気絶確率が追加で{0}%増加",
+  "fi": "Tainnutuksen todennäköisyys kasvaa vielä {0}%"
+ },
+ {
+  "source": "방어력 {0}% 증가",
+  "en": "+{0}% Defense",
+  "ja": "防御力が{0}%増加",
+  "fi": "Puolustus kasvaa {0}%"
+ },
+ {
+  "source": "PVE 피해 내성 {0}%, PVP 피해 내성 {1}% 증가",
+  "en": "+{0}% PvE Damage Tolerance and +{1}% PvP Damage Tolerance",
+  "ja": "PvEダメージ耐性が{0}%、PvPダメージ耐性が{1}%増加",
+  "fi": "PvE-vahingonkestävyys kasvaa {0}% ja PvP-vahingonkestävyys {1}%"
+ },
+ {
+  "source": "보호막 종료 또는 파괴 시 최대 생명력의 {0}% 회복",
+  "en": "Restores {0}% of max HP when the Protective Shield expires or is broken",
+  "ja": "バリアの終了または破壊時、最大HPの{0}%を回復",
+  "fi": "Palauttaa {0}% maksimi-HP:stä, kun suojakilpi päättyy tai rikkoutuu"
+ },
+ {
+  "source": "{0}% 확률로 속박 효과 부여",
+  "en": "{0}% chance to inflict Root",
+  "ja": "{0}%の確率で束縛効果を付与",
+  "fi": "{0}% todennäköisyys sitoa kohde"
+ },
+ {
+  "source": "{0}% 확률로 최대 행동력 {1} 감소 부여",
+  "en": "{0}% chance to inflict -{1} max Stamina",
+  "ja": "{0}%の確率で最大行動力{1}減少を付与",
+  "fi": "{0}% todennäköisyys vähentää maksimi-Staminaa {1}"
+ },
+ {
+  "source": "봉인, 속박, 최대 행동력 감소 효과 {0}초 증가",
+  "en": "+{0}s Seal, Root and max Stamina reduction duration",
+  "ja": "封印、束縛、最大行動力減少効果が{0}秒増加",
+  "fi": "Sinetin, sidonnan ja maksimi-Staminan vähennyksen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "봉인, 속박, 최대 행동력 감소 확률 {0}% 증가",
+  "en": "+{0}% Seal, Root and max Stamina reduction chance",
+  "ja": "封印、束縛、最大行動力減少の確率が{0}%増加",
+  "fi": "Sinetin, sidonnan ja maksimi-Staminan vähennyksen todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "행동력 {0} 회복",
+  "en": "Restores {0} Stamina",
+  "ja": "行動力を{0}回復",
+  "fi": "Palauttaa {0} Staminaa"
+ },
+ {
+  "source": "약화 마법 {0}개 해제",
+  "en": "Removes {0} debuff(s)",
+  "ja": "弱化魔法を{0}個解除",
+  "fi": "Poistaa {0} heikennysloitsua"
+ },
+ {
+  "source": "자신 공격력 {0}%, 파티원 공격력 {1}% 증가",
+  "en": "+{0}% own Attack and +{1}% party member Attack",
+  "ja": "自身の攻撃力が{0}%、パーティーメンバーの攻撃力が{1}%増加",
+  "fi": "Oma hyökkäysvoima kasvaa {0}% ja ryhmän jäsenten {1}%"
+ },
+ {
+  "source": "유지 시간 동안 [십자 방어] 효과 {0}배 증가",
+  "en": "x{0} [십자 방어] effect for the duration",
+  "ja": "持続中、[십자 방어]の効果が{0}倍",
+  "fi": "Taidon [십자 방어] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 [바람의 약속] 효과 {0}배 증가",
+  "en": "x{0} [바람의 약속] effect for the duration",
+  "ja": "持続中、[바람의 약속]の効果が{0}倍",
+  "fi": "Taidon [바람의 약속] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "효과 자연 종료 시 생명력 {0}% 회복",
+  "en": "Restores {0}% HP when effect expires naturally",
+  "ja": "効果が自然終了すると、HPを{0}%回復",
+  "fi": "Palauttaa {0}% HP:stä, kun vaikutus päättyy luonnollisesti"
+ },
+ {
+  "source": "효과 자연 종료 시 {0}s 동안 PVE 피해 내성 {1}%, PVP 피해 내성 {2}% 증가",
+  "en": "+{1}% PvE Damage Tolerance and +{2}% PvP Damage Tolerance for {0}s when effect expires naturally",
+  "ja": "効果が自然終了すると、{0}秒間、PvEダメージ耐性が{1}%、PvPダメージ耐性が{2}%増加",
+  "fi": "Kun vaikutus päättyy luonnollisesti, PvE-vahingonkestävyys kasvaa {1}% ja PvP-vahingonkestävyys {2}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "생명력 고정 {0}% 증가",
+  "en": "+{0}% HP limit",
+  "ja": "HP固定が{0}%増加",
+  "fi": "HP:n alaraja kasvaa {0}%"
+ },
+ {
+  "source": "효과 지속 시간 {0}초 증가",
+  "en": "+{0}s effect duration",
+  "ja": "効果の持続時間が{0}秒増加",
+  "fi": "Vaikutuksen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "[열화] 발동 시 {0}s 동안 불 속성 피해 증폭 {1}% 증가",
+  "en": "+{1}% Fire Damage Boost for {0}s when [열화] triggers",
+  "ja": "[열화]発動時、{0}秒間、火属性ダメージ増幅が{1}%増加",
+  "fi": "Kun [열화] laukeaa, tulivahingon vahvistus kasvaa {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "[열화] 적중 시 [불꽃 폭발] 재시전 시간 초기화",
+  "en": "Resets [불꽃 폭발] cooldown on landing [열화]",
+  "ja": "[열화]的中時、[불꽃 폭발]の再使用時間をリセット",
+  "fi": "[열화] nollaa osuessaan taidon [불꽃 폭발] palautumisajan"
+ },
+ {
+  "source": "적중 시 [겨울의 속박] 재시전 시간 {0}초 감소",
+  "en": "-{0}s [겨울의 속박] cooldown on hit",
+  "ja": "的中時、[겨울의 속박]の再使用時間が{0}秒短縮",
+  "fi": "Osuma lyhentää taidon [겨울의 속박] palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "[냉기 파동] 적중 시 {0}%의 확률로 {1}초 빙결",
+  "en": "{0}% chance to inflict Frost for {1}s on landing [냉기 파동]",
+  "ja": "[냉기 파동]的中時、{0}%の確率で{1}秒間氷結",
+  "fi": "[냉기 파동] jäädyttää osuessaan kohteen {0}% todennäköisyydellä {1} sekunniksi"
+ },
+ {
+  "source": "적중 시 {0}s 동안 받는 치유량 {1}% 감소",
+  "en": "-{1}% Incoming Heal for {0}s on hit",
+  "ja": "的中時、{0}秒間、受ける回復量が{1}%減少",
+  "fi": "Osuma vähentää vastaanotettua parannusta {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "작살 당 [지옥의 화염] 재시전 시간 {0}초 감소",
+  "en": "-{0}s [지옥의 화염] cooldown per Harpoon",
+  "ja": "銛ごとに[지옥의 화염]の再使用時間が{0}秒短縮",
+  "fi": "Jokainen harppuuna lyhentää taidon [지옥의 화염] palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "작살 당 피해 {0}%씩, 최대 {1}%까지 증가",
+  "en": "+{0}% damage per Harpoon, up to {1}%",
+  "ja": "銛ごとにダメージが{0}%ずつ増加（最大{1}%）",
+  "fi": "Vahinko kasvaa {0}% harppuunaa kohden, enintään {1}%"
+ },
+ {
+  "source": "[혹한의 바람] 소환 시간 {0}초 증가",
+  "en": "+{0}s [혹한의 바람] summon duration",
+  "ja": "[혹한의 바람]の召喚時間が{0}秒増加",
+  "fi": "Taidon [혹한의 바람] kutsun kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "끌어당기기 효과",
+  "en": "Pull effect",
+  "ja": "引き寄せ効果",
+  "fi": "Vetovaikutus"
+ },
+ {
+  "source": "적중 시 [빙결] 재시전 시간 {0}초 감소",
+  "en": "-{0}s [빙결] cooldown on hit",
+  "ja": "的中時、[빙결]の再使用時間が{0}秒短縮",
+  "fi": "Osuma lyhentää taidon [빙결] palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "{0}s 후 지연 피해",
+  "en": "Delayed damage after {0}s",
+  "ja": "{0}秒後に遅延ダメージ",
+  "fi": "Viivästetty vahinko {0} sekunnin kuluttua"
+ },
+ {
+  "source": "적중 시 [집중의 기원] 재시전 시간 {0}초 감소",
+  "en": "-{0}s [집중의 기원] cooldown on hit",
+  "ja": "的中時、[집중의 기원]の再使用時間が{0}秒短縮",
+  "fi": "Osuma lyhentää taidon [집중의 기원] palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "빙결 적중 시 [빙결 폭발] 재시전 시간 초기화",
+  "en": "Resets [빙결 폭발] cooldown on landing Frost",
+  "ja": "氷結的中時、[빙결 폭발]の再使用時間をリセット",
+  "fi": "Jäädytyksen osuessa taidon [빙결 폭발] palautumisaika nollautuu"
+ },
+ {
+  "source": "PC 대상 빙결 확률 {0}% 증가",
+  "en": "+{0}% Frost Chance against players",
+  "ja": "PC対象の氷結確率が{0}%増加",
+  "fi": "Jäädytyksen todennäköisyys pelaajahahmoja vastaan kasvaa {0}%"
+ },
+ {
+  "source": "빙결 유지 시간 {0}초 증가",
+  "en": "+{0}s Frost duration",
+  "ja": "氷結の持続時間が{0}秒増加",
+  "fi": "Jäädytyksen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "[겨울의 속박] 적중 시 {0}%의 확률로 {1}초 동안 빙결",
+  "en": "{0}% chance to inflict Frost for {1}s on landing [겨울의 속박]",
+  "ja": "[겨울의 속박]的中時、{0}%の確率で{1}秒間氷結",
+  "fi": "[겨울의 속박] jäädyttää osuessaan kohteen {0}% todennäköisyydellä {1} sekunniksi"
+ },
+ {
+  "source": "[겨울의 속박] 적중 시 {0}s 동안 PVE 피해 증폭 {1}%, PVP 피해 증폭 {2}% 증가",
+  "en": "On landing [겨울의 속박], +{1}% PvE Damage Boost and +{2}% PvP Damage Boost for {0}s",
+  "ja": "[겨울의 속박]的中時、{0}秒間、PvEダメージ増幅が{1}%、PvPダメージ増幅が{2}%増加",
+  "fi": "[겨울의 속박] lisää osuessaan PvE-vahingon vahvistusta {1}% ja PvP-vahingon vahvistusta {2}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "{0}번 연속기 [겨울의 환영] 추가",
+  "en": "Adds Chain Skill {0} [겨울의 환영]",
+  "ja": "連続スキル{0}番目[겨울의 환영]を追加",
+  "fi": "Lisää ketjutaidon {0}: [겨울의 환영]"
+ },
+ {
+  "source": "[겨울의 속박] 재시전 시간 {0}초 감소",
+  "en": "-{0}s [겨울의 속박] cooldown",
+  "ja": "[겨울의 속박]の再使用時間が{0}秒短縮",
+  "fi": "Taidon [겨울의 속박] palautumisaika lyhenee {0} sekuntia"
+ },
+ {
+  "source": "{0}% 확률로 {1}m 밀려남",
+  "en": "{0}% chance to Knock Back {1}m",
+  "ja": "{0}%の確率で{1}mノックバック",
+  "fi": "{0}% todennäköisyys työntää {1}m taaksepäin"
+ },
+ {
+  "source": "{0}% 확률로 재시전 시간 초기화",
+  "en": "{0}% chance to reset cooldown",
+  "ja": "{0}%の確率で再使用時間をリセット",
+  "fi": "{0}% todennäköisyys nollata palautumisaika"
+ },
+ {
+  "source": "최대 정신력 {0} 증가",
+  "en": "+{0} max MP",
+  "ja": "最大MPが{0}増加",
+  "fi": "Maksimi-MP kasvaa {0}"
+ },
+ {
+  "source": "전투 속도 {0}% 증가",
+  "en": "+{0}% Combat Speed",
+  "ja": "戦闘速度が{0}%増加",
+  "fi": "Taistelunopeus kasvaa {0}%"
+ },
+ {
+  "source": "모든 스킬 재시전 시간 {0}초 감소",
+  "en": "-{0}s cooldown for all skills",
+  "ja": "すべてのスキルの再使用時間が{0}秒短縮",
+  "fi": "Kaikkien taitojen palautumisaika lyhenee {0} sekuntia"
+ },
+ {
+  "source": "적중 시 {0}s 동안 불 속성 지속 피해",
+  "en": "Fire Damage over Time for {0}s on hit",
+  "ja": "的中時、{0}秒間、火属性の持続ダメージ",
+  "fi": "Osuma aiheuttaa jatkuvaa tulivahinkoa {0} sekunnin ajan"
+ },
+ {
+  "source": "{0}번 연속기 [저주: 고목] 추가",
+  "en": "Adds Chain Skill {0} [저주: 고목]",
+  "ja": "連続スキル{0}番目[저주: 고목]を追加",
+  "fi": "Lisää ketjutaidon {0}: [저주: 고목]"
+ },
+ {
+  "source": "밀려난 후 {0}초 동안 기절 부여",
+  "en": "Inflicts Stun for {0}s after Knock Back",
+  "ja": "ノックバック後、{0}秒間気絶を付与",
+  "fi": "Tainnuttaa {0} sekunniksi taaksepäin työntämisen jälkeen"
+ },
+ {
+  "source": "이동 속도 {0}% 증가",
+  "en": "+{0}% Move Speed",
+  "ja": "移動速度が{0}%増加",
+  "fi": "Liikkumisnopeus kasvaa {0}%"
+ },
+ {
+  "source": "일정 간격으로 생명력 회복",
+  "en": "Restores HP at regular intervals",
+  "ja": "一定間隔でHPを回復",
+  "fi": "Palauttaa HP:tä säännöllisin väliajoin"
+ },
+ {
+  "source": "[불꽃의 로브] 패시브 효과 {0}배 증가",
+  "en": "x{0} [불꽃의 로브] passive effect",
+  "ja": "[불꽃의 로브]のパッシブ効果が{0}倍に増加",
+  "fi": "Taidon [불꽃의 로브] passiivivaikutus kasvaa {0}-kertaiseksi"
+ },
+ {
+  "source": "[강화의 은혜] 패시브 효과 {0}배 증가",
+  "en": "x{0} [강화의 은혜] passive effect",
+  "ja": "[강화의 은혜]のパッシブ効果が{0}倍に増加",
+  "fi": "Taidon [강화의 은혜] passiivivaikutus kasvaa {0}-kertaiseksi"
+ },
+ {
+  "source": "불 속성 및 물속성 공격력 {0}% 추가 증가",
+  "en": "+{0}% additional Fire and Water Attack",
+  "ja": "火属性および水属性攻撃力が追加で{0}%増加",
+  "fi": "Tuli- ja vesihyökkäysvoima kasvaa vielä {0}%"
+ },
+ {
+  "source": "변이 해제를 위한 피격 횟수 증가",
+  "en": "Increases number of hits required to remove Polymorph",
+  "ja": "変異解除に必要な被弾回数が増加",
+  "fi": "Muodonmuutoksen poistamiseen tarvittavien osumien määrä kasvaa"
+ },
+ {
+  "source": "변이 종료 후 {0}초 동안 막기 및 회피 {1} 감소",
+  "en": "-{1} Block and Evasion for {0}s when Polymorph ends",
+  "ja": "変異終了後、{0}秒間、ガードと回避が{1}減少",
+  "fi": "Kun muodonmuutos päättyy, torjunta ja väistö vähenevät {1} {0} sekunnin ajaksi"
+ },
+ {
+  "source": "변이 종료 후 {0}초 동안 충격계 저항 {1}% 감소",
+  "en": "-{1}% Impact-type Resist for {0}s when Polymorph ends",
+  "ja": "変異終了後、{0}秒間、衝撃系抵抗が{1}%減少",
+  "fi": "Kun muodonmuutos päättyy, iskutyyppisten vaikutusten vastustus vähenee {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "공격에 의한 변이 종료 시에도 약화 마법 부여",
+  "en": "Inflicts debuff even if Polymorph is removed through attacks",
+  "ja": "攻撃によって変異が終了した場合も弱化魔法を付与",
+  "fi": "Aiheuttaa heikennysloitsun, vaikka muodonmuutos päättyisi hyökkäyksen vuoksi"
+ },
+ {
+  "source": "충격계 저항 {0}% 증가",
+  "en": "+{0}% Impact-type Resist",
+  "ja": "衝撃系抵抗が{0}%増加",
+  "fi": "Iskutyyppisten vaikutusten vastustus kasvaa {0}%"
+ },
+ {
+  "source": "[정기 흡수] 패시브 효과 {0}배 증가",
+  "en": "x{0} [정기 흡수] passive effect",
+  "ja": "[정기 흡수]のパッシブ効果が{0}倍に増加",
+  "fi": "Taidon [정기 흡수] passiivivaikutus kasvaa {0}-kertaiseksi"
+ },
+ {
+  "source": "[냉기의 로브] 패시브 효과 {0}배 증가",
+  "en": "x{0} [냉기의 로브] passive effect",
+  "ja": "[냉기의 로브]のパッシブ効果が{0}倍に増加",
+  "fi": "Taidon [냉기의 로브] passiivivaikutus kasvaa {0}-kertaiseksi"
+ },
+ {
+  "source": "동상 상태 강화 - 공격 시 추가 피해 부여",
+  "en": "Enhanced Frostbite - Grants extra damage when landing an attack",
+  "ja": "凍傷状態強化 - 攻撃時に追加ダメージを付与",
+  "fi": "Vahvistettu paleltuma - hyökkäys aiheuttaa lisävahinkoa"
+ },
+ {
+  "source": "{0}%의 확률로 {1}초 동안 속박 상태 부여",
+  "en": "{0}% chance to inflict Root for {1}s",
+  "ja": "{0}%の確率で{1}秒間束縛状態を付与",
+  "fi": "{0}% todennäköisyys sitoa kohde {1} sekunniksi"
+ },
+ {
+  "source": "[냉기 폭풍] 소환 시간 {0}초 증가",
+  "en": "+{0}s [냉기 폭풍] summon duration",
+  "ja": "[냉기 폭풍]の召喚時間が{0}秒増加",
+  "fi": "Taidon [냉기 폭풍] kutsun kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "동상 유지 시간 {0}초 증가",
+  "en": "+{0}s Frostbite duration",
+  "ja": "凍傷の持続時間が{0}秒増加",
+  "fi": "Paleltuman kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "잔불 상태 강화 - 공격 시 추가 피해",
+  "en": "Enhanced Embers - Grants extra damage when landing an attack",
+  "ja": "残り火状態強化 - 攻撃時に追加ダメージ",
+  "fi": "Vahvistetut hiillokset - hyökkäys aiheuttaa lisävahinkoa"
+ },
+ {
+  "source": "장벽 세로 폭 {0}m 증가",
+  "en": "+{0}m wall width",
+  "ja": "障壁の縦幅が{0}m増加",
+  "fi": "Muurin leveys kasvaa {0}m"
+ },
+ {
+  "source": "[불의 장벽] 소환 시간 {0}초 증가",
+  "en": "+{0}s [불의 장벽] summon duration",
+  "ja": "[불의 장벽]の召喚時間が{0}秒増加",
+  "fi": "Taidon [불의 장벽] kutsun kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "잔불 유지 시간 {0}초 증가",
+  "en": "+{0}s Embers duration",
+  "ja": "残り火の持続時間が{0}秒増加",
+  "fi": "Hiillosten kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "{0}번 연속기 [나락] 추가",
+  "en": "Adds Chain Skill {0} [나락]",
+  "ja": "連続スキル{0}番目[나락]を追加",
+  "fi": "Lisää ketjutaidon {0}: [나락]"
+ },
+ {
+  "source": "[나락] 넘어짐 유지 시간 {0}초 증가",
+  "en": "+{0}s [나락] Knockdown duration",
+  "ja": "[나락]の転倒持続時間が{0}秒増加",
+  "fi": "Taidon [나락] kaatamisen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "[루미엘의 공간] 재시전 시간 {0}초 감소",
+  "en": "-{0}s [루미엘의 공간] cooldown",
+  "ja": "[루미엘의 공간]の再使用時間が{0}秒短縮",
+  "fi": "Taidon [루미엘의 공간] palautumisaika lyhenee {0} sekuntia"
+ },
+ {
+  "source": "[지연 폭발] 재시전 시간 {0}초 감소",
+  "en": "-{0}s [지연 폭발] cooldown",
+  "ja": "[지연 폭발]の再使用時間が{0}秒短縮",
+  "fi": "Taidon [지연 폭발] palautumisaika lyhenee {0} sekuntia"
+ },
+ {
+  "source": "받는 피해량 {0}% 추가 증가",
+  "en": "+{0}% additional damage taken",
+  "ja": "受けるダメージが追加で{0}%増加",
+  "fi": "Vastaanotettu vahinko kasvaa vielä {0}%"
+ },
+ {
+  "source": "{0}%의 확률로 {1}초간 빙결",
+  "en": "{0}% chance to inflict Frost for {1}s",
+  "ja": "{0}%の確率で{1}秒間氷結",
+  "fi": "{0}% todennäköisyys jäädyttää kohde {1} sekunniksi"
+ },
+ {
+  "source": "빙결 확률 {0}% 증가",
+  "en": "+{0}% Frost Chance",
+  "ja": "氷結確率が{0}%増加",
+  "fi": "Jäädytyksen todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "유지 시간 동안 {0}초 간격으로 최대 생명력의 {1}%씩 회복",
+  "en": "Restores {1}% of max HP every {0}s for the duration",
+  "ja": "持続中、{0}秒間隔で最大HPの{1}%ずつ回復",
+  "fi": "Palauttaa {1}% maksimi-HP:stä {0} sekunnin välein vaikutuksen ajan"
+ },
+ {
+  "source": "충격계 상태일 때 [동면] 활성화",
+  "en": "[동면] becomes available while afflicted with Impact-type status",
+  "ja": "衝撃系状態のとき[동면]が活性化",
+  "fi": "[동면] aktivoituu, kun olet iskutyyppisessä tilassa"
+ },
+ {
+  "source": "[방전] 연속기 활성화 확률 {0}% 증가",
+  "en": "+{0}% [방전] Chain Skill activation chance",
+  "ja": "[방전]の連続スキル発動確率が{0}%増加",
+  "fi": "Taidon [방전] ketjutaidon aktivoitumistodennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "[방전] 적중 시 [벽력] 재시전 시간 {0}s 감소",
+  "en": "-{0}s [벽력] cooldown on landing [방전]",
+  "ja": "[방전]的中時、[벽력]の再使用時間が{0}秒短縮",
+  "fi": "[방전] lyhentää osuessaan taidon [벽력] palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "막기 및 회피를 무시하고 적중",
+  "en": "Ignores Block and Evasion",
+  "ja": "ガードと回避を無視して命中",
+  "fi": "Ohittaa torjunnan ja väistön"
+ },
+ {
+  "source": "[천벌] 적중 시 {0}s 동안 전투 속도 {1}% 감소 부여",
+  "en": "Inflicts -{1}% Combat Speed for {0}s on landing [천벌]",
+  "ja": "[천벌]的中時、{0}秒間、戦闘速度{1}%減少を付与",
+  "fi": "[천벌] vähentää osuessaan taistelunopeutta {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "[천벌] 적중 시 {0}%의 확률로 {1}s 동안 속박 부여",
+  "en": "{0}% chance to inflict Root for {1}s on landing [천벌]",
+  "ja": "[천벌]的中時、{0}%の確率で{1}秒間束縛を付与",
+  "fi": "[천벌] sitoo osuessaan kohteen {0}% todennäköisyydellä {1} sekunniksi"
+ },
+ {
+  "source": "[천벌] {0}회 추가 발동",
+  "en": "[천벌] triggers {0} additional time(s)",
+  "ja": "[천벌]が{0}回追加発動",
+  "fi": "[천벌] laukeaa {0} lisäkertaa"
+ },
+ {
+  "source": "정신력 소모 삭제 및 정신력 {0} 회복",
+  "en": "Removes MP Cost and restores {0} MP",
+  "ja": "MP消耗を削除し、MPを{0}回復",
+  "fi": "Poistaa MP-kulutuksen ja palauttaa {0} MP:tä"
+ },
+ {
+  "source": "지속 피해 동안 대상의 방어력 {0}% 감소",
+  "en": "-{0}% target Defense for duration of Damage over Time",
+  "ja": "持続ダメージ中、対象の防御力が{0}%減少",
+  "fi": "Kohteen puolustus vähenee {0}% jatkuvan vahingon ajan"
+ },
+ {
+  "source": "{0}% 확률로 {1}s 동안 대상 기절",
+  "en": "{0}% chance to inflict Stun on the target for {1}s",
+  "ja": "{0}%の確率で{1}秒間対象を気絶",
+  "fi": "{0}% todennäköisyys tainnuttaa kohde {1} sekunniksi"
+ },
+ {
+  "source": "PVE 피해 증폭 {0}%, PVP 피해 증폭 {1}% 추가 감소",
+  "en": "+{0}% PvE Damage Boost reduction and +{1}% PvP Damage Boost reduction",
+  "ja": "PvEダメージ増幅が追加で{0}%、PvPダメージ増幅が追加で{1}%減少",
+  "fi": "PvE-vahingon vahvistus vähenee vielä {0}% ja PvP-vahingon vahvistus {1}%"
+ },
+ {
+  "source": "기운을 중심으로 {0}m내의 최대 {1}명의 적들의 이동 속도를 {2}s 동안 {3}% 감소",
+  "en": "Reduces Move Speed of up to {1} enemies within {0}m of the Aura by {3}% for {2}s",
+  "ja": "オーラを中心に{0}m以内の最大{1}体の敵の移動速度を{2}秒間{3}%減少",
+  "fi": "Vähentää enintään {1} vihollisen liikkumisnopeutta {3}% {2} sekunnin ajaksi {0}m säteellä aurasta"
+ },
+ {
+  "source": "[신성한 기운]의 발사 속도 {0}% 증가",
+  "en": "+{0}% [신성한 기운] firing speed",
+  "ja": "[신성한 기운]の発射速度が{0}%増加",
+  "fi": "Taidon [신성한 기운] laukaisunopeus kasvaa {0}%"
+ },
+ {
+  "source": "[신성한 기운]의 유지 시간 {0}초 증가",
+  "en": "+{0}s [신성한 기운] duration",
+  "ja": "[신성한 기운]の持続時間が{0}秒増加",
+  "fi": "Taidon [신성한 기운] kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "{0}s 동안 대상 둔화",
+  "en": "Slows target for {0}s",
+  "ja": "{0}秒間、対象を鈍化",
+  "fi": "Hidastaa kohdetta {0} sekunnin ajan"
+ },
+ {
+  "source": "지속 피해 {0}초 증가",
+  "en": "+{0}s Damage over Time",
+  "ja": "持続ダメージが{0}秒増加",
+  "fi": "Jatkuva vahinko pitenee {0} sekuntia"
+ },
+ {
+  "source": "{0}% 확률로 {1}s 동안 대상 넘어짐",
+  "en": "{0}% chance to inflict Knockdown on the target for {1}s",
+  "ja": "{0}%の確率で{1}秒間対象を転倒",
+  "fi": "{0}% todennäköisyys kaataa kohde {1} sekunniksi"
+ },
+ {
+  "source": "PVE 피해 내성 {0}%, PVP 피해 내성 {1}% 추가 감소",
+  "en": "+{0}% PvE Damage Tolerance reduction and +{1}% PvP Damage Tolerance reduction",
+  "ja": "PvEダメージ耐性が追加で{0}%、PvPダメージ耐性が追加で{1}%減少",
+  "fi": "PvE-vahingonkestävyys vähenee vielä {0}% ja PvP-vahingonkestävyys {1}%"
+ },
+ {
+  "source": "회복 동안 방어력 {0}% 증가",
+  "en": "+{0}% Defense while healing",
+  "ja": "回復中、防御力が{0}%増加",
+  "fi": "Puolustus kasvaa {0}% parannuksen aikana"
+ },
+ {
+  "source": "회복 동안 받는 치유량 {0}% 증가",
+  "en": "+{0}% Incoming Heal while healing",
+  "ja": "回復中、受ける回復量が{0}%増加",
+  "fi": "Vastaanotettu parannus kasvaa {0}% parannuksen aikana"
+ },
+ {
+  "source": "회복 동안 이동속도 {0}% 증가",
+  "en": "+{0}% Move Speed while healing",
+  "ja": "回復中、移動速度が{0}%増加",
+  "fi": "Liikkumisnopeus kasvaa {0}% parannuksen aikana"
+ },
+ {
+  "source": "회복 동안 PVE 피해 내성 {0}%, PVP 피해 내성 {1}%만큼 증가",
+  "en": "+{0}% PvE Damage Tolerance and +{1}% PvP Damage Tolerance while healing",
+  "ja": "回復中、PvEダメージ耐性が{0}%、PvPダメージ耐性が{1}%増加",
+  "fi": "Parannuksen aikana PvE-vahingonkestävyys kasvaa {0}% ja PvP-vahingonkestävyys {1}%"
+ },
+ {
+  "source": "{0}% 확률로 {1}s 동안 속박 부여",
+  "en": "{0}% chance to inflict Root for {1}s",
+  "ja": "{0}%の確率で{1}秒間束縛を付与",
+  "fi": "{0}% todennäköisyys sitoa kohde {1} sekunniksi"
+ },
+ {
+  "source": "[단죄] 치명타 적중 시 [단죄] 재시전 시간 초기화",
+  "en": "Resets [단죄] cooldown when [단죄] lands a Critical Hit",
+  "ja": "[단죄]のクリティカル時、[단죄]の再使用時間をリセット",
+  "fi": "Kun [단죄] osuu kriittisesti, sen palautumisaika nollautuu"
+ },
+ {
+  "source": "연속 시전+{0}회",
+  "en": "+{0} consecutive use(s)",
+  "ja": "連続使用+{0}回",
+  "fi": "+{0} peräkkäistä käyttökertaa"
+ },
+ {
+  "source": "{0}% 확률로 약화 마법 {1}개 해제",
+  "en": "{0}% chance to remove {1} debuff(s)",
+  "ja": "{0}%の確率で弱化魔法を{1}個解除",
+  "fi": "{0}% todennäköisyys poistaa {1} heikennysloitsua"
+ },
+ {
+  "source": "{0}s 동안 받는 치유량 {1}% 증가",
+  "en": "+{1}% Incoming Heal for {0}s",
+  "ja": "{0}秒間、受ける回復量が{1}%増加",
+  "fi": "Vastaanotettu parannus kasvaa {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "최대 차지 시 {0}%의 확률로 {1}s 동안 기절 부여",
+  "en": "At max Charge, {0}% chance to inflict Stun for {1}s",
+  "ja": "最大チャージ時、{0}%の確率で{1}秒間気絶を付与",
+  "fi": "Täydellä latauksella {0}% todennäköisyys tainnuttaa {1} sekunniksi"
+ },
+ {
+  "source": "{0}번 연속기 [재생의 축복] 추가",
+  "en": "Adds Chain Skill {0} [재생의 축복]",
+  "ja": "連続スキル{0}番目[재생의 축복]を追加",
+  "fi": "Lisää ketjutaidon {0}: [재생의 축복]"
+ },
+ {
+  "source": "약화 마법 모두 제거",
+  "en": "Removes all debuffs",
+  "ja": "弱化魔法をすべて解除",
+  "fi": "Poistaa kaikki heikennysloitsut"
+ },
+ {
+  "source": "{0}s 동안 {1}s 간격으로 생명력 {2}% 추가 회복",
+  "en": "Restores an additional {2}% HP every {1}s for {0}s",
+  "ja": "{0}秒間、{1}秒間隔でHPを追加で{2}%回復",
+  "fi": "Palauttaa lisäksi {2}% HP:stä {1} sekunnin välein {0} sekunnin ajan"
+ },
+ {
+  "source": "지속 시간 {0}초 증가",
+  "en": "+{0}s duration",
+  "ja": "持続時間が{0}秒増加",
+  "fi": "Kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "지속 시간 동안 {0}s 간격으로 행동력 {1} 회복",
+  "en": "Restores {1} Stamina every {0}s for the duration",
+  "ja": "持続中、{0}秒間隔で行動力を{1}回復",
+  "fi": "Palauttaa {1} Staminaa {0} sekunnin välein vaikutuksen ajan"
+ },
+ {
+  "source": "지속 시간 동안 {0}s 간격으로 생명력 {1}% 회복",
+  "en": "Restores {1}% HP every {0}s for the duration",
+  "ja": "持続中、{0}秒間隔でHPを{1}%回復",
+  "fi": "Palauttaa {1}% HP:stä {0} sekunnin välein vaikutuksen ajan"
+ },
+ {
+  "source": "지속 시간 동안 {0}s 간격으로 정화 효과",
+  "en": "Cleanse effect every {0}s for the duration",
+  "ja": "持続中、{0}秒間隔で浄化効果",
+  "fi": "Puhdistusvaikutus {0} sekunnin välein vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 [주신의 은총] 효과 {0}배 증가",
+  "en": "x{0} [주신의 은총] effect for the duration",
+  "ja": "持続中、[주신의 은총]の効果が{0}倍",
+  "fi": "Taidon [주신의 은총] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 [대지의 은총] 효과 {0}배 증가",
+  "en": "x{0} [대지의 은총] effect for the duration",
+  "ja": "持続中、[대지의 은총]の効果が{0}倍",
+  "fi": "Taidon [대지의 은총] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "시전 시간이 {0}초 감소",
+  "en": "-{0}s cast time",
+  "ja": "詠唱時間が{0}秒短縮",
+  "fi": "Loitsuaika lyhenee {0} sekuntia"
+ },
+ {
+  "source": "최대 생명력의 {0}% 회복",
+  "en": "Restores {0}% of max HP",
+  "ja": "最大HPの{0}%を回復",
+  "fi": "Palauttaa {0}% maksimi-HP:stä"
+ },
+ {
+  "source": "[대지의 징벌] 효과 중인 대상은 [단죄] 스킬이 확정 치명타로 적중",
+  "en": "[단죄] lands as a guaranteed Critical Hit on targets affected by [대지의 징벌]",
+  "ja": "[대지의 징벌]効果中の対象には[단죄]が確定クリティカルで命中",
+  "fi": "[단죄] osuu varmasti kriittisenä osumana kohteisiin, joihin [대지의 징벌] vaikuttaa"
+ },
+ {
+  "source": "[대지의 축복] 자신 강타 {0}%, 파티원 강타 {1}% 증가",
+  "en": "[대지의 축복]: +{0}% own Double Chance and +{1}% party member Double Chance",
+  "ja": "[대지의 축복]：自身の強打が{0}%、パーティーメンバーの強打が{1}%増加",
+  "fi": "[대지의 축복]: oma tuplaiskun todennäköisyys kasvaa {0}% ja ryhmän jäsenten {1}%"
+ },
+ {
+  "source": "[대지의 축복] 자신 공격력 및 방어력 {0}%, 파티원 공격력 및 방어력 {1}% 증가",
+  "en": "[대지의 축복]: +{0}% own Attack and Defense and +{1}% party member Attack and Defense",
+  "ja": "[대지의 축복]：自身の攻撃力と防御力が{0}%、パーティーメンバーの攻撃力と防御力が{1}%増加",
+  "fi": "[대지의 축복]: oma hyökkäysvoima ja puolustus kasvavat {0}% ja ryhmän jäsenten {1}%"
+ },
+ {
+  "source": "[대지의 징벌] 및 [대지의 축복] 유지 시간 {0}초 증가",
+  "en": "+{0}s [대지의 징벌] and [대지의 축복] duration",
+  "ja": "[대지의 징벌]と[대지의 축복]の持続時間が{0}秒増加",
+  "fi": "Taitojen [대지의 징벌] ja [대지의 축복] kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "[구원] 종료 시 최대 생명력의 {0}% 회복",
+  "en": "Restores {0}% of max HP when [구원] ends",
+  "ja": "[구원]終了時、最大HPの{0}%を回復",
+  "fi": "Palauttaa {0}% maksimi-HP:stä, kun [구원] päättyy"
+ },
+ {
+  "source": "생명력이 가장 낮은 파티원에게 [구원] 기본 효과 부여",
+  "en": "Grants the base [구원] effect to the party member with the lowest HP",
+  "ja": "HPが最も低いパーティーメンバーに[구원]の基本効果を付与",
+  "fi": "Antaa taidon [구원] perusvaikutuksen ryhmän jäsenelle, jolla on vähiten HP:tä"
+ },
+ {
+  "source": "충격계 상태일 때 [구원] 활성화",
+  "en": "[구원] becomes available while afflicted with Impact-type status",
+  "ja": "衝撃系状態のとき[구원]が活性化",
+  "fi": "[구원] aktivoituu, kun olet iskutyyppisessä tilassa"
+ },
+ {
+  "source": "속박 유지 시간 {0}초만큼 증가",
+  "en": "+{0}s Root duration",
+  "ja": "束縛の持続時間が{0}秒増加",
+  "fi": "Sidonnan kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "속박 확률 {0}%만큼 증가",
+  "en": "+{0}% Root Chance",
+  "ja": "束縛確率が{0}%増加",
+  "fi": "Sidonnan todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "속박 시 대상의 지속 피해 {0}배 증가",
+  "en": "x{0} target Damage over Time while Rooted",
+  "ja": "束縛時、対象の持続ダメージが{0}倍に増加",
+  "fi": "Sidottuna kohteen jatkuva vahinko kasvaa {0}-kertaiseksi"
+ },
+ {
+  "source": "최대 생명력 {0}% 증가",
+  "en": "+{0}% max HP",
+  "ja": "最大HPが{0}%増加",
+  "fi": "Maksimi-HP kasvaa {0}%"
+ },
+ {
+  "source": "완벽 {0}% 증가",
+  "en": "+{0}% Perfect Chance",
+  "ja": "パーフェクトが{0}%増加",
+  "fi": "Täydellisen iskun todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "최대 생명력의 {0}% 보호막 생성",
+  "en": "Creates a Protective Shield equal to {0}% of max HP",
+  "ja": "最大HPの{0}%分のバリアを生成",
+  "fi": "Luo suojakilven, joka vastaa {0}% maksimi-HP:stä"
+ },
+ {
+  "source": "막기, 회피 {0} 증가",
+  "en": "+{0} Block, Evasion",
+  "ja": "ガード、回避が{0}増加",
+  "fi": "Torjunta ja väistö kasvavat {0}"
+ },
+ {
+  "source": "적중 시 보호막 제거",
+  "en": "Removes Protective Shields on hit",
+  "ja": "的中時、バリアを除去",
+  "fi": "Osuma poistaa suojakilvet"
+ },
+ {
+  "source": "유지 시간 동안 치명타 저항 {0} 감소",
+  "en": "-{0} Critical Hit Resist for the duration",
+  "ja": "持続中、クリティカル抵抗が{0}減少",
+  "fi": "Kriittisen osuman vastustus vähenee {0} vaikutuksen ajaksi"
+ },
+ {
+  "source": "기운 치명타 {0} 증가",
+  "en": "+{0} Aura Critical Hit",
+  "ja": "オーラのクリティカルが{0}増加",
+  "fi": "Auran kriittinen osuma kasvaa {0}"
+ },
+ {
+  "source": "약화의 낙인 상태 대상 피해 {0}% 증가",
+  "en": "+{0}% damage to targets afflicted with Debilitating Mark",
+  "ja": "弱化の烙印状態の対象へのダメージが{0}%増加",
+  "fi": "Vahinko Heikentävän merkin kohteisiin kasvaa {0}%"
+ },
+ {
+  "source": "행동불가 면역 대상 피해 {0}% 증가",
+  "en": "+{0}% damage to targets with Incapacitated Immunity",
+  "ja": "行動不能免疫の対象へのダメージが{0}%増加",
+  "fi": "Vahinko kohteisiin, joilla on toimintakyvyttömyysimmuniteetti, kasvaa {0}%"
+ },
+ {
+  "source": "기운 공격 재시전 시간 {0}초 감소",
+  "en": "-{0}s Aura attack cooldown",
+  "ja": "オーラ攻撃の再使用時間が{0}秒短縮",
+  "fi": "Auran hyökkäyksen palautumisaika lyhenee {0} sekuntia"
+ },
+ {
+  "source": "적중 시 [조준 화살] 재시전 시간 {0}s 감소",
+  "en": "-{0}s [조준 화살] cooldown on hit",
+  "ja": "的中時、[조준 화살]の再使用時間が{0}秒短縮",
+  "fi": "Osuma lyhentää taidon [조준 화살] palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "{0}번 연속기 [질풍 화살] 추가",
+  "en": "Adds Chain Skill {0} [질풍 화살]",
+  "ja": "連続スキル{0}番目[질풍 화살]を追加",
+  "fi": "Lisää ketjutaidon {0}: [질풍 화살]"
+ },
+ {
+  "source": "치명타 적중 시 {0}%의 확률로 밀려남 부여",
+  "en": "{0}% chance to inflict Knock Back on landing a Critical Hit",
+  "ja": "クリティカル時、{0}%の確率でノックバックを付与",
+  "fi": "Kriittinen osuma työntää kohteen taaksepäin {0}% todennäköisyydellä"
+ },
+ {
+  "source": "[올가미 화살]의 이동 속도 감소량 {0}% 증가",
+  "en": "+{0}% [올가미 화살] Move Speed reduction",
+  "ja": "[올가미 화살]の移動速度減少量が{0}%増加",
+  "fi": "Taidon [올가미 화살] liikkumisnopeuden vähennys kasvaa {0}%"
+ },
+ {
+  "source": "{0}번 연속기 [족쇄 화살] 추가",
+  "en": "Adds Chain Skill {0} [족쇄 화살]",
+  "ja": "連続スキル{0}番目[족쇄 화살]を追加",
+  "fi": "Lisää ketjutaidon {0}: [족쇄 화살]"
+ },
+ {
+  "source": "둔화 및 속박 유지 시간 {0}초 증가",
+  "en": "+{0}s Slow and Root duration",
+  "ja": "鈍化と束縛の持続時間が{0}秒増加",
+  "fi": "Hidastuksen ja sidonnan kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "출혈 유지 시간 {0}초 증가",
+  "en": "+{0}s Bleed duration",
+  "ja": "出血の持続時間が{0}秒増加",
+  "fi": "Verenvuodon kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "[송곳 화살] {0}회 추가 발동",
+  "en": "[송곳 화살] triggers {0} additional time(s)",
+  "ja": "[송곳 화살]が{0}回追加発動",
+  "fi": "[송곳 화살] laukeaa {0} lisäkertaa"
+ },
+ {
+  "source": "적중 시 모든 재시전 시간 {0}s 감소",
+  "en": "Reduces all cooldowns by {0}s on hit",
+  "ja": "的中時、すべての再使用時間が{0}秒短縮",
+  "fi": "Osuma lyhentää kaikkia palautumisaikoja {0} sekuntia"
+ },
+ {
+  "source": "적중 대상이 적을 수록 전투 속도, PVE 피해 증폭, PVP 피해 증폭 효과 증가",
+  "en": "Combat Speed, PvE Damage Boost and PvP Damage Boost effects increase when fewer targets are hit",
+  "ja": "的中した対象が少ないほど戦闘速度、PvEダメージ増幅、PvPダメージ増幅の効果が増加",
+  "fi": "Mitä vähemmän kohteita osuu, sitä enemmän taistelunopeus-, PvE-vahingon vahvistus- ja PvP-vahingon vahvistusvaikutukset kasvavat"
+ },
+ {
+  "source": "폭발 시 적들을 끌어당김",
+  "en": "Pulls in enemies on explosion",
+  "ja": "爆発時、敵を引き寄せる",
+  "fi": "Räjähdys vetää viholliset luokseen"
+ },
+ {
+  "source": "적중 시 {0}초 후 추가 피해",
+  "en": "Extra damage after {0}s on hit",
+  "ja": "的中時、{0}秒後に追加ダメージ",
+  "fi": "Osuma aiheuttaa lisävahinkoa {0} sekunnin kuluttua"
+ },
+ {
+  "source": "[파열 화살] 적중 시 {0}% 확률로 재시전 시간 초기화",
+  "en": "{0}% chance to reset cooldown on landing [파열 화살]",
+  "ja": "[파열 화살]的中時、{0}%の確率で再使用時間をリセット",
+  "fi": "[파열 화살] nollaa osuessaan palautumisajan {0}% todennäköisyydellä"
+ },
+ {
+  "source": "[제압 화살] 적중 시 {0}% 확률로 재시전 시간 초기화",
+  "en": "{0}% chance to reset cooldown on landing [제압 화살]",
+  "ja": "[제압 화살]的中時、{0}%の確率で再使用時間をリセット",
+  "fi": "[제압 화살] nollaa osuessaan palautumisajan {0}% todennäköisyydellä"
+ },
+ {
+  "source": "정신력 소모 삭제",
+  "en": "Removes MP Cost",
+  "ja": "MP消耗を削除",
+  "fi": "Poistaa MP-kulutuksen"
+ },
+ {
+  "source": "[조준 화살] 적중 시 추가 피해",
+  "en": "[조준 화살] deals extra damage on hit",
+  "ja": "[조준 화살]的中時、追加ダメージ",
+  "fi": "[조준 화살] aiheuttaa osuessaan lisävahinkoa"
+ },
+ {
+  "source": "{0}번 연속기 [번개 화살] 추가",
+  "en": "Adds Chain Skill {0} [번개 화살]",
+  "ja": "連続スキル{0}番目[번개 화살]を追加",
+  "fi": "Lisää ketjutaidon {0}: [번개 화살]"
+ },
+ {
+  "source": "적중한 대상 수가 많을수록 피해량 최대 {0}% 증가",
+  "en": "Deals up to {0}% more damage when more targets are hit",
+  "ja": "的中した対象が多いほどダメージが増加（最大{0}%）",
+  "fi": "Mitä enemmän kohteita osuu, sitä enemmän vahinko kasvaa, enintään {0}%"
+ },
+ {
+  "source": "유지 시간 동안 [집중의 눈] 효과 {0}배 증가",
+  "en": "x{0} [집중의 눈] effect for the duration",
+  "ja": "持続中、[집중의 눈]の効果が{0}倍",
+  "fi": "Taidon [집중의 눈] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 [사냥꾼의 혼] 효과 {0}배 증가",
+  "en": "x{0} [사냥꾼의 혼] effect for the duration",
+  "ja": "持続中、[사냥꾼의 혼]の効果が{0}倍",
+  "fi": "Taidon [사냥꾼의 혼] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 치명타 시 {0}% 확률로 모든 재시전 시간 {1}s 감소",
+  "en": "For the duration, {0}% chance to reduce all cooldowns by {1}s on Critical Hit",
+  "ja": "持続中、クリティカル時に{0}%の確率ですべての再使用時間が{1}秒短縮",
+  "fi": "Vaikutuksen aikana kriittinen osuma lyhentää {0}% todennäköisyydellä kaikkia palautumisaikoja {1} sekuntia"
+ },
+ {
+  "source": "유지 시간 동안 치명타에 비례하여 공격력 증가",
+  "en": "Attack increases in proportion to Critical Hit for the duration",
+  "ja": "持続中、クリティカルに比例して攻撃力が増加",
+  "fi": "Vaikutuksen aikana hyökkäysvoima kasvaa suhteessa kriittiseen osumaan"
+ },
+ {
+  "source": "적중 시 {0}s 동안 최대 생명력의 {1}% 보호막",
+  "en": "Protective Shield equal to {1}% of max HP for {0}s on hit",
+  "ja": "的中時、{0}秒間、最大HPの{1}%分のバリア",
+  "fi": "Osuma antaa {0} sekunniksi suojakilven, joka vastaa {1}% maksimi-HP:stä"
+ },
+ {
+  "source": "{0}번 연속기 [퇴보 베기] 추가",
+  "en": "Adds Chain Skill {0} [퇴보 베기]",
+  "ja": "連続スキル{0}番目[퇴보 베기]を追加",
+  "fi": "Lisää ketjutaidon {0}: [퇴보 베기]"
+ },
+ {
+  "source": "공중 속박 유지 시간 {0}초 증가",
+  "en": "+{0}s Airborne duration",
+  "ja": "空中束縛の持続時間が{0}秒増加",
+  "fi": "Ilmaan nostamisen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "은신 중 공격 시 치명타",
+  "en": "Lands as a Critical Hit when attacking from Stealth",
+  "ja": "隠身中に攻撃するとクリティカル",
+  "fi": "Hyökkäys näkymättömänä osuu kriittisenä osumana"
+ },
+ {
+  "source": "은신 유지 시간 {0}초 증가",
+  "en": "+{0}s Stealth duration",
+  "ja": "隠身の持続時間が{0}秒増加",
+  "fi": "Näkymättömyyden kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "지속 피해 상태 해제 및 면역 효과 추가",
+  "en": "Removes Damage over Time effects and adds immunity",
+  "ja": "持続ダメージ状態を解除し、免疫効果を追加",
+  "fi": "Poistaa jatkuvan vahingon tilat ja lisää immuniteetin"
+ },
+ {
+  "source": "유지 시간 동안 [경계의 눈] 효과 {0}배 증가",
+  "en": "x{0} [경계의 눈] effect for the duration",
+  "ja": "持続中、[경계의 눈]の効果が{0}倍",
+  "fi": "Taidon [경계의 눈] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 [저항의 결의] 효과 {0}배 증가",
+  "en": "x{0} [저항의 결의] effect for the duration",
+  "ja": "持続中、[저항의 결의]の効果が{0}倍",
+  "fi": "Taidon [저항의 결의] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "홍염 상태 강화 - 홍염 상태에서 피격 시 추가 피해",
+  "en": "Enhanced Crimson Flames - Extra damage when hit while afflicted with Crimson Flames",
+  "ja": "紅炎状態強化 - 紅炎状態で被弾すると追加ダメージ",
+  "fi": "Vahvistetut purppuraliekit - lisävahinkoa, kun purppuraliekkien kohteeseen osutaan"
+ },
+ {
+  "source": "발동 확률 {0}% 증가",
+  "en": "+{0}% trigger chance",
+  "ja": "発動確率が{0}%増加",
+  "fi": "Laukeamisen todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "적중 시 [파멸의 맹타] 재시전 시간 {0}s 감소",
+  "en": "-{0}s [파멸의 맹타] cooldown on hit",
+  "ja": "的中時、[파멸의 맹타]の再使用時間が{0}秒短縮",
+  "fi": "Osuma lyhentää taidon [파멸의 맹타] palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "{0}번 연속기 [무모한 일격] 추가",
+  "en": "Adds Chain Skill {0} [무모한 일격]",
+  "ja": "連続スキル{0}番目[무모한 일격]を追加",
+  "fi": "Lisää ketjutaidon {0}: [무모한 일격]"
+ },
+ {
+  "source": "적중 대상이 적을 수록 피해량 최대 {0}% 증가",
+  "en": "Deals up to {0}% more damage when fewer targets are hit",
+  "ja": "的中した対象が少ないほどダメージが増加（最大{0}%）",
+  "fi": "Mitä vähemmän kohteita osuu, sitä enemmän vahinko kasvaa, enintään {0}%"
+ },
+ {
+  "source": "{0}s 동안 자신에게 전투 준비 효과",
+  "en": "Prepare for Battle effect on the caster for {0}s",
+  "ja": "{0}秒間、自身に戦闘準備効果",
+  "fi": "Taisteluvalmiusvaikutus itselle {0} sekunnin ajaksi"
+ },
+ {
+  "source": "[도약 찍기] 적중 시 {0}% 확률 [발목 베기] 활성화",
+  "en": "{0}% chance to trigger [발목 베기] on landing [도약 찍기]",
+  "ja": "[도약 찍기]的中時、{0}%の確率で[발목 베기]を活性化",
+  "fi": "[도약 찍기] aktivoi osuessaan taidon [발목 베기] {0}% todennäköisyydellä"
+ },
+ {
+  "source": "적 처치 시 [도약 찍기] 재시전 시간 초기화",
+  "en": "Resets [도약 찍기] cooldown on defeating an enemy",
+  "ja": "敵を倒すと[도약 찍기]の再使用時間をリセット",
+  "fi": "Taidon [도약 찍기] palautumisaika nollautuu vihollisen kuollessa"
+ },
+ {
+  "source": "{0}s 동안 PVE 피해 내성 {1}%, PVP 피해 내성 {2}% 증가",
+  "en": "+{1}% PvE Damage Tolerance and +{2}% PvP Damage Tolerance for {0}s",
+  "ja": "{0}秒間、PvEダメージ耐性が{1}%、PvPダメージ耐性が{2}%増加",
+  "fi": "PvE-vahingonkestävyys kasvaa {1}% ja PvP-vahingonkestävyys {2}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "광역 스킬로 변경 및 끌어당기기",
+  "en": "Changes to AoE skill and pulls in enemies",
+  "ja": "広域スキルに変更し、引き寄せる",
+  "fi": "Muuttuu aluetaidoksi ja vetää viholliset luokseen"
+ },
+ {
+  "source": "생명력 {0}% 흡수, 행동불가 면역 대상 생명력 {1}% 흡수",
+  "en": "Absorbs {0}% HP, absorbs {1}% HP of targets with Incapacitated Immunity",
+  "ja": "HPを{0}%吸収、行動不能免疫の対象からはHPを{1}%吸収",
+  "fi": "Imee {0}% HP:tä; toimintakyvyttömyysimmuuneista kohteista {1}% HP:tä"
+ },
+ {
+  "source": "내려칠 때 광역 피해로 변경",
+  "en": "Changes to AoE damage on down strike",
+  "ja": "振り下ろし時に広域ダメージに変更",
+  "fi": "Alaspäin isku muuttuu aluevahingoksi"
+ },
+ {
+  "source": "{0}회 추가 공격",
+  "en": "Adds {0} additional strikes",
+  "ja": "追加攻撃{0}回",
+  "fi": "Lisää {0} lisäiskua"
+ },
+ {
+  "source": "{0}번 연속기 [올려치기] 추가",
+  "en": "Adds Chain Skill {0} [올려치기]",
+  "ja": "連続スキル{0}番目[올려치기]を追加",
+  "fi": "Lisää ketjutaidon {0}: [올려치기]"
+ },
+ {
+  "source": "[발목 베기] {0}% 확률로 {1}초간 넘어짐",
+  "en": "[발목 베기]: {0}% chance to inflict Knockdown for {1}s",
+  "ja": "[발목 베기]：{0}%の確率で{1}秒間転倒",
+  "fi": "[발목 베기]: {0}% todennäköisyys kaataa kohde {1} sekunniksi"
+ },
+ {
+  "source": "{0}번 연속기 [발목 격파] 추가",
+  "en": "Adds Chain Skill {0} [발목 격파]",
+  "ja": "連続スキル{0}番目[발목 격파]を追加",
+  "fi": "Lisää ketjutaidon {0}: [발목 격파]"
+ },
+ {
+  "source": "[발목 베기] 사거리 {0}m 증가",
+  "en": "+{0}m [발목 베기] range",
+  "ja": "[발목 베기]の射程が{0}m増加",
+  "fi": "Taidon [발목 베기] kantama kasvaa {0}m"
+ },
+ {
+  "source": "막기 성공 시 {0}% 확률로 [발목 베기] 재시전 시간 초기화",
+  "en": "{0}% chance to reset [발목 베기] cooldown on Block",
+  "ja": "ガード成功時、{0}%の確率で[발목 베기]の再使用時間をリセット",
+  "fi": "Onnistunut torjunta nollaa {0}% todennäköisyydellä taidon [발목 베기] palautumisajan"
+ },
+ {
+  "source": "치명타 적중 시 재시전 시간 초기화",
+  "en": "Resets cooldown on landing a Critical Hit",
+  "ja": "クリティカル時、再使用時間をリセット",
+  "fi": "Kriittinen osuma nollaa palautumisajan"
+ },
+ {
+  "source": "{0}% 확률 끌어당기기",
+  "en": "{0}% chance to pull",
+  "ja": "{0}%の確率で引き寄せ",
+  "fi": "{0}% todennäköisyys vetää kohde luokse"
+ },
+ {
+  "source": "[돌진 일격] 재시전 시간 {0}초 감소",
+  "en": "-{0}s [돌진 일격] cooldown",
+  "ja": "[돌진 일격]の再使用時間が{0}秒短縮",
+  "fi": "Taidon [돌진 일격] palautumisaika lyhenee {0} sekuntia"
+ },
+ {
+  "source": "[공중 결박] 공중 속박 확률 {0}% 증가",
+  "en": "+{0}% [공중 결박] Airborne Chance",
+  "ja": "[공중 결박]の空中束縛確率が{0}%増加",
+  "fi": "Taidon [공중 결박] ilmaan nostamisen todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "{0}번 연속기 [강제 낙하] 추가",
+  "en": "Adds Chain Skill {0} [강제 낙하]",
+  "ja": "連続スキル{0}番目[강제 낙하]を追加",
+  "fi": "Lisää ketjutaidon {0}: [강제 낙하]"
+ },
+ {
+  "source": "[공중 결박] 재시전 시간 {0}% 감소",
+  "en": "-{0}% [공중 결박] cooldown",
+  "ja": "[공중 결박]の再使用時間が{0}%短縮",
+  "fi": "Taidon [공중 결박] palautumisaika lyhenee {0}%"
+ },
+ {
+  "source": "{0}번 연속기 [분노 폭발] 추가",
+  "en": "Adds Chain Skill {0} [분노 폭발]",
+  "ja": "連続スキル{0}番目[분노 폭발]を追加",
+  "fi": "Lisää ketjutaidon {0}: [분노 폭발]"
+ },
+ {
+  "source": "{0}초 동안 공격력 {1}% 감소 부여",
+  "en": "Inflicts -{1}% Attack for {0}s",
+  "ja": "{0}秒間、攻撃力{1}%減少を付与",
+  "fi": "Vähentää hyökkäysvoimaa {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "{0}회 추가 피해",
+  "en": "{0} additional damage instance(s)",
+  "ja": "追加ダメージ{0}回",
+  "fi": "{0} lisävahinkokertaa"
+ },
+ {
+  "source": "유지 시간 동안 [약점 파악] 효과 {0}배 증가",
+  "en": "x{0} [약점 파악] effect for the duration",
+  "ja": "持続中、[약점 파악]の効果が{0}倍",
+  "fi": "Taidon [약점 파악] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 치명타 시 {0}% 확률로 모든 스킬 재시전 시간 {1}초 감소",
+  "en": "For the duration, {0}% chance to reduce all skill cooldowns by {1}s on Critical Hit",
+  "ja": "持続中、クリティカル時に{0}%の確率ですべてのスキルの再使用時間が{1}秒短縮",
+  "fi": "Vaikutuksen aikana kriittinen osuma lyhentää {0}% todennäköisyydellä kaikkien taitojen palautumisaikaa {1} sekuntia"
+ },
+ {
+  "source": "그로기 게이지 피해량 {0}% 증가",
+  "en": "+{0}% Stagger Gauge Damage",
+  "ja": "グロッキー ゲージ ダメージ量が{0}%増加",
+  "fi": "Horjutusmittarin vahinko kasvaa {0}%"
+ },
+ {
+  "source": "다단 히트 적중 {0}% 증가",
+  "en": "+{0}% Multi-Hit Chance",
+  "ja": "多段ヒット的中が{0}%増加",
+  "fi": "Moniosuman todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "상태이상 적중 확률 {0}% 증가",
+  "en": "+{0}% Status Effect Chance",
+  "ja": "状態異常的中確率が{0}%増加",
+  "fi": "Tilavaikutusten osumatodennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "무기막기 성공 시 {0}s 동안 이동 속도 {1}% 증가",
+  "en": "+{1}% Move Speed for {0}s on Parry",
+  "ja": "武器ガード成功時、{0}秒間、移動速度が{1}%増加",
+  "fi": "Onnistunut asetorjunta lisää liikkumisnopeutta {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "육체계 및 정신계 저항 {0}% 증가",
+  "en": "+{0}% Ailment-type and Mental-type Resist",
+  "ja": "肉体系および精神系抵抗が{0}%増加",
+  "fi": "Ruumiillisten ja henkisten vaikutusten vastustus kasvaa {0}%"
+ },
+ {
+  "source": "유지 시간 동안 [피의 흡수] 효과 {0}배 증가",
+  "en": "x{0} [피의 흡수] effect for the duration",
+  "ja": "持続中、[피의 흡수]の効果が{0}倍",
+  "fi": "Taidon [피의 흡수] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 [보호의 갑옷] 효과 {0}배 증가",
+  "en": "x{0} [보호의 갑옷] effect for the duration",
+  "ja": "持続中、[보호의 갑옷]の効果が{0}倍",
+  "fi": "Taidon [보호의 갑옷] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "[칼날 날리기] 받는 치유량 {0}% 추가 감소",
+  "en": "[칼날 날리기]: additional -{0}% Incoming Heal",
+  "ja": "[칼날 날리기]：受ける回復量が追加で{0}%減少",
+  "fi": "[칼날 날리기]: vastaanotettu parannus vähenee vielä {0}%"
+ },
+ {
+  "source": "[칼날 날리기] {0}초 동안 둔화 효과 부여",
+  "en": "[칼날 날리기]: inflicts Slow for {0}s",
+  "ja": "[칼날 날리기]：{0}秒間鈍化効果を付与",
+  "fi": "[칼날 날리기]: hidastaa kohdetta {0} sekunnin ajan"
+ },
+ {
+  "source": "[칼날 날리기] 보호막 파괴",
+  "en": "[칼날 날리기]: breaks Protective Shields",
+  "ja": "[칼날 날리기]：バリアを破壊",
+  "fi": "[칼날 날리기]: rikkoo suojakilvet"
+ },
+ {
+  "source": "[칼날 화무] {0}% 확률 {1}초 넘어짐 부여",
+  "en": "[칼날 화무]: {0}% chance to inflict Knockdown for {1}s",
+  "ja": "[칼날 화무]：{0}%の確率で{1}秒間転倒を付与",
+  "fi": "[칼날 화무]: {0}% todennäköisyys kaataa kohde {1} sekunniksi"
+ },
+ {
+  "source": "[근성] 효과 종료 시 최대 생명력의 {0}% 회복",
+  "en": "Restores {0}% of max HP when [근성] effect ends",
+  "ja": "[근성]効果終了時、最大HPの{0}%を回復",
+  "fi": "Palauttaa {0}% maksimi-HP:stä, kun taidon [근성] vaikutus päättyy"
+ },
+ {
+  "source": "공격력 {0}% 증가",
+  "en": "+{0}% Attack",
+  "ja": "攻撃力が{0}%増加",
+  "fi": "Hyökkäysvoima kasvaa {0}%"
+ },
+ {
+  "source": "충격계 상태일 때 [근성] 활성화",
+  "en": "[근성] becomes available while afflicted with Impact-type status",
+  "ja": "衝撃系状態のとき[근성]が活性化",
+  "fi": "[근성] aktivoituu, kun olet iskutyyppisessä tilassa"
+ },
+ {
+  "source": "{0}s 동안 파티원에게 착취 효과",
+  "en": "Predation effect on party members for {0}s",
+  "ja": "{0}秒間、パーティーメンバーに搾取効果",
+  "fi": "Saalistusvaikutus ryhmän jäsenille {0} sekunnin ajaksi"
+ },
+ {
+  "source": "생명력 흡수 {0}% 추가 증가",
+  "en": "+{0}% additional HP absorbed",
+  "ja": "HP吸収が追加で{0}%増加",
+  "fi": "HP:n imeminen kasvaa vielä {0}%"
+ },
+ {
+  "source": "[격노 폭발] 재시전 시간 {0}초 감소",
+  "en": "-{0}s [격노 폭발] cooldown",
+  "ja": "[격노 폭발]の再使用時間が{0}秒短縮",
+  "fi": "Taidon [격노 폭발] palautumisaika lyhenee {0} sekuntia"
+ },
+ {
+  "source": "공격력 {0}% 추가 감소",
+  "en": "Additional -{0}% Attack",
+  "ja": "攻撃力が追加で{0}%減少",
+  "fi": "Hyökkäysvoima vähenee vielä {0}%"
+ },
+ {
+  "source": "PVE 피해 증폭 {0}%, PVP 피해 증폭 {1}% 추가 증가",
+  "en": "Additional +{0}% PvE Damage Boost and +{1}% PvP Damage Boost",
+  "ja": "PvEダメージ増幅が追加で{0}%、PvPダメージ増幅が追加で{1}%増加",
+  "fi": "PvE-vahingon vahvistus kasvaa vielä {0}% ja PvP-vahingon vahvistus {1}%"
+ },
+ {
+  "source": "유지 시간 동안 [노련한 반격] 효과 {0}배 증가",
+  "en": "x{0} [노련한 반격] effect for the duration",
+  "ja": "持続中、[노련한 반격]の効果が{0}倍",
+  "fi": "Taidon [노련한 반격] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 [살기 파열] 효과 {0}배 증가",
+  "en": "x{0} [살기 파열] effect for the duration",
+  "ja": "持続中、[살기 파열]の効果が{0}倍",
+  "fi": "Taidon [살기 파열] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "받는 피해의 {0}% 반사",
+  "en": "Reflects {0}% of damage taken",
+  "ja": "受けたダメージの{0}%を反射",
+  "fi": "Heijastaa {0}% vastaanotetusta vahingosta"
+ },
+ {
+  "source": "최대 적중 대상 {0}명 증가",
+  "en": "+{0} max targets",
+  "ja": "最大命中対象が{0}体増加",
+  "fi": "Kohteiden enimmäismäärä kasvaa {0}"
+ },
+ {
+  "source": "{0}번 연속기 [파괴 돌진] 추가",
+  "en": "Adds Chain Skill {0} [파괴 돌진]",
+  "ja": "連続スキル{0}番目[파괴 돌진]を追加",
+  "fi": "Lisää ketjutaidon {0}: [파괴 돌진]"
+ },
+ {
+  "source": "{0}초 동안 {1}% 확률로 공중 속박 효과 추가",
+  "en": "Adds a {1}% chance to inflict Airborne for {0}s",
+  "ja": "{0}秒間、{1}%の確率で空中束縛効果を追加",
+  "fi": "Lisää {1}% todennäköisyyden nostaa kohde ilmaan {0} sekunniksi"
+ },
+ {
+  "source": "적중 시 [비호의 일격] 재시전 시간 {0}s 감소",
+  "en": "-{0}s [비호의 일격] cooldown on hit",
+  "ja": "的中時、[비호의 일격]の再使用時間が{0}秒短縮",
+  "fi": "Osuma lyhentää taidon [비호의 일격] palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "{0}번 연속기 [위협의 맹타] 추가",
+  "en": "Adds Chain Skill {0} [위협의 맹타]",
+  "ja": "連続スキル{0}番目[위협의 맹타]を追加",
+  "fi": "Lisää ketjutaidon {0}: [위협의 맹타]"
+ },
+ {
+  "source": "[응징의 일격] 생명력 {0}% 흡수",
+  "en": "[응징의 일격] absorbs {0}% HP",
+  "ja": "[응징의 일격]がHPを{0}%吸収",
+  "fi": "[응징의 일격] imee {0}% HP:tä"
+ },
+ {
+  "source": "적중 시 [징벌] 재시전 시간 {0}s 감소",
+  "en": "-{0}s [징벌] cooldown on hit",
+  "ja": "的中時、[징벌]の再使用時間が{0}秒短縮",
+  "fi": "Osuma lyhentää taidon [징벌] palautumisaikaa {0} sekuntia"
+ },
+ {
+  "source": "[응징의 일격] 적중 시 추가 피해",
+  "en": "[응징의 일격] grants extra damage on hit",
+  "ja": "[응징의 일격]的中時、追加ダメージ",
+  "fi": "[응징의 일격] aiheuttaa osuessaan lisävahinkoa"
+ },
+ {
+  "source": "행동불가 면역 대상일 경우 대상에게 이동",
+  "en": "Moves to the target if it has Incapacitated Immunity",
+  "ja": "対象が行動不能免疫の場合、対象へ移動",
+  "fi": "Siirtyy kohteen luo, jos sillä on toimintakyvyttömyysimmuniteetti"
+ },
+ {
+  "source": "적중 시 {0}s 동안 상태이상 저항 {1}% 감소",
+  "en": "-{1}% Status Effect Resist for {0}s on hit",
+  "ja": "的中時、{0}秒間、状態異常抵抗が{1}%減少",
+  "fi": "Osuma vähentää tilavaikutusten vastustusta {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "최대 생명력의 {0}% 보호막",
+  "en": "Protective Shield equal to {0}% of max HP",
+  "ja": "最大HPの{0}%分のバリア",
+  "fi": "Suojakilpi, joka vastaa {0}% maksimi-HP:stä"
+ },
+ {
+  "source": "{0}s 동안 {1}%의 확률로 기절",
+  "en": "{1}% chance to inflict Stun for {0}s",
+  "ja": "{0}秒間、{1}%の確率で気絶",
+  "fi": "{1}% todennäköisyys tainnuttaa {0} sekunniksi"
+ },
+ {
+  "source": "정신력 소모 삭제 및 적중 시 정신력 {0} 회복",
+  "en": "Removes MP Cost and restores {0} MP on hit",
+  "ja": "MP消耗を削除し、的中時にMPを{0}回復",
+  "fi": "Poistaa MP-kulutuksen ja palauttaa osumalla {0} MP:tä"
+ },
+ {
+  "source": "적중 시 {0}% 확률로 [쇠약의 맹타] 활성화",
+  "en": "{0}% chance to trigger [쇠약의 맹타] on hit",
+  "ja": "的中時、{0}%の確率で[쇠약의 맹타]を活性化",
+  "fi": "Osumalla {0}% todennäköisyys aktivoida [쇠약의 맹타]"
+ },
+ {
+  "source": "광역 기절",
+  "en": "AoE Stun",
+  "ja": "範囲気絶",
+  "fi": "Aluetainnutus"
+ },
+ {
+  "source": "충격계 상태의 대상 공격 시 추가 피해",
+  "en": "Deals extra damage on attacking a target afflicted with Impact-type status",
+  "ja": "衝撃系状態の対象を攻撃時、追加ダメージ",
+  "fi": "Aiheuttaa lisävahinkoa hyökätessä iskutyyppisestä tilasta kärsivään kohteeseen"
+ },
+ {
+  "source": "적중 시 정신력을 {0} 만큼 회복",
+  "en": "Restores {0} MP on hit",
+  "ja": "的中時、MPを{0}回復",
+  "fi": "Osuma palauttaa {0} MP:tä"
+ },
+ {
+  "source": "{0}%의 확률로 {1}s 동안 기절",
+  "en": "{0}% chance to inflict Stun for {1}s",
+  "ja": "{0}%の確率で{1}秒間気絶",
+  "fi": "{0}% todennäköisyys tainnuttaa {1} sekunniksi"
+ },
+ {
+  "source": "쇠약 유지 시간 {0}초 증가",
+  "en": "+{0}s Debilitate duration",
+  "ja": "衰弱の持続時間が{0}秒増加",
+  "fi": "Näännytyksen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "쇠약 중 받는 치유량 {0}% 감소",
+  "en": "-{0}% Incoming Heal during Debilitate",
+  "ja": "衰弱中、受ける回復量が{0}%減少",
+  "fi": "Vastaanotettu parannus vähenee {0}% näännytyksen aikana"
+ },
+ {
+  "source": "막기 성공 시 {0}%의 확률로 재시전 시간 초기화",
+  "en": "{0}% chance to reset cooldown on Block",
+  "ja": "ガード成功時、{0}%の確率で再使用時間をリセット",
+  "fi": "Onnistunut torjunta nollaa palautumisajan {0}% todennäköisyydellä"
+ },
+ {
+  "source": "비호 중 막기 {0} 증가",
+  "en": "+{0} Block during Warding",
+  "ja": "庇護中、ガードが{0}増加",
+  "fi": "Torjunta kasvaa {0} suojauksen aikana"
+ },
+ {
+  "source": "비호 중 지속 회복 효과",
+  "en": "Heal over Time during Warding",
+  "ja": "庇護中、持続回復効果",
+  "fi": "Jatkuva parannus suojauksen aikana"
+ },
+ {
+  "source": "적중 인원 수가 많을수록 비호의 PVE 피해 내성, PVP 피해 내성 효과 증가",
+  "en": "Warding's PvE Damage Tolerance and PvP Damage Tolerance effects increase when more targets are hit",
+  "ja": "命中した人数が多いほど庇護のPvEダメージ耐性、PvPダメージ耐性効果が増加",
+  "fi": "Mitä useampaan kohteeseen osuu, sitä enemmän suojauksen PvE- ja PvP-vahingonkestävyysvaikutukset kasvavat"
+ },
+ {
+  "source": "스킬 사용 시 파티원의 PVE 피해 내성 {0}%, PVP 피해 내성 {1}% 증가",
+  "en": "+{0}% PvE Damage Tolerance and +{1}% PvP Damage Tolerance to party members on skill use",
+  "ja": "スキル使用時、パーティーメンバーのPvEダメージ耐性が{0}%、PvPダメージ耐性が{1}%増加",
+  "fi": "Taitoa käytettäessä ryhmän jäsenten PvE-vahingonkestävyys kasvaa {0}% ja PvP-vahingonkestävyys {1}%"
+ },
+ {
+  "source": "적중 시 대상에게 지속 피해 부여",
+  "en": "Inflicts Damage over Time on the target on hit",
+  "ja": "的中時、対象に持続ダメージを付与",
+  "fi": "Osuma aiheuttaa kohteelle jatkuvaa vahinkoa"
+ },
+ {
+  "source": "{0}번 연속기 [생포] 추가",
+  "en": "Adds Chain Skill {0} [생포]",
+  "ja": "連続スキル{0}番目[생포]を追加",
+  "fi": "Lisää ketjutaidon {0}: [생포]"
+ },
+ {
+  "source": "보호막 지속 중 모든 속성 내성 {0}% 증가",
+  "en": "+{0}% all Element Tolerance while the Protective Shield lasts",
+  "ja": "バリア持続中、すべての属性耐性が{0}%増加",
+  "fi": "Suojakilven aikana kaikkien elementtien kestävyys kasvaa {0}%"
+ },
+ {
+  "source": "보호막 유지 시간 {0}초 증가",
+  "en": "+{0}s Protective Shield duration",
+  "ja": "バリアの持続時間が{0}秒増加",
+  "fi": "Suojakilven kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "보호막 지속 중 PVE 피해 내성 {0}%, PVP 피해 내성 {1}% 증가",
+  "en": "+{0}% PvE Damage Tolerance and +{1}% PvP Damage Tolerance while the Protective Shield lasts",
+  "ja": "バリア持続中、PvEダメージ耐性が{0}%、PvPダメージ耐性が{1}%増加",
+  "fi": "Suojakilven aikana PvE-vahingonkestävyys kasvaa {0}% ja PvP-vahingonkestävyys {1}%"
+ },
+ {
+  "source": "보호막 해제 시 최대 생명력의 {0}% 회복",
+  "en": "Restores {0}% of max HP when the Protective Shield is removed",
+  "ja": "バリア解除時、最大HPの{0}%を回復",
+  "fi": "Palauttaa {0}% maksimi-HP:stä, kun suojakilpi poistuu"
+ },
+ {
+  "source": "막기 성공 시 생명력 {0}% {1}회 회복",
+  "en": "Restores {0}% HP {1} time(s) on Block",
+  "ja": "ガード成功時、HPを{0}%、{1}回回復",
+  "fi": "Onnistunut torjunta palauttaa {0}% HP:stä {1} kertaa"
+ },
+ {
+  "source": "위축 효과에 PVE 피해 내성 {0}%, PVP 피해 내성 {1}% 감소 효과 추가",
+  "en": "Adds {0}% PvE Damage Tolerance reduction and {1}% PvP Damage Tolerance reduction effect to Shrink",
+  "ja": "萎縮効果にPvEダメージ耐性{0}%、PvPダメージ耐性{1}%減少効果を追加",
+  "fi": "Lisää kutistukseen PvE-vahingonkestävyyden {0}% ja PvP-vahingonkestävyyden {1}% vähennyksen"
+ },
+ {
+  "source": "위축 공격력 {0}% 추가 감소",
+  "en": "+{0}% Shrink Attack reduction",
+  "ja": "萎縮の攻撃力減少が追加で{0}%",
+  "fi": "Kutistuksen hyökkäysvoiman vähennys kasvaa vielä {0}%"
+ },
+ {
+  "source": "도발 지속 시간 {0}초 증가, 위축 지속시간 {1}초 증가",
+  "en": "+{0}s Taunt duration, +{1}s Shrink duration",
+  "ja": "挑発の持続時間が{0}秒、萎縮の持続時間が{1}秒増加",
+  "fi": "Provosoinnin kesto pitenee {0} sekuntia ja kutistuksen {1} sekuntia"
+ },
+ {
+  "source": "유지 시간 동안 육체계, 정신계 저항 {0}% 증가",
+  "en": "+{0}% Ailment-type and Mental-type Resist for the duration",
+  "ja": "持続中、肉体系、精神系抵抗が{0}%増加",
+  "fi": "Ruumiillisten ja henkisten vaikutusten vastustus kasvaa {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "유지 시간 동안 [비호의 방패] 효과 {0}배 증가",
+  "en": "x{0} [비호의 방패] effect for the duration",
+  "ja": "持続中、[비호의 방패]の効果が{0}倍",
+  "fi": "Taidon [비호의 방패] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 모든 속성 내성 {0}% 증가",
+  "en": "+{0}% all Element Tolerance for the duration",
+  "ja": "持続中、すべての属性耐性が{0}%増加",
+  "fi": "Kaikkien elementtien kestävyys kasvaa {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "유지 시간 동안 막기 {0}% 증가",
+  "en": "+{0}% Block for the duration",
+  "ja": "持続中、ガードが{0}%増加",
+  "fi": "Torjunta kasvaa {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "유지 시간 동안 [철벽 방어] 효과 {0}배",
+  "en": "x{0} [철벽 방어] effect for the duration",
+  "ja": "持続中、[철벽 방어]の効果が{0}倍",
+  "fi": "Taidon [철벽 방어] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "적중 시 [섬멸] 재시전 시간 초기화",
+  "en": "Resets [섬멸] cooldown on hit",
+  "ja": "的中時、[섬멸]の再使用時間をリセット",
+  "fi": "Osuma nollaa taidon [섬멸] palautumisajan"
+ },
+ {
+  "source": "적중 시 {0}s 동안 막기 {1} 증가",
+  "en": "+{1} Block for {0}s on hit",
+  "ja": "的中時、{0}秒間、ガードが{1}増加",
+  "fi": "Osuma lisää torjuntaa {1} {0} sekunnin ajaksi"
+ },
+ {
+  "source": "유지 시간 동안 방어력 {0}% 증가",
+  "en": "+{0}% Defense for the duration",
+  "ja": "持続中、防御力が{0}%増加",
+  "fi": "Puolustus kasvaa {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "유지 시간 동안 [모욕의 포효] 효과 {0}배",
+  "en": "x{0} [모욕의 포효] effect for the duration",
+  "ja": "持続中、[모욕의 포효]の効果が{0}倍",
+  "fi": "Taidon [모욕의 포효] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 [격앙] 효과 {0}배",
+  "en": "x{0} [격앙] effect for the duration",
+  "ja": "持続中、[격앙]の効果が{0}倍",
+  "fi": "Taidon [격앙] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 받는 치유량 {0}% 증가",
+  "en": "+{0}% Incoming Heal for the duration",
+  "ja": "持続中、受ける回復量が{0}%増加",
+  "fi": "Vastaanotettu parannus kasvaa {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "충격계 상태의 대상 공격 시 피해량 {0}% 증가",
+  "en": "+{0}% damage on attacking targets afflicted with Impact-type status",
+  "ja": "衝撃系状態の対象を攻撃時、ダメージが{0}%増加",
+  "fi": "Vahinko kasvaa {0}% hyökätessä iskutyyppisestä tilasta kärsiviin kohteisiin"
+ },
+ {
+  "source": "유지 시간 중 생명력이 {0}% 이하인 상태로 피격되면 최대 생명력의 {1}% {2}회 회복",
+  "en": "For the duration, when hit while HP is {0}% or less, restores {1}% of max HP {2} time(s)",
+  "ja": "持続中、HPが{0}%以下の状態で被弾すると、最大HPの{1}%を{2}回回復",
+  "fi": "Vaikutuksen aikana, kun sinuun osutaan HP:n ollessa enintään {0}%, palauttaa {1}% maksimi-HP:stä {2} kertaa"
+ },
+ {
+  "source": "유지 시간 동안 [수호의 인장] 보호막 효과 {0}배",
+  "en": "x{0} [수호의 인장] Protective Shield effect for the duration",
+  "ja": "持続中、[수호의 인장]のバリア効果が{0}倍",
+  "fi": "Taidon [수호의 인장] suojakilpivaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "유지 시간 동안 [고통 차단] 효과 {0}배 증가",
+  "en": "x{0} [고통 차단] effect for the duration",
+  "ja": "持続中、[고통 차단]の効果が{0}倍",
+  "fi": "Taidon [고통 차단] vaikutus on {0}-kertainen vaikutuksen ajan"
+ },
+ {
+  "source": "효과 종료 시 자신은 최대 생명력의 {0}% 회복",
+  "en": "Caster restores {0}% of max HP when the effect ends",
+  "ja": "効果終了時、自身は最大HPの{0}%を回復",
+  "fi": "Kun vaikutus päättyy, käyttäjä palauttaa {0}% maksimi-HP:stään"
+ },
+ {
+  "source": "적중 대상 많을수록 PVE 피해 내성 최대 {0}%, PVP 피해 내성 최대 {1}% 증가",
+  "en": "Up to +{0}% PvE Damage Tolerance and up to +{1}% PvP Damage Tolerance when more targets are hit",
+  "ja": "的中した対象が多いほどPvEダメージ耐性が最大{0}%、PvPダメージ耐性が最大{1}%増加",
+  "fi": "Mitä useampaan kohteeseen osuu, sitä enemmän PvE-vahingonkestävyys kasvaa, enintään {0}%, ja PvP-vahingonkestävyys, enintään {1}%"
+ },
+ {
+  "source": "유지 시간 동안 무기 피해 증폭 {0}% 증가",
+  "en": "+{0}% Weapon Damage Boost for the duration",
+  "ja": "持続中、武器ダメージ増幅が{0}%増加",
+  "fi": "Asevahingon vahvistus kasvaa {0}% vaikutuksen ajaksi"
+ },
+ {
+  "source": "방어력 비례 공격력 증가 효과 {0}% 증가",
+  "en": "+{0}% Defense-based Attack increase effect",
+  "ja": "防御力比例の攻撃力増加効果が{0}%増加",
+  "fi": "Puolustukseen perustuva hyökkäysvoiman lisäys kasvaa {0}%"
+ },
+ {
+  "source": "[대지 진동] 적중 시 공격력 {0}% 증가 (최대 {1}중첩)",
+  "en": "+{0}% Attack on landing [대지 진동] (stacks up to {1} times)",
+  "ja": "[대지 진동]的中時、攻撃力が{0}%増加（最大{1}重ね）",
+  "fi": "[대지 진동] lisää osuessaan hyökkäysvoimaa {0}% (kasautuu enintään {1} kertaa)"
+ },
+ {
+  "source": "[대지 진동] 적중 시 {0}%의 확률로 대상의 강화 마법 {1}개 제거",
+  "en": "{0}% chance to remove {1} of the target's buffs on landing [대지 진동]",
+  "ja": "[대지 진동]的中時、{0}%の確率で対象の強化魔法を{1}個解除",
+  "fi": "[대지 진동] poistaa osuessaan {0}% todennäköisyydellä kohteelta {1} vahvistusloitsua"
+ },
+ {
+  "source": "적중 대상 적을수록 피해량 최대 {0}% 증가",
+  "en": "Deals up to {0}% more damage when fewer targets are hit",
+  "ja": "的中した対象が少ないほどダメージが増加（最大{0}%）",
+  "fi": "Mitä vähemmän kohteita osuu, sitä enemmän vahinko kasvaa, enintään {0}%"
+ },
+ {
+  "source": "{0}번 연속기 [재의 부름] 추가",
+  "en": "Adds Chain Skill {0} [재의 부름]",
+  "ja": "連続スキル{0}番目[재의 부름]を追加",
+  "fi": "Lisää ketjutaidon {0}: [재의 부름]"
+ },
+ {
+  "source": "불의 정령 치명타 피해 {0}% 증가",
+  "en": "+{0}% Fire Spirit Critical Damage",
+  "ja": "火の精霊のクリティカルダメージが{0}%増加",
+  "fi": "Tulihengen kriittinen vahinko kasvaa {0}%"
+ },
+ {
+  "source": "불의 정령 공격 적중 시 스킬 발동 확률 {0}% 증가",
+  "en": "+{0}% skill trigger chance when the Fire Spirit's attack hits",
+  "ja": "火の精霊の攻撃的中時、スキル発動確率が{0}%増加",
+  "fi": "Tulihengen hyökkäyksen osuessa taidon laukeamistodennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "불의 정령 공격 적중 시 {0}%의 확률로 {1}s 동안 넘어짐 부여",
+  "en": "{0}% chance to inflict Knockdown for {1}s when the Fire Spirit's attack hits",
+  "ja": "火の精霊の攻撃的中時、{0}%の確率で{1}秒間転倒を付与",
+  "fi": "Tulihengen hyökkäyksen osuessa {0}% todennäköisyys kaataa kohde {1} sekunniksi"
+ },
+ {
+  "source": "불의 정령 능력치 {0}% 증가",
+  "en": "+{0}% Fire Spirit stats",
+  "ja": "火の精霊の能力値が{0}%増加",
+  "fi": "Tulihengen ominaisuudet kasvavat {0}%"
+ },
+ {
+  "source": "물의 정령 공격력 {0}% 증가",
+  "en": "+{0}% Water Spirit Attack",
+  "ja": "水の精霊の攻撃力が{0}%増加",
+  "fi": "Vesihengen hyökkäysvoima kasvaa {0}%"
+ },
+ {
+  "source": "물의 정령 공격 적중 시 스킬 발동 확률 {0}% 증가",
+  "en": "+{0}% skill trigger chance when the Water Spirit's attack hits",
+  "ja": "水の精霊の攻撃的中時、スキル発動確率が{0}%増加",
+  "fi": "Vesihengen hyökkäyksen osuessa taidon laukeamistodennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "물의 정령 공격 적중 시 {0}%의 확률로 {1}s 동안 속박",
+  "en": "{0}% chance to inflict Root for {1}s when the Water Spirit's attack hits",
+  "ja": "水の精霊の攻撃的中時、{0}%の確率で{1}秒間束縛",
+  "fi": "Vesihengen hyökkäyksen osuessa {0}% todennäköisyys sitoa kohde {1} sekunniksi"
+ },
+ {
+  "source": "물의 정령 능력치 {0}% 증가",
+  "en": "+{0}% Water Spirit stats",
+  "ja": "水の精霊の能力値が{0}%増加",
+  "fi": "Vesihengen ominaisuudet kasvavat {0}%"
+ },
+ {
+  "source": "저주 유지 시간 {0}초 증가",
+  "en": "+{0}s Curse duration",
+  "ja": "呪いの持続時間が{0}秒増加",
+  "fi": "Kirouksen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "[협공: 저주]는 막기 및 회피를 무시하고 치명타로 적중",
+  "en": "[협공: 저주] ignores Block and Evasion and lands as a Critical Hit",
+  "ja": "[협공: 저주]はガードと回避を無視してクリティカルで命中",
+  "fi": "[협공: 저주] ohittaa torjunnan ja väistön ja osuu kriittisenä osumana"
+ },
+ {
+  "source": "땅의 정령 PVE 피해 내성 {0}%, PVP 피해 내성 {1}% 증가",
+  "en": "+{0}% Earth Spirit PvE Damage Tolerance and +{1}% PvP Damage Tolerance",
+  "ja": "土の精霊のPvEダメージ耐性が{0}%、PvPダメージ耐性が{1}%増加",
+  "fi": "Maahengen PvE-vahingonkestävyys kasvaa {0}% ja PvP-vahingonkestävyys {1}%"
+ },
+ {
+  "source": "땅의 정령 공격 적중 시 스킬 발동 확률 {0}% 증가",
+  "en": "+{0}% skill trigger chance when the Earth Spirit's attack hits",
+  "ja": "土の精霊の攻撃的中時、スキル発動確率が{0}%増加",
+  "fi": "Maahengen hyökkäyksen osuessa taidon laukeamistodennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "땅의 정령 공격 적중 시 {0}%의 확률로 정령의 생명력 {1}% 회복",
+  "en": "{0}% chance to restore {1}% of the Spirit's HP when the Earth Spirit's attack hits",
+  "ja": "土の精霊の攻撃的中時、{0}%の確率で精霊のHPを{1}%回復",
+  "fi": "Maahengen hyökkäyksen osuessa {0}% todennäköisyys palauttaa {1}% hengen HP:stä"
+ },
+ {
+  "source": "땅의 정령 능력치 {0}% 증가",
+  "en": "+{0}% Earth Spirit stats",
+  "ja": "土の精霊の能力値が{0}%増加",
+  "fi": "Maahengen ominaisuudet kasvavat {0}%"
+ },
+ {
+  "source": "둔화 효과 {0}% 증가",
+  "en": "+{0}% Slow effect",
+  "ja": "鈍化効果が{0}%増加",
+  "fi": "Hidastusvaikutus kasvaa {0}%"
+ },
+ {
+  "source": "적중 시 다단히트 확률 {0}% 증가",
+  "en": "+{0}% Multi-Hit Chance on hit",
+  "ja": "的中時、多段ヒット確率が{0}%増加",
+  "fi": "Osumalla moniosuman todennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "대상 중심으로 끌어당김",
+  "en": "Pulls enemies toward the target",
+  "ja": "対象を中心に引き寄せる",
+  "fi": "Vetää viholliset kohteen luo"
+ },
+ {
+  "source": "바람의 정령 치명타 {0}% 증가",
+  "en": "+{0}% Wind Spirit Critical Hit",
+  "ja": "風の精霊のクリティカルが{0}%増加",
+  "fi": "Tuulihengen kriittinen osuma kasvaa {0}%"
+ },
+ {
+  "source": "바람의 정령 공격 적중 시 스킬 발동 확률 {0}% 증가",
+  "en": "+{0}% skill trigger chance when the Wind Spirit's attack hits",
+  "ja": "風の精霊の攻撃的中時、スキル発動確率が{0}%増加",
+  "fi": "Tuulihengen hyökkäyksen osuessa taidon laukeamistodennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "바람의 정령 공격 시 {0}%의 확률로 {1}s 동안 공격 속도 {2}% 감소",
+  "en": "{0}% chance to reduce Attack Speed by {2}% for {1}s when the Wind Spirit attacks",
+  "ja": "風の精霊の攻撃時、{0}%の確率で{1}秒間攻撃速度が{2}%減少",
+  "fi": "Tuulihengen hyökätessä {0}% todennäköisyys vähentää hyökkäysnopeutta {2}% {1} sekunnin ajaksi"
+ },
+ {
+  "source": "바람의 정령 능력치 {0}% 증가",
+  "en": "+{0}% Wind Spirit stats",
+  "ja": "風の精霊の能力値が{0}%増加",
+  "fi": "Tuulihengen ominaisuudet kasvavat {0}%"
+ },
+ {
+  "source": "{0}s 동안 속박",
+  "en": "Inflicts Root for {0}s",
+  "ja": "{0}秒間束縛",
+  "fi": "Sitoo kohteen {0} sekunniksi"
+ },
+ {
+  "source": "적중 시 모든 속성 증폭 {0}% 증가",
+  "en": "+{0}% all Element Boost on hit",
+  "ja": "的中時、すべての属性増幅が{0}%増加",
+  "fi": "Osumalla kaikkien elementtien vahvistus kasvaa {0}%"
+ },
+ {
+  "source": "차지 스킬로 변경, 피해량 최대 {0}% 증가",
+  "en": "Changes to Charge Skill, dealing up to {0}% more damage",
+  "ja": "チャージスキルに変更、ダメージが最大{0}%増加",
+  "fi": "Muuttuu lataustaidoksi, ja vahinko kasvaa enintään {0}%"
+ },
+ {
+  "source": "{0}% 확률로 {1}원소 재획득",
+  "en": "{0}% chance to regain {1} Elements",
+  "ja": "{0}%の確率で{1}元素を再獲得",
+  "fi": "{0}% todennäköisyys saada takaisin {1} elementtiä"
+ },
+ {
+  "source": "{0}번 연속기 [절망의 저주] 추가",
+  "en": "Adds Chain Skill {0} [절망의 저주]",
+  "ja": "連続スキル{0}番目[절망의 저주]を追加",
+  "fi": "Lisää ketjutaidon {0}: [절망의 저주]"
+ },
+ {
+  "source": "차지 스킬로 변경, [협공: 파멸의 공세] 피해량 최대 {0}% 증가",
+  "en": "Changes to Charge Skill, [협공: 파멸의 공세] deals up to {0}% more damage",
+  "ja": "チャージスキルに変更、[협공: 파멸의 공세]のダメージが最大{0}%増加",
+  "fi": "Muuttuu lataustaidoksi, ja taidon [협공: 파멸의 공세] vahinko kasvaa enintään {0}%"
+ },
+ {
+  "source": "[협공: 파멸의 공세] 첫 타 적중 시 [협공: 저주] 및 [협공: 부식] 재시전 시간 초기화",
+  "en": "Resets [협공: 저주] and [협공: 부식] cooldowns on landing the first hit of [협공: 파멸의 공세]",
+  "ja": "[협공: 파멸의 공세]の初撃的中時、[협공: 저주]と[협공: 부식]の再使用時間をリセット",
+  "fi": "Kun taidon [협공: 파멸의 공세] ensimmäinen isku osuu, taitojen [협공: 저주] ja [협공: 부식] palautumisajat nollautuvat"
+ },
+ {
+  "source": "시전 시 생명력의 {0}% 만큼 회복",
+  "en": "Restores {0}% HP on use",
+  "ja": "使用時、HPの{0}%分を回復",
+  "fi": "Palauttaa käytettäessä {0}% HP:stä"
+ },
+ {
+  "source": "패시브 [정령 타격] 피해 증폭 효과 {0}배 증가",
+  "en": "x{0} Damage Boost effect of passive [정령 타격]",
+  "ja": "パッシブ[정령 타격]のダメージ増幅効果が{0}倍に増加",
+  "fi": "Passiivisen taidon [정령 타격] vahingon vahvistus kasvaa {0}-kertaiseksi"
+ },
+ {
+  "source": "[정령 교감] 발동 확률 및 회복량 {0}배 증가",
+  "en": "x{0} [정령 교감] trigger chance and amount restored",
+  "ja": "[정령 교감]の発動確率と回復量が{0}倍に増加",
+  "fi": "Taidon [정령 교감] laukeamistodennäköisyys ja palautettu määrä kasvavat {0}-kertaisiksi"
+ },
+ {
+  "source": "자신과 정령의 PVE 피해 증폭, 피해 내성 {0}%, PVP 피해 증폭, 피해 내성 {1}% 증가",
+  "en": "+{0}% PvE Damage Boost and Damage Tolerance and +{1}% PvP Damage Boost and Damage Tolerance for the caster and Spirit",
+  "ja": "自身と精霊のPvEダメージ増幅・ダメージ耐性が{0}%、PvPダメージ増幅・ダメージ耐性が{1}%増加",
+  "fi": "Käyttäjän ja hengen PvE-vahingon vahvistus ja vahingonkestävyys kasvavat {0}% sekä PvP-vahingon vahvistus ja vahingonkestävyys {1}%"
+ },
+ {
+  "source": "치명타 {0}증가",
+  "en": "+{0} Critical Hit",
+  "ja": "クリティカルが{0}増加",
+  "fi": "Kriittinen osuma kasvaa {0}"
+ },
+ {
+  "source": "추가 피해 재시전 시간 {0}% 감소",
+  "en": "-{0}% extra damage cooldown",
+  "ja": "追加ダメージの再使用時間が{0}%短縮",
+  "fi": "Lisävahingon palautumisaika lyhenee {0}%"
+ },
+ {
+  "source": "고대의 정령 공격력 {0}% 증가",
+  "en": "+{0}% Ancient Spirit Attack",
+  "ja": "古代の精霊の攻撃力が{0}%増加",
+  "fi": "Muinaishengen hyökkäysvoima kasvaa {0}%"
+ },
+ {
+  "source": "{0}s 동안 [정령 강림] 발동 확률 및 피해량 {1}배 증가",
+  "en": "x{1} [정령 강림] trigger chance and damage for {0}s",
+  "ja": "{0}秒間、[정령 강림]の発動確率とダメージが{1}倍に増加",
+  "fi": "Taidon [정령 강림] laukeamistodennäköisyys ja vahinko kasvavat {1}-kertaisiksi {0} sekunnin ajaksi"
+ },
+ {
+  "source": "고대의 정령 일반 공격 {0}회 후 스킬 사용",
+  "en": "Ancient Spirit uses a skill after {0} basic attacks",
+  "ja": "古代の精霊が通常攻撃{0}回後にスキルを使用",
+  "fi": "Muinaishenki käyttää taitoa {0} perushyökkäyksen jälkeen"
+ },
+ {
+  "source": "고대의 정령 능력치 {0}% 증가",
+  "en": "+{0}% Ancient Spirit stats",
+  "ja": "古代の精霊の能力値が{0}%増加",
+  "fi": "Muinaishengen ominaisuudet kasvavat {0}%"
+ },
+ {
+  "source": "부식 중 정령에게 받는 피해 {0}% 추가 증가",
+  "en": "+{0}% extra damage taken from Spirit during Corrode",
+  "ja": "腐食中、精霊から受けるダメージが追加で{0}%増加",
+  "fi": "Syöpymisen aikana hengeltä saatu vahinko kasvaa vielä {0}%"
+ },
+ {
+  "source": "적중 시 {0}s 동안 전투 속도 {1}% 감소",
+  "en": "-{1}% Combat Speed for {0}s on hit",
+  "ja": "的中時、{0}秒間、戦闘速度が{1}%減少",
+  "fi": "Osuma vähentää taistelunopeutta {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "부식 중 받는 치유량 {0}% 감소",
+  "en": "-{0}% Incoming Heal during Corrode",
+  "ja": "腐食中、受ける回復量が{0}%減少",
+  "fi": "Vastaanotettu parannus vähenee {0}% syöpymisen aikana"
+ },
+ {
+  "source": "부식 효과 유지 시간 {0}초 증가",
+  "en": "+{0}s Corrode effect duration",
+  "ja": "腐食効果の持続時間が{0}秒増加",
+  "fi": "Syöpymisvaikutuksen kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "막기 및 회피 {0} 증가",
+  "en": "+{0} Block and Evasion",
+  "ja": "ガードと回避が{0}増加",
+  "fi": "Torjunta ja väistö kasvavat {0}"
+ },
+ {
+  "source": "상태이상 적중 {0}% 증가",
+  "en": "+{0}% Status Effect Chance",
+  "ja": "状態異常的中が{0}%増加",
+  "fi": "Tilavaikutusten osumatodennäköisyys kasvaa {0}%"
+ },
+ {
+  "source": "생명력 흡수 {0}% 증가",
+  "en": "+{0}% HP absorbed",
+  "ja": "HP吸収が{0}%増加",
+  "fi": "HP:n imeminen kasvaa {0}%"
+ },
+ {
+  "source": "적중 시 {0}s 동안 기절",
+  "en": "Inflicts Stun for {0}s on hit",
+  "ja": "的中時、{0}秒間気絶",
+  "fi": "Osuma tainnuttaa {0} sekunniksi"
+ },
+ {
+  "source": "적중 시 {0}s 동안 속박",
+  "en": "Inflicts Root for {0}s on hit",
+  "ja": "的中時、{0}秒間束縛",
+  "fi": "Osuma sitoo kohteen {0} sekunniksi"
+ },
+ {
+  "source": "적중 대상 많을수록 피해량 최대 {0}% 증가",
+  "en": "Deals up to {0}% more damage when more targets are hit",
+  "ja": "的中した対象が多いほどダメージが増加（最大{0}%）",
+  "fi": "Mitä enemmän kohteita osuu, sitä enemmän vahinko kasvaa, enintään {0}%"
+ },
+ {
+  "source": "지속 피해 중 최대 행동력 {0} 감소",
+  "en": "-{0} max Stamina during Damage over Time",
+  "ja": "持続ダメージ中、最大行動力が{0}減少",
+  "fi": "Maksimi-Stamina vähenee {0} jatkuvan vahingon aikana"
+ },
+ {
+  "source": "지속 피해를 PC에게 부여 시 최대 생명력 {0}% 감소",
+  "en": "-{0}% max HP when Damage over Time is inflicted on a player",
+  "ja": "持続ダメージをPCに付与すると最大HPが{0}%減少",
+  "fi": "Maksimi-HP vähenee {0}%, kun jatkuva vahinko kohdistuu pelaajahahmoon"
+ },
+ {
+  "source": "지속 피해 중 상태이상 저항 {0}% 감소",
+  "en": "-{0}% Status Effect Resist during Damage over Time",
+  "ja": "持続ダメージ中、状態異常抵抗が{0}%減少",
+  "fi": "Tilavaikutusten vastustus vähenee {0}% jatkuvan vahingon aikana"
+ },
+ {
+  "source": "강화 마법 {0}개 이상 제거 시 {1}초 동안 봉인",
+  "en": "Inflicts Seal for {1}s when {0} or more buffs are removed",
+  "ja": "強化魔法を{0}個以上解除すると{1}秒間封印",
+  "fi": "Sinetöi kohteen {1} sekunniksi, kun vähintään {0} vahvistusloitsua poistetaan"
+ },
+ {
+  "source": "{0}s 동안 자신의 공격력 {1}% 증가",
+  "en": "+{1}% own Attack for {0}s",
+  "ja": "{0}秒間、自身の攻撃力が{1}%増加",
+  "fi": "Oma hyökkäysvoima kasvaa {1}% {0} sekunnin ajaksi"
+ },
+ {
+  "source": "명령: 대역 지속 시간 {0}초 증가",
+  "en": "+{0}s Command: Proxy duration",
+  "ja": "Command: Proxyの持続時間が{0}秒増加",
+  "fi": "Taidon Command: Proxy kesto pitenee {0} sekuntia"
+ },
+ {
+  "source": "정령의 PVE 피해 내성 {0}%, PVP 피해 내성 {1}% 추가 증가",
+  "en": "Additional +{0}% PvE Damage Tolerance and +{1}% PvP Damage Tolerance to Spirit",
+  "ja": "精霊のPvEダメージ耐性が追加で{0}%、PvPダメージ耐性が追加で{1}%増加",
+  "fi": "Hengen PvE-vahingonkestävyys kasvaa vielä {0}% ja PvP-vahingonkestävyys {1}%"
+ },
+ {
+  "source": "명령: 대역 지속 중 [정령 보호] 효과 {0}배",
+  "en": "x{0} [정령 보호] effect during Command: Proxy",
+  "ja": "Command: Proxy持続中、[정령 보호]の効果が{0}倍",
+  "fi": "Taidon [정령 보호] vaikutus on {0}-kertainen taidon Command: Proxy aikana"
+ },
+ {
+  "source": "명령: 대역 지속 중 매 초당 정령 생명력의 {0}% 회복",
+  "en": "Restores {0}% of Spirit's HP every second during Command: Proxy",
+  "ja": "Command: Proxy持続中、毎秒精霊のHPの{0}%を回復",
+  "fi": "Palauttaa {0}% hengen HP:stä joka sekunti taidon Command: Proxy aikana"
+ }
+]

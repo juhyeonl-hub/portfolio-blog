@@ -13,7 +13,7 @@ with sync_playwright() as p:
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
         page.goto(URL)
-        expect(page.get_by_role('region',name='a2bc 메인',exact=True)).to_be_visible()
+        expect(page.get_by_role('region',name='ASBC',exact=True)).to_be_visible()
         expect(page.get_by_role('tablist')).to_have_count(1)
         expect(page.locator('.class-picker')).to_have_count(0)
         page.screenshot(path=f'/tmp/a2bc-clean-home-{width}.png')

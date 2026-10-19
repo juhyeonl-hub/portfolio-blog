@@ -1,0 +1,128 @@
+# ASBC home, account and full localization
+
+- Owner: Codex, single writer.
+- Base commit: 701ce52.
+- Scope: ASBC identity, compact desktop home, visible existing member login entry, public read / authenticated participation, four languages across screens and provided descriptions, 추억 게임즈 footer. Steam login feasibility; future standalone hosting only documented.
+- Done when: desktop 1366×768 / 1440×900 home fits in four languages, mobile and zoom stay usable, locale persists, account entry works, all provided UI/descriptions translated without changing numerical data/IDs/user content, relevant regression/full suite pass.
+- Uncommitted: current home/account/locale foundation changes. Existing two private untracked files preserved.
+- Last reviewed: no cross-review; backend/auth logic unchanged.
+- Verification: 24 frontend suites, typecheck, lint, build passed. New asbc_home.py passes four locales across 1366/1440/390/683 widths, selected-server fit, locale persistence, public reading and mocked register/login/logout. Population UI and 53 pair directions; home/map marker detail regression passed.
+- Findings fixed: English/Finnish timer overlap, selected-server desktop overflow, mobile population overflow. Logout test initially asserted before asynchronous completion; now waits for logged-out UI.
+- Last verified: 2026-10-19.
+- Next: translate and review the source descriptions and remaining screens before extending production dictionaries. Avoid blindly importing model drafts. No automatic commit/push/deploy.
+- Blocker: full explanation translation failed the semantic quality check. Local drafts omit or alter gameplay conditions even after term protection; they are not shipped. No API credentials are required or pending. Full translation remains incomplete.
+
+## Current auth / Steam / future hosting
+
+Existing community uses username and password, immediate signup/login, bcrypt password hashes and opaque server sessions. Email verification/password recovery absent. Admin blog login is separate. Header opens the community account screen; public tools stay accessible. Steam OpenID can authenticate SteamID; no confirmed public SteamID→AION2 owned-character lookup. Steam login has not been implemented. Primary documentation: https://steamcommunity.com/dev and https://help.plaync.com/faq/aion2global/view?faqNo=7240 .
+
+Current URL and persistent keys stay unchanged to preserve existing data. A later standalone origin needs explicit deployment/domain configuration, API access configuration and an export/import plan for origin-scoped browser storage. 추억 게임즈 is presented as a personal project brand, not a registered company.
+
+## Translation tooling
+
+Local-only CTranslate2 4.8.3 / SentencePiece 0.2.2 and Argos model packages. Metadata source https://github.com/argosopentech/argospm-index ; model downloads from its argos-net.com links. Models/tooling remain under ignored .agents/asbc-translation, outside production assets/dependencies. urllib downloads returned403; curl succeeded. Initial model sample omitted the critical-hit condition: do not treat unchecked drafts as reliable translations or mark full localization complete. Main/menu/account translations are manually authored; full corpus and screen coverage are still outstanding.
+
+## Final translation investigation
+
+User selected the recommended local workflow. Also tested official facebook/m2m100_418M revision55c2e61bbf05dfb8d7abccdc3fae6fc8512fd636 (model metadata MIT), converted locally to CTranslate2 int8. CTranslate2 export initially omitted100language tokens; verified model vocabulary IDs after correcting the research-only export. Full corpus inventory:3910unique UI/description strings (not a finished translation count). Argos first-pass numeric/critical-term checks rejected149outputs. M2M100 term placeholders improved isolated sentences, but sample descriptions still lost effects/conditions; e.g. pull-and-bind became attract-and-push. These drafts stay ignored and are not referenced by the frontend. Draft generation stopped intentionally.
+
+The experimental broad screen wiring was restored to the pre-experiment file versions, preserving implemented ASBC home/account/navigation translations. No unreviewed game-description translations shipped. Production changes currently consist of the compact home/branding/account entry/manual dictionary and safe locale helper only. Whole-screen and all-description translation is NOT complete. Localizer unit coverage adds a25th frontend suite.
+
+Final verification (2026-10-19): existing24frontend suites and new localization suite pass; final typecheck/lint/build pass. Final asbc_home.py and home_marker_details.py pass. Existing population_ui.py/population_pairs.py passed with the retained population implementation. Build retains the existing large-chunk warning. No active translation generation, commit, push or deployment.
+
+Changed files: PROJECT_BRIEF.md; frontend/package.json; frontend/lab/shadowcraft/index.html; frontend/shadowcraft/app/{locale.tsx,home-panel.tsx,population-panel.tsx,community.tsx,page.tsx,event-timers.tsx,globals.css}; frontend/shadowcraft/lib/{localization.ts,data/ui-translations.json}; frontend/shadowcraft/tests/localization.mjs; shadowcraft/tests/{asbc_home.py,home_marker_details.py}; this handoff. Private untracked context/access-request files remain untouched.
+
+## Continuation — 2026-10-19
+
+Implemented manually authored translations for community publishing, listing/detail, voting, comments, editing/deletion confirmations and link sharing controls/help/errors. Locale changes preserve input state; user titles/descriptions/comments/author names remain literal, including strings identical to dictionary keys. Dates follow the selected locale. Shared/published routes now expose the same language selector, ASBC home link and common footer. API/auth logic and request payloads unchanged.
+
+Added33reviewed exact specialization templates:343/896catalog descriptions translated to English/Japanese/Finnish with original numbers;553unmatched descriptions retain the source. All896numeric-value preservation and original catalog immutability checked. Critical/multi-hit guarantees, cooldown reduction vs increase, decimal values, unknown/compound effects explicitly tested. Render integration covers skill details, recommendation previews, gear unlock comparisons and shared builds. No machine drafts shipped. This is partial specialization coverage, NOT full localization completion.
+
+New controlled browser regression community_localization.py passes1366/390px and all4starting languages: publish/detail/vote/comment/edit, locale switching while editing, no mutation on locale change, literal user content including script-like text, exact payload preservation and unchanged local plan data. Updated old community.py account identity assertion for the current account display (real backend integration not executed in this continuation).
+
+Next: remaining553specialization descriptions, other planner/map/database/ranker screens and descriptions. Full localization remains incomplete. No API key or user approval is pending for translation work. No stage/commit/push/deploy.
+
+## Integration verification — 2026-10-19
+
+Shared collaboration v2 installed without replacing existing project instructions. Claude role allocation completed successfully (asbc-localization-role-allocation-1792360473125). Delegated Codex screen work timed out (asbc-screen-localization-implementation-1792360704691); its partial edits were preserved and independently checked, not counted as a successful delegation. Claude specialization expansion also timed out at the runner's 600-second limit (asbc-specialization-template-expansion-1792361459154, status143, ETIMEDOUT). No additional specialization templates resulted: coverage remains33templates /343of896descriptions,553remaining. No usage-limit evidence and no retries performed.
+
+Claude 불가로 Codex 임시 조율 — cause: CLI execution timeout. Codex completed integration verification under the user's fallback procedure. This is not a cross-review pass. Persistence/auth/delete-related UI changes remain 교차 리뷰 대기; backend authentication and mutation semantics were not changed. Claude should review this record on return.
+
+Additional manually localized screen controls include faction selection, Steam activity, character equipment/comparison, ranker equipment, NPC/journal/client database screens and retained non-navigation components. Removed product features were not restored to navigation. Source and user names remain literal. Browser harness imports the actual Vite locale module URL to avoid duplicate React contexts during hot reload.
+
+Final verification: all26frontend test suites PASS; typecheck PASS; ESLint PASS; production build PASS; git diff --check PASS. screen_localization.py, community_localization.py and asbc_home.py PASS across4locales and desktop/mobile. Verified no horizontal overflow, locale switching preserves input/local plan data, user text remains literal, controlled API payloads remain unchanged, and read-only data screens send no mutations. Community authentication/browser actions use controlled responses; live backend integration was not run. Build retains large-chunk and plugin-timing warnings. Logs: /tmp/asbc-final-{suite,type,lint,build,screens,community,home}.log.
+
+Remaining:553specialization descriptions; untranslated planner/map/ranker/library and other source descriptions; full linguistic review; Steam authentication implementation if selected; standalone hosting migration later. Whole-product localization is NOT complete. No stage, commit, push or deployment. Existing private files untouched.
+
+## Claude return review and specialization completion — 2026-10-19
+
+Claude reviewed the "Claude 불가로 Codex 임시 조율" record above. Cross-review of the persistence/auth/delete UI changes (community.tsx, public-builds.tsx, build-share.tsx, use-plan-memory.ts): PASS. Only static strings were wrapped in the localizer; request paths, methods, payloads, revision checks and storage keys are unchanged. User titles, descriptions, comments, author names and server-supplied names are never passed to the localizer. Server error text passed to `t()` falls back to the literal string when absent, and parameterless calls never substitute placeholders. Claude re-ran the suite, typecheck and lint on the Codex tree before editing: all PASS.
+
+Specialization descriptions: all 896 catalog descriptions now match reviewed templates (33 existing + 464 new = 497 templates). Terminology follows the official AION2 Global English tooltips as mirrored on metabot.gg skill pages (e.g. 행동력=Stamina, 연속기=Chain Skill, 문양=Insignia, 강타=Double Chance, 완벽=Perfect Chance, 재생=Restoration, 충격계=Impact-type, 허점=Exposed, 속박=Root, 공중 속박=Airborne, 밀려남=Knock Back, 비호=Warding, 위축=Shrink, 쇠약=Debilitate, 동상=Frostbite, 잔불=Embers, 홍염=Crimson Flames, 부식=Corrode, 생명력 고정=HP limit, 무기막기=Parry). Existing 33 English rows were restyled to the same official compact form ("+20% Skill Speed", "-1s cooldown"). Bracketed skill names and the unbracketed skill name 명령: 대역 stay as the Korean source, matching how skill names render elsewhere. Japanese and Finnish have no official source; they are consistent manual translations, not native-speaker reviewed.
+
+Test changes: specialization-localization.mjs now requires 896/896 coverage, unique sources, identical placeholder sets, no Korean outside skill names, and exact outputs for guaranteed vs chance, critical vs multi-hit, cooldown increase/reduction/reset/removal, kill/PvP-participation triggers, HP thresholds, argument reordering, decimals and chain-skill numbers. No machine drafts used.
+
+Verification: 26 frontend suites, typecheck, ESLint, production build and git diff --check PASS. Browser: screen_localization.py, community_localization.py, asbc_home.py, home_marker_details.py PASS. Manual English render of the skill editor shows translated specializations.
+
+Remaining (observed in English render): the planner/skill editor chrome (class picker heading, "기본/장비/데바니온", "특화 선택", export button), the "Server & timers" schedule settings panel, map/ranker/library screens and non-specialization skill descriptions are still Korean. Native review of ja/fi. Steam login, standalone hosting unchanged. No stage, commit, push or deployment.
+
+## Whole-screen UI localization — 2026-10-19 (Claude coordinated)
+
+Claude split the remaining screens across five Claude subagents (planner page; gear/OCR/point budget; map/terrain/event timers/class guide; ranker builds/quick build/crafting/build library; small leftovers). Each edited only its own app/*.tsx files and returned a dictionary fragment; Claude merged them (827 new keys, 2 duplicate-key wording conflicts resolved first-wins) and corrected terminology on merge: 아스펠=Azphel/アズフェル (official "Daevanion Crystal: Azphel"), 문양=Insignia (not Rune), 문폭=Insignia Explosion, Finnish 승급=nousu (existing term), fi "Tallennetut hahmonkehitykset" for saved builds. Claude added: translated role labels, Daevanion board names (Nezekan/Zikel/Vaizel/Triniel/Azphel), locale-aware ranker list date, missing "아직 확인 전" key, and display-time translation of the dynamic ranker Daevanion-shortage error. Dictionary now 1329 entries.
+
+Value/display separation kept: gear slot <option> now has explicit value={Korean slot} so stored slots are unchanged; checklist, recovery snapshot name, OCR default note, region/server values and all stored/compared strings stay Korean and are translated only at render. Skill names, board node names, catalog/class-profile guidance text, user content and server names stay literal by design (translated sentences embed Korean skill names, e.g. "do not press 섬광 베기").
+
+Test changes: tests/localization.mjs now scans all 30 app/*.tsx screens (was 10) for untranslated Korean JSX text and string attributes and missing literal keys. reference_ui.py updated from the stale "a2bc 메인" region name to the rebranded "ASBC".
+
+Verification: 26 frontend suites, typecheck, ESLint, production build, git diff --check PASS. English/Japanese/Finnish sweeps of all 13 menu tabs at 1366px: no horizontal overflow, remaining Korean is only skill/node names, the 추억 게임즈 brand and the 한국어 language option. Browser regressions: see final run below. Baseline comparison at HEAD 701ce52 showed 15 browser tests (ascension, boss_timers, client_database, community, crafting, faction_servers, integration, live_dps, live_dps_socket, ocr-inputs, ocr, official_crafting, recipe_links, review, storage) already fail before this work (stale menu/selectors, real backend/socket needs, duplicate faction buttons); they are not localization regressions and remain to be updated. Several tests default to ports 5174/5175; run them with SHADOWCRAFT_TEST_URL.
+
+Remaining: class-profiles.json guidance text (summaries, rotation, macro tips) and non-specialization skill descriptions are Korean data; ja/fi native review; the 15 pre-existing stale browser tests. No stage, commit, push or deployment.
+Final browser run (2026-10-19, SHADOWCRAFT_TEST_URL=127.0.0.1:5173): 29/29 PASS — screen_localization, community_localization, asbc_home, home_marker_details, reference_ui, board_effects, build_library, build_share, journal_database, npc_database, public_builds, steam_activity, terrain, map, map_icon_bindings, map_icons, map_visibility, official_map_categories, official_map_progress, population_pairs, population_ui, quick_build, ranker_ui, timer_timezones, editor_clarity, event_timers, character_comparison, population_import, ranker_import.
+
+## Official skill names and class guide — 2026-10-19 (Claude)
+
+Finding: public/shadowcraft/data/client-index.json is extracted from the installed global Steam client (language en-US). It holds the official English skill names and the official English skill descriptions. The global database screen already shows those English descriptions, so there was no untranslated skill-body text for en; the earlier "non-specialization skill descriptions are Korean" note was wrong.
+
+Change: lib/data/skill-names.json maps all 262 catalog Korean skill names to the official client names by skill id (no ambiguity, no missing ids; a test re-derives it from client-index.json). In en/ja/fi, skill names now render as the official names everywhere a catalog skill name is shown (type-checker located 22 render sites in 6 files, plus class-guide tags, ranker skill names and 6 hard-coded planner literals). Bracketed names inside specialization text are mapped too ("+10m [Infiltrate] range" now matches the official tooltip exactly). Dictionary sentences that embedded Korean skill names were rewritten with official names, including 5 abbreviated Assassin names (분신 Illusive Clone, 비수 Triniel's Dagger, 송곳니 Savage Fang, 신속 Swift Contract, 포효 Savage Roar). Skill search also matches English names. ja/fi use the English names because the global client ships English names for those players. Korean output is unchanged.
+
+Class guide: 49 class-profiles.json strings (summaries, rotation titles/bodies, macro tips, roles, recommendation basis) translated and rendered through t(); role/recommendationBasis are not currently rendered anywhere.
+
+Quality pass: term-variant counts consistent (cooldown 再使用時間/palautumisaika, Insignia/紋様/tunnusmerkki, nousu). Fixed: an existing entry whose en/ja/fi dropped the "shared browser shares your input" warning; fi entries that rendered 빌드 as "hahmot" (characters); remaining "marks"→Insignias; fi English labels Defensive/Offensive→Puolustava/Hyökkäävä; fi "Ylennys"→"Nousu". Sentence-count and number-preservation scans found no other meaning loss.
+
+Verification: 26 suites incl. new skill-name mapping check, typecheck, ESLint, build, diff check PASS. Three-language sweeps of all 13 tabs: no horizontal overflow; remaining Korean only Daevanion node names, the 추억 게임즈 brand and the 한국어 language option. Browser regression set 29/29 PASS before the final planner literal change.
+
+Remaining translation: Daevanion node names (no official English source in client-index.json); native ja/fi review. Dictionary 1378 entries. No stage, commit, push or deployment.
+Final re-run after the planner skill-literal change: screen_localization, community_localization, asbc_home, reference_ui, build_share, quick_build, editor_clarity, ranker_ui PASS; Macros and Boss strategy tabs show no Korean in en/ja/fi.
+
+## Browser test maintenance — 2026-10-19 (Claude)
+
+Goal: make the browser regression set reflect the current product. Result: 38/38 active browser tests PASS against Vite on 127.0.0.1:5173 with no env override.
+
+- Default test URL normalized to 127.0.0.1:5173 in 13 tests that defaulted to 5174/5175 (SHADOWCRAFT_TEST_URL still overrides).
+- Retired to shadowcraft/tests/retired/ with README: crafting.py, official_crafting.py, recipe_links.py (crafting removed by user decision 2026-10-16) and live_dps.py, live_dps_socket.py (measured DPS excluded with the approved build-first planner, commit 0dae60b). Source components/data preserved.
+- Updated to current UI, assertions kept: storage, faction_servers, integration, ocr, ocr-inputs (sidebar → tab role; open the build-planner tab before the class picker; open the collapsed "캐릭터·포인트 설정 및 가이드" section; export from a planner tab because the top-bar export button only shows there; class name now in the breadcrumb span; "ASBC" rebrand text). ascension (opens 포인트 설정 on the skills tab after each reload). boss_timers (faction click scoped to the timer panel's 종족 선택 group; home now has a second 마족 button). client_database (opens skills tab and a skill before 공식 글로벌 설명 보기). review (removed opening-screen baseline notice replaced by the Updates menu amber review dot; update cards/news assertions unchanged). reference_ui (region renamed ASBC).
+- community.py: BLOCKED, not modified. It needs an isolated backend whose database has the Flyway schema. The test profile (H2, Flyway off) has no shadowcraft_members table (INSERT fails "bad SQL grammar"), and the PostgreSQL migrations do not run on H2 (V3 multi-ADD COLUMN syntax). The dev-profile credentials (portfolio/portfolio) are rejected by the local PostgreSQL, which production also uses; production credentials were not used. No Docker/Podman is installed. Also note: the backend CORS allow-list accepts http://localhost:* but not 127.0.0.1, so run this test with its default localhost URL. To unblock, provide one of: an isolated PostgreSQL test database and credentials, approval to install a container runtime, or approval to add an H2-compatible community schema for the test profile.
+- Started/stopped an isolated test backend on 18082 (H2 in-memory) during diagnosis; production blog on 8081 untouched.
+
+## Community e2e and Daevanion nodes — 2026-10-19 (Claude)
+
+community.py unblocked without touching any external database: new shadowcraft/tests/e2e_backend.sh starts the backend on 18082 with the in-memory H2 test profile and runs the real V12/V13/V14 shadowcraft migrations through spring.sql.init (no SQL copied, production code and config unchanged). community.py PASS (signup/login/restore, publish/edit/delete, vote, comments, mobile, planner preservation). Run it with its default localhost URL; CORS rejects 127.0.0.1.
+
+Daevanion node names: lib/specialization-localization.ts localizeNodeName handles "스킬 레벨 상승 - {skill}" (official skill name), "{deity} - 시작" (official board name), plain skill names and comma-joined stat names; 28 stat names added with official global English (PvP Attack, Multi-hit Chance, Damage Tolerance, ...). skill-names.json now also maps node-only spelling "내려 찍기" via node skill id 11170000 = Overhead Slam (263 entries). Board names in build share, point budget and quick build and node stat text in the inspector are translated. Test: all 4296 catalog node names produce no Korean in en/ja/fi, Korean unchanged.
+
+Verification: frontend suites, typecheck, ESLint, build, diff check PASS. Browser 39/39 PASS (all active tests, community with e2e_backend.sh). Daevanion tab en/ja/fi: no Korean, no overflow.
+
+Translation status: complete for all screens and data shown in en/ja/fi except the 추억 게임즈 brand and the 한국어 language option (intentional). Remaining: native ja/fi review (human). No stage, commit, push or deployment.
+
+## Japanese cross-check against official text — 2026-10-19 (Claude)
+
+User direction: instead of native review, cross-check against the reference sites. Finding: AION2 Global officially ships Japanese (10 languages; Finnish is not one), and metabot.gg ja_JP pages mirror the official client Japanese. CORRECTION of the earlier note: ja must use official Japanese skill names, not English. fi keeps official English names/terms (no Finnish client).
+
+Changes:
+- Crawled metabot en + ja_JP pages for all 280 skills (560 pages, 1 req/s, cached outside the repo). New reproducible shadowcraft/operations/build-official-specializations.py; output verified byte-identical to the committed data. Documented in shadowcraft/INTEGRATION.md.
+- skill-names.json is now {ko: {en, ja}} (263 entries; 262 with official ja). English stays from client-index.json; 279/280 metabot English names match it. 18710000 (생명의 축복 = Blessing of Life) is mis-mapped on metabot to Survival Willpower and is excluded (ja falls back to English).
+- official-specializations.json: official en text for 830 and ja for 863 of 896 specializations, by id, accepted only when numbers equal the Korean catalog. Rejected cases are mostly formatting ("1,000", "once", English dropping the chain number) and a metabot rendering bug for HP absorb ("Absorbs 70, 70% HP" where the value is 0.7%). Those use the reviewed templates.
+- Japanese terminology aligned to official: 的中 (landing a hit; 命中 only for Accuracy), 行動力, バリア, 気絶, 広域, ガード, クリティカル, 連続スキル, MP消耗, グロッキー ゲージ ダメージ量 (202 fallback templates, dictionary terms). Class names fixed to official ja (グラディエーター, テンプラー, アサシン, レンジャー, ソーサラー, スピリットマスター, クレリック, チャンター; previous "…ウイング" names were wrong). Azphel ja = アスフェル (my earlier アズフェル was wrong). Guide/macro/boss sentences use official ja skill names. Two over-broad substitutions (イスタンブール, browser "ブロック" extension) were caught and reverted.
+- Kept: ディーヴァニオン (metabot leaves "Daevanion" in English; no official ja evidence either way), 天族/魔族 (no counter-evidence found).
+
+Verification: frontend suites incl. official-text checks (1693 en/ja entries used, numbers equal), typecheck, ESLint, build, diff check PASS. Browser 39/39 PASS. Japanese sweep of all 13 tabs: no Korean, no overflow; skill editor shows official text (e.g. 的中時に多段ヒット50%増加).
