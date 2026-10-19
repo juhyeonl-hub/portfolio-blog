@@ -10,8 +10,9 @@ with sync_playwright() as p:
  data['catalog'].update(version='2.0.8.0',baselineVersion='2.0.7.0',reviewRequired=True)
  data['newsRefresh']={'enabled':True,'intervalMinutes':15}
  page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(json=data))
- page.goto(URL,wait_until='domcontentloaded');expect(page.locator('.amber-notice').first).to_contain_text('2.0.7.0 기준')
- page.locator('.sidebar .nav').filter(has_text='업데이트').click()
+ page.goto(URL,wait_until='domcontentloaded')
+ page.get_by_role('tab',name='업데이트',exact=True).first.click()
+ expect(page.get_by_role('tab',name='업데이트',exact=True).locator('.dot.amber').first).to_be_visible()
  expect(page.locator('.update-cards')).to_contain_text('2.0.8.0')
  expect(page.locator('.update-cards')).to_contain_text('추천 재검토 필요')
  expect(page.locator('.notice.violet-notice').filter(has_text='공식 공지')).to_contain_text('15분 간격')

@@ -14,7 +14,7 @@ with sync_playwright() as p:
             route.fulfill(status=204,headers={'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-A2BC-Token','Access-Control-Allow-Methods':'GET, OPTIONS','Access-Control-Allow-Private-Network':'true'});return
         route.fulfill(status=200,headers={'Access-Control-Allow-Origin':'*'},json={'v':2} if state['fail'] else {'v':1,'target':'Synthetic test','mode':'bossTargets','timeMs':10000,'rows':[{'name':'<img src=x>','dps':123,'dmg':1234,'you':True}]})
     page.route('http://127.0.0.1:18732/**', serve)
-    page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5174/lab/shadowcraft/'))
+    page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/'))
     before = page.evaluate('JSON.stringify(localStorage)')
     page.get_by_role('tab',name='실측 DPS',exact=True).click()
     panel=page.get_by_role('region',name='실측 실시간 DPS',exact=True)

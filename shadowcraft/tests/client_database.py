@@ -14,7 +14,11 @@ with sync_playwright() as p:
     page.on('request', lambda r: posts.append(r.url) if r.method == 'POST' else None)
     page.route('**/api/public/shadowcraft/catalog?*', lambda r: r.fulfill(status=503,json={}))
     page.goto(url)
-    page.get_by_role('button',name='공식 글로벌 설명 보기',exact=True).click()
+    page.get_by_role('tab',name='스킬 & 특화',exact=True).first.click()
+    official=page.get_by_role('button',name='공식 글로벌 설명 보기',exact=True)
+    if not official.is_visible():
+        page.locator('.skill-name').first.click()
+    official.click()
     panel = page.get_by_role('region',name='글로벌 클라이언트 데이터베이스',exact=True)
     expect(panel.get_by_role('button',name='아이템 (9308)',exact=True)).to_be_visible()
     expect(panel.locator('.database-detail')).to_contain_text('공식 글로벌 스킬 설명')

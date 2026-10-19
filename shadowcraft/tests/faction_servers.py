@@ -38,7 +38,7 @@ with sync_playwright() as p:
  assert select.locator('option[value="2101"]').count()==1
  assert select.locator('option[value="1101"]').count()==0
  form.get_by_role('button',name='취소',exact=True).click()
- page.locator('.sidebar .nav').filter(has_text='스킬 & 특화').click()
+ page.get_by_role('tab',name='스킬 & 특화',exact=True).first.click()
  page.locator('.planner-context summary').click()
  page.get_by_role('button',name='캐릭터 불러오기',exact=True).click()
  modal=page.get_by_role('dialog')

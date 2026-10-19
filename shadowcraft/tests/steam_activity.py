@@ -12,7 +12,7 @@ with sync_playwright() as p:
         requests.append(route.request.url)
         route.fulfill(status=status[0],content_type='application/json',body=json.dumps(response))
     page.route('**/api/public/shadowcraft/activity',serve)
-    page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5175/lab/shadowcraft/'))
+    page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/'))
     page.get_by_role('tab',name='Steam 접속 현황',exact=True).wait_for()
     assert not requests
     before=page.evaluate('JSON.stringify(localStorage)')

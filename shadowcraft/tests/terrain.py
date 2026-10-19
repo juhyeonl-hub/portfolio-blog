@@ -1,7 +1,7 @@
 """Official terrain browser acceptance; no game-coordinate assertions."""
 import os
 from playwright.sync_api import sync_playwright,expect
-url=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5175/lab/shadowcraft/')
+url=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True)
     page=browser.new_page(viewport={'width':1440,'height':1000})

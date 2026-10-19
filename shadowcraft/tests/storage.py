@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright,expect
 ROOT=Path(__file__).resolve().parents[2]
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 def open_settings(page):
- page.locator('.sidebar .nav').filter(has_text='스킬 & 특화').click()
+ page.get_by_role('tab',name='스킬 & 특화',exact=True).first.click()
  page.locator('.planner-context summary').click()
  if page.locator('.point-entry input').count()==0:
   page.get_by_role('button',name='내 포인트 입력',exact=False).click()
@@ -21,12 +21,14 @@ with sync_playwright() as p:
  expect(page.locator('.point-entry input').first).to_have_value('77')
  page.close();page=ctx.new_page();page.route('**/api/**',lambda r:r.fulfill(status=503,json={'error':'offline'}));page.goto(URL,wait_until='domcontentloaded');open_settings(page)
  expect(page.locator('.point-entry input').first).to_have_value('77')
- page.locator('.sidebar .nav').filter(has_text='업데이트').click()
+ page.get_by_role('tab',name='업데이트',exact=True).first.click()
  before=page.evaluate("localStorage.getItem('shadowcraft-plan-v1')")
  page.locator('.sources-panel input[type=file]').set_input_files({'name':'bad.json','mimeType':'application/json','buffer':b'{"schema":"shadowcraft-v1","plan":{"level":45}}'})
- expect(page.locator('.toast')).to_contain_text('올바른 aion2(Steam) build craft 빌드 파일이 아닙니다')
+ expect(page.locator('.toast')).to_contain_text('올바른 ASBC 빌드 파일이 아닙니다')
  assert page.evaluate("localStorage.getItem('shadowcraft-plan-v1')")==before
  # A failed profile/search cannot alter the user's previous plan.
+ page.get_by_role('tab',name='스킬 & 특화',exact=True).first.click()
+ if not page.locator('.planner-context').evaluate('e=>e.open'):page.locator('.planner-context > summary').click()
  page.get_by_role('button',name='캐릭터 불러오기',exact=True).click();page.locator('.modal input[placeholder="정확한 이름을 입력하세요"]').fill('unavailable')
  current=json.loads(page.evaluate("localStorage.getItem('shadowcraft-plan-v1')"))
  page.get_by_role('button',name='검색',exact=True).click();expect(page.locator('.modal .notice')).to_contain_text('offline')

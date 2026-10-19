@@ -9,7 +9,7 @@ with sync_playwright() as p:
     page=context.new_page();errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
-    url=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5175/lab/shadowcraft/')
+    url=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
     page.goto(url)
     page.get_by_role('tab',name='빌드 보관함',exact=True).click()
     panel=page.get_by_role('region',name='빌드 보관함',exact=True)

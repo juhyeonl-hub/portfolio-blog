@@ -7,7 +7,7 @@ with sync_playwright() as p:
     errors=[];requests=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.on('request',lambda r:requests.append(r.url) if '/journal-index.json' in r.url else None)
-    page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5175/lab/shadowcraft/'))
+    page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/'))
     page.get_by_role('tab',name='글로벌 데이터',exact=True).click()
     panel=page.get_by_role('region',name='공식 퀘스트·던전·펫 목록',exact=True)
     assert not requests

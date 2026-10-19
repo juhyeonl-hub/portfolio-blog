@@ -26,7 +26,7 @@ with sync_playwright() as p:
  expect(header.locator('.event-timer-card').filter(has_text='라그타')).to_contain_text('출현 예정 시각 경과')
  expect(header.locator('.event-timer-card').filter(has_text='타르탄')).to_contain_text('관측 기록 없음')
  page.get_by_role('button',name='서버·타이머 설정',exact=True).click()
- page.get_by_role('button',name='마족',exact=True).click()
+ page.get_by_label('종족 선택').get_by_role('button',name='마족',exact=True).click()
  page.get_by_label('타이머 서버',exact=True).select_option('2301')
  page.get_by_role('button',name='시간표 저장',exact=True).click()
  expect(card).to_contain_text('생존 관측')

@@ -12,8 +12,8 @@ with sync_playwright() as p:
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('request',lambda r:posts.append((r.method,r.url,len(r.post_data_buffer or b''))) if r.method in ['POST','PUT'] else None)
  page.route('**/api/**',lambda r:r.fulfill(status=503,json={'error':'offline'}))
- page.goto(URL,wait_until='domcontentloaded');page.wait_for_selector('.class-picker button')
- page.locator('.sidebar .nav').filter(has_text='내 장비 & 성장').click()
+ page.goto(URL,wait_until='domcontentloaded');page.get_by_role('tab',name='빌드 선택',exact=True).first.click();page.wait_for_selector('.class-picker button')
+ page.get_by_role('tab',name='내 장비 & 성장',exact=True).first.click()
 
  page.locator('input[type=file][accept*="image"]').set_input_files(str(fixture))
  page.get_by_role('button',name='인식 중지',exact=True).wait_for(timeout=15000);page.get_by_role('button',name='인식 중지',exact=True).click()
@@ -35,7 +35,7 @@ with sync_playwright() as p:
  expect(page.locator('.gear-item')).to_have_count(1)
  gear=json.loads(page.evaluate("localStorage.getItem('shadowcraft-plan-v1')"))['gear']['items'][0]
  assert gear['bonuses']=={'13130000':1} and not gear['current'] and not gear['target'],gear
- page.reload(wait_until='domcontentloaded');page.locator('.sidebar .nav').filter(has_text='내 장비 & 성장').click()
+ page.reload(wait_until='domcontentloaded');page.get_by_role('tab',name='내 장비 & 성장',exact=True).first.click()
  expect(page.locator('.gear-item input[maxlength="100"]')).to_have_value('브라우저 OCR 검증 장비')
  assert not posts,posts
  print(json.dumps({'passed':['real browser OCR worker and Korean/English model','file input','cancel','OCR rerun','manual correction and required review','non-equipped item registration and reload','no POST/PUT image uploads'],'errors':errors,'postRequests':posts},ensure_ascii=False,indent=2),flush=True)

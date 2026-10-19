@@ -15,7 +15,7 @@ with sync_playwright() as p:
     page.on('pageerror', lambda e: errors.append(str(e)))
     page.on('request', lambda r: (posts.append(r.url) if r.method == 'POST' else None, requests.append(r.url)))
     page.route('**/api/public/shadowcraft/catalog?*', lambda r:r.fulfill(status=503,json={}))
-    page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5175/lab/shadowcraft/'))
+    page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/'))
     page.get_by_role('tab',name='제작 계산기',exact=True).click()
     panel = page.get_by_role('region',name='공식 제작 시도 계산',exact=True)
     before = page.evaluate('JSON.stringify(localStorage)')

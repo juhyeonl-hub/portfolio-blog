@@ -1,5 +1,6 @@
 """Member flow against an isolated running test backend (never production writes).
-Run test-profile backend on 18082 and Vite on 5173; see PROJECT_BRIEF.
+Start the isolated backend with shadowcraft/tests/e2e_backend.sh (H2 on 18082, community tables from the
+real migrations) and Vite on 5173. Keep the default localhost URL: the backend CORS allow-list rejects 127.0.0.1.
 """
 import os,uuid
 from urllib.parse import urlsplit
@@ -23,10 +24,10 @@ with sync_playwright() as p:
  page.get_by_role('button',name='회원가입',exact=True).click()
  page.get_by_label('회원 아이디',exact=True).fill(username);page.get_by_label('회원 비밀번호',exact=True).fill('browserPassword123!')
  page.get_by_role('button',name='회원가입 후 로그인',exact=True).click()
- expect(page.get_by_role('region',name='커뮤니티 로그인')).to_contain_text(username+'님')
+ expect(page.get_by_role('region',name='커뮤니티 로그인')).to_contain_text('로그인 계정: '+username)
  page.get_by_role('button',name='회원 로그아웃').click();expect(page.get_by_role('button',name='회원 로그인',exact=True)).to_be_visible()
  page.get_by_label('회원 비밀번호',exact=True).fill('browserPassword123!');page.get_by_role('button',name='회원 로그인',exact=True).click()
- expect(page.get_by_role('region',name='커뮤니티 로그인')).to_contain_text(username+'님')
+ expect(page.get_by_role('region',name='커뮤니티 로그인')).to_contain_text('로그인 계정: '+username)
  page.get_by_text('현재 플래너 배분 게시하기',exact=True).click()
  page.get_by_label('게시 제목',exact=True).fill('Browser member allocation')
  page.get_by_label('빌드 설명',exact=True).fill('Plain <b>description</b>')

@@ -9,7 +9,7 @@ with sync_playwright() as p:
     browser=p.chromium.launch(headless=True)
     page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
-    page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5175/lab/shadowcraft/'))
+    page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/'))
     page.get_by_role('tab',name='글로벌 데이터',exact=True).click()
     panel=page.get_by_role('region',name='글로벌 클라이언트 데이터베이스',exact=True)
     before=page.evaluate('JSON.stringify(localStorage)')

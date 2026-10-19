@@ -2,7 +2,7 @@
 import base64,json,os
 from urllib.parse import urlparse,parse_qs
 from playwright.sync_api import sync_playwright,expect
-url=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5175/lab/shadowcraft/')
+url=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 origin=url.split('/lab/')[0]
 id='11111111-1111-1111-1111-111111111111'
 plan={'classKey':'assassin','level':45,'mode':'safe','extraSP':0,'extraStigma':0,'extraCrystal':0,'extraBattle':0,'character':None,'checked':[],'base':{},'bonus':{},'specs':{},'nodes':[]}

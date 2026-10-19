@@ -10,7 +10,7 @@ with sync_playwright() as p:
         page.on('pageerror',lambda error:errors.append(str(error)))
         page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
         page.goto(URL)
-        expect(page.get_by_role('region',name='a2bc 메인',exact=True)).to_be_visible()
+        expect(page.get_by_role('region',name='ASBC',exact=True)).to_be_visible()
         expect(page.get_by_role('tab')).to_have_count(13)
         expect(page.locator('.sidebar')).to_have_count(0)
         expect(page.get_by_role('heading',name='어떤 직업으로 시작할까요?')).to_have_count(0)

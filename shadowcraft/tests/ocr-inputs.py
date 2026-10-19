@@ -11,8 +11,8 @@ with sync_playwright() as p:
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('request',lambda r:writes.append(r.url) if r.method in ['POST','PUT'] else None)
  page.route('**/api/**',lambda r:r.fulfill(status=503,json={'error':'offline'}))
- page.goto(URL,wait_until='domcontentloaded');page.wait_for_selector('.class-picker')
- page.locator('.sidebar .nav').filter(has_text='내 장비 & 성장').click()
+ page.goto(URL,wait_until='domcontentloaded');page.get_by_role('tab',name='빌드 선택',exact=True).first.click();page.wait_for_selector('.class-picker')
+ page.get_by_role('tab',name='내 장비 & 성장',exact=True).first.click()
  # Real clipboard shortcut with a local PNG, rather than a synthetic paste event.
  encoded=base64.b64encode(fixture.read_bytes()).decode()
  page.evaluate("async b64=>{const bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));await navigator.clipboard.write([new ClipboardItem({'image/png':new Blob([bytes],{type:'image/png'})})]);}",encoded)
