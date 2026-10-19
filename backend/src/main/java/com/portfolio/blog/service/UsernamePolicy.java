@@ -87,7 +87,9 @@ public final class UsernamePolicy {
         if (CONTAINED.stream().anyMatch(flat::contains)) return true;
         if (EXACT.contains(lower) || EXACT.contains(flat)) return true;
         if (TOKENS.contains(flat) || TOKENS.contains(lower.replace("_", ""))) return true;
-        // Tokens split on "_" and digits, checked both raw and with digit substitutions removed.
+        // "_"-separated tokens with digit substitutions undone ("n4zi_member" → "nazi"), then the raw
+        // tokens split on "_" and digits ("hitler88" style suffixes, "big_dick_99").
+        if (Arrays.stream(lower.split("_+")).filter(t -> !t.isEmpty()).map(UsernamePolicy::normalise).anyMatch(TOKENS::contains)) return true;
         return Arrays.stream(lower.split("[_0-9]+")).filter(t -> !t.isEmpty()).anyMatch(TOKENS::contains);
     }
 }

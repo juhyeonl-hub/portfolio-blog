@@ -16,7 +16,9 @@ class UsernamePolicyTest {
                 "hitler88", "heil_hitler", "nazi", "neonazi_club", "holocaust", "siegheil", "isis_fighter", "terrorist",
                 "ssibal", "shibal_noma", "byungsin", "gaesaekki", "jiral_ha", "ilbe_user", "womad_fan", "kichigai", "baka_ranger",
                 "kim_jong_un", "xijinping", "putin_fan", "donald_trump", "trump_2028", "maga_ranger", "biden", "yoon_suk_yeol",
-                "lee_jae_myung", "moon_jae_in", "minjoo_party", "abe_shinzo", "sanae_takaichi", "kishida_fumio")) {
+                "lee_jae_myung", "moon_jae_in", "minjoo_party", "abe_shinzo", "sanae_takaichi", "kishida_fumio",
+                // digit substitutions inside a short token followed by a suffix (Codex review)
+                "n4zi_member", "st4ff_team", "d1ck_99", "s3x_god", "r4pe_fan", "g0ok_x")) {
             assertThat(UsernamePolicy.blocked(name)).as(name).isTrue();
         }
     }
