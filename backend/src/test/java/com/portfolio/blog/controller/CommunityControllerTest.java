@@ -46,6 +46,17 @@ class CommunityControllerTest {
   String other=register("expired_member");jdbc.update("UPDATE shadowcraft_member_sessions SET expires_at=?",java.sql.Timestamp.from(java.time.Instant.now().minusSeconds(1)));
   mvc.perform(get(API+"/me").header("Authorization","Bearer "+other)).andExpect(status().isForbidden());
  }
+ @Test void offensiveTitlesDescriptionsAndCommentsAreRefused()throws Exception{
+  String owner=register("content_check"),id=create(owner),path=API+"/builds/"+id;
+  for(String[] f:new String[][]{{"title","씨발 빌드"},{"description","heil hitler"},{"title","kim jong un ranger"}}){
+   var bad=payload().put(f[0],f[1]);
+   mvc.perform(post(API+"/builds").header("Authorization","Bearer "+owner).contentType("application/json").content(bad.toString())).andExpect(status().isBadRequest()).andExpect(jsonPath("$.error").value("부적절한 표현이 포함되어 있습니다. 수정한 뒤 다시 시도하세요."));
+   mvc.perform(put(path).header("Authorization","Bearer "+owner).contentType("application/json").content(bad.put("revision",0).toString())).andExpect(status().isBadRequest());
+  }
+  mvc.perform(post(path+"/comments").header("Authorization","Bearer "+owner).contentType("application/json").content("{\"body\":\"fuck this build\"}")).andExpect(status().isBadRequest());
+  mvc.perform(post(path+"/comments").header("Authorization","Bearer "+owner).contentType("application/json").content("{\"body\":\"시발점부터 다시 해 보세요. 트럼프 카드는 아껴 두기\"}")).andExpect(status().isCreated());
+  mvc.perform(put(path).header("Authorization","Bearer "+owner).contentType("application/json").content(payload().put("title","Assassin classic burst").put("revision",0).toString())).andExpect(status().isOk());
+ }
  @Test void ownershipPrivacyVotesCommentsAndCascade()throws Exception{
   String owner=register("owner_flow"),other=register("other_flow"),id=create(owner),path=API+"/builds/"+id;
   mvc.perform(get(PUBLIC)).andExpect(jsonPath("$.items[0].author").value("owner_flow"));

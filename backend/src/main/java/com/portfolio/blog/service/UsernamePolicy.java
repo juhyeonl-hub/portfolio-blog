@@ -22,9 +22,11 @@ import java.util.Set;
 public final class UsernamePolicy {
     private UsernamePolicy() {}
 
-    private static final List<String> CONTAINED = List.of(
-            // impersonation of the site, staff or publisher
-            "admin", "moderator", "official", "support", "ncsoft", "asbc", "juhyeonl",
+    /** Impersonation of the site, staff or publisher (usernames only: these are ordinary words in posts). */
+    static final List<String> IMPERSONATION = List.of("admin", "moderator", "official", "support", "ncsoft", "asbc", "juhyeonl");
+
+    /** Long, unambiguous offensive words: matched anywhere inside a (normalised) name or word. */
+    static final List<String> OFFENSIVE = List.of(
             // profanity (English)
             "fuck", "shit", "bitch", "bastard", "asshole", "motherf", "wanker", "bollock", "twat",
             // slurs and hate terms
@@ -36,32 +38,39 @@ public final class UsernamePolicy {
             "hitler", "neonazi", "holocaust", "genocide", "terrorist", "whitepower", "siegheil",
             // Korean profanity and hate-community terms (romanised)
             "ssibal", "shibal", "sibal", "ssibbal", "ssipal", "byungsin", "byeongsin", "gaesaekki", "gaesaeki", "gaesekki",
-            "jiral", "jotdae", "jotkka", "nigeum", "ilbe", "womad", "megalia",
+            "jiral", "jotdae", "jotkka", "nigeum", "womad", "megalia",
             // Japanese profanity and slurs (romanised)
-            "kichigai", "kisama", "chonko", "chankoro",
-            // dictators and political figures (current and former heads of state, major candidates)
+            "kichigai", "kisama", "chonko", "chankoro");
+
+    /** Dictators and political figures by full name (current and former heads of state, major candidates). */
+    static final List<String> POLITICAL = List.of(
             "stalin", "mussolini", "maozedong", "polpot", "xijinping", "kimjongun", "kimjongil", "kimilsung",
             "putin", "biden", "obama", "netanyahu", "donaldtrump", "erdogantayyip", "recepterdogan",
             "yoonsukyeol", "yoonsukyoul", "leejaemyung", "leejaemyeong", "moonjaein", "parkgeunhye", "leemyungbak",
-            "handonghoon", "kimgunhee", "abeshinzo", "shinzoabe", "kishidafumio", "fumiokishida");
+            "handonghoon", "kimgunhee", "abeshinzo", "shinzoabe", "kishidafumio", "fumiokishida", "sanaetakaichi", "takaichisanae");
+
+    // "putin" is matched as a token only: it occurs inside "computing".
+    private static final List<String> CONTAINED = java.util.stream.Stream.of(IMPERSONATION, OFFENSIVE, POLITICAL).flatMap(List::stream).filter(w -> !w.equals("putin")).toList();
 
     /** System and brand words blocked only as the entire name ("steam_kim" or "shop_owner" stay allowed). */
     private static final Set<String> EXACT = Set.of(
             "root", "system", "steam", "aion", "aion2", "guest", "null", "undefined", "anonymous", "owner", "operator");
 
-    private static final Set<String> TOKENS = Set.of(
-            // staff-looking tokens ("gm_kim", "mod_lee")
-            "mod", "mods", "gm",
-            // short profanity, slurs and sexual terms that appear inside ordinary words
+    /** Short or ambiguous offensive words: matched only as a whole token/word. */
+    static final Set<String> OFFENSIVE_TOKENS = Set.of(
             "ass", "arse", "cunt", "cock", "dick", "dicks", "cum", "sex", "sexy", "anal", "anus", "tits", "boob", "boobs",
-            "slut", "whore", "hoe", "rape", "rapist", "pedo", "fag", "fags", "dyke", "jap", "japs", "gook", "paki", "spic", "coon",
-            "kkk", "isis", "nsdap", "sieg", "heil", "nazi", "nazis", "nazism", "staff",
-            // Korean/Japanese short insults (romanised)
-            "jot", "baka", "kuso",
-            // political parties and politicians whose names are also ordinary words or common surnames
-            "maga", "minjoo", "gukhim", "ccp", "ldp", "trump", "sanaetakaichi", "takaichisanae");
+            "slut", "whore", "rape", "rapist", "pedo", "fag", "fags", "dyke", "jap", "japs", "gook", "paki", "spic", "coon",
+            "kkk", "isis", "nsdap", "sieg", "heil", "nazi", "nazis", "nazism",
+            // Korean/Japanese short insults and hate-community names (romanised; "ilbe" occurs in "bilberry")
+            "baka", "kuso", "ilbe");
 
-    private static String normalise(String value) {
+    private static final Set<String> TOKENS = java.util.stream.Stream.concat(OFFENSIVE_TOKENS.stream(), Set.of(
+            // staff-looking tokens ("gm_kim", "mod_lee") and username-only ambiguous words
+            "mod", "mods", "gm", "staff", "hoe", "jot",
+            // political parties and politicians whose names are also ordinary words or common surnames
+            "maga", "minjoo", "gukhim", "ccp", "ldp", "trump", "putin").stream()).collect(java.util.stream.Collectors.toUnmodifiableSet());
+
+    static String normalise(String value) {
         StringBuilder out = new StringBuilder();
         for (char c : value.toLowerCase(Locale.ROOT).toCharArray()) {
             switch (c) {

@@ -101,6 +101,7 @@ public class CommunityService {
     public void comment(String member,String id,JsonNode body) {
         String message=text(body,"body",1000).trim();
         if(message.isEmpty())fail(HttpStatus.BAD_REQUEST,"댓글을 입력하세요.");
+        if(ContentPolicy.blocked(message))fail(HttpStatus.BAD_REQUEST,"부적절한 표현이 포함되어 있습니다. 수정한 뒤 다시 시도하세요.");
         lockPublic(id);
         // Lock author as well to bound concurrent comments across different builds.
         jdbc.queryForList("SELECT id FROM shadowcraft_members WHERE id=? FOR UPDATE",member);

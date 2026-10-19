@@ -51,6 +51,8 @@ public class PublicBuildService {
     public ObjectNode save(String id,JsonNode request) throws Exception {
         only(request,Set.of("title","description","published","revision","shared"));
         if(!request.path("title").isTextual()||request.path("title").asText().trim().isEmpty()||request.path("title").asText().length()>80||!request.path("description").isTextual()||request.path("description").asText().length()>2000||!request.path("published").isBoolean())bad("제목·설명·공개 여부를 확인하세요.");
+        // New or edited titles and descriptions must not contain offensive, extremist or political terms.
+        if(ContentPolicy.blocked(request.path("title").asText())||ContentPolicy.blocked(request.path("description").asText()))bad("부적절한 표현이 포함되어 있습니다. 수정한 뒤 다시 시도하세요.");
         JsonNode shared=request.path("shared");validate(shared);
         String payload=mapper.writeValueAsString(shared);
         // Same maximum as the browser share codec: 18,000 UTF-8 bytes -> 24,000 base64 characters.

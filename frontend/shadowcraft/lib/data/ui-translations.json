@@ -7103,5 +7103,10 @@
     "en": "Use 3–32 letters, numbers or underscores for the username.",
     "ja": "IDは英数字・アンダースコア3〜32文字で入力してください。",
     "fi": "Käytä tunnuksessa 3–32 kirjainta, numeroa tai alaviivaa."
+  },
+  "부적절한 표현이 포함되어 있습니다. 수정한 뒤 다시 시도하세요.": {
+    "en": "This contains inappropriate language. Please edit it and try again.",
+    "ja": "不適切な表現が含まれています。修正してからもう一度お試しください。",
+    "fi": "Teksti sisältää sopimatonta kieltä. Muokkaa sitä ja yritä uudelleen."
   }
 }

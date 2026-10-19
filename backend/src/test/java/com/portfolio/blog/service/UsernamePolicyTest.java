@@ -31,7 +31,7 @@ class UsernamePolicyTest {
                 "nazir", "staffan", "aho_matti", "matti_aho", "kishida_taro", "takaichi_fan", "trumpet_player", "kim_ssi",
                 "chon_min", "hannam", "nimi", "shine_bright", "model_fan", "modern", "dogma", "torpedo", "pedometer", "crisis",
                 "japan_fan", "spicy_ranger", "sextant", "titan", "gladiator", "templar", "chanter", "cleric", "sorcerer",
-                "spiritmaster", "ranger_99", "steam_kim", "aion_lover", "shop_owner", "guest_star", "sakura", "hanako", "mikko_virtanen", "seoyeon", "minjun", "jiwoo_k", "sasuke")) {
+                "spiritmaster", "ranger_99", "bilberry", "computing_guy", "steam_kim", "aion_lover", "shop_owner", "guest_star", "sakura", "hanako", "mikko_virtanen", "seoyeon", "minjun", "jiwoo_k", "sasuke")) {
             assertThat(UsernamePolicy.blocked(name)).as(name).isFalse();
         }
     }
