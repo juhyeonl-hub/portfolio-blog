@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portfolio.blog.service.CommunityService;
 import com.portfolio.blog.service.SteamLoginService;
 import com.portfolio.blog.service.MemberSessionService;
+import com.portfolio.blog.service.ReportService;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Map;
 import org.springframework.http.*;
@@ -18,7 +19,8 @@ public class CommunityController {
     private final MemberSessionService sessions;
     private final ObjectMapper mapper;
     private final SteamLoginService steam;
-    public CommunityController(CommunityService community,MemberSessionService sessions,ObjectMapper mapper,SteamLoginService steam){this.steam=steam;this.community=community;this.sessions=sessions;this.mapper=mapper;}
+    private final ReportService reports;
+    public CommunityController(CommunityService community,MemberSessionService sessions,ObjectMapper mapper,SteamLoginService steam,ReportService reports){this.reports=reports;this.steam=steam;this.community=community;this.sessions=sessions;this.mapper=mapper;}
     @PostMapping("/api/community/auth/{action:register|login}")
     public ResponseEntity<?> login(@PathVariable String action,HttpServletRequest request)throws Exception {
         JsonNode input=body(request);
@@ -61,6 +63,14 @@ public class CommunityController {
     public ResponseEntity<?> comment(Authentication auth,@PathVariable String id,HttpServletRequest request)throws Exception{community.comment(auth.getName(),id,body(request));return ResponseEntity.status(201).build();}
     @DeleteMapping("/api/community/builds/{id}/comments/{comment}")
     public ResponseEntity<?> deleteComment(Authentication auth,@PathVariable String id,@PathVariable String comment){community.deleteComment(auth.getName(),id,comment,false);return ResponseEntity.noContent().build();}
+    @PostMapping("/api/community/builds/{id}/report")
+    public ResponseEntity<?> reportBuild(Authentication auth,@PathVariable String id,HttpServletRequest request)throws Exception{reports.report(auth.getName(),id,null,body(request));return ResponseEntity.status(201).cacheControl(CacheControl.noStore()).build();}
+    @PostMapping("/api/community/builds/{id}/comments/{comment}/report")
+    public ResponseEntity<?> reportComment(Authentication auth,@PathVariable String id,@PathVariable String comment,HttpServletRequest request)throws Exception{reports.report(auth.getName(),id,comment,body(request));return ResponseEntity.status(201).cacheControl(CacheControl.noStore()).build();}
+    @GetMapping("/api/admin/shadowcraft/reports")
+    public ResponseEntity<?> reportQueue(){return response(Map.of("items",reports.openQueue()));}
+    @PostMapping("/api/admin/shadowcraft/reports/resolve")
+    public ResponseEntity<?> resolveReport(HttpServletRequest request)throws Exception{JsonNode input=body(request);return response(reports.resolve(input==null?null:input.path("targetKey").asText(null),input==null?null:input.path("action").asText(null)));}
     @DeleteMapping("/api/admin/shadowcraft/builds/{id}/comments/{comment}")
     public ResponseEntity<?> moderate(Authentication auth,@PathVariable String id,@PathVariable String comment){community.deleteComment(auth.getName(),id,comment,true);return ResponseEntity.noContent().build();}
     private JsonNode body(HttpServletRequest request)throws Exception {

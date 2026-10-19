@@ -90,6 +90,7 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <DashboardCard title="Projects" description="Manage portfolio projects" to="/admin/projects" />
         <DashboardCard title="a2bc Builds" description="공개 빌드 등록·수정·공개 관리" to="/admin/a2bc-builds" />
+        <DashboardCard title="ASBC 신고" description="회원이 신고한 빌드·댓글 검토와 처리" to="/admin/a2bc-reports" />
         <DashboardCard title="Journal" description="Write and manage blog posts" to="/admin/posts" />
         <DashboardCard title="Resume" description="Edit resume sections" to="/admin/resume" />
         <DashboardCard title="Settings" description="Change password, TOTP setup" to="/admin/settings" />
