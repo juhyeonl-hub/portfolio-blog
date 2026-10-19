@@ -46,6 +46,23 @@ class CommunityControllerTest {
   String other=register("expired_member");jdbc.update("UPDATE shadowcraft_member_sessions SET expires_at=?",java.sql.Timestamp.from(java.time.Instant.now().minusSeconds(1)));
   mvc.perform(get(API+"/me").header("Authorization","Bearer "+other)).andExpect(status().isForbidden());
  }
+ @Test void parallelReportsRespectTheHourlyLimit()throws Exception{
+  String owner=register("limit_owner"),reporter=register("limit_reporter"),id=create(owner),path=API+"/builds/"+id;
+  String me=mapper.readTree(mvc.perform(get("/api/community/me").header("Authorization","Bearer "+reporter)).andReturn().getResponse().getContentAsString()).path("id").asText();
+  // 19 reports already filed this hour (distinct earlier targets on the same build).
+  for(int i=0;i<19;i++)jdbc.update("INSERT INTO shadowcraft_reports(id,target_key,build_id,reporter_id,reason,created_at) VALUES (?,?,?,?, 'spam', CURRENT_TIMESTAMP)",java.util.UUID.randomUUID().toString(),"build:earlier-"+i,id,me);
+  var comments=new java.util.ArrayList<String>();
+  for(int i=0;i<5;i++)mvc.perform(post(path+"/comments").header("Authorization","Bearer "+owner).contentType("application/json").content("{\"body\":\"c"+i+"\"}")).andExpect(status().isCreated());
+  for(var c:mapper.readTree(mvc.perform(get(PUBLIC+"/"+id+"/community")).andReturn().getResponse().getContentAsString()).path("comments"))comments.add(c.path("id").asText());
+  var codes=java.util.Collections.synchronizedList(new java.util.ArrayList<Integer>());
+  try(var executor=java.util.concurrent.Executors.newFixedThreadPool(5)){
+   var jobs=new java.util.ArrayList<java.util.concurrent.Future<?>>();
+   for(String c:comments)jobs.add(executor.submit(()->{try{codes.add(mvc.perform(post(path+"/comments/"+c+"/report").header("Authorization","Bearer "+reporter).contentType("application/json").content("{\"reason\":\"spam\"}")).andReturn().getResponse().getStatus());}catch(Exception e){throw new RuntimeException(e);}}));
+   for(var job:jobs)job.get();
+  }
+  assertThat(codes.stream().filter(c->c==201).count()).isEqualTo(1);assertThat(codes.stream().filter(c->c==429).count()).isEqualTo(4);
+  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_reports WHERE reporter_id=?",Integer.class,me)).isEqualTo(20);
+ }
  @Test void reportsQueueAndModeration()throws Exception{
   String owner=register("report_owner"),other=register("report_other"),third=register("report_third"),id=create(owner),path=API+"/builds/"+id;
   String admin="Bearer "+jwt.generateToken("admin");

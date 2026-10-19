@@ -39,6 +39,8 @@ public class ReportService {
             owner = (String) comments.getFirst().get("member_id");
         }
         if (member.equals(owner)) fail(HttpStatus.BAD_REQUEST, "자신의 글은 신고할 수 없습니다.");
+        // Serialise one member's reports so parallel requests cannot all read the same count (as comment() does).
+        jdbc.queryForList("SELECT id FROM shadowcraft_members WHERE id=? FOR UPDATE", member);
         Long recent = jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_reports WHERE reporter_id=? AND created_at>?", Long.class,
                 member, Timestamp.from(Instant.now().minusSeconds(3600)));
         if (recent != null && recent >= HOURLY_LIMIT) fail(HttpStatus.TOO_MANY_REQUESTS, "신고는 1시간에 20건까지 할 수 있습니다.");
