@@ -7038,5 +7038,70 @@
     "en": "{0} - Start",
     "ja": "{0} - 開始",
     "fi": "{0} - Aloitus"
+  },
+  "Steam으로 로그인": {
+    "en": "Sign in with Steam",
+    "ja": "Steamでログイン",
+    "fi": "Kirjaudu Steamilla"
+  },
+  "Steam 계정 연결": {
+    "en": "Link Steam account",
+    "ja": "Steamアカウントを連携",
+    "fi": "Yhdistä Steam-tili"
+  },
+  "Steam 계정 연결됨": {
+    "en": "Steam account linked",
+    "ja": "Steamアカウント連携済み",
+    "fi": "Steam-tili yhdistetty"
+  },
+  "Steam 계정으로 처음 로그인합니다. 커뮤니티에 작성자로 표시될 아이디를 정하세요.": {
+    "en": "This is your first sign-in with Steam. Choose the username shown as the author in the community.",
+    "ja": "Steamアカウントで初めてログインします。コミュニティで投稿者として表示されるIDを決めてください。",
+    "fi": "Kirjaudut Steamilla ensimmäistä kertaa. Valitse käyttäjätunnus, joka näytetään yhteisössä kirjoittajana."
+  },
+  "표시할 아이디": {
+    "en": "Display username",
+    "ja": "表示するID",
+    "fi": "Näytettävä käyttäjätunnus"
+  },
+  "아이디 정하고 가입": {
+    "en": "Choose username and join",
+    "ja": "IDを決めて登録",
+    "fi": "Valitse tunnus ja liity"
+  },
+  "Steam으로 로그인했습니다.": {
+    "en": "Signed in with Steam.",
+    "ja": "Steamでログインしました。",
+    "fi": "Kirjauduttu Steamilla."
+  },
+  "Steam 계정을 연결했습니다.": {
+    "en": "Steam account linked.",
+    "ja": "Steamアカウントを連携しました。",
+    "fi": "Steam-tili yhdistettiin."
+  },
+  "Steam 로그인이 만료되었습니다. 다시 시도하세요.": {
+    "en": "The Steam sign-in expired. Please try again.",
+    "ja": "Steamログインの有効期限が切れました。もう一度お試しください。",
+    "fi": "Steam-kirjautuminen vanheni. Yritä uudelleen."
+  },
+  "Steam 로그인을 확인하지 못했습니다. 다시 시도하세요.": {
+    "en": "The Steam sign-in could not be verified. Please try again.",
+    "ja": "Steamログインを確認できませんでした。もう一度お試しください。",
+    "fi": "Steam-kirjautumista ei voitu vahvistaa. Yritä uudelleen."
+  },
+  "이미 다른 계정에 연결된 Steam 계정입니다.": {
+    "en": "This Steam account is already linked to another account.",
+    "ja": "このSteamアカウントは既に別のアカウントに連携されています。",
+    "fi": "Tämä Steam-tili on jo yhdistetty toiseen tiliin."
+  },
+  "이 계정에는 이미 Steam 계정이 연결되어 있습니다.": {
+    "en": "This account already has a Steam account linked.",
+    "ja": "このアカウントには既にSteamアカウントが連携されています。",
+    "fi": "Tähän tiliin on jo yhdistetty Steam-tili."
+  },
+  "아이디는 영문·숫자·밑줄 3~32자로 입력하세요.": {
+    "en": "Use 3–32 letters, numbers or underscores for the username.",
+    "ja": "IDは英数字・アンダースコア3〜32文字で入力してください。",
+    "fi": "Käytä tunnuksessa 3–32 kirjainta, numeroa tai alaviivaa."
   }
 }

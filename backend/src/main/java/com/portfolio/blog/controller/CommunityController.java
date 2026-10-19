@@ -3,6 +3,7 @@ package com.portfolio.blog.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portfolio.blog.service.CommunityService;
+import com.portfolio.blog.service.SteamLoginService;
 import com.portfolio.blog.service.MemberSessionService;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -16,7 +17,8 @@ public class CommunityController {
     private final CommunityService community;
     private final MemberSessionService sessions;
     private final ObjectMapper mapper;
-    public CommunityController(CommunityService community,MemberSessionService sessions,ObjectMapper mapper){this.community=community;this.sessions=sessions;this.mapper=mapper;}
+    private final SteamLoginService steam;
+    public CommunityController(CommunityService community,MemberSessionService sessions,ObjectMapper mapper,SteamLoginService steam){this.steam=steam;this.community=community;this.sessions=sessions;this.mapper=mapper;}
     @PostMapping("/api/community/auth/{action:register|login}")
     public ResponseEntity<?> login(@PathVariable String action,HttpServletRequest request)throws Exception {
         JsonNode input=body(request);
@@ -25,6 +27,17 @@ public class CommunityController {
         community.throttle(request.getRemoteAddr()+"|"+username.toLowerCase(java.util.Locale.ROOT));
         return response(community.authenticate(input,action.equals("register")));
     }
+    @GetMapping("/api/community/auth/steam/start")
+    public ResponseEntity<?> steamStart(HttpServletRequest request){community.throttle(request.getRemoteAddr()+"|steam");return redirect(steam.start(null));}
+    @GetMapping("/api/community/auth/steam/callback")
+    public ResponseEntity<?> steamCallback(@RequestParam Map<String,String> params){return redirect(steam.callback(params));}
+    @PostMapping("/api/community/auth/steam/exchange")
+    public ResponseEntity<?> steamExchange(HttpServletRequest request)throws Exception{JsonNode input=body(request);return response(steam.exchange(input==null?null:input.path("code").asText(null)));}
+    @PostMapping("/api/community/auth/steam/register")
+    public ResponseEntity<?> steamRegister(HttpServletRequest request)throws Exception{community.throttle(request.getRemoteAddr()+"|steam");JsonNode input=body(request);return response(steam.register(input==null?null:input.path("code").asText(null),input==null?null:input.path("username").asText(null)));}
+    @PostMapping("/api/community/auth/steam/link")
+    public ResponseEntity<?> steamLink(Authentication auth){return response(Map.of("url",steam.start(auth.getName())));}
+    private ResponseEntity<?> redirect(String url){return ResponseEntity.status(HttpStatus.FOUND).cacheControl(CacheControl.noStore()).location(java.net.URI.create(url)).build();}
     @GetMapping("/api/community/me")
     public ResponseEntity<?> me(Authentication auth){return response(community.member(auth.getName()));}
     @PostMapping("/api/community/logout")

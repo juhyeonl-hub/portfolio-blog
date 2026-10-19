@@ -55,7 +55,7 @@ public class CommunityService {
         return Map.of("token",sessions.create(id),"member",member(id));
     }
     public Map<String,Object> member(String id) {
-        var rows=jdbc.query("SELECT id,username FROM shadowcraft_members WHERE id=?",(r,n)->Map.<String,Object>of("id",r.getString("id"),"username",r.getString("username")),id);
+        var rows=jdbc.query("SELECT id,username,EXISTS(SELECT 1 FROM shadowcraft_member_steam s WHERE s.member_id=shadowcraft_members.id) AS steam_linked FROM shadowcraft_members WHERE id=?",(r,n)->Map.<String,Object>of("id",r.getString("id"),"username",r.getString("username"),"steamLinked",r.getBoolean("steam_linked")),id);
         if(rows.isEmpty())fail(HttpStatus.UNAUTHORIZED,"다시 로그인하세요.");
         return rows.getFirst();
     }

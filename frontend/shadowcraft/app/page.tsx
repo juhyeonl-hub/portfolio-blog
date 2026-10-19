@@ -1,5 +1,5 @@
 import {LocaleProvider,LanguageSelect,useLocale} from './locale';
-import {MemberProvider,MemberAccount,useMember} from './community';
+import {MemberProvider,MemberAccount,useMember,steamReturn} from './community';
 'use client';
 import {useEffect,useMemo,useState} from 'react';
 import {Swords,Shield,ChevronRight,ChevronDown,ArrowUpRight,Search,RefreshCw,Check,Plus,Minus,SlidersHorizontal,Download,Upload,X,Info,AlertTriangle,MousePointer2,Waypoints,Keyboard,BookOpen,History,UserRound,Cloud,Target,CheckCircle2,Lock,ExternalLink,Zap,PanelLeftClose} from 'lucide-react';
@@ -140,7 +140,7 @@ export default function Page(){
 }
 function PlannerPage(){
  const {t}=useLocale();
- const [tab,setTab]=useState('home');
+ const [tab,setTab]=useState(()=>steamReturn()?'account':'home');
  const [selected,setSelected]=useState('assassin'),[catalogs,setCatalogs]=useState<Record<string,Catalog>>({assassin:assassinInitial as Catalog}),[loadError,setLoadError]=useState(''),[retry,setRetry]=useState(0);
  useEffect(()=>{try{const key=localStorage.getItem('shadowcraft-selected-class');if(key&&isClassKey(key))setSelected(key)}catch{}},[]);
  useEffect(()=>{let active=true;setLoadError('');if(!catalogs[selected])loadBundledCatalog(selected).then(c=>{if(active)setCatalogs(old=>({...old,[selected]:c}))}).catch(()=>{if(active)setLoadError('직업 데이터를 불러오지 못했습니다. 다시 시도하세요.')});return()=>{active=false}},[selected,retry]);

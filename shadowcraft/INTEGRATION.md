@@ -524,3 +524,11 @@ python3 shadowcraft/operations/build-official-specializations.py /path/to/metabo
 ```
 
 Finnish has no official client localization (AION2 Global ships 10 languages, not Finnish), so fi uses the official English names and terms.
+
+## Steam sign-in for community members (2026-10-19)
+
+Steam OpenID 2.0, no Steam Web API key. Flow: `GET /api/community/auth/steam/start` redirects to Steam; Steam returns to `GET /api/community/auth/steam/callback`, which checks the state (single use, 5 minutes), mode, endpoint, SteamID pattern, return URL and signed fields, then confirms the assertion with Steam's `check_authentication`. The browser is sent back only to `{app.steam.public-url}{app.steam.planner-path}` with a one-time code in the hash; the planner removes it from the address bar and exchanges it (`POST .../exchange`) or, on first sign-in, registers a public username (`POST .../register`). Signed-in password members link Steam with `POST .../link`. Only the SteamID is stored (`shadowcraft_member_steam`, Flyway V15); responses expose only `steamLinked`.
+
+Configuration (defaults are production-safe): `app.steam.public-url` (https://juhyeonl.dev), `app.steam.planner-path` (/lab/shadowcraft/), `app.steam.openid-endpoint` (https://steamcommunity.com/openid/login). States and codes are process-local, so a backend restart during sign-in just requires a retry.
+
+Tests: backend `SteamLoginControllerTest`; browser `steam_login.py` (mocked API) and `steam_e2e.py` (real isolated backend + local fake OpenID provider: `STEAM_OPENID=http://127.0.0.1:18090/openid/login shadowcraft/tests/e2e_backend.sh`).
