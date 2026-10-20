@@ -7513,5 +7513,55 @@
     "en": "Go to the new address",
     "ja": "新しいアドレスへ移動",
     "fi": "Siirry uuteen osoitteeseen"
+  },
+  "망토": {
+    "en": "Cape",
+    "ja": "ケープ",
+    "fi": "Viitta"
+  },
+  "룬": {
+    "en": "Rune",
+    "ja": "ルーン",
+    "fi": "Riimu"
+  },
+  "아뮬렛": {
+    "en": "Amulet",
+    "ja": "アミュレット",
+    "fi": "Amuletti"
+  },
+  "아르카나": {
+    "en": "Arcana",
+    "ja": "アルカナ",
+    "fi": "Arcana"
+  },
+  "일반": {
+    "en": "Common",
+    "ja": "コモン",
+    "fi": "Tavallinen"
+  },
+  "희귀": {
+    "en": "Rare",
+    "ja": "レア",
+    "fi": "Harvinainen"
+  },
+  "특별": {
+    "en": "Special",
+    "ja": "スペシャル",
+    "fi": "Erikoinen"
+  },
+  "영웅": {
+    "en": "Epic",
+    "ja": "エピック",
+    "fi": "Eeppinen"
+  },
+  "유일": {
+    "en": "Unique",
+    "ja": "ユニーク",
+    "fi": "Uniikki"
+  },
+  "전설": {
+    "en": "Legend",
+    "ja": "レジェンド",
+    "fi": "Legendaarinen"
   }
 }

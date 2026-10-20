@@ -6,7 +6,8 @@ import NpcDatabase from './npc-database';
 
 import {parseClientIndex, type ClientIndex} from '../lib/client-index';
 import {classProfile} from '../lib/classes';
-// Client item kinds shown in the UI language; grades (Legend, Unique …) stay as in the client until official names are verified.
+import {GRADE_NAMES} from '../lib/game-terms';
+// Client item kinds shown in the UI language; grades use lib/game-terms.ts.
 const ITEM_KINDS: Record<string, string> = {Usable: '사용 아이템', Equip: '장비', Misc: '기타', Currency: '재화'};
 
 export default function ClientDatabase({active, initialSkillId = ''}: {active: boolean; initialSkillId?: string}) {
@@ -37,10 +38,10 @@ export default function ClientDatabase({active, initialSkillId = ''}: {active: b
   const items = useMemo(() => new Map(data?.items.map(i => [i.id, i])), [data]);
   const rows = useMemo(() => {
     if (!data) return [];
-    if (section === 'items') return data.items.map(i => ({id: i.id, name: i.name, category: i.kind, subtitle: `${i.grade} · Lv.${i.level}`}));
+    if (section === 'items') return data.items.map(i => ({id: i.id, name: i.name, category: i.kind, subtitle: `${GRADE_NAMES[i.grade] ? t(GRADE_NAMES[i.grade]) : i.grade} · Lv.${i.level}`}));
     return data.skills.map(s => ({id: s.id, name: s.name, category: s.classKey, subtitle: s.classKey}));
 
-  }, [data, section]);
+  }, [data, section, t]);
   const categories = useMemo(() => [...new Set(rows.map(r => r.category))].sort(), [rows]);
   const matches = rows.filter(r => (!filter || r.category === filter) && `${r.name} ${r.id}`.toLowerCase().includes(query.trim().toLowerCase()));
   const item = section === 'items' ? items.get(selected) : undefined;
@@ -64,7 +65,7 @@ export default function ClientDatabase({active, initialSkillId = ''}: {active: b
         <div className="database-pages"><button className="button ghost" disabled={page === 0} onClick={() => setPage(v => v - 1)}>{t("이전")}</button><span>{page + 1} / {Math.max(1, Math.ceil(matches.length / 30))}</span><button className="button ghost" disabled={(page + 1) * 30 >= matches.length} onClick={() => setPage(v => v + 1)}>{t("다음")}</button></div></div>
         <div className="database-detail" aria-label={t("데이터 상세")}>
           {!selected && <p>{t("목록에서 항목을 선택하세요.")}</p>}
-          {item && <><h3>{item.name}</h3><p>{t('ID {0} · {1} · {2} · 아이템 레벨 {3}',[item.id,categoryLabel(item.kind),item.grade,item.level])}</p><p>{t("현재 서버의 획득 가능 여부는 확인되지 않았습니다.")}</p></>}
+          {item && <><h3>{item.name}</h3><p>{t('ID {0} · {1} · {2} · 아이템 레벨 {3}',[item.id,categoryLabel(item.kind),GRADE_NAMES[item.grade]?t(GRADE_NAMES[item.grade]):item.grade,item.level])}</p><p>{t("현재 서버의 획득 가능 여부는 확인되지 않았습니다.")}</p></>}
           {skill && <><h3>{skill.name}</h3><p>ID {skill.id} · {skill.classKey}</p>
             <div aria-label={t("공식 글로벌 스킬 설명")}><h4>{t("공식 글로벌 스킬 설명")}</h4>
               {skill.description?.valueScope === 'base-client-values' && <p className="subtle">{t("클라이언트 기본값 기준 · 레벨 성장·장비·특화 효과 미적용")}</p>}
