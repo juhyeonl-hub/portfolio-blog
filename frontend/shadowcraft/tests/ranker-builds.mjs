@@ -76,3 +76,13 @@ for(const kind of ['abyss','arenaOfSolitude','arenaOfCooperation']){
  for(const row of file.entries)for(const key of ['classKey','rank','name','region','serverId','characterId','equipment','skills'])assert.ok(key in row,`${kind}: ${key}`);
 }
 console.log('Official ranker placeholders: metric and entry shape PASS');
+// Every roster kind has translated subtitle/note/score texts with the right placeholders, and metrics map to kinds.
+const {ROSTER_TEXT,rosterKind}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
+const dictionary=JSON.parse(readFileSync('lib/data/ui-translations.json','utf8'));
+assert.deepEqual(Object.keys(ROSTER_TEXT),['combat','abyss','arenaOfSolitude','arenaOfCooperation']);
+for(const [kind,text] of Object.entries(ROSTER_TEXT)){
+ for(const [field,count] of [['name',0],['subtitle',0],['note',1],['score',2]]){assert.ok(dictionary[text[field]],`${kind} ${field} dictionary`);assert.equal((text[field].match(/\{\d\}/g)||[]).length,count,`${kind} ${field}`);}
+}
+assert.equal(rosterKind('combat-power'),'combat');assert.equal(rosterKind('abyss'),'abyss');assert.equal(rosterKind('arenaOfCooperation'),'arenaOfCooperation');assert.equal(rosterKind(undefined),'combat');
+for(const kind of ['abyss','arenaOfSolitude','arenaOfCooperation'])assert.equal(rosterKind(JSON.parse(readFileSync(`lib/data/rankers-${kind}.json`,'utf8')).metric),kind);
+console.log('Roster kinds: texts translated with placeholders, metric mapping PASS');

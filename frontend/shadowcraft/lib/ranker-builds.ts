@@ -64,3 +64,14 @@ export function rankerDisplaySkills(value:unknown):Ranker['skills']|null{
  }
  return value;
 }
+
+// Roster kinds shown in the ranker section. The combat-power roster is the Tier List sample; the official kinds
+// come from import_official_rankers.py, whose rows carry the ranking point in `combatPower` and the official rank
+// in `sampleRank`, so the labels name the score and rank per kind.
+export type RosterKind='combat'|'abyss'|'arenaOfSolitude'|'arenaOfCooperation';
+export const ROSTER_TEXT:Record<RosterKind,{name:string;subtitle:string;note:string;score:string}>={
+ combat:{name:'전투력',subtitle:'전투력 표본 상위 10명 · 선택한 직업',note:'AION2 Tier List의 글로벌 전투력 상위 500명 표본에서 직업별 10명을 골랐습니다. 공식 전체 순위·DPS 순위가 아닙니다. 명단 확인 {0} · 수동 갱신',score:'명단 전투력 {0} · 표본 전체 {1}위'},
+ abyss:{name:'어비스',subtitle:'공식 어비스 랭킹 상위 10명 · 선택한 직업',note:'NCSOFT 공식 어비스 랭킹에서 직업별 10명을 골랐습니다. 명단 확인 {0} · 수동 갱신',score:'어비스 점수 {0} · 서버 순위 {1}위'},
+ arenaOfSolitude:{name:'고독의 아레나',subtitle:'공식 고독의 아레나 랭킹 상위 10명 · 선택한 직업',note:'NCSOFT 공식 고독의 아레나 랭킹에서 직업별 10명을 골랐습니다. 명단 확인 {0} · 수동 갱신',score:'고독의 아레나 점수 {0} · 서버 순위 {1}위'},
+ arenaOfCooperation:{name:'협력의 아레나',subtitle:'공식 협력의 아레나 랭킹 상위 10명 · 선택한 직업',note:'NCSOFT 공식 협력의 아레나 랭킹에서 직업별 10명을 골랐습니다. 명단 확인 {0} · 수동 갱신',score:'협력의 아레나 점수 {0} · 서버 순위 {1}위'}};
+export const rosterKind=(metric:unknown):RosterKind=>metric==='abyss'||metric==='arenaOfSolitude'||metric==='arenaOfCooperation'?metric:'combat';

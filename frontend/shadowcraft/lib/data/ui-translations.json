@@ -8113,5 +8113,50 @@
     "en": "Ranking type",
     "ja": "ランキング種類",
     "fi": "Sijoituksen tyyppi"
+  },
+  "공식 어비스 랭킹 상위 10명 · 선택한 직업": {
+    "en": "Official Abyss ranking top 10 · selected class",
+    "ja": "公式アビスランキング上位10名 · 選択中のクラス",
+    "fi": "Virallisen Abyss-sijoituksen 10 parasta · valittu luokka"
+  },
+  "NCSOFT 공식 어비스 랭킹에서 직업별 10명을 골랐습니다. 명단 확인 {0} · 수동 갱신": {
+    "en": "Ten per class from the official NCSOFT Abyss ranking. Roster checked {0} · manual refresh",
+    "ja": "NCSOFT公式アビスランキングからクラス別に10名を選びました。名簿確認 {0} · 手動更新",
+    "fi": "Kymmenen per luokka NCSOFTin virallisesta Abyss-sijoituksesta. Lista tarkistettu {0} · käsin päivitys"
+  },
+  "어비스 점수 {0} · 서버 순위 {1}위": {
+    "en": "Abyss points {0} · server rank #{1}",
+    "ja": "アビスポイント {0} · サーバー順位 {1}位",
+    "fi": "Abyss-pisteet {0} · palvelinsija {1}"
+  },
+  "공식 고독의 아레나 랭킹 상위 10명 · 선택한 직업": {
+    "en": "Official Arena of Solitude ranking top 10 · selected class",
+    "ja": "公式孤独のアリーナランキング上位10名 · 選択中のクラス",
+    "fi": "Virallisen Yksinäisyyden areenan sijoituksen 10 parasta · valittu luokka"
+  },
+  "NCSOFT 공식 고독의 아레나 랭킹에서 직업별 10명을 골랐습니다. 명단 확인 {0} · 수동 갱신": {
+    "en": "Ten per class from the official NCSOFT Arena of Solitude ranking. Roster checked {0} · manual refresh",
+    "ja": "NCSOFT公式孤独のアリーナランキングからクラス別に10名を選びました。名簿確認 {0} · 手動更新",
+    "fi": "Kymmenen per luokka NCSOFTin virallisesta Yksinäisyyden areenan sijoituksesta. Lista tarkistettu {0} · käsin päivitys"
+  },
+  "고독의 아레나 점수 {0} · 서버 순위 {1}위": {
+    "en": "Arena of Solitude points {0} · server rank #{1}",
+    "ja": "孤独のアリーナポイント {0} · サーバー順位 {1}位",
+    "fi": "Yksinäisyyden areenan pisteet {0} · palvelinsija {1}"
+  },
+  "공식 협력의 아레나 랭킹 상위 10명 · 선택한 직업": {
+    "en": "Official Arena of Cooperation ranking top 10 · selected class",
+    "ja": "公式協力のアリーナランキング上位10名 · 選択中のクラス",
+    "fi": "Virallisen Yhteistyön areenan sijoituksen 10 parasta · valittu luokka"
+  },
+  "NCSOFT 공식 협력의 아레나 랭킹에서 직업별 10명을 골랐습니다. 명단 확인 {0} · 수동 갱신": {
+    "en": "Ten per class from the official NCSOFT Arena of Cooperation ranking. Roster checked {0} · manual refresh",
+    "ja": "NCSOFT公式協力のアリーナランキングからクラス別に10名を選びました。名簿確認 {0} · 手動更新",
+    "fi": "Kymmenen per luokka NCSOFTin virallisesta Yhteistyön areenan sijoituksesta. Lista tarkistettu {0} · käsin päivitys"
+  },
+  "협력의 아레나 점수 {0} · 서버 순위 {1}위": {
+    "en": "Arena of Cooperation points {0} · server rank #{1}",
+    "ja": "協力のアリーナポイント {0} · サーバー順位 {1}位",
+    "fi": "Yhteistyön areenan pisteet {0} · palvelinsija {1}"
   }
 }
