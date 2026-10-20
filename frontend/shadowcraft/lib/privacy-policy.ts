@@ -48,10 +48,11 @@ export const PRIVACY: Record<Locale, Policy> = {
         '서버와 데이터베이스는 핀란드에 있습니다. Cloudflare, Valve, Vercel은 미국 기업으로, 이들을 통한 처리에는 미국으로의 전송이 포함될 수 있습니다.',
       ]},
       {heading: '보관 기간', paragraphs: [
-        '계정과 올린 내용은 직접 삭제하거나 탈퇴를 요청할 때까지 보관합니다. 계정을 삭제하면 그 계정의 Steam 연결, 세션, 빌드, 댓글, 추천, 신고가 함께 삭제됩니다.',
+        '계정과 올린 내용은 직접 삭제하거나 탈퇴할 때까지 보관합니다. 계정을 삭제하면 그 계정의 Steam 연결, 세션, 빌드, 댓글, 추천, 신고가 함께 삭제됩니다.',
         '장애 복구용 데이터베이스 백업은 매일 만들고 30일 동안 보관한 뒤 자동으로 지웁니다. 삭제한 정보는 그동안 백업에만 남아 있다가 함께 지워집니다.',
       ]},
       {heading: '이용자의 권리', paragraphs: [
+        '내 계정 화면의 "회원 탈퇴"에서 계정과 올린 내용을 바로 삭제할 수 있습니다.',
         `자신의 정보에 대한 열람, 정정, 삭제, 처리 제한, 이의 제기, 이전을 요청할 수 있습니다. ${PRIVACY_CONTACT}로 아이디와 요청 내용을 보내 주세요. 본인 확인을 위해 추가 확인을 요청할 수 있습니다.`,
         '처리에 불만이 있으면 거주 국가의 개인정보 감독기관이나 핀란드 데이터보호 감독기관(Tietosuojavaltuutetun toimisto, tietosuoja.fi)에 신고할 수 있습니다.',
       ]},
@@ -98,10 +99,11 @@ export const PRIVACY: Record<Locale, Policy> = {
         'The server and database are in Finland. Cloudflare, Valve and Vercel are US companies, so processing through them may involve transfers to the United States.',
       ]},
       {heading: 'How long data is kept', paragraphs: [
-        'Your account and posts are kept until you delete them or ask for your account to be deleted. Deleting an account also deletes its Steam link, sessions, builds, comments, votes and reports.',
+        'Your account and posts are kept until you delete them or delete your account. Deleting an account also deletes its Steam link, sessions, builds, comments, votes and reports.',
         'Database backups for recovery are made daily, kept for 30 days and then deleted automatically. Deleted data remains only in those backups until they are deleted.',
       ]},
       {heading: 'Your rights', paragraphs: [
+        'You can delete your account and everything you posted at any time under "Delete account" on the account screen.',
         `You can ask for access to, correction, deletion, restriction of processing and portability of your data, and object to processing. Send your username and request to ${PRIVACY_CONTACT}. We may ask for further confirmation that the account is yours.`,
         'You can complain to the data protection authority of your country or to the Finnish Data Protection Ombudsman (Tietosuojavaltuutetun toimisto, tietosuoja.fi).',
       ]},
@@ -148,10 +150,11 @@ export const PRIVACY: Record<Locale, Policy> = {
         'サーバーとデータベースはフィンランドにあります。Cloudflare、Valve、Vercelは米国企業のため、これらを通じた処理には米国への移転が含まれる場合があります。',
       ]},
       {heading: '保存期間', paragraphs: [
-        'アカウントと投稿内容は、ご自身で削除するか退会を依頼するまで保存します。アカウントを削除すると、そのアカウントのSteam連携、セッション、ビルド、コメント、推薦、通報も一緒に削除されます。',
+        'アカウントと投稿内容は、ご自身で削除するか退会するまで保存します。アカウントを削除すると、そのアカウントのSteam連携、セッション、ビルド、コメント、推薦、通報も一緒に削除されます。',
         '障害復旧用のデータベースバックアップは毎日作成し、30日間保存した後に自動で削除します。削除した情報はその間バックアップにのみ残り、バックアップと一緒に削除されます。',
       ]},
       {heading: '利用者の権利', paragraphs: [
+        'アカウント画面の「退会」から、アカウントと投稿内容をいつでも削除できます。',
         `ご自身の情報の閲覧、訂正、削除、処理の制限、異議申し立て、データポータビリティを請求できます。${PRIVACY_CONTACT}までIDとご依頼内容をお送りください。ご本人確認のため追加の確認をお願いする場合があります。`,
         '処理に不満がある場合は、お住まいの国のデータ保護監督機関、またはフィンランドのデータ保護監督機関(Tietosuojavaltuutetun toimisto、tietosuoja.fi)に申し立てることができます。',
       ]},
@@ -198,10 +201,11 @@ export const PRIVACY: Record<Locale, Policy> = {
         'Palvelin ja tietokanta sijaitsevat Suomessa. Cloudflare, Valve ja Vercel ovat yhdysvaltalaisia yrityksiä, joten niiden kautta tapahtuvaan käsittelyyn voi sisältyä siirtoja Yhdysvaltoihin.',
       ]},
       {heading: 'Säilytysajat', paragraphs: [
-        'Tilisi ja julkaisusi säilytetään, kunnes poistat ne tai pyydät tilin poistamista. Tilin poistaminen poistaa myös sen Steam-yhteyden, istunnot, rakenteet, kommentit, äänet ja ilmoitukset.',
+        'Tilisi ja julkaisusi säilytetään, kunnes poistat ne tai poistat tilisi. Tilin poistaminen poistaa myös sen Steam-yhteyden, istunnot, rakenteet, kommentit, äänet ja ilmoitukset.',
         'Tietokannasta otetaan palautusta varten varmuuskopio päivittäin, ja varmuuskopiot poistetaan automaattisesti 30 päivän kuluttua. Poistetut tiedot säilyvät siihen asti vain varmuuskopioissa.',
       ]},
       {heading: 'Oikeutesi', paragraphs: [
+        'Voit poistaa tilisi ja kaiken julkaisemasi milloin tahansa tilinäkymän kohdasta "Poista tili".',
         `Voit pyytää pääsyä tietoihisi, niiden oikaisemista, poistamista, käsittelyn rajoittamista ja siirtämistä sekä vastustaa käsittelyä. Lähetä käyttäjätunnuksesi ja pyyntösi osoitteeseen ${PRIVACY_CONTACT}. Voimme pyytää lisävahvistusta siitä, että tili on sinun.`,
         'Voit tehdä valituksen oman maasi tietosuojaviranomaiselle tai tietosuojavaltuutetun toimistolle (tietosuoja.fi).',
       ]},

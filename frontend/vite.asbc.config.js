@@ -1,5 +1,5 @@
 // Standalone ASBC build for its own domain (Cloudflare Pages). The blog build (vite.config.js) is unchanged.
-// Output: dist-asbc/ with the planner at "/", static game data under /shadowcraft/, and Pages _headers.
+// Output: dist-asbc/ with the planner at "/", static game data under /shadowcraft/, Pages _headers, robots.txt and sitemap.xml.
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 import { copyFileSync, renameSync } from 'node:fs'
@@ -14,7 +14,7 @@ export default defineConfig({
     name: 'asbc-pages-output',
     closeBundle() {
       renameSync(`${out}/asbc.html`, `${out}/index.html`)
-      copyFileSync('asbc-pages/_headers', `${out}/_headers`)
+      for (const file of ['_headers', 'robots.txt', 'sitemap.xml']) copyFileSync(`asbc-pages/${file}`, `${out}/${file}`)
     },
   }],
   resolve: { alias: { '@': fileURLToPath(new URL('./shadowcraft', import.meta.url)) } },

@@ -46,6 +46,30 @@ class CommunityControllerTest {
   String other=register("expired_member");jdbc.update("UPDATE shadowcraft_member_sessions SET expires_at=?",java.sql.Timestamp.from(java.time.Instant.now().minusSeconds(1)));
   mvc.perform(get(API+"/me").header("Authorization","Bearer "+other)).andExpect(status().isForbidden());
  }
+ @Test void deletingAnAccountRemovesEverythingItOwns()throws Exception{
+  String leaving=register("leaving_member"),staying=register("staying_member");
+  String leavingId=mapper.readTree(mvc.perform(get(API+"/me").header("Authorization","Bearer "+leaving)).andReturn().getResponse().getContentAsString()).path("id").asText();
+  String own=create(leaving),other=create(staying);
+  jdbc.update("INSERT INTO shadowcraft_member_steam(steam_id,member_id,linked_at) VALUES ('76561190000000001',?,CURRENT_TIMESTAMP)",leavingId);
+  mvc.perform(post(API+"/builds/"+own+"/comments").header("Authorization","Bearer "+staying).contentType("application/json").content("{\"body\":\"on leaving build\"}")).andExpect(status().isCreated());
+  mvc.perform(post(API+"/builds/"+other+"/comments").header("Authorization","Bearer "+leaving).contentType("application/json").content("{\"body\":\"by leaving member\"}")).andExpect(status().isCreated());
+  mvc.perform(put(API+"/builds/"+other+"/vote").header("Authorization","Bearer "+leaving)).andExpect(status().is2xxSuccessful());
+  mvc.perform(post(API+"/builds/"+other+"/report").header("Authorization","Bearer "+leaving).contentType("application/json").content("{\"reason\":\"spam\"}")).andExpect(status().isCreated());
+  // Not signed in, or the username not typed again exactly: nothing is deleted.
+  mvc.perform(delete(API+"/me").contentType("application/json").content("{\"username\":\"leaving_member\"}")).andExpect(status().isForbidden());
+  mvc.perform(delete(API+"/me").header("Authorization","Bearer "+leaving).contentType("application/json").content("{\"username\":\"staying_member\"}")).andExpect(status().isBadRequest());
+  mvc.perform(delete(API+"/me").header("Authorization","Bearer "+leaving)).andExpect(status().isBadRequest());
+  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_members",Integer.class)).isEqualTo(2);
+  mvc.perform(delete(API+"/me").header("Authorization","Bearer "+leaving).contentType("application/json").content("{\"username\":\" Leaving_Member \"}")).andExpect(status().isNoContent());
+  for(String table:new String[]{"shadowcraft_member_sessions","shadowcraft_member_steam","shadowcraft_build_votes","shadowcraft_reports"})
+   assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM "+table+" WHERE "+(table.equals("shadowcraft_reports")?"reporter_id":"member_id")+"=?",Integer.class,leavingId)).as(table).isZero();
+  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_public_builds WHERE author_id=?",Integer.class,leavingId)).isZero();
+  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_build_comments WHERE member_id=? OR build_id=?",Integer.class,leavingId,own)).isZero();
+  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_public_builds WHERE id=?",Integer.class,other)).isEqualTo(1);
+  mvc.perform(get(API+"/me").header("Authorization","Bearer "+leaving)).andExpect(status().isForbidden());
+  mvc.perform(post(API+"/auth/login").contentType("application/json").content("{\"username\":\"leaving_member\",\"password\":\"testPassword123!\"}")).andExpect(status().isUnauthorized());
+  mvc.perform(get(API+"/me").header("Authorization","Bearer "+staying)).andExpect(status().isOk());
+ }
  @Test void parallelReportsRespectTheHourlyLimit()throws Exception{
   String owner=register("limit_owner"),reporter=register("limit_reporter"),id=create(owner),path=API+"/builds/"+id;
   String me=mapper.readTree(mvc.perform(get("/api/community/me").header("Authorization","Bearer "+reporter)).andReturn().getResponse().getContentAsString()).path("id").asText();

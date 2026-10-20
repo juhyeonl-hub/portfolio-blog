@@ -7308,5 +7308,40 @@
     "en": "Privacy policy",
     "ja": "プライバシーポリシー",
     "fi": "Tietosuojaseloste"
+  },
+  "회원 탈퇴": {
+    "en": "Delete account",
+    "ja": "退会",
+    "fi": "Poista tili"
+  },
+  "계정과 이 계정으로 올린 빌드·댓글·추천·신고가 모두 삭제되며 되돌릴 수 없습니다. 이 브라우저에 저장된 빌드 계획은 그대로 남습니다.": {
+    "en": "Your account and all builds, comments, votes and reports made with it are deleted. This cannot be undone. Build plans saved in this browser stay.",
+    "ja": "アカウントと、このアカウントで投稿したビルド・コメント・推薦・通報がすべて削除され、元に戻せません。このブラウザに保存したビルド計画は残ります。",
+    "fi": "Tilisi ja kaikki sillä tehdyt rakenteet, kommentit, äänet ja ilmoitukset poistetaan. Tätä ei voi perua. Tähän selaimeen tallennetut rakennesuunnitelmat säilyvät."
+  },
+  "확인을 위해 아이디 {0}을 입력하세요": {
+    "en": "To confirm, type your username {0}",
+    "ja": "確認のためID {0} を入力してください",
+    "fi": "Vahvista kirjoittamalla käyttäjätunnuksesi {0}"
+  },
+  "탈퇴 확인용 아이디": {
+    "en": "Username to confirm deletion",
+    "ja": "退会確認用のID",
+    "fi": "Käyttäjätunnus poiston vahvistamiseen"
+  },
+  "계정 영구 삭제": {
+    "en": "Delete account permanently",
+    "ja": "アカウントを完全に削除",
+    "fi": "Poista tili pysyvästi"
+  },
+  "계정을 찾을 수 없습니다.": {
+    "en": "The account was not found.",
+    "ja": "アカウントが見つかりません。",
+    "fi": "Tiliä ei löytynyt."
+  },
+  "확인을 위해 아이디를 정확히 입력하세요.": {
+    "en": "Type your username exactly to confirm.",
+    "ja": "確認のためIDを正確に入力してください。",
+    "fi": "Vahvista kirjoittamalla käyttäjätunnuksesi täsmälleen."
   }
 }

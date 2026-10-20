@@ -86,6 +86,17 @@ public class CommunityService {
     }
     @Transactional
     public void delete(String member,String id,long revision) {own(member,id);builds.delete(id,revision);}
+    /** Deletes the account and everything it owns (privacy policy); the username is typed again to confirm. Builds are
+     *  removed first because public builds reference their author without cascading; the rest cascades from the member. */
+    @Transactional
+    public void deleteAccount(String member,JsonNode body) {
+        var rows=jdbc.queryForList("SELECT username FROM shadowcraft_members WHERE id=? FOR UPDATE",member);
+        if(rows.isEmpty())fail(HttpStatus.NOT_FOUND,"계정을 찾을 수 없습니다.");
+        String typed=body==null?"":body.path("username").asText("").trim().toLowerCase(Locale.ROOT);
+        if(!typed.equals(rows.get(0).get("username")))fail(HttpStatus.BAD_REQUEST,"확인을 위해 아이디를 정확히 입력하세요.");
+        jdbc.update("DELETE FROM shadowcraft_public_builds WHERE author_id=?",member);
+        jdbc.update("DELETE FROM shadowcraft_members WHERE id=?",member);
+    }
     private void own(String member,String id) {
         var rows=jdbc.queryForList("SELECT author_id FROM shadowcraft_public_builds WHERE id=? FOR UPDATE",String.class,id);
         if(rows.isEmpty()||!member.equals(rows.getFirst()))fail(HttpStatus.NOT_FOUND,"내 빌드를 찾을 수 없습니다.");

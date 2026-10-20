@@ -295,3 +295,4 @@
 
 .asbc-share-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1000px;margin:12px auto;padding:0 20px}
 .asbc-privacy{max-width:760px;margin:24px auto;padding:24px;line-height:1.7}.asbc-privacy h1{font-size:24px;margin:0 0 4px}.asbc-privacy h2{font-size:16px;margin:22px 0 6px}.asbc-privacy p{font-size:13px;margin:6px 0;overflow-wrap:anywhere}
+.account-delete{margin-top:18px;border-top:1px solid var(--line);padding-top:12px}.account-delete summary{cursor:pointer;color:var(--muted);font-size:12px}.account-delete form{margin-top:10px}

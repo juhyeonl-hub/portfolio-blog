@@ -47,6 +47,8 @@ public class CommunityController {
     private ResponseEntity<?> redirect(String url){return ResponseEntity.status(HttpStatus.FOUND).cacheControl(CacheControl.noStore()).location(java.net.URI.create(url)).build();}
     @GetMapping("/api/community/me")
     public ResponseEntity<?> me(Authentication auth){return response(community.member(auth.getName()));}
+    @DeleteMapping("/api/community/me")
+    public ResponseEntity<?> deleteAccount(Authentication auth,HttpServletRequest request)throws Exception{community.deleteAccount(auth.getName(),body(request));return ResponseEntity.noContent().build();}
     @PostMapping("/api/community/logout")
     public ResponseEntity<?> logout(HttpServletRequest request){sessions.revoke(request.getHeader("Authorization").substring(7));return ResponseEntity.noContent().build();}
     @PostMapping("/api/community/builds")
