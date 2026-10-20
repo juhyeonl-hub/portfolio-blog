@@ -7658,5 +7658,330 @@
     "en": "Overall progress",
     "ja": "全体の確認進捗",
     "fi": "Kokonaisedistyminen"
+  },
+  "아이템 레벨 {0}": {
+    "en": "Item level {0}",
+    "ja": "アイテムレベル {0}",
+    "fi": "Esinetaso {0}"
+  },
+  "주요 능력치": {
+    "en": "Main stats",
+    "ja": "主要能力値",
+    "fi": "Pääominaisuudet"
+  },
+  "옵션 후보 {0}개 · 부여 최대 {1}개": {
+    "en": "{0} option candidates · up to {1} granted",
+    "ja": "オプション候補 {0}件 · 最大 {1}件付与",
+    "fi": "{0} vaihtoehtoa · enintään {1} annetaan"
+  },
+  "외 {0}개": {
+    "en": "and {0} more",
+    "ja": "ほか {0}件",
+    "fi": "ja {0} muuta"
+  },
+  "마석 홈 {0}": {
+    "en": "{0} manastone slots",
+    "ja": "魔石スロット {0}",
+    "fi": "{0} manakivipaikkaa"
+  },
+  "신석 홈 {0}": {
+    "en": "{0} godstone slots",
+    "ja": "神石スロット {0}",
+    "fi": "{0} jumalkivipaikkaa"
+  },
+  "클라이언트 표 원값 기준": {
+    "en": "raw client table values",
+    "ja": "クライアント表の原値",
+    "fi": "asiakasohjelman taulukon raakarvot"
+  },
+  "이 아이템의 상세 정보가 클라이언트 표에 없습니다.": {
+    "en": "No details for this item in the client table.",
+    "ja": "このアイテムの詳細はクライアント表にありません。",
+    "fi": "Tälle esineelle ei ole tietoja asiakasohjelman taulukossa."
+  },
+  "힘": {
+    "en": "Might",
+    "ja": "力",
+    "fi": "Voima"
+  },
+  "정밀": {
+    "en": "Precision",
+    "ja": "精密",
+    "fi": "Tarkkuus"
+  },
+  "체력": {
+    "en": "Constitution",
+    "ja": "体力",
+    "fi": "Kestävyys"
+  },
+  "민첩": {
+    "en": "Dexterity",
+    "ja": "敏捷",
+    "fi": "Ketteryys"
+  },
+  "지능": {
+    "en": "Intelligence",
+    "ja": "知能",
+    "fi": "Älykkyys"
+  },
+  "의지": {
+    "en": "Willpower",
+    "ja": "意志",
+    "fi": "Tahdonvoima"
+  },
+  "최소 공격력": {
+    "en": "Min Attack",
+    "ja": "最小攻撃力",
+    "fi": "Vähimmäishyökkäysvoima"
+  },
+  "최대 공격력": {
+    "en": "Max Attack",
+    "ja": "最大攻撃力",
+    "fi": "Enimmäishyökkäysvoima"
+  },
+  "명중": {
+    "en": "Accuracy",
+    "ja": "命中",
+    "fi": "Osuma"
+  },
+  "막기": {
+    "en": "Block",
+    "ja": "ブロック",
+    "fi": "Torjunta"
+  },
+  "회피": {
+    "en": "Evasion",
+    "ja": "回避",
+    "fi": "Väistö"
+  },
+  "비행력": {
+    "en": "Flight Power",
+    "ja": "飛行力",
+    "fi": "Lentovoima"
+  },
+  "자연 생명력 회복": {
+    "en": "Natural HP Regen",
+    "ja": "自然生命力回復",
+    "fi": "Luonnollinen HP-palautus"
+  },
+  "자연 정신력 회복": {
+    "en": "Natural MP Regen",
+    "ja": "自然精神力回復",
+    "fi": "Luonnollinen MP-palautus"
+  },
+  "이동 속도": {
+    "en": "Move Speed",
+    "ja": "移動速度",
+    "fi": "Liikenopeus"
+  },
+  "무기 피해 증폭": {
+    "en": "Weapon Damage Boost",
+    "ja": "武器ダメージ増幅",
+    "fi": "Asevahingon vahvistus"
+  },
+  "받는 치유량 증가": {
+    "en": "Incoming Heal",
+    "ja": "受ける治癒量増加",
+    "fi": "Saatu parannus"
+  },
+  "무기 피해 내성": {
+    "en": "Weapon Damage Tolerance",
+    "ja": "武器ダメージ耐性",
+    "fi": "Asevahingon kestävyys"
+  },
+  "치명타 피해 방어": {
+    "en": "Critical Damage Defense",
+    "ja": "クリティカルダメージ防御",
+    "fi": "Kriittisen vahingon puolustus"
+  },
+  "치명타 공격력": {
+    "en": "Critical Attack",
+    "ja": "クリティカル攻撃力",
+    "fi": "Kriittinen hyökkäysvoima"
+  },
+  "완벽 확률": {
+    "en": "Perfect Chance",
+    "ja": "完璧確率",
+    "fi": "Täydellisen osuman mahdollisuus"
+  },
+  "완벽 저항": {
+    "en": "Perfect Resist",
+    "ja": "完璧抵抗",
+    "fi": "Täydellisen osuman vastustus"
+  },
+  "강타 확률": {
+    "en": "Double Chance",
+    "ja": "強打確率",
+    "fi": "Tuplaosuman mahdollisuus"
+  },
+  "강타 저항": {
+    "en": "Double Resist",
+    "ja": "強打抵抗",
+    "fi": "Tuplaosuman vastustus"
+  },
+  "추가타 확률": {
+    "en": "Multi-hit Chance",
+    "ja": "追加打確率",
+    "fi": "Moniosuman mahdollisuus"
+  },
+  "추가타 저항": {
+    "en": "Multi-hit Resist",
+    "ja": "追加打抵抗",
+    "fi": "Moniosuman vastustus"
+  },
+  "상태 이상 적중": {
+    "en": "Status Effect Chance",
+    "ja": "状態異常命中",
+    "fi": "Tilavaikutuksen osuma"
+  },
+  "상태 이상 저항": {
+    "en": "Status Effect Resist",
+    "ja": "状態異常抵抗",
+    "fi": "Tilavaikutuksen vastustus"
+  },
+  "후방 공격": {
+    "en": "Back Attack",
+    "ja": "後方攻撃",
+    "fi": "Selkähyökkäys"
+  },
+  "후방 방어": {
+    "en": "Back Defense",
+    "ja": "後方防御",
+    "fi": "Selkäpuolustus"
+  },
+  "전방 공격": {
+    "en": "Front Attack",
+    "ja": "前方攻撃",
+    "fi": "Etuhyökkäys"
+  },
+  "전방 방어": {
+    "en": "Front Defense",
+    "ja": "前方防御",
+    "fi": "Etupuolustus"
+  },
+  "관통": {
+    "en": "Penetration",
+    "ja": "貫通",
+    "fi": "Läpäisy"
+  },
+  "방어력 증가": {
+    "en": "Defense increase",
+    "ja": "防御力増加",
+    "fi": "Puolustuksen lisäys"
+  },
+  "공격력 증가": {
+    "en": "Attack increase",
+    "ja": "攻撃力増加",
+    "fi": "Hyökkäysvoiman lisäys"
+  },
+  "인내": {
+    "en": "Endurance",
+    "ja": "忍耐",
+    "fi": "Sitkeys"
+  },
+  "인내 관통": {
+    "en": "Endurance Penetration",
+    "ja": "忍耐貫通",
+    "fi": "Sitkeyden läpäisy"
+  },
+  "재생": {
+    "en": "Regeneration",
+    "ja": "再生",
+    "fi": "Uusiutuminen"
+  },
+  "방패 막기 피해 감소량": {
+    "en": "Shield Block Damage Reduction Amount",
+    "ja": "盾ブロックダメージ減少量",
+    "fi": "Kilpitorjunnan vahingonvähennys"
+  },
+  "방패 막기 피해 감소율": {
+    "en": "Shield Block Damage Reduction Rate",
+    "ja": "盾ブロックダメージ減少率",
+    "fi": "Kilpitorjunnan vahingonvähennysprosentti"
+  },
+  "무기 막기 피해 감소량": {
+    "en": "Parry Damage Reduction Amount",
+    "ja": "武器ブロックダメージ減少量",
+    "fi": "Asetorjunnan vahingonvähennys"
+  },
+  "무기 막기 피해 감소율": {
+    "en": "Parry Damage Reduction Rate",
+    "ja": "武器ブロックダメージ減少率",
+    "fi": "Asetorjunnan vahingonvähennysprosentti"
+  },
+  "생명력 물약 회복량 증가": {
+    "en": "HP Potion Recovery increase",
+    "ja": "生命力ポーション回復量増加",
+    "fi": "HP-juoman palautuksen lisäys"
+  },
+  "PvE 피해 증폭": {
+    "en": "PvE Damage Boost",
+    "ja": "PvEダメージ増幅",
+    "fi": "PvE-vahingon vahvistus"
+  },
+  "PvE 피해 내성": {
+    "en": "PvE Damage Tolerance",
+    "ja": "PvEダメージ耐性",
+    "fi": "PvE-vahingonkestävyys"
+  },
+  "PvP 피해 증폭": {
+    "en": "PvP Damage Boost",
+    "ja": "PvPダメージ増幅",
+    "fi": "PvP-vahingon vahvistus"
+  },
+  "신석 피해 증가": {
+    "en": "Power Shard Damage Bonus",
+    "ja": "神石ダメージ増加",
+    "fi": "Voimasirpaleen vahinkobonus"
+  },
+  "죽음 [트리니엘]": {
+    "en": "Death [Triniel]",
+    "ja": "死 [トリニエル]",
+    "fi": "Kuolema [Triniel]"
+  },
+  "운명 [마르쿠탄]": {
+    "en": "Destiny [Marchutan]",
+    "ja": "運命 [マルクタン]",
+    "fi": "Kohtalo [Marchutan]"
+  },
+  "파괴 [지켈]": {
+    "en": "Destruction [Zikel]",
+    "ja": "破壊 [ジケル]",
+    "fi": "Tuho [Zikel]"
+  },
+  "자유 [바이젤]": {
+    "en": "Freedom [Vaizel]",
+    "ja": "自由 [バイゼル]",
+    "fi": "Vapaus [Vaizel]"
+  },
+  "환영 [카이시넬]": {
+    "en": "Illusion [Kaisinel]",
+    "ja": "幻影 [カイシネル]",
+    "fi": "Harha [Kaisinel]"
+  },
+  "정의 [네자칸]": {
+    "en": "Justice [Nezekan]",
+    "ja": "正義 [ネザカン]",
+    "fi": "Oikeus [Nezekan]"
+  },
+  "생명 [유스티엘]": {
+    "en": "Life [Yustiel]",
+    "ja": "生命 [ユスティエル]",
+    "fi": "Elämä [Yustiel]"
+  },
+  "공간 [이스라펠]": {
+    "en": "Space [Israphel]",
+    "ja": "空間 [イスラフェル]",
+    "fi": "Avaruus [Israphel]"
+  },
+  "시간 [시엘]": {
+    "en": "Time [Siel]",
+    "ja": "時間 [シエル]",
+    "fi": "Aika [Siel]"
+  },
+  "지혜 [루미엘]": {
+    "en": "Wisdom [Lumiel]",
+    "ja": "知恵 [ルミエル]",
+    "fi": "Viisaus [Lumiel]"
   }
 }

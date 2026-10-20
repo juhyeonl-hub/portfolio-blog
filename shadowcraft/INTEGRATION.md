@@ -534,3 +534,19 @@ Browser binding (CSRF): start and link set an HttpOnly, SameSite=Lax cookie `asb
 Configuration (defaults are production-safe): `app.steam.public-url` (https://juhyeonl.dev), `app.steam.planner-path` (/lab/shadowcraft/), `app.steam.openid-endpoint` (https://steamcommunity.com/openid/login). States and codes are process-local, so a backend restart during sign-in just requires a retry.
 
 Tests: backend `SteamLoginControllerTest`; browser `steam_login.py` (mocked API) and `steam_e2e.py` (real isolated backend + local fake OpenID provider: `STEAM_OPENID=http://127.0.0.1:18090/openid/login shadowcraft/tests/e2e_backend.sh`).
+
+## Equipment icons and item details (2026-10-20)
+
+`frontend/public/shadowcraft/data/item-index.json` (schema `asbc-item-index-v1`, ~800 KB raw / 55 KB gzip) holds every equipment row of the strictly decoded Global `Item.json` (Steam build 25926599, 3,555 of 9,308 rows): grade, item level, equip category, main stats, the substat candidate list (shared through `pools`, 326 distinct lists), grant counts, manastone/godstone slot counts and the icon name. Values are the raw client integers; the planner shows them as stored ("클라이언트 표 원값 기준"). It is fetched only when an equipment grid renders (`lib/item-index.ts`, one shared fetch, failures retried on the next grid) and validated before use; without it the grid keeps its glyph layout.
+
+Icons: `frontend/public/shadowcraft/icons/items/<texture>.webp` (64×64, 1,335 files, 5.3 MB) exported from the client paks with the research uex checkout (`preview-texture`/`export` of `AION2/Content/UI/Resource/Texture/Item/{Armor,Weapon,Accessory,ETC}` and `Icon_Arcana`, 256×256 PNG → WebP via ffmpeg `-nostdin`, lanczos, quality 82). 289 `IconRes` names (`Icon_GM_…`, `Icon_WP_…`) are not shipped under that name; the paks hold them as `Icon_Equip_AR_<L|D>_…` / `Icon_Equip_WP_<L|D>_…`, and the builder resolves them by the item's race first (`icon_candidates`). 3,551 of 3,555 equipment rows resolve; the four without an icon (`Icon_WP_ST_0097_T04`, `Icon_WP_ST_0084_T05`, `Icon_Equip_ACC_Rune_R_002` and one more variant) fall back to the slot glyph.
+
+Rebuild:
+
+```
+python3 shadowcraft/operations/build-item-index.py DECODED_TABLE_DIR/Item.json L10N/Text/en-US/L10NString.json 25926599 frontend/public/shadowcraft/icons/items frontend/public/shadowcraft/data/item-index.json
+```
+
+English stat names come from the client strings (`String_StatName_<Stat>_body`); the Korean names in the script (and their ja/fi entries in `ui-translations.json`) are inferred from the Korean service's naming rules, to be corrected on report. `frontend/shadowcraft/tests/item-index.mjs` checks that the committed export validates, covers every ranker snapshot item, names only icons that exist and has dictionary entries for every stat; `shadowcraft/tests/equipment_detail.py` checks the rendered grid (icons load, grade/level/stats/candidates in the tooltip, English names, fallback without the index).
+
+Toolchain locations (not in Git): decoded tables `~/workspace/a2bc-client-research/steam-25926599/october-decoded/AION2/Content/Data/Table`, uex research checkout with the built `src/Uex/bin/Release/net10.0/uex.dll`, `AION2-5.3.2.0.usmap` and the `a2bc-global` profile, plus the en-US L10N export, copied from `/tmp/a2bc-uex`, `/tmp/a2bc-october-decoder` and `/tmp/a2bc-october-payloads` to `~/workspace/a2bc-client-research/tooling/` on 2026-10-20 because `/tmp` does not survive a reboot. Windows dotnet (`/mnt/c/Program Files/dotnet/dotnet.exe`) runs uex from WSL with `//wsl.localhost/Ubuntu-22.04/...` output paths.
