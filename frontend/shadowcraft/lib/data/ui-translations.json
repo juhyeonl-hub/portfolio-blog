@@ -7578,5 +7578,35 @@
     "en": "Enter a build name to save it.",
     "ja": "ビルド名を入力すると保管できます。",
     "fi": "Anna rakenteelle nimi tallentaaksesi sen."
+  },
+  "빌드": {
+    "en": "Build",
+    "ja": "ビルド",
+    "fi": "Rakenne"
+  },
+  "빌드 구역": {
+    "en": "Build sections",
+    "ja": "ビルドの区画",
+    "fi": "Rakenteen osiot"
+  },
+  "장비 배치": {
+    "en": "Equipment layout",
+    "ja": "装備配置",
+    "fi": "Varusteiden sijoittelu"
+  },
+  "등급·옵션 정보는 아직 제공하지 않습니다.": {
+    "en": "Grade and option details are not available yet.",
+    "ja": "等級・オプション情報はまだ提供していません。",
+    "fi": "Laatu- ja ominaisuustiedot eivät ole vielä saatavilla."
+  },
+  "목록으로 보기": {
+    "en": "View as a list",
+    "ja": "リストで見る",
+    "fi": "Näytä luettelona"
+  },
+  "Steam 접속자": {
+    "en": "Steam players",
+    "ja": "Steam接続者",
+    "fi": "Steam-pelaajat"
   }
 }

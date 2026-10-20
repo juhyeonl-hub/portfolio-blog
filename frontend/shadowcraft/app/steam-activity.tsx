@@ -1,7 +1,7 @@
 import {useLocale} from './locale';
 import {useEffect,useState} from 'react';
 type Activity={appId:string;scope:string;players:number;checkedAt:string;stale:boolean};
-export default function SteamActivity({active}:{active:boolean}) {
+export default function SteamActivity({active,compact=false}:{active:boolean;compact?:boolean}) {
  const {t,locale}=useLocale();
   const [data,setData]=useState<Activity|null>(null),[error,setError]=useState(''),[loading,setLoading]=useState(false),[retry,setRetry]=useState(0);
   useEffect(()=>{
@@ -16,6 +16,13 @@ export default function SteamActivity({active}:{active:boolean}) {
     return()=>{live=false;controller.abort();clearTimeout(timeout);};
   },[active,retry]);
   useEffect(()=>{if(!active)return;const timer=setInterval(()=>{if(document.visibilityState==='visible')setRetry(v=>v+1);},60000);return()=>clearInterval(timer);},[active]);
+  // Bar variant: no live-region roles and no sentences — a failure or stale value only tints the number and sets a tooltip.
+  if(compact){const notice=error?t(error):data?.stale?t("최신 갱신을 확인하지 못한 이전 값입니다."):'';
+   return <section className="steam-inline" aria-label={t("Steam 글로벌 접속 현황")} title={notice||undefined}>
+    <span className="steam-label"><span className="steam-label-long">{t("Steam 접속자")}</span><span className="steam-label-short">Steam</span></span>
+    {data?<><strong className={'steam-players'+(notice?' steam-stale':'')}>{t('{0}명',[data.players.toLocaleString(locale)])}</strong><span className="steam-time">{t('마지막 확인: {0}',[new Date(data.checkedAt).toLocaleTimeString(locale,{hour:'2-digit',minute:'2-digit'})])}</span></>:<strong className="steam-players steam-stale">—</strong>}
+    <button type="button" className="icon-button" disabled={loading} aria-label={t("접속 현황 다시 확인")} title={t("접속 현황 다시 확인")} onClick={()=>setRetry(v=>v+1)}>↻</button>
+   </section>;}
   return <section className="card" aria-label={t("Steam 글로벌 접속 현황")}><h2>{t("Steam 글로벌 접속 현황")}</h2><p>{t("공식 Steam API가 집계한 전체 접속자 수입니다. 서버별 온라인 상태·혼잡도·인원은 제공하지 않습니다.")}</p>
     {data&&<><p className="steam-players"><strong>{t('{0}명',[data.players.toLocaleString(locale)])}</strong></p><p>{t('마지막 확인: {0}',[new Date(data.checkedAt).toLocaleString(locale)])}</p>{(data.stale||error)&&<p role="status">{t("최신 갱신을 확인하지 못한 이전 값입니다.")}</p>}</>}
     {loading&&<p role="status">{t("Steam 정보를 확인하는 중…")}</p>}{error&&<p role="alert">{t(error)}</p>}

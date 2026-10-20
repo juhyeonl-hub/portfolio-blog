@@ -13,7 +13,8 @@ with sync_playwright() as p:
  for key,name in zip(['assassin','gladiator','templar','ranger','elementalist','sorcerer','cleric','chanter'],['살성','검성','수호성','궁성','정령성','마도성','치유성','호법성']):
   page.locator('.class-picker button').filter(has_text=name).click()
   expect(page.get_by_role('region',name='간편 빌드 선택')).to_be_visible()
-  expect(page.locator('.skill-table')).to_have_count(0)
+  # The skill editor shares the build page now; it is present but the quick picker stays on top.
+  expect(page.locator('.skill-table')).to_have_count(1)
   storage='shadowcraft-plan-v1'+('' if key=='assassin' else ':'+key)
   before=page.evaluate('(key)=>localStorage.getItem(key)',storage)
   page.get_by_role('button',name='공격형',exact=False).filter(has_text='공격 관련').click()

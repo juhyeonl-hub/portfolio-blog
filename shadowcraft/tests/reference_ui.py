@@ -24,7 +24,7 @@ with sync_playwright() as p:
         page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
         page.goto(URL)
         expect(page.get_by_role('region',name='ASBC',exact=True)).to_be_visible()
-        expect(page.get_by_role('tab')).to_have_count(13)
+        expect(page.get_by_role('tab')).to_have_count(12)  # Steam activity moved to Home (2026-10-20)
         expect(page.locator('.sidebar')).to_have_count(0)
         expect(page.get_by_role('heading',name='어떤 직업으로 시작할까요?')).to_have_count(0)
         assert page.locator('.shell > main').evaluate("el=>getComputedStyle(el).marginLeft")=='0px'

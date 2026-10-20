@@ -52,7 +52,8 @@ with sync_playwright() as p:
  page.locator('.modal input[placeholder="정확한 이름을 입력하세요"]').fill('검증캐릭터')
  page.get_by_role('button',name='검색',exact=True).click();page.locator('.search-results button').first.click()
  expect(page.locator('.character-main h3')).to_contain_text('검증캐릭터')
- page.locator('.character-equipment summary').click()
+ # The equipment panel opens by default; the grid is shown with a list fallback.
+ expect(page.locator('.character-equipment > summary')).to_be_visible()
  expect(page.locator('.character-equipment')).to_contain_text('검증용 단검')
  expect(page.locator('.character-equipment')).to_contain_text('강화 +12 · 초월 +2')
  assert json.loads(page.evaluate("localStorage.getItem('shadowcraft-plan-v1')")).get('gear')==gear_before

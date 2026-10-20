@@ -1,12 +1,12 @@
 import {useLocale} from './locale';
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useRef,useState,type ReactNode} from 'react';
 import directory from '@/lib/data/servers.json';
 import FactionPicker from './faction-picker';
 import {parseBossFeed,bossDisplay,type BossFeed} from '@/lib/boss-timers';
 import {TIMER_IDS,TIMER_NAMES,TIMER_KEY,TIMER_SETTINGS_EVENT,type TimerId,type TimerSettings,emptySettings,emptyServer,parseSettings,parseTimes,nextContentOccurrence,countdown,TIME_ZONES,legacyClockLabel} from '@/lib/event-timers';
 const regions=[['eu','유럽 EU'],['nae','북미 동부'],['naw','북미 서부'],['la','남미'],['as','아시아']];
 const servers=directory as Record<string,{serverId:number;serverName:string;raceId:number}[]>;
-export default function EventTimers(){
+export default function EventTimers({children}:{children?:ReactNode}){
  const {t}=useLocale();
  const [initial]=useState(()=>{try{const raw=localStorage.getItem(TIMER_KEY);return {settings:raw?parseSettings(raw):emptySettings(),error:''}}catch{return {settings:emptySettings(),error:'저장된 타이머 설정을 읽지 못했습니다. 다시 설정해 주세요.'}}});
  const [settings,setSettings]=useState(initial.settings),[draft,setDraft]=useState(initial.settings),[error,setError]=useState(initial.error),[editing,setEditing]=useState(false),[now,setNow]=useState(()=>Date.now());
@@ -40,7 +40,7 @@ export default function EventTimers(){
  function save(){try{const profileToSave={...draftProfile};if(!servers[draft.region].some(s=>String(s.serverId)===draft.server))throw Error('서버를 선택해 주세요.');if(profileToSave.offset===null&&!profileToSave.timeZone)profileToSave.timeZone=Intl.DateTimeFormat().resolvedOptions().timeZone&&TIME_ZONES.some(([zone])=>zone===Intl.DateTimeFormat().resolvedOptions().timeZone)?Intl.DateTimeFormat().resolvedOptions().timeZone:'Asia/Seoul';for(const value of Object.values(profileToSave.times))parseTimes(value);const next=parseSettings(JSON.stringify({...draft,profiles:{...draft.profiles,[draftKey]:profileToSave}}));localStorage.setItem(TIMER_KEY,JSON.stringify(next));window.dispatchEvent(new Event(TIMER_SETTINGS_EVENT));setSettings(next);setEditing(false);setError('')}catch(e){setError(e instanceof Error?e.message:'설정 저장에 실패했습니다.')}}
  function label(id:TimerId){return id==='dimension'?(profile.dimension==='invasion'?'차원 침공':'시공의 균열'):TIMER_NAMES[id]}
  return <section ref={header} className="event-timer-header" aria-label={t('고정 콘텐츠 타이머')}>
-  <div className="event-timer-toolbar"><strong>{t('콘텐츠 타이머')}</strong><span>{server?`${t(regions.find(r=>r[0]===settings.region)?.[1])} · ${server.serverName} · ${profile.timeZone?t(TIME_ZONES.find(([zone])=>zone===profile.timeZone)?.[1]):t('기존 시간 기준')}`:''}</span><button className="button ghost small" aria-expanded={editing} aria-controls="event-timer-settings" onClick={()=>{setDraft(settings);setDraftRace(servers[settings.region].find(s=>String(s.serverId)===settings.server)?.raceId||1);setEditing(!editing)}}>{t('서버·타이머 설정')}</button></div>
+  <div className="event-timer-toolbar"><strong>{t('콘텐츠 타이머')}</strong><span>{server?`${t(regions.find(r=>r[0]===settings.region)?.[1])} · ${server.serverName} · ${profile.timeZone?t(TIME_ZONES.find(([zone])=>zone===profile.timeZone)?.[1]):t('기존 시간 기준')}`:''}</span>{children}<button className="button ghost small" aria-expanded={editing} aria-controls="event-timer-settings" onClick={()=>{setDraft(settings);setDraftRace(servers[settings.region].find(s=>String(s.serverId)===settings.server)?.raceId||1);setEditing(!editing)}}>{t('서버·타이머 설정')}</button></div>
   {server?<div className="event-timer-strip">{TIMER_IDS.filter(id=>!profile.hidden.includes(id)).map(id=>{const automatic=!!server&&!['shugo','dimension'].includes(id)&&profile.times[id]===undefined;
    const current=live?.key===key?live:null,clock=now+(current?.offset||0);
    const state=automatic?bossDisplay(current?.feed||null,id,clock,liveFailed===key):null;
