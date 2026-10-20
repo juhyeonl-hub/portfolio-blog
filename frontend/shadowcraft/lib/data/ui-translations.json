@@ -8158,5 +8158,70 @@
     "en": "Arena of Cooperation points {0} · server rank #{1}",
     "ja": "協力のアリーナポイント {0} · サーバー順位 {1}位",
     "fi": "Yhteistyön areenan pisteet {0} · palvelinsija {1}"
+  },
+  "랭커": {
+    "en": "Rankers",
+    "ja": "ランカー",
+    "fi": "Huippupelaajat"
+  },
+  "빌드 설정": {
+    "en": "Build settings",
+    "ja": "ビルド設定",
+    "fi": "Buildin asetukset"
+  },
+  "플레이 스타일": {
+    "en": "Play style",
+    "ja": "プレイスタイル",
+    "fi": "Pelityyli"
+  },
+  "레벨링": {
+    "en": "Levelling",
+    "ja": "レベリング",
+    "fi": "Tasonnosto"
+  },
+  "레벨": {
+    "en": "Level",
+    "ja": "レベル",
+    "fi": "Taso"
+  },
+  "추천 배분 적용": {
+    "en": "Apply recommendation",
+    "ja": "おすすめ配分を適用",
+    "fi": "Käytä suositusta"
+  },
+  "추천 배분을 적용했습니다. 적용 전으로 되돌릴 수 있습니다.": {
+    "en": "Recommendation applied. You can revert to the previous plan.",
+    "ja": "おすすめ配分を適用しました。適用前に戻せます。",
+    "fi": "Suositus käytössä. Voit palata edelliseen suunnitelmaan."
+  },
+  "빌드 요약": {
+    "en": "Build summary",
+    "ja": "ビルド要約",
+    "fi": "Buildin yhteenveto"
+  },
+  "포인트 현황": {
+    "en": "Points",
+    "ja": "ポイント状況",
+    "fi": "Pisteet"
+  },
+  "랭커 세팅과 비교": {
+    "en": "Compare with rankers",
+    "ja": "ランカー設定と比較",
+    "fi": "Vertaa huippupelaajiin"
+  },
+  "공유 링크 · 보관함": {
+    "en": "Share link · library",
+    "ja": "共有リンク · 保管箱",
+    "fi": "Jakolinkki · kirjasto"
+  },
+  "사이드바 펼치기": {
+    "en": "Expand sidebar",
+    "ja": "サイドバーを開く",
+    "fi": "Laajenna sivupalkki"
+  },
+  "사이드바 접기": {
+    "en": "Collapse sidebar",
+    "ja": "サイドバーを閉じる",
+    "fi": "Supista sivupalkki"
   }
 }
