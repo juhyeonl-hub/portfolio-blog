@@ -305,3 +305,9 @@ Screenshot tour of all 12 tabs (desktop 1366 / phone 390): the one-page build vi
 Verification: typecheck/lint clean; localization test PASS; browser suite 40 PASS / 8 skipped (origin_transfer, community*, report_ui, account_delete, steam* need the extra servers) / quick_build fixed and PASS; desktop/phone screenshots reviewed.
 Codex review of 7ef021e..f4ebc0b: 1 finding (med) — for non-assassin classes the macro ClassGuide rendered after the 보스전 운영 bar. Fixed: each class guide now renders directly under its own bar; new shadowcraft/tests/build_sections_order.py checks DOM order (bar → content) for 검성/살성, independent fold/unfold and sidebar navigation opening a folded section.
 Codex re-review of f4ebc0b..4e1d558: NO_FINDINGS. Released to asbc.app; build_sections_order.py and quick_build.py PASS against production.
+
+## UI simplification 2: public builds, map, database — 2026-10-20
+- 공개 빌드: account card compacted (smaller heading, one-line text "빌드 열람은 자유입니다. 게시·좋아요는 로그인 후 이용하세요." — the old text still mentioned comments — login form as one flex row).
+- 지도 & 수집: terrain name + note on one line; 지역명 검색 and 검색한 위치 side by side instead of two full-width stacked fields.
+- 글로벌 데이터: the two preamble lines merged into one subtle line; NPC and 퀘스트·던전·펫 lists moved below the item/skill browser (`.database-extra`); result rows are one-line name + meta (page 3,263 → 2,338 px).
+Verification: typecheck/lint clean; browser client_database, npc_database, journal_database, map, terrain, map_visibility, official_map_categories/progress, map_icons, map_icon_bindings, public_builds, screen_localization, asbc_home PASS on dev; desktop screenshots reviewed.

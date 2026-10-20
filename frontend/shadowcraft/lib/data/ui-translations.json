@@ -8098,5 +8098,10 @@
     "en": "Daevanion crystals {0}/{1}",
     "ja": "ディーヴァニオン結晶 {0}/{1}",
     "fi": "Daevanion-kiteet {0}/{1}"
+  },
+  "빌드 열람은 자유입니다. 게시·좋아요는 로그인 후 이용하세요.": {
+    "en": "Anyone can browse builds. Sign in to publish or like.",
+    "ja": "ビルドの閲覧は自由です。投稿・いいねはログイン後に利用できます。",
+    "fi": "Buildeja voi selata vapaasti. Kirjaudu sisään julkaistaksesi tai tykätäksesi."
   }
 }

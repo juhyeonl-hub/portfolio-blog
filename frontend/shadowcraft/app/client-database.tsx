@@ -49,13 +49,10 @@ export default function ClientDatabase({active, initialSkillId = ''}: {active: b
   return <section className="client-database card" aria-label={t("글로벌 클라이언트 데이터베이스")}>
     <h2>{t("글로벌 클라이언트 데이터베이스")}</h2>
     <p>{t("설치된 Steam 클라이언트에서 읽은 아이템·스킬 정보입니다. 클라이언트에는 현재 서버에서 사용할 수 없는 항목도 포함될 수 있습니다.")}</p>
-    <NpcDatabase active={active}/>
-    <JournalDatabase active={active}/>
     {loading && <p role="status">{t("클라이언트 데이터를 불러오는 중…")}</p>}
     {error && <div role="alert">{t(error)} <button className="button ghost" onClick={() => setRetry(v => v + 1)}>{t("다시 불러오기")}</button></div>}
     {data && <>
-      <p>{t('Steam 빌드 {0} · 공식 클라이언트 원본 · 영문 이름 · 구조 및 참조 검사 통과',[data.source.buildId])}</p>
-      <p className="subtle">{t("서버 내 이용 가능 여부와 장비·레벨에 따른 최종 전투 수치를 검증한 것은 아닙니다.")}</p>
+      <p className="subtle">{t('Steam 빌드 {0} · 공식 클라이언트 원본 · 영문 이름 · 구조 및 참조 검사 통과',[data.source.buildId])} · {t("서버 내 이용 가능 여부와 장비·레벨에 따른 최종 전투 수치를 검증한 것은 아닙니다.")}</p>
       <div className="database-tabs">{(['items', 'skills'] as const).map((kind, i) => <button className="button ghost" key={kind} aria-pressed={section === kind} onClick={() => {setSection(kind); setFilter(''); setPage(0); setSelected(''); setQuery('');}}>{t(['아이템', '플레이어 스킬'][i])} ({data[kind].length})</button>)}</div>
       <div className="database-filters"><label>{t("데이터 검색")}<input type="search" value={query} onChange={e => {setQuery(e.target.value); setPage(0);}} placeholder={t("영문 이름 또는 ID")}/></label>
         <label>{t("분류")}<select value={filter} onChange={e => {setFilter(e.target.value); setPage(0);}}><option value="">{t("전체")}</option>{categories.map(c => <option key={c} value={c}>{categoryLabel(c)}</option>)}</select></label></div>
@@ -84,5 +81,6 @@ export default function ClientDatabase({active, initialSkillId = ''}: {active: b
         </div>
       </div>
     </>}
+    <div className="database-extra"><NpcDatabase active={active}/><JournalDatabase active={active}/></div>
   </section>;
 }
