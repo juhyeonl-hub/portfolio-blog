@@ -13,8 +13,9 @@ with sync_playwright() as p:
  page.clock.install(time=datetime(2026,10,17,8,50,0,tzinfo=timezone.utc))
  page.goto(URL)
  header=page.get_by_role('region',name='고정 콘텐츠 타이머')
- expect(header.locator('.event-timer-card')).to_have_count(6)
- expect(header).to_contain_text('서버를 선택하세요')
+ # Before a server is chosen the bar is one line, not six 'not configured' cards.
+ expect(header.locator('.event-timer-card')).to_have_count(0)
+ expect(header).to_contain_text('서버를 고르면 보스·콘텐츠 출현 시간이 여기에 표시됩니다.')
  page.get_by_role('button',name='서버·타이머 설정',exact=True).click()
  page.get_by_label('타이머 서버',exact=True).select_option('1301')
  page.get_by_label('시간 기준 국가·지역',exact=True).select_option('Atlantic/Reykjavik')

@@ -1,6 +1,10 @@
 """Full-width home, planner class entry and map disclosure preserve the active workspace."""
 import os
 from playwright.sync_api import sync_playwright,expect
+
+def open_menu(page):
+    # On phones the tab strip is shown only on Home; other screens use the 메뉴 drawer.
+    if page.locator('.mobile-menu').is_visible(): page.locator('.mobile-menu').click()
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 with sync_playwright() as p:
     browser=p.chromium.launch()
@@ -24,7 +28,7 @@ with sync_playwright() as p:
             page.locator('.class-picker button').filter(has_text=name).click()
             expect(page.get_by_role('region',name='간편 빌드 선택')).to_be_visible()
             expect(page.locator('.class-picker button').filter(has_text=name)).to_have_attribute('aria-pressed','true')
-        page.get_by_role('tab',name='메인',exact=True).click()
+        open_menu(page);page.get_by_role('tab',name='메인',exact=True).click()
         expect(page.locator('.sidebar')).to_have_count(0)
         page.screenshot(path=f'/tmp/a2bc-reference-ui-home-{width}.png')
         page.get_by_role('button',name='지도 열기',exact=True).click()

@@ -2814,11 +2814,6 @@
     "ja": "タイプを選んでプレビューしてから適用してください。詳細設定はいつでも調整できます。",
     "fi": "Valitse tyyli, esikatsele ja ota käyttöön. Yksityiskohtia voi säätää milloin tahansa."
   },
-  "아래 안정형·공격형은 기본 추천 가이드입니다. 위 상위 캐릭터의 실제 세팅과 구분됩니다.": {
-    "en": "The Defensive and Offensive options below are basic recommended guides, separate from the actual top character setups above.",
-    "ja": "以下の安定型・攻撃型は基本のおすすめガイドです。上の上位キャラクターの実際のセッティングとは別のものです。",
-    "fi": "Alla olevat Puolustava- ja Hyökkäävä-vaihtoehdot ovat perussuosituksia, eivätkä ne ole yllä olevien kärkihahmojen todellisia kokoonpanoja."
-  },
   "{0}의 핵심 스킬을 우선합니다.": {
     "en": "Prioritizes {0} core skills.",
     "ja": "{0}のコアスキルを優先します。",
@@ -7343,5 +7338,30 @@
     "en": "Type your username exactly to confirm.",
     "ja": "確認のためIDを正確に入力してください。",
     "fi": "Vahvista kirjoittamalla käyttäjätunnuksesi täsmälleen."
+  },
+  "서버를 고르면 보스·콘텐츠 출현 시간이 여기에 표시됩니다.": {
+    "en": "Choose your server to show boss and content spawn times here.",
+    "ja": "サーバーを選ぶと、ボス・コンテンツの出現時間がここに表示されます。",
+    "fi": "Valitse palvelin, niin pomojen ja sisältöjen ilmestymisajat näkyvät tässä."
+  },
+  "3차 승급 확인 전이라 스티그마는 추천에 포함되지 않습니다. 승급했다면 위의 3차 승급 확인을 체크하세요.": {
+    "en": "Stigmas are not included until the 3rd ascension is confirmed. If you have ascended, tick the 3rd ascension check above.",
+    "ja": "3次昇級の確認前のため、スティグマは推薦に含まれません。昇級済みなら上の3次昇級の確認にチェックしてください。",
+    "fi": "Stigmoja ei sisällytetä ennen kuin 3. nousu on vahvistettu. Jos olet noussut, rastita yllä oleva 3. nousun vahvistus."
+  },
+  "스티그마는 3차 승급 후에 배울 수 있어 지금은 Lv.0입니다. 승급을 마쳤다면 \"캐릭터·포인트 설정 및 가이드\"에서 3차 승급 확인을 체크하세요.": {
+    "en": "Stigmas can only be learned after the 3rd ascension, so they are Lv.0 for now. If you have ascended, tick the 3rd ascension check under \"Character & point settings and guide\".",
+    "ja": "スティグマは3次昇級後に習得できるため、現在はLv.0です。昇級済みなら「キャラクター・ポイント設定とガイド」で3次昇級の確認にチェックしてください。",
+    "fi": "Stigmat voi oppia vasta 3. nousun jälkeen, joten ne ovat nyt tasolla 0. Jos olet noussut, rastita 3. nousun vahvistus kohdassa \"Hahmon ja pisteiden asetukset sekä opas\"."
+  },
+  "판을 좌우로 밀어서 보세요.": {
+    "en": "Swipe the board sideways to see all of it.",
+    "ja": "ボードは左右にスワイプして見られます。",
+    "fi": "Pyyhkäise taulua sivuttain nähdäksesi kaiken."
+  },
+  "안정형·공격형은 기본 추천 가이드입니다. 아래 상위 캐릭터의 실제 세팅과 구분됩니다.": {
+    "en": "The Defensive and Offensive options are basic recommended guides, separate from the actual top character setups below.",
+    "ja": "安定型・攻撃型は基本のおすすめガイドです。下の上位キャラクターの実際のセッティングとは別のものです。",
+    "fi": "Puolustava- ja Hyökkäävä-vaihtoehdot ovat perussuosituksia, eivätkä ne ole alla olevien kärkihahmojen todellisia kokoonpanoja."
   }
 }

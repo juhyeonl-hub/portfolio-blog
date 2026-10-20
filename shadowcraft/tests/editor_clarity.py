@@ -1,6 +1,10 @@
 """Detailed editor controls, persistence and responsive information hierarchy."""
 import os,re
 from playwright.sync_api import sync_playwright,expect
+
+def open_menu(page):
+    # On phones the tab strip is shown only on Home; other screens use the 메뉴 drawer.
+    if page.locator('.mobile-menu').is_visible(): page.locator('.mobile-menu').click()
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 with sync_playwright() as p:
     browser=p.chromium.launch()
@@ -10,7 +14,7 @@ with sync_playwright() as p:
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
         page.goto(URL)
-        page.get_by_role('tab',name='스킬 & 특화',exact=True).click()
+        open_menu(page);page.get_by_role('tab',name='스킬 & 특화',exact=True).click()
         editor=page.get_by_role('region',name='스킬 상세 편집',exact=True)
         expect(editor.locator('.skill-details')).to_have_count(0)
         expect(page.get_by_role('region',name='편집 포인트 현황')).to_contain_text('스킬 포인트')
@@ -26,7 +30,7 @@ with sync_playwright() as p:
             choice.click()
             expect(row.locator('.spec[aria-pressed=true]:enabled')).to_have_count(0)
         page.reload()
-        page.get_by_role('tab',name='스킬 & 특화',exact=True).click()
+        open_menu(page);page.get_by_role('tab',name='스킬 & 특화',exact=True).click()
         expect(row.locator('.stepper b')).to_have_text(str(value-1))
         page.get_by_role('button',name='포인트 설정',exact=True).click()
         expect(page.locator('#point-budget')).to_be_visible()
@@ -36,7 +40,7 @@ with sync_playwright() as p:
         editor.locator('.editor-guide>summary').click()
         page.evaluate('scrollTo(0,0)')
         page.screenshot(path=f'/tmp/a2bc-editor-skills-{width}.png')
-        page.get_by_role('tab',name='데바니온',exact=True).click()
+        open_menu(page);page.get_by_role('tab',name='데바니온',exact=True).click()
         expect(page.get_by_role('region',name='편집 포인트 현황')).to_contain_text('데바니온 결정')
         page.locator('.board-node:not(.on):not(.start)').first.click()
         add=page.get_by_role('button',name=re.compile('^경로 추가 ·'))
