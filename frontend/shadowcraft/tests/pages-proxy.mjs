@@ -12,4 +12,11 @@ assert.equal(res.status,302);assert.equal(res.headers.get('location'),'https://s
 res=await onRequest({request:new Request('https://asbc.test/api/community/builds',{method:'POST',body:'{"t":1}',headers:{'Content-Type':'application/json'}}),env:{ASBC_API_ORIGIN:'https://api.asbc.test'}});
 assert.equal(calls[1].url,'https://api.asbc.test/api/community/builds');assert.equal(calls[1].init.method,'POST');
 assert.equal(await new Response(calls[1].init.body).text(),'{"t":1}');
-console.log('Pages API proxy: path/query, headers and cookies, POST body, manual redirects and backend override PASS');
+// The visitor's address goes to the backend only with the configured secret; headers a visitor forged are dropped.
+const forged={'CF-Connecting-IP':'198.51.100.7','X-ASBC-Proxy-Secret':'guess','X-ASBC-Client-IP':'10.0.0.1'};
+await onRequest({request:new Request('https://asbc.test/api/community/auth/steam/start',{headers:forged}),env:{ASBC_PROXY_SECRET:'s3cret'}});
+assert.equal(calls[2].init.headers.get('x-asbc-proxy-secret'),'s3cret');assert.equal(calls[2].init.headers.get('x-asbc-client-ip'),'198.51.100.7');
+await onRequest({request:new Request('https://asbc.test/api/community/auth/steam/start',{headers:forged}),env:{}});
+assert.equal(calls[3].init.headers.get('x-asbc-proxy-secret'),null);assert.equal(calls[3].init.headers.get('x-asbc-client-ip'),null);
+assert.equal(calls[3].init.headers.get('cf-connecting-ip'),'198.51.100.7');
+console.log('Pages API proxy: path/query, headers and cookies, POST body, manual redirects, backend override and visitor address with secret only PASS');

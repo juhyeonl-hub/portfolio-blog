@@ -2,6 +2,7 @@ package com.portfolio.blog.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.portfolio.blog.service.ClientAddress;
 import com.portfolio.blog.service.CommunityService;
 import com.portfolio.blog.service.SteamLoginService;
 import com.portfolio.blog.service.MemberSessionService;
@@ -20,23 +21,24 @@ public class CommunityController {
     private final ObjectMapper mapper;
     private final SteamLoginService steam;
     private final ReportService reports;
-    public CommunityController(CommunityService community,MemberSessionService sessions,ObjectMapper mapper,SteamLoginService steam,ReportService reports){this.reports=reports;this.steam=steam;this.community=community;this.sessions=sessions;this.mapper=mapper;}
+    private final ClientAddress address;
+    public CommunityController(CommunityService community,MemberSessionService sessions,ObjectMapper mapper,SteamLoginService steam,ReportService reports,ClientAddress address){this.address=address;this.reports=reports;this.steam=steam;this.community=community;this.sessions=sessions;this.mapper=mapper;}
     @PostMapping("/api/community/auth/{action:register|login}")
     public ResponseEntity<?> login(@PathVariable String action,HttpServletRequest request)throws Exception {
         JsonNode input=body(request);
         String username=input==null?"":input.path("username").asText();
         if(username.length()>32)throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"아이디는 32자 이하로 입력하세요.");
-        community.throttle(request.getRemoteAddr()+"|"+username.toLowerCase(java.util.Locale.ROOT));
+        community.throttle(address.of(request)+"|"+username.toLowerCase(java.util.Locale.ROOT));
         return response(community.authenticate(input,action.equals("register")));
     }
     @GetMapping("/api/community/auth/steam/start")
-    public ResponseEntity<?> steamStart(HttpServletRequest request){community.throttle(request.getRemoteAddr()+"|steam");var start=steam.start(null);return ResponseEntity.status(HttpStatus.FOUND).header(HttpHeaders.LOCATION,start.url()).header(HttpHeaders.SET_COOKIE,steamCookie(start.browserSecret(),300).toString()).cacheControl(CacheControl.noStore()).build();}
+    public ResponseEntity<?> steamStart(HttpServletRequest request){community.throttle(address.of(request)+"|steam");var start=steam.start(null);return ResponseEntity.status(HttpStatus.FOUND).header(HttpHeaders.LOCATION,start.url()).header(HttpHeaders.SET_COOKIE,steamCookie(start.browserSecret(),300).toString()).cacheControl(CacheControl.noStore()).build();}
     @GetMapping("/api/community/auth/steam/callback")
     public ResponseEntity<?> steamCallback(@RequestParam Map<String,String> params,@CookieValue(value=STEAM_COOKIE,required=false)String browser){return redirect(steam.callback(params,browser));}
     @PostMapping("/api/community/auth/steam/exchange")
     public ResponseEntity<?> steamExchange(HttpServletRequest request,@CookieValue(value=STEAM_COOKIE,required=false)String browser)throws Exception{JsonNode input=body(request);var result=steam.exchange(input==null?null:input.path("code").asText(null),browser);return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,steamCookie("",0).toString()).cacheControl(CacheControl.noStore()).body(result);}
     @PostMapping("/api/community/auth/steam/register")
-    public ResponseEntity<?> steamRegister(HttpServletRequest request,@CookieValue(value=STEAM_COOKIE,required=false)String browser)throws Exception{community.throttle(request.getRemoteAddr()+"|steam");JsonNode input=body(request);var result=steam.register(input==null?null:input.path("code").asText(null),input==null?null:input.path("username").asText(null),browser);return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,steamCookie("",0).toString()).cacheControl(CacheControl.noStore()).body(result);}
+    public ResponseEntity<?> steamRegister(HttpServletRequest request,@CookieValue(value=STEAM_COOKIE,required=false)String browser)throws Exception{community.throttle(address.of(request)+"|steam");JsonNode input=body(request);var result=steam.register(input==null?null:input.path("code").asText(null),input==null?null:input.path("username").asText(null),browser);return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,steamCookie("",0).toString()).cacheControl(CacheControl.noStore()).body(result);}
     @PostMapping("/api/community/auth/steam/link")
     public ResponseEntity<?> steamLink(Authentication auth){var start=steam.start(auth.getName());return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,steamCookie(start.browserSecret(),300).toString()).cacheControl(CacheControl.noStore()).body(Map.of("url",start.url()));}
     // Browser binding for Steam sign-in (CSRF): HttpOnly, SameSite=Lax so it survives the top-level return from Steam.
