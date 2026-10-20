@@ -289,3 +289,4 @@ User direction (item 3): in-game slot layout with hover detail showing the item'
 Findings while extracting: 289 icon names are shipped under `Icon_Equip_AR/WP_<L|D>_…` instead of `Icon_GM/WP_…` (resolved by race); ffmpeg inside a `while read` loop eats stdin (`-nostdin`), which silently skipped half the first fallback batch. All 120 ranker-snapshot items are covered.
 Verification: typecheck/lint clean; node suite (incl. new tests/item-index.mjs) exit 0; browser equipment_detail.py, ranker_ui.py, character_comparison.py, ranker_import.py PASS on dev 5173; desktop/phone screenshots reviewed (tooltip rows compact after resetting the global `li` card style).
 Open: stat units are raw client integers (no %/divisor table found in the strings); item names stay as the armory returns them (English for Global).
+Codex review of 7c3cabd..1a6117c (equipment icons + item details): NO_FINDINGS. Released to asbc.app; equipment_detail.py against production PASS.
