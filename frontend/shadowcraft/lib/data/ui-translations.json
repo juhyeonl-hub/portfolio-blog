@@ -7503,5 +7503,15 @@
     "en": "Locations come from the game client data. Some may differ from the live game.",
     "ja": "ゲームクライアントのデータで表示した位置です。一部は実際のゲームと異なる場合があります。",
     "fi": "Sijainnit perustuvat pelin asiakasohjelman tietoihin. Osa voi poiketa pelistä."
+  },
+  "이 브라우저에는 옮길 데이터가 없습니다. 새 주소에서 바로 시작하세요.": {
+    "en": "This browser has no saved data to move. Start right away at the new address.",
+    "ja": "このブラウザには移すデータがありません。新しいアドレスですぐに始めてください。",
+    "fi": "Tässä selaimessa ei ole siirrettäviä tietoja. Aloita suoraan uudessa osoitteessa."
+  },
+  "새 주소로 이동": {
+    "en": "Go to the new address",
+    "ja": "新しいアドレスへ移動",
+    "fi": "Siirry uuteen osoitteeseen"
   }
 }

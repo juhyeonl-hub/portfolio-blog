@@ -18,7 +18,11 @@ ASBC currently runs at `https://juhyeonl.dev/lab/shadowcraft/` inside the blog's
    `APP_CORS_EXTRA_ORIGINS=https://<domain>`, `APP_STEAM_PUBLIC_URL=https://<domain>`, `APP_STEAM_PLANNER_PATH=/`; restart the backend. Steam sign-in then returns to the new domain; existing Steam links are keyed by SteamID and keep working. Sign-in from the old address stops working at this point, which is why step 5 follows immediately.
 5. **Old address:** set `VITE_ASBC_NEW_ORIGIN=https://<domain>` in the blog's Vercel environment and redeploy, so the old planner shows the move banner.
 6. **Verify:** planner loads at the new root; community login, Steam sign-in, publish/report work; the transfer moves a test browser's data; `shadowcraft/tests/origin_transfer.py` and the rest of the browser suite pass against the new URL.
-7. **Later:** once most visitors have moved, remove ASBC from the blog build (`lab/shadowcraft` input and `public/shadowcraft`), which shrinks each blog deployment from about 57 MB to about 8 MB.
+7. **Done (2026-10-20):** the blog build no longer ships the planner. `/lab/shadowcraft/` is the light moved page (`lab/shadowcraft/moved.html`, `shadowcraft/moved.tsx`): shared and published links are forwarded to asbc.app with their hash, and browsers with saved planner data get the move banner for the hand-over. The `asbc-moved-page` plugin in `vite.config.js` (build only) renames the page and leaves `public/shadowcraft` out of `dist`, so a blog deployment is about 2 MB. The dev server still serves the full planner at `/lab/shadowcraft/` for the browser tests. Test: `shadowcraft/tests/moved_page.py` after `VITE_ASBC_NEW_ORIGIN=https://asbc.app npm run build`.
+
+## Releasing ASBC
+
+Pushing to main only redeploys the blog (and the moved page). To update asbc.app: `cd frontend && VITE_ASBC_NEW_ORIGIN=https://asbc.app npm run build:asbc`, then `cd asbc-pages && npx wrangler pages deploy ../dist-asbc --project-name asbc --branch main`.
 
 ## Local test of the transfer
 

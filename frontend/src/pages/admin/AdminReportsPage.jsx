@@ -25,7 +25,7 @@ export default function AdminReportsPage(){
   {items&&items.length>0&&<ul className="space-y-4" aria-label="신고 목록">{items.map(item=><li key={item.targetKey} className="bg-gray-900 border border-gray-800 rounded-lg p-4">
    <div className="flex flex-wrap items-center gap-2 mb-2"><span className="text-xs px-2 py-1 rounded bg-gray-800">{item.type==='build'?'빌드':'댓글'}</span><strong>신고 {item.count}건</strong><span className="text-gray-400 text-sm">{[...item.reasons].map(r=>REASONS[r]||r).join(', ')}</span>{!item.published&&<span className="text-xs text-amber-400">비공개 빌드</span>}</div>
    <p className="whitespace-pre-wrap break-words mb-1">{item.text}</p>
-   <p className="text-sm text-gray-400 mb-2">작성자 {item.author||'관리자'} · 빌드 「{item.buildTitle}」 · <a className="text-blue-400" href={'/lab/shadowcraft/#published='+item.buildId} target="_blank" rel="noreferrer">공개 화면 열기</a></p>
+   <p className="text-sm text-gray-400 mb-2">작성자 {item.author||'관리자'} · 빌드 「{item.buildTitle}」 · <a className="text-blue-400" href={'https://asbc.app/#published='+item.buildId} target="_blank" rel="noreferrer">공개 화면 열기</a></p>
    {item.details.length>0&&<ul className="text-sm text-gray-300 list-disc ml-5 mb-2">{item.details.map((d,i)=><li key={i} className="break-words">{d}</li>)}</ul>}
    <div className="flex flex-wrap gap-2"><button className="px-3 py-1 rounded bg-gray-700" disabled={busy===item.targetKey} onClick={()=>resolve(item,'dismiss')}>문제없음</button>
     {item.type==='build'&&<button className="px-3 py-1 rounded bg-amber-700" disabled={busy===item.targetKey} onClick={()=>resolve(item,'hide')}>빌드 비공개</button>}
