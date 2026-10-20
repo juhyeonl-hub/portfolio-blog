@@ -311,3 +311,4 @@ Codex re-review of f4ebc0b..4e1d558: NO_FINDINGS. Released to asbc.app; build_se
 - 지도 & 수집: terrain name + note on one line; 지역명 검색 and 검색한 위치 side by side instead of two full-width stacked fields.
 - 글로벌 데이터: the two preamble lines merged into one subtle line; NPC and 퀘스트·던전·펫 lists moved below the item/skill browser (`.database-extra`); result rows are one-line name + meta (page 3,263 → 2,338 px).
 Verification: typecheck/lint clean; browser client_database, npc_database, journal_database, map, terrain, map_visibility, official_map_categories/progress, map_icons, map_icon_bindings, public_builds, screen_localization, asbc_home PASS on dev; desktop screenshots reviewed.
+Codex review of 973a8b0..27a59d0: NO_FINDINGS. Released to asbc.app; client_database.py PASS against production.
