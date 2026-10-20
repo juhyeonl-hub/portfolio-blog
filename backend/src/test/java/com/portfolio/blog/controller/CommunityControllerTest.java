@@ -34,7 +34,9 @@ class CommunityControllerTest {
   var body=payload();((ObjectNode)body.path("shared").path("plan")).put("mode","pvp");
   String id=mapper.readTree(mvc.perform(post(API+"/builds").header("Authorization","Bearer "+token).contentType("application/json").content(body.toString())).andExpect(status().isCreated()).andReturn().getResponse().getContentAsString()).path("id").asText();
   mvc.perform(get("/api/public/shadowcraft/builds/"+id)).andExpect(status().isOk()).andExpect(jsonPath("$.shared.plan.mode").value("pvp"));
-  mvc.perform(put(API+"/builds/"+id).header("Authorization","Bearer "+token).contentType("application/json").content(body.toString())).andExpect(status().isOk());
+  body.put("revision",0);
+  mvc.perform(put(API+"/builds/"+id).header("Authorization","Bearer "+token).contentType("application/json").content(body.toString())).andExpect(status().isOk()).andExpect(jsonPath("$.revision").value(1));
+  body.remove("revision");
   ((ObjectNode)body.path("shared").path("plan")).put("mode","arena");
   mvc.perform(post(API+"/builds").header("Authorization","Bearer "+token).contentType("application/json").content(body.toString())).andExpect(status().isBadRequest());
  }
