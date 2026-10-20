@@ -7303,5 +7303,10 @@
     "en": "Could not save in this browser. Check storage space or private mode.",
     "ja": "このブラウザに保存できませんでした。保存容量やシークレットモードを確認してください。",
     "fi": "Tallennus tähän selaimeen epäonnistui. Tarkista tallennustila tai yksityinen tila."
+  },
+  "개인정보 처리방침": {
+    "en": "Privacy policy",
+    "ja": "プライバシーポリシー",
+    "fi": "Tietosuojaseloste"
   }
 }

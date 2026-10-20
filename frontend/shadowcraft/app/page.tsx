@@ -1,6 +1,7 @@
 import {LocaleProvider,LanguageSelect,useLocale} from './locale';
 import {MemberProvider,MemberAccount,useMember,steamReturn} from './community'
 import {MoveBanner,TransferImport} from './origin-transfer';
+import {PrivacyPolicy} from './privacy';
 'use client';
 import {useEffect,useMemo,useState} from 'react';
 import {Swords,Shield,ChevronRight,ChevronDown,ArrowUpRight,Search,RefreshCw,Check,Plus,Minus,SlidersHorizontal,Download,Upload,X,Info,AlertTriangle,MousePointer2,Waypoints,Keyboard,BookOpen,History,UserRound,Cloud,Target,CheckCircle2,Lock,ExternalLink,Zap,PanelLeftClose} from 'lucide-react';
@@ -132,12 +133,14 @@ function Workshop({classKey,initialCatalog,onClassChange,tab,setTab}:{classKey:s
  </div>
 }
 
-function AsbcFooter(){const {t}=useLocale();return <footer className="asbc-footer"><div><b>{'추억 게임즈'}</b><small>{t('개인 프로젝트 브랜드')} · ASBC</small></div><p>{t('비공식 팬 도구 · 게임 데이터 © NCSOFT')}</p><nav><a href="https://aion2.plaync.com/en-us/index" target="_blank" rel="noreferrer">{t('공식 사이트')}</a><a href="https://juhyeonl.dev/about" target="_blank" rel="noreferrer">{t('문의')}</a></nav></footer>;}
+function AsbcFooter(){const {t}=useLocale();return <footer className="asbc-footer"><div><b>{'추억 게임즈'}</b><small>{t('개인 프로젝트 브랜드')} · ASBC</small></div><p>{t('비공식 팬 도구 · 게임 데이터 © NCSOFT')}</p><nav><a href="https://aion2.plaync.com/en-us/index" target="_blank" rel="noreferrer">{t('공식 사이트')}</a><a href="#privacy">{t('개인정보 처리방침')}</a><a href="mailto:contact@asbc.app">{t('문의')}</a></nav></footer>;}
 
 export default function Page(){
  const [hash,setHash]=useState(()=>location.hash);
  useEffect(()=>{const changed=()=>setHash(location.hash);window.addEventListener('hashchange',changed);return()=>window.removeEventListener('hashchange',changed);},[]);
- return <LocaleProvider><MemberProvider><MoveBanner/><TransferImport/><EventTimers/>{(hash.startsWith('#published=')||hash.startsWith('#build='))&&<div className="asbc-share-toolbar"><a href="#">ASBC</a><LanguageSelect/></div>}{hash.startsWith('#published=')?<PublishedBuildView id={hash.slice(11)}/>:hash.startsWith('#build=')?<SharedBuildView hash={hash}/>:<PlannerPage/>}{(hash.startsWith('#published=')||hash.startsWith('#build='))&&<AsbcFooter/>}</MemberProvider></LocaleProvider>;
+ // Shared builds and the privacy policy are shown without the planner, with their own toolbar and footer.
+ const standalone=hash==='#privacy'||hash.startsWith('#published=')||hash.startsWith('#build=');
+ return <LocaleProvider><MemberProvider><MoveBanner/><TransferImport/><EventTimers/>{standalone&&<div className="asbc-share-toolbar"><a href="#">ASBC</a><LanguageSelect/></div>}{hash==='#privacy'?<PrivacyPolicy/>:hash.startsWith('#published=')?<PublishedBuildView id={hash.slice(11)}/>:hash.startsWith('#build=')?<SharedBuildView hash={hash}/>:<PlannerPage/>}{standalone&&<AsbcFooter/>}</MemberProvider></LocaleProvider>;
 }
 function PlannerPage(){
  const {t}=useLocale();
