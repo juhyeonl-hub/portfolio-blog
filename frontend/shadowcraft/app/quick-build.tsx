@@ -17,7 +17,7 @@ export default function QuickBuild({catalog,plan,onApply,onEdit}:{catalog:Catalo
  function invalidate(){setPreview(null);setError('')}
  function prepare(){try{setPreview({source:plan,catalog,next:recommendBuild(catalog,{...plan,mode,level,pointBudget:points,ascensionGrade3Confirmed:ascended})});setError('')}catch{setError('배분을 만들지 못했습니다. 레벨과 포인트를 확인해 주세요.')}}
  return <><section className="panel quick-build" aria-label={t('간편 빌드 선택')}>
-  <div className="quick-build-heading"><span className="eyebrow">{t(profile.name)} · BUILD PLANNER</span><h2>{t('플레이 스타일을 선택하세요')}</h2></div>
+  <div className="quick-build-heading"><span className="eyebrow">{t(profile.name)} · {t('빌드 플래너')}</span><h2>{t('플레이 스타일을 선택하세요')}</h2></div>
   <p>{t('유형을 고르고 미리 본 뒤 적용하세요. 세부 설정은 언제든 조정할 수 있습니다.')}</p>
   <p className="subtle">{t('안정형·공격형은 기본 추천 가이드입니다. 아래 상위 캐릭터의 실제 세팅과 구분됩니다.')}</p>
   <div className="quick-build-options">{(['safe','damage'] as const).map(value=><button key={value} aria-pressed={mode===value} className={'button secondary '+(mode===value?'selected':'')} onClick={()=>{setMode(value);invalidate()}}><strong>{t(value==='safe'?'안정형':'공격형')}</strong><span>{t(value==='safe'?'생존 능력치도 고려한 보스전 입문':'공격 관련 효과를 우선하는 보스전 배분')}</span><small>{t(value==='safe'?'공격 효과보다 생존 노드를 더 고려합니다.':'위험한 패턴은 직접 피해야 합니다.')}</small></button>)}</div>

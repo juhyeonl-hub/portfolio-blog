@@ -79,7 +79,7 @@ with sync_playwright() as p:
     expect(items).to_have_count(2)
     expect(lst).to_contain_text('신고 2건'); expect(lst).to_contain_text('혐오·차별, 스팸·광고'); expect(lst).to_contain_text('slur in title')
     first = items.nth(0)
-    expect(first.get_by_role('link', name='공개 화면 열기')).to_have_attribute('href', '/lab/shadowcraft/#published=' + ID)
+    expect(first.get_by_role('link', name='공개 화면 열기')).to_have_attribute('href', 'https://asbc.app/#published=' + ID)
     first.get_by_role('button', name='빌드 비공개', exact=True).click()
     expect(page.get_by_role('status')).to_contain_text('빌드를 비공개로 전환했습니다.')
     comment = items.nth(0)

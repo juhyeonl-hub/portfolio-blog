@@ -7563,5 +7563,20 @@
     "en": "Legend",
     "ja": "レジェンド",
     "fi": "Legendaarinen"
+  },
+  "메뉴 닫기": {
+    "en": "Close menu",
+    "ja": "メニューを閉じる",
+    "fi": "Sulje valikko"
+  },
+  "{0}칸": {
+    "en": "{0} slots",
+    "ja": "{0}枠",
+    "fi": "{0} paikkaa"
+  },
+  "빌드 이름을 입력하면 보관할 수 있습니다.": {
+    "en": "Enter a build name to save it.",
+    "ja": "ビルド名を入力すると保管できます。",
+    "fi": "Anna rakenteelle nimi tallentaaksesi sen."
   }
 }

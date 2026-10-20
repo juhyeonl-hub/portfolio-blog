@@ -35,6 +35,8 @@ with sync_playwright() as p:
     view.get_by_role('button', name='내 플래너에 적용').click()
     expect(page.locator('.class-picker button.selected')).to_contain_text('치유성')
     expect(page.get_by_role('button', name='빌드 적용 전으로 되돌리기')).to_be_visible()
+    # Right after applying, nothing has been edited yet: the notice must not claim later edits.
+    expect(page.locator('.notice').filter(has_text='되돌리기')).to_contain_text('빌드를 적용했습니다.')
     applied = json.loads(page.evaluate("localStorage.getItem('shadowcraft-plan-v1:cleric')"))
     assert applied['base'] == shared['base'] and applied['specs'] == shared['specs'], 'shared plan not applied'
     assert page.evaluate("sessionStorage.getItem('asbc-pending-shared-plan')") is None
