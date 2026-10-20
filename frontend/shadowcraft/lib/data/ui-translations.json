@@ -7648,5 +7648,15 @@
     "en": "Most liked",
     "ja": "いいねが多い順",
     "fi": "Tykätyimmät ensin"
+  },
+  "확인 {0}/{1}": {
+    "en": "Found {0}/{1}",
+    "ja": "確認 {0}/{1}",
+    "fi": "Löydetty {0}/{1}"
+  },
+  "전체 확인 진행률": {
+    "en": "Overall progress",
+    "ja": "全体の確認進捗",
+    "fi": "Kokonaisedistyminen"
   }
 }

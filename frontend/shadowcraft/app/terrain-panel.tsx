@@ -152,13 +152,14 @@ function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolea
         <fieldset className="map-layers" aria-label={t('지도 표시 항목')}>
           <legend>{t('표시할 항목 · 여러 개 선택 가능')}</legend>
           {Object.entries(previewKinds).map(([key])=>{
-            const count=preview.filter(row=>row.kind===key).length;
-            return <label key={key}><input type="checkbox" aria-label={t(previewKindLabel(key))}
+            const rows=preview.filter(row=>row.kind===key),count=rows.length,done=rows.filter(row=>completed.has(row.id)).length;
+            return <label key={key} className="map-legend-row"><input type="checkbox" aria-label={t(previewKindLabel(key))}
               disabled={count===0} checked={enabledKinds.has(key)}
               onChange={e=>{const next=new Set(enabledKinds);if(e.target.checked)next.add(key);else next.delete(key);
                 setEnabledKinds(next);setPreviewSelection('');setPage(0);}}/>
               <MapMarkerIcon kind={key} region={terrainName}/>
-              {t(previewKindLabel(key))} ({count})</label>;
+              <span className="map-legend-name">{t(previewKindLabel(key))} ({count})</span>
+              {count>0&&<span className="map-legend-done" title={t('확인 {0}/{1}',[done,count])}>{Math.round(done/count*100)}%<i className="map-progress"><b style={{width:`${done/count*100}%`}}/></i></span>}</label>;
           })}
         </fieldset>
         <div className="map-toolbar">
@@ -194,6 +195,7 @@ function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolea
           <button className="button ghost" disabled={paged.current+1>=paged.pages} onClick={()=>setPage(paged.current+1)}>{t('위치 다음 페이지')}</button>
         </div>
         <label className="map-check"><input type="checkbox" checked={hideCompleted} onChange={e=>{setHideCompleted(e.target.checked);setPage(0);}}/>{t('확인한 위치 숨기기')}</label>
+        {preview.length>0&&<div className="map-progress-total" role="group" aria-label={t('전체 확인 진행률')}><span>{t('확인 {0}/{1}',[completed.size,preview.length])}</span><i className="map-progress"><b style={{width:`${completed.size/preview.length*100}%`}}/></i><span>{Math.round(completed.size/preview.length*100)}%</span></div>}
         <p>{t('확인 기록 {0}개 · 이 브라우저에 저장됩니다. 후보 지점별 기록이며 실제 수집 개수를 뜻하지 않습니다.',[completed.size])}</p>
         {storageNotice && <p role="alert">{t(storageNotice)}</p>}
 

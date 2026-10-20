@@ -354,3 +354,10 @@ footer,footer p,.asbc-footer div small,.side-bottom,.side-bottom small{color:#8f
 .eq-slot.filled:hover .eq-tip,.eq-slot.filled:focus-within .eq-tip,.eq-slot.filled:focus .eq-tip{display:block}.eq-column:nth-child(2) .eq-tip{left:auto;right:70px}
 @media(max-width:760px){.equipment-grid{grid-template-columns:60px 70px 60px;gap:8px}.eq-slot{width:52px;height:52px}.eq-row{grid-template-columns:repeat(3,52px)}.eq-tip{left:0;right:auto;top:56px}.eq-column:nth-child(2) .eq-tip{left:auto;right:0}}
 .like-button{border-color:var(--line);background:var(--panel);color:var(--text);font-size:14px;gap:6px}.like-button.liked{border-color:#ff7a90;color:#ff7a90;background:#2a1a22}.like-button span{font-size:16px;line-height:1}
+/* Map legend with per-category completion (Palworld-style found counts). */
+.map-legend-row{display:grid!important;grid-template-columns:auto auto minmax(0,1fr) auto;align-items:center;gap:6px}.map-legend-name{min-width:0;white-space:normal;line-height:1.3;overflow-wrap:anywhere}
+.map-legend-done{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-size:10px;color:var(--muted);min-width:46px;font-family:'Space Grotesk',sans-serif}
+.map-progress{display:block;width:46px;height:4px;background:#2a2c3b;border-radius:3px;overflow:hidden}.map-progress b{display:block;height:100%;background:#1ec8ff}
+.map-progress-total{display:flex;align-items:center;gap:8px;font-size:12px;margin:10px 0 2px;color:var(--text)}.map-progress-total .map-progress{flex:1;width:auto;height:6px}.map-progress-total span:last-child{font-family:'Space Grotesk',sans-serif}
+@media(min-width:1200px){.terrain-workspace-open{grid-template-columns:290px minmax(0,1fr)}}
+@media(max-width:760px){.terrain-controls .map-layers{grid-template-columns:1fr;gap:4px}.map-legend-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}}
