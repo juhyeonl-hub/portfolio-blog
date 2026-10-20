@@ -7983,5 +7983,105 @@
     "en": "Wisdom [Lumiel]",
     "ja": "知恵 [ルミエル]",
     "fi": "Viisaus [Lumiel]"
+  },
+  "PvP형": {
+    "en": "PvP",
+    "ja": "PvP型",
+    "fi": "PvP"
+  },
+  "PvP 전용 데바니온 노드와 상태이상·치명타 저항을 우선합니다. 공식 PvP 랭킹 공개 전 임시 추천입니다.": {
+    "en": "Prioritises PvP-only Daevanion nodes plus status-effect and critical resist. Interim recommendation until the official PvP rankings open.",
+    "ja": "PvP専用ディーヴァニオンノードと状態異常・クリティカル抵抗を優先します。公式PvPランキング公開までの暫定おすすめです。",
+    "fi": "Painottaa PvP-kohtaisia Daevanion-solmuja sekä tilavaikutus- ja kriittisen osuman vastustusta. Väliaikainen suositus, kunnes viralliset PvP-sijoitukset avautuvat."
+  },
+  "레벨링 — 45까지 빠르게": {
+    "en": "Levelling — fast to 45",
+    "ja": "レベリング — 45まで最速で",
+    "fi": "Tasonnosto — nopeasti tasolle 45"
+  },
+  "목표 레벨을 고르면 그 레벨에서 열리는 보드·스킬만으로 공격형 배분을 미리 봅니다.": {
+    "en": "Pick a target level to preview an offence allocation using only the boards and skills open at that level.",
+    "ja": "目標レベルを選ぶと、そのレベルで開放されるボード・スキルだけで攻撃型の配分をプレビューします。",
+    "fi": "Valitse tavoitetaso, niin näet hyökkäysjaon vain sillä tasolla avoimilla laudoilla ja taidoilla."
+  },
+  "메인 스토리를 최우선으로 진행합니다. 경험치가 가장 많고 진행에 따라 콘텐츠가 열립니다.": {
+    "en": "Push the main story first: it gives the most experience and unlocks content as you go.",
+    "ja": "メインストーリーを最優先で進めます。経験値が最も多く、進行に合わせてコンテンツが開放されます。",
+    "fi": "Etene ensin päätarinaa: se antaa eniten kokemusta ja avaa sisältöä matkan varrella."
+  },
+  "각성 게이지가 부족해 스토리가 막히면 지역 퀘스트·봉인 던전을 돌고 다시 스토리로 돌아옵니다.": {
+    "en": "When the awakening gauge blocks the story, run regional quests and sealed dungeons, then return to the story.",
+    "ja": "覚醒ゲージ不足でストーリーが止まったら、地域クエスト・封印ダンジョンを回してからストーリーに戻ります。",
+    "fi": "Kun heräämismittari pysäyttää tarinan, tee aluetehtäviä ja sinetöityjä luolastoja ja palaa sitten tarinaan."
+  },
+  "이동 중 보이는 신의 흔적은 챙기되, 레벨링이 목적이면 멀리 돌아가지 않습니다.": {
+    "en": "Grab Traces of the Gods you pass, but do not detour for them while levelling.",
+    "ja": "道中で見かけた神の痕跡は回収しつつ、レベリング目的なら遠回りはしません。",
+    "fi": "Poimi ohi kulkiessasi jumalten jäljet, mutta älä kierrä niiden takia tasoja nostaessasi."
+  },
+  "초반 장비는 자주 바뀌므로 강화 재료를 아끼고, 막히면 무기만 우선 강화합니다.": {
+    "en": "Early gear changes often, so save enchant materials; if you get stuck, enchant only the weapon first.",
+    "ja": "序盤の装備は頻繁に変わるので強化素材は温存し、詰まったら武器だけ優先して強化します。",
+    "fi": "Alun varusteet vaihtuvat usein, joten säästä vahvistusaineet; jos juutut, vahvista ensin vain ase."
+  },
+  "45 이후에는 아이템 레벨 1000을 목표로 장비 강화, 허리띠·아뮬렛 우선, 지역 퀘스트·주둔지·봉인 던전으로 넘어갑니다.": {
+    "en": "After 45, aim for item level 1000: enchant gear, belt and amulet first, then regional quests, garrisons and sealed dungeons.",
+    "ja": "45到達後はアイテムレベル1000を目標に装備を強化し、ベルト・アミュレットを優先、地域クエスト・駐屯地・封印ダンジョンへ移ります。",
+    "fi": "Tason 45 jälkeen tähtää esinetasoon 1000: vahvista varusteet, vyö ja amuletti ensin, sitten aluetehtävät, varuskunnat ja sinetöidyt luolastot."
+  },
+  "진행 요령은 game8 공략을 요약한 것입니다.": {
+    "en": "Progression tips are summarised from the game8 guide.",
+    "ja": "進行のコツはgame8の攻略を要約したものです。",
+    "fi": "Etenemisvinkit on tiivistetty game8-oppaasta."
+  },
+  "공식 어비스·아레나 랭킹 공개 여부 확인 중…": {
+    "en": "Checking whether the official Abyss/Arena rankings are open…",
+    "ja": "公式アビス・アリーナランキングの公開状況を確認中…",
+    "fi": "Tarkistetaan, ovatko viralliset Abyss-/Areena-sijoitukset auki…"
+  },
+  "공식 어비스·아레나 랭킹 공개 여부를 확인하지 못했습니다. 공개되면 PvP 랭커 빌드를 가져옵니다.": {
+    "en": "Could not check the official Abyss/Arena rankings. PvP ranker builds will be imported once they open.",
+    "ja": "公式アビス・アリーナランキングの公開状況を確認できませんでした。公開されたらPvPランカービルドを取り込みます。",
+    "fi": "Virallisten Abyss-/Areena-sijoitusten tilaa ei voitu tarkistaa. PvP-huippupelaajien buildit tuodaan, kun ne avautuvat."
+  },
+  "공식 {0} 랭킹이 공개되었습니다 (확인 {1}). PvP 랭커 빌드 가져오기를 준비합니다.": {
+    "en": "The official {0} ranking is open (checked {1}). PvP ranker build import is being prepared.",
+    "ja": "公式{0}ランキングが公開されました（確認 {1}）。PvPランカービルドの取り込みを準備します。",
+    "fi": "Virallinen {0}-sijoitus on auki (tarkistettu {1}). PvP-huippupelaajien buildien tuontia valmistellaan."
+  },
+  "공식 어비스·아레나 랭킹 공개 여부를 아직 확인하지 못했습니다. 공개되면 PvP 랭커 빌드를 가져옵니다.": {
+    "en": "The official Abyss/Arena rankings have not been checked yet. PvP ranker builds will be imported once they open.",
+    "ja": "公式アビス・アリーナランキングの公開状況はまだ確認できていません。公開されたらPvPランカービルドを取り込みます。",
+    "fi": "Virallisten Abyss-/Areena-sijoitusten tilaa ei ole vielä tarkistettu. PvP-huippupelaajien buildit tuodaan, kun ne avautuvat."
+  },
+  "공식 어비스·아레나 랭킹은 아직 공개 전입니다 (마지막 확인 {0}). 공개되면 PvP 랭커 빌드를 가져옵니다.": {
+    "en": "The official Abyss/Arena rankings are not open yet (last checked {0}). PvP ranker builds will be imported once they open.",
+    "ja": "公式アビス・アリーナランキングはまだ未公開です（最終確認 {0}）。公開されたらPvPランカービルドを取り込みます。",
+    "fi": "Viralliset Abyss-/Areena-sijoitukset eivät ole vielä auki (tarkistettu viimeksi {0}). PvP-huippupelaajien buildit tuodaan, kun ne avautuvat."
+  },
+  "어비스": {
+    "en": "Abyss",
+    "ja": "アビス",
+    "fi": "Abyss"
+  },
+  "고독의 아레나": {
+    "en": "Arena of Solitude",
+    "ja": "孤独のアリーナ",
+    "fi": "Yksinäisyyden areena"
+  },
+  "협력의 아레나": {
+    "en": "Arena of Cooperation",
+    "ja": "協力のアリーナ",
+    "fi": "Yhteistyön areena"
+  },
+  "아스펠(전투) 포인트는 내 레벨·포인트에서 입력하세요.": {
+    "en": "Enter your Azphel (battle) points under “my level & points”.",
+    "ja": "アスペル（戦闘）ポイントは「レベル・ポイントに合わせる」で入力してください。",
+    "fi": "Syötä Azphel-taistelupisteesi kohdassa ”oma taso ja pisteet”."
+  },
+  "안정형·공격형·PvP형은 기본 추천 가이드입니다. 아래 상위 캐릭터의 실제 세팅과 구분됩니다.": {
+    "en": "The Defensive, Offensive and PvP options are basic recommended guides, separate from the actual top character setups below.",
+    "ja": "安定型・攻撃型・PvP型は基本のおすすめガイドです。下の上位キャラクターの実際のセッティングとは別のものです。",
+    "fi": "Puolustava-, Hyökkäävä- ja PvP-vaihtoehdot ovat perussuosituksia, eivätkä ne ole alla olevien kärkihahmojen todellisia kokoonpanoja."
   }
 }

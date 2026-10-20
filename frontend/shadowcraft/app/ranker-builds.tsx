@@ -1,4 +1,5 @@
 import {useEffect,useRef,useState} from 'react';
+import {loadRankingAvailability,rankingAvailabilityText,type RankingAvailability} from '../lib/ranking-availability';
 import type {Catalog,Plan} from '../lib/planner';
 import {totals} from '../lib/planner';
 import {groupRankers,compareRankerSkills,previewRankerBoards,rankerObservationTime,rankerDisplaySkills,type Ranker} from '../lib/ranker-builds';
@@ -13,6 +14,8 @@ import {useLocale} from './locale';
 export default function RankerBuilds({catalog,plan,onApply}:{catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void}){
  const {t,locale,skill:localSkill}=useLocale();
  const rows=(snapshot.entries as Ranker[]).filter(r=>r.classKey===catalog.classKey);
+ const [availability,setAvailability]=useState<RankingAvailability|null|undefined>(undefined);
+ useEffect(()=>{let live=true;loadRankingAvailability().then(value=>{if(live)setAvailability(value);});return()=>{live=false;};},[]);
  const [selectedId,setSelectedId]=useState('');
  const [compareLeft,setCompareLeft]=useState<string|null>(null),[compareRight,setCompareRight]=useState<string|null>(null);
  const selected=rows.find(r=>r.characterId===selectedId);
@@ -40,6 +43,7 @@ export default function RankerBuilds({catalog,plan,onApply}:{catalog:Catalog;pla
  async function inspect(row:Ranker){const token=++request.current;setSelectedId(row.characterId);setLive(null);setPreview(null);setError('');setLoading(true);try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId});if(request.current===token)setLive(result)}catch(e){if(request.current===token)setError(e instanceof Error?e.message:'공식 조회 실패')}finally{if(request.current===token)setLoading(false)}}
  return <section className="panel ranker-builds" aria-label={t('랭커 빌드 분석')}>
   <div className="section-heading"><div><span className="eyebrow">{t('실제 세팅')}</span><h2>{t('상위 캐릭터 세팅 살펴보기')}</h2><p>{t('전투력 표본 상위 10명 · 선택한 직업')}</p></div><a href={snapshot.source} target="_blank" rel="noreferrer">{t('순위 출처 ↗')}</a></div>
+  <p className="subtle ranking-availability">{(()=>{const note=rankingAvailabilityText(availability,t);return t(note.text,note.values);})()}</p>
   <p className="subtle">{t('AION2 Tier List의 글로벌 전투력 상위 500명 표본에서 직업별 10명을 골랐습니다. 공식 전체 순위·DPS 순위가 아닙니다. 명단 확인 {0} · 수동 갱신',[time(snapshot.fetchedAt)])}</p>
   <details className="more-info"><summary>{t('자세히')}</summary><p className="subtle">{t('명단·구성·장비 비교는 저장된 자료입니다. 캐릭터 선택 또는 ‘공식 세팅 다시 조회’는 선택한 캐릭터의 상세 정보만 갱신하며 명단 순위와 비교 자료는 바꾸지 않습니다.')}</p></details>
   <details className="ranker-analysis"><summary>{t('10명의 공통 구성과 빌드 분기 ({0}가지)',[groups.length])}</summary><p>{t('공개된 장착 Dp 스킬 조합으로 묶었습니다. 특화·스킬 운용은 공개되지 않아 조합만으로 성능이나 콘텐츠 적합성을 단정하지 않습니다.')}</p>{left&&right&&<section className="ranker-compare" aria-label={t('빌드 구성 비교')}><h3>{t('두 구성 비교')}</h3><p>{t('사용자 수는 이 표본의 선택 빈도입니다. 성능 순위가 아닙니다. 비교해도 내 빌드는 바뀌지 않습니다.')}</p><div className="ranker-compare-grid">{([{label:'기준 구성',value:left,set:setCompareLeft},{label:'비교 구성',value:right,set:setCompareRight}]).map(choice=><label key={choice.label}>{t(choice.label)}<select aria-label={t(choice.label)} value={choice.value.ids.join(',')} onChange={e=>choice.set(e.target.value)}>{groups.map((g,i)=><option key={g.ids.join(',')} value={g.ids.join(',')}>{t('구성 {0} · {1}명 · {2}개 기술',[i+1,g.members.length,g.ids.length])}</option>)}</select></label>)}</div><details className="ranker-shared"><summary>{t('공통 기술 {0}개',[difference.shared.length])}</summary><p>{difference.shared.map(skillName).join(' · ')||t('없음')}</p></details><div className="ranker-compare-grid">{([{label:'기준 구성에만 있는 기술',ids:difference.leftOnly},{label:'비교 구성에만 있는 기술',ids:difference.rightOnly}]).map(side=><div className="ranker-difference" key={side.label}><h4>{t('{0} · {1}개',[t(side.label),side.ids.length])}</h4><p>{side.ids.map(skillName).join(' · ')||t('없음')}</p>{side.ids.length>0&&guidance(side.ids)}</div>)}</div>{!difference.leftOnly.length&&!difference.rightOnly.length&&<p role="status">{t('두 구성의 공개 장착 기술이 같습니다.')}</p>}</section>}<h3>{t('자주 사용하는 장비')}</h3><ul>{commonItems.map(item=><li key={item.name}>{item.name} · {t('{0}/10명',[item.count])}</li>)}</ul>{groups.map((g,i)=><article key={g.ids.join(',')}><h3>{t('구성 {0} · {1}/10명',[i+1,g.members.length])}</h3><p>{g.ids.map(skillName).join(' · ')||t('공개된 장착 Dp 스킬 없음')}</p><p>{t('사용 캐릭터: {0}',[g.members.map(r=>r.name).join(', ')])}</p>{guidance(g.ids)}</article>)}</details>

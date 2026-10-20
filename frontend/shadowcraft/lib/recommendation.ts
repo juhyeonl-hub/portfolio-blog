@@ -16,13 +16,16 @@ function nodeValue(c:Catalog,p:Plan,n:Node,battle:boolean):number {
  }
  const name=n.stat?.name||'';
  if(battle){
+  // PvP: the Azphel board's PvP-only nodes first (offence, then survival); other nodes are filler.
+  if(p.mode==='pvp'){if(/^PVP (공격력|피해 증폭|치명타|명중)$/.test(name))return 14;if(/^PVP /.test(name))return 10;return 2;}
   if(p.mode==='safe'&&/피해 내성|상태이상 저항|생명력/.test(name))return 8;
   return /공격력|피해 증폭|명중|치명타$/.test(name)?8:2;
  }
  if(/전투 속도|재시전 시간 감소/.test(name))return 14;
  if(/피해 증폭|다단 히트 적중/.test(name))return 11;
  if(name==='치명타'||name==='추가 공격력')return 6;
- if(/생명력|피해 내성|추가 방어력/.test(name))return p.mode==='safe'?5:1;
+ if(p.mode==='pvp'&&/상태이상 저항|치명타 저항|상태이상 적중/.test(name))return 9;
+ if(/생명력|피해 내성|추가 방어력/.test(name))return p.mode==='safe'?5:p.mode==='pvp'?4:1;
  return 1;
 }
 

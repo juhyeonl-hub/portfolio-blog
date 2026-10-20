@@ -3,7 +3,7 @@ import {useEffect,useState} from 'react';
 import {decodeShare,encodeShare,publicBuild,validateReferences,type SharedBuild} from '../lib/build-share';
 import {loadBundledCatalog} from '../lib/catalog-loaders';
 import {classProfile} from '../lib/classes';
-import {finalLevel,totals,type Catalog,type Plan} from '../lib/planner';
+import {finalLevel,totals,type Catalog,type Plan,MODE_NAMES} from '../lib/planner';
 export function ShareBuildPanel({catalog,plan}:{catalog:Catalog;plan:Plan}) {
  const {t}=useLocale();
  const [link,setLink]=useState(''),[error,setError]=useState(''),[copied,setCopied]=useState(false);
@@ -20,7 +20,7 @@ export default function SharedBuildView({hash}:{hash:string}) {
  useEffect(()=>{let live=true;setState(null);setError('');try{const shared=decodeShare(hash);loadBundledCatalog(shared.plan.classKey!).then(catalog=>{validateReferences(shared,catalog);if(live)setState({shared,catalog});}).catch(e=>{if(live)setError(e instanceof Error?e.message:'직업 데이터를 읽지 못했습니다.');});}catch(e){setError(e instanceof Error?e.message:'공유 링크 오류');}return()=>{live=false;};},[hash,retry]);
  const budget=state?totals(state.catalog,state.shared.plan):null;
  return <main style={{maxWidth:1000,margin:'0 auto',padding:20}}><section className="card" aria-label={t("공유 빌드 읽기 전용")}><h1>{t("공유 빌드")}</h1><p>{t("읽기 전용 미리보기입니다. 내 브라우저의 저장된 빌드는 변경하지 않습니다.")}</p><a href={location.pathname}>{t("내 플래너 열기")}</a>{error?<><p role="alert">{t(error)}</p><button className="button ghost" onClick={()=>setRetry(v=>v+1)}>{t("공유 빌드 다시 확인")}</button></>:!state?<p role="status">{t("공유 빌드를 읽는 중…")}</p>:<>
- <h2>{t(classProfile(state.shared.plan.classKey).name)} · Lv.{state.shared.plan.level}</h2><p>{t(state.shared.plan.mode==='safe'?'안정형':'공격형')} · {t('공유 데이터 {0} · 현재 데이터 {1}',[state.shared.catalogVersion,state.catalog.version])}</p>
+ <h2>{t(classProfile(state.shared.plan.classKey).name)} · Lv.{state.shared.plan.level}</h2><p>{t(MODE_NAMES[state.shared.plan.mode]||'공격형')} · {t('공유 데이터 {0} · 현재 데이터 {1}',[state.shared.catalogVersion,state.catalog.version])}</p>
  {state.shared.catalogVersion!==state.catalog.version&&<p role="status">{t("데이터 버전이 다릅니다. 아래 레벨·비용은 현재 데이터로 계산되므로 공유 당시와 다를 수 있습니다.")}</p>}
  <p>{t("장비는 스킬 보너스 합계로 반영되어 있습니다. 캐릭터와 장비 목록은 포함하지 않습니다. 게임에서의 유효성·최적 배분을 보증하는 기능은 아닙니다.")}</p>
  <p>{t('승급 3단계 확인')}: {t(state.shared.plan.ascensionGrade3Confirmed?'확인됨':'확인 전')}</p>

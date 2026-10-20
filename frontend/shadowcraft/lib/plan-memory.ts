@@ -4,7 +4,7 @@ const record=(v:any)=>!!v&&typeof v==='object'&&!Array.isArray(v);
 const strings=(v:any)=>Array.isArray(v)&&v.every(x=>typeof x==='string');
 const numbers=(v:any)=>record(v)&&Object.values(v).every(n=>Number.isFinite(n)&&Number.isInteger(n)&&Number(n)>=0&&Number(n)<=9999);
 export function validStoredPlan(value:any,classKey:string):value is Plan {
- if(!record(value)||(value.classKey||'assassin')!==classKey||!Number.isInteger(value.level)||value.level<1||value.level>45||!['safe','damage'].includes(value.mode)||!numbers(value.base)||!numbers(value.bonus)||!record(value.specs)||!Object.values(value.specs).every(strings)||!strings(value.nodes)||!strings(value.checked))return false;
+ if(!record(value)||(value.classKey||'assassin')!==classKey||!Number.isInteger(value.level)||value.level<1||value.level>45||!['safe','damage','pvp'].includes(value.mode)||!numbers(value.base)||!numbers(value.bonus)||!record(value.specs)||!Object.values(value.specs).every(strings)||!strings(value.nodes)||!strings(value.checked))return false;
  if(value.ascensionGrade3Confirmed!==undefined&&typeof value.ascensionGrade3Confirmed!=='boolean')return false;
  if(value.pointBudget!==undefined&&!numbers(value.pointBudget))return false;
  if(value.gear!==undefined&&(!record(value.gear)||!['manual','current','target'].includes(value.gear.mode)||!Array.isArray(value.gear.items)||value.gear.items.length>80||!value.gear.items.every((i:any)=>record(i)&&['id','name','slot','note'].every(k=>typeof i[k]==='string')&&['owned','current','target'].every(k=>typeof i[k]==='boolean')&&numbers(i.bonuses))))return false;

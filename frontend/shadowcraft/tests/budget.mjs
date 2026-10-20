@@ -7,7 +7,7 @@ const limits={sp:120,stigma:40,crystal:80,battle:15};
 assert.deepEqual(planner.pointLimits(c,{...original,extraSP:999,extraStigma:999,pointBudget:limits}),limits,'manual total must not add level rewards');
 assert.equal(planner.pointLimits(c,original).sp,203,'legacy plan retains its budget');
 for(const [level,sp,stigma,crystal,battle] of [[1,0,0,0,0],[12,1,0,1,0],[22,50,3,20,0],[27,80,5,30,0],[37,160,30,80,0],[45,0,0,0,0],[45,1,1,1,1],[45,200,60,136,20],[45,9999,9999,9999,9999]]){
- for(const mode of ['safe','damage']){
+ for(const mode of ['safe','damage','pvp']){
   const input={...original,level,mode,pointBudget:{sp,stigma,crystal,battle},bonus:{'13350000':6,'13130000':4},nodes:c.boards.flatMap(b=>b.nodes.map(n=>n.id))};
   const before=JSON.stringify(input),start=performance.now(),p=recommendBuild(c,input),t=planner.totals(c,p);
   assert.equal(JSON.stringify(input),before,'recommendation may not mutate the current plan');

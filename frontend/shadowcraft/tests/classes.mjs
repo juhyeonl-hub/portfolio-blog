@@ -12,7 +12,7 @@ for(const profile of classes.CLASSES){
  for(const [id,indices] of Object.entries(profile.specPriority))for(const i of indices)assert(byId.get(id)?.specializations[i]);
  for(const col of profile.macroColumns||[])for(const id of col.skills){assert(byId.has(id));assert(!profile.manual.includes(id)&&!profile.movement.includes(id),'manual skill in macro')}
  for(const s of c.skills)assert(existsSync('../public/shadowcraft/game'+s.iconPath),`${profile.key} icon ${s.iconPath}`);
- for(const level of [22,45])for(const mode of ['safe','damage']){
+ for(const level of [22,45])for(const mode of ['safe','damage','pvp']){
   const p={...planner.emptyPlan(c),level,mode,pointBudget:level===22?{sp:30,stigma:3,crystal:10,battle:0}:{sp:200,stigma:60,crystal:136,battle:20}};
   const original=JSON.stringify(p),n=recommendBuild(c,p),totals=planner.totals(c,n);
   assert.equal(JSON.stringify(p),original);

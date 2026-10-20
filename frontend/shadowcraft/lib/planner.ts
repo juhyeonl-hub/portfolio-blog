@@ -7,7 +7,7 @@ export type Catalog={reviewRequired?:boolean;baselineVersion?:string;origin?:str
 export type PointBudget={sp:number;stigma:number;crystal:number;battle:number};
 export type GearItem={id:string;name:string;slot:string;owned:boolean;current:boolean;target:boolean;bonuses:Record<string,number>;note:string};
 export type Gear={mode:"manual"|"current"|"target";items:GearItem[]};
-export type Plan={ascensionGrade3Confirmed?:boolean;searchPrefs?:{region:string;server:string;name:string};recentCharacters?:import('./plan-memory').RecentCharacter[];macroExtra?:boolean;gear?:Gear;classKey?:string;pointBudget?:PointBudget;level:number;extraSP:number;extraStigma:number;extraCrystal:number;extraBattle:number;mode:'safe'|'damage';base:Record<string,number>;bonus:Record<string,number>;specs:Record<string,string[]>;nodes:string[];checked:string[];character:any|null;};
+export type Plan={ascensionGrade3Confirmed?:boolean;searchPrefs?:{region:string;server:string;name:string};recentCharacters?:import('./plan-memory').RecentCharacter[];macroExtra?:boolean;gear?:Gear;classKey?:string;pointBudget?:PointBudget;level:number;extraSP:number;extraStigma:number;extraCrystal:number;extraBattle:number;mode:'safe'|'damage'|'pvp';base:Record<string,number>;bonus:Record<string,number>;specs:Record<string,string[]>;nodes:string[];checked:string[];character:any|null;};
 export const CORE=['13350000','13130000','13010000'];
 export const MOVEMENT=['13070000','13360000','13050000','13220000','13280000','13700000','13140000'];
 export const MANUAL=['13070000','13360000','13050000','13220000','13260000','13340000'];
@@ -36,6 +36,8 @@ export function updatePlan(c:Catalog,p:Plan,patch:Partial<Plan>):Plan {
 }
 export function finalLevel(c:Catalog,p:Plan,s:Skill){if(ascensionGate(s)&&!p.ascensionGrade3Confirmed&&p.base[s.id]===0)return 0;return Math.min(s.maxLevel,(p.base[s.id]??(s.stigma?0:1))+equipmentBonus(p,s.id)+boardBonus(c,p,s.id))}
 export function slots(s:Skill,level:number){return s.specializationSlots.filter(x=>x.editable&&x.requiredSkillLevel<=level).length}
+// Korean labels of the recommendation modes; screens translate them.
+export const MODE_NAMES:Record<Plan['mode'],string>={safe:'안정형',damage:'공격형',pvp:'PvP형'};
 export function equipped(p:Plan){const profile=classProfile(p.classKey);return (p.mode==='safe'?profile.safeStigmas:profile.damageStigmas).slice(0,[22,27,32,37].filter(l=>p.level>=l).length)}
 const cleanPoints=(n:number)=>Number.isFinite(n)?Math.max(0,Math.min(9999,Math.floor(n))):0;
 export function pointLimits(c:Catalog,p:Plan):PointBudget {
