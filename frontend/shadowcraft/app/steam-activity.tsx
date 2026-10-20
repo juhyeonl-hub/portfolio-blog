@@ -17,8 +17,8 @@ export default function SteamActivity({active}:{active:boolean}) {
   },[active,retry]);
   useEffect(()=>{if(!active)return;const timer=setInterval(()=>{if(document.visibilityState==='visible')setRetry(v=>v+1);},60000);return()=>clearInterval(timer);},[active]);
   return <section className="card" aria-label={t("Steam 글로벌 접속 현황")}><h2>{t("Steam 글로벌 접속 현황")}</h2><p>{t("공식 Steam API가 집계한 전체 접속자 수입니다. 서버별 온라인 상태·혼잡도·인원은 제공하지 않습니다.")}</p>
-    {data&&<><p><strong>{t('{0}명',[data.players.toLocaleString(locale)])}</strong></p><p>{t('마지막 확인: {0}',[new Date(data.checkedAt).toLocaleString(locale)])}</p>{(data.stale||error)&&<p role="status">{t("최신 갱신을 확인하지 못한 이전 값입니다.")}</p>}</>}
+    {data&&<><p className="steam-players"><strong>{t('{0}명',[data.players.toLocaleString(locale)])}</strong></p><p>{t('마지막 확인: {0}',[new Date(data.checkedAt).toLocaleString(locale)])}</p>{(data.stale||error)&&<p role="status">{t("최신 갱신을 확인하지 못한 이전 값입니다.")}</p>}</>}
     {loading&&<p role="status">{t("Steam 정보를 확인하는 중…")}</p>}{error&&<p role="alert">{t(error)}</p>}
-    <button className="button ghost" disabled={loading} onClick={()=>setRetry(v=>v+1)}>{t("접속 현황 다시 확인")}</button><p>{t("화면을 보는 동안 1분마다 확인합니다. 서버는 최대 1분간 조회 결과를 재사용합니다.")}</p><a href="https://store.steampowered.com/app/3393110/" target="_blank" rel="noreferrer">{t("공식 Steam 페이지")}</a>
+    <button className="button ghost" disabled={loading} onClick={()=>setRetry(v=>v+1)}>{t("접속 현황 다시 확인")}</button><p>{t("화면을 보는 동안 1분마다 확인합니다. 서버는 최대 1분간 조회 결과를 재사용합니다.")}</p><a className="button ghost small" href="https://store.steampowered.com/app/3393110/" target="_blank" rel="noreferrer">{t("공식 Steam 페이지")}</a>
   </section>;
 }

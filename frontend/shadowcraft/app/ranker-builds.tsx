@@ -28,7 +28,7 @@ export default function RankerBuilds({catalog,plan,onApply}:{catalog:Catalog;pla
  const difference=compareRankerSkills(left?.ids||[],right?.ids||[]);
  const displaySkills=rankerDisplaySkills(live?live.skills:selected?.skills);
  const skillName=(id:string)=>localSkill(catalog.skills.find(s=>s.id===id)?.name||'')||displaySkills?.find(s=>String(s.id)===id)?.name||rows.flatMap(r=>r.skills).find(s=>String(s.id)===id)?.name||id;
- const time=(value:unknown)=>{const text=rankerObservationTime(value);return text==='시각 미확인'?t(text):locale==='ko'?text:new Intl.DateTimeFormat(locale,{dateStyle:'medium',timeStyle:'long'}).format(new Date(value as string));};
+ const time=(value:unknown)=>{const text=rankerObservationTime(value);return text==='시각 미확인'?t(text):locale==='ko'?text:new Intl.DateTimeFormat(locale,{dateStyle:'medium',timeStyle:'short'}).format(new Date(value as string));};
  const guidance=(ids:string[])=>{
   const notes=skillGuides.skills.filter(s=>s.classKey===catalog.classKey&&ids.includes(s.id));
   return <details className="ranker-guidance"><summary>{t('장점과 활용 상황 · {0}/{1}개 기술 분석',[notes.length,ids.length])}</summary>

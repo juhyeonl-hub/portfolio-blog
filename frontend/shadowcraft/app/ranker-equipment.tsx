@@ -7,9 +7,12 @@ function Equipment({item}:{item:RankerEquipment|undefined}){
  const {t}=useLocale();
  return item?<><strong>{item.name}</strong><small>{t('강화 +{0} · 초월 +{1}',[item.enchantLevel,item.exceedLevel])}</small></>:<span>{t("정보 미확인")}</span>;
 }
+// Client slot keys shown with the gear screen's names; Cape, Rune, Amulet and Arcana have no verified Korean name yet, so they stay as in the client ("Arcana 1").
+const SLOT_NAMES:Record<string,string>={MainHand:'주무기',SubHand:'보조무기',Helmet:'투구',Torso:'상의',Pants:'하의',Shoulder:'어깨',Gloves:'장갑',Boots:'신발',Belt:'허리띠',Necklace:'목걸이',Earring1:'귀걸이 1',Earring2:'귀걸이 2',Ring1:'반지 1',Ring2:'반지 2',Bracelet1:'팔찌 1',Bracelet2:'팔찌 2'};
 export default function RankerEquipmentComparison({rows}:{rows:Ranker[]}){
  const {t,locale}=useLocale();
- const observedTime=(value:unknown)=>rankerObservationTime(value)==='시각 미확인'?t('시각 미확인'):new Intl.DateTimeFormat(locale,{dateStyle:'medium',timeStyle:'long'}).format(new Date(value as string));
+ const slotLabel=(key?:string)=>key?(SLOT_NAMES[key]?t(SLOT_NAMES[key]):key.replace(/(\D)(\d)$/,'$1 $2')):'';
+ const observedTime=(value:unknown)=>rankerObservationTime(value)==='시각 미확인'?t('시각 미확인'):new Intl.DateTimeFormat(locale,{dateStyle:'medium',timeStyle:'short'}).format(new Date(value as string));
  const [leftId,setLeftId]=useState(''),[rightId,setRightId]=useState('');
  const left=rows.find(r=>identity(r)===leftId)||rows[0];
  const right=rows.find(r=>identity(r)===rightId)||rows[1]||rows[0];
@@ -27,7 +30,7 @@ export default function RankerEquipmentComparison({rows}:{rows:Ranker[]}){
   <p role="status">{t('차이 {0}개 · 미확인 {1}개 · 비교 부위 {2}개',[different,unknown,comparison.rows.length])}</p>
   {(!comparison.leftValid||!comparison.rightValid)&&<p>{t("일부 장비 목록의 형식을 확인할 수 없습니다. 해당 캐릭터를 다시 조회해야 합니다.")}</p>}
   {!shown.length&&<p>{t(comparison.rows.length?'확인된 장비·강화·초월이 같습니다.':'비교할 장비 정보가 없습니다.')}</p>}
-  <div className="ranker-equipment-rows">{shown.map(row=><div className="ranker-equipment-row" key={row.slot}><h4>{row.left?.slotPosName||row.right?.slotPosName||t('부위 {0}',[row.slot])} · {t(row.status==='unknown'?'미확인':row.status==='same'?'동일':'차이')}</h4><div className="ranker-compare-grid"><div><small>{left.name}</small><Equipment item={row.left}/></div><div><small>{right.name}</small><Equipment item={row.right}/></div></div></div>)}</div>
+  <div className="ranker-equipment-rows">{shown.map(row=><div className="ranker-equipment-row" key={row.slot}><h4>{slotLabel(row.left?.slotPosName||row.right?.slotPosName)||t('부위 {0}',[row.slot])} · {t(row.status==='unknown'?'미확인':row.status==='same'?'동일':'차이')}</h4><div className="ranker-compare-grid"><div><small>{left.name}</small><Equipment item={row.left}/></div><div><small>{right.name}</small><Equipment item={row.right}/></div></div></div>)}</div>
   <p className="subtle">{t("랜덤 옵션·마석·세트 효과와 실제 성능 차이는 이 비교에 포함되지 않습니다. 내 장비 계획은 변경하지 않습니다.")}</p>
  </details>;
 }

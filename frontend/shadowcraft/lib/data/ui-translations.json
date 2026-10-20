@@ -7363,5 +7363,15 @@
     "en": "The Defensive and Offensive options are basic recommended guides, separate from the actual top character setups below.",
     "ja": "安定型・攻撃型は基本のおすすめガイドです。下の上位キャラクターの実際のセッティングとは別のものです。",
     "fi": "Puolustava- ja Hyökkäävä-vaihtoehdot ovat perussuosituksia, eivätkä ne ole alla olevien kärkihahmojen todellisia kokoonpanoja."
+  },
+  "위의 \"현재 플래너 배분 게시하기\"로 첫 빌드를 공유해 보세요.": {
+    "en": "Share the first build with \"Publish the current build\" above.",
+    "ja": "上の「現在のビルドを投稿」から最初のビルドを共有してみましょう。",
+    "fi": "Jaa ensimmäinen rakenne yllä olevalla toiminnolla \"Julkaise nykyinen hahmonkehitys\"."
+  },
+  "로그인하면 내 빌드를 공유할 수 있습니다. 첫 빌드를 올려 보세요.": {
+    "en": "Sign in to share your own build. Be the first to post one.",
+    "ja": "ログインすると自分のビルドを共有できます。最初のビルドを投稿してみましょう。",
+    "fi": "Kirjaudu sisään jakaaksesi oman rakenteesi. Julkaise ensimmäinen."
   }
 }

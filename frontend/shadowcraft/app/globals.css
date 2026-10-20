@@ -301,3 +301,8 @@
 @media(max-width:760px){.shell:not(.home-shell) .page-tabs{display:none}.mobile-menu{gap:6px;border:1px solid var(--line);border-radius:7px;padding:6px 10px;color:var(--text);font-size:12px}}
 .board-layout>*{min-width:0}.board-scroll-hint{display:none}@media(max-width:760px){.daeva-board{min-width:640px}.board-scroll{overscroll-behavior-x:contain}.board-scroll-hint{display:block;font-size:12px;color:var(--muted);padding:8px 14px 0}}
 .mobile-menu-label{font-size:12px}
+.class-picker small{font-size:10px}.class-picker span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.side-caption{margin:22px 12px 10px}.nav{padding:9px 13px;margin-bottom:3px}.side-bottom{padding-top:16px}
+.sidebar{padding-top:20px}.side-bottom small{margin-top:6px}.side-bottom a{margin-top:4px}
+.empty-builds{padding:18px;border:1px dashed var(--line);border-radius:8px;display:grid;gap:6px}
+.card{border:1px solid var(--line);background:var(--panel);border-radius:9px;padding:20px;margin-bottom:18px;display:block}.card>h2{font-size:19px;margin-bottom:8px}.card>p{margin:6px 0;font-size:12px}.card>.button{margin:8px 8px 0 0}.steam-players strong{font-family:'Space Grotesk',sans-serif;font-size:34px;color:var(--text)}

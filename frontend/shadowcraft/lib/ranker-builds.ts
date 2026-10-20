@@ -53,7 +53,7 @@ export function compareRankerEquipment(left:unknown,right:unknown){
 
 export function rankerObservationTime(value:unknown){
  if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/.test(value)||!Number.isFinite(Date.parse(value)))return '시각 미확인';
- return new Intl.DateTimeFormat('ko-KR',{dateStyle:'medium',timeStyle:'long'}).format(new Date(value));
+ return new Intl.DateTimeFormat('ko-KR',{dateStyle:'medium',timeStyle:'short'}).format(new Date(value));
 }
 export function rankerDisplaySkills(value:unknown):Ranker['skills']|null{
  if(!Array.isArray(value)||value.length>100)return null;
