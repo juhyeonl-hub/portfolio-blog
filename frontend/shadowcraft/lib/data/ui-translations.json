@@ -8083,5 +8083,20 @@
     "en": "The Defensive, Offensive and PvP options are basic recommended guides, separate from the actual top character setups below.",
     "ja": "安定型・攻撃型・PvP型は基本のおすすめガイドです。下の上位キャラクターの実際のセッティングとは別のものです。",
     "fi": "Puolustava-, Hyökkäävä- ja PvP-vaihtoehdot ovat perussuosituksia, eivätkä ne ole alla olevien kärkihahmojen todellisia kokoonpanoja."
+  },
+  "등록 장비 {0}개": {
+    "en": "{0} registered items",
+    "ja": "登録装備 {0}件",
+    "fi": "{0} kirjattua varustetta"
+  },
+  "스킬 포인트 {0}/{1}": {
+    "en": "Skill points {0}/{1}",
+    "ja": "スキルポイント {0}/{1}",
+    "fi": "Taitopisteet {0}/{1}"
+  },
+  "데바니온 결정 {0}/{1}": {
+    "en": "Daevanion crystals {0}/{1}",
+    "ja": "ディーヴァニオン結晶 {0}/{1}",
+    "fi": "Daevanion-kiteet {0}/{1}"
   }
 }

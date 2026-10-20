@@ -14,7 +14,12 @@ with sync_playwright() as p:
   page.locator('.class-picker button').filter(has_text=name).click()
   expect(page.get_by_role('region',name='간편 빌드 선택')).to_be_visible()
   # The skill editor shares the build page now; it is present but the quick picker stays on top.
+  # Sections below 빌드 선택 are folded until opened; the skills bar unfolds the table on the same page.
+  expect(page.locator('.skill-table')).to_have_count(0)
+  page.locator('.build-section-bar',has_text='스킬 & 특화').get_by_role('button').click()
   expect(page.locator('.skill-table')).to_have_count(1)
+  page.locator('.build-section-bar',has_text='스킬 & 특화').get_by_role('button').click()
+  expect(page.locator('.skill-table')).to_have_count(0)
   storage='shadowcraft-plan-v1'+('' if key=='assassin' else ':'+key)
   before=page.evaluate('(key)=>localStorage.getItem(key)',storage)
   page.get_by_role('button',name='공격형',exact=False).filter(has_text='공격 관련').click()
