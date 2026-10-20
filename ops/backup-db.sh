@@ -41,3 +41,9 @@ mv "$temporary_file" "$final_file"
 trap - EXIT
 
 echo "Verified database backup: $final_file"
+
+# Retention (privacy policy): backups older than 30 days are removed, only after today's backup verified above.
+readonly RETENTION_DAYS=30
+find "$BACKUP_DIR" -maxdepth 1 -type f -name '*.dump' -mtime +"$RETENTION_DAYS" -print -delete |
+  sed 's/^/Removed backup older than 30 days: /'
+
