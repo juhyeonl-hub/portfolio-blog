@@ -312,3 +312,6 @@ Codex re-review of f4ebc0b..4e1d558: NO_FINDINGS. Released to asbc.app; build_se
 - 글로벌 데이터: the two preamble lines merged into one subtle line; NPC and 퀘스트·던전·펫 lists moved below the item/skill browser (`.database-extra`); result rows are one-line name + meta (page 3,263 → 2,338 px).
 Verification: typecheck/lint clean; browser client_database, npc_database, journal_database, map, terrain, map_visibility, official_map_categories/progress, map_icons, map_icon_bindings, public_builds, screen_localization, asbc_home PASS on dev; desktop screenshots reviewed.
 Codex review of 973a8b0..27a59d0: NO_FINDINGS. Released to asbc.app; client_database.py PASS against production.
+
+## Phone polish: point summary 2x2 — 2026-10-20
+On phones the 편집 포인트 현황 bar wrapped its four stats with labels broken mid-word; now a 2x2 grid (labels nowrap, action buttons on their own row). quick_build, build_sections_order, reference_ui PASS on dev; phone screenshot reviewed.
