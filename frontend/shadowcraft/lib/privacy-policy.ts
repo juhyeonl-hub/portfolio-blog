@@ -29,7 +29,7 @@ export const PRIVACY: Record<Locale, Policy> = {
         '직접 올린 내용: 공개한 빌드(제목, 설명, 배분), 댓글, 추천, 신고(사유와 설명).',
       ]},
       {heading: '자동으로 처리되는 정보', paragraphs: [
-        'IP 주소: 로그인 시도 횟수 제한을 위해 서버 메모리에서 최대 10분 동안만 사용하며 데이터베이스나 로그에 저장하지 않습니다.',
+        'IP 주소: 로그인 시도 횟수 제한을 위해 서버 메모리에서 10분 동안 사용하고 늦어도 11분 안에 지우며 데이터베이스나 로그에 저장하지 않습니다.',
         '캐릭터 조회: 입력한 서버와 캐릭터 이름으로 아이온2 공식 사이트의 공개 정보를 조회합니다. 조회 결과는 서버 메모리에 최대 5분 동안 임시로 보관합니다.',
       ]},
       {heading: '쿠키', paragraphs: [
@@ -79,7 +79,7 @@ export const PRIVACY: Record<Locale, Policy> = {
         'What you post: published builds (title, description, allocation), comments, votes and reports (reason and description).',
       ]},
       {heading: 'Data processed automatically', paragraphs: [
-        'IP address: used only in server memory for up to 10 minutes to limit sign-in attempts; it is not stored in the database or in logs.',
+        'IP address: used only in server memory to limit sign-in attempts and removed within 11 minutes at most; it is not stored in the database or in logs.',
         'Character lookup: the server and character name you enter are used to look up public information on the official AION 2 website. Results are kept in server memory for up to 5 minutes.',
       ]},
       {heading: 'Cookies', paragraphs: [
@@ -129,7 +129,7 @@ export const PRIVACY: Record<Locale, Policy> = {
         '投稿した内容: 公開したビルド(タイトル、説明、配分)、コメント、推薦、通報(理由と説明)。',
       ]},
       {heading: '自動的に処理される情報', paragraphs: [
-        'IPアドレス: ログイン試行回数の制限のため、サーバーのメモリ上で最長10分間のみ使用し、データベースやログには保存しません。',
+        'IPアドレス: ログイン試行回数の制限のため、サーバーのメモリ上で10分間使用し、遅くとも11分以内に削除します。また、データベースやログには保存しません。',
         'キャラクター照会: 入力したサーバーとキャラクター名で、アイオン2公式サイトの公開情報を照会します。照会結果はサーバーのメモリに最長5分間一時保存します。',
       ]},
       {heading: 'Cookie', paragraphs: [
@@ -179,7 +179,7 @@ export const PRIVACY: Record<Locale, Policy> = {
         'Julkaisemasi sisältö: julkaistut rakenteet (otsikko, kuvaus, jako), kommentit, äänet ja ilmoitukset (syy ja kuvaus).',
       ]},
       {heading: 'Automaattisesti käsiteltävät tiedot', paragraphs: [
-        'IP-osoite: käytetään vain palvelimen muistissa enintään 10 minuuttia kirjautumisyritysten rajoittamiseen; sitä ei tallenneta tietokantaan eikä lokeihin.',
+        'IP-osoite: käytetään vain palvelimen muistissa kirjautumisyritysten rajoittamiseen ja poistetaan viimeistään 11 minuutin kuluttua; sitä ei tallenneta tietokantaan eikä lokeihin.',
         'Hahmohaku: syöttämäsi palvelin ja hahmon nimi käytetään julkisten tietojen hakemiseen AION 2:n virallisesta verkkopalvelusta. Tulokset säilytetään palvelimen muistissa enintään 5 minuuttia.',
       ]},
       {heading: 'Evästeet', paragraphs: [

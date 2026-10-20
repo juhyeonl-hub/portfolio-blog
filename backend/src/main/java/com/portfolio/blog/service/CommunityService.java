@@ -10,11 +10,14 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
+@EnableScheduling
 public class CommunityService {
     private final JdbcTemplate jdbc;
     private final PasswordEncoder passwords;
@@ -31,13 +34,20 @@ public class CommunityService {
     public static boolean reservedUsername(String username) { return UsernamePolicy.blocked(username); }
     public synchronized void throttle(String address) {
         long now=System.currentTimeMillis();
-        attempts.values().forEach(a->a.removeIf(t->t<now-600_000));
-        attempts.entrySet().removeIf(e->e.getValue().isEmpty());
+        purgeAttempts(now);
         if(attempts.size()>=10000&&!attempts.containsKey(address))fail(HttpStatus.TOO_MANY_REQUESTS,"잠시 후 다시 시도하세요.");
         var times=attempts.computeIfAbsent(address,k->new ArrayList<>());
         if(times.size()>=20)fail(HttpStatus.TOO_MANY_REQUESTS,"로그인 시도가 많습니다. 10분 후 다시 시도하세요.");
         times.add(now);
     }
+    /** Addresses are kept only for the 10-minute window (privacy policy), also when no further attempt arrives. */
+    @Scheduled(fixedDelay = 60_000)
+    public void purgeExpiredAttempts() { purgeAttempts(System.currentTimeMillis()); }
+    synchronized void purgeAttempts(long now) {
+        attempts.values().forEach(a->a.removeIf(t->t<now-600_000));
+        attempts.entrySet().removeIf(e->e.getValue().isEmpty());
+    }
+    synchronized int trackedAttemptKeys() { return attempts.size(); }
     @Transactional
     public Map<String,Object> authenticate(JsonNode body,boolean register) {
         String username=text(body,"username",32).toLowerCase(Locale.ROOT), password=text(body,"password",72);
