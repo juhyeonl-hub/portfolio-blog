@@ -18,7 +18,7 @@ with sync_playwright() as p:
    page=browser.new_page(viewport={'width':width,'height':900})
    page.add_init_script('localStorage.setItem("asbc-locale",'+json.dumps(initial)+');sessionStorage.setItem("a2bc-member-session-v1",JSON.stringify({token:"test",member:{id:"member",username:"취소"}}));')
    build={'id':ID,'title':'취소','description':'내 게시물 삭제','authorId':'member','author':'추천','classKey':'assassin','catalogVersion':CATALOG['version'],'published':True,'revision':1,'updatedAt':'2026-10-19T10:00:00Z','shared':SHARED}
-   social={'votes':0,'voted':False,'comments':[], 'page':0,'totalComments':0}
+   social={'votes':0,'voted':False}
    mutations=[];errors=[]
    page.on('pageerror',lambda e:errors.append(str(e)))
    def route(r):
@@ -30,8 +30,6 @@ with sync_playwright() as p:
     elif path=='/api/public/shadowcraft/builds/'+ID:r.fulfill(json=build)
     elif path.endswith('/vote'):
      social['voted']=method=='PUT';social['votes']=int(social['voted']);r.fulfill(json={})
-    elif path.endswith('/comments') and method=='POST':
-     social['comments']=[{'id':'comment','author_id':'member','author':'추천','body':r.request.post_data_json['body'],'created_at':'2026-10-19T10:00:00Z'}];social['totalComments']=1;r.fulfill(json={})
     elif path=='/api/community/builds':r.fulfill(json={'id':ID})
     elif path=='/api/community/builds/'+ID and method=='PUT':
      body=r.request.post_data_json;build.update(title=body['title'],description=body['description'],shared=body['shared'],revision=build['revision']+1);r.fulfill(json=build)
@@ -52,24 +50,19 @@ with sync_playwright() as p:
    info=page.get_by_role('region',name=label('공개 빌드 정보',initial),exact=True)
    expect(info.get_by_role('heading',name='취소',exact=True)).to_be_visible()
    discuss=page.locator('.community-discussion')
-   expect(discuss.get_by_role('button',name=label('추천',initial)+' · 0',exact=True)).to_be_visible()
+   expect(discuss.get_by_role('button',name=label('좋아요',initial),exact=True)).to_contain_text('0')
    before=page.evaluate('JSON.stringify(Object.fromEntries(Object.entries(localStorage).filter(([k])=>k!=="asbc-locale")))')
-   # Editing and comment drafts must survive changing language without a write request.
+   # Editing drafts must survive changing language without a write request.
    discuss.get_by_role('button',name=label('내 게시물 수정',initial),exact=True).click()
    discuss.get_by_label(label('수정 제목',initial),exact=True).fill('추천')
    discuss.get_by_label(label('수정 설명',initial),exact=True).fill('취소')
-   discuss.get_by_label(label('댓글 내용',initial),exact=True).fill('내 게시물 삭제 <script>window.BAD=true</script>')
    count=len(mutations);locale={'ko':'en','en':'ja','ja':'fi','fi':'ko'}[initial]
    page.locator('.asbc-language').select_option(locale)
    expect(discuss.get_by_label(label('수정 제목',locale),exact=True)).to_have_value('추천')
    expect(discuss.get_by_label(label('수정 설명',locale),exact=True)).to_have_value('취소')
-   expect(discuss.get_by_label(label('댓글 내용',locale),exact=True)).to_have_value('내 게시물 삭제 <script>window.BAD=true</script>')
    assert len(mutations)==count
-   discuss.get_by_role('button',name=label('추천',locale)+' · 0',exact=True).click()
-   expect(discuss.get_by_role('button',name=label('추천 취소',locale)+' · 1',exact=True)).to_be_visible()
-   discuss.get_by_role('button',name=label('댓글 등록',locale),exact=True).click()
-   expect(discuss.locator('article')).to_contain_text('내 게시물 삭제 <script>window.BAD=true</script>')
-   assert page.evaluate('window.BAD') is None
+   discuss.get_by_role('button',name=label('좋아요',locale),exact=True).click()
+   expect(discuss.get_by_role('button',name=label('좋아요 취소',locale),exact=True)).to_contain_text('1')
    discuss.get_by_role('button',name=label('게시물 수정 저장',locale),exact=True).click()
    expect(page.get_by_role('region',name=label('공개 빌드 정보',locale),exact=True).get_by_role('heading',name='추천',exact=True)).to_be_visible()
    assert mutations[-1][2]['title']=='추천' and mutations[-1][2]['description']=='취소'
@@ -79,4 +72,4 @@ with sync_playwright() as p:
    page.screenshot(path=f'/tmp/asbc-community-{width}-{locale}.png')
    page.close()
  browser.close()
-print('PASS four-language community: desktop/mobile publish, public detail, vote, comment, edit, shared language selector, literal user content, drafts and request/storage preservation')
+print('PASS four-language community: desktop/mobile publish, public detail, like, edit, shared language selector, literal user content, drafts and request/storage preservation')

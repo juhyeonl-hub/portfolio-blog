@@ -7608,5 +7608,45 @@
     "en": "Steam players",
     "ja": "Steam接続者",
     "fi": "Steam-pelaajat"
+  },
+  "빌드 좋아요": {
+    "en": "Build likes",
+    "ja": "ビルドのいいね",
+    "fi": "Rakenteen tykkäykset"
+  },
+  "좋아요": {
+    "en": "Like",
+    "ja": "いいね",
+    "fi": "Tykkää"
+  },
+  "좋아요 취소": {
+    "en": "Unlike",
+    "ja": "いいねを取り消す",
+    "fi": "Poista tykkäys"
+  },
+  "로그인하면 좋아요를 누를 수 있습니다.": {
+    "en": "Sign in to like this build.",
+    "ja": "ログインするといいねできます。",
+    "fi": "Kirjaudu sisään tykätäksesi."
+  },
+  "게시물과 좋아요를 삭제할까요?": {
+    "en": "Delete this post and its likes?",
+    "ja": "投稿といいねを削除しますか？",
+    "fi": "Poistetaanko julkaisu ja sen tykkäykset?"
+  },
+  "좋아요 응답을 확인하지 못했습니다.": {
+    "en": "Could not read the like response.",
+    "ja": "いいねの応答を確認できませんでした。",
+    "fi": "Tykkäysvastausta ei voitu lukea."
+  },
+  "불러오는 중…": {
+    "en": "Loading…",
+    "ja": "読み込み中…",
+    "fi": "Ladataan…"
+  },
+  "좋아요 많은 순": {
+    "en": "Most liked",
+    "ja": "いいねが多い順",
+    "fi": "Tykätyimmät ensin"
   }
 }

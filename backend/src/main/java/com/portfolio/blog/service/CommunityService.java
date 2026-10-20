@@ -108,31 +108,12 @@ public class CommunityService {
             if(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_build_votes WHERE build_id=? AND member_id=?",Long.class,id,member)==0)
                 jdbc.update("INSERT INTO shadowcraft_build_votes(build_id,member_id) VALUES (?,?)",id,member);
         } else jdbc.update("DELETE FROM shadowcraft_build_votes WHERE build_id=? AND member_id=?",id,member);
-        return social(id,member,0);
+        return social(id,member);
     }
-    public Map<String,Object> social(String id,String member,int page) {
+    public Map<String,Object> social(String id,String member) {
         builds.get(id,false);
-        if(page<0||page>10000)fail(HttpStatus.BAD_REQUEST,"페이지를 확인하세요.");
-        var comments=jdbc.query("SELECT c.id,c.member_id AS author_id,m.username AS author,c.body,c.created_at FROM shadowcraft_build_comments c JOIN shadowcraft_members m ON m.id=c.member_id WHERE c.build_id=? ORDER BY c.created_at DESC,c.id LIMIT 20 OFFSET ?",(r,n)->Map.of("id",r.getString("id"),"author_id",r.getString("author_id"),"author",r.getString("author"),"body",r.getString("body"),"created_at",r.getTimestamp("created_at").toInstant().toString()),id,page*20);
         return Map.of("votes",jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_build_votes WHERE build_id=?",Long.class,id),
-            "voted",member!=null&&jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_build_votes WHERE build_id=? AND member_id=?",Long.class,id,member)>0,
-            "comments",comments,"page",page,"totalComments",jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_build_comments WHERE build_id=?",Long.class,id));
-    }
-    @Transactional
-    public void comment(String member,String id,JsonNode body) {
-        String message=text(body,"body",1000).trim();
-        if(message.isEmpty())fail(HttpStatus.BAD_REQUEST,"댓글을 입력하세요.");
-        if(ContentPolicy.blocked(message))fail(HttpStatus.BAD_REQUEST,"부적절한 표현이 포함되어 있습니다. 수정한 뒤 다시 시도하세요.");
-        lockPublic(id);
-        // Lock author as well to bound concurrent comments across different builds.
-        jdbc.queryForList("SELECT id FROM shadowcraft_members WHERE id=? FOR UPDATE",member);
-        if(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_build_comments WHERE member_id=? AND created_at>?",Long.class,member,Timestamp.from(Instant.now().minusSeconds(60)))>=5)
-            fail(HttpStatus.TOO_MANY_REQUESTS,"댓글은 1분에 5개까지 작성할 수 있습니다.");
-        jdbc.update("INSERT INTO shadowcraft_build_comments(id,build_id,member_id,body,created_at) VALUES (?,?,?,?,?)",UUID.randomUUID().toString(),id,member,message,Timestamp.from(Instant.now()));
-    }
-    public void deleteComment(String member,String id,String comment,boolean admin) {
-        if(jdbc.update("DELETE FROM shadowcraft_build_comments WHERE id=? AND build_id=? AND (?=TRUE OR member_id=?)",comment,id,admin,member)!=1)
-            fail(HttpStatus.NOT_FOUND,"삭제할 댓글을 찾을 수 없습니다.");
+            "voted",member!=null&&jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_build_votes WHERE build_id=? AND member_id=?",Long.class,id,member)>0);
     }
     private void lockPublic(String id) {
         if(jdbc.queryForList("SELECT id FROM shadowcraft_public_builds WHERE id=? AND published=TRUE FOR UPDATE",id).isEmpty())fail(HttpStatus.NOT_FOUND,"공개된 빌드를 찾을 수 없습니다.");

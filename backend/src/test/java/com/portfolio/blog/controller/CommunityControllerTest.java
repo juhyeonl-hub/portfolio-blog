@@ -24,7 +24,7 @@ class CommunityControllerTest {
   jdbc.execute("CREATE TABLE IF NOT EXISTS shadowcraft_catalogs(class_key VARCHAR(32) PRIMARY KEY,payload TEXT NOT NULL)");
   jdbc.execute("DELETE FROM shadowcraft_catalogs");
   for(String table:new String[]{"shadowcraft_reports","shadowcraft_build_comments","shadowcraft_build_votes","shadowcraft_member_sessions","shadowcraft_member_steam","shadowcraft_public_builds","shadowcraft_members"})jdbc.execute("DROP TABLE IF EXISTS "+table);
-  for(String file:new String[]{"V13__shadowcraft_public_builds.sql","V14__shadowcraft_community.sql","V15__shadowcraft_steam_links.sql","V16__shadowcraft_reports.sql"})try(var in=new ClassPathResource("db/migration/"+file).getInputStream()){for(String sql:new String(in.readAllBytes(),StandardCharsets.UTF_8).split(";"))if(!sql.isBlank())jdbc.execute(sql);}
+  for(String file:new String[]{"V13__shadowcraft_public_builds.sql","V14__shadowcraft_community.sql","V15__shadowcraft_steam_links.sql","V16__shadowcraft_reports.sql","V17__shadowcraft_drop_comments.sql"})try(var in=new ClassPathResource("db/migration/"+file).getInputStream()){for(String sql:new String(in.readAllBytes(),StandardCharsets.UTF_8).split(";"))if(!sql.isBlank())jdbc.execute(sql);}
  }
  String register(String name)throws Exception{return mapper.readTree(mvc.perform(post(API+"/auth/register").contentType("application/json").content("{\"username\":\""+name+"\",\"password\":\"testPassword123!\"}")).andExpect(status().isOk()).andExpect(jsonPath("$.member.username").value(name)).andReturn().getResponse().getContentAsString()).path("token").asText();}
  ObjectNode payload(){var r=mapper.createObjectNode().put("title","Member build").put("description","My allocation").put("published",true);var shared=r.putObject("shared");shared.put("schema","a2bc-share-v1").put("catalogVersion","2.0.7.0");var p=shared.putObject("plan");p.put("classKey","assassin").put("level",45).put("mode","safe").put("extraSP",0).put("extraStigma",0).put("extraCrystal",0).put("extraBattle",0).putNull("character");p.putObject("base");p.putObject("bonus");p.putObject("specs");p.putArray("nodes");p.putArray("checked");return r;}
@@ -51,8 +51,6 @@ class CommunityControllerTest {
   String leavingId=mapper.readTree(mvc.perform(get(API+"/me").header("Authorization","Bearer "+leaving)).andReturn().getResponse().getContentAsString()).path("id").asText();
   String own=create(leaving),other=create(staying);
   jdbc.update("INSERT INTO shadowcraft_member_steam(steam_id,member_id,linked_at) VALUES ('76561190000000001',?,CURRENT_TIMESTAMP)",leavingId);
-  mvc.perform(post(API+"/builds/"+own+"/comments").header("Authorization","Bearer "+staying).contentType("application/json").content("{\"body\":\"on leaving build\"}")).andExpect(status().isCreated());
-  mvc.perform(post(API+"/builds/"+other+"/comments").header("Authorization","Bearer "+leaving).contentType("application/json").content("{\"body\":\"by leaving member\"}")).andExpect(status().isCreated());
   mvc.perform(put(API+"/builds/"+other+"/vote").header("Authorization","Bearer "+leaving)).andExpect(status().is2xxSuccessful());
   mvc.perform(post(API+"/builds/"+other+"/report").header("Authorization","Bearer "+leaving).contentType("application/json").content("{\"reason\":\"spam\"}")).andExpect(status().isCreated());
   // Not signed in, or the username not typed again exactly: nothing is deleted.
@@ -64,7 +62,6 @@ class CommunityControllerTest {
   for(String table:new String[]{"shadowcraft_member_sessions","shadowcraft_member_steam","shadowcraft_build_votes","shadowcraft_reports"})
    assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM "+table+" WHERE "+(table.equals("shadowcraft_reports")?"reporter_id":"member_id")+"=?",Integer.class,leavingId)).as(table).isZero();
   assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_public_builds WHERE author_id=?",Integer.class,leavingId)).isZero();
-  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_build_comments WHERE member_id=? OR build_id=?",Integer.class,leavingId,own)).isZero();
   assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_public_builds WHERE id=?",Integer.class,other)).isEqualTo(1);
   mvc.perform(get(API+"/me").header("Authorization","Bearer "+leaving)).andExpect(status().isForbidden());
   mvc.perform(post(API+"/auth/login").contentType("application/json").content("{\"username\":\"leaving_member\",\"password\":\"testPassword123!\"}")).andExpect(status().isUnauthorized());
@@ -75,13 +72,12 @@ class CommunityControllerTest {
   String me=mapper.readTree(mvc.perform(get("/api/community/me").header("Authorization","Bearer "+reporter)).andReturn().getResponse().getContentAsString()).path("id").asText();
   // 19 reports already filed this hour (distinct earlier targets on the same build).
   for(int i=0;i<19;i++)jdbc.update("INSERT INTO shadowcraft_reports(id,target_key,build_id,reporter_id,reason,created_at) VALUES (?,?,?,?, 'spam', CURRENT_TIMESTAMP)",java.util.UUID.randomUUID().toString(),"build:earlier-"+i,id,me);
-  var comments=new java.util.ArrayList<String>();
-  for(int i=0;i<5;i++)mvc.perform(post(path+"/comments").header("Authorization","Bearer "+owner).contentType("application/json").content("{\"body\":\"c"+i+"\"}")).andExpect(status().isCreated());
-  for(var c:mapper.readTree(mvc.perform(get(PUBLIC+"/"+id+"/community")).andReturn().getResponse().getContentAsString()).path("comments"))comments.add(c.path("id").asText());
+  var targets=new java.util.ArrayList<String>();
+  for(int i=0;i<5;i++)targets.add(create(owner));
   var codes=java.util.Collections.synchronizedList(new java.util.ArrayList<Integer>());
   try(var executor=java.util.concurrent.Executors.newFixedThreadPool(5)){
    var jobs=new java.util.ArrayList<java.util.concurrent.Future<?>>();
-   for(String c:comments)jobs.add(executor.submit(()->{try{codes.add(mvc.perform(post(path+"/comments/"+c+"/report").header("Authorization","Bearer "+reporter).contentType("application/json").content("{\"reason\":\"spam\"}")).andReturn().getResponse().getStatus());}catch(Exception e){throw new RuntimeException(e);}}));
+   for(String target:targets)jobs.add(executor.submit(()->{try{codes.add(mvc.perform(post(API+"/builds/"+target+"/report").header("Authorization","Bearer "+reporter).contentType("application/json").content("{\"reason\":\"spam\"}")).andReturn().getResponse().getStatus());}catch(Exception e){throw new RuntimeException(e);}}));
    for(var job:jobs)job.get();
   }
   assertThat(codes.stream().filter(c->c==201).count()).isEqualTo(1);assertThat(codes.stream().filter(c->c==429).count()).isEqualTo(4);
@@ -90,8 +86,6 @@ class CommunityControllerTest {
  @Test void reportsQueueAndModeration()throws Exception{
   String owner=register("report_owner"),other=register("report_other"),third=register("report_third"),id=create(owner),path=API+"/builds/"+id;
   String admin="Bearer "+jwt.generateToken("admin");
-  mvc.perform(post(path+"/comments").header("Authorization","Bearer "+owner).contentType("application/json").content("{\"body\":\"owner comment\"}")).andExpect(status().isCreated());
-  String comment=mapper.readTree(mvc.perform(get(PUBLIC+"/"+id+"/community")).andReturn().getResponse().getContentAsString()).path("comments").get(0).path("id").asText();
   // Members only, valid reasons, not one's own content, once per target.
   mvc.perform(post(path+"/report").contentType("application/json").content("{\"reason\":\"spam\"}")).andExpect(status().isForbidden());
   mvc.perform(post(path+"/report").header("Authorization","Bearer "+other).contentType("application/json").content("{\"reason\":\"bogus\"}")).andExpect(status().isBadRequest());
@@ -99,43 +93,36 @@ class CommunityControllerTest {
   mvc.perform(post(path+"/report").header("Authorization","Bearer "+other).contentType("application/json").content("{\"reason\":\"spam\",\"detail\":\"ad link\"}")).andExpect(status().isCreated());
   mvc.perform(post(path+"/report").header("Authorization","Bearer "+other).contentType("application/json").content("{\"reason\":\"abuse\"}")).andExpect(status().isConflict());
   mvc.perform(post(path+"/report").header("Authorization","Bearer "+third).contentType("application/json").content("{\"reason\":\"hate\"}")).andExpect(status().isCreated());
-  mvc.perform(post(path+"/comments/"+comment+"/report").header("Authorization","Bearer "+other).contentType("application/json").content("{\"reason\":\"abuse\"}")).andExpect(status().isCreated());
-  mvc.perform(post(path+"/comments/missing/report").header("Authorization","Bearer "+other).contentType("application/json").content("{\"reason\":\"abuse\"}")).andExpect(status().isNotFound());
+  mvc.perform(post(API+"/builds/missing/report").header("Authorization","Bearer "+other).contentType("application/json").content("{\"reason\":\"abuse\"}")).andExpect(status().isNotFound());
   // Admin queue: grouped by target, most reported first; members cannot read it.
   mvc.perform(get("/api/admin/shadowcraft/reports").header("Authorization","Bearer "+other)).andExpect(status().isForbidden());
   var queue=mapper.readTree(mvc.perform(get("/api/admin/shadowcraft/reports").header("Authorization",admin)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString()).path("items");
-  assertThat(queue.size()).isEqualTo(2);assertThat(queue.get(0).path("targetKey").asText()).isEqualTo("build:"+id);assertThat(queue.get(0).path("count").asInt()).isEqualTo(2);
-  assertThat(queue.get(0).path("details").toString()).contains("ad link");assertThat(queue.get(1).path("text").asText()).isEqualTo("owner comment");assertThat(queue.get(1).path("author").asText()).isEqualTo("report_owner");
-  // A comment cannot hide its build; dismiss closes it without changing content.
-  mvc.perform(post("/api/admin/shadowcraft/reports/resolve").header("Authorization",admin).contentType("application/json").content("{\"targetKey\":\"comment:"+comment+"\",\"action\":\"hide\"}")).andExpect(status().isBadRequest());
-  mvc.perform(post("/api/admin/shadowcraft/reports/resolve").header("Authorization",admin).contentType("application/json").content("{\"targetKey\":\"comment:"+comment+"\",\"action\":\"dismiss\"}")).andExpect(status().isOk());
-  assertThat(mapper.readTree(mvc.perform(get(PUBLIC+"/"+id+"/community")).andReturn().getResponse().getContentAsString()).path("totalComments").asInt()).isEqualTo(1);
+  assertThat(queue.size()).isEqualTo(1);assertThat(queue.get(0).path("targetKey").asText()).isEqualTo("build:"+id);assertThat(queue.get(0).path("count").asInt()).isEqualTo(2);
+  assertThat(queue.get(0).path("details").toString()).contains("ad link");assertThat(queue.get(0).path("type").asText()).isEqualTo("build");assertThat(queue.get(0).path("author").asText()).isEqualTo("report_owner");
+  // Comment targets no longer exist.
+  mvc.perform(post("/api/admin/shadowcraft/reports/resolve").header("Authorization",admin).contentType("application/json").content("{\"targetKey\":\"comment:x\",\"action\":\"dismiss\"}")).andExpect(status().isBadRequest());
   // Hide unpublishes the build and closes its reports.
   mvc.perform(post("/api/admin/shadowcraft/reports/resolve").header("Authorization",admin).contentType("application/json").content("{\"targetKey\":\"build:"+id+"\",\"action\":\"hide\"}")).andExpect(status().isOk());
   mvc.perform(get(PUBLIC+"/"+id)).andExpect(status().isNotFound());
   assertThat(mapper.readTree(mvc.perform(get("/api/admin/shadowcraft/reports").header("Authorization",admin)).andReturn().getResponse().getContentAsString()).path("items").size()).isZero();
   mvc.perform(post("/api/admin/shadowcraft/reports/resolve").header("Authorization",admin).contentType("application/json").content("{\"targetKey\":\"build:"+id+"\",\"action\":\"dismiss\"}")).andExpect(status().isNotFound());
-  // Delete removes a reported comment and its reports.
+  // Delete removes a reported build and its reports.
   String id2=create(owner),path2=API+"/builds/"+id2;
-  mvc.perform(post(path2+"/comments").header("Authorization","Bearer "+other).contentType("application/json").content("{\"body\":\"reported comment\"}")).andExpect(status().isCreated());
-  String c2=mapper.readTree(mvc.perform(get(PUBLIC+"/"+id2+"/community")).andReturn().getResponse().getContentAsString()).path("comments").get(0).path("id").asText();
-  mvc.perform(post(path2+"/comments/"+c2+"/report").header("Authorization","Bearer "+owner).contentType("application/json").content("{\"reason\":\"abuse\"}")).andExpect(status().isCreated());
-  mvc.perform(post("/api/admin/shadowcraft/reports/resolve").header("Authorization",admin).contentType("application/json").content("{\"targetKey\":\"comment:"+c2+"\",\"action\":\"delete\"}")).andExpect(status().isOk());
-  assertThat(mapper.readTree(mvc.perform(get(PUBLIC+"/"+id2+"/community")).andReturn().getResponse().getContentAsString()).path("totalComments").asInt()).isZero();
-  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_reports WHERE comment_id=?",Integer.class,c2)).isZero();
+  mvc.perform(post(path2+"/report").header("Authorization","Bearer "+other).contentType("application/json").content("{\"reason\":\"abuse\"}")).andExpect(status().isCreated());
+  mvc.perform(post("/api/admin/shadowcraft/reports/resolve").header("Authorization",admin).contentType("application/json").content("{\"targetKey\":\"build:"+id2+"\",\"action\":\"delete\"}")).andExpect(status().isOk());
+  mvc.perform(get(PUBLIC+"/"+id2)).andExpect(status().isNotFound());
+  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_reports WHERE build_id=?",Integer.class,id2)).isZero();
  }
- @Test void offensiveTitlesDescriptionsAndCommentsAreRefused()throws Exception{
+ @Test void offensiveTitlesAndDescriptionsAreRefused()throws Exception{
   String owner=register("content_check"),id=create(owner),path=API+"/builds/"+id;
   for(String[] f:new String[][]{{"title","씨발 빌드"},{"description","heil hitler"},{"title","kim jong un ranger"}}){
    var bad=payload().put(f[0],f[1]);
    mvc.perform(post(API+"/builds").header("Authorization","Bearer "+owner).contentType("application/json").content(bad.toString())).andExpect(status().isBadRequest()).andExpect(jsonPath("$.error").value("부적절한 표현이 포함되어 있습니다. 수정한 뒤 다시 시도하세요."));
    mvc.perform(put(path).header("Authorization","Bearer "+owner).contentType("application/json").content(bad.put("revision",0).toString())).andExpect(status().isBadRequest());
   }
-  mvc.perform(post(path+"/comments").header("Authorization","Bearer "+owner).contentType("application/json").content("{\"body\":\"fuck this build\"}")).andExpect(status().isBadRequest());
-  mvc.perform(post(path+"/comments").header("Authorization","Bearer "+owner).contentType("application/json").content("{\"body\":\"시발점부터 다시 해 보세요. 트럼프 카드는 아껴 두기\"}")).andExpect(status().isCreated());
   mvc.perform(put(path).header("Authorization","Bearer "+owner).contentType("application/json").content(payload().put("title","Assassin classic burst").put("revision",0).toString())).andExpect(status().isOk());
  }
- @Test void ownershipPrivacyVotesCommentsAndCascade()throws Exception{
+ @Test void ownershipPrivacyVotesAndCascade()throws Exception{
   String owner=register("owner_flow"),other=register("other_flow"),id=create(owner),path=API+"/builds/"+id;
   mvc.perform(get(PUBLIC)).andExpect(jsonPath("$.items[0].author").value("owner_flow"));
   var input=payload().put("revision",0).put("title","Changed");
@@ -148,16 +135,8 @@ class CommunityControllerTest {
   for(int i=0;i<2;i++)mvc.perform(put(path+"/vote").header("Authorization","Bearer "+other)).andExpect(status().isOk()).andExpect(jsonPath("$.votes").value(1)).andExpect(jsonPath("$.voted").value(true));
   mvc.perform(get(PUBLIC+"/"+id+"/community")).andExpect(jsonPath("$.voted").value(false));
   mvc.perform(delete(path+"/vote").header("Authorization","Bearer "+other)).andExpect(jsonPath("$.votes").value(0));
-  mvc.perform(post(path+"/comments").header("Authorization","Bearer "+other).contentType("application/json").content("{\"body\":\"Good build <script>not html</script>\"}")).andExpect(status().isCreated());
-  var social=mapper.readTree(mvc.perform(get(PUBLIC+"/"+id+"/community")).andExpect(jsonPath("$.comments[0].author").value("other_flow")).andReturn().getResponse().getContentAsString());
-  String comment=social.path("comments").get(0).path("id").asText();
-  mvc.perform(delete(path+"/comments/"+comment).header("Authorization","Bearer "+owner)).andExpect(status().isNotFound());
-  mvc.perform(delete(path+"/comments/"+comment).header("Authorization","Bearer "+other)).andExpect(status().isNoContent());
-  for(int i=0;i<5;i++)mvc.perform(post(path+"/comments").header("Authorization","Bearer "+owner).contentType("application/json").content("{\"body\":\"comment\"}")).andExpect(status().isCreated());
-  mvc.perform(post(path+"/comments").header("Authorization","Bearer "+owner).contentType("application/json").content("{\"body\":\"too many\"}")).andExpect(status().isTooManyRequests());
   mvc.perform(put(path+"/vote").header("Authorization","Bearer "+other)).andExpect(status().isOk());
   mvc.perform(delete(path).param("revision","1").header("Authorization","Bearer "+owner)).andExpect(status().isNoContent());
-  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_build_comments",Integer.class)).isZero();
   assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_build_votes",Integer.class)).isZero();
  }
  @Test void malformedHiddenAndLegacyAdminBuilds()throws Exception{

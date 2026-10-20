@@ -58,25 +58,17 @@ public class CommunityController {
     @DeleteMapping("/api/community/builds/{id}")
     public ResponseEntity<?> delete(Authentication auth,@PathVariable String id,@RequestParam long revision){community.delete(auth.getName(),id,revision);return ResponseEntity.noContent().build();}
     @GetMapping("/api/public/shadowcraft/builds/{id}/community")
-    public ResponseEntity<?> social(Authentication auth,@PathVariable String id,@RequestParam(defaultValue="0")int page){return response(community.social(id,auth!=null?auth.getName():null,page));}
+    public ResponseEntity<?> social(Authentication auth,@PathVariable String id){return response(community.social(id,auth!=null?auth.getName():null));}
     @PutMapping("/api/community/builds/{id}/vote")
     public ResponseEntity<?> vote(Authentication auth,@PathVariable String id){return response(community.vote(auth.getName(),id,true));}
     @DeleteMapping("/api/community/builds/{id}/vote")
     public ResponseEntity<?> unvote(Authentication auth,@PathVariable String id){return response(community.vote(auth.getName(),id,false));}
-    @PostMapping("/api/community/builds/{id}/comments")
-    public ResponseEntity<?> comment(Authentication auth,@PathVariable String id,HttpServletRequest request)throws Exception{community.comment(auth.getName(),id,body(request));return ResponseEntity.status(201).build();}
-    @DeleteMapping("/api/community/builds/{id}/comments/{comment}")
-    public ResponseEntity<?> deleteComment(Authentication auth,@PathVariable String id,@PathVariable String comment){community.deleteComment(auth.getName(),id,comment,false);return ResponseEntity.noContent().build();}
     @PostMapping("/api/community/builds/{id}/report")
-    public ResponseEntity<?> reportBuild(Authentication auth,@PathVariable String id,HttpServletRequest request)throws Exception{reports.report(auth.getName(),id,null,body(request));return ResponseEntity.status(201).cacheControl(CacheControl.noStore()).build();}
-    @PostMapping("/api/community/builds/{id}/comments/{comment}/report")
-    public ResponseEntity<?> reportComment(Authentication auth,@PathVariable String id,@PathVariable String comment,HttpServletRequest request)throws Exception{reports.report(auth.getName(),id,comment,body(request));return ResponseEntity.status(201).cacheControl(CacheControl.noStore()).build();}
+    public ResponseEntity<?> reportBuild(Authentication auth,@PathVariable String id,HttpServletRequest request)throws Exception{reports.report(auth.getName(),id,body(request));return ResponseEntity.status(201).cacheControl(CacheControl.noStore()).build();}
     @GetMapping("/api/admin/shadowcraft/reports")
     public ResponseEntity<?> reportQueue(){return response(Map.of("items",reports.openQueue()));}
     @PostMapping("/api/admin/shadowcraft/reports/resolve")
     public ResponseEntity<?> resolveReport(HttpServletRequest request)throws Exception{JsonNode input=body(request);return response(reports.resolve(input==null?null:input.path("targetKey").asText(null),input==null?null:input.path("action").asText(null)));}
-    @DeleteMapping("/api/admin/shadowcraft/builds/{id}/comments/{comment}")
-    public ResponseEntity<?> moderate(Authentication auth,@PathVariable String id,@PathVariable String comment){community.deleteComment(auth.getName(),id,comment,true);return ResponseEntity.noContent().build();}
     private JsonNode body(HttpServletRequest request)throws Exception {
         byte[] bytes=request.getInputStream().readNBytes(32001);
         if(bytes.length>32000)throw new ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE,"입력이 너무 큽니다.");
