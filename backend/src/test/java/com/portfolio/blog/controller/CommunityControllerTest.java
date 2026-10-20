@@ -29,6 +29,15 @@ class CommunityControllerTest {
  String register(String name)throws Exception{return mapper.readTree(mvc.perform(post(API+"/auth/register").contentType("application/json").content("{\"username\":\""+name+"\",\"password\":\"testPassword123!\"}")).andExpect(status().isOk()).andExpect(jsonPath("$.member.username").value(name)).andReturn().getResponse().getContentAsString()).path("token").asText();}
  ObjectNode payload(){var r=mapper.createObjectNode().put("title","Member build").put("description","My allocation").put("published",true);var shared=r.putObject("shared");shared.put("schema","a2bc-share-v1").put("catalogVersion","2.0.7.0");var p=shared.putObject("plan");p.put("classKey","assassin").put("level",45).put("mode","safe").put("extraSP",0).put("extraStigma",0).put("extraCrystal",0).put("extraBattle",0).putNull("character");p.putObject("base");p.putObject("bonus");p.putObject("specs");p.putArray("nodes");p.putArray("checked");return r;}
  String create(String token)throws Exception{return mapper.readTree(mvc.perform(post(API+"/builds").header("Authorization","Bearer "+token).contentType("application/json").content(payload().toString())).andExpect(status().isCreated()).andReturn().getResponse().getContentAsString()).path("id").asText();}
+ @Test void pvpModeBuildsCanBePublishedAndReplaced()throws Exception{
+  String token=register("member_pvp");
+  var body=payload();((ObjectNode)body.path("shared").path("plan")).put("mode","pvp");
+  String id=mapper.readTree(mvc.perform(post(API+"/builds").header("Authorization","Bearer "+token).contentType("application/json").content(body.toString())).andExpect(status().isCreated()).andReturn().getResponse().getContentAsString()).path("id").asText();
+  mvc.perform(get("/api/public/shadowcraft/builds/"+id)).andExpect(status().isOk()).andExpect(jsonPath("$.shared.plan.mode").value("pvp"));
+  mvc.perform(put(API+"/builds/"+id).header("Authorization","Bearer "+token).contentType("application/json").content(body.toString())).andExpect(status().isOk());
+  ((ObjectNode)body.path("shared").path("plan")).put("mode","arena");
+  mvc.perform(post(API+"/builds").header("Authorization","Bearer "+token).contentType("application/json").content(body.toString())).andExpect(status().isBadRequest());
+ }
  @Test void rolesSessionsAndPasswordValidation()throws Exception{
   String token=register("member_auth");
   mvc.perform(get(API+"/me").header("Authorization","Bearer "+token)).andExpect(status().isOk()).andExpect(jsonPath("$.username").value("member_auth"));

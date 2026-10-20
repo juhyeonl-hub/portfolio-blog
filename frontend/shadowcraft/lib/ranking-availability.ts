@@ -31,6 +31,7 @@ export function rankingAvailabilityText(value:RankingAvailability|null|undefined
  const published=RANKING_KINDS.filter(kind=>value.published[kind]);
  const when=value.checkedAt?new Date(value.checkedAt).toISOString().slice(0,10):'';
  if(published.length)return {text:'공식 {0} 랭킹이 공개되었습니다 (확인 {1}). PvP 랭커 빌드 가져오기를 준비합니다.',values:[published.map(kind=>t(RANKING_KIND_NAMES[kind])).join('·'),when]};
- if(value.failed&&!value.checkedAt)return {text:'공식 어비스·아레나 랭킹 공개 여부를 아직 확인하지 못했습니다. 공개되면 PvP 랭커 빌드를 가져옵니다.',values:[]};
+ // A failed probe (first run pending or requests rejected) must not read as "not published yet".
+ if(value.failed)return {text:'공식 어비스·아레나 랭킹 공개 여부를 아직 확인하지 못했습니다. 공개되면 PvP 랭커 빌드를 가져옵니다.',values:[]};
  return {text:'공식 어비스·아레나 랭킹은 아직 공개 전입니다 (마지막 확인 {0}). 공개되면 PvP 랭커 빌드를 가져옵니다.',values:[when]};
 }

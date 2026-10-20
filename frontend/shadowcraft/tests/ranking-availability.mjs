@@ -22,6 +22,9 @@ const open=rankingAvailabilityText({...closed,published:{...closed.published,aby
 assert.deepEqual(open.values,['Abyss·Arena of Solitude','2026-10-20']);
 assert.ok(rankingAvailabilityText(null,t).text.includes('확인하지 못했습니다'));
 assert.ok(rankingAvailabilityText({...closed,checkedAt:null,failed:true},t).text.includes('아직 확인하지'));
+// A probe that ran but whose requests failed is a failure, not "not published yet" (Codex finding).
+assert.ok(rankingAvailabilityText({...closed,failed:true},t).text.includes('아직 확인하지'));
+assert.ok(!rankingAvailabilityText({...closed,failed:true},t).text.includes('공개 전'));
 
 // Loader: bad status, invalid body and network errors give null; a valid body is returned as is.
 let mode='bad';

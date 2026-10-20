@@ -79,7 +79,7 @@ public class PublicBuildService {
         if(!shared.path("schema").asText().equals("a2bc-share-v1")||!shared.path("catalogVersion").isTextual()||shared.path("catalogVersion").asText().isEmpty()||shared.path("catalogVersion").asText().length()>100)bad("공유 형식을 확인하세요.");
         JsonNode p=shared.path("plan");only(p,Set.of("classKey","level","mode","extraSP","extraStigma","extraCrystal","extraBattle","base","bonus","specs","nodes","checked","character","pointBudget","ascensionGrade3Confirmed"));
         String key=p.path("classKey").asText();catalogs.profile(key);
-        if(!number(p.path("level"),1,45)||!Set.of("safe","damage").contains(p.path("mode").asText())||!p.path("character").isNull()||!p.path("checked").isArray()||!p.path("checked").isEmpty())bad("개인정보를 제외한 공유 배분이 필요합니다.");
+        if(!number(p.path("level"),1,45)||!Set.of("safe","damage","pvp").contains(p.path("mode").asText())||!p.path("character").isNull()||!p.path("checked").isArray()||!p.path("checked").isEmpty())bad("개인정보를 제외한 공유 배분이 필요합니다.");
         for(String field:List.of("extraSP","extraStigma","extraCrystal","extraBattle"))if(!number(p.path(field),0,9999))bad("포인트를 확인하세요.");
         if(p.has("ascensionGrade3Confirmed")&&!p.path("ascensionGrade3Confirmed").isBoolean())bad("승급 확인값을 확인하세요.");
         if(p.has("pointBudget")){only(p.path("pointBudget"),Set.of("sp","stigma","crystal","battle"));for(String field:List.of("sp","stigma","crystal","battle"))if(!number(p.path("pointBudget").path(field),0,9999))bad("포인트 예산을 확인하세요.");}
