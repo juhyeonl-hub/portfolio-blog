@@ -315,3 +315,8 @@ Codex review of 973a8b0..27a59d0: NO_FINDINGS. Released to asbc.app; client_data
 
 ## Phone polish: point summary 2x2 — 2026-10-20
 On phones the 편집 포인트 현황 bar wrapped its four stats with labels broken mid-word; now a 2x2 grid (labels nowrap, action buttons on their own row). quick_build, build_sections_order, reference_ui PASS on dev; phone screenshot reviewed.
+
+## Follow-ups: database icons, official ranker wiring — 2026-10-20
+- 글로벌 데이터: equipment rows show the client icon (`.db-icon`, item index loaded lazily when the item list is shown) and the detail shows the large icon plus main stats (same stat names as the equipment tooltip); skills/non-equipment rows have no icon; a missing index changes nothing else. shadowcraft/tests/database_icons.py.
+- 랭커 빌드: reads `rankers-abyss.json`, `rankers-arenaOfSolitude.json`, `rankers-arenaOfCooperation.json` (empty placeholders committed; `import_official_rankers.py <kind>` fills them). A 랭킹 종류 toggle appears only when a second roster has entries, so nothing changes until NCSOFT publishes. ranker-builds.mjs validates the placeholder shape.
+- Japanese native review remains a human task (not done).

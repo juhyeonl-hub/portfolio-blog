@@ -67,3 +67,12 @@ assert.deepEqual(rankerDisplaySkills([liveSkill]),[liveSkill]);
 assert.deepEqual(rankerDisplaySkills([]),[]);
 for(const bad of [null,{},[liveSkill,liveSkill],[{...liveSkill,skillLevel:-1}],[{...liveSkill,category:'unknown'}]])assert.equal(rankerDisplaySkills(bad),null);
 console.log('Ranker observation: timezone-aware timestamps and live skill schema validation PASS');
+
+// Official Abyss/Arena roster files exist as empty placeholders until the rankings are published; when filled by
+// import_official_rankers.py they must carry the same entry shape as rankers.json.
+for(const kind of ['abyss','arenaOfSolitude','arenaOfCooperation']){
+ const file=JSON.parse(readFileSync(`lib/data/rankers-${kind}.json`,'utf8'));
+ assert.equal(file.metric,kind);assert.ok(Array.isArray(file.entries),kind+' entries');
+ for(const row of file.entries)for(const key of ['classKey','rank','name','region','serverId','characterId','equipment','skills'])assert.ok(key in row,`${kind}: ${key}`);
+}
+console.log('Official ranker placeholders: metric and entry shape PASS');

@@ -5,6 +5,11 @@ import {totals} from '../lib/planner';
 import {groupRankers,compareRankerSkills,previewRankerBoards,rankerObservationTime,rankerDisplaySkills,type Ranker} from '../lib/ranker-builds';
 import {queryArmory} from '../lib/armory-client';
 import snapshot from '../lib/data/rankers.json';
+import abyssSnapshot from '../lib/data/rankers-abyss.json';
+import solitudeSnapshot from '../lib/data/rankers-arenaOfSolitude.json';
+import cooperationSnapshot from '../lib/data/rankers-arenaOfCooperation.json';
+// Official Abyss/Arena rosters are empty placeholders until NCSOFT publishes them (import_official_rankers.py fills them).
+const SNAPSHOTS=[{key:'combat',name:'전투력',data:snapshot},{key:'abyss',name:'어비스',data:abyssSnapshot},{key:'arenaOfSolitude',name:'고독의 아레나',data:solitudeSnapshot},{key:'arenaOfCooperation',name:'협력의 아레나',data:cooperationSnapshot}].filter(s=>Array.isArray(s.data.entries)&&s.data.entries.length>0);
 import skillGuides from '../lib/data/ranker-skill-guides.json';
 import CharacterEquipment from './character-equipment';
 import RankerEquipmentComparison from './ranker-equipment';
@@ -13,7 +18,9 @@ import {useLocale} from './locale';
 
 export default function RankerBuilds({catalog,plan,onApply}:{catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void}){
  const {t,locale,skill:localSkill}=useLocale();
- const rows=(snapshot.entries as Ranker[]).filter(r=>r.classKey===catalog.classKey);
+ const [kind,setKind]=useState(SNAPSHOTS[0].key);
+ const current=SNAPSHOTS.find(s=>s.key===kind)||SNAPSHOTS[0];
+ const rows=(current.data.entries as Ranker[]).filter(r=>r.classKey===catalog.classKey);
  const [availability,setAvailability]=useState<RankingAvailability|null|undefined>(undefined);
  useEffect(()=>{let live=true;loadRankingAvailability().then(value=>{if(live)setAvailability(value);});return()=>{live=false;};},[]);
  const [selectedId,setSelectedId]=useState('');
@@ -43,6 +50,7 @@ export default function RankerBuilds({catalog,plan,onApply}:{catalog:Catalog;pla
  async function inspect(row:Ranker){const token=++request.current;setSelectedId(row.characterId);setLive(null);setPreview(null);setError('');setLoading(true);try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId});if(request.current===token)setLive(result)}catch(e){if(request.current===token)setError(e instanceof Error?e.message:'공식 조회 실패')}finally{if(request.current===token)setLoading(false)}}
  return <section className="panel ranker-builds" aria-label={t('랭커 빌드 분석')}>
   <div className="section-heading"><div><span className="eyebrow">{t('실제 세팅')}</span><h2>{t('상위 캐릭터 세팅 살펴보기')}</h2><p>{t('전투력 표본 상위 10명 · 선택한 직업')}</p></div><a href={snapshot.source} target="_blank" rel="noreferrer">{t('순위 출처 ↗')}</a></div>
+  {SNAPSHOTS.length>1&&<div className="segmented ranker-kinds" role="group" aria-label={t('랭킹 종류')}>{SNAPSHOTS.map(s=><button key={s.key} aria-pressed={kind===s.key} className={kind===s.key?'selected':''} onClick={()=>setKind(s.key)}>{t(s.name)}</button>)}</div>}
   <p className="subtle ranking-availability">{(()=>{const note=rankingAvailabilityText(availability,t);return t(note.text,note.values);})()}</p>
   <p className="subtle">{t('AION2 Tier List의 글로벌 전투력 상위 500명 표본에서 직업별 10명을 골랐습니다. 공식 전체 순위·DPS 순위가 아닙니다. 명단 확인 {0} · 수동 갱신',[time(snapshot.fetchedAt)])}</p>
   <details className="more-info"><summary>{t('자세히')}</summary><p className="subtle">{t('명단·구성·장비 비교는 저장된 자료입니다. 캐릭터 선택 또는 ‘공식 세팅 다시 조회’는 선택한 캐릭터의 상세 정보만 갱신하며 명단 순위와 비교 자료는 바꾸지 않습니다.')}</p></details>

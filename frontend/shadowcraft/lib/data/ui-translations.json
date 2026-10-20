@@ -8103,5 +8103,15 @@
     "en": "Anyone can browse builds. Sign in to publish or like.",
     "ja": "ビルドの閲覧は自由です。投稿・いいねはログイン後に利用できます。",
     "fi": "Buildeja voi selata vapaasti. Kirjaudu sisään julkaistaksesi tai tykätäksesi."
+  },
+  "전투력": {
+    "en": "Combat power",
+    "ja": "戦闘力",
+    "fi": "Taisteluvoima"
+  },
+  "랭킹 종류": {
+    "en": "Ranking type",
+    "ja": "ランキング種類",
+    "fi": "Sijoituksen tyyppi"
   }
 }
