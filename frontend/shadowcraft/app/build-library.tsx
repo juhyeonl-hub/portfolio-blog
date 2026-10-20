@@ -53,7 +53,7 @@ export default function BuildLibraryPanel({classKey, catalogVersion, plan, onApp
   return <section className="card" aria-label={t('빌드 보관함')}><h2>{t('빌드 보관함')}</h2>
     <p>{t('현재 직업의 캐릭터·장비·포인트 조합을 최대 20개 보관합니다. 이 브라우저에만 저장됩니다. 다른 기기로 옮길 때는 빌드 내보내기를 사용하세요.')}</p>
     {error&&<p role="alert">{t(error)}</p>}{message&&<p role="status">{t(message)}</p>}
-    <button className="button ghost" onClick={reload}>{t('보관함 다시 불러오기')}</button>
+    <button className="button ghost small library-reload" onClick={reload}>{t('보관함 다시 불러오기')}</button>
     {state&&<><div className="database-filters"><label>{t('빌드 이름')}<input aria-label={t('빌드 이름')} maxLength={60} value={name} onChange={e=>setName(e.target.value)}/></label><button className="button primary" disabled={!name.trim()||state.data.entries.length>=20} onClick={save}>{t('현재 계획 보관')}</button></div>
       <p>{t('{0} / 20개',[state.data.entries.length])}</p>
       {state.data.entries.length===0&&<p>{t('보관한 빌드가 없습니다.')}</p>}

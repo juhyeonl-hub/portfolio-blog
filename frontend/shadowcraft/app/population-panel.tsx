@@ -1,5 +1,7 @@
 import {useLocale} from './locale';
-import {useState} from 'react';
+import {useEffect,useState} from 'react';
+import directory from '../lib/data/servers.json';
+import {TIMER_KEY,TIMER_SETTINGS_EVENT,parseSettings} from '../lib/event-timers';
 import {ArrowUpRight} from 'lucide-react';
 import {CLASSES} from '../lib/classes';
 import snapshot from '../lib/data/population.json';
@@ -7,11 +9,22 @@ import pairings from '../lib/data/server-pairs.json';
 
 const regions=[['eu','유럽'],['nae','북미 동부'],['naw','북미 서부'],['la','남미'],['as','아시아']];
 
+/** The content timer's server as a population entry (ids are "<region>/<lowercase name>"), or null when none is saved. */
+function timerServer():{region:string;race:number;id:string}|null{
+ try{const raw=localStorage.getItem(TIMER_KEY);if(!raw)return null;const settings=parseSettings(raw);
+  const server=(directory as Record<string,{serverId:number;serverName:string;raceId:number}[]>)[settings.region]?.find(s=>String(s.serverId)===settings.server);
+  const entry=server&&snapshot.servers.find(s=>s.id===settings.region+'/'+server.serverName.toLowerCase()&&s.race===server.raceId);
+  return entry?{region:entry.region,race:entry.race,id:entry.id}:null;}catch{return null;}
+}
 export default function PopulationPanel(){
  const {t,locale}=useLocale();const number=new Intl.NumberFormat(locale);
- const [region,setRegion]=useState('eu');
- const [race,setRace]=useState(1);
- const [serverId,setServerId]=useState('');
+ // Starts from the server saved in the content timer (one "my server" for both); choosing here does not change the timer.
+ const [mine]=useState(timerServer);
+ const [region,setRegion]=useState(mine?.region||'eu');
+ const [race,setRace]=useState(mine?.race||1);
+ const [serverId,setServerId]=useState(mine?.id||'');
+ useEffect(()=>{function follow(){const next=timerServer();if(next){setRegion(next.region);setRace(next.race);setServerId(next.id);}}
+  window.addEventListener(TIMER_SETTINGS_EVENT,follow);return()=>window.removeEventListener(TIMER_SETTINGS_EVENT,follow);},[]);
  const servers=snapshot.servers.filter(s=>s.region===region&&s.race===race);
  const selected=servers.find(s=>s.id===serverId);
  const selectedPair=pairings.pairs.find(ids=>ids.includes(serverId));
@@ -28,7 +41,7 @@ export default function PopulationPanel(){
  const total=rows.reduce((sum,c)=>sum+c.count,0);
  const stale=Date.now()-Date.parse(snapshot.fetchedAt)>7*86400000;
  return <section className="panel population-panel" aria-label={t('서버별 직업 분포')}>
-  <div className="population-heading"><div><span className="eyebrow">SERVER & CLASS</span><h2>{t('서버별 직업 분포')}</h2><p>{t('내 서버에는 어떤 직업이 많을까요?')}</p></div><a className="button ghost small" href={snapshot.source} target="_blank" rel="noreferrer">{t('외부 통계 보기')} <ArrowUpRight size={14}/></a></div>
+  <div className="population-heading"><div><span className="eyebrow">{t('서버·직업')}</span><h2>{t('서버별 직업 분포')}</h2><p>{t('내 서버에는 어떤 직업이 많을까요?')}</p></div><a className="button ghost small" href={snapshot.source} target="_blank" rel="noreferrer">{t('외부 통계 보기')} <ArrowUpRight size={14}/></a></div>
   <div className="population-filters">
    <label>{t('지역')}<select aria-label={t('지역')} value={region} onChange={e=>{setRegion(e.target.value);setServerId('')}}>{regions.map(([id,name])=><option key={id} value={id}>{t(name)}</option>)}</select></label>
    <div className="population-matchup-field"><span>{selected?t('서버 대조'):t('종족')}</span><div className="population-matchup" role="group" aria-label={t('진영별 서버 대조')}>

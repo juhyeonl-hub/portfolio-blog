@@ -1,0 +1,17 @@
+Destination: https://github.com/karim-mo/aion2-abysslogs-dps-meter/issues
+Status: DRAFT — not posted
+Title: Is a supported read-only Global field-boss feed available for a community website?
+
+Hello,
+
+I maintain aion2(Steam) build craft (a2bc), a community build-planning site at https://juhyeonl.dev/lab/shadowcraft/.
+
+I would like to show server-specific field-boss timers without requiring each visitor to install a collector or enter kill times. Community documentation describes an AbyssLogs-powered feed used by Aion2Timers. Does AbyssLogs provide supported third-party read access to this data, or is there a preferred contact for requesting it?
+
+The initial bosses are Eternal/Immortal Gartua, High Commander Lagta, Soul Ruler Kashapa and Silent Dartan on Global servers. We would need server/region identifiers, boss identifiers, observed state or next-spawn timestamps, observation/update timestamps, and any estimated/stale flags.
+
+Could you clarify the endpoint and authentication process, supported servers, access/display terms, required attribution, and rate limits? We can cache server-side, poll no faster than once per minute (or your required interval), and clearly mark estimated or stale records. We do not need player identities or combat logs.
+
+If this repository is not the right place for this question, a link to the appropriate contact or documentation would help. Please do not post API keys in this public issue.
+
+Thank you.

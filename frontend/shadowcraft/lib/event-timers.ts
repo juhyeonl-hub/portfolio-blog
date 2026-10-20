@@ -2,6 +2,8 @@ export const TIMER_IDS=['shugo','dimension','gartua','lagta','kashapa','tartan']
 export type TimerId=typeof TIMER_IDS[number];
 export const TIMER_NAMES:Record<TimerId,string>={shugo:'슈고',dimension:'차원',gartua:'가르투아',lagta:'라그타',kashapa:'지배 카샤파',tartan:'타르탄'};
 export const TIMER_KEY='a2bc-event-timers-v1';
+/** Fired in this tab after the timer settings are saved (other tabs get the storage event). */
+export const TIMER_SETTINGS_EVENT='asbc-timer-settings';
 export type ServerTimers={offset:number|null;timeZone?:string;dimension:'invasion'|'rift';hidden:TimerId[];times:Partial<Record<TimerId,string>>};
 export type TimerSettings={version:1;region:string;server:string;profiles:Record<string,ServerTimers>};
 export const emptySettings=():TimerSettings=>({version:1,region:'eu',server:'',profiles:{}});

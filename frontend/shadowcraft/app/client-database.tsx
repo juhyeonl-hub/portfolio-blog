@@ -5,9 +5,13 @@ import JournalDatabase from './journal-database';
 import NpcDatabase from './npc-database';
 
 import {parseClientIndex, type ClientIndex} from '../lib/client-index';
+import {classProfile} from '../lib/classes';
+// Client item kinds shown in the UI language; grades (Legend, Unique …) stay as in the client until official names are verified.
+const ITEM_KINDS: Record<string, string> = {Usable: '사용 아이템', Equip: '장비', Misc: '기타', Currency: '재화'};
 
 export default function ClientDatabase({active, initialSkillId = ''}: {active: boolean; initialSkillId?: string}) {
  const {t}=useLocale();
+  const categoryLabel = (c: string) => ITEM_KINDS[c] ? t(ITEM_KINDS[c]) : /^[a-z]+$/.test(c) ? t(classProfile(c).name) : c;
   const [data, setData] = useState<ClientIndex | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -53,14 +57,14 @@ export default function ClientDatabase({active, initialSkillId = ''}: {active: b
       <p className="subtle">{t("서버 내 이용 가능 여부와 장비·레벨에 따른 최종 전투 수치를 검증한 것은 아닙니다.")}</p>
       <div className="database-tabs">{(['items', 'skills'] as const).map((kind, i) => <button className="button ghost" key={kind} aria-pressed={section === kind} onClick={() => {setSection(kind); setFilter(''); setPage(0); setSelected(''); setQuery('');}}>{t(['아이템', '플레이어 스킬'][i])} ({data[kind].length})</button>)}</div>
       <div className="database-filters"><label>{t("데이터 검색")}<input type="search" value={query} onChange={e => {setQuery(e.target.value); setPage(0);}} placeholder={t("영문 이름 또는 ID")}/></label>
-        <label>{t("분류")}<select value={filter} onChange={e => {setFilter(e.target.value); setPage(0);}}><option value="">{t("전체")}</option>{categories.map(c => <option key={c}>{c}</option>)}</select></label></div>
+        <label>{t("분류")}<select value={filter} onChange={e => {setFilter(e.target.value); setPage(0);}}><option value="">{t("전체")}</option>{categories.map(c => <option key={c} value={c}>{categoryLabel(c)}</option>)}</select></label></div>
       <p>{t('검색 결과 {0}개',[matches.length.toLocaleString()])}</p>
       <div className="database-layout"><div><div className="database-list">{matches.slice(page * 30, page * 30 + 30).map(row => <button key={row.id} aria-pressed={selected === row.id} onClick={() => {setSelected(row.id);}}><strong>{row.name}</strong><small>{row.subtitle} · {row.id}</small></button>)}</div>
         {!matches.length && <p role="status">{t("검색 결과가 없습니다.")}</p>}
         <div className="database-pages"><button className="button ghost" disabled={page === 0} onClick={() => setPage(v => v - 1)}>{t("이전")}</button><span>{page + 1} / {Math.max(1, Math.ceil(matches.length / 30))}</span><button className="button ghost" disabled={(page + 1) * 30 >= matches.length} onClick={() => setPage(v => v + 1)}>{t("다음")}</button></div></div>
         <div className="database-detail" aria-label={t("데이터 상세")}>
           {!selected && <p>{t("목록에서 항목을 선택하세요.")}</p>}
-          {item && <><h3>{item.name}</h3><p>{t('ID {0} · {1} · {2} · 아이템 레벨 {3}',[item.id,item.kind,item.grade,item.level])}</p><p>{t("현재 서버의 획득 가능 여부는 확인되지 않았습니다.")}</p></>}
+          {item && <><h3>{item.name}</h3><p>{t('ID {0} · {1} · {2} · 아이템 레벨 {3}',[item.id,categoryLabel(item.kind),item.grade,item.level])}</p><p>{t("현재 서버의 획득 가능 여부는 확인되지 않았습니다.")}</p></>}
           {skill && <><h3>{skill.name}</h3><p>ID {skill.id} · {skill.classKey}</p>
             <div aria-label={t("공식 글로벌 스킬 설명")}><h4>{t("공식 글로벌 스킬 설명")}</h4>
               {skill.description?.valueScope === 'base-client-values' && <p className="subtle">{t("클라이언트 기본값 기준 · 레벨 성장·장비·특화 효과 미적용")}</p>}

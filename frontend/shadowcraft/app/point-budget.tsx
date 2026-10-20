@@ -19,7 +19,7 @@ export default function PointBudgetPanel({catalog,plan,onEdit,onApply}:{catalog:
  function preview(){setBusy(true);setError('');setTimeout(()=>{try{setCandidate(recommendBuild(catalog,plan))}catch{setError(t('추천 계산에 실패했습니다. 포인트와 레벨을 확인한 뒤 다시 시도하세요.'))}finally{setBusy(false)}},30)}
  const result=candidate?totals(catalog,candidate):null;
  return <section id="point-budget" className="panel budget-panel direct-budget">
-  <div className="section-title"><div><span className="eyebrow">YOUR POINTS → YOUR BUILD</span><h3>{t('내 포인트로 추천 배분')}</h3></div><label className="level-field">{t('캐릭터 레벨')}<input type="number" min={1} max={45} value={plan.level} disabled={busy} onChange={e=>onEdit({level:Math.max(1,Math.min(45,count(e.target.value)))})}/></label></div>
+  <div className="section-title"><div><span className="eyebrow">{t('내 포인트 → 내 빌드')}</span><h3>{t('내 포인트로 추천 배분')}</h3></div><label className="level-field">{t('캐릭터 레벨')}<input type="number" min={1} max={45} value={plan.level} disabled={busy} onChange={e=>onEdit({level:Math.max(1,Math.min(45,count(e.target.value)))})}/></label></div>
   <label className="ascension-confirm"><input type="checkbox" checked={plan.ascensionGrade3Confirmed===true} disabled={busy} onChange={e=>onEdit({ascensionGrade3Confirmed:e.target.checked})}/>{t('승급 조건 충족을 게임에서 확인했습니다 (AscensionGrade_3)')}</label>
   <p className="subtle">{t('확인 전에는 승급이 필요한 스킬의 신규 투자·추천이 제한됩니다. 자동 캐릭터 조회로 확인한 값이 아니며, 이 설정은 현재 직업의 계획에 저장됩니다.')}</p>
   {unmet.length>0&&<div className="notice amber-notice" role="status">{t('승급 확인이 필요한 기존 투자 {0}개: {1}. 저장된 투자는 유지됩니다. 게임에서 조건을 확인하거나 추천을 다시 적용하세요.',[unmet.length,unmet.map(s=>localSkill(s.name)).join(', ')])}</div>}

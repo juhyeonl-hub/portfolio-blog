@@ -85,7 +85,7 @@ export default function MapPanel({active=false}:{active?:boolean}) {
         onPointerUp={() => {drag.current = null;}} onPointerCancel={() => {drag.current = null;}} onLostPointerCapture={() => {drag.current = null;}}>
         <defs><pattern id="a2bc-map-grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="#34394c" strokeWidth="1"/></pattern></defs>
         <rect width="1000" height="1000" fill="url(#a2bc-map-grid)"/>
-        {visible.map(m => <circle key={m.id} cx={m.x * 1000} cy={m.y * 1000} r={8 / view.zoom} fill={completed.has(m.id) ? '#6ed7aa' : '#ba96f5'} stroke={selected === m.id ? '#fff' : '#171a25'} strokeWidth={2 / view.zoom}
+        {visible.map(m => <circle key={m.id} cx={m.x * 1000} cy={m.y * 1000} r={8 / view.zoom} fill={completed.has(m.id) ? '#6ed7aa' : '#92dcf9'} stroke={selected === m.id ? '#fff' : '#171a25'} strokeWidth={2 / view.zoom}
           role="button" tabIndex={0} aria-label={`${m.name}${completed.has(m.id) ? ` (${t('완료')})` : ''}`} aria-pressed={selected === m.id}
           onPointerDown={e => e.stopPropagation()} onClick={() => focus(m)} onKeyDown={e => {if (e.key === 'Enter' || e.key === ' ') {e.preventDefault(); e.stopPropagation(); focus(m);}}}><title>{m.name}</title></circle>)}
       </svg>

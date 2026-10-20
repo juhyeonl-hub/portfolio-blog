@@ -6,13 +6,12 @@ from playwright.sync_api import sync_playwright, expect
 
 # The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
 def ensure_open(panel, label):
-    opener = panel.get_by_role('button', name=label, exact=True)
-    expect(opener.or_(panel.get_by_role('button', name='공식 지형 닫기', exact=True))).to_be_visible()
-    if opener.is_visible(): opener.click()
+    # Wait for the automatic opening first; click only if the map stays closed (e.g. after the user closed it).
+    try: expect(panel.get_by_role('button', name='공식 지형 닫기', exact=True)).to_be_visible(timeout=4000)
+    except AssertionError: panel.get_by_role('button', name=label, exact=True).click()
 def ensure_markers(panel):
-    show = panel.get_by_role('button', name='마커 보기', exact=True)
-    expect(show.or_(panel.get_by_role('button', name='마커 숨기기', exact=True))).to_be_visible()
-    if show.is_visible(): show.click()
+    try: expect(panel.get_by_role('button', name='마커 숨기기', exact=True)).to_be_visible(timeout=4000)
+    except AssertionError: panel.get_by_role('button', name='마커 보기', exact=True).click()
 
 def open_menu(page):
     # On phones the tab strip is shown only on Home; other screens use the 메뉴 drawer.

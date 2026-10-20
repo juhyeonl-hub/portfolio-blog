@@ -128,7 +128,7 @@ function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolea
   const tiles = visibleTerrainTiles(view, gridSize);
   return <div className={open?"terrain-workspace terrain-workspace-open":"terrain-workspace"}>
     <div className="terrain-overview"><h3>{t('{0} 지형 지도',[terrainName])}</h3>
-    <p className="subtle">{t('위치는 확인 중인 후보입니다. 실제 출현 여부는 게임에서 확인하세요.')}</p>
+    <p className="subtle">{t('게임 클라이언트 자료로 표시한 위치입니다. 일부는 실제 게임과 다를 수 있습니다.')}</p>
     <details className="terrain-source"><summary>{t('지도 출처와 데이터 안내')}</summary><p>{t('공식 글로벌 Steam 클라이언트 · 빌드 {0} · 지형 이미지 {1}개. 수집물·NPC의 좌표는 대조 중입니다. 사용자 지도 파일과는 별도로 표시합니다.',[source.buildId,gridSize * gridSize])}</p></details>
     <button className="button secondary" aria-expanded={open} onClick={() => {if(open)setOpen(false);else showTerrain();drag.current=null;}}>{open ? t('공식 지형 닫기') : t('공식 {0} 지형 열기',[terrainName])}</button>
     {labels.length > 0 && <div className="terrain-search">

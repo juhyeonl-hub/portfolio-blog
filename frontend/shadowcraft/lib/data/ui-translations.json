@@ -7398,5 +7398,110 @@
     "en": "Shared build applied. You can undo to restore the previous plan.",
     "ja": "共有ビルドを適用しました。適用前に戻せます。",
     "fi": "Jaettu rakenne otettiin käyttöön. Voit perua ja palauttaa aiemman suunnitelman."
+  },
+  "붙여넣기 → 확인 → 저장": {
+    "en": "PASTE → REVIEW → SAVE",
+    "ja": "貼り付け → 確認 → 保存",
+    "fi": "LIITÄ → TARKISTA → TALLENNA"
+  },
+  "장비 → 스킬 목표": {
+    "en": "EQUIPMENT → SKILL MILESTONES",
+    "ja": "装備 → スキル目標",
+    "fi": "VARUSTEET → TAITOTAVOITTEET"
+  },
+  "다음 장비 목표": {
+    "en": "NEXT EQUIPMENT GOAL",
+    "ja": "次の装備目標",
+    "fi": "SEURAAVA VARUSTETAVOITE"
+  },
+  "추천 검토": {
+    "en": "BUILD REVIEW",
+    "ja": "推薦レビュー",
+    "fi": "SUOSITUSTEN TARKISTUS"
+  },
+  "게임 데이터": {
+    "en": "LIVE GAME DATA",
+    "ja": "ゲームデータ",
+    "fi": "PELIDATA"
+  },
+  "내 캐릭터 연결": {
+    "en": "CONNECT YOUR CHARACTER",
+    "ja": "キャラクター連携",
+    "fi": "YHDISTÄ HAHMOSI"
+  },
+  "내 직업, 내 방식대로": {
+    "en": "YOUR CLASS, YOUR CONTROL",
+    "ja": "自分の職業を自分流に",
+    "fi": "OMA LUOKKA, OMA TAPA"
+  },
+  "내 포인트 → 내 빌드": {
+    "en": "YOUR POINTS → YOUR BUILD",
+    "ja": "ポイント → ビルド",
+    "fi": "PISTEET → RAKENNE"
+  },
+  "서버·직업": {
+    "en": "SERVER & CLASS",
+    "ja": "サーバー・職業",
+    "fi": "PALVELIN JA LUOKKA"
+  },
+  "실제 세팅": {
+    "en": "OBSERVED BUILDS",
+    "ja": "実際のセッティング",
+    "fi": "HAVAITUT RAKENTEET"
+  },
+  "사용 아이템": {
+    "en": "Usable",
+    "ja": "使用アイテム",
+    "fi": "Käytettävä"
+  },
+  "장비": {
+    "en": "Equipment",
+    "ja": "装備",
+    "fi": "Varuste"
+  },
+  "재화": {
+    "en": "Currency",
+    "ja": "通貨",
+    "fi": "Valuutta"
+  },
+  "카탈로그 확인 · 변경 없음": {
+    "en": "Catalog checked · no change",
+    "ja": "カタログ確認 · 変更なし",
+    "fi": "Luettelo tarkistettu · ei muutoksia"
+  },
+  "데이터 변경 · 추천 검토 필요": {
+    "en": "Data changed · recommendations need review",
+    "ja": "データ変更 · 推薦の確認が必要",
+    "fi": "Tiedot muuttuivat · suositukset tarkistettava"
+  },
+  "공식 글로벌 패치 공지 확인 완료": {
+    "en": "Official global patch notes checked",
+    "ja": "公式グローバルのパッチ告知を確認",
+    "fi": "Viralliset globaalit päivitystiedotteet tarkistettu"
+  },
+  "{0} · 스킬·보드 {1} 정기 동기화 · 변경 없음": {
+    "en": "{0} · skills & boards {1} scheduled sync · no change",
+    "ja": "{0} · スキル・ボード {1} 定期同期 · 変更なし",
+    "fi": "{0} · taidot ja taulut {1} ajastettu synkronointi · ei muutoksia"
+  },
+  "{0}회": {
+    "en": "{0}×",
+    "ja": "{0}回",
+    "fi": "{0} kertaa"
+  },
+  "최신 데이터 다시 확인": {
+    "en": "Check for new data",
+    "ja": "最新データを再確認",
+    "fi": "Tarkista uudet tiedot"
+  },
+  "자세히": {
+    "en": "More",
+    "ja": "詳しく",
+    "fi": "Lisää"
+  },
+  "게임 클라이언트 자료로 표시한 위치입니다. 일부는 실제 게임과 다를 수 있습니다.": {
+    "en": "Locations come from the game client data. Some may differ from the live game.",
+    "ja": "ゲームクライアントのデータで表示した位置です。一部は実際のゲームと異なる場合があります。",
+    "fi": "Sijainnit perustuvat pelin asiakasohjelman tietoihin. Osa voi poiketa pelistä."
   }
 }

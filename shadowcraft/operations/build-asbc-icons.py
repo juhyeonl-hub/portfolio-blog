@@ -9,7 +9,8 @@ from playwright.sync_api import sync_playwright
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 OUT = ROOT / 'frontend' / 'asbc-pages'
-CELL, HIGHLIGHT, LETTER, DARK, BG = '#272237', '#a68be9', '#c6b1ff', '#171020', '#0e1017'
+# Palette G (user choice): Steam black and navy with a vivid AION-style sky blue.
+CELL, HIGHLIGHT, LETTER, DARK, BG = '#1b2838', '#1ec8ff', '#eaf6ff', '#06202e', '#171a21'
 
 
 def icon(small: bool) -> str:
@@ -29,9 +30,9 @@ def icon(small: bool) -> str:
 PAGE = """<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=block" rel="stylesheet">
 <style>html,body{margin:0;background:transparent}svg{display:block;width:100%;height:100%}
-.og{width:1200px;height:630px;background:radial-gradient(ellipse at 30% 40%,#2a2140 0%,#0e1017 65%);display:flex;align-items:center;gap:64px;padding:0 96px;box-sizing:border-box;font-family:'Space Grotesk';color:#e8e9f2}
+.og{width:1200px;height:630px;background:radial-gradient(ellipse at 30% 40%,#163246 0%,#171a21 65%);display:flex;align-items:center;gap:64px;padding:0 96px;box-sizing:border-box;font-family:'Space Grotesk';color:#e8e9f2}
 .og .mark{width:300px;height:300px;flex:none}.og h1{font-size:120px;line-height:1;margin:0;letter-spacing:-2px}
-.og p{margin:18px 0 0;font-size:38px;color:#c6b1ff;font-weight:500}.og small{display:block;margin-top:26px;font-size:26px;color:#8f94a9;font-weight:500}</style></head>
+.og p{margin:18px 0 0;font-size:38px;color:#5fd8ff;font-weight:500}.og small{display:block;margin-top:26px;font-size:26px;color:#8f94a9;font-weight:500}</style></head>
 <body>__BODY__</body></html>"""
 
 
