@@ -2,6 +2,16 @@
 import os
 from playwright.sync_api import sync_playwright, expect
 
+# The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
+def ensure_open(panel, label):
+    opener = panel.get_by_role('button', name=label, exact=True)
+    expect(opener.or_(panel.get_by_role('button', name='공식 지형 닫기', exact=True))).to_be_visible()
+    if opener.is_visible(): opener.click()
+def ensure_markers(panel):
+    show = panel.get_by_role('button', name='마커 보기', exact=True)
+    expect(show.or_(panel.get_by_role('button', name='마커 숨기기', exact=True))).to_be_visible()
+    if show.is_visible(): show.click()
+
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True)
@@ -16,7 +26,7 @@ with sync_playwright() as p:
     page.get_by_role('tab',name='지도 & 수집',exact=True).click()
     panel=page.get_by_role('region',name='공식 글로벌 지형 지도',exact=True)
     original=page.evaluate('JSON.stringify({...localStorage})')
-    panel.get_by_role('button',name='공식 Verteron 지형 열기',exact=True).click()
+    ensure_open(panel,'공식 Verteron 지형 열기')
     canvas=panel.get_by_role('group',name='Verteron 지형 이미지',exact=True)
     expect(canvas).to_be_visible()
     expect(panel.get_by_role('button',name='위치 자료 불러오는 중',exact=True)).to_be_visible()
@@ -29,7 +39,7 @@ with sync_playwright() as p:
     for route in pending:route.continue_()
     expect(panel.get_by_role('button',name='마커 숨기기',exact=True)).to_be_visible()
     expect(canvas).to_have_count(0)  # Data arrival must not reopen a closed map.
-    panel.get_by_role('button',name='공식 Verteron 지형 열기',exact=True).click()
+    ensure_open(panel,'공식 Verteron 지형 열기')
     expect(canvas.locator('[data-preview-marker="teleport"]')).to_have_count(61)
     bounds=canvas.locator('[data-preview-marker="teleport"]').first.bounding_box()
     assert bounds['width']>=5, bounds
@@ -49,7 +59,7 @@ with sync_playwright() as p:
     panel.get_by_role('button',name='항목 전체 켜기',exact=True).click()
     expect(panel.get_by_role('checkbox',name='채집물 Ruby',exact=True)).to_be_checked()
     panel.get_by_label('공식 지형 지역',exact=True).select_option('altgard')
-    panel.get_by_role('button',name='공식 Altgard 지형 열기',exact=True).click()
+    ensure_open(panel,'공식 Altgard 지형 열기')
     expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(61)
     panel.get_by_role('checkbox',name='채집물',exact=True).check()
     panel.locator('summary').filter(has_text='채집물 종류 선택').click()

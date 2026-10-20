@@ -306,3 +306,15 @@
 .sidebar{padding-top:20px}.side-bottom small{margin-top:6px}.side-bottom a{margin-top:4px}
 .empty-builds{padding:18px;border:1px dashed var(--line);border-radius:8px;display:grid;gap:6px}
 .card{border:1px solid var(--line);background:var(--panel);border-radius:9px;padding:20px;margin-bottom:18px;display:block}.card>h2{font-size:19px;margin-bottom:8px}.card>p{margin:6px 0;font-size:12px}.card>.button{margin:8px 8px 0 0}.steam-players strong{font-family:'Space Grotesk',sans-serif;font-size:34px;color:var(--text)}
+/* Readability floor (audit M11): secondary text no smaller than 10–11 px, with more contrast. */
+.mini-tag,.tiny-tag,.spec small,.spec-title span,.board-node small,.stigma-grid span,.stigma-grid small,.eyebrow,.page-eyebrow,.side-caption,.priority>div>span{font-size:10px}
+.skill-name small,.skill-table-header,.final-level small,.skill-detail-meta,.event-timer-card small,.subtle,.priority-card>p,.stigma-card>p,.quiet-note p,.history-panel>div,.footer p,footer p{font-size:11px}
+.event-timer-toolbar{font-size:12px}.event-timer-toolbar .button{font-size:11px}
+:root{--muted:#a3a8bc}
+/* Touch targets (audit M10): at least ~40 px on phones without changing the desktop layout. */
+@media(max-width:760px){.stepper button{width:36px;height:36px}.bonus-input input{width:42px;height:36px}.workspace-meta summary{display:inline-block;padding:10px 4px}
+.asbc-footer nav a{display:inline-block;padding:10px 4px}.page-tabs button{padding:14px 2px}.segmented button{padding:10px 12px}
+input[type=checkbox]{width:20px;height:20px}label:has(>input[type=checkbox]){min-height:40px;display:flex;align-items:center;gap:8px}}
+@media(max-width:760px){.terrain-workspace-open{grid-template-columns:1fr}.terrain-workspace-open .terrain-stage{order:-1}.terrain-controls{max-height:none}}
+.database-detail{position:sticky;top:96px;max-height:calc(100vh - 110px);overflow:auto}@media(max-width:760px){.database-detail{position:static;max-height:none}}
+.shared-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px}

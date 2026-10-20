@@ -1,6 +1,16 @@
 """Official local icon assets, faction variants and failed-image interaction fallback."""
 import os
 from playwright.sync_api import sync_playwright,expect
+
+# The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
+def ensure_open(panel, label):
+    opener = panel.get_by_role('button', name=label, exact=True)
+    expect(opener.or_(panel.get_by_role('button', name='공식 지형 닫기', exact=True))).to_be_visible()
+    if opener.is_visible(): opener.click()
+def ensure_markers(panel):
+    show = panel.get_by_role('button', name='마커 보기', exact=True)
+    expect(show.or_(panel.get_by_role('button', name='마커 숨기기', exact=True))).to_be_visible()
+    if show.is_visible(): show.click()
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True)
@@ -14,7 +24,7 @@ with sync_playwright() as p:
         panel=page.get_by_role('region',name='공식 글로벌 지형 지도',exact=True)
         for region,faction in [('verteron','Light'),('altgard','Dark')]:
             panel.get_by_label('공식 지형 지역',exact=True).select_option(region)
-            panel.get_by_role('button',name='마커 보기',exact=True).click()
+            ensure_markers(panel)
             marker=panel.locator('[data-preview-marker="teleport"]').first
             expect(marker.locator('image')).to_have_attribute('href',f'/shadowcraft/maps/steam-25926599/icons/TeleportArtifact_{faction}_Engraved.png')
             href=marker.locator('image').get_attribute('href')
@@ -30,7 +40,7 @@ with sync_playwright() as p:
     page.goto(URL)
     page.get_by_role('tab',name='지도 & 수집',exact=True).click()
     panel=page.get_by_role('region',name='공식 글로벌 지형 지도',exact=True)
-    panel.get_by_role('button',name='마커 보기',exact=True).click()
+    ensure_markers(panel)
     marker=panel.locator('[data-preview-marker="teleport"]').first
     expect(marker.locator('[data-icon-fallback]')).to_have_count(1)
     marker.focus();marker.press('Enter')

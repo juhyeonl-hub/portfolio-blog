@@ -1,6 +1,16 @@
 """Official terrain browser acceptance; no game-coordinate assertions."""
 import os
 from playwright.sync_api import sync_playwright,expect
+
+# The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
+def ensure_open(panel, label):
+    opener = panel.get_by_role('button', name=label, exact=True)
+    expect(opener.or_(panel.get_by_role('button', name='공식 지형 닫기', exact=True))).to_be_visible()
+    if opener.is_visible(): opener.click()
+def ensure_markers(panel):
+    show = panel.get_by_role('button', name='마커 보기', exact=True)
+    expect(show.or_(panel.get_by_role('button', name='마커 숨기기', exact=True))).to_be_visible()
+    if show.is_visible(): show.click()
 url=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True)
@@ -11,12 +21,12 @@ with sync_playwright() as p:
     page.on('response',lambda r:tiles.append((r.url,r.status)) if '/maps/steam-25926599/' in r.url and r.url.endswith('.webp') else None)
     page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
     page.goto(url)
+    before=page.evaluate('JSON.stringify({...localStorage})')
+    assert not tiles,'terrain must not download before the map tab is opened'
+    page.route('**/maps/steam-25926599/verteron/4_4.webp',lambda r:r.fulfill(status=404,body='missing'))
     page.get_by_role('tab',name='지도 & 수집',exact=True).click()
     panel=page.get_by_role('region',name='공식 글로벌 지형 지도',exact=True)
-    before=page.evaluate('JSON.stringify({...localStorage})')
-    assert not tiles,'terrain must not download before the user opens it'
-    page.route('**/maps/steam-25926599/verteron/4_4.webp',lambda r:r.fulfill(status=404,body='missing'))
-    panel.get_by_role('button',name='공식 Verteron 지형 열기',exact=True).click()
+    ensure_open(panel,'공식 Verteron 지형 열기')
     canvas=panel.get_by_role('group',name='Verteron 지형 이미지',exact=True)
     expect(canvas.locator(':scope > image')).to_have_count(64)
     expect(canvas.locator('[data-preview-marker="teleport"]')).to_have_count(61)
@@ -58,8 +68,8 @@ with sync_playwright() as p:
     expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
     assert page.evaluate('JSON.stringify({...localStorage})')==before
     panel.get_by_label('공식 지형 지역',exact=True).select_option('altgard')
-    expect(panel.locator('svg[role=group]')).to_have_count(0)
-    panel.get_by_role('button',name='공식 Altgard 지형 열기',exact=True).click()
+    # Choosing a region opens its map right away (the map tab is already showing).
+    ensure_open(panel,'공식 Altgard 지형 열기')
     canvas=panel.get_by_role('group',name='Altgard 지형 이미지',exact=True)
     expect(canvas.locator('circle:not([data-preview-marker])')).to_have_count(71)
     expect(panel.get_by_role('checkbox',name='지역명 표시 (71)',exact=True)).to_be_checked()
@@ -75,14 +85,14 @@ with sync_playwright() as p:
     panel.get_by_role('button',name='지형 지도 확대',exact=True).click()
     expect(canvas).to_have_attribute('viewBox','250 250 500 500')
     panel.get_by_label('공식 지형 지역',exact=True).select_option('verteron')
-    panel.get_by_role('button',name='공식 Verteron 지형 열기',exact=True).click()
+    ensure_open(panel,'공식 Verteron 지형 열기')
     canvas=panel.get_by_role('group',name='Verteron 지형 이미지',exact=True)
     expect(canvas).to_have_attribute('viewBox','0 0 1000 1000')
     assert page.evaluate('JSON.stringify({...localStorage})')==before
     for slug,name,count in [('poeta','Poeta',16),('ishalgen','Ishalgen',25),('reshanta-lower','Chaotic Lower Reshanta',16),('reshanta-middle','Chaotic Middle Reshanta',4)]:
         panel.get_by_label('공식 지형 지역',exact=True).select_option(slug)
-        expect(panel.locator('svg[role=group]')).to_have_count(0)
-        panel.get_by_role('button',name=f'공식 {name} 지형 열기',exact=True).click()
+        # Choosing a region opens its map right away (the map tab is already showing).
+        ensure_open(panel,f'공식 {name} 지형 열기')
         canvas=panel.get_by_role('group',name=f'{name} 지형 이미지',exact=True)
         expect(canvas.locator(':scope > image')).to_have_count(count)
         expect(canvas.locator('circle:not([data-preview-marker])')).to_have_count(7 if slug.startswith('reshanta') else 0)
@@ -104,7 +114,7 @@ with sync_playwright() as p:
     results=panel.get_by_role('combobox',name='공식 지도 검색 결과')
     search.fill('no such region 12345')
     expect(results.locator('option')).to_have_count(1)
-    expect(panel.get_by_role('status')).to_have_text('검색 결과 0개')
+    expect(panel.get_by_role('status').filter(has_text=__import__('re').compile(r'^검색 결과 \d+개$'))).to_have_text('검색 결과 0개')
     search.fill('')
     first=results.locator('option').nth(1)
     location_id=first.get_attribute('value');location_name=first.inner_text()
@@ -126,8 +136,8 @@ with sync_playwright() as p:
     expect(panel.get_by_role('searchbox')).to_have_value('')
     expect(panel.get_by_role('button',name='선택 위치로 이동',exact=True)).to_have_count(0)
     assert page.evaluate('JSON.stringify({...localStorage})')==before
-    expect(panel.locator('[data-preview-marker]')).to_have_count(0)
-    panel.get_by_role('button',name='마커 보기',exact=True).click()
+    # The newly chosen region opens with its markers already loaded.
+    ensure_markers(panel)
     expect(panel.get_by_role('button',name='마커 숨기기',exact=True)).to_be_visible()
     expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(61)
     panel.get_by_role('button',name='항목 전체 끄기',exact=True).click()
@@ -157,11 +167,12 @@ with sync_playwright() as p:
     panel.get_by_role('button',name='마커 숨기기',exact=True).click()
     expect(panel.locator('[data-preview-marker]')).to_have_count(0)
     panel.get_by_label('공식 지형 지역',exact=True).select_option('verteron')
-    expect(panel.get_by_role('button',name='마커 보기',exact=True)).to_be_visible()
-    expect(panel.locator('[data-preview-marker]')).to_have_count(0)
+    # Hiding markers in one region does not carry over: the next region opens with its markers.
+    expect(panel.get_by_role('button',name='마커 숨기기',exact=True)).to_be_visible()
+    expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(61)
     assert page.evaluate('JSON.stringify({...localStorage})')==before
     panel.screenshot(path='/tmp/a2bc-official-terrain.png')
     assert not errors,errors
     assert not posts,posts
     browser.close()
-print('Terrain: lazy assets, 64 images, failed tile/retry, viewport/drag/keyboard, mobile and untouched storage PASS')
+print('Terrain: loads only when the map tab opens, regions open with markers, 64 images, failed tile/retry, viewport/drag/keyboard, mobile and untouched storage PASS')

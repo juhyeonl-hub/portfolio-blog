@@ -2,6 +2,7 @@ import {LocaleProvider,LanguageSelect,useLocale} from './locale';
 import {MemberProvider,MemberAccount,useMember,steamReturn} from './community'
 import {MoveBanner,TransferImport} from './origin-transfer';
 import {PrivacyPolicy} from './privacy';
+import {AsbcMark} from './asbc-mark';
 'use client';
 import {useEffect,useMemo,useState} from 'react';
 import {Swords,Shield,ChevronRight,ChevronDown,ArrowUpRight,Search,RefreshCw,Check,Plus,Minus,SlidersHorizontal,Download,Upload,X,Info,AlertTriangle,MousePointer2,Waypoints,Keyboard,BookOpen,History,UserRound,Cloud,Target,CheckCircle2,Lock,ExternalLink,Zap,PanelLeftClose} from 'lucide-react';
@@ -19,7 +20,7 @@ import EventTimers from './event-timers';
 import FactionPicker from './faction-picker';
 import SteamActivity from './steam-activity';
 import BuildLibraryPanel from './build-library';
-import SharedBuildView,{ShareBuildPanel} from './build-share';
+import SharedBuildView,{ShareBuildPanel,PENDING_SHARED_PLAN,readPendingShared} from './build-share';
 import ClientDatabase from './client-database';
 import PublicBuilds,{PublishedBuildView} from './public-builds';
 import {nodeStats} from '@/lib/board-effects';
@@ -39,6 +40,12 @@ function Workshop({classKey,initialCatalog,onClassChange,tab,setTab}:{classKey:s
  const {t,locale,specialization,skill:localSkill,node:localNode}=useLocale();const member=useMember();const date=(s?:string)=>prettyDate(s,t,locale);
  const initial=initialCatalog,profile=classProfile(classKey),CORE=profile.core,MOVEMENT=profile.movement,ORDER=profile.activePriority,ROLES=profile.roles;
  const {plan,setPlan,ready,save}=usePlanMemory(classKey,initialCatalog);
+ // A build chosen with "내 플래너에 적용" on a shared link: applied once the saved plan is restored, validated like an imported file, with undo.
+ useEffect(()=>{if(!ready)return;const pending=readPendingShared();if(!pending||pending.plan.classKey!==classKey)return;
+  try{sessionStorage.removeItem(PENDING_SHARED_PLAN)}catch{/* Already applied below; nothing else to clean. */}
+  if(!validStoredPlan(pending.plan,classKey)){notify(t('공유 빌드를 적용하지 못했습니다. JSON을 받아 불러오세요.'));return;}
+  const next={...pending.plan,classKey};setUndo({before:plan,after:next});setPlan(next);notify(t('공유 빌드를 적용했습니다. 적용 전으로 되돌릴 수 있습니다.'));
+ },[ready]); // eslint-disable-line react-hooks/exhaustive-deps
  const [catalog,setCatalog]=useState<Catalog>(initial as Catalog),[group,setGroup]=useState('active'),[expanded,setExpanded]=useState(''),[query,setQuery]=useState(''),[toast,setToast]=useState(''),[review,setReview]=useState(!!initialCatalog.reviewRequired),[history,setHistory]=useState<any[]>([]),[news,setNews]=useState<any>(newsInitial),[refreshing,setRefreshing]=useState(false),[budgetOpen,setBudgetOpen]=useState(false),[mobileNav,setMobileNav]=useState(false);
  const [undo,setUndo]=useState<{before:Plan;after:Plan}|null>(null);
  const BASELINE=catalog.baselineVersion||initial.baselineVersion||initial.version;
@@ -78,7 +85,7 @@ function Workshop({classKey,initialCatalog,onClassChange,tab,setTab}:{classKey:s
  if(!ready)return <div className="class-loading" role="status">{t('저장한 캐릭터와 계획을 복원하는 중…')}</div>;
  const plannerTab=['quick','builds','gear','skills','daevanion','macro','rotation'].includes(tab);
  return <div className={tab==='home'?'shell home-shell':'shell'}>
- {tab!=='home'&&<aside className={'sidebar '+(mobileNav?'mobile-show':'')}><a className="brand" href="#" onClick={e=>{e.preventDefault();setTab('home');setMobileNav(false)}}><span className="brand-symbol"><Swords size={24}/></span><span>ASBC<small>AION 2 · GLOBAL</small></span></a><nav role="tablist" aria-label={t('주 메뉴')}>{[{name:"탐색",ids:["home","quick","public-builds","map","builds"]},{name:"빌드 편집",ids:["gear","skills","daevanion","macro","rotation"]},{name:"자료",ids:["activity","database","updates"]}].map(group=><div className="nav-group" key={t(group.name)}><div className="side-caption">{t(group.name)}</div>{tabs.filter(t=>group.ids.includes(t.id)).map(item=><button role="tab" aria-selected={tab===item.id} key={item.id} className={tab===item.id?'nav active':'nav'} onClick={()=>{setTab(item.id);setMobileNav(false)}}><item.icon size={18}/>{t(item.name)}{item.id==='updates'&&review&&<span className="dot amber"/>}</button>)}</div>)}</nav><div className="side-bottom"><span className="dot"/> Steam Global <span className="mono">{catalog.version}</span><small>{t('게임 데이터 © NCSOFT')}<br/>{t('비공식 개인 빌드 플래너')}</small><a href={catalog.source} target="_blank" rel="noreferrer">{t('데이터 출처')} <ArrowUpRight size={12}/></a></div></aside>}
+ {tab!=='home'&&<aside className={'sidebar '+(mobileNav?'mobile-show':'')}><a className="brand" href="#" onClick={e=>{e.preventDefault();setTab('home');setMobileNav(false)}}><AsbcMark/><span>ASBC<small>AION 2 · GLOBAL</small></span></a><nav role="tablist" aria-label={t('주 메뉴')}>{[{name:"탐색",ids:["home","quick","public-builds","map","builds"]},{name:"빌드 편집",ids:["gear","skills","daevanion","macro","rotation"]},{name:"자료",ids:["activity","database","updates"]}].map(group=><div className="nav-group" key={t(group.name)}><div className="side-caption">{t(group.name)}</div>{tabs.filter(t=>group.ids.includes(t.id)).map(item=><button role="tab" aria-selected={tab===item.id} key={item.id} className={tab===item.id?'nav active':'nav'} onClick={()=>{setTab(item.id);setMobileNav(false)}}><item.icon size={18}/>{t(item.name)}{item.id==='updates'&&review&&<span className="dot amber"/>}</button>)}</div>)}</nav><div className="side-bottom"><span className="dot"/> Steam Global <span className="mono">{catalog.version}</span><small>{t('게임 데이터 © NCSOFT')}<br/>{t('비공식 개인 빌드 플래너')}</small><a href={catalog.source} target="_blank" rel="noreferrer">{t('데이터 출처')} <ArrowUpRight size={12}/></a></div></aside>}
  <main><header className="topbar"><div className="breadcrumb">{tab!=='home'&&<button className="mobile-menu icon-button" onClick={()=>setMobileNav(!mobileNav)} aria-label={t('메뉴')}><PanelLeftClose size={18}/><small className="mobile-menu-label">{t('메뉴')}</small></button>}<b>{tab==='home'?'ASBC':tab==='account'?t('내 계정'):t(tabs.find(item=>item.id===tab)?.name||'')}</b>{plannerTab&&<><ChevronRight size={13}/><span>{t(profile.name)}</span></>}</div><div className="asbc-account-actions"><LanguageSelect/><button className="button secondary small" onClick={()=>setTab('account')}>{member?t('내 계정'):t('로그인')}</button></div>{plannerTab&&<div className="top-actions"><span className="save-status"><Cloud size={14}/>{t(save)}</span><button className="button ghost small" onClick={exportPlan}><Download size={14}/>{t('빌드 내보내기')}</button></div>}</header>
  <div className="content">
  {tab!=='home'&&<div className="workspace-meta"><details><summary>{t('저장 안내')}</summary><p>{t('빌드와 지도 기록은 이 브라우저에 저장됩니다. 공용 브라우저에서는 입력 내용이 공유됩니다. 다른 기기의 빌드는 JSON으로 가져오세요.')}</p></details></div>}{plannerTab&&<><div className="page-eyebrow"><span className="violet-line"/> YOUR CLASS, YOUR CONTROL</div>{tab==='quick'&&<div className="home-section-title planner-class-heading"><h2>{t('어떤 직업으로 시작할까요?')}</h2><span>{t('8직업 빌드 플래너')}</span></div>}<div className="class-picker" aria-label={t('직업 선택')}>{CLASSES.map(p=><button key={p.key} aria-pressed={p.key===classKey} className={p.key===classKey?'selected':''} onClick={()=>onClassChange(p.key)}><img src={'/shadowcraft/game/images/ui/resource/texture/icon/ut_class_'+p.key+'_large.webp'} alt=""/><span>{t(p.name)}</span>{locale!=='en'&&locale!=='fi'&&<small>{CLASS_NAMES_EN[p.key]}</small>}</button>)}</div>
@@ -104,7 +111,7 @@ function Workshop({classKey,initialCatalog,onClassChange,tab,setTab}:{classKey:s
  {tab==='builds'&&<><BuildLibraryPanel classKey={classKey} catalogVersion={catalog.version||'미확인'} plan={plan} onApply={setPlan}/><ShareBuildPanel catalog={catalog} plan={plan}/></>}
  {tab==='quick'&&<QuickBuild catalog={catalog} plan={plan} onApply={next=>{setUndo({before:plan,after:next});setPlan(next);setViewCurrent(false);notify(t('빌드를 적용했습니다. 적용 전으로 되돌릴 수 있습니다.'))}} onEdit={setTab}/>}
  {undo&&<div className="notice" role="status"><span>{plan===undo.after?t('빌드를 적용했습니다.'):t('적용 이후 편집한 내용이 있습니다. 되돌리면 이 변경도 취소됩니다.')}</span><button className="button secondary" onClick={()=>{setPlan(undo.before);setUndo(null);notify(t('빌드 적용 전 계획으로 되돌렸습니다.'))}}>{t('빌드 적용 전으로 되돌리기')}</button></div>}
- <div hidden={tab!=='map'}><MapPanel/></div>
+ <div hidden={tab!=='map'}><MapPanel active={tab==='map'}/></div>
  <div hidden={tab!=='database'}><ClientDatabase key={databaseSkill.revision} active={tab==='database'} initialSkillId={databaseSkill.id}/></div>
  {tab==='gear'&&<GearPanel catalog={catalog} plan={plan} onEdit={edit}/>}
  {tab==='skills'&&<section className="skill-editor" aria-label={t('스킬 상세 편집')}><button className="button ghost" onClick={()=>setTab('quick')}>{t('← 간편 빌드 선택')}</button>
@@ -146,9 +153,9 @@ export default function Page(){
 }
 function PlannerPage(){
  const {t}=useLocale();
- const [tab,setTab]=useState(()=>steamReturn()?'account':'home');
+ const [tab,setTab]=useState(()=>steamReturn()?'account':readPendingShared()?'skills':'home');
  const [selected,setSelected]=useState('assassin'),[catalogs,setCatalogs]=useState<Record<string,Catalog>>({assassin:assassinInitial as Catalog}),[loadError,setLoadError]=useState(''),[retry,setRetry]=useState(0);
- useEffect(()=>{try{const key=localStorage.getItem('shadowcraft-selected-class');if(key&&isClassKey(key))setSelected(key)}catch{}},[]);
+ useEffect(()=>{const pending=readPendingShared()?.plan.classKey;if(pending&&isClassKey(pending)){choose(pending);return;}try{const key=localStorage.getItem('shadowcraft-selected-class');if(key&&isClassKey(key))setSelected(key)}catch{}},[]); // eslint-disable-line react-hooks/exhaustive-deps
  useEffect(()=>{let active=true;setLoadError('');if(!catalogs[selected])loadBundledCatalog(selected).then(c=>{if(active)setCatalogs(old=>({...old,[selected]:c}))}).catch(()=>{if(active)setLoadError('직업 데이터를 불러오지 못했습니다. 다시 시도하세요.')});return()=>{active=false}},[selected,retry]);
  function choose(key:string){if(!isClassKey(key))return;setSelected(key);try{localStorage.setItem('shadowcraft-selected-class',key)}catch{}}
  if(!catalogs[selected])return <div className="class-loading"><div className="brand"><Swords/>ASBC</div><h2>{t('{0} 불러오는 중',[t(classProfile(selected).name)])}</h2>{loadError?<><p>{t(loadError)}</p><button className="button primary" onClick={()=>setRetry(v=>v+1)}>{t('다시 시도')}</button></>:<RefreshCw className="spin"/>}<div className="class-picker">{CLASSES.map(p=><button key={p.key} onClick={()=>choose(p.key)}>{t(p.name)}</button>)}</div></div>;

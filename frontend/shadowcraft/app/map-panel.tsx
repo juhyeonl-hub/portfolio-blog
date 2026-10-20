@@ -4,7 +4,7 @@ import {useLocale} from './locale';
 import {constrainMapView, filterMapMarkers, loadMapProgress, mapProgressKey, MAX_MAP_BYTES, parseMapDataset,
   saveMapProgress, zoomMap, type MapDataset, type MapMarker, type MapView} from '../lib/world-map';
 
-export default function MapPanel() {
+export default function MapPanel({active=false}:{active?:boolean}) {
   const {t} = useLocale();
   const [dataset, setDataset] = useState<MapDataset | null>(null);
   const [key, setKey] = useState('');
@@ -60,7 +60,7 @@ export default function MapPanel() {
   }
   return <section className="map-panel card" aria-label={t('지도 탐색')}>
     <h2>{t('지도 & 수집 기록')}</h2>
-    <TerrainPanel/>
+    <TerrainPanel active={active}/>
     <details className="optional-panel"><summary>{t('사용자 지도 파일 가져오기')}</summary>
     <div className="notice amber-notice">{t('직접 만든 지도 파일을 추가로 열 수 있습니다. 가져온 파일의 위치는 검증되지 않으며, 위 지형 지도의 기록과 따로 저장합니다.')}</div>
     <label className="map-field">{t('지도 파일 가져오기')}<input type="file" accept=".json,application/json" aria-label={t('지도 파일 가져오기')} onChange={e => {void importFile(e.target.files?.[0]); e.target.value = '';}}/></label>

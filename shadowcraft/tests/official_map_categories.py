@@ -4,6 +4,16 @@ import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 
+# The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
+def ensure_open(panel, label):
+    opener = panel.get_by_role('button', name=label, exact=True)
+    expect(opener.or_(panel.get_by_role('button', name='공식 지형 닫기', exact=True))).to_be_visible()
+    if opener.is_visible(): opener.click()
+def ensure_markers(panel):
+    show = panel.get_by_role('button', name='마커 보기', exact=True)
+    expect(show.or_(panel.get_by_role('button', name='마커 숨기기', exact=True))).to_be_visible()
+    if show.is_visible(): show.click()
+
 URL = os.environ.get('SHADOWCRAFT_TEST_URL', 'http://127.0.0.1:5173/lab/shadowcraft/')
 ROOT = Path(__file__).resolve().parents[2]
 DATA = json.loads((ROOT / 'frontend/shadowcraft/lib/data/spawn-preview.json').read_text())
@@ -25,7 +35,7 @@ with sync_playwright() as p:
         page.get_by_role('tab', name='지도 & 수집', exact=True).click()
         panel = page.get_by_role('region', name='공식 글로벌 지형 지도', exact=True)
         panel.get_by_label('공식 지형 지역', exact=True).select_option(slug)
-        panel.get_by_role('button', name='마커 보기', exact=True).click()
+        ensure_markers(panel)
         expect(panel.get_by_role('button', name='마커 숨기기', exact=True)).to_be_visible()
         panel.get_by_role('button', name='항목 전체 끄기', exact=True).click()
         return panel

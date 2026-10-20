@@ -25,6 +25,9 @@ export default function NpcDatabase({active}: {active: boolean}) {
     return () => {live = false; controller.abort();};
   }, [active, open, data, retry]);
   const matches = data?.npcs.filter(npc => (!kind || npc.kind === kind) && `${npc.name ?? ''} ${npc.id}`.toLowerCase().includes(query.trim().toLowerCase())) ?? [];
+  // Developer/test placeholders in the client data (training dummies, specimen monsters, bots) go last; unnamed NPCs after named ones.
+  const testName = (name: string | null) => !name || /punching bag|specimen|\bbot\b|\btest\b|dummy/i.test(name);
+  matches.sort((a, b) => Number(testName(a.name)) - Number(testName(b.name)));
   const npc = data?.npcs.find(row => row.id === selected);
   return <section aria-label={t("공식 NPC 목록")}>
     <h3>{t("공식 NPC 목록")}</h3>

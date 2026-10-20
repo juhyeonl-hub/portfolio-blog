@@ -2,6 +2,16 @@
 import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
+
+# The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
+def ensure_open(panel, label):
+    opener = panel.get_by_role('button', name=label, exact=True)
+    expect(opener.or_(panel.get_by_role('button', name='공식 지형 닫기', exact=True))).to_be_visible()
+    if opener.is_visible(): opener.click()
+def ensure_markers(panel):
+    show = panel.get_by_role('button', name='마커 보기', exact=True)
+    expect(show.or_(panel.get_by_role('button', name='마커 숨기기', exact=True))).to_be_visible()
+    if show.is_visible(): show.click()
 root=Path(__file__).resolve().parents[2]
 data=json.loads((root/'frontend/shadowcraft/lib/data/spawn-preview.json').read_text())
 icons=json.loads((root/'frontend/shadowcraft/lib/data/map-icons.json').read_text())
@@ -14,7 +24,7 @@ with sync_playwright() as p:
     page.goto(url)
     page.get_by_role('tab',name='지도 & 수집',exact=True).click()
     panel=page.get_by_role('region',name='공식 글로벌 지형 지도',exact=True)
-    panel.get_by_role('button',name='마커 보기',exact=True).click()
+    ensure_markers(panel)
     expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(61)
     before=page.evaluate('JSON.stringify({...localStorage})')
     rows=data['maps'][0]['markers']
@@ -30,13 +40,13 @@ with sync_playwright() as p:
         card=panel.get_by_role('region',name='선택한 마커 정보',exact=True)
         expect(card.locator('h3 image')).to_have_attribute('href',icons[key]['src'])
     panel.get_by_label('공식 지형 지역',exact=True).select_option('reshanta-lower')
-    panel.get_by_role('button',name='마커 보기',exact=True).click()
+    ensure_markers(panel)
     expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(2)
     for marker in panel.locator('[data-preview-marker="teleport"]').all():
         expect(marker.locator('image')).to_have_attribute('href',icons['teleportAbyss']['src'])
     assert page.evaluate('JSON.stringify({...localStorage})')==before
     panel.get_by_label('공식 지형 지역',exact=True).select_option('verteron')
-    panel.get_by_role('button',name='마커 보기',exact=True).click()
+    ensure_markers(panel)
     panel.get_by_role('button',name='항목 전체 끄기',exact=True).click()
     panel.get_by_role('checkbox',name='깃털 (Empyrean Trace)',exact=True).check()
     target=next(r for r in rows if r['kind']=='trace')
@@ -49,7 +59,7 @@ with sync_playwright() as p:
     expect(panel.locator('[data-preview-marker][aria-pressed="true"] image')).to_have_attribute('href',icons['traceComplete']['src'])
     page.reload()
     page.get_by_role('tab',name='지도 & 수집',exact=True).click()
-    panel.get_by_role('button',name='마커 보기',exact=True).click()
+    ensure_markers(panel)
     panel.get_by_role('checkbox',name='깃털 (Empyrean Trace)',exact=True).check()
     panel.get_by_label('실험 위치 검색',exact=True).fill(target['name'])
     panel.get_by_label('실험 위치 선택',exact=True).select_option(target['id'])

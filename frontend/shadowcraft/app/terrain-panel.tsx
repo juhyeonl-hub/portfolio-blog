@@ -14,7 +14,7 @@ import {visibleTerrainTiles, terrainLabelNames, searchTerrainLocations, terrainL
 import {nearestTeleports, previewMatches, visiblePreview, previewKinds, previewGatherKinds, previewKindLabel, previewPage, previewProgressDataset, type SpawnPreview} from '../lib/spawn-preview';
 const terrains: Record<string, typeof verteron> = {verteron, altgard, poeta, ishalgen, 'reshanta-lower': reshantaLower, 'reshanta-middle': reshantaMiddle};
 
-export default function TerrainPanel() {
+export default function TerrainPanel({active=false}:{active?:boolean}) {
   const {t} = useLocale();
   const [selected, setSelected] = useState('verteron');
   const terrain = terrains[selected] ?? verteron;
@@ -22,11 +22,11 @@ export default function TerrainPanel() {
     <label>{t('공식 지형 지역')}<select aria-label={t('공식 지형 지역')} value={selected} onChange={e => setSelected(e.target.value)}>
       {Object.entries(terrains).map(([key, value]) => <option key={key} value={key}>{value.name}</option>)}
     </select></label>
-    <TerrainView key={selected} terrain={terrain}/>
+    <TerrainView key={selected} terrain={terrain} active={active}/>
   </section>;
 }
 
-function TerrainView({terrain}: {terrain: typeof verteron}) {
+function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolean}) {
   const {t} = useLocale();
   const {name: terrainName, source, gridSize, basePath} = terrain;
   const [open, setOpen] = useState(false);
@@ -78,6 +78,9 @@ function TerrainView({terrain}: {terrain: typeof verteron}) {
       setPreview(map.markers);setPreviewOn(true);if(openMap)setOpen(true);
     } catch {setPreviewError(true);} finally {setPreviewLoading(false);}
   }
+  // The map opens the first time the tab is shown, so visitors see it without an extra click; it stays hidden (and unloaded) otherwise.
+  const autoOpened = useRef(false);
+  useEffect(() => {if(active && !autoOpened.current){autoOpened.current=true;showTerrain();}}, [active]); // eslint-disable-line react-hooks/exhaustive-deps
   function showTerrain() {
     setOpen(true);drag.current=null;
     if(!previewOn && !previewLoading)void togglePreview(false);

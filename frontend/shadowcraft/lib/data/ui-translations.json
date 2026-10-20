@@ -7373,5 +7373,30 @@
     "en": "Sign in to share your own build. Be the first to post one.",
     "ja": "ログインすると自分のビルドを共有できます。最初のビルドを投稿してみましょう。",
     "fi": "Kirjaudu sisään jakaaksesi oman rakenteesi. Julkaise ensimmäinen."
+  },
+  "내 플래너에 적용": {
+    "en": "Apply to my planner",
+    "ja": "自分のプランナーに適用",
+    "fi": "Käytä omassa suunnittelijassa"
+  },
+  "적용하면 이 직업의 현재 계획이 공유 빌드로 바뀝니다. 적용한 뒤 바로 되돌릴 수 있고, 미리 보관함에 저장해 둘 수도 있습니다.": {
+    "en": "Applying replaces this class's current plan with the shared build. You can undo right after applying, or save your plan to the library first.",
+    "ja": "適用すると、この職業の現在の計画が共有ビルドに置き換わります。適用直後に元に戻せます。先に保管庫へ保存しておくこともできます。",
+    "fi": "Käyttäminen korvaa tämän luokan nykyisen suunnitelman jaetulla rakenteella. Voit perua heti käytön jälkeen tai tallentaa suunnitelmasi ensin kirjastoon."
+  },
+  "이 브라우저에 임시 저장하지 못했습니다. JSON을 받아 플래너에서 불러오세요.": {
+    "en": "Could not store it temporarily in this browser. Download the JSON and import it in the planner.",
+    "ja": "このブラウザに一時保存できませんでした。JSONを受け取ってプランナーで読み込んでください。",
+    "fi": "Väliaikainen tallennus tähän selaimeen epäonnistui. Lataa JSON ja tuo se suunnittelijaan."
+  },
+  "공유 빌드를 적용하지 못했습니다. JSON을 받아 불러오세요.": {
+    "en": "Could not apply the shared build. Download the JSON and import it.",
+    "ja": "共有ビルドを適用できませんでした。JSONを受け取って読み込んでください。",
+    "fi": "Jaettua rakennetta ei voitu käyttää. Lataa JSON ja tuo se."
+  },
+  "공유 빌드를 적용했습니다. 적용 전으로 되돌릴 수 있습니다.": {
+    "en": "Shared build applied. You can undo to restore the previous plan.",
+    "ja": "共有ビルドを適用しました。適用前に戻せます。",
+    "fi": "Jaettu rakenne otettiin käyttöön. Voit perua ja palauttaa aiemman suunnitelman."
   }
 }

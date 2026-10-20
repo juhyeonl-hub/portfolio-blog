@@ -4,6 +4,16 @@ import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 
+# The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
+def ensure_open(panel, label):
+    opener = panel.get_by_role('button', name=label, exact=True)
+    expect(opener.or_(panel.get_by_role('button', name='공식 지형 닫기', exact=True))).to_be_visible()
+    if opener.is_visible(): opener.click()
+def ensure_markers(panel):
+    show = panel.get_by_role('button', name='마커 보기', exact=True)
+    expect(show.or_(panel.get_by_role('button', name='마커 숨기기', exact=True))).to_be_visible()
+    if show.is_visible(): show.click()
+
 def open_menu(page):
     # On phones the tab strip is shown only on Home; other screens use the 메뉴 drawer.
     if page.locator('.mobile-menu').is_visible(): page.locator('.mobile-menu').click()
@@ -33,7 +43,7 @@ with sync_playwright() as p:
         expect(page.get_by_label('지도 파일 가져오기',exact=True)).to_be_visible()
         optional.locator('summary').click()
         panel=page.get_by_role('region',name='공식 글로벌 지형 지도',exact=True)
-        panel.get_by_role('button',name='공식 Verteron 지형 열기',exact=True).click()
+        ensure_open(panel,'공식 Verteron 지형 열기')
         expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(61)
         if width>=1200:
             controls=panel.locator('.terrain-controls').bounding_box()
