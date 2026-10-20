@@ -41,7 +41,7 @@ console.log('Localization: exact dictionary parameters, source-code rejection an
 const {default:ts}=await import('typescript');
 const {readdirSync}=await import('node:fs');
 const screens=readdirSync('app').filter(f=>f.endsWith('.tsx')).map(f=>f.slice(0,-4));
-assert.ok(screens.length>=30);
+assert.ok(screens.length>=27 /* app/*.tsx screens after the crafting/live-DPS removal (2026-10-20) */);
 for(const name of screens){
  const source=readFileSync('app/'+name+'.tsx','utf8');
  const ast=ts.createSourceFile(name+'.tsx',source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);
