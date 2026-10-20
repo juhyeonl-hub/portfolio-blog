@@ -5,12 +5,13 @@ import { fileURLToPath, URL } from 'node:url'
 import { copyFileSync, renameSync } from 'node:fs'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { asbcLocaleBundles } from './asbc-vite-plugins.js'
 import base from './vite.config.js'
 
 const out = 'dist-asbc'
 export default defineConfig({
   ...base,
-  plugins: [react(), tailwindcss(), {
+  plugins: [react(), tailwindcss(), asbcLocaleBundles(), {
     name: 'asbc-pages-output',
     closeBundle() {
       renameSync(`${out}/asbc.html`, `${out}/index.html`)

@@ -3,9 +3,10 @@ import { fileURLToPath, URL } from 'node:url'
 import { renameSync, rmSync } from 'node:fs'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { asbcLocaleBundles } from './asbc-vite-plugins.js'
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), {
+  plugins: [react(), tailwindcss(), asbcLocaleBundles(), {
     // Blog build only: ASBC lives on asbc.app. /lab/shadowcraft/ becomes the light "moved" page (data hand-over and
     // link forwarding) and the planner's game data under public/shadowcraft is left out of the blog deployment.
     // The dev server still serves the full planner at /lab/shadowcraft/ for the browser tests.
