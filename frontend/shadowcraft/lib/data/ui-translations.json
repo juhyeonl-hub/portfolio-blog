@@ -8159,6 +8159,86 @@
     "ja": "協力のアリーナポイント {0} · サーバー順位 {1}位",
     "fi": "Yhteistyön areenan pisteet {0} · palvelinsija {1}"
   },
+  "랭커": {
+    "en": "Rankers",
+    "ja": "ランカー",
+    "fi": "Huippupelaajat"
+  },
+  "빌드 설정": {
+    "en": "Build settings",
+    "ja": "ビルド設定",
+    "fi": "Buildin asetukset"
+  },
+  "플레이 스타일": {
+    "en": "Play style",
+    "ja": "プレイスタイル",
+    "fi": "Pelityyli"
+  },
+  "레벨링": {
+    "en": "Levelling",
+    "ja": "レベリング",
+    "fi": "Tasonnosto"
+  },
+  "레벨": {
+    "en": "Level",
+    "ja": "レベル",
+    "fi": "Taso"
+  },
+  "추천 배분 적용": {
+    "en": "Apply recommendation",
+    "ja": "おすすめ配分を適用",
+    "fi": "Käytä suositusta"
+  },
+  "추천 배분을 적용했습니다. 적용 전으로 되돌릴 수 있습니다.": {
+    "en": "Recommendation applied. You can revert to the previous plan.",
+    "ja": "おすすめ配分を適用しました。適用前に戻せます。",
+    "fi": "Suositus käytössä. Voit palata edelliseen suunnitelmaan."
+  },
+  "빌드 요약": {
+    "en": "Build summary",
+    "ja": "ビルド要約",
+    "fi": "Buildin yhteenveto"
+  },
+  "포인트 현황": {
+    "en": "Points",
+    "ja": "ポイント状況",
+    "fi": "Pisteet"
+  },
+  "랭커 세팅과 비교": {
+    "en": "Compare with rankers",
+    "ja": "ランカー設定と比較",
+    "fi": "Vertaa huippupelaajiin"
+  },
+  "공유 링크 · 보관함": {
+    "en": "Share link · library",
+    "ja": "共有リンク · 保管箱",
+    "fi": "Jakolinkki · kirjasto"
+  },
+  "사이드바 펼치기": {
+    "en": "Expand sidebar",
+    "ja": "サイドバーを開く",
+    "fi": "Laajenna sivupalkki"
+  },
+  "사이드바 접기": {
+    "en": "Collapse sidebar",
+    "ja": "サイドバーを閉じる",
+    "fi": "Supista sivupalkki"
+  },
+  "현재 Lv.{0} · 최대 Lv.{1}": {
+    "en": "Now Lv.{0} · max Lv.{1}",
+    "ja": "現在 Lv.{0} · 最大 Lv.{1}",
+    "fi": "Nyt Lv.{0} · enintään Lv.{1}"
+  },
+  "특화 {0} · Lv.{1}부터": {
+    "en": "Specialization {0} · from Lv.{1}",
+    "ja": "特化 {0} · Lv.{1}から",
+    "fi": "Erikoistuminen {0} · tasolta {1}"
+  },
+  "공식 설명 (영문)": {
+    "en": "Official description",
+    "ja": "公式説明（英文）",
+    "fi": "Virallinen kuvaus (englanniksi)"
+  },
   "공식 검색 목록은 Lv.{0}, 상세 조회는 아직 Lv.{1}입니다. NCSOFT의 상세 정보가 갱신될 때까지 스킬·장비는 이전 상태로 보일 수 있습니다.": {
     "en": "The official search lists Lv.{0} but the detail lookup still says Lv.{1}. Skills and gear may look outdated until NCSOFT refreshes the detail data.",
     "ja": "公式検索ではLv.{0}ですが、詳細照会はまだLv.{1}です。NCSOFTの詳細データが更新されるまで、スキル・装備は古い状態で表示されることがあります。",

@@ -1,6 +1,7 @@
 """Full-width home, planner class entry and map disclosure preserve the active workspace."""
 import os
 from playwright.sync_api import sync_playwright,expect
+from _ui import open_section, pick_class, open_build
 
 # The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
 def ensure_open(panel, label):
@@ -24,19 +25,18 @@ with sync_playwright() as p:
         page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
         page.goto(URL)
         expect(page.get_by_role('region',name='ASBC',exact=True)).to_be_visible()
-        expect(page.get_by_role('tab')).to_have_count(12)  # Steam activity moved to Home (2026-10-20)
+        expect(page.get_by_role('tab')).to_have_count(7)  # main screens only; build sections are pills on the build page (2026-10-21)
         expect(page.locator('.sidebar')).to_have_count(0)
         expect(page.get_by_role('heading',name='어떤 직업으로 시작할까요?')).to_have_count(0)
         assert page.locator('.shell > main').evaluate("el=>getComputedStyle(el).marginLeft")=='0px'
         stats=page.get_by_role('region',name='서버별 직업 분포')
         expect(stats.get_by_role('link',name='외부 통계 보기')).to_have_attribute('href','https://aion2tierlist.com/population')
         page.get_by_role('button',name='내 빌드 시작하기').click()
-        expect(page.get_by_role('heading',name='어떤 직업으로 시작할까요?')).to_be_visible()
-        expect(page.locator('.class-picker button')).to_have_count(8)
+        expect(page.locator('.class-select option')).to_have_count(8)
         for name in ['검성','수호성','궁성','살성','정령성','마도성','치유성','호법성']:
-            page.locator('.class-picker button').filter(has_text=name).click()
-            expect(page.get_by_role('region',name='간편 빌드 선택')).to_be_visible()
-            expect(page.locator('.class-picker button').filter(has_text=name)).to_have_attribute('aria-pressed','true')
+            pick_class(page,name)
+            expect(page.get_by_role('region',name='빌드 설정')).to_be_visible()
+            expect(page.locator('.class-select option:checked')).to_have_text(name)
         open_menu(page);page.get_by_role('tab',name='메인',exact=True).click()
         expect(page.locator('.sidebar')).to_have_count(0)
         page.screenshot(path=f'/tmp/a2bc-reference-ui-home-{width}.png')

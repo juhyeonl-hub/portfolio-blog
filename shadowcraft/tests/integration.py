@@ -3,13 +3,14 @@ from urllib.parse import urlsplit
 import json,re
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
+from _ui import open_section, pick_class, open_build, open_library
 ROOT=Path(__file__).resolve().parents[2]
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 keys=['assassin','gladiator','templar','ranger','elementalist','sorcerer','cleric','chanter']
 names=['살성','검성','수호성','궁성','정령성','마도성','치유성','호법성']
 passed=[]
 def open_settings(page):
- page.get_by_role('tab',name='스킬 & 특화',exact=True).first.click()
+ open_section(page,'스킬 & 특화')
  page.locator('.planner-context').evaluate('(el)=>el.open=true')
  if page.locator('.point-entry input').count()==0:
   page.get_by_role('button',name='내 포인트 입력',exact=False).click()
@@ -22,16 +23,16 @@ with sync_playwright() as p:
  page.on('request',lambda r: requests.append((r.method,r.url,r.post_data)))
  # Test degraded upstream separately from deterministic successful profile fixtures.
  page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={'error':'offline'}))
- page.goto(URL,wait_until='domcontentloaded');page.get_by_role('tab',name='빌드 선택',exact=True).first.click();page.wait_for_selector('.class-picker button')
+ page.goto(URL,wait_until='domcontentloaded');page.get_by_role('tab',name='빌드',exact=True).first.click();page.wait_for_selector('.class-select')
  for key,name in zip(keys,names):
-  page.locator('.class-picker button').filter(has_text=name).click()
+  pick_class(page,name)
   expect(page.locator('.breadcrumb span')).to_have_text(name)
   open_settings(page)
   field=page.locator('.point-entry input').nth(0);field.fill(str(100+keys.index(key)))
   page.wait_for_function("key => !!localStorage.getItem(key)",arg='shadowcraft-plan-v1' if key=='assassin' else 'shadowcraft-plan-v1:'+key)
   page.reload(wait_until='domcontentloaded');open_settings(page);expect(page.locator('.point-entry input').nth(0)).to_have_value(str(100+keys.index(key)))
  passed.append('8 classes: isolated edits, selected class and reload persistence during catalog failure')
- page.locator('.class-picker button').filter(has_text='살성').click()
+ pick_class(page,'살성')
  open_settings(page)
  page.locator('.point-entry input').nth(0).fill('80');page.locator('.point-entry input').nth(1).fill('5');page.locator('.point-entry input').nth(2).fill('10')
  page.get_by_role('button',name='내 포인트로 추천 미리보기',exact=True).click()
@@ -63,13 +64,13 @@ with sync_playwright() as p:
  page.reload(wait_until='domcontentloaded');open_settings(page);expect(page.locator('.character-main h3')).to_contain_text('검증캐릭터')
  passed.append('fixture region/server lookup, search/profile, recent selection and character reload')
  # Add equipment through the UI before exporting the combined plan.
- page.get_by_role('tab',name='내 장비 & 성장',exact=True).first.click()
+ open_section(page,'내 장비 & 성장')
  page.get_by_role('button',name='장비 등록',exact=True).click()
  page.locator('.gear-add input[maxlength="100"]').fill('이전 검증 장비')
  page.locator('.gear-add').get_by_role('button',name='등록',exact=True).click()
  expect(page.locator('.gear-item')).to_have_count(1)
  # Export/import preserves full plan, including character/search/budget/gear.
- page.get_by_role('tab',name='빌드 보관함',exact=True).first.click()
+ open_build(page)  # 빌드 내보내기 lives in the build summary column
  with page.expect_download() as download:
   page.get_by_role('button',name='빌드 내보내기',exact=True).click()
  path=download.value.path(); exported=json.loads(Path(path).read_text());assert exported['schema']=='shadowcraft-v1';assert exported['plan']['gear']['items'][0]['name']=='이전 검증 장비'
@@ -84,7 +85,7 @@ with sync_playwright() as p:
   if mime:assert mime in r.headers.get('content-type',''),r.headers
  passed.append('namespaced OCR worker, embedded WASM JS and gzip paths/MIME')
  page.set_viewport_size({'width':390,'height':844});page.reload(wait_until='domcontentloaded')
- page.get_by_role('tab',name='빌드 선택',exact=True).first.click();page.wait_for_selector('.class-picker');assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+ page.get_by_role('tab',name='빌드',exact=True).first.click();page.wait_for_selector('.class-select');assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
  passed.append('390px mobile viewport has no document overflow')
  assert not errors,errors
  print(json.dumps({'passed':passed,'pageErrors':errors,'planNetworkCalls':[u for m,u,b in requests if '/api/plan' in u]},ensure_ascii=False,indent=2))

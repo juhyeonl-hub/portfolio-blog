@@ -1,4 +1,5 @@
 import {useLocale} from './locale';
+import {SkillHover} from './skill-tip';
 import {useEffect,useState} from 'react';
 import {decodeShare,encodeShare,publicBuild,validateReferences,type SharedBuild} from '../lib/build-share';
 import {loadBundledCatalog} from '../lib/catalog-loaders';
@@ -26,7 +27,7 @@ export default function SharedBuildView({hash}:{hash:string}) {
  <p>{t('승급 3단계 확인')}: {t(state.shared.plan.ascensionGrade3Confirmed?'확인됨':'확인 전')}</p>
  {budget&&<ul aria-label={t("공유 포인트 사용량")}>{[['스킬',budget.sp,budget.spMax],['스티그마',budget.stigma,budget.stigmaMax],['데바니온',budget.crystal,budget.crystalMax],['PvP',budget.battle,budget.battleMax]].map(([name,used,max])=><li key={name}>{t(name)}: {used} / {max}{Number(used)>Number(max)?' · '+t('예산 초과'):''}</li>)}</ul>}
  <div className="shared-actions"><button className="button primary" onClick={()=>{try{sessionStorage.setItem(PENDING_SHARED_PLAN,JSON.stringify({schema:'shadowcraft-v1',catalogVersion:state.shared.catalogVersion,plan:state.shared.plan}));location.hash='';}catch{setError('이 브라우저에 임시 저장하지 못했습니다. JSON을 받아 플래너에서 불러오세요.');}}}>{t("내 플래너에 적용")}</button><button className="button ghost" onClick={()=>download(state.shared)}>{t("공유 빌드 JSON 받기")}</button></div><p>{t("적용하면 이 직업의 현재 계획이 공유 빌드로 바뀝니다. 적용한 뒤 바로 되돌릴 수 있고, 미리 보관함에 저장해 둘 수도 있습니다.")}</p>
- <h2>{t("스킬과 특화")}</h2><div className="database-list">{state.catalog.skills.map(s=><div key={s.id}><strong>{localSkill(s.name)}</strong><p>{t('기본 {0} · 장비 +{1} · 최종 {2}',[state.shared.plan.base[s.id]??(s.stigma?0:1),state.shared.plan.bonus[s.id]||0,finalLevel(state.catalog,state.shared.plan,s)])}</p><p>{(state.shared.plan.specs[s.id]||[]).map(id=>specialization(s.specializations.find(x=>x.id===id)?.description||id,id)).join(' / ')||t('선택한 특화 없음')}</p></div>)}</div>
+ <h2>{t("스킬과 특화")}</h2><div className="database-list">{state.catalog.skills.map(s=><div key={s.id}><SkillHover skill={s} level={finalLevel(state.catalog,state.shared.plan,s)}><strong>{localSkill(s.name)}</strong></SkillHover><p>{t('기본 {0} · 장비 +{1} · 최종 {2}',[state.shared.plan.base[s.id]??(s.stigma?0:1),state.shared.plan.bonus[s.id]||0,finalLevel(state.catalog,state.shared.plan,s)])}</p><p>{(state.shared.plan.specs[s.id]||[]).map(id=>specialization(s.specializations.find(x=>x.id===id)?.description||id,id)).join(' / ')||t('선택한 특화 없음')}</p></div>)}</div>
  <h2>{t("선택한 데바니온")}</h2>{state.catalog.boards.map(board=>{const nodes=board.nodes.filter(n=>state.shared.plan.nodes.includes(n.id));return <details key={board.id}><summary>{t(board.name)} ({t('{0}개',[nodes.length])})</summary><ul>{nodes.map(n=><li key={n.id}>{localNode(n.name)} · ID {n.id} · {t('{0}포인트',[n.pointCost])}</li>)}</ul></details>;})}
  </>}</section></main>;
 }

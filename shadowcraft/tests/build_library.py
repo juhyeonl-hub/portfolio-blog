@@ -2,6 +2,7 @@
 import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
+from _ui import open_section, pick_class, open_build, open_library
 root=Path(__file__).parents[2]
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True)
@@ -11,7 +12,7 @@ with sync_playwright() as p:
     page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
     url=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
     page.goto(url)
-    page.get_by_role('tab',name='빌드 보관함',exact=True).click()
+    open_library(page)
     panel=page.get_by_role('region',name='빌드 보관함',exact=True)
     panel.get_by_label('빌드 이름',exact=True).fill('First build')
     panel.get_by_role('button',name='현재 계획 보관',exact=True).click()
@@ -24,7 +25,7 @@ with sync_playwright() as p:
     assert exported['schema']=='shadowcraft-v1' and exported['plan']==original
     altered=dict(original,level=12,mode='damage')
     page.evaluate("p=>localStorage.setItem('shadowcraft-plan-v1',JSON.stringify(p))",altered)
-    page.reload();page.get_by_role('tab',name='빌드 보관함',exact=True).click()
+    page.reload();open_library(page)
     panel.locator('.database-list button').filter(has_text='First build').click()
     expect(panel.get_by_label('빌드 복원 미리보기',exact=True)).to_be_visible()
     assert json.loads(page.evaluate("localStorage.getItem('shadowcraft-plan-v1')"))['level']==12
@@ -32,7 +33,7 @@ with sync_playwright() as p:
     expect(panel.get_by_role('status')).to_contain_text('적용했습니다')
     assert json.loads(page.evaluate("localStorage.getItem('shadowcraft-plan-v1')"))==original
     assert json.loads(page.evaluate("localStorage.getItem('a2bc-build-library-v1:assassin')"))['recovery']['plan']==altered
-    page.reload();page.get_by_role('tab',name='빌드 보관함',exact=True).click()
+    page.reload();open_library(page)
     panel.get_by_role('button',name='복원 직전 계획 보기',exact=True).click()
     panel.get_by_role('button',name='이 빌드 적용',exact=True).click()
     expect(panel.get_by_role('status')).to_contain_text('적용했습니다')
@@ -41,8 +42,8 @@ with sync_playwright() as p:
     panel.get_by_role('button',name='보관본 삭제 확인',exact=True).click()
     expect(panel).to_contain_text('0 / 20개')
     assert json.loads(page.evaluate("localStorage.getItem('shadowcraft-plan-v1')"))==altered
-    page.locator('.class-picker button').filter(has_text='검성').click()
-    page.get_by_role('tab',name='빌드 보관함',exact=True).click()
+    pick_class(page,'검성')
+    open_library(page)
     expect(panel).to_contain_text('0 / 20개')
     panel.get_by_label('빌드 이름',exact=True).fill('Gladiator build')
     panel.get_by_role('button',name='현재 계획 보관',exact=True).click()
@@ -71,7 +72,7 @@ with sync_playwright() as p:
     for page2 in [a,b]:
         page2.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
         page2.goto(url)
-        page2.get_by_role('tab',name='빌드 보관함',exact=True).click()
+        open_library(page2)
     a.evaluate("() => {navigator.locks.request('a2bc-build-library-v1:assassin',()=>new Promise(resolve=>{window.releaseBuildLock=resolve}));}")
     a.wait_for_function('!!window.releaseBuildLock')
     a.get_by_label('빌드 이름',exact=True).fill('Concurrent A')

@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
+from _ui import open_section, pick_class, open_build
 
 url = os.environ.get('SHADOWCRAFT_TEST_URL', 'http://127.0.0.1:5173/lab/shadowcraft/')
 data = json.loads((Path(__file__).parents[2]/'frontend/public/shadowcraft/data/client-index.json').read_text())
@@ -14,7 +15,7 @@ with sync_playwright() as p:
     page.on('request', lambda r: posts.append(r.url) if r.method == 'POST' else None)
     page.route('**/api/public/shadowcraft/catalog?*', lambda r: r.fulfill(status=503,json={}))
     page.goto(url)
-    page.get_by_role('tab',name='스킬 & 특화',exact=True).first.click()
+    open_section(page,'스킬 & 특화')
     official=page.get_by_role('button',name='공식 글로벌 설명 보기',exact=True)
     if not official.is_visible():
         page.locator('.skill-name').first.click()
@@ -51,7 +52,7 @@ with sync_playwright() as p:
     panel.locator('.database-list button').first.click()
     expect(panel.locator('.database-detail')).to_contain_text(item['name'])
     expect(panel.get_by_text('생산 제작법',exact=False)).to_have_count(0)
-    page.get_by_role('tab',name='스킬 & 특화',exact=True).click()
+    open_section(page,'스킬 & 특화')
     page.get_by_role('tab',name='글로벌 데이터',exact=True).click()
     expect(panel.get_by_label('데이터 검색',exact=True)).to_have_value(item['id'])
     page.set_viewport_size({'width':390,'height':844})

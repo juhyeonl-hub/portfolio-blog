@@ -1,6 +1,7 @@
 """Read-only saved character comparison; controlled observations, not ranker claims."""
 import json,os
 from playwright.sync_api import sync_playwright,expect
+from _ui import open_section, pick_class, open_build, open_library
 url=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 with sync_playwright() as p:
  browser=p.chromium.launch();page=browser.new_page();errors=[]
@@ -12,7 +13,7 @@ with sync_playwright() as p:
  library={'schema':'a2bc-build-library-v1','classKey':'assassin','entries':[{'id':'comparison','name':'Compare sample','catalogVersion':'2.0.7.0','savedAt':'2026-10-18T00:00:00Z','plan':saved}],'recovery':None}
  values={'shadowcraft-plan-v1':json.dumps(current),'a2bc-build-library-v1:assassin':json.dumps(library)}
  page.add_init_script('for(const [key,value] of Object.entries('+json.dumps(values)+'))localStorage.setItem(key,value);')
- page.goto(url,wait_until='domcontentloaded');page.get_by_role('tab',name='빌드 보관함',exact=True).click();page.locator('.database-list button').filter(has_text='Compare sample').click()
+ page.goto(url,wait_until='domcontentloaded');open_library(page);page.locator('.database-list button').filter(has_text='Compare sample').click()
  comparison=page.get_by_role('region',name='캐릭터 조회 결과 비교',exact=True)
  expect(comparison).to_contain_text('강화 +10');expect(comparison).to_contain_text('강화 +12');expect(comparison).to_contain_text('공통 1개 · 현재 조회에만 1개 · 보관 조회에만 1개')
  expect(comparison.locator('tbody tr')).to_have_count(2)

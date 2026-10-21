@@ -1,6 +1,7 @@
-"""Build-first flow: nonmutating previews, all classes, undo and mobile."""
+"""Build page (clean UI): class dropdown, style switch, 추천 배분 적용 with undo, persistence, all eight classes, phone."""
 import json, os
 from playwright.sync_api import sync_playwright, expect
+from _ui import pick_class, open_build
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 with sync_playwright() as p:
  browser=p.chromium.launch()
@@ -9,46 +10,46 @@ with sync_playwright() as p:
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
  page.goto(URL)
- page.get_by_role('tab',name='빌드 선택',exact=True).click()
+ open_build(page)
  for key,name in zip(['assassin','gladiator','templar','ranger','elementalist','sorcerer','cleric','chanter'],['살성','검성','수호성','궁성','정령성','마도성','치유성','호법성']):
-  page.locator('.class-picker button').filter(has_text=name).click()
-  expect(page.get_by_role('region',name='간편 빌드 선택')).to_be_visible()
-  # The skill editor shares the build page now; it is present but the quick picker stays on top.
-  # Sections below 빌드 선택 are folded until opened; the skills bar unfolds the table on the same page.
-  expect(page.locator('.skill-table')).to_have_count(0)
-  page.locator('.build-section-bar',has_text='스킬 & 특화').get_by_role('button').click()
+  pick_class(page,name)
+  expect(page.locator('#build-section-rotation')).to_have_count(1)
+  settings=page.get_by_role('region',name='빌드 설정',exact=True)
+  expect(settings).to_be_visible()
+  expect(page.locator('.class-select option:checked')).to_have_text(name)
+  # All five sections render on the one page, in pill order, with the summary column.
+  for section in ['skills','daevanion','gear','macro','rotation']:expect(page.locator('#build-section-'+section)).to_have_count(1)
+  expect(page.locator('.build-pills button')).to_have_count(5)
+  expect(page.locator('.build-summary')).to_be_visible()
   expect(page.locator('.skill-table')).to_have_count(1)
-  page.locator('.build-section-bar',has_text='스킬 & 특화').get_by_role('button').click()
-  expect(page.locator('.skill-table')).to_have_count(0)
   storage='shadowcraft-plan-v1'+('' if key=='assassin' else ':'+key)
+  # Style switch writes the mode at once (no preview step); 추천 배분 적용 replaces the plan with an undo.
+  settings.get_by_role('button',name='공격형',exact=True).click()
+  assert json.loads(page.evaluate('(key)=>localStorage.getItem(key)',storage))['mode']=='damage'
   before=page.evaluate('(key)=>localStorage.getItem(key)',storage)
-  page.get_by_role('button',name='공격형',exact=False).filter(has_text='공격 관련').click()
-  page.get_by_role('button',name='이 빌드 미리보기',exact=True).click()
-  expect(page.locator('.quick-preview')).to_be_visible()
-  assert page.evaluate('(key)=>localStorage.getItem(key)',storage)==before
-  page.get_by_role('button',name='미리보기 취소',exact=True).click()
-  assert page.evaluate('(key)=>localStorage.getItem(key)',storage)==before
-  page.locator('.quick-build .point-extras summary').click()
-  for field in ['sp','stigma','crystal','battle']:page.get_by_label('간편 '+field,exact=True).fill('0')
-  page.get_by_role('button',name='이 빌드 미리보기',exact=True).click()
-  page.get_by_role('button',name='이 빌드 적용',exact=True).click()
-  saved=json.loads(page.evaluate('(key)=>localStorage.getItem(key)',storage))
-  assert all(v==0 for v in saved['pointBudget'].values())
-  page.locator('.quick-edit summary').click()
-  page.get_by_role('button',name='데바니온 보드 편집',exact=True).click()
+  settings.get_by_role('button',name='추천 배분 적용',exact=True).click()
   expect(page.get_by_role('button',name='빌드 적용 전으로 되돌리기',exact=True)).to_be_visible()
+  applied=page.evaluate('(key)=>localStorage.getItem(key)',storage)
   page.get_by_role('button',name='빌드 적용 전으로 되돌리기',exact=True).click()
-  restored=json.loads(page.evaluate('(key)=>localStorage.getItem(key)',storage))
-  if before:assert restored==json.loads(before)
-  else:assert restored.get('pointBudget')!=saved['pointBudget']
+  restored=page.evaluate('(key)=>localStorage.getItem(key)',storage)
+  assert json.loads(restored)['base']==json.loads(before)['base'],'undo must restore the base investment'
+  if applied!=before:assert json.loads(applied)['base']!=json.loads(restored)['base'] or json.loads(applied)['nodes']!=json.loads(restored)['nodes']
+  # Level field and reload persistence.
+  page.get_by_label('캐릭터 레벨',exact=True).fill('30')
+  assert json.loads(page.evaluate('(key)=>localStorage.getItem(key)',storage))['level']==30
   page.reload()
-  page.get_by_role('tab',name='빌드 선택',exact=True).click()
-  expect(page.get_by_role('region',name='간편 빌드 선택')).to_be_visible()
-  assert json.loads(page.evaluate('(key)=>localStorage.getItem(key)',storage))==restored
+  open_build(page)
+  expect(page.locator('.class-select option:checked')).to_have_text(name)
+  assert json.loads(page.evaluate('(key)=>localStorage.getItem(key)',storage))['level']==30
+  page.get_by_label('캐릭터 레벨',exact=True).fill('45')
+ # Section pills scroll to their anchor on the same page.
+ page.locator('.build-pills button',has_text='데바니온').click()
+ expect(page.locator('.build-pills button',has_text='데바니온')).to_have_class('active')
+ page.wait_for_function("document.getElementById('build-daevanion').getBoundingClientRect().top < 200")
  page.set_viewport_size({'width':390,'height':844})
- page.get_by_role('button',name='이 빌드 미리보기',exact=True).click()
+ expect(page.get_by_role('region',name='빌드 설정',exact=True)).to_be_visible()
  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
  page.screenshot(path='/tmp/a2bc-quick-build-mobile.png',full_page=True)
  assert not errors,errors
- print('PASS: 8 classes, preview/cancel preservation, zero budgets, cross-tab undo, reload, mobile; no page errors')
+ print('PASS: 8 classes via dropdown, five sections + summary, style switch, apply/undo, level persistence, pills, mobile; no page errors')
  browser.close()

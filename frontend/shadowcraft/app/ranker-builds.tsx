@@ -15,6 +15,7 @@ import CharacterEquipment from './character-equipment';
 import RankerEquipmentComparison from './ranker-equipment';
 import CharacterComparison from './character-comparison';
 import {useLocale} from './locale';
+import {SkillHover} from './skill-tip';
 
 export default function RankerBuilds({catalog,plan,onApply}:{catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void}){
  const {t,locale,skill:localSkill}=useLocale();
@@ -66,7 +67,7 @@ export default function RankerBuilds({catalog,plan,onApply}:{catalog:Catalog;pla
     <li><b>{t('데바니온:')}</b> {t('내 캐릭터 레벨과 실제 결정 총량을 먼저 입력하세요. 공식 조회 후 미리보기를 누르면 보드 개방·연결·필요 포인트를 검사합니다.')}</li>
     <li><b>{t('적용 확인:')}</b> {t('미리보기에서 변경을 확인한 뒤 적용하세요. 데바니온 배치만 바꾸며 잠기는 기존 특화는 해제될 수 있습니다. 적용 전으로 되돌릴 수 있습니다.')}</li>
    </ol><p className="subtle">{t('장비 획득 비용·소요 시간과 미공개 옵션은 추정하지 않습니다.')}</p></details>
-   <details className="ranker-skills"><summary>{t('스킬 목표 레벨 확인')}</summary><p>{t(live?'이번 공식 응답의 스킬':'저장 자료의 스킬')} · {time(live?live.importedAt:selected.verifiedAt)}</p>{(!displaySkills||!displaySkills.length)&&<p>{t('표시할 스킬 정보를 확인하지 못했습니다. 공식 세팅을 다시 조회해 주세요.')}</p>}<p>{t('장비·데바니온 보너스가 포함된 최종 레벨입니다. 투자 포인트 및 특화 선택은 미확인입니다.')}</p><ul>{(displaySkills||[]).filter(s=>s.skillLevel>0).map(s=><li key={s.id}>{skillName(String(s.id))} · Lv.{s.skillLevel}{s.category==='Dp'?' · '+t(s.equip===1?'장착':'미장착'):''}</li>)}</ul></details>
+   <details className="ranker-skills"><summary>{t('스킬 목표 레벨 확인')}</summary><p>{t(live?'이번 공식 응답의 스킬':'저장 자료의 스킬')} · {time(live?live.importedAt:selected.verifiedAt)}</p>{(!displaySkills||!displaySkills.length)&&<p>{t('표시할 스킬 정보를 확인하지 못했습니다. 공식 세팅을 다시 조회해 주세요.')}</p>}<p>{t('장비·데바니온 보너스가 포함된 최종 레벨입니다. 투자 포인트 및 특화 선택은 미확인입니다.')}</p><ul>{(displaySkills||[]).filter(s=>s.skillLevel>0).map(s=><li key={s.id}><SkillHover skill={catalog.skills.find(x=>x.id===String(s.id))} level={s.skillLevel}>{skillName(String(s.id))}</SkillHover> · Lv.{s.skillLevel}{s.category==='Dp'?' · '+t(s.equip===1?'장착':'미장착'):''}</li>)}</ul></details>
    {loading&&<p role="status">{t('공식 프로필과 데바니온을 조회하고 있습니다…')}</p>}{error&&<p role="alert">{(m=>m?t('내 데바니온 총량이 부족합니다. 필요한 결정 {0}, 아스펠 {1}. 포인트 설정에서 실제 총량을 확인하세요.',[m[1],m[2]]):t(error))(error.match(/^내 데바니온 총량이 부족합니다\. 필요한 결정 (\d+), 아스펠 (\d+)\. 포인트 설정에서 실제 총량을 확인하세요\.$/))}</p>}
    {!loading&&<button className="button ghost" onClick={()=>inspect(selected)}>{t('공식 세팅 다시 조회')}</button>}
    {live&&<><CharacterComparison current={plan.character} saved={live}/><p>{t('따라하기는 공개된 데바니온 배치만 적용합니다. 내 장비·기본 스킬 투자·연결 캐릭터는 유지합니다. 배치 변경으로 잠기는 기존 특화는 해제됩니다.')}</p><button className="button secondary" onClick={()=>{try{setPreview({source:plan,next:previewRankerBoards(catalog,plan,selected,live)});setError('')}catch(e){setPreview(null);setError(e instanceof Error?e.message:'복사할 수 없습니다.')}}}>{t('데바니온 따라하기 미리보기')}</button></>}

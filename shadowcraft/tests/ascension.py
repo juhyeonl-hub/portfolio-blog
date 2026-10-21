@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
+from _ui import open_section, pick_class, open_build
 root = Path(__file__).parents[2]
 catalog = json.loads((root/'frontend/shadowcraft/lib/data/catalogs/assassin.json').read_text())
 skill = next(s for s in catalog['skills'] if s['id'] == '13080000')
@@ -11,7 +12,7 @@ plan = dict(classKey='assassin',level=45,extraSP=0,extraStigma=0,extraCrystal=0,
             pointBudget=dict(sp=9999,stigma=9999,crystal=0,battle=0))
 plan['base'][skill['id']] = 10
 def show_budget(page):
-    page.get_by_role('tab',name='스킬 & 특화',exact=True).first.click()
+    open_section(page,'스킬 & 특화')
     box=page.get_by_role('checkbox',name='승급 조건 충족을 게임에서 확인했습니다 (AscensionGrade_3)',exact=True)
     if not box.is_visible():
         page.get_by_role('button',name='포인트 설정',exact=True).click()
@@ -30,7 +31,7 @@ with sync_playwright() as p:
     box=page.get_by_role('checkbox',name='승급 조건 충족을 게임에서 확인했습니다 (AscensionGrade_3)',exact=True)
     expect(box).not_to_be_checked()
     expect(page.get_by_text('승급 확인이 필요한 기존 투자',exact=False)).to_be_visible()
-    page.get_by_role('tab',name='스킬 & 특화',exact=True).first.click()
+    open_section(page,'스킬 & 특화')
     page.locator('.toolbar .segmented button').filter(has_text='스티그마').click()
     plus=page.get_by_role('button',name=skill['name']+' 레벨 증가',exact=True)
     minus=page.get_by_role('button',name=skill['name']+' 레벨 감소',exact=True)
