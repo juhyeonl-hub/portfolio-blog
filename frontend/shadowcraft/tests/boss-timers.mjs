@@ -15,3 +15,10 @@ assert.match(bossDisplay({...feed,bosses:{gartua:{...b,state:'up'}}},'gartua',no
 assert.equal(bossDisplay(feed,'lagta',now,false).text,'관측 기록 없음');
 assert.equal(bossDisplay(null,'gartua',now,true).text,'조회 실패');
 console.log('Boss timers: server isolation, malformed input, observation age, failures and elapsed spawn PASS');
+
+const all={...feed,allBosses:{'101001':{...b,id:101001},'2001':{...b,id:2001},'99999':{...b,id:99999}}};
+assert.equal(parseBossFeed(all,'eu','1301'),all);
+assert.equal(bossDisplay(all,'101001',now,false).target,now+60000);
+assert.equal(bossDisplay(feed,'101021',now,false).target,now+60000); // old API fallback
+for(const allBosses of [null,[],{'01':b},{'101001':b},{'2001':{...b,id:2001,reportedAt:now+400000}}])assert.throws(()=>parseBossFeed({...feed,allBosses},'eu','1301'));
+console.log('Full boss feed: arbitrary IDs, malformed keys, identity validation, old API fallback PASS');

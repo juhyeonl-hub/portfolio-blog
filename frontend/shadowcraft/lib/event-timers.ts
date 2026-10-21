@@ -5,7 +5,7 @@ export const TIMER_KEY='a2bc-event-timers-v1';
 /** Fired in this tab after the timer settings are saved (other tabs get the storage event). */
 export const TIMER_SETTINGS_EVENT='asbc-timer-settings';
 export type ServerTimers={offset:number|null;timeZone?:string;dimension:'invasion'|'rift';hidden:TimerId[];times:Partial<Record<TimerId,string>>};
-export type TimerSettings={version:1;region:string;server:string;pinned?:TimerId[];profiles:Record<string,ServerTimers>};
+export type TimerSettings={version:1;region:string;server:string;pinned?:TimerId[];pinnedBosses?:string[];profiles:Record<string,ServerTimers>};
 // Old profiles keep their hidden selection until the user explicitly chooses common pins.
 export function pinnedTimers(settings:TimerSettings):TimerId[]{return settings.pinned??TIMER_IDS.filter(id=>!(settings.profiles[settings.region+':'+settings.server]?.hidden||[]).includes(id))}
 export const emptySettings=():TimerSettings=>({version:1,region:'eu',server:'',profiles:{}});
@@ -35,6 +35,7 @@ export function parseSettings(raw:string):TimerSettings{
  const x=JSON.parse(raw);
  if(x?.version!==1||!['eu','nae','naw','la','as'].includes(x.region)||typeof x.server!=='string'||!/^\d{0,8}$/.test(x.server)||!x.profiles||Array.isArray(x.profiles)||typeof x.profiles!=='object'||Object.keys(x.profiles).length>200)throw Error('타이머 설정을 읽을 수 없습니다.');
  if(x.pinned!==undefined&&(!Array.isArray(x.pinned)||x.pinned.length>TIMER_IDS.length||new Set(x.pinned).size!==x.pinned.length||x.pinned.some((id:TimerId)=>!TIMER_IDS.includes(id))))throw Error('타이머 설정 형식이 잘못되었습니다.');
+ if(x.pinnedBosses!==undefined&&(!Array.isArray(x.pinnedBosses)||x.pinnedBosses.length>200||new Set(x.pinnedBosses).size!==x.pinnedBosses.length||x.pinnedBosses.some((id:unknown)=>typeof id!=='string'||! /^[1-9]\d{0,7}$/.test(id))))throw Error('타이머 설정 형식이 잘못되었습니다.');
  for(const [key,p] of Object.entries(x.profiles) as [string,ServerTimers][]){
   if(!/^(eu|nae|naw|la|as):\d{1,8}$/.test(key)||!p||!(p.offset===null||(Number.isInteger(p.offset)&&p.offset>=-720&&p.offset<=840))||!['invasion','rift'].includes(p.dimension)||!Array.isArray(p.hidden)||p.hidden.length>6||new Set(p.hidden).size!==p.hidden.length||p.hidden.some(id=>!TIMER_IDS.includes(id))||!p.times||typeof p.times!=='object'||Array.isArray(p.times))throw Error('타이머 설정 형식이 잘못되었습니다.');
   if(p.timeZone!==undefined&&!TIME_ZONES.some(([zone])=>zone===p.timeZone))throw Error('지원하지 않는 국가·지역 시간대입니다.');

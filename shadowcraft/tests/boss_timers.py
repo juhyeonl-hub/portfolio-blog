@@ -13,7 +13,7 @@ with sync_playwright() as p:
   sid=int(query['server'][0]);now=int(time.time()*1000)
   b={'id':101021,'state':'dead','reportedAt':now,'nextSpawn':now+3600000,'upSince':0,'confirmed':True}
   if sid==2301:b={**b,'id':111021,'state':'up','nextSpawn':0}
-  route.fulfill(json={'server':sid,'region':'eu','serverNow':now,'fetchedAt':now,'refreshFailed':False,'enabled':True,'bosses':{'gartua':b,'lagta':{**b,'state':'dead','nextSpawn':now-1000}}})
+  route.fulfill(json={'server':sid,'region':'eu','serverNow':now,'fetchedAt':now,'refreshFailed':False,'enabled':True,'bosses':{'gartua':b,'lagta':{**b,'id':111022 if sid==2301 else 101024,'state':'dead','nextSpawn':now-1000}}})
  page.route('**/api/public/shadowcraft/boss-timers?*',feed)
  page.goto(URL)
  page.get_by_role('button',name='서버·타이머 설정',exact=True).click()

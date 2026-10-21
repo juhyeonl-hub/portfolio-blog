@@ -77,7 +77,16 @@ public class BossTimerService {
             out.put("server", server).put("region", region).put("serverNow", clock.getAsLong())
                 .put("fetchedAt", e.fetched).put("refreshFailed", e.failed).put("enabled", enabled)
                 .put("source", "A2Tools").put("refreshSeconds", 60);
-            out.set("bosses", enabled && e.data != null ? e.data.deepCopy() : mapper.createObjectNode());
+            ObjectNode all = enabled && e.data != null ? e.data.deepCopy() : mapper.createObjectNode();
+            out.set("allBosses", all);
+            ObjectNode legacy = mapper.createObjectNode();
+            String[] keys = {"gartua", "lagta", "kashapa", "tartan"};
+            int[] ids = e.race == 1 ? new int[]{101021,101024,101023,101022} : new int[]{111021,111022,111023,111024};
+            for (int i = 0; i < keys.length; i++) {
+                JsonNode record = all.get(String.valueOf(ids[i]));
+                if (record != null) legacy.set(keys[i], record.deepCopy());
+            }
+            out.set("bosses", legacy);
             return out;
         }
     }
@@ -85,12 +94,13 @@ public class BossTimerService {
         if (root == null || !root.path("bosses").isObject() || root.path("bosses").size() > 200)
             throw new IllegalArgumentException("invalid feed");
         var bosses = root.path("bosses");
-        String[] keys = {"gartua", "lagta", "kashapa", "tartan"};
-        int[] ids = race == 1 ? new int[]{101021,101024,101023,101022} : new int[]{111021,111022,111023,111024};
         ObjectNode out = mapper.createObjectNode();
-        for (int i = 0; i < keys.length; i++) {
-            JsonNode b = bosses.get(String.valueOf(ids[i]));
-            if (b == null) continue;
+        var records = bosses.fields();
+        while (records.hasNext()) {
+            var record = records.next();
+            String id = record.getKey();
+            if (!id.matches("[1-9][0-9]{0,7}")) throw new IllegalArgumentException("invalid boss id");
+            JsonNode b = record.getValue();
             String state = b.path("state").asText();
             if (!b.isObject() || !(state.equals("up") || state.equals("dead")) || !b.path("confirmed").isBoolean())
                 throw new IllegalArgumentException("invalid boss");
@@ -98,7 +108,7 @@ public class BossTimerService {
             if (reported > now + 300_000) throw new IllegalArgumentException("future observation");
             long next = timestamp(b.get("nextSpawn"), true);
             long up = timestamp(b.get("upSince"), true);
-            out.putObject(keys[i]).put("id", ids[i]).put("state", state).put("reportedAt", reported)
+            out.putObject(id).put("id", Integer.parseInt(id)).put("state", state).put("reportedAt", reported)
                 .put("nextSpawn", next).put("upSince", up).put("confirmed", b.path("confirmed").asBoolean());
         }
         return out;

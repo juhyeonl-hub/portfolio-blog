@@ -1,0 +1,737 @@
+[
+  {
+    "id": "101001",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "동쪽의 네이켈",
+      "en": "Neikel of the East",
+      "ja": "東のネイケル"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101002",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "썩은 쿠타르",
+      "en": "Rotten Kutar",
+      "ja": "腐ったクタル"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101003",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "서쪽의 케르논",
+      "en": "Kernon of the West",
+      "ja": "西のケルノン"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101004",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "광투사 쿠산",
+      "en": "Kusan the Mad Gladiator",
+      "ja": "狂闘士クサン"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101005",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "제사장 가르심",
+      "en": "Ritualist Garshim",
+      "ja": "祭司長ガルシム"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101006",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "호위병 티간트",
+      "en": "Bodyguard Teegant",
+      "ja": "護衛兵ティガント"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101007",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "만개한 코린",
+      "en": "Blooming Korin",
+      "ja": "満開のコーリン"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101008",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "분노한 사루스",
+      "en": "Furious Saursus",
+      "ja": "怒りのサルス"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101009",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "피송곳니 프닌",
+      "en": "Bloodfang Pnyn",
+      "ja": "血の牙プニン"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101010",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "배교자 레일라",
+      "en": "Heretic Layla",
+      "ja": "背教者レイーラ"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101011",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "검은 촉수 라와",
+      "en": "Black Tentacle Lawa",
+      "ja": "黒き触手ラワ"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101012",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "환몽의 카시아",
+      "en": "Phantasm Kasia",
+      "ja": "幻夢のカシア"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101013",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "백부장 데미로스",
+      "en": "Centurion Demiros",
+      "ja": "百人隊長デミロス"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101014",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "신성한 안사스",
+      "en": "Divine Ansas",
+      "ja": "神聖なアンサス"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101015",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "수확관리자 모샤브",
+      "en": "Harvest Manager Moshav",
+      "ja": "収穫管理者モシャブ"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101016",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "감시병기 크나쉬",
+      "en": "Sentinel K'nash",
+      "ja": "監視兵器クナッシュ"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101017",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "학자 라울라",
+      "en": "Scholar Aulla",
+      "ja": "学者ラウーラ"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101018",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "숲전사 우라무",
+      "en": "Forest Warrior Aullamu",
+      "ja": "森の戦士ウラム"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101019",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "추격자 타울로",
+      "en": "Chaser Taulo",
+      "ja": "追撃者タウーロ"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101020",
+    "side": "elyos",
+    "level": 45,
+    "names": {
+      "ko": "연구관 세트람",
+      "en": "Researcher Setram",
+      "ja": "研究官セトラム"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101021",
+    "side": "elyos",
+    "level": 51,
+    "names": {
+      "ko": "영원의 가르투아",
+      "en": "Eternal Gartua",
+      "ja": "永遠のガルトゥア"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101022",
+    "side": "elyos",
+    "level": 48,
+    "names": {
+      "ko": "침묵의 타르탄",
+      "en": "Silent Dartan",
+      "ja": "沈黙のタルタン"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101023",
+    "side": "elyos",
+    "level": 48,
+    "names": {
+      "ko": "영혼 지배자 카샤파",
+      "en": "Soul Ruler Kashapa",
+      "ja": "魂の支配者カシャパ"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "101024",
+    "side": "elyos",
+    "level": 48,
+    "names": {
+      "ko": "군단장 라그타",
+      "en": "High Commander Lagta",
+      "ja": "軍団長ラグタ"
+    },
+    "maps": {
+      "ko": "베르테론",
+      "en": "Verteron",
+      "ja": "ベルテロン"
+    }
+  },
+  {
+    "id": "111001",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "녹아내린 다나르",
+      "en": "Melted Danar",
+      "ja": "溶け落ちたダナール"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111002",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "검은 전사 아에드",
+      "en": "Black Warrior Aed",
+      "ja": "黒き戦士アエド"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111003",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "충실한 라지트",
+      "en": "Faithful Rajit",
+      "ja": "忠実なラジト"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111004",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "광전사 발그",
+      "en": "Berserker Vargor",
+      "ja": "狂戦士バルグ"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111005",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "포식자 가르산",
+      "en": "Predator Garsan",
+      "ja": "捕食者ガルサン"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111006",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "혈전사 란나르",
+      "en": "Blood Warrior Lannar",
+      "ja": "血戦士ランナール"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111007",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "기만자 트리드",
+      "en": "Deceiver Trid",
+      "ja": "欺瞞者トリド"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111008",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "푸른물결 켈피나",
+      "en": "Blue Wave Kelpina",
+      "ja": "青波ケルピーナ"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111009",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "총감독관 누타",
+      "en": "High Overseer Nutah",
+      "ja": "総監督官ヌタ"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111010",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "참모관 르사나",
+      "en": "Advisor Resana",
+      "ja": "参謀官ルサナ"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111011",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "별동대장 링크스",
+      "en": "Special Operations Leader Linx",
+      "ja": "別動隊長リンクス"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111012",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "모독자 노블루드",
+      "en": "Desecrator Newbold",
+      "ja": "冒涜者ノブルード"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111013",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "망혼의 아칸 악시오스",
+      "en": "Specter Archon Axios",
+      "ja": "亡魂のアルコン アクシオス"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111014",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "중독된 하디룬",
+      "en": "Addicted Hardirun",
+      "ja": "中毒になったハディルン"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111015",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "처형자 바르시엔",
+      "en": "Executioner Barthien",
+      "ja": "処刑者バルシエン"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111016",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "드라칸 부대병기 구루타",
+      "en": "Drakan Battalion Weapon Guruta",
+      "ja": "ドラカン部隊兵器グルタ"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111017",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "백전노장 슈자칸",
+      "en": "Veteran Shujakan",
+      "ja": "百戦老将シュザカン"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111018",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "비전의 카루카",
+      "en": "Visionary Karuka",
+      "ja": "秘伝のカルカ"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111019",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "흑암의 비슈베다",
+      "en": "Dark Shadow Vishwada",
+      "ja": "黒闇のビシュベダ"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111020",
+    "side": "asmodian",
+    "level": 45,
+    "names": {
+      "ko": "예리한 쉬라크",
+      "en": "Sharp Shylak",
+      "ja": "鋭きシュラク"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111021",
+    "side": "asmodian",
+    "level": 51,
+    "names": {
+      "ko": "불멸의 가르투아",
+      "en": "Immortal Gartua",
+      "ja": "不滅のガルトゥア"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111022",
+    "side": "asmodian",
+    "level": 48,
+    "names": {
+      "ko": "군단장 라그타",
+      "en": "High Commander Lagta",
+      "ja": "軍団長ラグタ"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111023",
+    "side": "asmodian",
+    "level": 48,
+    "names": {
+      "ko": "영혼 지배자 카샤파",
+      "en": "Soul Ruler Kashapa",
+      "ja": "魂の支配者カシャパ"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "111024",
+    "side": "asmodian",
+    "level": 48,
+    "names": {
+      "ko": "침묵의 타르탄",
+      "en": "Silent Dartan",
+      "ja": "沈黙のタルタン"
+    },
+    "maps": {
+      "ko": "알트가르드",
+      "en": "Altgard",
+      "ja": "アルトガルド"
+    }
+  },
+  {
+    "id": "2001",
+    "side": null,
+    "level": 65,
+    "names": {
+      "ko": "정령왕 아그로",
+      "en": "Argo, the Spirit King",
+      "ja": "精霊王アグロ"
+    },
+    "maps": {
+      "ko": "혼돈의 에레슈란타 하층",
+      "en": "Chaotic Lower Reshanta",
+      "ja": "混沌のエレシュランタ下層"
+    }
+  }
+]

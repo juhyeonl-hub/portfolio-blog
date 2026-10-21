@@ -43,4 +43,18 @@ class BossTimerServiceTest {
   var empty=new BossTimerService(mapper,id->mapper.readTree("{\"bosses\":{}}"),clock::get,true);
   assertThat(empty.get("eu",1301).path("bosses").isEmpty()).isTrue();
  }
+ @Test void allBossesPreserveLegacyAndIncludeUnknownIds() throws Exception {
+  var root=mapper.readTree(sample);
+  var bosses=(com.fasterxml.jackson.databind.node.ObjectNode)root.path("bosses");
+  for(String id:new String[]{"101001","111001","2001","99999"}) bosses.set(id,bosses.path("101021").deepCopy());
+  var service=new BossTimerService(mapper,id->root,clock::get,true);
+  var response=service.get("eu",1301);
+  assertThat(response.path("allBosses").size()).isEqualTo(6);
+  assertThat(response.at("/allBosses/2001/id").asInt()).isEqualTo(2001);
+  assertThat(response.at("/allBosses/99999/id").asInt()).isEqualTo(99999);
+  assertThat(response.path("bosses").size()).isEqualTo(1);
+  assertThat(response.at("/bosses/gartua/id").asInt()).isEqualTo(101021);
+  bosses.putObject("bad");
+  assertThatThrownBy(()->service.normalize(root,1,clock.get())).isInstanceOf(IllegalArgumentException.class);
+ }
 }

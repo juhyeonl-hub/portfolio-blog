@@ -25,15 +25,15 @@ with sync_playwright() as p:
  for checkbox in panel.get_by_role('checkbox').all():checkbox.uncheck()
  expect(header.locator('.event-timer-card')).to_have_count(0)
  expect(header).to_contain_text('고정한 콘텐츠가 없습니다.')
- panel.get_by_label('가르투아',exact=True).check();panel.get_by_label('슈고',exact=True).check()
+ panel.get_by_label('영원의 가르투아 · 천족',exact=True).check();panel.get_by_label('슈고',exact=True).check()
  expect(header.locator('.event-timer-card')).to_have_count(2)
  page.keyboard.press('Escape');expect(panel).to_have_count(0)
  expect(page.get_by_role('button',name='고정할 콘텐츠',exact=False)).to_be_focused()
  saved=json.loads(page.evaluate('localStorage.getItem("a2bc-event-timers-v1")'))
- assert saved['profiles']==legacy['profiles'] and saved['pinned']==['shugo','gartua']
+ assert saved['profiles']==legacy['profiles'] and saved['pinned']==['shugo'] and saved['pinnedBosses']==['101021']
  page.reload();expect(header.locator('.event-timer-card')).to_have_count(2)
  page.get_by_role('button',name='고정할 콘텐츠',exact=False).click()
- for _ in range(7):page.keyboard.press('Tab')
+ panel.get_by_role('button',name='완료',exact=True).focus();page.keyboard.press('Tab')
  expect(panel).to_have_count(0)
  page.get_by_role('button',name='서버·타이머 설정',exact=True).click();page.get_by_label('타이머 서버',exact=True).select_option('1302');page.get_by_role('button',name='시간표 저장',exact=True).click()
  expect(header.locator('.event-timer-card')).to_have_count(2)
@@ -50,7 +50,7 @@ with sync_playwright() as p:
  page.locator('.asbc-language').select_option('ko');page.set_viewport_size({'width':390,'height':844})
  page.get_by_role('button',name='메뉴',exact=True).click();assert header.evaluate('(e)=>e.inert');page.keyboard.press('Escape');assert not header.evaluate('(e)=>e.inert')
  # Cross-tab updates must update visible cards without reload.
- other=ctx.new_page();other.goto(URL);other.evaluate('''()=>{const x=JSON.parse(localStorage.getItem('a2bc-event-timers-v1'));x.pinned=['tartan'];localStorage.setItem('a2bc-event-timers-v1',JSON.stringify(x))}''')
+ other=ctx.new_page();other.goto(URL);other.evaluate('''()=>{const x=JSON.parse(localStorage.getItem('a2bc-event-timers-v1'));x.pinned=['tartan'];x.pinnedBosses=[];localStorage.setItem('a2bc-event-timers-v1',JSON.stringify(x))}''')
  expect(header.locator('.event-timer-card')).to_have_count(1);expect(header.locator('.event-timer-card')).to_contain_text('타르탄');other.close()
  page.get_by_role('button',name='고정할 콘텐츠',exact=False).click()
  before=page.evaluate('localStorage.getItem("a2bc-event-timers-v1")')

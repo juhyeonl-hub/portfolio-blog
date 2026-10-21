@@ -54,3 +54,16 @@ assert.deepEqual(pinnedTimers({...common,pinned:[]}),[]);
 assert.deepEqual(parseSettings(JSON.stringify(common)).profiles,legacyPins.profiles);
 for(const pinned of [null,{},'gartua',['unknown'],['shugo','shugo'],[1]])assert.throws(()=>parseSettings(JSON.stringify({...settings,pinned})));
 console.log('Common pins: legacy fallback, empty selection, server independence, profile preservation and invalid input PASS');
+
+const expanded={...common,pinnedBosses:['101001','111001','2001','99999']};
+assert.deepEqual(parseSettings(JSON.stringify(expanded)),expanded);
+for(const pinnedBosses of [null,['01'],['x'],[1],['2001','2001'],Array.from({length:201},(_,i)=>String(i+1))])assert.throws(()=>parseSettings(JSON.stringify({...common,pinnedBosses})));
+const timersUrl=moduleUrl(readFileSync('lib/event-timers.ts','utf8'));
+const {BOSS_CATALOG,selectedBossIds,setBossPinned}=await import(moduleUrl(readFileSync('lib/boss-catalog.ts','utf8').replace("import data from './data/boss-catalog.json';",'const data='+readFileSync('lib/data/boss-catalog.json','utf8')+';').replace("'./event-timers'",JSON.stringify(timersUrl))));
+assert.equal(BOSS_CATALOG.length,49);assert.equal(new Set(BOSS_CATALOG.map(b=>b.id)).size,49);
+assert.deepEqual(selectedBossIds(common,1),['101021']);assert.deepEqual(selectedBossIds(common,2),['111021']);
+const moved=setBossPinned(common,1,'101021',true);
+assert.deepEqual(selectedBossIds(moved,1),['101021']);assert.deepEqual(moved.profiles,common.profiles);
+assert.deepEqual(selectedBossIds(setBossPinned(moved,1,'101021',false),1),[]);
+assert.deepEqual(selectedBossIds(moved,2),['101021']);
+console.log('Full boss pins: catalog, additive validation, alias deduplication, manual-profile preservation, explicit cross-faction IDs PASS');
