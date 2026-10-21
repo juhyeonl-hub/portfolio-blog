@@ -1,4 +1,4 @@
-"""Shared navigation helpers for the clean UI: one 빌드 page with section pills, a class dropdown, a 랭커 tab."""
+"""Shared navigation helpers for the clean UI: guided 빌드 entry with section pills, a class dropdown, a 랭커 tab."""
 import re
 
 SECTIONS = ['스킬 & 특화', '데바니온', '내 장비 & 성장', '매크로 & 키 배치', '보스전 운영']
@@ -24,7 +24,7 @@ def open_build(page):
 
 
 def open_section(page, name):
-    """Open the build page and scroll to a section through its pill (no separate tabs any more)."""
+    """Open the build entry and select one detailed editor through its pill."""
     open_build(page)
     page.locator('.build-pills button', has_text=re.compile('^' + re.escape(name) + '$')).click()
 
@@ -35,6 +35,6 @@ def pick_class(page, name):
 
 
 def open_library(page):
-    """빌드 보관함 left the menus; it opens from the build page's summary column."""
+    """Open the library from the guided build entry."""
     open_build(page)
     page.get_by_role('button', name='공유 링크 · 보관함', exact=True).click()

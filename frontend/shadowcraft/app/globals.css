@@ -542,3 +542,29 @@ footer,footer p,.asbc-footer div small,.side-bottom,.side-bottom small{color:#8f
 
 /* Keep each matching equipment slot and its actual rolls side by side, including phones. */
 .my-ranker-comparison{margin:20px 0;min-width:0}.equipment-pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}.equipment-pair>div{min-width:0;overflow-wrap:anywhere;padding:12px;background:#171d29;border:1px solid #364356;border-radius:8px}.equipment-pair b,.equipment-pair small{display:block}.equipment-pair.headings{margin-bottom:12px}.headings strong{display:block;color:#8edbc8}.aligned-slot{margin-bottom:10px}.aligned-slot.selected{border:1px solid #76cdb5;border-radius:8px;padding:6px}.slot-selector{display:flex;justify-content:space-between;gap:12px;width:100%;padding:8px;text-align:left;background:#263144;color:inherit;border:1px solid #41516a;border-radius:6px;cursor:pointer}.slot-selector span{font-size:12px;color:#8edbc8}.option-pair{margin-top:10px}.actual-options h4{margin:8px 0}.actual-options p,.actual-options label{font-size:12px;line-height:1.7}.rolled-options{list-style:none;padding:0!important}.rolled-options li{padding:10px 0;border-bottom:1px solid #394255}.rolled-options li b{display:inline}.option-fit{margin-top:4px;color:#b9c4d7}.option-fit.mismatch{color:#ffc48a}.option-fit.priority{color:#8edbc8}.investment-advice label{display:block;margin:10px 0}.investment-advice select{display:block;max-width:100%;margin-top:6px}.investment-advice input,.rolled-options input{margin-right:6px}.advice-result{padding:10px;background:#293445;border-left:3px solid #8edbc8}.advice-low,.advice-replace,.advice-tune{border-color:#ffc48a}@media(max-width:600px){.equipment-pair{gap:6px}.equipment-pair>div{padding:7px;font-size:12px}.equipment-pair small{font-size:10px}.actual-options h4{font-size:13px}.actual-options p,.actual-options label{font-size:11px}.advice-result{padding:6px}.slot-selector{font-size:12px}}
+
+/* Beginner entry points and progressive disclosure. Preserve compact data editors. */
+.home-start h1,.beginner-intro h1{font-size:24px;line-height:1.4;margin:0 0 16px}
+.home-start-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:24px}
+.home-start-grid>button{position:relative;text-align:left;display:flex;flex-direction:column;gap:12px;padding:22px;border:1px solid var(--border,#303548);border-radius:14px;background:var(--panel,#171b27);color:var(--text);min-width:0}
+.home-start-grid>button:hover{border-color:var(--accent);background:#202737}
+.home-start-grid strong{font-size:18px}.home-start-grid>button>span:not(.start-number){font-size:14px;line-height:1.7;color:#b8bfd1}
+.home-start-grid svg{position:absolute;top:23px;right:20px}.start-number{color:var(--accent);font-size:18px}
+.page-help{margin:0 0 20px;border-bottom:1px solid #303548;font-size:14px;color:#bbc3d5}
+.page-help summary,.activity-disclosure summary{cursor:pointer;min-height:44px;padding:12px 0;color:var(--text)}
+.page-help p{max-width:80ch;margin:8px 0 14px}.page-help summary:focus-visible,.activity-disclosure summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.beginner-intro p,.beginner-connect p{font-size:14px;color:#bbc3d5;line-height:1.7}.beginner-intro h2,.beginner-connect h2,.beginner-step{font-size:18px;margin:16px 0}
+.beginner-connect{padding:20px;margin:16px 0}.beginner-connect .button{margin:4px 8px 4px 0;min-height:44px}.beginner-next{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}
+.quick-build{padding:24px}.quick-build p,.quick-build summary,.quick-build-options span{font-size:14px;line-height:1.7}.quick-build .button,.beginner-next .button{min-height:44px}.quick-build-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.quick-build-options .button{white-space:normal;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:8px;padding:16px}.quick-build-options .selected{outline:2px solid var(--accent);outline-offset:2px}.quick-build-options small{white-space:normal}
+.quick-build details{margin:16px 0}.quick-build summary{cursor:pointer;padding:10px 0}.quick-preview{margin-top:20px;padding:18px;border:1px solid var(--accent);border-radius:12px}.quick-actions{display:flex;flex-wrap:wrap;gap:10px}.activity-disclosure{margin:20px 0}
+.build-main>[hidden]{display:none!important}.build-pills button{min-height:44px}
+@media(max-width:760px){.home-start-grid,.quick-build-options{grid-template-columns:1fr}.home-start-grid>button{padding:18px;gap:8px}.home-start-grid{gap:10px}.quick-build{padding:16px}.beginner-intro h1,.home-start h1{font-size:22px}.beginner-next .button{flex:1 1 180px}.beginner-connect{padding:16px}}
+
+.home-shell .a2bc-home{display:flex;flex-direction:column;gap:18px}
+.home-shell .home-favorites{width:100%;padding:18px}
+.home-shell .home-utility-links button{min-height:64px;padding:12px}
+.home-shell .home-utility-links small{font-size:12px;display:block}
+.home-shell .home-heading{padding-bottom:10px}
+.home-start-grid{margin-bottom:0}
+
+.page-direction{font-size:14px;line-height:1.7;color:#bdc6d8;margin:4px 0 10px;max-width:80ch}

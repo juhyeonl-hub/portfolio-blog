@@ -1,55 +1,68 @@
-"""Build page (clean UI): class dropdown, style switch, 추천 배분 적용 with undo, persistence, all eight classes, phone."""
+"""Beginner flow: preview is read-only, explicit apply and undo, class isolation, persistence and mobile."""
 import json, os
+from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 from _ui import pick_class, open_build
-URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
+URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5184/lab/shadowcraft/')
+OUT=Path(os.environ.get('ASBC_EVIDENCE','/mnt/d/CodexData/Projects/ASBC/artifacts/beginner-ux-20261022'));OUT.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
  browser=p.chromium.launch()
- page=browser.new_page()
- errors=[]
+ page=browser.new_page(viewport={'width':1366,'height':900});errors=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
- page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
  page.goto(URL)
- open_build(page)
+ expect(page.locator('.home-start-grid')).to_be_visible()
+ expect(page.locator('.home-start-grid>button')).to_have_count(3)
+ assert page.locator('.home-start').bounding_box()['y']+page.locator('.home-start').bounding_box()['height']<=page.locator('.home-favorites').bounding_box()['y'],'home sections must not overlap'
+ page.screenshot(path=str(OUT/'home-desktop.png'),full_page=True)
+ page.get_by_role('button',name='내 캐릭터 세팅하기',exact=False).click()
  for key,name in zip(['assassin','gladiator','templar','ranger','elementalist','sorcerer','cleric','chanter'],['살성','검성','수호성','궁성','정령성','마도성','치유성','호법성']):
   pick_class(page,name)
-  expect(page.locator('#build-section-rotation')).to_have_count(1)
-  settings=page.get_by_role('region',name='빌드 설정',exact=True)
-  expect(settings).to_be_visible()
-  expect(page.locator('.class-select option:checked')).to_have_text(name)
-  # All five sections render on the one page, in pill order, with the summary column.
-  for section in ['skills','daevanion','gear','macro','rotation']:expect(page.locator('#build-section-'+section)).to_have_count(1)
-  expect(page.locator('.build-pills button')).to_have_count(5)
-  expect(page.locator('.build-summary')).to_be_visible()
-  expect(page.locator('.skill-table')).to_have_count(1)
+  expect(page.locator('.quick-build')).to_be_visible()
+  expect(page.locator('.build-layout')).to_have_count(0)
+  expect(page.locator('.build-pills button')).to_have_count(6)
+  page.locator('.build-pills button').filter(has_text='스킬 & 특화').click()
+  page.get_by_label('캐릭터 레벨',exact=True).fill('29')
+  page.locator('.build-pills button').filter(has_text='처음부터').click()
   storage='shadowcraft-plan-v1'+('' if key=='assassin' else ':'+key)
-  # Style switch writes the mode at once (no preview step); 추천 배분 적용 replaces the plan with an undo.
-  settings.get_by_role('button',name='공격형',exact=True).click()
-  assert json.loads(page.evaluate('(key)=>localStorage.getItem(key)',storage))['mode']=='damage'
+  page.locator('.point-extras summary').click()
+  page.get_by_label('간편 캐릭터 레벨',exact=True).fill('30')
   before=page.evaluate('(key)=>localStorage.getItem(key)',storage)
-  settings.get_by_role('button',name='추천 배분 적용',exact=True).click()
-  expect(page.get_by_role('button',name='빌드 적용 전으로 되돌리기',exact=True)).to_be_visible()
-  applied=page.evaluate('(key)=>localStorage.getItem(key)',storage)
+  page.get_by_role('button',name='이 빌드 미리보기',exact=True).click()
+  expect(page.locator('.quick-preview')).to_be_visible()
+  assert page.evaluate('(key)=>localStorage.getItem(key)',storage)==before,'preview must not write the plan'
+  page.get_by_role('button',name='이 빌드 적용',exact=True).click()
+  assert json.loads(page.evaluate('(key)=>localStorage.getItem(key)',storage))['level']==30
   page.get_by_role('button',name='빌드 적용 전으로 되돌리기',exact=True).click()
-  restored=page.evaluate('(key)=>localStorage.getItem(key)',storage)
-  assert json.loads(restored)['base']==json.loads(before)['base'],'undo must restore the base investment'
-  if applied!=before:assert json.loads(applied)['base']!=json.loads(restored)['base'] or json.loads(applied)['nodes']!=json.loads(restored)['nodes']
-  # Level field and reload persistence.
-  page.get_by_label('캐릭터 레벨',exact=True).fill('30')
-  assert json.loads(page.evaluate('(key)=>localStorage.getItem(key)',storage))['level']==30
-  page.reload()
+  restored=json.loads(page.evaluate('(key)=>localStorage.getItem(key)',storage))
+  original=json.loads(before)
+  for field in ['base','nodes','level','gear','mode']:assert restored.get(field)==original.get(field),(key,field)
+ # Explicit application persists across reload and starts from the saved level.
+ page.get_by_role('button',name='이 빌드 미리보기',exact=True).click()
+ page.get_by_role('button',name='이 빌드 적용',exact=True).click()
+ page.reload();expect(page.locator('.quick-build')).to_be_visible()
+ page.locator('.point-extras summary').click()
+ expect(page.get_by_label('간편 캐릭터 레벨',exact=True)).to_have_value('30')
+ page.get_by_role('button',name='내 캐릭터 연결',exact=True).click()
+ expect(page.get_by_role('dialog')).to_be_visible()
+ page.get_by_role('button',name='닫기',exact=True).click()
+ page.evaluate('window.scrollTo(0,0)')
+ page.screenshot(path=str(OUT/'build-desktop.png'),full_page=True)
+ for width in [390,320]:
+  page.set_viewport_size({'width':width,'height':844})
+  expect(page.locator('.quick-build')).to_be_visible()
+  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),width
+  page.evaluate('window.scrollTo(0,0)')
+  page.screenshot(path=str(OUT/f'build-{width}.png'),full_page=True)
+  page.goto(URL);expect(page.locator('.home-start-grid')).to_be_visible()
+  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),width
+  page.locator('.page-help summary').focus();page.keyboard.press('Enter')
+  expect(page.locator('.page-help')).to_have_attribute('open','')
+  page.screenshot(path=str(OUT/f'home-{width}.png'),full_page=True)
   open_build(page)
-  expect(page.locator('.class-select option:checked')).to_have_text(name)
-  assert json.loads(page.evaluate('(key)=>localStorage.getItem(key)',storage))['level']==30
-  page.get_by_label('캐릭터 레벨',exact=True).fill('45')
- # Section pills scroll to their anchor on the same page.
- page.locator('.build-pills button',has_text='데바니온').click()
- expect(page.locator('.build-pills button',has_text='데바니온')).to_have_class('active')
- page.wait_for_function("document.getElementById('build-daevanion').getBoundingClientRect().top < 200")
- page.set_viewport_size({'width':390,'height':844})
- expect(page.get_by_role('region',name='빌드 설정',exact=True)).to_be_visible()
- assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
- page.screenshot(path='/tmp/a2bc-quick-build-mobile.png',full_page=True)
+ page.get_by_role('button',name='공유 링크 · 보관함',exact=True).click()
+ expect(page.get_by_text('저장한 빌드 가져오기',exact=True)).to_be_visible()
+ with page.expect_download() as download:page.get_by_role('button',name='빌드 내보내기',exact=True).click()
+ assert download.value.suggested_filename.endswith('.json')
  assert not errors,errors
- print('PASS: 8 classes via dropdown, five sections + summary, style switch, apply/undo, level persistence, pills, mobile; no page errors')
  browser.close()
+print('PASS beginner flow: 8 classes; preview does not mutate; apply/undo; reload; character dialog; keyboard help; 1366/390/320px; no page errors')

@@ -25,7 +25,7 @@ with sync_playwright() as p:
   expect(panel.locator('.ranker-list button')).to_have_count(10)
   key='shadowcraft-plan-v1'
   # Seed and undo a plan change on the build page, then return to the ranker page.
-  open_build(page);page.get_by_role('button',name='추천 배분 적용',exact=True).click()
+  open_build(page);page.get_by_role('button',name='이 빌드 미리보기',exact=True).click();page.get_by_role('button',name='이 빌드 적용',exact=True).click()
   page.get_by_role('button',name='빌드 적용 전으로 되돌리기',exact=True).click();click_tab(page,'랭커')
   before=page.evaluate('(key)=>localStorage.getItem(key)',key)
   panel.locator('.ranker-list button').first.click()

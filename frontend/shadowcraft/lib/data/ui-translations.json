@@ -8718,5 +8718,135 @@
     "en": "Advice context: {0} · {1}. Levels use the Global item catalog. Ranker rolls are not treated as the correct answer.",
     "ja": "判断基準：{0} · {1}。レベル比較はグローバル装備資料に基づき、ランカーのオプションを正解とは扱いません。",
     "fi": "Arvion peruste: {0} · {1}. Tasot perustuvat Global-esineluetteloon. Verrokin ominaisuuksia ei pidetä oikeana vastauksena."
+  },
+  "무엇을 하고 싶으세요?": {
+    "en": "What would you like to do?",
+    "ja": "何をしたいですか？",
+    "fi": "Mitä haluat tehdä?"
+  },
+  "내 캐릭터 세팅하기": {
+    "en": "Set up my character",
+    "ja": "自分のキャラクターを設定",
+    "fi": "Määritä hahmoni"
+  },
+  "직업을 고르고 추천을 미리 확인하세요.": {
+    "en": "Choose your class and preview a recommendation.",
+    "ja": "クラスを選び、おすすめを確認しましょう。",
+    "fi": "Valitse luokka ja esikatsele suositus."
+  },
+  "다른 캐릭터와 비교하기": {
+    "en": "Compare with another character",
+    "ja": "他のキャラクターと比較",
+    "fi": "Vertaa toiseen hahmoon"
+  },
+  "내 장비와 랭커 장비를 나란히 확인하세요.": {
+    "en": "View your equipment beside a ranked character’s.",
+    "ja": "自分とランカーの装備を並べて確認しましょう。",
+    "fi": "Katso omia ja sijoittuneen hahmon varusteita rinnakkain."
+  },
+  "지도에서 위치 찾기": {
+    "en": "Find a location on the map",
+    "ja": "マップで場所を探す",
+    "fi": "Etsi sijainti kartalta"
+  },
+  "수집물과 NPC를 검색하고 위치를 확인하세요.": {
+    "en": "Search for collectibles and NPCs to find their locations.",
+    "ja": "収集物やNPCを検索して場所を確認しましょう。",
+    "fi": "Etsi keräilykohteita ja NPC-hahmoja kartalta."
+  },
+  "접속 현황 보기": {
+    "en": "View player activity",
+    "ja": "接続状況を見る",
+    "fi": "Näytä pelaajien aktiivisuus"
+  },
+  "처음부터": {
+    "en": "Start here",
+    "ja": "ここから開始",
+    "fi": "Aloita tästä"
+  },
+  "1. 내 직업 선택": {
+    "en": "1. Choose your class",
+    "ja": "1. クラスを選択",
+    "fi": "1. Valitse luokkasi"
+  },
+  "2. 내 캐릭터 연결 (선택)": {
+    "en": "2. Connect your character (optional)",
+    "ja": "2. キャラクターを連携（任意）",
+    "fi": "2. Yhdistä hahmosi (valinnainen)"
+  },
+  "연결하지 않아도 추천을 미리 볼 수 있습니다.": {
+    "en": "You can preview recommendations without connecting.",
+    "ja": "連携しなくてもおすすめを確認できます。",
+    "fi": "Voit esikatsella suosituksia yhdistämättä hahmoa."
+  },
+  "3. 추천 확인 후 적용": {
+    "en": "3. Preview, then apply",
+    "ja": "3. おすすめを確認して適用",
+    "fi": "3. Esikatsele ja ota käyttöön"
+  },
+  "빌드는 스킬과 장비의 조합입니다. 여기서 바꾼 내용은 게임에 자동 적용되지 않습니다.": {
+    "en": "A build is a combination of skills and equipment. Changes here are not automatically applied in the game.",
+    "ja": "ビルドはスキルと装備の組み合わせです。ここでの変更はゲームに自動反映されません。",
+    "fi": "Kokoonpano yhdistää taidot ja varusteet. Täällä tehdyt muutokset eivät siirry peliin automaattisesti."
+  },
+  "사용 방법과 용어": {
+    "en": "How to use this page and terminology",
+    "ja": "使い方と用語",
+    "fi": "Käyttöohjeet ja termit"
+  },
+  "처음이라면 빌드에서 직업을 고른 뒤 추천을 미리 보세요. 장비 비교는 랭커에서 할 수 있습니다.": {
+    "en": "Start by choosing a class under Build, then preview a recommendation. Compare equipment under Rankings.",
+    "ja": "初めてならビルドでクラスを選び、おすすめを確認しましょう。装備比較はランカーで行えます。",
+    "fi": "Valitse ensin luokka kokoonpanosivulla ja esikatsele suositus. Varusteita voi verrata sijoitussivulla."
+  },
+  "PvE는 몬스터와의 전투, PvP는 다른 플레이어와의 전투입니다.": {
+    "en": "PvE means fighting monsters; PvP means fighting other players.",
+    "ja": "PvEはモンスターとの戦闘、PvPは他のプレイヤーとの戦闘です。",
+    "fi": "PvE tarkoittaa taistelua hirviöitä vastaan, PvP muita pelaajia vastaan."
+  },
+  "포인트는 스킬이나 능력에 나누어 쓰는 점수입니다. 총량은 이미 쓴 점수와 남은 점수를 합친 값입니다.": {
+    "en": "Points are spent on skills or abilities. The total includes both spent and remaining points.",
+    "ja": "ポイントはスキルや能力に割り振る数値です。総量は使用済みと残りの合計です。",
+    "fi": "Pisteitä käytetään taitoihin ja kykyihin. Kokonaismäärä sisältää käytetyt ja jäljellä olevat pisteet."
+  },
+  "설정은 이 브라우저에 저장됩니다. 다른 기기로 옮기려면 보관함에서 내보내기·가져오기를 사용하세요.": {
+    "en": "Settings are saved in this browser. Use export and import in the library to move them to another device.",
+    "ja": "設定はこのブラウザーに保存されます。別の端末へ移す場合は保管庫でエクスポート・インポートを使ってください。",
+    "fi": "Asetukset tallentuvat tähän selaimeen. Siirrä ne toiselle laitteelle kirjaston vienti- ja tuontitoiminnoilla."
+  },
+  "기본 추천이며 최적의 세팅을 보장하지 않습니다. 내 레벨과 포인트를 확인한 뒤 적용하세요.": {
+    "en": "These are basic recommendations, not guaranteed optimal builds. Check your level and points before applying.",
+    "ja": "基本的なおすすめであり、最適な構成を保証するものではありません。レベルとポイントを確認してから適用してください。",
+    "fi": "Nämä ovat perussuosituksia, eivät taattuja optimikokoonpanoja. Tarkista tasosi ja pisteesi ennen käyttöönottoa."
+  },
+  "직업을 고르고 내 캐릭터를 연결한 뒤, 비교할 랭커를 선택하세요.": {
+    "en": "Choose your class, connect your character, then select a ranked character to compare.",
+    "ja": "クラスを選び、自分のキャラクターを連携してから比較するランカーを選びましょう。",
+    "fi": "Valitse luokka, yhdistä hahmosi ja valitse vertailtava hahmo."
+  },
+  "지역을 고른 뒤 찾는 이름을 검색하세요. 지도에서 표시를 누르면 자세한 정보를 볼 수 있습니다.": {
+    "en": "Choose a region and search for a name. Select a map marker for details.",
+    "ja": "地域を選び、名前を検索しましょう。マップのマーカーを選ぶと詳細を確認できます。",
+    "fi": "Valitse alue ja hae nimellä. Näytä lisätiedot valitsemalla karttamerkki."
+  },
+  "궁금한 스킬이나 아이템 이름을 검색하세요. 지역과 데이터 기준도 함께 확인하세요.": {
+    "en": "Search for a skill or item name. Check the region and data source too.",
+    "ja": "スキルやアイテム名を検索しましょう。地域とデータの基準も確認してください。",
+    "fi": "Hae taidon tai esineen nimellä. Tarkista myös alue ja tietojen lähde."
+  },
+  "다른 유저의 세팅을 살펴보고, 내 직업과 목적에 맞는지 확인하세요.": {
+    "en": "Explore other players’ builds and check whether they suit your class and goals.",
+    "ja": "他のプレイヤーの構成を見て、自分のクラスや目的に合うか確認しましょう。",
+    "fi": "Tutustu muiden kokoonpanoihin ja arvioi, sopivatko ne luokkaasi ja tavoitteisiisi."
+  },
+  "현재 계획에 이름을 붙여 보관하거나 저장한 계획을 다시 불러오세요.": {
+    "en": "Name and save your current plan, or restore a saved plan.",
+    "ja": "現在の計画に名前を付けて保存するか、保存済みの計画を読み込みましょう。",
+    "fi": "Nimeä ja tallenna nykyinen suunnitelma tai avaa tallennettu suunnitelma."
+  },
+  "공지의 날짜와 지역을 확인하세요. 게임 변경 사항과 추천 검토 상태는 별도로 표시됩니다.": {
+    "en": "Check each notice’s date and region. Game changes and recommendation review status are shown separately.",
+    "ja": "お知らせの日付と地域を確認しましょう。ゲームの変更とおすすめの確認状況は別々に表示されます。",
+    "fi": "Tarkista ilmoituksen päiväys ja alue. Pelimuutokset ja suositusten tarkistustila näytetään erikseen."
   }
 }

@@ -1,6 +1,5 @@
 import {useLocale} from './locale';
-import {lazy,Suspense,useState} from 'react';
-const RankerBuilds=lazy(()=>import('./ranker-builds'));
+import {useState} from 'react';
 import {type Catalog,type Plan,pointLimits,totals,finalLevel} from '@/lib/planner';
 import {classProfile} from '@/lib/classes';
 import {recommendBuild} from '@/lib/recommendation';
@@ -23,7 +22,7 @@ export default function QuickBuild({catalog,plan,onApply,onEdit}:{catalog:Catalo
  return <><section className="panel quick-build" aria-label={t('간편 빌드 선택')}>
   <div className="quick-build-heading"><span className="eyebrow">{t(profile.name)} · {t('빌드 플래너')}</span><h2>{t('플레이 스타일을 선택하세요')}</h2></div>
   <p>{t('유형을 고르고 미리 본 뒤 적용하세요. 세부 설정은 언제든 조정할 수 있습니다.')}</p>
-  <p className="subtle">{t('안정형·공격형·PvP형은 기본 추천 가이드입니다. 아래 상위 캐릭터의 실제 세팅과 구분됩니다.')}</p>
+  <p className="subtle">{t('기본 추천이며 최적의 세팅을 보장하지 않습니다. 내 레벨과 포인트를 확인한 뒤 적용하세요.')}</p>
   <div className="quick-build-options">{(['safe','damage','pvp'] as const).map(value=><button key={value} aria-pressed={mode===value} className={'button secondary '+(mode===value?'selected':'')} onClick={()=>{setMode(value);invalidate()}}><strong>{t(MODE_NAMES[value])}</strong><span>{t(value==='safe'?'생존 능력치도 고려한 보스전 입문':value==='damage'?'공격 관련 효과를 우선하는 보스전 배분':'PvP 전용 데바니온 노드와 상태이상·치명타 저항을 우선합니다. 공식 PvP 랭킹 공개 전 임시 추천입니다.')}</span><small>{t(value==='safe'?'공격 효과보다 생존 노드를 더 고려합니다.':value==='damage'?'위험한 패턴은 직접 피해야 합니다.':'아스펠(전투) 포인트는 내 레벨·포인트에서 입력하세요.')}</small></button>)}</div>
   <details className="leveling-guide"><summary>{t('레벨링 — 45까지 빠르게')}</summary>
    <p>{t('목표 레벨을 고르면 그 레벨에서 열리는 보드·스킬만으로 공격형 배분을 미리 봅니다.')}</p>
@@ -50,5 +49,5 @@ export default function QuickBuild({catalog,plan,onApply,onEdit}:{catalog:Catalo
    <div className="quick-actions"><button className="button primary" onClick={()=>{onApply(candidate);setPreview(null)}}>{t('이 빌드 적용')}</button><button className="button ghost" onClick={()=>setPreview(null)}>{t('미리보기 취소')}</button></div>
   </div>}
   <details className="quick-edit"><summary>{t('직접 조정하고 싶어요 — 상세 편집')}</summary><div className="quick-actions">{[['skills','스킬·특화 편집'],['daevanion','데바니온 보드 편집'],['gear','장비 입력·비교']].map(([tab,label])=><button key={tab} className="button secondary" onClick={()=>onEdit(tab)}>{t(label)}</button>)}</div></details>
- </section><Suspense fallback={<p role="status">{t('상위 캐릭터 세팅 불러오는 중…')}</p>}><RankerBuilds catalog={catalog} plan={plan} onApply={onApply}/></Suspense></>;
+ </section></>;
 }
