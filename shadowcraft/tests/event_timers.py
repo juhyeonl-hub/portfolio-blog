@@ -32,7 +32,7 @@ with sync_playwright() as p:
  page.clock.pause_at(datetime(2026,10,17,9,0,1,tzinfo=timezone.utc))
  page.clock.run_for(1000)
  expect(card.locator('strong')).to_have_text('12:59:58')
- page.get_by_role('tab',name='빌드',exact=True).click();page.get_by_role('tab',name='메인',exact=True).first.click()  # the timer bar shows on 메인 only
+ click_tab(page,'빌드');click_tab(page,'메인')  # the timer bar shows on 메인 only
  expect(header).to_contain_text('Siel')
  before=page.evaluate("localStorage.getItem('a2bc-event-timers-v1')")
  page.reload()

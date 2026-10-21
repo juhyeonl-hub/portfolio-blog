@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
+from _ui import click_tab
 
 # The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
 def ensure_open(panel, label):
@@ -31,7 +32,7 @@ with sync_playwright() as p:
 
     def open_map(slug):
         page.goto(URL)
-        page.get_by_role('tab', name='지도 & 수집', exact=True).click()
+        click_tab(page,'지도 & 수집')
         panel = page.get_by_role('region', name='공식 글로벌 지형 지도', exact=True)
         panel.get_by_label('공식 지형 지역', exact=True).select_option(slug)
         ensure_markers(panel)

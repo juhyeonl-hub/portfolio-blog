@@ -1,6 +1,7 @@
 """Normal map opening, async close/retry, and independent gathering resource filters."""
 import os
 from playwright.sync_api import sync_playwright, expect
+from _ui import click_tab
 
 # The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
 def ensure_open(panel, label):
@@ -22,7 +23,7 @@ with sync_playwright() as p:
     patterns=['**/spawn-preview.json*','**/assets/spawn-preview-*.js']
     for pattern in patterns:page.route(pattern,lambda route:pending.append(route))
     page.goto(URL)
-    page.get_by_role('tab',name='지도 & 수집',exact=True).click()
+    click_tab(page,'지도 & 수집')
     panel=page.get_by_role('region',name='공식 글로벌 지형 지도',exact=True)
     original=page.evaluate('JSON.stringify({...localStorage})')
     ensure_open(panel,'공식 Verteron 지형 열기')

@@ -1,6 +1,7 @@
 """Official terrain browser acceptance; no game-coordinate assertions."""
 import os
 from playwright.sync_api import sync_playwright,expect
+from _ui import click_tab
 
 # The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
 def ensure_open(panel, label):
@@ -23,7 +24,7 @@ with sync_playwright() as p:
     before=page.evaluate('JSON.stringify({...localStorage})')
     assert not tiles,'terrain must not download before the map tab is opened'
     page.route('**/maps/steam-25926599/verteron/4_4.webp',lambda r:r.fulfill(status=404,body='missing'))
-    page.get_by_role('tab',name='지도 & 수집',exact=True).click()
+    click_tab(page,'지도 & 수집')
     panel=page.get_by_role('region',name='공식 글로벌 지형 지도',exact=True)
     ensure_open(panel,'공식 Verteron 지형 열기')
     canvas=panel.get_by_role('group',name='Verteron 지형 이미지',exact=True)

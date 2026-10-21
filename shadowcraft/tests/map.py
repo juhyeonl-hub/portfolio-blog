@@ -2,6 +2,7 @@
 import json
 import os
 from playwright.sync_api import sync_playwright, expect
+from _ui import click_tab
 
 fixture = {'schema': 'a2bc-map-v1', 'region': 'global', 'coordinates': 'normalized-top-left',
            'id': 'synthetic-map', 'name': 'Test map', 'version': 'Synthetic test',
@@ -25,7 +26,7 @@ with sync_playwright() as p:
     page.on('request', lambda request: posts.append(request.url) if request.method == 'POST' else None)
     page.route('**/api/public/shadowcraft/catalog?*', lambda route: route.fulfill(status=503, json={}))
     page.goto(url)
-    page.get_by_role('tab', name='지도 & 수집', exact=True).click()
+    click_tab(page,'지도 & 수집')
     panel = page.get_by_role('region', name='지도 탐색', exact=True)
     panel.locator('details.optional-panel > summary').click()
     expect(panel.get_by_text('표시할 지도가 없습니다', exact=True)).to_be_visible()
@@ -63,7 +64,7 @@ with sync_playwright() as p:
     expect(panel.get_by_role('alert')).to_be_visible()
     assert page.evaluate('(key) => localStorage.getItem(key)', key) == saved
     page.reload()
-    page.get_by_role('tab', name='지도 & 수집', exact=True).click()
+    click_tab(page,'지도 & 수집')
     upload(panel, fixture)
     expect(panel.get_by_text('전체 완료 1 / 2 · 현재 표시 2개', exact=True)).to_be_visible()
     upload(panel, {**fixture, 'version': 'Other version'})

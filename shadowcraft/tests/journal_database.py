@@ -1,6 +1,7 @@
 """Official quest/dungeon read-only browsing acceptance."""
 import os
 from playwright.sync_api import sync_playwright, expect
+from _ui import click_tab
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True)
     page=browser.new_page(viewport={'width':1440,'height':1000})
@@ -8,7 +9,7 @@ with sync_playwright() as p:
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.on('request',lambda r:requests.append(r.url) if '/journal-index.json' in r.url else None)
     page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/'))
-    page.get_by_role('tab',name='글로벌 데이터',exact=True).click()
+    click_tab(page,'글로벌 데이터')
     panel=page.get_by_role('region',name='공식 퀘스트·던전·펫 목록',exact=True)
     assert not requests
     before=page.evaluate('JSON.stringify(localStorage)')

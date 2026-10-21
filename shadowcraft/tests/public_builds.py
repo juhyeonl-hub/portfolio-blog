@@ -2,6 +2,7 @@
 import base64,json,os
 from urllib.parse import urlparse,parse_qs
 from playwright.sync_api import sync_playwright,expect
+from _ui import click_tab
 url=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 origin=url.split('/lab/')[0]
 id='11111111-1111-1111-1111-111111111111'
@@ -23,7 +24,7 @@ with sync_playwright() as p:
  page.route('**/api/public/shadowcraft/builds**',public)
  page.goto(url);page.get_by_role('tab',name='공개 빌드',exact=True).wait_for();assert not requests
  before=page.evaluate('JSON.stringify(localStorage)')
- page.get_by_role('tab',name='공개 빌드',exact=True).click();panel=page.get_by_role('region',name='공개 빌드 목록',exact=True)
+ click_tab(page,'공개 빌드');panel=page.get_by_role('region',name='공개 빌드 목록',exact=True)
  expect(panel.get_by_role('heading',name='Reviewed build')).to_be_visible()
  expect(panel).to_contain_text('Plain <b>text</b>');assert panel.locator('article b').count()==0
  panel.get_by_label('빌드 직업').select_option('gladiator');expect(panel).to_contain_text('공개된 빌드가 없습니다')

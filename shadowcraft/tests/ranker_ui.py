@@ -20,7 +20,7 @@ with sync_playwright() as p:
    cls=next(c for c in json.loads((root/'frontend/shadowcraft/lib/data/class-profiles.json').read_text()) if c['key']==q['class'])
    route.fulfill(json={'classKey':q['class'],'region':q['region'],'profile':{'characterId':q['id'],'serverId':int(q['server']),'pcId':cls['pcIds'][0]},'nodes':[auto['id'],node['id']],'failedBoards':[],'boards':[{'id':board['id'],'open':1}],'importedAt':'2026-10-19T00:00:00Z','skills':[] if response_mode['value']=='empty' else [{'id':int(c['skills'][0]['id']),'name':'Test public skill','category':'Active','skillLevel':40,'equip':1}],'equipment':[]})
   page.route('**/api/public/shadowcraft/armory',armory)
-  page.goto(URL);page.get_by_role('tab',name='랭커',exact=True).click()
+  page.goto(URL);click_tab(page,'랭커')
   panel=page.get_by_role('region',name='랭커 빌드 분석',exact=True)
   expect(panel.locator('.ranker-list button')).to_have_count(10)
   key='shadowcraft-plan-v1'

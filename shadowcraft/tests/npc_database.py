@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
+from _ui import click_tab
 root = Path(__file__).parents[2]
 data = json.loads((root/'frontend/public/shadowcraft/data/npc-index.json').read_text())
 with sync_playwright() as p:
@@ -12,7 +13,7 @@ with sync_playwright() as p:
     page.on('pageerror', lambda e: errors.append(str(e)))
     page.on('request', lambda r: requests.append(r.url) if '/npc-index.json' in r.url else None)
     page.goto(os.environ.get('SHADOWCRAFT_TEST_URL', 'http://127.0.0.1:5173/lab/shadowcraft/'))
-    page.get_by_role('tab',name='글로벌 데이터',exact=True).click()
+    click_tab(page,'글로벌 데이터')
     panel = page.get_by_role('region',name='공식 NPC 목록',exact=True)
     assert not requests
     before = page.evaluate('JSON.stringify(localStorage)')

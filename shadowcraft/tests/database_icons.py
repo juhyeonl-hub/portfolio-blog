@@ -2,6 +2,7 @@
 non-equipment rows have no icon; a missing index leaves the list intact."""
 import os, re
 from playwright.sync_api import sync_playwright, expect
+from _ui import click_tab
 
 URL = os.environ.get('SHADOWCRAFT_TEST_URL', 'http://127.0.0.1:5173/lab/shadowcraft/')
 
@@ -13,7 +14,7 @@ with sync_playwright() as p:
         if mode == 'missing':
             page.route('**/shadowcraft/data/item-index.json', lambda r: r.fulfill(status=404, body='nope'))
         page.goto(URL)
-        page.get_by_role('tab', name='글로벌 데이터', exact=True).click()
+        click_tab(page,'글로벌 데이터')
         panel = page.get_by_role('region', name='글로벌 클라이언트 데이터베이스', exact=True)
         panel.get_by_placeholder('영문 이름 또는 ID').fill('110130002')  # Wisdom Greatsword, a unique weapon
         row = panel.locator('.database-list button').first

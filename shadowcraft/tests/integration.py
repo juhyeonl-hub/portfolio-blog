@@ -3,7 +3,7 @@ from urllib.parse import urlsplit
 import json,re
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
-from _ui import open_section, pick_class, open_build, open_library
+from _ui import open_section, pick_class, open_build, open_library, click_tab
 ROOT=Path(__file__).resolve().parents[2]
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 keys=['assassin','gladiator','templar','ranger','elementalist','sorcerer','cleric','chanter']
@@ -23,7 +23,7 @@ with sync_playwright() as p:
  page.on('request',lambda r: requests.append((r.method,r.url,r.post_data)))
  # Test degraded upstream separately from deterministic successful profile fixtures.
  page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={'error':'offline'}))
- page.goto(URL,wait_until='domcontentloaded');page.get_by_role('tab',name='빌드',exact=True).first.click();page.wait_for_selector('.class-select')
+ page.goto(URL,wait_until='domcontentloaded');click_tab(page,'빌드');page.wait_for_selector('.class-select')
  for key,name in zip(keys,names):
   pick_class(page,name)
   expect(page.locator('.breadcrumb span')).to_have_text(name)
@@ -74,7 +74,7 @@ with sync_playwright() as p:
  with page.expect_download() as download:
   page.get_by_role('button',name='빌드 내보내기',exact=True).click()
  path=download.value.path(); exported=json.loads(Path(path).read_text());assert exported['schema']=='shadowcraft-v1';assert exported['plan']['gear']['items'][0]['name']=='이전 검증 장비'
- page.get_by_role('tab',name='업데이트',exact=True).first.click()
+ click_tab(page,'업데이트')
  page.locator('.sources-panel input[type=file]').set_input_files(str(path))
  expect(page.locator('.toast')).to_contain_text('불러왔습니다')
  assert json.loads(page.evaluate("localStorage.getItem('shadowcraft-plan-v1')"))==exported['plan']
@@ -85,7 +85,7 @@ with sync_playwright() as p:
   if mime:assert mime in r.headers.get('content-type',''),r.headers
  passed.append('namespaced OCR worker, embedded WASM JS and gzip paths/MIME')
  page.set_viewport_size({'width':390,'height':844});page.reload(wait_until='domcontentloaded')
- page.get_by_role('tab',name='빌드',exact=True).first.click();page.wait_for_selector('.class-select');assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+ click_tab(page,'빌드');page.wait_for_selector('.class-select');assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
  passed.append('390px mobile viewport has no document overflow')
  assert not errors,errors
  print(json.dumps({'passed':passed,'pageErrors':errors,'planNetworkCalls':[u for m,u,b in requests if '/api/plan' in u]},ensure_ascii=False,indent=2))

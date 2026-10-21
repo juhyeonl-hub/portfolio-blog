@@ -1,6 +1,7 @@
 import os,json
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
+from _ui import click_tab
 ROOT=Path(__file__).resolve().parents[2]
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 with sync_playwright() as p:
@@ -11,7 +12,7 @@ with sync_playwright() as p:
  data['newsRefresh']={'enabled':True,'intervalMinutes':15}
  page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(json=data))
  page.goto(URL,wait_until='domcontentloaded')
- page.get_by_role('tab',name='업데이트',exact=True).first.click()
+ click_tab(page,'업데이트')
  expect(page.get_by_role('tab',name='업데이트',exact=True).locator('.dot.amber').first).to_be_visible()
  expect(page.locator('.update-cards')).to_contain_text('2.0.8.0')
  expect(page.locator('.update-cards')).to_contain_text('추천 재검토 필요')

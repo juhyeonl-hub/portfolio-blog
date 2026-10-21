@@ -5,6 +5,7 @@ real migrations) and Vite on 5173. Keep the default localhost URL: the backend C
 import os,uuid
 from urllib.parse import urlsplit
 from playwright.sync_api import sync_playwright,expect
+from _ui import click_tab
 url=os.environ.get('SHADOWCRAFT_TEST_URL','http://localhost:5173/lab/shadowcraft/')
 api=os.environ.get('SHADOWCRAFT_TEST_API','http://127.0.0.1:18082')
 assert urlsplit(api).hostname in ('localhost','127.0.0.1'), 'Only isolated localhost backends allowed'
@@ -19,7 +20,7 @@ with sync_playwright() as p:
    route.fulfill(response=result)
   else:route.fulfill(json={})
  context.route('**/api/**',proxy)
- page.goto(url);page.get_by_role('tab',name='공개 빌드',exact=True).click()
+ page.goto(url);click_tab(page,'공개 빌드')
  before=page.evaluate('JSON.stringify(localStorage)')
  page.get_by_role('button',name='회원가입',exact=True).click()
  page.get_by_label('회원 아이디',exact=True).fill(username);page.get_by_label('회원 비밀번호',exact=True).fill('browserPassword123!')

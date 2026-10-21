@@ -3,7 +3,7 @@ class, pills scroll to the section and mark it active, the sidebar/menu reach �
 to an icon rail that is remembered."""
 import os, re
 from playwright.sync_api import sync_playwright, expect
-from _ui import open_build, pick_class
+from _ui import open_build, pick_class, click_tab
 
 URL = os.environ.get('SHADOWCRAFT_TEST_URL', 'http://127.0.0.1:5173/lab/shadowcraft/')
 ORDER = ['skills', 'daevanion', 'gear', 'macro', 'rotation']
@@ -30,7 +30,7 @@ with sync_playwright() as p:
     # Menus: only the main screens; 랭커 is its own page.
     sidebar = page.locator('.sidebar')
     expect(sidebar.get_by_role('tab')).to_have_text(['메인', '빌드', '랭커', '공개 빌드', '지도 & 수집', '글로벌 데이터', '업데이트'])
-    sidebar.get_by_role('tab', name='랭커', exact=True).click()
+    click_tab(sidebar,'랭커')
     expect(page.get_by_role('region', name='랭커 빌드 분석', exact=True)).to_be_visible()
     assert page.locator('#build-section-skills').count() == 0
     # Collapsible sidebar, remembered across reloads.

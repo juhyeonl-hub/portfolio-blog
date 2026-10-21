@@ -1,7 +1,7 @@
 """Full-width home, planner class entry and map disclosure preserve the active workspace."""
 import os
 from playwright.sync_api import sync_playwright,expect
-from _ui import open_section, pick_class, open_build
+from _ui import open_section, pick_class, open_build, click_tab
 
 # The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
 def ensure_open(panel, label):
@@ -37,7 +37,7 @@ with sync_playwright() as p:
             pick_class(page,name)
             expect(page.get_by_role('region',name='빌드 설정')).to_be_visible()
             expect(page.locator('.class-select option:checked')).to_have_text(name)
-        open_menu(page);page.get_by_role('tab',name='메인',exact=True).click()
+        open_menu(page);click_tab(page,'메인')
         expect(page.locator('.sidebar')).to_have_count(1)
         page.screenshot(path=f'/tmp/a2bc-reference-ui-home-{width}.png')
         page.get_by_role('button',name='지도 열기',exact=True).click()

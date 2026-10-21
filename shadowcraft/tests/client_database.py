@@ -3,7 +3,7 @@ import json
 import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
-from _ui import open_section, pick_class, open_build
+from _ui import open_section, pick_class, open_build, click_tab
 
 url = os.environ.get('SHADOWCRAFT_TEST_URL', 'http://127.0.0.1:5173/lab/shadowcraft/')
 data = json.loads((Path(__file__).parents[2]/'frontend/public/shadowcraft/data/client-index.json').read_text())
@@ -53,7 +53,7 @@ with sync_playwright() as p:
     expect(panel.locator('.database-detail')).to_contain_text(item['name'])
     expect(panel.get_by_text('생산 제작법',exact=False)).to_have_count(0)
     open_section(page,'스킬 & 특화')
-    page.get_by_role('tab',name='글로벌 데이터',exact=True).click()
+    click_tab(page,'글로벌 데이터')
     expect(panel.get_by_label('데이터 검색',exact=True)).to_have_value(item['id'])
     page.set_viewport_size({'width':390,'height':844})
     assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth')
@@ -64,7 +64,7 @@ with sync_playwright() as p:
     # Malformed server response must show retry rather than crash the application.
     page.route('**/shadowcraft/data/client-index.json',lambda r:r.fulfill(json={'schema':'broken'}))
     page.reload()
-    page.get_by_role('tab',name='글로벌 데이터',exact=True).click()
+    click_tab(page,'글로벌 데이터')
     expect(panel.get_by_role('alert')).to_be_visible()
     page.unroute('**/shadowcraft/data/client-index.json')
     panel.get_by_role('button',name='다시 불러오기',exact=True).click()

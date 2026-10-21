@@ -2,6 +2,7 @@
 import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
+from _ui import click_tab
 
 # The map opens with markers the first time its tab is shown; press "open"/"show markers" only when they are offered.
 def ensure_open(panel, label):
@@ -21,7 +22,7 @@ with sync_playwright() as p:
     page=browser.new_page(viewport={'width':390,'height':900})
     page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
     page.goto(url)
-    page.get_by_role('tab',name='지도 & 수집',exact=True).click()
+    click_tab(page,'지도 & 수집')
     panel=page.get_by_role('region',name='공식 글로벌 지형 지도',exact=True)
     ensure_markers(panel)
     expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(61)
@@ -57,7 +58,7 @@ with sync_playwright() as p:
     expect(card.locator('h3 image')).to_have_attribute('href',icons['traceComplete']['src'])
     expect(panel.locator('[data-preview-marker][aria-pressed="true"] image')).to_have_attribute('href',icons['traceComplete']['src'])
     page.reload()
-    page.get_by_role('tab',name='지도 & 수집',exact=True).click()
+    click_tab(page,'지도 & 수집')
     ensure_markers(panel)
     panel.get_by_role('checkbox',name='깃털 (Empyrean Trace)',exact=True).check()
     panel.get_by_label('실험 위치 검색',exact=True).fill(target['name'])

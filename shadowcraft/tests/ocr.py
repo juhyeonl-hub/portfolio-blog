@@ -3,7 +3,7 @@ from urllib.parse import urlsplit
 import json,base64
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
-from _ui import open_section, pick_class, open_build
+from _ui import open_section, pick_class, open_build, click_tab
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 fixture=Path(__file__).resolve().parents[1]/'fixtures/gear-tooltip-preprocessed.png'
 with sync_playwright() as p:
@@ -13,7 +13,7 @@ with sync_playwright() as p:
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('request',lambda r:posts.append((r.method,r.url,len(r.post_data_buffer or b''))) if r.method in ['POST','PUT'] else None)
  page.route('**/api/**',lambda r:r.fulfill(status=503,json={'error':'offline'}))
- page.goto(URL,wait_until='domcontentloaded');page.get_by_role('tab',name='빌드',exact=True).first.click();page.wait_for_selector('.class-select')
+ page.goto(URL,wait_until='domcontentloaded');click_tab(page,'빌드');page.wait_for_selector('.class-select')
  open_section(page,'내 장비 & 성장')
 
  page.locator('input[type=file][accept*="image"]').set_input_files(str(fixture))

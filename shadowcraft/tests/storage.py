@@ -3,7 +3,7 @@ from urllib.parse import urlsplit
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
-from _ui import open_section, pick_class, open_build
+from _ui import open_section, pick_class, open_build, click_tab
 ROOT=Path(__file__).resolve().parents[2]
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 def open_settings(page):
@@ -22,7 +22,7 @@ with sync_playwright() as p:
  expect(page.locator('.point-entry input').first).to_have_value('77')
  page.close();page=ctx.new_page();page.route('**/api/**',lambda r:r.fulfill(status=503,json={'error':'offline'}));page.goto(URL,wait_until='domcontentloaded');open_settings(page)
  expect(page.locator('.point-entry input').first).to_have_value('77')
- page.get_by_role('tab',name='업데이트',exact=True).first.click()
+ click_tab(page,'업데이트')
  before=page.evaluate("localStorage.getItem('shadowcraft-plan-v1')")
  page.locator('.sources-panel input[type=file]').set_input_files({'name':'bad.json','mimeType':'application/json','buffer':b'{"schema":"shadowcraft-v1","plan":{"level":45}}'})
  expect(page.locator('.toast')).to_contain_text('올바른 ASBC 빌드 파일이 아닙니다')
