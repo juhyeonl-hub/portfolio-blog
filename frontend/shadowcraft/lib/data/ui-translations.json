@@ -8243,5 +8243,15 @@
     "en": "The official search lists Lv.{0} but the detail lookup still says Lv.{1}. Skills and gear may look outdated until NCSOFT refreshes the detail data.",
     "ja": "公式検索ではLv.{0}ですが、詳細照会はまだLv.{1}です。NCSOFTの詳細データが更新されるまで、スキル・装備は古い状態で表示されることがあります。",
     "fi": "Virallinen haku näyttää tason {0}, mutta yksityiskohtahaku vielä tason {1}. Taidot ja varusteet voivat näyttää vanhentuneilta, kunnes NCSOFT päivittää tiedot."
+  },
+  "{0}의 상세 정보(스킬·장비·전투력)가 아직 Lv.{1} 기준입니다. 공식 검색은 Lv.{2}입니다. NCSOFT는 상세 정보를 바로 갱신하지 않으니(보통 로그아웃 뒤) 잠시 후 다시 조회하세요.": {
+    "en": "{0}'s detail data (skills, gear, combat power) is still from Lv.{1}; the official search says Lv.{2}. NCSOFT does not refresh details right away (usually after logging out) — look the character up again later.",
+    "ja": "{0}の詳細情報（スキル・装備・戦闘力）はまだLv.{1}時点のものです。公式検索ではLv.{2}です。NCSOFTは詳細情報をすぐには更新しないため（通常はログアウト後）、しばらくしてから再照会してください。",
+    "fi": "Hahmon {0} tiedot (taidot, varusteet, taisteluvoima) ovat yhä tasolta {1}; virallinen haku näyttää tason {2}. NCSOFT ei päivitä tietoja heti (yleensä uloskirjautumisen jälkeen) — hae hahmo myöhemmin uudelleen."
+  },
+  "다시 조회": {
+    "en": "Look up again",
+    "ja": "再照会",
+    "fi": "Hae uudelleen"
   }
 }
