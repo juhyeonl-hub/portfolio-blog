@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
+from _ui import open_section, pick_class, open_build
 root = Path(__file__).parents[2]
 names = [('assassin','살성'),('gladiator','검성'),('templar','수호성'),('ranger','궁성'),('elementalist','정령성'),('sorcerer','마도성'),('cleric','치유성'),('chanter','호법성')]
 with sync_playwright() as p:
@@ -12,11 +13,11 @@ with sync_playwright() as p:
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
     page.goto(os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/'))
-    page.get_by_role('tab',name='데바니온',exact=True).click()
+    open_section(page,'데바니온')
     rules=json.loads((root/'frontend/shadowcraft/lib/data/board-effects.json').read_text())['rules']
     for key,name in names:
-        page.locator('.class-picker button').filter(has_text=name).click()
-        page.get_by_role('tab',name='데바니온',exact=True).click()
+        pick_class(page,name)
+        open_section(page,'데바니온')
         catalog=json.loads((root/f'frontend/shadowcraft/lib/data/catalogs/{key}.json').read_text())
         board=next(b for b in catalog['boards'] if any(n['id'] in rules for n in b['nodes']))
         page.locator('.board-tabs button').filter(has_text=board['name']).click()

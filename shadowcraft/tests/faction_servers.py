@@ -1,6 +1,7 @@
 """Faction-first server filtering for timers and planner character lookup."""
 import json,os
 from playwright.sync_api import sync_playwright,expect
+from _ui import open_section, pick_class, open_build
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 with sync_playwright() as p:
  browser=p.chromium.launch()
@@ -38,7 +39,7 @@ with sync_playwright() as p:
  assert select.locator('option[value="2101"]').count()==1
  assert select.locator('option[value="1101"]').count()==0
  form.get_by_role('button',name='취소',exact=True).click()
- page.get_by_role('tab',name='스킬 & 특화',exact=True).first.click()
+ open_section(page,'스킬 & 특화')
  page.locator('.planner-context summary').click()
  page.get_by_role('button',name='캐릭터 불러오기',exact=True).click()
  modal=page.get_by_role('dialog')

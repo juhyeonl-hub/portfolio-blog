@@ -3,10 +3,11 @@ from urllib.parse import urlsplit
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
+from _ui import open_section, pick_class, open_build
 ROOT=Path(__file__).resolve().parents[2]
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 def open_settings(page):
- page.get_by_role('tab',name='스킬 & 특화',exact=True).first.click()
+ open_section(page,'스킬 & 특화')
  page.locator('.planner-context summary').click()
  if page.locator('.point-entry input').count()==0:
   page.get_by_role('button',name='내 포인트 입력',exact=False).click()
@@ -27,7 +28,7 @@ with sync_playwright() as p:
  expect(page.locator('.toast')).to_contain_text('올바른 ASBC 빌드 파일이 아닙니다')
  assert page.evaluate("localStorage.getItem('shadowcraft-plan-v1')")==before
  # A failed profile/search cannot alter the user's previous plan.
- page.get_by_role('tab',name='스킬 & 특화',exact=True).first.click()
+ open_section(page,'스킬 & 특화')
  if not page.locator('.planner-context').evaluate('e=>e.open'):page.locator('.planner-context > summary').click()
  page.get_by_role('button',name='캐릭터 불러오기',exact=True).click();page.locator('.modal input[placeholder="정확한 이름을 입력하세요"]').fill('unavailable')
  current=json.loads(page.evaluate("localStorage.getItem('shadowcraft-plan-v1')"))

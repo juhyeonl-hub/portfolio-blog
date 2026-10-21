@@ -2,6 +2,7 @@
 import base64,json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
+from _ui import open_section, pick_class, open_build, open_library
 url=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 with sync_playwright() as p:
  browser=p.chromium.launch(headless=True)
@@ -10,7 +11,7 @@ with sync_playwright() as p:
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
  page.goto(url)
- page.get_by_role('tab',name='빌드 보관함',exact=True).click()
+ open_library(page)
  panel=page.get_by_role('region',name='빌드 링크 공유',exact=True)
  before=page.evaluate('JSON.stringify(localStorage)')
  panel.get_by_role('button',name='현재 배분 공유 링크 만들기').click()
@@ -56,8 +57,8 @@ with sync_playwright() as p:
  assert receiver.evaluate('JSON.stringify(localStorage)')==before
  assert not api,api
  # Another class loads its own data without changing the reader's selected class.
- page.locator('.class-picker button').filter(has_text='검성').click()
- page.get_by_role('tab',name='빌드 보관함',exact=True).click()
+ pick_class(page,'검성')
+ open_library(page)
  panel.get_by_role('button',name='현재 배분 공유 링크 만들기').click()
  before=page.evaluate('JSON.stringify(localStorage)')
  receiver.goto(panel.get_by_label('공유 링크',exact=True).input_value())

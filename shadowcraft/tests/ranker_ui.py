@@ -1,6 +1,7 @@
 import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
+from _ui import open_section, pick_class, open_build, click_tab
 root=Path(__file__).resolve().parents[2]
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 with sync_playwright() as p:
@@ -19,19 +20,19 @@ with sync_playwright() as p:
    cls=next(c for c in json.loads((root/'frontend/shadowcraft/lib/data/class-profiles.json').read_text()) if c['key']==q['class'])
    route.fulfill(json={'classKey':q['class'],'region':q['region'],'profile':{'characterId':q['id'],'serverId':int(q['server']),'pcId':cls['pcIds'][0]},'nodes':[auto['id'],node['id']],'failedBoards':[],'boards':[{'id':board['id'],'open':1}],'importedAt':'2026-10-19T00:00:00Z','skills':[] if response_mode['value']=='empty' else [{'id':int(c['skills'][0]['id']),'name':'Test public skill','category':'Active','skillLevel':40,'equip':1}],'equipment':[]})
   page.route('**/api/public/shadowcraft/armory',armory)
-  page.goto(URL);page.get_by_role('tab',name='빌드 선택',exact=True).click()
+  page.goto(URL);page.get_by_role('tab',name='랭커',exact=True).click()
   panel=page.get_by_role('region',name='랭커 빌드 분석',exact=True)
   expect(panel.locator('.ranker-list button')).to_have_count(10)
   key='shadowcraft-plan-v1'
-  page.get_by_role('button',name='이 빌드 미리보기',exact=True).click()
-  page.get_by_role('button',name='이 빌드 적용',exact=True).click()
-  page.get_by_role('button',name='빌드 적용 전으로 되돌리기',exact=True).click()
+  # Seed and undo a plan change on the build page, then return to the ranker page.
+  open_build(page);page.get_by_role('button',name='추천 배분 적용',exact=True).click()
+  page.get_by_role('button',name='빌드 적용 전으로 되돌리기',exact=True).click();click_tab(page,'랭커')
   before=page.evaluate('(key)=>localStorage.getItem(key)',key)
   panel.locator('.ranker-list button').first.click()
   expect(panel.get_by_role('button',name='데바니온 따라하기 미리보기',exact=True)).to_be_visible()
   skills=panel.locator('.ranker-skills')
   skills.locator('summary').click()
-  expect(skills.get_by_text('Lv.40',exact=False)).to_be_visible()
+  expect(skills.locator('li').filter(has_text='Lv.40').first).to_be_visible()  # hover cards also mention Lv.40 but stay hidden
   expect(panel.locator('.ranker-observation')).to_contain_text('공식 상세 조회:')
   response_mode['value']='empty'
   panel.get_by_role('button',name='공식 세팅 다시 조회',exact=True).click()
@@ -43,7 +44,7 @@ with sync_playwright() as p:
   expect(panel.locator('.ranker-observation')).to_contain_text('저장 자료 표시:')
   response_mode['value']='normal'
   panel.get_by_role('button',name='공식 세팅 다시 조회',exact=True).click()
-  expect(skills.get_by_text('Lv.40',exact=False)).to_be_visible()
+  expect(skills.locator('li').filter(has_text='Lv.40').first).to_be_visible()  # hover cards also mention Lv.40 but stay hidden
   skills.locator('summary').click()
   panel.locator('.ranker-preparation > summary').click()
   expect(panel.locator('.ranker-preparation li')).to_have_count(4)
@@ -60,7 +61,7 @@ with sync_playwright() as p:
   page.get_by_role('button',name='적용 전으로 되돌리기').click()
   assert json.loads(page.evaluate('(key)=>localStorage.getItem(key)',key))==old
   for name in ['검성','수호성','궁성','살성','정령성','마도성','치유성','호법성']:
-   page.locator('.class-picker button').filter(has_text=name).click()
+   pick_class(page,name)
    expect(panel.locator('.ranker-list button')).to_have_count(10)
    expect(panel.locator('.ranker-detail')).to_have_count(0)
    equipment=panel.locator('.ranker-equipment-compare')

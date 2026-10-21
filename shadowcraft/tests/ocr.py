@@ -3,6 +3,7 @@ from urllib.parse import urlsplit
 import json,base64
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
+from _ui import open_section, pick_class, open_build
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
 fixture=Path(__file__).resolve().parents[1]/'fixtures/gear-tooltip-preprocessed.png'
 with sync_playwright() as p:
@@ -12,8 +13,8 @@ with sync_playwright() as p:
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('request',lambda r:posts.append((r.method,r.url,len(r.post_data_buffer or b''))) if r.method in ['POST','PUT'] else None)
  page.route('**/api/**',lambda r:r.fulfill(status=503,json={'error':'offline'}))
- page.goto(URL,wait_until='domcontentloaded');page.get_by_role('tab',name='빌드 선택',exact=True).first.click();page.wait_for_selector('.class-picker button')
- page.get_by_role('tab',name='내 장비 & 성장',exact=True).first.click()
+ page.goto(URL,wait_until='domcontentloaded');page.get_by_role('tab',name='빌드',exact=True).first.click();page.wait_for_selector('.class-select')
+ open_section(page,'내 장비 & 성장')
 
  page.locator('input[type=file][accept*="image"]').set_input_files(str(fixture))
  page.get_by_role('button',name='인식 중지',exact=True).wait_for(timeout=15000);page.get_by_role('button',name='인식 중지',exact=True).click()
@@ -35,7 +36,7 @@ with sync_playwright() as p:
  expect(page.locator('.gear-item')).to_have_count(1)
  gear=json.loads(page.evaluate("localStorage.getItem('shadowcraft-plan-v1')"))['gear']['items'][0]
  assert gear['bonuses']=={'13130000':1} and not gear['current'] and not gear['target'],gear
- page.reload(wait_until='domcontentloaded');page.get_by_role('tab',name='내 장비 & 성장',exact=True).first.click()
+ page.reload(wait_until='domcontentloaded');open_section(page,'내 장비 & 성장')
  expect(page.locator('.gear-item input[maxlength="100"]')).to_have_value('브라우저 OCR 검증 장비')
  assert not posts,posts
  print(json.dumps({'passed':['real browser OCR worker and Korean/English model','file input','cancel','OCR rerun','manual correction and required review','non-equipped item registration and reload','no POST/PUT image uploads'],'errors':errors,'postRequests':posts},ensure_ascii=False,indent=2),flush=True)

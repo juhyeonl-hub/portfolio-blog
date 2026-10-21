@@ -2,6 +2,7 @@
 a missing index keeps the glyph layout; English shows the client stat names."""
 import os, re
 from playwright.sync_api import sync_playwright, expect
+from _ui import open_section, pick_class, open_build, click_tab
 
 URL = os.environ.get('SHADOWCRAFT_TEST_URL', 'http://127.0.0.1:5173/lab/shadowcraft/')
 
@@ -14,7 +15,7 @@ with sync_playwright() as p:
         if index_mode == 'missing':
             page.route('**/shadowcraft/data/item-index.json', lambda r: r.fulfill(status=404, body='not found'))
         page.goto(URL)
-        page.get_by_role('tab', name='빌드 선택', exact=True).click()
+        click_tab(page, '랭커')
         panel = page.get_by_role('region', name='랭커 빌드 분석', exact=True)
         panel.locator('.ranker-list button').first.click()
         grid = page.get_by_role('group', name='장비 배치')
