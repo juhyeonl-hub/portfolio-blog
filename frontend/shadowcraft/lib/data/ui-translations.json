@@ -8253,5 +8253,20 @@
     "en": "Look up again",
     "ja": "再照会",
     "fi": "Hae uudelleen"
+  },
+  "새로 조회": {
+    "en": "Refresh",
+    "ja": "再照会",
+    "fi": "Päivitä"
+  },
+  "캐릭터 변경": {
+    "en": "Change character",
+    "ja": "キャラクター変更",
+    "fi": "Vaihda hahmo"
+  },
+  "선택하면 그 캐릭터로 바꿉니다. 장비·포인트 계획은 이 직업의 공통 계획을 유지합니다.": {
+    "en": "Selecting one switches to that character. Gear and point plans stay with this class.",
+    "ja": "選択するとそのキャラクターに切り替わります。装備・ポイント計画はこのクラス共通の計画を維持します。",
+    "fi": "Valinta vaihtaa hahmon. Varuste- ja pistesuunnitelmat pysyvät luokan yhteisinä."
   }
 }

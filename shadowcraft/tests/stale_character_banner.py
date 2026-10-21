@@ -31,6 +31,15 @@ with sync_playwright() as p:
     # The banner stays on other screens too.
     click_tab(page, '지도 & 수집'); expect(banner).to_be_visible()
     click_tab(page, '랭커'); expect(banner).to_be_visible()
+    # 새로 조회 on the build page re-queries without the modal; while the detail still lags the banner stays.
+    open_build(page)
+    settings = page.get_by_role('region', name='빌드 설정', exact=True)
+    settings.get_by_role('button', name='새로 조회', exact=True).click()
+    expect(banner).to_be_visible()
+    # The modal only switches characters now; it no longer offers a refresh.
+    settings.get_by_role('button', name='캐릭터 변경', exact=True).click()
+    expect(page.locator('.modal')).not_to_contain_text('다시 선택하면 최신 정보')
+    page.keyboard.press('Escape'); page.locator('.modal-backdrop').click(position={'x': 5, 'y': 5}) if page.locator('.modal-backdrop').count() else None
     # Once the official detail catches up, 다시 조회 clears it.
     detail['level'] = 19
     banner.get_by_role('button', name='다시 조회', exact=True).click()

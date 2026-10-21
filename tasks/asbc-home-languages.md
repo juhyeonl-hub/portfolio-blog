@@ -341,3 +341,4 @@ Codex re-review of 44e5062..dc2e69a: NO_FINDINGS. Clean UI live on asbc.app.
 
 ## Stale-character banner — 2026-10-21
 NCSOFT detail profile (/character/info, no-store) stays at the login-time snapshot while the search index updates live (GreenOrc: detail Lv.11 vs search Lv.19 for hours). User asked for a site-wide notice: `.site-notice` under the top bar on every screen while `character.searchLevel > profile.characterLevel`, with a 다시 조회 button that re-imports; the under-character notice was replaced by it. Test shadowcraft/tests/stale_character_banner.py (mocked search 19 / detail 11 → banner on 빌드·지도·랭커, level 19; detail 19 → banner gone, persists over reload).
+Follow-up: 새로 조회 buttons on the build settings row and the character bar re-query the connected character without the modal; the modal only switches characters (note reworded, "캐릭터 변경"). stale_character_banner.py extended; integration/quick_build PASS.
