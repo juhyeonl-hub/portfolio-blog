@@ -345,3 +345,4 @@ Follow-up: 새로 조회 buttons on the build settings row and the character bar
 
 ## Home on the sidebar — 2026-10-21
 User asked for the sidebar on 메인 too and the top tab row gone: the sidebar and the phone 메뉴 button now render on every screen, the page-tabs row is removed, home keeps its compact 1366×768 styles with the sidebar margin. Tests: reference_ui/home_marker_details expect the sidebar (7 tabs desktop, none visible on phones until 메뉴); asbc_home/population_ui PASS.
+Browser suite after home-on-sidebar: 44/44 PASS (every tab click via _ui.click_tab, phone-aware).
