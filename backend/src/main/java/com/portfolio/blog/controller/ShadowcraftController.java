@@ -153,7 +153,10 @@ public class ShadowcraftController {
     private static ResponseEntity<?> bad(String message) { return ResponseEntity.badRequest().body(Map.of("error",message)); }
     private static String enc(String s) { return URLEncoder.encode(s,StandardCharsets.UTF_8); }
     private JsonNode get(String url) throws Exception {
-        synchronized(cache) { Cached hit=cache.get(url); if(hit!=null && System.currentTimeMillis()-hit.at<300_000) return hit.data; }
+        // Character profile/equipment must reflect the game quickly (a fresh lookup after levelling); only bursts are absorbed.
+        // Server lists and search results change rarely and keep the five-minute cache.
+        long ttl=url.contains("/api/character/")?15_000:300_000;
+        synchronized(cache) { Cached hit=cache.get(url); if(hit!=null && System.currentTimeMillis()-hit.at<ttl) return hit.data; }
         HttpRequest request=HttpRequest.newBuilder(URI.create(url)).timeout(LOOKUP_TIMEOUT).header("Accept","application/json").build();
         HttpResponse<InputStream> response=client.send(request,HttpResponse.BodyHandlers.ofInputStream());
         JsonNode data;
