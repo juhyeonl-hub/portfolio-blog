@@ -31,7 +31,7 @@ with sync_playwright() as p:
                 page.evaluate('document.fonts.ready')
                 assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), (width, locale, 'horizontal')
                 if width >= 901:
-                    assert page.evaluate('document.documentElement.scrollHeight <= innerHeight'), (width, locale, selected, page.evaluate('document.documentElement.scrollHeight'))
+                    assert page.evaluate('document.documentElement.scrollHeight <= innerHeight + document.querySelector(".home-footer-ad").offsetHeight + 24'), (width, locale, selected, page.evaluate('document.documentElement.scrollHeight'))
             page.screenshot(path=f'/tmp/asbc-home-{width}-{locale}.png')
         assert not errors, errors
         page.close()

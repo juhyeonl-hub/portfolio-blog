@@ -32,7 +32,7 @@ with sync_playwright() as p:
  page.clock.pause_at(datetime(2026,10,17,9,0,1,tzinfo=timezone.utc))
  page.clock.run_for(1000)
  expect(card.locator('strong')).to_have_text('12:59:58')
- click_tab(page,'빌드');click_tab(page,'메인')  # the timer bar shows on 메인 only
+ click_tab(page,'빌드');expect(header).to_be_visible()
  expect(header).to_contain_text('Siel')
  before=page.evaluate("localStorage.getItem('a2bc-event-timers-v1')")
  page.reload()
@@ -52,7 +52,7 @@ with sync_playwright() as p:
  assert stored['profiles']['eu:1301']['times']['gartua']=='09:00,22:00'
  assert stored['profiles']['eu:1302']['times']['gartua']=='12:00'
  page.set_viewport_size({'width':390,'height':844})
- click_tab(page,'빌드');click_tab(page,'메인')  # the timer bar shows on 메인 only
+ click_tab(page,'빌드');expect(header).to_be_visible()
  page.evaluate('window.scrollTo(0,document.body.scrollHeight)')
  assert abs(header.bounding_box()['y'])<=1
  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')

@@ -8269,10 +8269,174 @@
     "ja": "選択するとそのキャラクターに切り替わります。装備・ポイント計画はこのクラス共通の計画を維持します。",
     "fi": "Valinta vaihtaa hahmon. Varuste- ja pistesuunnitelmat pysyvät luokan yhteisinä."
   },
-"본문으로 건너뛰기": {"en": "Skip to content", "ja": "本文へスキップ", "fi": "Siirry sisältöön"},
-"직업 둘러보기": {"en": "Browse classes", "ja": "クラス一覧", "fi": "Selaa luokkia"},
-"{0} 선택됨": {"en": "{0} selected", "ja": "{0}を選択中", "fi": "{0} valittu"},
-"검색 초기화": {"en": "Clear search", "ja": "検索をクリア", "fi": "Tyhjennä haku"},
-"필터 초기화": {"en": "Reset filters", "ja": "絞り込みをリセット", "fi": "Nollaa suodattimet"},
-"다른 스킬 종류를 선택하거나 검색어를 지워 보세요.": {"en": "Try another skill category or clear your search.", "ja": "別のスキル種別を選ぶか、検索語を消してください。", "fi": "Valitse toinen taitoluokka tai tyhjennä haku."}
+  "본문으로 건너뛰기": {
+    "en": "Skip to content",
+    "ja": "本文へスキップ",
+    "fi": "Siirry sisältöön"
+  },
+  "직업 둘러보기": {
+    "en": "Browse classes",
+    "ja": "クラス一覧",
+    "fi": "Selaa luokkia"
+  },
+  "{0} 선택됨": {
+    "en": "{0} selected",
+    "ja": "{0}を選択中",
+    "fi": "{0} valittu"
+  },
+  "검색 초기화": {
+    "en": "Clear search",
+    "ja": "検索をクリア",
+    "fi": "Tyhjennä haku"
+  },
+  "필터 초기화": {
+    "en": "Reset filters",
+    "ja": "絞り込みをリセット",
+    "fi": "Nollaa suodattimet"
+  },
+  "다른 스킬 종류를 선택하거나 검색어를 지워 보세요.": {
+    "en": "Try another skill category or clear your search.",
+    "ja": "別のスキル種別を選ぶか、検索語を消してください。",
+    "fi": "Valitse toinen taitoluokka tai tyhjennä haku."
+  },
+  "고정할 콘텐츠": {
+    "en": "Pin content",
+    "ja": "固定するコンテンツ",
+    "fi": "Kiinnitä sisältöä"
+  },
+  "선택한 콘텐츠는 이 브라우저의 모든 페이지와 서버에서 유지됩니다.": {
+    "en": "Your selection stays pinned across all pages and servers in this browser.",
+    "ja": "選択したコンテンツは、このブラウザーのすべてのページとサーバーで維持されます。",
+    "fi": "Valintasi säilyy tämän selaimen kaikilla sivuilla ja palvelimilla."
+  },
+  "고정한 콘텐츠가 없습니다. ‘고정할 콘텐츠’에서 선택하세요.": {
+    "en": "No content pinned. Choose items in “Pin content”.",
+    "ja": "固定したコンテンツはありません。「固定するコンテンツ」から選択してください。",
+    "fi": "Ei kiinnitettyä sisältöä. Valitse kohteet kohdasta ”Kiinnitä sisältöä”."
+  },
+  "빌드 플래너 열기": {
+    "en": "Open build planner",
+    "ja": "ビルドプランナーを開く",
+    "fi": "Avaa hahmosuunnittelija"
+  },
+  "서버 점검 안내": {
+    "en": "Server maintenance notice",
+    "ja": "サーバーメンテナンスのお知らせ",
+    "fi": "Palvelinhuollon ilmoitus"
+  },
+  "점검 공지 확인 필요": {
+    "en": "Check maintenance notices",
+    "ja": "メンテナンス告知の確認が必要です",
+    "fi": "Tarkista huoltotiedotteet"
+  },
+  "서버 점검 예정": {
+    "en": "Scheduled server maintenance",
+    "ja": "サーバーメンテナンス予定",
+    "fi": "Tuleva palvelinhuolto"
+  },
+  "서버 점검 시간 (공식 일정 기준)": {
+    "en": "Server maintenance window (official schedule)",
+    "ja": "サーバーメンテナンス時間（公式予定）",
+    "fi": "Palvelinhuollon aika (virallinen aikataulu)"
+  },
+  "점검 종료 확인 필요": {
+    "en": "Maintenance end needs confirmation",
+    "ja": "メンテナンス終了の確認が必要です",
+    "fi": "Huollon päättyminen vahvistamatta"
+  },
+  "공식 점검 공지": {
+    "en": "Official maintenance notice",
+    "ja": "公式メンテナンス告知",
+    "fi": "Virallinen huoltotiedote"
+  },
+  "공식 공지 보기": {
+    "en": "View official notice",
+    "ja": "公式告知を見る",
+    "fi": "Avaa virallinen tiedote"
+  },
+  "최신 공지를 확인하지 못했습니다. 조회 실패가 서버 점검을 뜻하지는 않습니다.": {
+    "en": "Could not check the latest notice. A failed lookup does not mean the servers are under maintenance.",
+    "ja": "最新の告知を確認できませんでした。取得失敗はサーバーメンテナンスを意味しません。",
+    "fi": "Uusinta tiedotetta ei voitu tarkistaa. Haun epäonnistuminen ei tarkoita palvelinhuoltoa."
+  },
+  "점검 시작: {0}": {
+    "en": "Starts: {0}",
+    "ja": "開始予定: {0}",
+    "fi": "Alkaa: {0}"
+  },
+  "종료 예정: {0}": {
+    "en": "Expected end: {0}",
+    "ja": "終了予定: {0}",
+    "fi": "Arvioitu päättyminen: {0}"
+  },
+  "약 {0}분 남음": {
+    "en": "About {0} min remaining",
+    "ja": "残り約{0}分",
+    "fi": "Noin {0} min jäljellä"
+  },
+  "종료 예정 시각 미정": {
+    "en": "End time not announced",
+    "ja": "終了予定時刻は未定",
+    "fi": "Päättymisaikaa ei ilmoitettu"
+  },
+  "예정 시각이 지났습니다. 실제 종료 여부는 공식 공지를 확인해 주세요.": {
+    "en": "The planned end has passed. Check the official notice to confirm completion.",
+    "ja": "終了予定時刻を過ぎました。実際の終了状況は公式告知をご確認ください。",
+    "fi": "Arvioitu päättymisaika on ohitettu. Tarkista huollon päättyminen virallisesta tiedotteesta."
+  },
+  "공식 공지 기준 · 일정은 변경될 수 있으며 실시간 서버 상태와 다를 수 있습니다.": {
+    "en": "Based on official notices. Times may change and may differ from live server status.",
+    "ja": "公式告知に基づきます。予定は変更される場合があり、実際のサーバー状態と異なる可能性があります。",
+    "fi": "Perustuu virallisiin tiedotteisiin. Ajat voivat muuttua ja poiketa palvelinten reaaliaikaisesta tilasta."
+  },
+  "공지 갱신 실패 · 마지막으로 확인한 일정입니다.": {
+    "en": "Notice refresh failed. Showing the last confirmed schedule.",
+    "ja": "告知を更新できませんでした。最後に確認した予定を表示しています。",
+    "fi": "Tiedotteen päivitys epäonnistui. Näytetään viimeksi vahvistettu aikataulu."
+  },
+  "광고": {
+    "en": "Advertisement",
+    "ja": "広告",
+    "fi": "Mainos"
+  },
+  "즐겨찾기": {
+    "en": "Favorites",
+    "ja": "お気に入り",
+    "fi": "Suosikit"
+  },
+  "즐겨찾기 편집": {
+    "en": "Edit favorites",
+    "ja": "お気に入りを編集",
+    "fi": "Muokkaa suosikkeja"
+  },
+  "즐겨찾기에 표시할 도구": {
+    "en": "Tools to show in favorites",
+    "ja": "お気に入りに表示するツール",
+    "fi": "Suosikeissa näytettävät työkalut"
+  },
+  "즐겨찾기에 원하는 도구를 추가해 보세요.": {
+    "en": "Add your preferred tools to favorites.",
+    "ja": "お気に入りに好きなツールを追加しましょう。",
+    "fi": "Lisää haluamasi työkalut suosikkeihin."
+  },
+  "이 브라우저에 계정별로 저장됩니다.": {
+    "en": "Saved per account in this browser.",
+    "ja": "このブラウザーにアカウント別で保存されます。",
+    "fi": "Tallennetaan tässä selaimessa tilikohtaisesti."
+  },
+  "로그인하고 나만의 즐겨찾기를 만들어 보세요.": {
+    "en": "Sign in to create your own favorites.",
+    "ja": "ログインして自分のお気に入りを作りましょう。",
+    "fi": "Kirjaudu sisään ja luo omat suosikkisi."
+  },
+  "즐겨찾기를 불러오지 못했습니다. 다시 선택해 주세요.": {
+    "en": "Could not load favorites. Please select them again.",
+    "ja": "お気に入りを読み込めませんでした。もう一度選択してください。",
+    "fi": "Suosikkien lataus epäonnistui. Valitse ne uudelleen."
+  },
+  "즐겨찾기를 저장하지 못했습니다. 브라우저 저장 공간을 확인해 주세요.": {
+    "en": "Could not save favorites. Check your browser storage.",
+    "ja": "お気に入りを保存できませんでした。ブラウザーの保存領域を確認してください。",
+    "fi": "Suosikkien tallennus epäonnistui. Tarkista selaimen tallennustila."
+  }
 }

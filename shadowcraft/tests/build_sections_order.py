@@ -26,7 +26,8 @@ with sync_playwright() as p:
     for pill, section in zip(PILLS, ORDER):
         page.locator('.build-pills button', has_text=pill).click()
         expect(page.locator('.build-pills button', has_text=pill)).to_have_class('active')
-        page.wait_for_function("id => document.getElementById(id).getBoundingClientRect().top < 220", arg='build-' + section)
+        # The persistent timer/maintenance header has a measured, variable height.
+        page.wait_for_function("""id => {const top=document.getElementById(id).getBoundingClientRect().top;const header=document.querySelector('.event-timer-header').getBoundingClientRect().bottom;const pills=document.querySelector('.build-pills').getBoundingClientRect().height;return top>=header+pills-1 && top<=header+pills+40;}""", arg='build-' + section)
     # Menus: only the main screens; 랭커 is its own page.
     sidebar = page.locator('.sidebar')
     expect(sidebar.get_by_role('tab')).to_have_text(['메인', '빌드', '랭커', '공개 빌드', '지도 & 수집', '글로벌 데이터', '업데이트'])

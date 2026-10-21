@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl} from './modules.mjs';
-const {parseTimes,parseSettings,emptySettings,emptyServer,nextOccurrence,countdown,scheduleMinutes,nextContentOccurrence,nextZonedOccurrence,nextTimerOccurrence}=await import(moduleUrl(readFileSync('lib/event-timers.ts','utf8')));
+const {pinnedTimers,parseTimes,parseSettings,emptySettings,emptyServer,nextOccurrence,countdown,scheduleMinutes,nextContentOccurrence,nextZonedOccurrence,nextTimerOccurrence}=await import(moduleUrl(readFileSync('lib/event-timers.ts','utf8')));
 assert.deepEqual(parseTimes('21:00, 09:00 09:00'),[540,1260]);
 for(const x of ['24:00','12:60','9:00','12:00oops'])assert.throws(()=>parseTimes(x));
 const now=Date.parse('2026-10-17T23:59:59Z');
@@ -44,3 +44,13 @@ assert.equal(nextContentOccurrence(instant,'dimension',{...rift,times:{dimension
 assert.equal(nextContentOccurrence(instant,'dimension',{...rift,times:{dimension:''}},'eu'),null);
 assert.equal(nextContentOccurrence(instant,'dimension',rift,'unknown'),null);
 console.log('Regional default rifts, visitor clock independence, explicit manual/empty overrides PASS');
+
+const legacyPins={...settings,profiles:{'eu:1301':{...emptyServer(),hidden:['tartan'],times:{gartua:'09:00'}}}};
+assert.equal(pinnedTimers(parseSettings(JSON.stringify(legacyPins))).includes('tartan'),false);
+const common={...legacyPins,pinned:['gartua','shugo']};
+assert.deepEqual(pinnedTimers(parseSettings(JSON.stringify(common))),['gartua','shugo']);
+assert.deepEqual(pinnedTimers({...common,server:'1302'}),common.pinned);
+assert.deepEqual(pinnedTimers({...common,pinned:[]}),[]);
+assert.deepEqual(parseSettings(JSON.stringify(common)).profiles,legacyPins.profiles);
+for(const pinned of [null,{},'gartua',['unknown'],['shugo','shugo'],[1]])assert.throws(()=>parseSettings(JSON.stringify({...settings,pinned})));
+console.log('Common pins: legacy fallback, empty selection, server independence, profile preservation and invalid input PASS');
