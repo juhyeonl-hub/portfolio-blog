@@ -528,10 +528,14 @@ footer,footer p,.asbc-footer div small,.side-bottom,.side-bottom small{color:#8f
 .shell .brand .brand-full-name{font-size:9px;letter-spacing:0;line-height:1.4;margin-top:2px}
 
 /* Full boss catalog: bounded picker and horizontal header, even with all bosses pinned. */
-.event-boss-filters{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;margin:12px 0}
+.event-boss-filters{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin:12px 0}
 .event-boss-filters label{display:grid;gap:5px;min-width:0}.event-boss-filters input{min-width:0;width:100%}
 .event-boss-options{max-height:36vh;overflow-y:auto;overscroll-behavior:contain}
 .event-boss-options small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 .event-boss-side{display:block;color:var(--muted);font-size:10px;font-weight:normal}
 .event-timer-card{flex:1 0 190px}
 @media(max-width:480px){.event-boss-options{grid-template-columns:1fr}.event-boss-filters{grid-template-columns:1fr}.event-boss-options{max-height:30vh}}
+
+.event-boss-categories{display:flex;flex-wrap:wrap;gap:6px}
+.event-boss-categories .button{flex:1;min-height:36px;white-space:nowrap}
+.event-boss-categories .button[aria-pressed="true"]{border-color:#6198ad;background:#20323c;color:#d9f3ff}
