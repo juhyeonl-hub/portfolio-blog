@@ -8223,5 +8223,20 @@
     "en": "Collapse sidebar",
     "ja": "サイドバーを閉じる",
     "fi": "Supista sivupalkki"
+  },
+  "현재 Lv.{0} · 최대 Lv.{1}": {
+    "en": "Now Lv.{0} · max Lv.{1}",
+    "ja": "現在 Lv.{0} · 最大 Lv.{1}",
+    "fi": "Nyt Lv.{0} · enintään Lv.{1}"
+  },
+  "특화 {0} · Lv.{1}부터": {
+    "en": "Specialization {0} · from Lv.{1}",
+    "ja": "特化 {0} · Lv.{1}から",
+    "fi": "Erikoistuminen {0} · tasolta {1}"
+  },
+  "공식 설명 (영문)": {
+    "en": "Official description",
+    "ja": "公式説明（英文）",
+    "fi": "Virallinen kuvaus (englanniksi)"
   }
 }
