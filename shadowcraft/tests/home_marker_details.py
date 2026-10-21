@@ -27,7 +27,7 @@ with sync_playwright() as p:
         page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
         page.goto(URL)
         expect(page.get_by_role('region',name='ASBC',exact=True)).to_be_visible()
-        expect(page.get_by_role('tablist')).to_have_count(1)
+        expect(page.get_by_role('tablist')).to_have_count(1 if width>760 else 0)  # the sidebar menu on Home too; on phones it opens from the 메뉴 button
         expect(page.locator('.class-select')).to_have_count(0)
         page.screenshot(path=f'/tmp/a2bc-clean-home-{width}.png')
         page.get_by_role('button',name='내 빌드 시작하기',exact=True).click()
