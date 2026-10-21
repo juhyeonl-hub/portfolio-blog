@@ -322,3 +322,17 @@ On phones the 편집 포인트 현황 bar wrapped its four stats with labels bro
 - Japanese native review remains a human task (not done).
 Codex review of f71dd8c..dff33f9: 1 finding (med) — switching to an official roster kept the Tier List source link, check time, subtitle and "명단 전투력" label. Fixed: lib/ranker-builds.ts ROSTER_TEXT/rosterKind give each kind its subtitle, note, score label (어비스 점수 · 서버 순위) and the section reads source/fetchedAt from the selected roster; dictionary +9; ranker-builds.mjs checks the texts and metric mapping. ranker_ui.py PASS.
 Codex re-review of dff33f9..11e869c: NO_FINDINGS. Released to asbc.app.
+
+## Armory cache — 2026-10-21
+User levelled a new templar to 14 but 새로 조회 still showed 11: ShadowcraftController cached every official response for 5 min. Character profile/equipment URLs now cache 15 s (burst protection only); server lists/search keep 5 min. mvn 62/62, jar swapped (03:48 build). Committed on clean-ui; cherry-pick to main with the UI merge.
+
+## Clean UI (branch clean-ui → main) — 2026-10-21
+User found the canvas too complex and asked for a clean layout on the site itself. Implemented on branch `clean-ui`, previewed at https://clean-ui.asbc-4c9.pages.dev (Pages branch deploy), then merged to main.
+- Menus: 7 main screens only (메인 · 빌드 · 랭커 · 공개 빌드 · 지도 & 수집 · 글로벌 데이터 · 업데이트); build sections are pills on the build page; 빌드 보관함 opens from the build summary column (공유 링크 · 보관함).
+- Sidebar collapses to a 64 px icon rail (‹/› button next to the logo, `asbc-nav-collapsed` in localStorage).
+- Build page: one settings row (class dropdown `.class-select`, 안정형/공격형/PvP형/레벨링 switch writing `plan.mode` directly, level field, 내 캐릭터 연결, 추천 배분 적용 = recommendBuild with undo), pills (`.build-pills`), five sections always rendered in `.build-layout > .build-main`, sticky `.build-summary` (포인트 현황 + 포인트 설정, 핵심 스킬, 랭커 비교, 공유 링크 · 보관함, 빌드 내보내기 + save status). QuickBuild card, fold bars, editor-budget bar, class card grid, page eyebrow/heading, topbar 저장 안내/내보내기 removed. 레벨링 shows Lv.10–45 chips.
+- 랭커 is its own tab (lazy RankerBuilds). The timer bar shows on 메인 only (`body[data-tab]`).
+- Skill hover card (`app/skill-tip.tsx`): type, role memo, current/max level, specializations, official English client text from `lib/data/skill-descriptions.json` (280 skills, built from client-index; tests/skill-descriptions.mjs). Used in the skill table, ranker skill list and shared-build view.
+- Armory fixes (also cherry-picked to main earlier): 15 s cache for character lookups; search level preferred over a lagging official detail level with a notice.
+Tests: `shadowcraft/tests/_ui.py` helpers (click_tab/open_build/open_section/pick_class/open_library); 24 browser tests rewritten for the new structure (quick_build, pvp_leveling_ui, build_sections_order rewritten in full); node suite exit 0; browser suite results recorded below.
+Browser suite on the clean UI: 43/43 PASS on dev; production (asbc.app) quick_build, build_sections_order, pvp_leveling_ui, equipment_detail PASS after the merge (5261967).
