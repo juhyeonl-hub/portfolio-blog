@@ -8268,5 +8268,11 @@
     "en": "Selecting one switches to that character. Gear and point plans stay with this class.",
     "ja": "選択するとそのキャラクターに切り替わります。装備・ポイント計画はこのクラス共通の計画を維持します。",
     "fi": "Valinta vaihtaa hahmon. Varuste- ja pistesuunnitelmat pysyvät luokan yhteisinä."
-  }
+  },
+"본문으로 건너뛰기": {"en": "Skip to content", "ja": "本文へスキップ", "fi": "Siirry sisältöön"},
+"직업 둘러보기": {"en": "Browse classes", "ja": "クラス一覧", "fi": "Selaa luokkia"},
+"{0} 선택됨": {"en": "{0} selected", "ja": "{0}を選択中", "fi": "{0} valittu"},
+"검색 초기화": {"en": "Clear search", "ja": "検索をクリア", "fi": "Tyhjennä haku"},
+"필터 초기화": {"en": "Reset filters", "ja": "絞り込みをリセット", "fi": "Nollaa suodattimet"},
+"다른 스킬 종류를 선택하거나 검색어를 지워 보세요.": {"en": "Try another skill category or clear your search.", "ja": "別のスキル種別を選ぶか、検索語を消してください。", "fi": "Valitse toinen taitoluokka tai tyhjennä haku."}
 }
