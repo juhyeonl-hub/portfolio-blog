@@ -1,0 +1,78 @@
+{
+  "checkedAt": "2026-10-21T21:57:21.184878+00:00",
+  "source": "https://raw.githubusercontent.com/taengu/A2Tools-Plugins/main/plugins/event-timers/schedule.js",
+  "sha256": "14d63b56cf649bff6dbc2e034f70a3f7c5f071102b4d9b00f0f03f38337b4cb2",
+  "events": [
+    {
+      "id": "boss-kaira",
+      "kind": "boss",
+      "name": "String_STR_M_AR1_BERITRAD_01_001_body",
+      "also": [],
+      "where": [
+        "String_STR_Map_Abyss_Reshanta_A_body"
+      ],
+      "side": null,
+      "days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "starts": [
+        60,
+        240,
+        420,
+        600,
+        780,
+        960,
+        1140,
+        1320
+      ],
+      "minutes": 0
+    },
+    {
+      "id": "boss-nahma",
+      "kind": "boss",
+      "name": "String_STR_M_AR1_RR_ABBOSS_01_001_body",
+      "also": [],
+      "where": [
+        "String_STR_Map_Abyss_Reshanta_A_body"
+      ],
+      "side": null,
+      "days": [
+        0,
+        5
+      ],
+      "starts": [
+        1260
+      ],
+      "minutes": 0
+    },
+    {
+      "id": "boss-tamasa-argo-kaira",
+      "kind": "boss",
+      "name": "String_STR_M_AR1_RADVIMA_01_CV02_001_body",
+      "also": [
+        "String_STR_M_AR1_WSA_ELEKING_01_V02_002_body",
+        "String_STR_M_AR1_BERITRAD_01_002_body"
+      ],
+      "where": [
+        "String_STR_Map_Abyss_Reshanta_A_body"
+      ],
+      "side": null,
+      "days": [
+        1,
+        4,
+        6
+      ],
+      "starts": [
+        1290
+      ],
+      "minutes": 0
+    }
+  ],
+  "note": "starts are minutes after midnight in provider server-region clock; days0Sunday. Different source name IDs identify watcher/executor Kaira and spiritking/executor Argo."
+}

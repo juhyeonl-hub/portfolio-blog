@@ -1,0 +1,142 @@
+[
+  {
+    "id": "scheduled:watcher-kaira",
+    "side": null,
+    "names": {
+      "ko": "감시자 카이라",
+      "en": "Watcher Kaira",
+      "ja": "監視者カイラ"
+    },
+    "maps": {
+      "ko": "혼돈의 에레슈란타 하층",
+      "en": "Chaotic Lower Reshanta",
+      "ja": "混沌のエレシュランタ下層"
+    },
+    "schedule": {
+      "days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "starts": [
+        60,
+        240,
+        420,
+        600,
+        780,
+        960,
+        1140,
+        1320
+      ]
+    },
+    "sourceEvent": "boss-kaira",
+    "sourceName": "String_STR_M_AR1_BERITRAD_01_001_body"
+  },
+  {
+    "id": "scheduled:guardian-nahma",
+    "side": null,
+    "names": {
+      "ko": "수호신장 나흐마",
+      "en": "Guardian Lord Nahma",
+      "ja": "守護神将ナフマ"
+    },
+    "maps": {
+      "ko": "혼돈의 에레슈란타 하층",
+      "en": "Chaotic Lower Reshanta",
+      "ja": "混沌のエレシュランタ下層"
+    },
+    "schedule": {
+      "days": [
+        0,
+        5
+      ],
+      "starts": [
+        1260
+      ]
+    },
+    "sourceEvent": "boss-nahma",
+    "sourceName": "String_STR_M_AR1_RR_ABBOSS_01_001_body"
+  },
+  {
+    "id": "scheduled:executor-tamasa",
+    "side": null,
+    "names": {
+      "ko": "집행자 타마사",
+      "en": "Executor Tamasa",
+      "ja": "執行者タマサ"
+    },
+    "maps": {
+      "ko": "혼돈의 에레슈란타 하층",
+      "en": "Chaotic Lower Reshanta",
+      "ja": "混沌のエレシュランタ下層"
+    },
+    "schedule": {
+      "days": [
+        1,
+        4,
+        6
+      ],
+      "starts": [
+        1290
+      ]
+    },
+    "sourceEvent": "boss-tamasa-argo-kaira",
+    "sourceName": "String_STR_M_AR1_RADVIMA_01_CV02_001_body"
+  },
+  {
+    "id": "scheduled:executor-argo",
+    "side": null,
+    "names": {
+      "ko": "집행자 아그로",
+      "en": "Executor Argo",
+      "ja": "執行者アグロ"
+    },
+    "maps": {
+      "ko": "혼돈의 에레슈란타 하층",
+      "en": "Chaotic Lower Reshanta",
+      "ja": "混沌のエレシュランタ下層"
+    },
+    "schedule": {
+      "days": [
+        1,
+        4,
+        6
+      ],
+      "starts": [
+        1290
+      ]
+    },
+    "sourceEvent": "boss-tamasa-argo-kaira",
+    "sourceName": "String_STR_M_AR1_WSA_ELEKING_01_V02_002_body"
+  },
+  {
+    "id": "scheduled:executor-kaira",
+    "side": null,
+    "names": {
+      "ko": "집행자 카이라",
+      "en": "Executor Kaira",
+      "ja": "執行者カイラ"
+    },
+    "maps": {
+      "ko": "혼돈의 에레슈란타 하층",
+      "en": "Chaotic Lower Reshanta",
+      "ja": "混沌のエレシュランタ下層"
+    },
+    "schedule": {
+      "days": [
+        1,
+        4,
+        6
+      ],
+      "starts": [
+        1290
+      ]
+    },
+    "sourceEvent": "boss-tamasa-argo-kaira",
+    "sourceName": "String_STR_M_AR1_BERITRAD_01_002_body"
+  }
+]

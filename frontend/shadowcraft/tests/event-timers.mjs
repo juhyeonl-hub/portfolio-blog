@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl} from './modules.mjs';
-const {pinnedTimers,parseTimes,parseSettings,emptySettings,emptyServer,nextOccurrence,countdown,scheduleMinutes,nextContentOccurrence,nextZonedOccurrence,nextTimerOccurrence}=await import(moduleUrl(readFileSync('lib/event-timers.ts','utf8')));
+const {SCHEDULED_BOSS_IDS,nextScheduledBossOccurrence,pinnedTimers,parseTimes,parseSettings,emptySettings,emptyServer,nextOccurrence,countdown,scheduleMinutes,nextContentOccurrence,nextZonedOccurrence,nextTimerOccurrence}=await import(moduleUrl(readFileSync('lib/event-timers.ts','utf8')));
 assert.deepEqual(parseTimes('21:00, 09:00 09:00'),[540,1260]);
 for(const x of ['24:00','12:60','9:00','12:00oops'])assert.throws(()=>parseTimes(x));
 const now=Date.parse('2026-10-17T23:59:59Z');
@@ -59,11 +59,40 @@ const expanded={...common,pinnedBosses:['101001','111001','2001','99999']};
 assert.deepEqual(parseSettings(JSON.stringify(expanded)),expanded);
 for(const pinnedBosses of [null,['01'],['x'],[1],['2001','2001'],Array.from({length:201},(_,i)=>String(i+1))])assert.throws(()=>parseSettings(JSON.stringify({...common,pinnedBosses})));
 const timersUrl=moduleUrl(readFileSync('lib/event-timers.ts','utf8'));
-const {BOSS_CATALOG,selectedBossIds,setBossPinned}=await import(moduleUrl(readFileSync('lib/boss-catalog.ts','utf8').replace("import data from './data/boss-catalog.json';",'const data='+readFileSync('lib/data/boss-catalog.json','utf8')+';').replace("'./event-timers'",JSON.stringify(timersUrl))));
-assert.equal(BOSS_CATALOG.length,49);assert.equal(new Set(BOSS_CATALOG.map(b=>b.id)).size,49);
+const {BOSS_CATALOG,selectedBossIds,setBossPinned}=await import(moduleUrl(readFileSync('lib/boss-catalog.ts','utf8').replace("import data from './data/boss-catalog.json';",'const data='+readFileSync('lib/data/boss-catalog.json','utf8')+';').replace("import scheduled from './data/scheduled-bosses.json';",'const scheduled='+readFileSync('lib/data/scheduled-bosses.json','utf8')+';').replace("'./event-timers'",JSON.stringify(timersUrl))));
+assert.equal(BOSS_CATALOG.length,54);assert.equal(new Set(BOSS_CATALOG.map(b=>b.id)).size,54);
 assert.deepEqual(selectedBossIds(common,1),['101021']);assert.deepEqual(selectedBossIds(common,2),['111021']);
 const moved=setBossPinned(common,1,'101021',true);
 assert.deepEqual(selectedBossIds(moved,1),['101021']);assert.deepEqual(moved.profiles,common.profiles);
 assert.deepEqual(selectedBossIds(setBossPinned(moved,1,'101021',false),1),[]);
 assert.deepEqual(selectedBossIds(moved,2),['101021']);
 console.log('Full boss pins: catalog, additive validation, alias deduplication, manual-profile preservation, explicit cross-faction IDs PASS');
+
+const scheduled=BOSS_CATALOG.filter(b=>b.schedule);
+assert.deepEqual(scheduled.map(b=>b.id),SCHEDULED_BOSS_IDS);
+assert.equal(BOSS_CATALOG.filter(b=>b.side===null).length,6);
+const kaira=scheduled.find(b=>b.id==='scheduled:watcher-kaira');
+const nahma=scheduled.find(b=>b.id==='scheduled:guardian-nahma');
+assert.equal(nextScheduledBossOccurrence(Date.parse('2026-10-21T22:59:59Z'),kaira.schedule,'eu'),Date.parse('2026-10-21T23:00:00Z'));
+assert.equal(nextScheduledBossOccurrence(Date.parse('2026-10-21T23:00:01Z'),kaira.schedule,'eu'),Date.parse('2026-10-22T02:00:00Z'));
+for(const [region,target] of [['eu','2026-10-23T19:00Z'],['nae','2026-10-24T01:00Z'],['naw','2026-10-24T04:00Z'],['la','2026-10-24T00:00Z'],['as','2026-10-23T12:00Z']])assert.equal(nextScheduledBossOccurrence(Date.parse('2026-10-22T00:00Z'),nahma.schedule,region),Date.parse(target));
+assert.equal(nextScheduledBossOccurrence(Date.parse('2026-10-23T19:00:00.500Z'),nahma.schedule,'eu'),Date.parse('2026-10-23T19:00Z'));
+assert.equal(nextScheduledBossOccurrence(Date.parse('2026-10-23T19:00:01Z'),nahma.schedule,'eu'),Date.parse('2026-10-25T20:00Z'));
+assert.equal(nextScheduledBossOccurrence(Date.parse('2026-10-25T20:00:01Z'),nahma.schedule,'eu'),Date.parse('2026-10-30T20:00Z'));
+assert.equal(nextScheduledBossOccurrence(Date.parse('2026-10-31T01:00:01Z'),nahma.schedule,'nae'),Date.parse('2026-11-02T02:00Z'));
+assert.equal(nextScheduledBossOccurrence(Date.parse('2026-10-26T00:00Z'),nahma.schedule,'nae'),Date.parse('2026-10-26T01:00Z')); // Sunday local, Monday UTC
+assert.equal(nextZonedOccurrence(Date.parse('2026-03-28T23:00Z'),[150],'Europe/Berlin',[0]),Date.parse('2026-04-05T00:30Z')); // nonexistent weekly spring hour
+assert.equal(nextZonedOccurrence(Date.parse('2026-10-25T00:31Z'),[150],'Europe/Berlin',[0]),Date.parse('2026-10-25T01:30Z'));
+assert.equal(nextZonedOccurrence(Date.parse('2026-10-22T00:00Z'),[1260],'Europe/Berlin',[4]),Date.parse('2026-10-22T19:00Z'));
+assert.equal(nextZonedOccurrence(Date.parse('2026-10-22T00:00Z'),[1260],'Europe/Berlin',[5]),Date.parse('2026-10-23T19:00Z')); // weekday-aware cache
+for(const b of scheduled.filter(b=>b.id.startsWith('scheduled:executor-')))assert.equal(nextScheduledBossOccurrence(Date.parse('2026-10-22T19:30:01Z'),b.schedule,'eu'),Date.parse('2026-10-24T19:30Z'));
+assert.equal(nextScheduledBossOccurrence(now,nahma.schedule,'unknown'),null);
+assert.equal(nextZonedOccurrence(now,[1260],'Europe/Berlin',[]),null);
+assert.equal(nextZonedOccurrence(now,[1260],'Europe/Berlin',[7]),null);
+const schedulePins=setBossPinned(expanded,1,kaira.id,true);
+assert.deepEqual(parseSettings(JSON.stringify(schedulePins)),schedulePins);
+assert.deepEqual(schedulePins.pinned,expanded.pinned);assert.deepEqual(schedulePins.pinnedBosses,expanded.pinnedBosses);assert.deepEqual(schedulePins.profiles,expanded.profiles);
+assert(selectedBossIds(schedulePins,2).includes(kaira.id));
+assert.deepEqual(setBossPinned(schedulePins,1,kaira.id,false).pinnedSchedules,[]);
+for(const pinnedSchedules of [null,{},[1],['2001'],['scheduled:invented'],[kaira.id,kaira.id]])assert.throws(()=>parseSettings(JSON.stringify({...expanded,pinnedSchedules})));
+console.log('Scheduled Abyss bosses:5names, weekly region clocks, EU/US DST, gap/fold, next-week gap, local weekday, cache, separate compatible pins PASS');

@@ -69,7 +69,7 @@ public class ShadowcraftController {
             if(body.length>2000) return bad("조회 입력이 너무 깁니다.");
             JsonNode p=mapper.readTree(body);
             if(p==null || !p.isObject()) return bad("조회 입력을 확인하세요.");
-            for(String field:List.of("action","region","class","server","name","id")) if(p.has(field) && !p.get(field).isTextual()) return bad("조회 입력을 확인하세요.");
+            for(String field:List.of("action","region","class","server","name","id","itemId","slot","enchant")) if(p.has(field) && !p.get(field).isTextual()) return bad("조회 입력을 확인하세요.");
             String region=p.path("region").asText("eu"),action=p.path("action").asText(),key=p.path("class").asText("assassin");
             JsonNode selected=service.profile(key);
             if(!List.of("eu","nae","naw","la","as").contains(region)) return bad("글로벌 지역을 선택하세요.");
@@ -91,6 +91,22 @@ public class ShadowcraftController {
                 ObjectNode out=mapper.createObjectNode();
                 out.set("characters",characters);
                 out.set("pagination",data.path("pagination"));
+                return ResponseEntity.ok(out);
+            }
+            if(action.equals("item")) {
+                String id=p.path("id").asText(),itemId=p.path("itemId").asText(),slot=p.path("slot").asText(),enchant=p.path("enchant").asText();
+                if(id.length()<5 || id.length()>200 || !server.matches("\\d{1,6}") || !itemId.matches("[1-9]\\d{0,9}") || !slot.matches("[1-9]\\d?") || !enchant.matches("\\d{1,2}")) return bad("장비 선택 정보를 확인하세요.");
+                String q="?region="+region+"&lang=en-US&serverId="+server+"&characterId="+enc(id);
+                // Verify the selected slot against current equipped items before querying its actual rolls.
+                JsonNode equipment=get("https://aion2.plaync.com/api/character/equipment"+q);
+                boolean matches=false;
+                for(JsonNode item:equipment.path("equipment").path("equipmentList"))
+                    if(item.path("id").asText().equals(itemId) && item.path("slotPos").asInt()==Integer.parseInt(slot) && item.path("enchantLevel").asInt(-1)==Integer.parseInt(enchant)) matches=true;
+                if(!matches) return bad("장비가 바뀌었거나 조회 정보가 일치하지 않습니다. 캐릭터를 다시 조회하세요.");
+                JsonNode detail=get("https://aion2.plaync.com/api/character/equipment/item"+q+"&id="+itemId+"&slotPos="+slot+"&enchantLevel="+enchant);
+                if(!detail.path("id").asText().equals(itemId) || detail.path("enchantLevel").asInt(-1)!=Integer.parseInt(enchant)) throw new IllegalStateException("Item identity mismatch");
+                ObjectNode out=mapper.createObjectNode();
+                out.set("item",detail);out.put("characterId",id);out.put("serverId",server);out.put("region",region);out.put("slotPos",Integer.parseInt(slot));out.put("importedAt",java.time.Instant.now().toString());
                 return ResponseEntity.ok(out);
             }
             if(action.equals("profile")) {
