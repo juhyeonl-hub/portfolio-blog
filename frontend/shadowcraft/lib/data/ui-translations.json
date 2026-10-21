@@ -8158,5 +8158,10 @@
     "en": "Arena of Cooperation points {0} · server rank #{1}",
     "ja": "協力のアリーナポイント {0} · サーバー順位 {1}位",
     "fi": "Yhteistyön areenan pisteet {0} · palvelinsija {1}"
+  },
+  "공식 검색 목록은 Lv.{0}, 상세 조회는 아직 Lv.{1}입니다. NCSOFT의 상세 정보가 갱신될 때까지 스킬·장비는 이전 상태로 보일 수 있습니다.": {
+    "en": "The official search lists Lv.{0} but the detail lookup still says Lv.{1}. Skills and gear may look outdated until NCSOFT refreshes the detail data.",
+    "ja": "公式検索ではLv.{0}ですが、詳細照会はまだLv.{1}です。NCSOFTの詳細データが更新されるまで、スキル・装備は古い状態で表示されることがあります。",
+    "fi": "Virallinen haku näyttää tason {0}, mutta yksityiskohtahaku vielä tason {1}. Taidot ja varusteet voivat näyttää vanhentuneilta, kunnes NCSOFT päivittää tiedot."
   }
 }
