@@ -8883,5 +8883,30 @@
     "en": "Connect my character to compare",
     "ja": "自分のキャラクターを連携して比較",
     "fi": "Yhdistä hahmoni vertailua varten"
+  },
+  "추천 기준: 레벨 {0} · 스킬 포인트 {1}. 게임 속 내 정보와 다르면 위에서 수정하세요.": {
+    "en": "Recommendation uses level {0} and {1} skill points. Edit the values above if they differ from your in-game character.",
+    "ja": "レベル{0}・スキルポイント{1}でおすすめを作成します。ゲーム内の情報と違う場合は上で修正してください。",
+    "fi": "Suositus käyttää tasoa {0} ja {1} taitopistettä. Muuta yllä olevia arvoja, jos ne eroavat pelihahmostasi."
+  },
+  "빌드 적용 완료": {
+    "en": "Build applied",
+    "ja": "ビルドを適用しました",
+    "fi": "Kokoonpano otettu käyttöön"
+  },
+  "사이트의 계획에 반영했습니다. 게임 안에서는 스킬과 설정을 직접 바꿔 주세요.": {
+    "en": "Your plan on this site has been updated. Change your skills and settings manually in the game.",
+    "ja": "このサイトの計画に反映しました。ゲーム内のスキルや設定は手動で変更してください。",
+    "fi": "Tämän sivuston suunnitelma on päivitetty. Muuta taidot ja asetukset itse pelissä."
+  },
+  "적용한 스킬 확인": {
+    "en": "View applied skills",
+    "ja": "適用したスキルを確認",
+    "fi": "Näytä käyttöön otetut taidot"
+  },
+  "이름 붙여 보관하기": {
+    "en": "Name and save this build",
+    "ja": "名前を付けて保存",
+    "fi": "Nimeä ja tallenna kokoonpano"
   }
 }

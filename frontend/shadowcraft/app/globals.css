@@ -586,3 +586,9 @@ footer,footer p,.asbc-footer div small,.side-bottom,.side-bottom small{color:#8f
 }
 
 @media(max-width:760px){.terrain-panel .map-toolbar .button{min-width:44px;min-height:44px}}
+
+/* PC preview and completion keep the next action beside the result. */
+.quick-preview,.quick-result{scroll-margin-top:calc(var(--a2bc-timer-height,0px) + 86px)}
+.quick-result{margin:20px 0;padding:20px;border:1px solid #619b91;border-radius:12px;background:#172925}
+.quick-result p{margin:12px 0 18px;color:#c4d7d1}.quick-basis{margin:12px 0;color:#c8d8e5}
+.quick-preview:focus-visible,.quick-result:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
