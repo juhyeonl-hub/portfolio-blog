@@ -9618,5 +9618,70 @@
     "en": "Start by choosing a class in Build and previewing a suggestion. Equipment comparison is under Compare with a ranked character in Build.",
     "ja": "初めてならビルドで職業を選び、おすすめを確認してください。装備比較はビルド内のランカーと比較から行えます。",
     "fi": "Aloita valitsemalla luokka hahmosuunnittelussa. Varusteita voi verrata sen hahmovertailussa."
+  },
+  "비교 대상: {0} · 다른 랭커 선택": {
+    "en": "Comparing: {0} · Choose another",
+    "ja": "比較対象: {0} · 他のランカーを選択",
+    "fi": "Vertailussa: {0} · Valitse toinen"
+  },
+  "비교할 랭커 선택": {
+    "en": "Choose a ranked character",
+    "ja": "比較するランカーを選択",
+    "fi": "Valitse vertailuhahmo"
+  },
+  "랭킹 목록으로 돌아가기": {
+    "en": "Back to rankings",
+    "ja": "ランキング一覧に戻る",
+    "fi": "Takaisin sijoituslistaan"
+  },
+  "{0}와 비교": {
+    "en": "Compare with {0}",
+    "ja": "{0}と比較",
+    "fi": "Vertaa hahmoon {0}"
+  },
+  "랭커 전체 배치에 필요한 포인트": {
+    "en": "Full target cost",
+    "ja": "ランカーの全配置に必要なポイント",
+    "fi": "Koko tavoitteen hinta"
+  },
+  "내가 설정한 총 포인트": {
+    "en": "My configured total",
+    "ja": "自分が設定した合計ポイント",
+    "fi": "Asettamani kokonaispisteet"
+  },
+  "지금 추천하는 배치의 사용량": {
+    "en": "Recommended allocation cost",
+    "ja": "現在の推奨配置の使用量",
+    "fi": "Suositellun jaon hinta"
+  },
+  "결정 {0} · 아스펠 {1}": {
+    "en": "Crystals {0} · Azphel {1}",
+    "ja": "結晶 {0} · アスフェル {1}",
+    "fi": "Kiteet {0} · Azphel {1}"
+  },
+  "게임에서 확인한 총량과 다르면 위의 내 포인트 입력에서 바꾸세요.": {
+    "en": "If this differs from your in-game total, use Enter my points above.",
+    "ja": "ゲーム内の合計と違う場合は、上のポイント入力で変更してください。",
+    "fi": "Jos summa eroaa pelin tiedoista, muuta se yläosan pistekentissä."
+  },
+  "내 총량은 레벨 기준 추정값입니다. 위의 내 포인트 입력에서 게임의 사용량 + 남은 양을 입력하세요.": {
+    "en": "My total is estimated from level. Enter spent + remaining points using Enter my points above.",
+    "ja": "合計はレベルからの推定値です。上のポイント入力で使用済み＋残りの合計を入力してください。",
+    "fi": "Kokonaismäärä on tasoon perustuva arvio. Syötä käytetyt + jäljellä olevat pisteet yläosan pistekenttiin."
+  },
+  "보드를 고르고 주황색 + 노드부터 확인하세요. 파란색 … 노드는 나중에 준비할 목표입니다. 노드를 누르면 이름과 비용을 볼 수 있습니다.": {
+    "en": "Choose a board and review orange + nodes first. Blue … nodes are later goals. Select a node to see its name and cost.",
+    "ja": "ボードを選び、オレンジの＋ノードから確認してください。青の…は後で目指すノードです。押すと名前とコストが表示されます。",
+    "fi": "Valitse lauta ja tarkista ensin oranssit + solmut. Siniset … solmut ovat myöhempiä tavoitteita. Valitse solmu nähdäksesi nimen ja hinnan."
+  },
+  "추천 기준과 색상 해석": {
+    "en": "Recommendation criteria and colors",
+    "ja": "推奨基準と色の意味",
+    "fi": "Suosituksen perusteet ja värit"
+  },
+  "확인할 노드를 누르세요.": {
+    "en": "Select a node to inspect.",
+    "ja": "確認するノードを押してください。",
+    "fi": "Valitse tarkasteltava solmu."
   }
 }

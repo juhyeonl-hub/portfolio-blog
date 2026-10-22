@@ -668,3 +668,14 @@ footer,footer p,.asbc-footer div small,.side-bottom,.side-bottom small{color:#8f
 @media(max-width:480px){.single-board .goal-board{gap:2px;padding:3px}.ranking-rows li{grid-template-columns:minmax(0,1fr)}.ranking-rows li>button{grid-column:1;grid-row:auto}}
 
 @media(max-width:760px){.ranker-builds{padding:12px}.ranker-detail>.quick-preview{padding:10px}.ranker-board-comparison .preview-tabs{gap:5px}.ranker-board-comparison .preview-tabs button{padding:8px 10px}}
+
+/* Keep comparison choices and guide instructions near the content they explain. */
+.comparison-picker{margin:16px 0;border:1px solid var(--line);border-radius:8px;padding:12px}
+.comparison-picker summary,.guide-explanation summary{cursor:pointer;min-height:32px}
+.guide-budget{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+.guide-budget>div{padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+.guide-budget span,.guide-budget strong{display:block;overflow-wrap:anywhere}
+.guide-budget span{font-size:12px;color:var(--muted);margin-bottom:6px}
+.guide-node-feedback{padding:10px;border:1px solid var(--accent);border-radius:6px;min-height:44px}
+.ranker-board-comparison .goal-node[data-inspected=true]{outline:2px solid white;outline-offset:1px;z-index:1}
+@media(max-width:600px){.guide-budget{grid-template-columns:1fr}.guide-budget>div{display:flex;justify-content:space-between;gap:8px}.guide-budget span{margin:0}.ranker-board-comparison .goal-legend{display:grid;grid-template-columns:1fr 1fr;gap:6px}.ranker-board-comparison .goal-legend span{padding:8px;font-size:11px}}
