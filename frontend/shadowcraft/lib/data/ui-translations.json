@@ -9683,5 +9683,20 @@
     "en": "Select a node to inspect.",
     "ja": "確認するノードを押してください。",
     "fi": "Valitse tarkasteltava solmu."
+  },
+  "랭커 전체 배치까지 더 필요한 포인트: 결정 {0} · 아스펠 {1}": {
+    "en": "Additional points for the full target: crystals {0} · Azphel {1}",
+    "ja": "ランカーの全配置までに追加で必要なポイント: 結晶 {0} · アスフェル {1}",
+    "fi": "Koko tavoitteeseen tarvittavat lisäpisteet: kiteet {0} · Azphel {1}"
+  },
+  "이 보드: 유지 {0}개 · 먼저 찍기 {1}개 · 나중에 찍기 {2}개": {
+    "en": "This board: keep {0} · prioritize {1} · later {2}",
+    "ja": "このボード: 維持 {0}個 · 優先 {1}個 · 後で {2}個",
+    "fi": "Tämä lauta: säilytä {0} · ensin {1} · myöhemmin {2}"
+  },
+  "아스펠은 일반 데바니온 결정과 별도입니다. 아스펠 총량 {0} 안에서 추천하며, 남은 일반 결정으로 대신 찍을 수 없습니다.": {
+    "en": "Azphel uses a separate currency. Recommendations use your Azphel total of {0}; spare regular crystals cannot replace it.",
+    "ja": "アスフェルは通常のデバニオン結晶とは別です。アスフェル合計{0}の範囲で推奨します。余った通常の結晶で代用はできません。",
+    "fi": "Azphel käyttää erillistä valuuttaa. Suositus käyttää Azphel-kokonaismäärää {0}; tavalliset kiteet eivät korvaa sitä."
   }
 }
