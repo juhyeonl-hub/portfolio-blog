@@ -1,6 +1,6 @@
 import {useEffect,useState} from 'react';
 import {useLocale} from './locale';
-import {type Catalog,type Plan,pointLimits,totals,finalLevel,equipmentBonus,boardBonus,maxBase} from '@/lib/planner';
+import {isEndgamePointLevel,pointBudgetSourceLabel,type Catalog,type Plan,pointLimits,totals,finalLevel,equipmentBonus,boardBonus,maxBase} from '@/lib/planner';
 import {recommendBuild} from '@/lib/recommendation';
 import './leveling-guide.css';
 
@@ -22,12 +22,15 @@ export default function QuickBuild({catalog,plan,onApply,onEdit,onChange,applied
  const count=(v:string,max=9999)=>Math.min(max,Math.max(0,Math.floor(Number(v)||0)));
  return <section className="panel growth-guide" aria-label={t('내 성장 안내')}>
   <h2>{t('지금 올릴 스킬과 데바니온')}</h2>
-  <p>{t('레벨과 총 포인트를 입력하면 아래 그림이 바뀝니다. 게임에서는 직접 찍어 주세요.')}</p>
+  <p>{t(isEndgamePointLevel(plan)?'45레벨은 콘텐츠 완료 기준으로 안내합니다. 아직 완료하지 않았거나 총량이 다르면 아래 숫자를 수정하세요.':'레벨만 입력하면 최소 기준으로 안내합니다. 추가로 얻은 포인트까지 반영하려면 아래 총량을 수정하세요.')}</p>
   <div className="growth-inputs">
    <label>{t('캐릭터 레벨')}<input aria-label={t('캐릭터 레벨')} type="number" min={1} max={45} value={plan.level} onChange={e=>onChange({level:Math.max(1,count(e.target.value,45))})}/></label>
    {(['sp','stigma','crystal','battle'] as const).map((key,i)=><label key={key}>{t(['스킬 포인트','스티그마 포인트','데바니온 포인트','아스펠 결정'][i])}<input aria-label={t(['스킬 포인트','스티그마 포인트','데바니온 포인트','아스펠 결정'][i])} type="number" min={0} max={9999} value={points[key]} onChange={e=>onChange({pointBudget:{...points,[key]:count(e.target.value)}})}/></label>)}
   </div>
-  <p className="subtle">{t('총 포인트 = 이미 쓴 양 + 남은 양. 캐릭터 조회로 총량은 확인되지 않습니다.')} {t(plan.pointBudget?'직접 설정한 총량입니다.':'현재는 레벨 기준 추정값입니다. 게임에서 확인해 주세요.')}</p>
+  <p className="subtle">{t('총 포인트 = 이미 쓴 양 + 남은 양. 캐릭터 조회로 총량은 확인되지 않습니다.')} {t(pointBudgetSourceLabel(plan))}</p>
+  <p className="subtle">{t(isEndgamePointLevel(plan)?'45레벨 기본값은 서브 퀘스트·봉인던전·주둔지를 모두 완료했다고 가정합니다. 실제 완료 여부를 조회한 값은 아닙니다.':'레벨별 최소 기준은 레벨업 보상만 포함합니다. 봉인던전·서브 퀘스트 등에서 얻은 추가 포인트는 사람마다 달라 제외합니다.')}</p>
+  {isEndgamePointLevel(plan)&&<p className="subtle">{t('서브 퀘스트 보상 58 + 내 종족 봉인던전 61곳 × 2를 더합니다. 주둔지의 별도 포인트는 추가하지 않습니다. 스티그마는 레벨 보상 29이며, 승급 추가 보상·상점 구매·이벤트는 별도입니다.')}</p>}
+  <button className="button secondary small" onClick={()=>onChange({pointBudget:undefined,extraSP:0,extraStigma:0,extraCrystal:0,extraBattle:0})}>{t(isEndgamePointLevel(plan)?'콘텐츠 완료 기준으로 되돌리기':'레벨별 최소 기준으로 되돌리기')}</button>
   <label className="ascension-confirm"><input type="checkbox" checked={plan.ascensionGrade3Confirmed===true} onChange={e=>onChange({ascensionGrade3Confirmed:e.target.checked})}/>{t('게임에서 3차 승급을 완료했습니다')}</label>
   <div className="growth-purpose"><span>{t('플레이 목적')}</span>{(['damage','safe','pvp'] as const).map((mode,i)=><button className={'button secondary '+(plan.mode===mode?'selected':'')} aria-pressed={plan.mode===mode} key={mode} onClick={()=>onChange({mode})}>{t(['사냥 · 공격','생존도 고려','유저와 전투'][i])}</button>)}</div>
   <p className="subtle">{t('레벨 제한과 포인트 안에서 계산한 참고 배분입니다. 레벨링 최적 효율을 검증한 정답은 아닙니다.')}</p>

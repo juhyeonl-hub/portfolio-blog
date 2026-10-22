@@ -9698,5 +9698,55 @@
     "en": "Azphel uses a separate currency. Recommendations use your Azphel total of {0}; spare regular crystals cannot replace it.",
     "ja": "アスフェルは通常のデバニオン結晶とは別です。アスフェル合計{0}の範囲で推奨します。余った通常の結晶で代用はできません。",
     "fi": "Azphel käyttää erillistä valuuttaa. Suositus käyttää Azphel-kokonaismäärää {0}; tavalliset kiteet eivät korvaa sitä."
+  },
+  "총량: 레벨별 최소 기준": {
+    "en": "Total: level-based minimum",
+    "ja": "合計：レベル別の最低基準",
+    "fi": "Yhteensä: tason vähimmäisarvo"
+  },
+  "레벨별 최소 기준으로 되돌리기": {
+    "en": "Reset to level-based minimum",
+    "ja": "レベル別の最低基準に戻す",
+    "fi": "Palauta tason vähimmäisarvo"
+  },
+  "레벨별 최소 기준은 레벨업 보상만 포함합니다. 봉인던전·서브 퀘스트 등에서 얻은 추가 포인트는 사람마다 달라 제외합니다.": {
+    "en": "The minimum includes level-up rewards only. Extra points from sealed dungeons, side quests and other progress vary by player and are excluded.",
+    "ja": "最低基準にはレベルアップ報酬のみを含めます。封印ダンジョンやサブクエストなどの追加ポイントはプレイヤーごとに異なるため含めません。",
+    "fi": "Vähimmäisarvo sisältää vain tasonnousupalkinnot. Suljetuista luolastoista, sivutehtävistä ja muusta etenemisestä saadut lisäpisteet vaihtelevat pelaajittain, eikä niitä lasketa mukaan."
+  },
+  "레벨만 입력하면 최소 기준으로 안내합니다. 추가로 얻은 포인트까지 반영하려면 아래 총량을 수정하세요.": {
+    "en": "Enter your level to use the minimum. Edit the totals below to include extra points you have earned.",
+    "ja": "レベルを入力すると最低基準で案内します。獲得済みの追加ポイントも反映する場合は、下の合計を変更してください。",
+    "fi": "Syötä tasosi käyttääksesi vähimmäisarvoa. Muokkaa alla olevia kokonaismääriä, jos haluat lisätä ansaitsemasi lisäpisteet."
+  },
+  "레벨별 공개 자료의 기본량을 최소 기준으로 사용합니다. 실제 보유량이 더 많으면 직접 수정할 수 있습니다.": {
+    "en": "The minimum uses published level-based reward totals. If you have more points, you can edit the totals.",
+    "ja": "公開されているレベル別報酬の基本量を最低基準に使います。実際の所持量が多い場合は直接変更できます。",
+    "fi": "Vähimmäisarvo perustuu julkaistuihin tasopalkintojen määriin. Jos sinulla on enemmän pisteitä, voit muokata kokonaismääriä."
+  },
+  "총량: 45레벨 콘텐츠 완료 기준": {
+    "en": "Total: level 45 content completed",
+    "ja": "合計：レベル45のコンテンツ完了基準",
+    "fi": "Yhteensä: tason 45 sisältö suoritettu"
+  },
+  "45레벨 기본값은 서브 퀘스트·봉인던전·주둔지를 모두 완료했다고 가정합니다. 실제 완료 여부를 조회한 값은 아닙니다.": {
+    "en": "At level 45, the default assumes all side quests, Sealed Dungeons and strongholds are completed. This is not a lookup of your actual progress.",
+    "ja": "レベル45の初期値はサブクエスト・封印ダンジョン・駐屯地をすべて完了した想定です。実際の進捗を取得した値ではありません。",
+    "fi": "Tason 45 oletus olettaa kaikki sivutehtävät, sinetöidyt luolastot ja tukikohdat suoritetuiksi. Todellista etenemistäsi ei ole tarkistettu."
+  },
+  "서브 퀘스트 보상 58 + 내 종족 봉인던전 61곳 × 2를 더합니다. 주둔지의 별도 포인트는 추가하지 않습니다. 스티그마는 레벨 보상 29이며, 승급 추가 보상·상점 구매·이벤트는 별도입니다.": {
+    "en": "Adds 58 side-quest rewards plus 61 home-faction Sealed Dungeons × 2. No separate stronghold points are added. Stigma stays at 29 from leveling; extra Ascension rewards, shop purchases and events are separate.",
+    "ja": "サブクエスト報酬58と自種族の封印ダンジョン61か所×2を加算します。駐屯地のポイントは別途加算しません。スティグマはレベル報酬の29で、昇級の追加報酬・商店購入・イベントは別です。",
+    "fi": "Lisätään 58 sivutehtäväpalkintoa ja oman puolen 61 sinetöityä luolastoa × 2. Tukikohdista ei lisätä erillisiä pisteitä. Stigmapisteitä on 29 tasopalkinnoista; Ascension-lisäpalkinnot, ostokset ja tapahtumat lasketaan erikseen."
+  },
+  "콘텐츠 완료 기준으로 되돌리기": {
+    "en": "Reset to completed-content baseline",
+    "ja": "コンテンツ完了基準に戻す",
+    "fi": "Palauta suoritetun sisällön oletus"
+  },
+  "45레벨은 콘텐츠 완료 기준으로 안내합니다. 아직 완료하지 않았거나 총량이 다르면 아래 숫자를 수정하세요.": {
+    "en": "Level 45 uses a completed-content baseline. If you have not finished or your total differs, edit the numbers below.",
+    "ja": "レベル45はコンテンツ完了を前提に案内します。未完了の場合や合計が異なる場合は、下の数値を修正してください。",
+    "fi": "Tasolla 45 oletetaan sisältö suoritetuksi. Jos et ole vielä valmis tai pistemääräsi on eri, muokkaa alla olevia lukuja."
   }
 }

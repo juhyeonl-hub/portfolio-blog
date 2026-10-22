@@ -1,0 +1,15 @@
+# Point baseline release — 2026-10-23
+
+Owner: Codex. Base: 1d01b76.
+Authorization: user said 진행 after the local verification report; continue scoped main commit, push and production deployment. Prior no-Claude-cross-review preference retained. Claude 불가로 Codex 임시 조율: recorded usage_limit until Oct26 14:00 Helsinki; no retry, no claim of cross-review.
+
+Goal: pre45 budgets use leveling-only minimums; Global level45 default assumes completed side/regional quests, home sealed dungeons and strongholds. Clearly distinguish entered totals.
+Scope: planner budget limits/reset behavior, growth-guide budget copy/reset only, point editor/sidebar labels, translations and budget tests. Other growth UI, actual-character spent calculator, ranking and recommendation changes remain outside this release.
+
+Evidence: Global2.0.7.0 level45 catalog203SP/29stigma/136crystal. Installed Global client build25926599 journal-index contains58 District quests per race granting one Wisdom Stone531900001 and one Daevanion Crystal531900003. Home sealed60 plus special level45 sealed1, each2 SP/crystals. Total203+58+122=383SP and136+58+122=316crystals. Crosschecked2026-10-23 against https://aion2.gg/guides/what-to-do-at-level-45. Home15 strongholds per race have no direct Wisdom/Crystal quest reward in local journal: included as completion assumption, no invented additional point grant. Stigma remains29; ascension extras, shops, events and Azphel are separate. No claim of detecting individual content completion.
+
+Expected: Lv39=165/17/112/0, Lv44=196/27/132/0, Lv45=383/29/316/0. Manual totals replace defaults, legacy extras remain added to level rewards without completion double count. Level/character change clears old overrides unless explicit simultaneous budget supplied. Same-level/character refresh preserves totals. Missing level uses lower known row, never future endgame. Reset restores relevant default.
+
+Verification before release: prior local PC1440/mobile390 input/boundary/reset checks and targeted tests passed. This isolated release tree must pass budget/level-budget/classes/ascension/PvP checks, typecheck and build before commit/deploy. Final production verification recorded in follow-up.
+
+Isolated release validation PASS: level-budget, budget, classes, ascension, pvp-leveling; typecheck:shadowcraft and build:asbc. Existing large-chunk/locale-plugin warnings only. Built source excludes all other pending features. PC1440 level39=165/17/112, mobile390 level45=383/29/316, manualcrystal370 stays370, reset316; width375=viewport375. Original217 pending files preserved before staging. Build artifact hash manifest saved at D:/CodexData/Projects/ASBC/artifacts/point-baseline-release-20261023/build-manifest.json.

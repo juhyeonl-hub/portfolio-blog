@@ -30,6 +30,12 @@ export function equipmentBonus(p:Plan,id:string):number {
 }
 export function updatePlan(c:Catalog,p:Plan,patch:Partial<Plan>):Plan {
  const next={...p,...patch};
+ // A budget entered for another level/character must not fund this growth plan.
+ const switched=patch.character && ['characterId','serverId'].some(k=>String(patch.character.profile?.[k])!==String(p.character?.profile?.[k]));
+ if((patch.level!==undefined&&patch.level!==p.level)||switched){
+  if(!Object.prototype.hasOwnProperty.call(patch,'pointBudget'))next.pointBudget=undefined;
+  for(const key of ['extraSP','extraStigma','extraCrystal','extraBattle'] as const)if(patch[key]===undefined)next[key]=0;
+ }
  // Recompute only when the effective level or recommendation mode changes.
  if(!patch.specs){next.specs={...p.specs};for(const s of c.skills)if(finalLevel(c,p,s)!==finalLevel(c,next,s)||p.mode!==next.mode)next.specs[s.id]=recommendSpecs(s,finalLevel(c,next,s),next.mode);}
  return next;
@@ -40,9 +46,22 @@ export function slots(s:Skill,level:number){return s.specializationSlots.filter(
 export const MODE_NAMES:Record<Plan['mode'],string>={safe:'안정형',damage:'공격형',pvp:'PvP형'};
 export function equipped(p:Plan){const profile=classProfile(p.classKey);return (p.mode==='safe'?profile.safeStigmas:profile.damageStigmas).slice(0,[22,27,32,37].filter(l=>p.level>=l).length)}
 const cleanPoints=(n:number)=>Number.isFinite(n)?Math.max(0,Math.min(9999,Math.floor(n))):0;
+// Legacy extras are user-entered additions to level rewards; preserve that meaning.
+export function hasCustomPointBudget(p:Plan):boolean {
+ return p.pointBudget!==undefined||[p.extraSP,p.extraStigma,p.extraCrystal,p.extraBattle].some(n=>Number.isFinite(n)&&n>0);
+}
+// Global 2.0.7.0 level cap. Do not extend this reward bundle to future caps.
+export const ENDGAME_POINTS={level:45,regionalQuests:58,sealedDungeons:61,pointsPerDungeon:2} as const;
+export function isEndgamePointLevel(p:Plan){return p.level===ENDGAME_POINTS.level}
+export function pointBudgetSourceLabel(p:Plan){return hasCustomPointBudget(p)?'총량: 직접 입력한 값':isEndgamePointLevel(p)?'총량: 45레벨 콘텐츠 완료 기준':'총량: 레벨별 최소 기준'}
 export function pointLimits(c:Catalog,p:Plan):PointBudget {
- const level=c.characterLevels.find(l=>l.level===p.level)||c.characterLevels[c.characterLevels.length-1];
- const fallback={sp:level.skillPoints+(p.extraSP||0),stigma:level.stigmaPoints+(p.extraStigma||0),crystal:(level.daevanionPoints.find((d:any)=>d.kind==='daevanioncrystal')?.amount||0)+(p.extraCrystal||0),battle:p.extraBattle||0};
+ const level=c.characterLevels.filter(l=>Number.isFinite(l.level)&&l.level<=p.level).sort((a,b)=>b.level-a.level)[0]||{skillPoints:0,stigmaPoints:0,daevanionPoints:[]};
+ // 58 regional rewards + (60 home sealed + 1 Lv45 sealed) × 2, per faction.
+ // Verified against installed Global quest/dungeon data; evidence in tasks/asbc-point-baseline-release-20261023.md.
+ // Strongholds are part of the completion assumption, with no separate point grant added.
+ // Shops, events, ascension extras and Azphel are not included. Never add these to a personal/legacy budget.
+ const completion=isEndgamePointLevel(p)&&!hasCustomPointBudget(p)?ENDGAME_POINTS.regionalQuests+ENDGAME_POINTS.sealedDungeons*ENDGAME_POINTS.pointsPerDungeon:0;
+ const fallback={sp:level.skillPoints+completion+(p.extraSP||0),stigma:level.stigmaPoints+(p.extraStigma||0),crystal:(level.daevanionPoints.find((d:any)=>d.kind==='daevanioncrystal')?.amount||0)+completion+(p.extraCrystal||0),battle:p.extraBattle||0};
  return Object.fromEntries((['sp','stigma','crystal','battle'] as const).map(k=>[k,cleanPoints(p.pointBudget?.[k]??fallback[k])])) as PointBudget;
 }
 export function totals(c:Catalog,p:Plan){const cap=pointLimits(c,p);const all=c.boards.flatMap(b=>b.nodes.map(n=>({...n,battle:b.pointKind.code==='battlecrystal'})));return {sp:c.skills.filter(s=>!s.stigma).reduce((a,s)=>a+skillCost(s,p.base[s.id]??1),0),spMax:cap.sp,stigma:c.skills.filter(s=>s.stigma&&equipped(p).includes(s.id)).reduce((a,s)=>a+skillCost(s,p.base[s.id]??0),0),stigmaMax:cap.stigma,crystal:all.filter(n=>!n.battle&&p.nodes.includes(n.id)).reduce((a,n)=>a+n.pointCost,0),crystalMax:cap.crystal,battle:all.filter(n=>n.battle&&p.nodes.includes(n.id)).reduce((a,n)=>a+n.pointCost,0),battleMax:cap.battle}}
