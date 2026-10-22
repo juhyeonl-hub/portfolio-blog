@@ -9,6 +9,8 @@ with sync_playwright() as p:
  for width,height in [(1440,900),(1280,720),(390,844)]:
   page=b.new_page(viewport={'width':width,'height':height});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(URL);expect(page.locator('.home-start-grid')).to_be_visible()
+  # Let live startup data settle before comparing preview geometry; a catalog refresh invalidates stale previews.
+  page.wait_for_load_state('networkidle',timeout=45000)
   page.locator('.home-start-grid>button').first.click()
   expect(page.locator('.quick-basis')).to_contain_text('45')
   button=page.get_by_role('button',name='이 빌드 미리보기',exact=True)
