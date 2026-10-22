@@ -22,3 +22,11 @@ Last reviewed: Codex self-review. Last verified: 2026-10-22. Next: ready for sco
 ## Release authorization — 2026-10-22
 User explicitly authorized only this verified scope for main commit/push/production deployment without Claude cross-review. Supersedes earlier local-only status. Review waived, not claimed as passed. All 199 excluded file hashes unchanged before release.
 Release candidate: typecheck, lint, localization, navigation, ranker-builds and production build PASS; git diff --check PASS. Only four UI/translation files plus this record staged.
+
+## Production release completed
+- Source commit 656c76ca538c572e394e1676e2c2996e780c9534 pushed to origin/main; exactly the four scoped source files plus this task record.
+- Cloudflare Pages production deployment https://62b405b2.asbc-4c9.pages.dev ; https://asbc.app/ directly verified.
+- CUA PC1440/mobile390: selected donBshy shown in title, chooser collapsed, guide above equipment, actual target 416 crystals / 86 Azphel versus configured 136 / 0 clearly labeled; recommendation 136 / 0. Zikel tab and node name/status/4P feedback verified; ranking return succeeded. No plan applied or private login tested.
+- All 199 unrelated file hashes unchanged after deployment. Claude cross-review explicitly waived by user, not marked passed.
+- Evidence: D:/CodexData/Projects/ASBC/artifacts/guide-flow-audit-20261022/guide-flow-live.png and release-build.log.
+- Status complete; no remaining work for this release. Backend unchanged.
