@@ -12,3 +12,6 @@
  .my-ranker-comparison .actual-options p,.my-ranker-comparison .actual-options label{font-size:13px}
  .my-ranker-comparison .actual-options h4{font-size:15px}
 }
+
+/* Ranker detail lists normally scroll; actual equipment options must stay readable. */
+.my-ranker-comparison .actual-options .rolled-options{max-height:none;overflow:visible}

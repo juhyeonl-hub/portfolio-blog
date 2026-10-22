@@ -35,8 +35,8 @@ function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index}:{i
  const advice=equipmentAdvice({detail,referenceLevel,investment,budget,unwanted:unwanted.length,reviewed});
  return <div className="actual-options">
   <h4>{t(mine?'내 장비의 실제 옵션':'랭커 장비의 실제 옵션')}</h4>
-  {!item||!identity?<p>{t('캐릭터 또는 해당 부위의 조회 정보가 없습니다.')}</p>:loading?<p role="status">{t('실제 장착 옵션 조회 중…')}</p>:error?<><p role="alert">{t(error)}</p><button className="button ghost" onClick={()=>setRetry(n=>n+1)}>{t('다시 조회')}</button></>:detail&&<>
-   <b>{detail.name}</b><p>{t('아이템 레벨 {0}',[detail.level])}</p>
+  {!item||!identity?<p>{t('캐릭터 또는 해당 부위의 조회 정보가 없습니다.')}</p>:loading?<p role="status">{t('실제 장착 옵션 조회 중…')}</p>:error?<><p role="alert">{t(mine?'내 장비 옵션을 불러오지 못했습니다. 옵션을 추측해 안내하지 않습니다.':'랭커 장비 옵션을 불러오지 못했습니다. 내 장비가 조회됐다면 왼쪽 또는 위쪽의 성장 안내는 계속 사용할 수 있습니다.')}</p><details><summary>{t('조회 오류 자세히 보기')}</summary><p>{t(error)}</p></details><button className="button ghost" onClick={()=>setRetry(n=>n+1)}>{t('다시 조회')}</button></>:detail&&<>
+   <b>{detail.name}</b><p>{t('아이템 레벨 {0}',[detail.level])} · {t('강화 +{0} · 초월 +{1}',[detail.enchantLevel,item.exceedLevel])}</p>
    <p className="subtle">{t('아래는 이번 공식 응답의 실제 무작위 옵션과 스킬입니다. 기본 능력치·마석·신석은 투자 판단에서 제외합니다.')}</p>
    {!options.length&&<p>{t('공개된 무작위 옵션이 없습니다.')}</p>}
    {mine&&<div className="investment-advice">
