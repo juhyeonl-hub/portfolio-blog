@@ -30,6 +30,7 @@ function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolea
   const {t} = useLocale();
   const {name: terrainName, source, gridSize, basePath} = terrain;
   const [open, setOpen] = useState(false);
+  const [controlsOpen,setControlsOpen]=useState(()=>!window.matchMedia('(max-width:760px)').matches);
   const [view, setView] = useState<MapView>({x:0, y:0, zoom:1});
   const [failed, setFailed] = useState<Set<string>>(new Set());
   const [retry, setRetry] = useState(0);
@@ -143,7 +144,7 @@ function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolea
       {query.trim() && <p role="status">{t('검색 결과 {0}개',[matches.length])}</p>}
     </div>}
     </div>
-    {<details className="terrain-controls" open>
+    {<details className="terrain-controls" open={controlsOpen} onToggle={e=>setControlsOpen(e.currentTarget.open)}>
       <summary>{t('지도 표시 항목')}</summary><div>
       <button className="button secondary" disabled={previewLoading} aria-expanded={previewOn} onClick={()=>void togglePreview()}>
         {previewLoading?t('위치 자료 불러오는 중'):previewOn?t('마커 숨기기'):t('마커 보기')}</button>
@@ -213,7 +214,7 @@ function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolea
         <button className="button ghost" onClick={()=>setSelectedLocation('')}>{t('위치 선택 해제')}</button></p>}
       {failed.size>0 && <p role="alert">{t('지형 이미지 {0}개를 불러오지 못했습니다.',[failed.size])} <button className="button ghost" onClick={()=>{setFailed(new Set());setRetry(v=>v+1);}}>{t('지형 다시 불러오기')}</button></p>}
 
-      <p className="map-help">{t('휠로 확대 · 드래그로 이동 · 마커를 눌러 상세 보기')}</p>
+      <p className="map-help">{t('＋/− 버튼으로 확대·축소 · 지도를 손가락이나 마우스로 끌어 이동 · 표시를 눌러 상세 보기')}</p>
       <div className="terrain-map-frame"><svg ref={canvasRef} className="map-canvas terrain-canvas" role="group" aria-label={t('{0} 지형 이미지',[terrainName])} tabIndex={0} viewBox={`${view.x} ${view.y} ${size} ${size}`}
         onKeyDown={e=>{const delta:Record<string,[number,number]>={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]};if(Object.hasOwn(delta,e.key)){e.preventDefault();const [x,y]=delta[e.key];setView(v=>constrainMapView({...v,x:v.x+x*size/10,y:v.y+y*size/10}));}}}
         onPointerDown={e=>{if(e.button!==0)return;drag.current={id:e.pointerId,x:e.clientX,y:e.clientY,width:e.currentTarget.getBoundingClientRect().width,view};e.currentTarget.setPointerCapture(e.pointerId);}}

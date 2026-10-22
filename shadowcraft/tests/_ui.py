@@ -26,7 +26,11 @@ def open_build(page):
 def open_section(page, name):
     """Open the build entry and select one detailed editor through its pill."""
     open_build(page)
-    page.locator('.build-pills button', has_text=re.compile('^' + re.escape(name) + '$')).click()
+    chooser = page.get_by_label('빌드에서 할 일', exact=True)
+    if chooser.is_visible():
+        chooser.select_option(label=name)
+    else:
+        page.locator('.build-pills > button', has_text=re.compile('^' + re.escape(name) + '$')).click()
 
 
 def pick_class(page, name):

@@ -568,3 +568,21 @@ footer,footer p,.asbc-footer div small,.side-bottom,.side-bottom small{color:#8f
 .home-start-grid{margin-bottom:0}
 
 .page-direction{font-size:14px;line-height:1.7;color:#bdc6d8;margin:4px 0 10px;max-width:80ch}
+
+/* Mobile usability: every build section is reachable without discovering horizontal scrolling. */
+.mobile-build-navigation{display:none}
+@media(max-width:760px){
+ .shell .build-pills{overflow:visible;min-height:76px;padding:6px 0}
+ .shell .build-pills>button{display:none}
+ .mobile-build-navigation{display:flex;width:100%;gap:10px;align-items:flex-end}
+ .mobile-build-navigation label{display:flex;flex-direction:column;gap:3px;font-size:12px;color:#bbc3d5;flex:1;min-width:0}
+ .mobile-build-navigation select{width:100%;height:44px;font-size:16px;padding:8px 10px}
+ .shell .mobile-build-navigation button{min-height:44px;font-size:13px;padding:8px 10px}
+ .shell .build-anchor{scroll-margin-top:calc(var(--a2bc-timer-height,0px) + 86px)}
+ .shell input:not([type=checkbox]):not([type=radio]):not([type=file]),.shell select,.shell textarea{font-size:16px;min-height:44px}
+ .shell .modal-close{min-width:44px;min-height:44px}
+ .terrain-panel .map-help{font-size:13px;line-height:1.7}
+ .ocr-actions .button{min-height:44px}
+}
+
+@media(max-width:760px){.terrain-panel .map-toolbar .button{min-width:44px;min-height:44px}}

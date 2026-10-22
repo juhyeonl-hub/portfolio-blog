@@ -8,7 +8,12 @@ def ensure_open(panel, label):
     # Wait for the automatic opening first; click only if the map stays closed (e.g. after the user closed it).
     try: expect(panel.get_by_role('button', name='공식 지형 닫기', exact=True)).to_be_visible(timeout=4000)
     except AssertionError: panel.get_by_role('button', name=label, exact=True).click()
+def open_controls(panel):
+    controls=panel.locator('.terrain-controls')
+    if controls.get_attribute('open') is None: controls.locator('summary').click()
+
 def ensure_markers(panel):
+    open_controls(panel)
     try: expect(panel.get_by_role('button', name='마커 숨기기', exact=True)).to_be_visible(timeout=4000)
     except AssertionError: panel.get_by_role('button', name='마커 보기', exact=True).click()
 url=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
@@ -122,6 +127,7 @@ with sync_playwright() as p:
     results.select_option(location_id)
     canvas=panel.get_by_role('group',name='Verteron 지형 이미지',exact=True)
     expect(canvas).to_be_visible()
+    open_controls(panel)
     expect(panel.get_by_role('button',name='마커 숨기기',exact=True)).to_be_visible()
     focused=canvas.get_attribute('viewBox')
     assert focused.endswith('250 250'),focused
@@ -138,6 +144,7 @@ with sync_playwright() as p:
     assert page.evaluate('JSON.stringify({...localStorage})')==before
     # The newly chosen region opens with its markers already loaded.
     ensure_markers(panel)
+    open_controls(panel)
     expect(panel.get_by_role('button',name='마커 숨기기',exact=True)).to_be_visible()
     expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(61)
     panel.get_by_role('button',name='항목 전체 끄기',exact=True).click()
@@ -168,6 +175,7 @@ with sync_playwright() as p:
     expect(panel.locator('[data-preview-marker]')).to_have_count(0)
     panel.get_by_label('공식 지형 지역',exact=True).select_option('verteron')
     # Hiding markers in one region does not carry over: the next region opens with its markers.
+    open_controls(panel)
     expect(panel.get_by_role('button',name='마커 숨기기',exact=True)).to_be_visible()
     expect(panel.locator('[data-preview-marker="teleport"]')).to_have_count(61)
     assert page.evaluate('JSON.stringify({...localStorage})')==before

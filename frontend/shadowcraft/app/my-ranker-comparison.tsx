@@ -48,7 +48,7 @@ function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index}:{i
   </>}
  </div>;
 }
-export default function MyRankerComparison({catalog,plan,ranker,live}:{catalog:Catalog;plan:Plan;ranker:Ranker;live:any}){
+export default function MyRankerComparison({catalog,plan,ranker,live,onConnect}:{catalog:Catalog;plan:Plan;ranker:Ranker;live:any;onConnect?:()=>void}){
  const {t}=useLocale();
  const [index,setIndex]=useState<ItemIndex|null>(null),[slot,setSlot]=useState<number|null>(null);
  useEffect(()=>{let active=true;loadItemIndex().then(x=>{if(active)setIndex(x)});return()=>{active=false};},[]);
@@ -61,7 +61,7 @@ export default function MyRankerComparison({catalog,plan,ranker,live}:{catalog:C
   <h3>{t('내 캐릭터와 랭커 비교')}</h3>
   <p>{t('같은 부위를 좌우로 비교하세요. 부위를 선택하면 실제 옵션과 내 장비의 투자 조언을 조회합니다.')}</p>
   <p className="subtle">{t('판단 기준: {0} · {1}. 레벨 비교는 글로벌 아이템 자료 기준이며 랭커의 옵션을 정답으로 취급하지 않습니다.',[t(catalog.className||catalog.classKey||''),t(MODE_NAMES[plan.mode])])}</p>
-  {!identity&&<p role="status">{t('빌드 화면에서 내 캐릭터를 먼저 연결하세요.')}</p>}
+  {!identity&&(onConnect?<button className="button primary" onClick={onConnect}>{t('내 캐릭터 연결하고 비교')}</button>:<p role="status">{t('빌드 화면에서 내 캐릭터를 먼저 연결하세요.')}</p>)}
   <div className="equipment-pair headings"><div><strong>{t('내 캐릭터')}</strong><b>{mine?.profile?.characterName||t('연결되지 않음')}</b><small>{mine?.importedAt?new Date(mine.importedAt).toLocaleString():''}</small></div><div><strong>{t('비교할 랭커')}</strong><b>{ranker.name}</b><small>{t(live?'이번 공식 응답':'저장된 장비 목록')}</small></div></div>
   <div className="aligned-equipment">{comparison.rows.map(r=><div className={'aligned-slot '+(slot===r.slot?'selected':'')} key={r.slot}>
    <button className="slot-selector" aria-pressed={slot===r.slot} onClick={()=>setSlot(r.slot)}>{slotLabel(r.left?.slotPosName||r.right?.slotPosName||String(r.slot),t)} <span>{t('옵션 비교')}</span></button>

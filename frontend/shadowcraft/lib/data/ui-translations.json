@@ -8848,5 +8848,40 @@
     "en": "Check each notice’s date and region. Game changes and recommendation review status are shown separately.",
     "ja": "お知らせの日付と地域を確認しましょう。ゲームの変更とおすすめの確認状況は別々に表示されます。",
     "fi": "Tarkista ilmoituksen päiväys ja alue. Pelimuutokset ja suositusten tarkistustila näytetään erikseen."
+  },
+  "빌드에서 할 일": {
+    "en": "Choose a build task",
+    "ja": "ビルドで行うこと",
+    "fi": "Valitse kokoonpanotehtävä"
+  },
+  "전체 메뉴": {
+    "en": "All pages",
+    "ja": "すべてのメニュー",
+    "fi": "Kaikki sivut"
+  },
+  "이미지 선택을 눌러 저장한 장비 스크린샷을 고르세요. 한 번에 아이템 한 개를 읽습니다. PC에서는 Ctrl+V로 붙여넣을 수도 있습니다.": {
+    "en": "Use Choose image to select a saved equipment screenshot. Read one item at a time. On a PC, you can also paste with Ctrl+V.",
+    "ja": "画像選択から保存した装備のスクリーンショットを選んでください。一度に1つのアイテムを読み取ります。PCではCtrl+Vで貼り付けることもできます。",
+    "fi": "Valitse tallennettu varustekuva kuvavalitsimesta. Lue yksi esine kerrallaan. PC:llä voit myös liittää painamalla Ctrl+V."
+  },
+  "복사된 이미지가 없습니다. 이미지 선택을 눌러 저장한 스크린샷을 골라 주세요.": {
+    "en": "No copied image found. Use Choose image to select a saved screenshot.",
+    "ja": "コピーされた画像がありません。画像選択から保存したスクリーンショットを選んでください。",
+    "fi": "Kopioitua kuvaa ei löytynyt. Valitse tallennettu kuvakaappaus kuvavalitsimesta."
+  },
+  "클립보드를 읽지 못했습니다. 이미지 선택을 눌러 스크린샷 파일을 골라 주세요.": {
+    "en": "Could not read the clipboard. Use Choose image to select a screenshot file.",
+    "ja": "クリップボードを読み取れませんでした。画像選択からスクリーンショットを選んでください。",
+    "fi": "Leikepöytää ei voitu lukea. Valitse kuvakaappaustiedosto kuvavalitsimesta."
+  },
+  "＋/− 버튼으로 확대·축소 · 지도를 손가락이나 마우스로 끌어 이동 · 표시를 눌러 상세 보기": {
+    "en": "Use +/− to zoom · Drag with a finger or mouse to move · Select a marker for details",
+    "ja": "＋/−で拡大・縮小 · 指やマウスでドラッグして移動 · マーカーを選んで詳細表示",
+    "fi": "Zoomaa +/−-painikkeilla · Siirrä vetämällä sormella tai hiirellä · Valitse merkki nähdäksesi tiedot"
+  },
+  "내 캐릭터 연결하고 비교": {
+    "en": "Connect my character to compare",
+    "ja": "自分のキャラクターを連携して比較",
+    "fi": "Yhdistä hahmoni vertailua varten"
   }
 }

@@ -11,16 +11,16 @@ with sync_playwright() as p:
  page.goto(URL);expect(page.locator('.home-start-grid')).to_be_visible();open_build(page)
  for cls in ['검성','살성']:
   pick_class(page,cls)
-  expect(page.locator('.build-pills button')).to_have_text(['처음부터']+PILLS)
+  expect(page.locator('.build-pills > button')).to_have_text(['처음부터']+PILLS)
   for pill,section in zip(PILLS,ORDER):
-   page.locator('.build-pills button').filter(has_text=re.compile('^'+re.escape(pill)+'$')).click()
+   page.locator('.build-pills > button').filter(has_text=re.compile('^'+re.escape(pill)+'$')).click()
    expect(page.locator('#build-section-'+section)).to_be_visible()
    for other in ORDER:
     if other!=section:expect(page.locator('#build-section-'+other)).to_be_hidden()
    expect(page.locator('.build-summary')).to_be_visible()
    assert page.url.endswith('/build/'+section),page.url
   page.get_by_label('캐릭터 레벨',exact=True).fill('30')
-  page.locator('.build-pills button').filter(has_text=re.compile('^처음부터$')).click()
+  page.locator('.build-pills > button').filter(has_text=re.compile('^처음부터$')).click()
   expect(page.locator('.quick-build')).to_be_visible()
   page.locator('.point-extras summary').click()
   expect(page.get_by_label('간편 캐릭터 레벨',exact=True)).to_have_value('30')

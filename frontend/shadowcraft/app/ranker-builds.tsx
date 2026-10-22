@@ -17,7 +17,7 @@ import CharacterComparison from './character-comparison';
 import {useLocale} from './locale';
 import {SkillHover} from './skill-tip';
 
-export default function RankerBuilds({catalog,plan,onApply}:{catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void}){
+export default function RankerBuilds({catalog,plan,onApply,onConnect}:{catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void;onConnect?:()=>void}){
  const {t,locale,skill:localSkill}=useLocale();
  const [kind,setKind]=useState(SNAPSHOTS[0].key);
  const current=SNAPSHOTS.find(s=>s.key===kind)||SNAPSHOTS[0];
@@ -61,7 +61,7 @@ export default function RankerBuilds({catalog,plan,onApply}:{catalog:Catalog;pla
   <div className="ranker-list">{rows.map(row=><button className={'button secondary '+(selected===row?'selected':'')} key={row.characterId} aria-pressed={selected===row} onClick={()=>inspect(row)}><b>{row.rank}. {row.name}</b><span>{row.region.toUpperCase()} · {row.serverName} · {t(row.race===1?'천족':'마족')}</span><small>{t(ROSTER_TEXT[current.key].score,[row.combatPower.toLocaleString(),row.sampleRank])}</small></button>)}</div>
   {selected&&<div className="ranker-detail"><h3>{t('{0} 세팅',[selected.name])}</h3><a href={selected.sourceProfile} target="_blank" rel="noreferrer">{t('명단 원본 캐릭터 ↗')}</a><p>{t('장비·스킬 확인 {0} · 당시 공식 전투력 {1}',[time(selected.verifiedAt),selected.currentCombatPower.toLocaleString()])}</p>
    <p className="ranker-observation" role="status">{live?t('공식 상세 조회: {0} · 아래 장비·스킬·데바니온은 이번 응답 기준',[time(live.importedAt)]):t('저장 자료 표시: {0} · 공식 조회 성공 전까지 저장된 장비·스킬을 표시합니다.',[time(selected.verifiedAt)])}</p>
-   <MyRankerComparison key={JSON.stringify([selected.characterId,plan.character?.profile,plan.character?.importedAt])} catalog={catalog} plan={plan} ranker={selected} live={live}/>
+   <MyRankerComparison key={JSON.stringify([selected.characterId,plan.character?.profile,plan.character?.importedAt])} catalog={catalog} plan={plan} ranker={selected} live={live} onConnect={onConnect}/>
    <details className="ranker-preparation"><summary>{t('따라하기 전 준비 항목')}</summary><ol>
     <li><b>{t('장비:')}</b> {t('위 목록에서 부위·강화·초월을 확인하세요. 보유 여부는 자동 확인하지 않으며 내 장비 계획에 복사하지 않습니다.')}</li>
     <li><b>{t('스킬:')}</b> {t('목표 레벨에는 장비·데바니온 보너스가 포함됩니다. 기본 투자 포인트와 특화는 공개되지 않아 직접 맞춰야 합니다.')}</li>
