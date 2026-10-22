@@ -190,3 +190,27 @@ assert.equal(mapIconKey('teleport','Altgard'),'teleportDark');
 assert.equal(mapIconKey('monolith','Ishalgen'),'monolithDark');
 assert.deepEqual(mapIcons.gather.viewBox,[238,106,100,100]);
 assert.equal(mapIcons.gather.src,mapIcons.npc.src);
+
+const {groupPreviewMarkers,gatheringCells,progressPercent}=await import(moduleUrl(readFileSync('lib/spawn-preview.ts','utf8')));
+for(const map of preview.maps){
+ const original=JSON.stringify(map.markers);
+ for(const width of [280,800])for(const zoom of [1,2,8]){
+  const view={x:0,y:0,zoom},visible=visiblePreview(map.markers,view),selected=visible[0]?.id||'';
+  const groups=groupPreviewMarkers(visible,view,width,selected);
+  assert.equal(groups.reduce((n,g)=>n+g.members.length,0),visible.length);
+  assert.equal(new Set(groups.flatMap(g=>g.members.map(r=>r.id))).size,visible.length);
+  for(const kind of ['sealed','stronghold','teleport'])assert.equal(groups.filter(g=>g.row.kind===kind).length,visible.filter(r=>r.kind===kind).length);
+  if(selected)assert(groups.some(g=>g.row.id===selected&&g.members.length===1));
+  if(zoom===8)assert(groups.every(g=>g.members.length===1));
+ }
+ for(const resource of previewGatherKinds(map.markers)){
+  const cells=gatheringCells(map.markers,resource.name);
+  assert.equal(cells.reduce((n,c)=>n+c.count,0),resource.count);
+  assert(cells.every(c=>c.x>=0&&c.y>=0&&c.x+25<=1000&&c.y+25<=1000));
+ }
+ assert.equal(JSON.stringify(map.markers),original);
+}
+assert.equal(progressPercent(1,2733),0.04);assert.equal(progressPercent(0,0),0);assert.equal(progressPercent(61,61),100);
+const mapNames=JSON.parse(readFileSync('lib/data/map-names.json')).names;
+for(const name of [...JSON.parse(readFileSync('lib/data/terrain-labels.json')).maps.flatMap(m=>m.labels.map(l=>l.name)),...preview.maps.flatMap(m=>previewGatherKinds(m.markers).map(g=>g.name))])for(const lang of ['ko','ja','fi'])assert(mapNames[name]?.[lang],name+' '+lang);
+console.log('Map UX: all candidates represented, independent layers, selected marker retained, zoomed singles, bounded resource cells, fractional progress and localized labels PASS');

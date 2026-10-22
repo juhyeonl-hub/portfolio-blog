@@ -31,7 +31,7 @@ export default function QuickBuild({catalog,plan,onApply,onEdit,applied=false,on
    <p>{t('목표 레벨을 고르면 그 레벨에서 열리는 보드·스킬만으로 공격형 배분을 미리 봅니다.')}</p>
    <div className="leveling-levels">{LEVELING_LEVELS.map(v=><button key={v} className={'button secondary'+(level===v&&mode==='damage'?' selected':'')} aria-pressed={level===v&&mode==='damage'} onClick={()=>{setLevel(v);setMode('damage');invalidate()}}>Lv.{v}</button>)}</div>
    <ul className="leveling-tips">{LEVELING_TIPS.map(tip=><li key={tip}>{t(tip)}</li>)}</ul>
-   <p className="subtle">{t('진행 요령은 game8 공략을 요약한 것입니다.')} <a href="https://game8.jp/aion2/822366" target="_blank" rel="noreferrer">game8 · 序盤の進め方</a></p>
+   <p className="subtle">{t('진행 요령은 game8 공략을 요약한 것입니다.')} <span>game8 · 序盤の進め方</span></p>
   </details>
   <p className="subtle">{t('{0}의 핵심 스킬을 우선합니다.',[t(profile.name)])} {plan.classKey!=='assassin'&&t('두 유형의 스킬·스티그마 구성은 같고 데바니온 우선순위가 다릅니다.')+' '}{t('실제 포인트와 장비에 따라 결과가 같을 수 있습니다.')}</p>
   <details className="point-extras"><summary>{t('내 레벨·포인트에 맞추기 (선택)')}</summary>

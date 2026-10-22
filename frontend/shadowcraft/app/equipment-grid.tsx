@@ -21,7 +21,7 @@ export function slotLabel(key:string,t:(s:string)=>string):string{
 }
 
 /** Equipment laid out like the in-game character window. Hover or focus a slot for its icon, grade and options. */
-export default function EquipmentGrid({items}:{items:EquipmentItem[]}){
+export default function EquipmentGrid({items,onInspect,selectedSlot}:{items:EquipmentItem[];onInspect?:(slot:number)=>void;selectedSlot?:number|null}){
  const {t,locale}=useLocale();
  const [index,setIndex]=useState<ItemIndex|null>(null);
  useEffect(()=>{let live=true;loadItemIndex().then(value=>{if(live)setIndex(value);});return()=>{live=false;};},[]);
@@ -35,11 +35,11 @@ export default function EquipmentGrid({items}:{items:EquipmentItem[]}){
   const grade=summary?GRADE_NAMES[summary.detail.g]:undefined;
   const pool=summary?.pool||[];
   const granted=summary?Math.max(summary.detail.sc?.[1]||0,summary.detail.rs||0):0;
-  return <div key={key} className={'eq-slot'+(item?' filled':' empty')+(summary?' grade-'+summary.detail.g.toLowerCase():'')} tabIndex={item?0:-1} aria-label={item?`${label}: ${item.name}`:label}>
+  return <div key={key} className={'eq-slot'+(item?' filled':' empty')+(summary?' grade-'+summary.detail.g.toLowerCase():'')} role={onInspect&&item?'button':undefined} data-selected={item&&selectedSlot===item.slotPos||undefined} onMouseEnter={()=>{if(item)onInspect?.(item.slotPos)}} onFocus={()=>{if(item)onInspect?.(item.slotPos)}} onClick={()=>{if(item)onInspect?.(item.slotPos)}} onKeyDown={e=>{if(item&&onInspect&&(e.key==='Enter'||e.key===' ')){e.preventDefault();onInspect(item.slotPos)}}} tabIndex={item?0:-1} aria-label={item?`${label}: ${item.name}`:label}>
    {icon?<img className="eq-icon" src={icon} alt="" loading="lazy" decoding="async"/>:<span className="eq-glyph" aria-hidden="true">{glyph}</span>}
    {item&&item.enchantLevel>0&&<small className="eq-enchant">+{item.enchantLevel}</small>}
    <small className="eq-label">{label}</small>
-   {item&&<div className="eq-tip" role="tooltip">
+   {item&&!onInspect&&<div className="eq-tip" role="tooltip">
     <b>{item.name}</b>
     <span>{[grade?t(grade):null,summary?t('아이템 레벨 {0}',[summary.detail.lv]):null,label].filter(Boolean).join(' · ')}</span>
     <span>{t('강화 +{0} · 초월 +{1}',[item.enchantLevel,item.exceedLevel])}</span>

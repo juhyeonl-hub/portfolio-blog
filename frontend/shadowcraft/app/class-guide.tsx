@@ -1,5 +1,6 @@
+import MacroGuide from './macro-guide';
 'use client';
-import {Info,MousePointer2,ArrowUpRight} from 'lucide-react';
+import {Info} from 'lucide-react';
 import {type Catalog} from '@/lib/planner';
 import {type ClassProfile} from '@/lib/classes';
 import {useLocale} from './locale';
@@ -7,7 +8,5 @@ function SkillTag({id,catalog}:{id:string;catalog:Catalog}){const {skill:localSk
 export default function ClassGuide({profile,catalog,tab}:{profile:ClassProfile;catalog:Catalog;tab:string}){
  const {t}=useLocale();
  if(tab==='rotation')return <><div className="section-heading"><div><h2>{t('{0} 보스전 운영',[t(profile.name)])}</h2><p>{t(profile.summary)}</p></div></div><div className="class-rotation">{profile.rotation.map((step,i)=><article className="panel" key={i}><span className="big-number">{String(i+1).padStart(2,'0')}</span><h3>{t(step.title)}</h3><p>{t(step.body)}</p><div className="guide-skills">{step.ids.map(id=><SkillTag key={id} id={id} catalog={catalog}/>)}</div></article>)}</div><div className="notice violet-notice"><Info size={16}/>{t('현재 글로벌 가이드의 보스·파티 역할을 기준으로 정리했습니다. 탱킹·회복·차징은 보스 패턴에 맞춰 직접 판단하세요.')}</div></>;
- const columns=profile.macroColumns||[];
- const manual=[...new Set([...profile.movement,...profile.manual])];
- return <><div className="section-heading"><div><h2>{t('{0} 최소 매크로 & 수동 키',[t(profile.name)])}</h2><p>{t('반복 공격과 상황별 스킬을 분리해 조작합니다.')}</p></div></div><div className="notice violet-notice"><Info size={17}/>{t(profile.macro)}</div><div className="macro-layout"><section className="panel"><h3>{t('반복 공격 후보')}</h3>{columns.length?<div className="class-macro-columns">{columns.map((col,i)=><div key={i}><b>{t('{0}열 · 아래부터 우선',[String.fromCharCode(65+i)])}</b>{col.skills.map((id,index)=><div className="macro-candidate" key={id}><small>{t('{0}행',[index])}</small><SkillTag id={id} catalog={catalog}/></div>)}</div>)}</div>:<><div className="guide-skills">{profile.core.map(id=><SkillTag key={id} id={id} catalog={catalog}/>)}</div><p className="subtle">{t('위는 우선 사용할 핵심 스킬입니다. 반복 열 배치가 확인되지 않은 직업은 자동 매크로 순서를 지정하지 않습니다. 원본 퀵슬롯과 실제 연계 조건을 먼저 확인하세요.')}</p></>}<p className="subtle">{t('원본 반복 열에서 수동 조작이 필요한 스킬을 제외한 시작안입니다. 게임 매크로는 세로 열 전체를 호출하므로 이동·회복·차징·생존 스킬을 같은 열에 넣지 마세요. 공격 속도와 지연에 맞춰 확인이 필요합니다.')}</p></section><section className="panel"><h3>{t('독립 키로 직접 사용')}</h3><div className="guide-manual-list">{manual.map(id=><div key={id}><SkillTag id={id} catalog={catalog}/><span><MousePointer2 size={12}/>{profile.movement.includes(id)?t('이동 위치 확인'):profile.roles[id]||t('타이밍 직접 선택')}</span></div>)}</div>{!manual.length&&<p>{t('생존·차징·회복 기술은 툴팁을 확인하고 별도 키에 배치하세요.')}</p>}</section></div><a className="button ghost" href={catalog.source} target="_blank" rel="noreferrer">{t('{0} 원본 가이드와 비교',[t(profile.name)])}<ArrowUpRight size={14}/></a></>;
+ return <MacroGuide profile={profile} catalog={catalog}/>;
 }

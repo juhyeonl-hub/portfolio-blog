@@ -17,6 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest @AutoConfigureMockMvc @ActiveProfiles("test")
+@org.springframework.test.context.TestPropertySource(properties="app.community.password-auth-enabled=true")
 class CommunityControllerTest {
  @Autowired MockMvc mvc;@Autowired ObjectMapper mapper;@Autowired JdbcTemplate jdbc;@Autowired JwtService jwt;
  private static final String API="/api/community",PUBLIC="/api/public/shadowcraft/builds";

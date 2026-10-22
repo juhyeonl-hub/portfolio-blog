@@ -68,6 +68,8 @@ with sync_playwright() as pw:
     calls = []; ctx, page = page_with(p, calls)
     page.goto(URL); page.get_by_role('button', name='로그인', exact=True).first.click()
     expect(page.get_by_role('link', name='Steam으로 로그인', exact=True)).to_have_attribute('href', '/api/community/auth/steam/start')
+    expect(page.get_by_role('region', name='커뮤니티 로그인').locator('input[type=password]')).to_have_count(0)
+    expect(page.get_by_role('region', name='커뮤니티 로그인').get_by_role('button', name='회원가입', exact=True)).to_have_count(0)
     ctx.close()
 
     # Signed-in password member links Steam: navigates only to Steam's OpenID endpoint.

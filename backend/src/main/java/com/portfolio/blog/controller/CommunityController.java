@@ -23,8 +23,11 @@ public class CommunityController {
     private final ReportService reports;
     private final ClientAddress address;
     public CommunityController(CommunityService community,MemberSessionService sessions,ObjectMapper mapper,SteamLoginService steam,ReportService reports,ClientAddress address){this.address=address;this.reports=reports;this.steam=steam;this.community=community;this.sessions=sessions;this.mapper=mapper;}
+    @org.springframework.beans.factory.annotation.Value("${app.community.password-auth-enabled:false}")
+    private boolean passwordAuthEnabled;
     @PostMapping("/api/community/auth/{action:register|login}")
     public ResponseEntity<?> login(@PathVariable String action,HttpServletRequest request)throws Exception {
+        if(!passwordAuthEnabled)throw new ResponseStatusException(HttpStatus.FORBIDDEN,"Steam으로 로그인해 주세요.");
         JsonNode input=body(request);
         String username=input==null?"":input.path("username").asText();
         if(username.length()>32)throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"아이디는 32자 이하로 입력하세요.");

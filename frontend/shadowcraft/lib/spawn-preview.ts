@@ -49,3 +49,25 @@ export function nearestTeleports(rows: SpawnPreview[], target: SpawnPreview) {
     .sort((a,b)=>a.distance-b.distance || a.row.id.localeCompare(b.row.id))
     .slice(0,3).map(item=>item.row);
 }
+
+/** All visible candidates remain represented; dense layers never consume another layer's quota. */
+export function groupPreviewMarkers(rows:SpawnPreview[],view:MapView,width:number,selected:string){
+ const step=28/Math.max(240,width)*1000/view.zoom;
+ const groups=new Map<string,SpawnPreview[]>();
+ for(const row of rows){
+  const dense=view.zoom<8&&['gather','npc','cube','trace'].includes(row.kind);
+  const key=row.id===selected||!dense?row.id:[row.kind,row.kind==='gather'?row.name:'',Math.floor(row.x/step),Math.floor(row.y/step)].join(':');
+  const group=groups.get(key)||[];group.push(row);groups.set(key,group);
+ }
+ return [...groups].map(([key,members])=>({key,members,row:members[0],x:members.reduce((n,r)=>n+r.x,0)/members.length,y:members.reduce((n,r)=>n+r.y,0)/members.length}))
+  .sort((a,b)=>Number(a.row.id===selected)-Number(b.row.id===selected)||Number(!['gather','npc','cube','trace'].includes(a.row.kind))-Number(!['gather','npc','cube','trace'].includes(b.row.kind)));
+}
+/** Tint only cells containing supplied candidate coordinates, never invent a full biome boundary. */
+export function gatheringCells(rows:SpawnPreview[],name:string){
+ const cells=new Map<string,{x:number;y:number;count:number}>();
+ for(const row of rows){if(row.kind!=='gather'||row.name!==name)continue;const x=Math.min(39,Math.floor(row.x/25))*25,y=Math.min(39,Math.floor(row.y/25))*25,key=x+':'+y;
+  const cell=cells.get(key)||{x,y,count:0};cell.count++;cells.set(key,cell);
+ }
+ return [...cells.values()];
+}
+export function progressPercent(done:number,total:number){return total?Number((done/total*100).toFixed(2)):0;}

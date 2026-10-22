@@ -1,0 +1,1165 @@
+{
+  "provenance": "ASBC display translations of bundled Global English names, not verified official Korean terminology. Original dataset names and IDs remain unchanged.",
+  "names": {
+    "Verteron": {
+      "ko": "베르테론",
+      "ja": "ベルテロン",
+      "fi": "Verteron"
+    },
+    "Altgard": {
+      "ko": "알트가르드",
+      "ja": "アルトガルド",
+      "fi": "Altgard"
+    },
+    "Poeta": {
+      "ko": "포에타",
+      "ja": "ポエタ",
+      "fi": "Poeta"
+    },
+    "Ishalgen": {
+      "ko": "이스할겐",
+      "ja": "イスハルゲン",
+      "fi": "Ishalgen"
+    },
+    "Chaotic Lower Reshanta": {
+      "ko": "혼돈의 레샨타 하층",
+      "ja": "混沌のレシャルタ下層",
+      "fi": "Kaoottinen Ala-Reshanta"
+    },
+    "Chaotic Middle Reshanta": {
+      "ko": "혼돈의 레샨타 중층",
+      "ja": "混沌のレシャルタ中層",
+      "fi": "Kaoottinen Keski-Reshanta"
+    },
+    "Abandoned Wind Breeze Office": {
+      "ko": "버려진 바람결 사무소",
+      "ja": "放棄された風の事務所",
+      "fi": "Hylätty tuulitoimisto"
+    },
+    "Alert Observation Post": {
+      "ko": "경계 관측소",
+      "ja": "警戒観測所",
+      "fi": "Vartiotähystyspaikka"
+    },
+    "Eastern Altamia Highland": {
+      "ko": "알타미아 고원 동부",
+      "ja": "アルタミア高原東部",
+      "fi": "Altamian itäinen ylänkö"
+    },
+    "Western Altamia Highland": {
+      "ko": "알타미아 고원 서부",
+      "ja": "アルタミア高原西部",
+      "fi": "Altamian läntinen ylänkö"
+    },
+    "Beast Hunter Campsite": {
+      "ko": "야수 사냥꾼 야영지",
+      "ja": "獣狩りの野営地",
+      "fi": "Pedonmetsästäjien leiri"
+    },
+    "Southern Altamia Highland": {
+      "ko": "알타미아 고원 남부",
+      "ja": "アルタミア高原南部",
+      "fi": "Altamian eteläinen ylänkö"
+    },
+    "Altamia Canyon": {
+      "ko": "알타미아 협곡",
+      "ja": "アルタミア峡谷",
+      "fi": "Altamian kanjoni"
+    },
+    "Ancient Zumion Temple Site": {
+      "ko": "고대 주미온 신전터",
+      "ja": "古代ズミオン神殿跡",
+      "fi": "Muinaisen Zumion-temppelin rauniot"
+    },
+    "Astin Mercenaries Base": {
+      "ko": "아스틴 용병단 기지",
+      "ja": "アスティン傭兵基地",
+      "fi": "Astinin palkkasoturien tukikohta"
+    },
+    "Coastal Camp": {
+      "ko": "해안 야영지",
+      "ja": "海岸野営地",
+      "fi": "Rannikkoleiri"
+    },
+    "Marsh Legion Campsite": {
+      "ko": "늪지 군단 야영지",
+      "ja": "湿地軍団野営地",
+      "fi": "Suolegionan leiri"
+    },
+    "Eastern Shugo Station": {
+      "ko": "동부 슈고 정거장",
+      "ja": "東部シューゴ停留所",
+      "fi": "Itäinen Shugo-asema"
+    },
+    "Dawn Legion Temporary Outpost": {
+      "ko": "새벽 군단 임시 전초기지",
+      "ja": "暁軍団臨時前哨地",
+      "fi": "Aamulegionan väliaikainen etuvartio"
+    },
+    "Western Cantas Valley": {
+      "ko": "칸타스 계곡 서부",
+      "ja": "カンタス渓谷西部",
+      "fi": "Läntinen Cantasin laakso"
+    },
+    "Eastern Cantas Valley": {
+      "ko": "칸타스 계곡 동부",
+      "ja": "カンタス渓谷東部",
+      "fi": "Itäinen Cantasin laakso"
+    },
+    "Valley Outpost": {
+      "ko": "계곡 전초기지",
+      "ja": "渓谷前哨地",
+      "fi": "Laakson etuvartio"
+    },
+    "Canyon Campsite": {
+      "ko": "협곡 야영지",
+      "ja": "峡谷野営地",
+      "fi": "Kanjonileiri"
+    },
+    "Highland's End Campsite": {
+      "ko": "고원 끝 야영지",
+      "ja": "高原の果ての野営地",
+      "fi": "Ylängön reunan leiri"
+    },
+    "Hideout in Front of the Ruins": {
+      "ko": "폐허 앞 은신처",
+      "ja": "廃墟前の隠れ家",
+      "fi": "Piilopaikka raunioiden edessä"
+    },
+    "Notos Legion Outpost": {
+      "ko": "노토스 군단 전초기지",
+      "ja": "ノトス軍団前哨地",
+      "fi": "Notos-legionan etuvartio"
+    },
+    "Collapsed Verteron Barrier Tower": {
+      "ko": "무너진 베르테론 결계탑",
+      "ja": "崩れたベルテロン結界塔",
+      "fi": "Sortunut Verteronin suojatorni"
+    },
+    "Collapsed Pillar": {
+      "ko": "무너진 기둥",
+      "ja": "崩れた柱",
+      "fi": "Sortunut pylväs"
+    },
+    "Contaminated Sanctum": {
+      "ko": "오염된 성소",
+      "ja": "汚染された聖域",
+      "fi": "Saastunut pyhäkkö"
+    },
+    "Dawn Legion Base": {
+      "ko": "새벽 군단 기지",
+      "ja": "暁軍団基地",
+      "fi": "Aamulegionan tukikohta"
+    },
+    "Destroyed Temple Site": {
+      "ko": "파괴된 신전터",
+      "ja": "破壊された神殿跡",
+      "fi": "Tuhotun temppelin rauniot"
+    },
+    "Drana Plantation": {
+      "ko": "드라나 농장",
+      "ja": "ドラナ農園",
+      "fi": "Drana-viljelmä"
+    },
+    "Drana Transport Hub": {
+      "ko": "드라나 수송 거점",
+      "ja": "ドラナ輸送拠点",
+      "fi": "Dranan kuljetuskeskus"
+    },
+    "Dundu's Rest": {
+      "ko": "둔두의 쉼터",
+      "ja": "ドゥンドゥの休息地",
+      "fi": "Dundun lepopaikka"
+    },
+    "Eastern Tolbas Forest": {
+      "ko": "톨바스 숲 동부",
+      "ja": "トルバスの森東部",
+      "fi": "Itäinen Tolbasin metsä"
+    },
+    "Ellun River Meadow": {
+      "ko": "엘룬 강 초원",
+      "ja": "エルン川の草原",
+      "fi": "Ellunjoen niitty"
+    },
+    "Contaminated Marsh": {
+      "ko": "오염된 늪지",
+      "ja": "汚染された湿地",
+      "fi": "Saastunut suo"
+    },
+    "Spirit's Rest": {
+      "ko": "정령의 쉼터",
+      "ja": "精霊の休息地",
+      "fi": "Hengen lepopaikka"
+    },
+    "Ellun River Marsh": {
+      "ko": "엘룬 강 늪지",
+      "ja": "エルン川の湿地",
+      "fi": "Ellunjoen suo"
+    },
+    "Ellun River Midstream": {
+      "ko": "엘룬 강 중류",
+      "ja": "エルン川中流",
+      "fi": "Ellunjoen keskijuoksu"
+    },
+    "Anguish Hill": {
+      "ko": "고통의 언덕",
+      "ja": "苦痛の丘",
+      "fi": "Tuskan kukkula"
+    },
+    "Garden of the Illusion God": {
+      "ko": "환영신의 정원",
+      "ja": "幻影神の庭園",
+      "fi": "Illuusiojumalan puutarha"
+    },
+    "Hill of Purification": {
+      "ko": "정화의 언덕",
+      "ja": "浄化の丘",
+      "fi": "Puhdistuksen kukkula"
+    },
+    "Eternal Isle": {
+      "ko": "영원의 섬",
+      "ja": "永遠の島",
+      "fi": "Ikuisuuden saari"
+    },
+    "Crimson Isle": {
+      "ko": "진홍의 섬",
+      "ja": "深紅の島",
+      "fi": "Purppurasaari"
+    },
+    "Crimson Isle Outpost": {
+      "ko": "진홍의 섬 전초기지",
+      "ja": "深紅の島前哨地",
+      "fi": "Purppurasaaren etuvartio"
+    },
+    "Kraka Footpath": {
+      "ko": "크라카 오솔길",
+      "ja": "クラカの小道",
+      "fi": "Krakan polku"
+    },
+    "Kraka Footpath Campsite": {
+      "ko": "크라카 오솔길 야영지",
+      "ja": "クラカの小道野営地",
+      "fi": "Krakan polun leiri"
+    },
+    "Marsh Outpost": {
+      "ko": "늪지 전초기지",
+      "ja": "湿地前哨地",
+      "fi": "Suon etuvartio"
+    },
+    "Illusion Cavaliers' Campsite": {
+      "ko": "환영 기병대 야영지",
+      "ja": "幻影騎兵の野営地",
+      "fi": "Illuusioratsuväen leiri"
+    },
+    "Nahid Brigade Fortress": {
+      "ko": "나히드 군단 요새",
+      "ja": "ナヒド旅団要塞",
+      "fi": "Nahidin prikaatin linnoitus"
+    },
+    "Pilgrim's Rest": {
+      "ko": "순례자의 쉼터",
+      "ja": "巡礼者の休息地",
+      "fi": "Pyhiinvaeltajan lepopaikka"
+    },
+    "Forest of Exiles": {
+      "ko": "추방자의 숲",
+      "ja": "追放者の森",
+      "fi": "Maanpakolaisten metsä"
+    },
+    "Aullaeu Village": {
+      "ko": "아울라우 마을",
+      "ja": "アウラウ村",
+      "fi": "Aullaeun kylä"
+    },
+    "Aullaeu Village Border": {
+      "ko": "아울라우 마을 경계",
+      "ja": "アウラウ村境界",
+      "fi": "Aullaeun kylän raja"
+    },
+    "Pamos Farm": {
+      "ko": "파모스 농장",
+      "ja": "パモス農場",
+      "fi": "Pamosin maatila"
+    },
+    "Pilgrim's Ridge": {
+      "ko": "순례자의 능선",
+      "ja": "巡礼者の尾根",
+      "fi": "Pyhiinvaeltajan harjanne"
+    },
+    "Scarlet Forest": {
+      "ko": "붉은 숲",
+      "ja": "緋色の森",
+      "fi": "Punainen metsä"
+    },
+    "Scarlet Forest Observation Site": {
+      "ko": "붉은 숲 관측지",
+      "ja": "緋色の森観測所",
+      "fi": "Punaisen metsän tähystyspaikka"
+    },
+    "Eastern Cantas Campsite": {
+      "ko": "칸타스 동부 야영지",
+      "ja": "カンタス東部野営地",
+      "fi": "Itä-Cantasin leiri"
+    },
+    "Ruin Exploration Campsite": {
+      "ko": "유적 탐사 야영지",
+      "ja": "遺跡調査野営地",
+      "fi": "Raunioiden tutkimusleiri"
+    },
+    "Rock Hill Outpost": {
+      "ko": "바위 언덕 전초기지",
+      "ja": "岩の丘前哨地",
+      "fi": "Kalliokukkulan etuvartio"
+    },
+    "Rock Tomb Hill": {
+      "ko": "바위 무덤 언덕",
+      "ja": "岩墓の丘",
+      "fi": "Kivihautojen kukkula"
+    },
+    "Laborer's Rest Stop": {
+      "ko": "일꾼의 쉼터",
+      "ja": "作業員の休憩所",
+      "fi": "Työläisten levähdyspaikka"
+    },
+    "Steep Guard Post": {
+      "ko": "가파른 경계 초소",
+      "ja": "急斜面の警戒所",
+      "fi": "Jyrkänteen vartiopaikka"
+    },
+    "Northern Shugo Station": {
+      "ko": "북부 슈고 정거장",
+      "ja": "北部シューゴ停留所",
+      "fi": "Pohjoinen Shugo-asema"
+    },
+    "Night Dew Cave": {
+      "ko": "밤이슬 동굴",
+      "ja": "夜露の洞窟",
+      "fi": "Yökasteen luola"
+    },
+    "Northern Tolbas Forest": {
+      "ko": "톨바스 숲 북부",
+      "ja": "トルバスの森北部",
+      "fi": "Pohjoinen Tolbasin metsä"
+    },
+    "Southern Tolbas Forest": {
+      "ko": "톨바스 숲 남부",
+      "ja": "トルバスの森南部",
+      "fi": "Eteläinen Tolbasin metsä"
+    },
+    "Verteron Fortress Ruins": {
+      "ko": "베르테론 요새 폐허",
+      "ja": "ベルテロン要塞跡",
+      "fi": "Verteronin linnoituksen rauniot"
+    },
+    "Destroyed Abyss Gate": {
+      "ko": "파괴된 어비스 관문",
+      "ja": "破壊されたアビス門",
+      "fi": "Tuhottu Abyss-portti"
+    },
+    "Southern Shugo Station": {
+      "ko": "남부 슈고 정거장",
+      "ja": "南部シューゴ停留所",
+      "fi": "Eteläinen Shugo-asema"
+    },
+    "Wind Breeze Merchants HQ": {
+      "ko": "바람결 상단 본부",
+      "ja": "風の商団本部",
+      "fi": "Tuulikauppiaiden päämaja"
+    },
+    "Cantas Valley Base": {
+      "ko": "칸타스 계곡 기지",
+      "ja": "カンタス渓谷基地",
+      "fi": "Cantasin laakson tukikohta"
+    },
+    "Zumion Village": {
+      "ko": "주미온 마을",
+      "ja": "ズミオン村",
+      "fi": "Zumionin kylä"
+    },
+    "Abandoned Site": {
+      "ko": "버려진 터",
+      "ja": "放棄された跡地",
+      "fi": "Hylätty alue"
+    },
+    "Abandoned Campsite": {
+      "ko": "버려진 야영지",
+      "ja": "放棄された野営地",
+      "fi": "Hylätty leiri"
+    },
+    "Amunta's Hideout": {
+      "ko": "아문타의 은신처",
+      "ja": "アムンタの隠れ家",
+      "fi": "Amuntan piilopaikka"
+    },
+    "Basfelt Ruins": {
+      "ko": "바스펠트 폐허",
+      "ja": "バスフェルトの廃墟",
+      "fi": "Basfeltin rauniot"
+    },
+    "Basfelt Waterfall": {
+      "ko": "바스펠트 폭포",
+      "ja": "バスフェルトの滝",
+      "fi": "Basfeltin vesiputous"
+    },
+    "Black Claw Village": {
+      "ko": "검은 발톱 마을",
+      "ja": "黒い爪の村",
+      "fi": "Mustan kynnen kylä"
+    },
+    "Calderon Canyon": {
+      "ko": "칼데론 협곡",
+      "ja": "カルデロン峡谷",
+      "fi": "Calderonin kanjoni"
+    },
+    "Galorik's Inspection Area": {
+      "ko": "갈로릭의 검문 구역",
+      "ja": "ガロリクの検問所",
+      "fi": "Galorikin tarkastusalue"
+    },
+    "Briskwind Shelter": {
+      "ko": "산들바람 쉼터",
+      "ja": "そよ風の避難所",
+      "fi": "Tuulensuoja"
+    },
+    "Collapsed Chasm": {
+      "ko": "무너진 협곡",
+      "ja": "崩れた裂け目",
+      "fi": "Sortunut kuilu"
+    },
+    "Collapsed Hall Of Fame": {
+      "ko": "무너진 명예의 전당",
+      "ja": "崩れた名誉の殿堂",
+      "fi": "Sortunut kunniagalleria"
+    },
+    "Creion Campsite": {
+      "ko": "크레이온 야영지",
+      "ja": "クレイオン野営地",
+      "fi": "Creionin leiri"
+    },
+    "Fissure Cave": {
+      "ko": "균열 동굴",
+      "ja": "亀裂の洞窟",
+      "fi": "Halkeamaluola"
+    },
+    "Temporary Retreat": {
+      "ko": "임시 대피처",
+      "ja": "臨時避難所",
+      "fi": "Väliaikainen turvapaikka"
+    },
+    "Dranactus": {
+      "ko": "드라낙투스",
+      "ja": "ドラナクタス",
+      "fi": "Dranactus"
+    },
+    "Dredgion Crash Site": {
+      "ko": "드레드기온 추락지",
+      "ja": "ドレドギオン墜落地",
+      "fi": "Dredgionin putoamispaikka"
+    },
+    "Eastern Gribade Highland": {
+      "ko": "그리바데 고원 동부",
+      "ja": "グリバデ高原東部",
+      "fi": "Gribaden itäinen ylänkö"
+    },
+    "Elim's Rest": {
+      "ko": "엘림의 쉼터",
+      "ja": "エリムの休息地",
+      "fi": "Elimin lepopaikka"
+    },
+    "Outskirts Stall": {
+      "ko": "외곽 가판대",
+      "ja": "郊外の露店",
+      "fi": "Syrjäseudun koju"
+    },
+    "Faded Stump": {
+      "ko": "빛바랜 그루터기",
+      "ja": "色あせた切り株",
+      "fi": "Haalistunut kanto"
+    },
+    "Fafnite Deposit": {
+      "ko": "파프나이트 광맥",
+      "ja": "ファフナイト鉱脈",
+      "fi": "Fafniittiesiintymä"
+    },
+    "Fang Hideout": {
+      "ko": "송곳니 은신처",
+      "ja": "牙の隠れ家",
+      "fi": "Torahampaan piilopaikka"
+    },
+    "Battlescar Mound": {
+      "ko": "전투의 상흔 언덕",
+      "ja": "戦傷の丘",
+      "fi": "Taisteluarpien kumpu"
+    },
+    "Forest Hideout": {
+      "ko": "숲속 은신처",
+      "ja": "森の隠れ家",
+      "fi": "Metsäpiilo"
+    },
+    "Safe Haven": {
+      "ko": "안전한 피난처",
+      "ja": "安全な避難所",
+      "fi": "Turvasatama"
+    },
+    "Mahindel Cliff": {
+      "ko": "마힌델 절벽",
+      "ja": "マヒンデルの崖",
+      "fi": "Mahindelin jyrkänne"
+    },
+    "Gravekeeper Camp": {
+      "ko": "묘지기의 야영지",
+      "ja": "墓守の野営地",
+      "fi": "Haudanhoitajien leiri"
+    },
+    "Zemurru's Tomb": {
+      "ko": "제무르의 무덤",
+      "ja": "ゼムルの墓",
+      "fi": "Zemurrun hauta"
+    },
+    "Healing Spring": {
+      "ko": "치유의 샘",
+      "ja": "癒やしの泉",
+      "fi": "Parantava lähde"
+    },
+    "Hidden Cave": {
+      "ko": "숨겨진 동굴",
+      "ja": "隠された洞窟",
+      "fi": "Piilotettu luola"
+    },
+    "Guide Rest Stop": {
+      "ko": "안내자의 쉼터",
+      "ja": "案内人の休憩所",
+      "fi": "Oppaiden levähdyspaikka"
+    },
+    "Idun's Lake": {
+      "ko": "이둔의 호수",
+      "ja": "イドゥンの湖",
+      "fi": "Idunin järvi"
+    },
+    "Impetusium Square": {
+      "ko": "임페투시움 광장",
+      "ja": "インペトゥシウム広場",
+      "fi": "Impetusiumin aukio"
+    },
+    "Spirit Isle": {
+      "ko": "정령의 섬",
+      "ja": "精霊の島",
+      "fi": "Henkisaari"
+    },
+    "Immortal Isle": {
+      "ko": "불멸의 섬",
+      "ja": "不滅の島",
+      "fi": "Kuolemattomien saari"
+    },
+    "Kumrica's Cellar": {
+      "ko": "쿰리카의 지하실",
+      "ja": "クムリカの地下室",
+      "fi": "Kumrican kellari"
+    },
+    "Steel Hammer Workcamp": {
+      "ko": "강철 망치 작업장",
+      "ja": "鋼鉄の槌の作業場",
+      "fi": "Teräsvasaran työleiri"
+    },
+    "Lagta Fortress": {
+      "ko": "라크타 요새",
+      "ja": "ラクタ要塞",
+      "fi": "Lagtan linnoitus"
+    },
+    "Mahindel River": {
+      "ko": "마힌델 강",
+      "ja": "マヒンデル川",
+      "fi": "Mahindelin joki"
+    },
+    "Minushan Site": {
+      "ko": "미누샨 유적",
+      "ja": "ミヌシャン遺跡",
+      "fi": "Minushanin rauniot"
+    },
+    "Moslan Forest": {
+      "ko": "모슬란 숲",
+      "ja": "モスランの森",
+      "fi": "Moslanin metsä"
+    },
+    "Mire Campsite": {
+      "ko": "진흙탕 야영지",
+      "ja": "沼地の野営地",
+      "fi": "Suoleiri"
+    },
+    "Munin's Bridge": {
+      "ko": "무닌의 다리",
+      "ja": "ムニンの橋",
+      "fi": "Muninin silta"
+    },
+    "Muqaka's Quarters": {
+      "ko": "무카카의 거처",
+      "ja": "ムカカの住居",
+      "fi": "Muqakan asuinpaikka"
+    },
+    "Nornir Assembly": {
+      "ko": "노르니르 집회소",
+      "ja": "ノルニル集会所",
+      "fi": "Nornirin kokoontumispaikka"
+    },
+    "North Laborer's Tent": {
+      "ko": "북부 일꾼의 천막",
+      "ja": "北部作業員の天幕",
+      "fi": "Pohjoinen työläisteltta"
+    },
+    "Neglected Crematorium": {
+      "ko": "방치된 화장터",
+      "ja": "放置された火葬場",
+      "fi": "Laiminlyöty krematorio"
+    },
+    "Canyon Dispatch Area": {
+      "ko": "협곡 파견 구역",
+      "ja": "峡谷派遣区域",
+      "fi": "Kanjonin lähetysalue"
+    },
+    "Purifying Forest": {
+      "ko": "정화의 숲",
+      "ja": "浄化の森",
+      "fi": "Puhdistava metsä"
+    },
+    "Quai Campsite": {
+      "ko": "콰이 야영지",
+      "ja": "クアイ野営地",
+      "fi": "Quain leiri"
+    },
+    "Sanctum Outpost": {
+      "ko": "성소 전초기지",
+      "ja": "聖域前哨地",
+      "fi": "Pyhäkön etuvartio"
+    },
+    "Searcher Rock": {
+      "ko": "탐색자의 바위",
+      "ja": "捜索者の岩",
+      "fi": "Etsijän kallio"
+    },
+    "Secret Rendezvous Point": {
+      "ko": "비밀 접선 장소",
+      "ja": "秘密の待ち合わせ場所",
+      "fi": "Salainen tapaamispaikka"
+    },
+    "Uruthumheim": {
+      "ko": "우루툼하임",
+      "ja": "ウルツムハイム",
+      "fi": "Uruthumheim"
+    },
+    "Odar's Shade": {
+      "ko": "오다르의 그늘",
+      "ja": "オダルの木陰",
+      "fi": "Odarin varjo"
+    },
+    "Destroyed Ruins": {
+      "ko": "파괴된 유적",
+      "ja": "破壊された遺跡",
+      "fi": "Tuhotut rauniot"
+    },
+    "Shulak Street Stall": {
+      "ko": "슈라크 노점",
+      "ja": "シュラクの露店",
+      "fi": "Shulakin katukoju"
+    },
+    "Silent Hill": {
+      "ko": "고요한 언덕",
+      "ja": "静かな丘",
+      "fi": "Hiljainen kukkula"
+    },
+    "Southern Gribade Highland": {
+      "ko": "그리바데 고원 남부",
+      "ja": "グリバデ高原南部",
+      "fi": "Gribaden eteläinen ylänkö"
+    },
+    "South Laborer's Tent": {
+      "ko": "남부 일꾼의 천막",
+      "ja": "南部作業員の天幕",
+      "fi": "Eteläinen työläisteltta"
+    },
+    "Graverobber Campsite": {
+      "ko": "도굴꾼 야영지",
+      "ja": "墓荒らしの野営地",
+      "fi": "Haudanryöstäjien leiri"
+    },
+    "Steel Hammer Base": {
+      "ko": "강철 망치 기지",
+      "ja": "鋼鉄の槌の基地",
+      "fi": "Teräsvasaran tukikohta"
+    },
+    "Steel Hammer Merchants HQ": {
+      "ko": "강철 망치 상단 본부",
+      "ja": "鋼鉄の槌の商団本部",
+      "fi": "Teräsvasaran kauppiaiden päämaja"
+    },
+    "Temporary Investigation Base": {
+      "ko": "임시 조사 기지",
+      "ja": "臨時調査基地",
+      "fi": "Väliaikainen tutkimustukikohta"
+    },
+    "Tranein Highland": {
+      "ko": "트라네인 고원",
+      "ja": "トラネイン高原",
+      "fi": "Traneinin ylänkö"
+    },
+    "Tranein Pond": {
+      "ko": "트라네인 연못",
+      "ja": "トラネインの池",
+      "fi": "Traneinin lampi"
+    },
+    "Steel Hammer Temporary Trading Post": {
+      "ko": "강철 망치 임시 교역소",
+      "ja": "鋼鉄の槌の臨時交易所",
+      "fi": "Teräsvasaran väliaikainen kauppapaikka"
+    },
+    "Nameless Cemetery": {
+      "ko": "이름 없는 묘지",
+      "ja": "名もなき墓地",
+      "fi": "Nimetön hautausmaa"
+    },
+    "Victorious Daeva's Statue": {
+      "ko": "승리한 데바의 석상",
+      "ja": "勝利したディーヴァの像",
+      "fi": "Voittoisan Daevan patsas"
+    },
+    "Watcher's Tent": {
+      "ko": "감시자의 천막",
+      "ja": "監視者の天幕",
+      "fi": "Vartijan teltta"
+    },
+    "Western Gribade Highland": {
+      "ko": "그리바데 고원 서부",
+      "ja": "グリバデ高原西部",
+      "fi": "Gribaden läntinen ylänkö"
+    },
+    "Black Fragments Area": {
+      "ko": "검은 파편 지대",
+      "ja": "黒い破片地帯",
+      "fi": "Mustien sirpaleiden alue"
+    },
+    "Devastated Remnants": {
+      "ko": "황폐한 잔해",
+      "ja": "荒廃した残骸",
+      "fi": "Tuhoutuneet jäänteet"
+    },
+    "Latesran Eastern Root": {
+      "ko": "라테스란 동쪽 뿌리",
+      "ja": "ラテスラン東の根",
+      "fi": "Latesranin itäinen juuri"
+    },
+    "Reshanta's Root": {
+      "ko": "레샨타의 뿌리",
+      "ja": "レシャルタの根",
+      "fi": "Reshantan juuri"
+    },
+    "Sulfur Tree Island": {
+      "ko": "유황 나무 열도",
+      "ja": "硫黄の木の島",
+      "fi": "Rikkipuusaari"
+    },
+    "Latesran Western Root": {
+      "ko": "라테스란 서쪽 뿌리",
+      "ja": "ラテスラン西の根",
+      "fi": "Latesranin läntinen juuri"
+    },
+    "Archipelago of Siel's Wings": {
+      "ko": "시엘의 날개 군도",
+      "ja": "シエルの翼の群島",
+      "fi": "Sielin siipien saaristo"
+    },
+    "Eroded Fragment Area": {
+      "ko": "침식된 파편 지대",
+      "ja": "侵食された破片地帯",
+      "fi": "Kuluneiden sirpaleiden alue"
+    },
+    "Steel Titan's Grave": {
+      "ko": "강철 거인의 무덤",
+      "ja": "鋼鉄の巨人の墓",
+      "fi": "Terästitaanin hauta"
+    },
+    "Latesran Eastern Ridge": {
+      "ko": "라테스란 동쪽 능선",
+      "ja": "ラテスラン東の尾根",
+      "fi": "Latesranin itäinen harjanne"
+    },
+    "Corroded Heart": {
+      "ko": "부식된 심장",
+      "ja": "腐食した心臓",
+      "fi": "Syöpynyt sydän"
+    },
+    "Latesran Western Ridge": {
+      "ko": "라테스란 서쪽 능선",
+      "ja": "ラテスラン西の尾根",
+      "fi": "Latesranin läntinen harjanne"
+    },
+    "Distorted Old Growth Forest": {
+      "ko": "뒤틀린 원시림",
+      "ja": "歪んだ原生林",
+      "fi": "Vääristynyt aarniometsä"
+    },
+    "Aria": {
+      "ko": "아리아",
+      "ja": "アリア",
+      "fi": "Aria"
+    },
+    "Asvata": {
+      "ko": "아스바타",
+      "ja": "アスバタ",
+      "fi": "Asvata"
+    },
+    "Azpha": {
+      "ko": "아즈파",
+      "ja": "アズファ",
+      "fi": "Azpha"
+    },
+    "Calendula": {
+      "ko": "칼렌듈라",
+      "ja": "カレンデュラ",
+      "fi": "Kehäkukka"
+    },
+    "Conide": {
+      "ko": "코니데",
+      "ja": "コニデ",
+      "fi": "Conide"
+    },
+    "Coriolus": {
+      "ko": "코리올루스",
+      "ja": "コリオルス",
+      "fi": "Coriolus"
+    },
+    "Cypri": {
+      "ko": "시프리",
+      "ja": "シプリ",
+      "fi": "Cypri"
+    },
+    "Diamond": {
+      "ko": "다이아몬드",
+      "ja": "ダイヤモンド",
+      "fi": "Timantti"
+    },
+    "Inina": {
+      "ko": "이니나",
+      "ja": "イニナ",
+      "fi": "Inina"
+    },
+    "Kukuru": {
+      "ko": "쿠쿠르",
+      "ja": "ククル",
+      "fi": "Kukuru"
+    },
+    "Mela": {
+      "ko": "멜라",
+      "ja": "メラ",
+      "fi": "Mela"
+    },
+    "Morfa": {
+      "ko": "모르파",
+      "ja": "モルファ",
+      "fi": "Morfa"
+    },
+    "Odyle": {
+      "ko": "오드",
+      "ja": "オード",
+      "fi": "Odyle"
+    },
+    "Ohkra": {
+      "ko": "오크라",
+      "ja": "オクラ",
+      "fi": "Ohkra"
+    },
+    "Orichalcum": {
+      "ko": "오리하르콘",
+      "ja": "オリハルコン",
+      "fi": "Orikalkum"
+    },
+    "Pujery": {
+      "ko": "푸제리",
+      "ja": "プジェリ",
+      "fi": "Pujery"
+    },
+    "Raydam": {
+      "ko": "레이담",
+      "ja": "レイダム",
+      "fi": "Raydam"
+    },
+    "Ruby": {
+      "ko": "루비",
+      "ja": "ルビー",
+      "fi": "Rubiini"
+    },
+    "Sapphire": {
+      "ko": "사파이어",
+      "ja": "サファイア",
+      "fi": "Safiiri"
+    },
+    "Targena": {
+      "ko": "타르게나",
+      "ja": "タルゲナ",
+      "fi": "Targena"
+    },
+    "Yggdrasil": {
+      "ko": "위그드라실",
+      "ja": "ユグドラシル",
+      "fi": "Yggdrasil"
+    },
+    "Abandoned Barracks Site": {
+      "ko": "버려진 병영터",
+      "ja": "放棄された兵舎跡",
+      "fi": "Hylätty kasarmialue"
+    },
+    "Aldelle Village": {
+      "ko": "알데르 마을",
+      "ja": "アルデール村",
+      "fi": "Aldellen kylä"
+    },
+    "Altamia Highland Ruins": {
+      "ko": "알타미아 고원 폐허",
+      "ja": "アルタミア高原の廃墟",
+      "fi": "Altamian ylängön rauniot"
+    },
+    "Aullaeu Funeral Island": {
+      "ko": "아울라우 장례의 섬",
+      "ja": "アウラウ葬送の島",
+      "fi": "Aullaeun hautajaissaari"
+    },
+    "Aullaeu Village Sky Island": {
+      "ko": "아울라우 마을 하늘섬",
+      "ja": "アウラウ村の空島",
+      "fi": "Aullaeun kylän taivassaari"
+    },
+    "Aullaeu Village Valley": {
+      "ko": "아울라우 마을 계곡",
+      "ja": "アウラウ村の渓谷",
+      "fi": "Aullaeun kylän laakso"
+    },
+    "Basfelt Ruins Cliff": {
+      "ko": "바스펠트 폐허 절벽",
+      "ja": "バスフェルト廃墟の崖",
+      "fi": "Basfeltin raunioiden jyrkänne"
+    },
+    "Basfelt Waterfall Arch Zone": {
+      "ko": "바스펠트 폭포 아치 지대",
+      "ja": "バスフェルト滝のアーチ地帯",
+      "fi": "Basfeltin vesiputouksen kaarialue"
+    },
+    "Battlescar Mound Clifftop": {
+      "ko": "전투의 상흔 언덕 절벽 위",
+      "ja": "戦傷の丘の崖上",
+      "fi": "Taisteluarpien kummun jyrkänteen huippu"
+    },
+    "Beneath the Tranein Highland Bridge": {
+      "ko": "트라네인 고원 다리 아래",
+      "ja": "トラネイン高原の橋の下",
+      "fi": "Traneinin ylängön sillan alla"
+    },
+    "Cantas Valley Mushroom Tree Peak": {
+      "ko": "칸타스 계곡 버섯나무 정상",
+      "ja": "カンタス渓谷のキノコの木頂上",
+      "fi": "Cantasin laakson sienipuun huippu"
+    },
+    "Cantas Valley Sky Island": {
+      "ko": "칸타스 계곡 하늘섬",
+      "ja": "カンタス渓谷の空島",
+      "fi": "Cantasin laakson taivassaari"
+    },
+    "Canyon Sky Island": {
+      "ko": "협곡 하늘섬",
+      "ja": "峡谷の空島",
+      "fi": "Kanjonin taivassaari"
+    },
+    "Collapsed Hall of Fame": {
+      "ko": "무너진 명예의 전당",
+      "ja": "崩れた名誉の殿堂",
+      "fi": "Sortunut kunniagalleria"
+    },
+    "Dawn Legion Forward Base": {
+      "ko": "새벽 군단 전진 기지",
+      "ja": "暁軍団前進基地",
+      "fi": "Aamulegionan etutukikohta"
+    },
+    "Dranactus Shore": {
+      "ko": "드라낙투스 해안",
+      "ja": "ドラナクタス海岸",
+      "fi": "Dranactuksen ranta"
+    },
+    "Eastern Cantas Valley Campsite": {
+      "ko": "칸타스 계곡 동부 야영지",
+      "ja": "カンタス渓谷東部野営地",
+      "fi": "Itäisen Cantasin laakson leiri"
+    },
+    "Eastern Gribade Highland Cliff": {
+      "ko": "그리바데 고원 동부 절벽",
+      "ja": "グリバデ高原東部の崖",
+      "fi": "Itäisen Gribaden ylängön jyrkänne"
+    },
+    "Eastern Gribade Highland Tail Island": {
+      "ko": "그리바데 고원 동부 꼬리섬",
+      "ja": "グリバデ高原東部の尾島",
+      "fi": "Itäisen Gribaden ylängön häntäsaari"
+    },
+    "Ellun River Marsh Cliff": {
+      "ko": "엘룬 강 늪지 절벽",
+      "ja": "エルン川湿地の崖",
+      "fi": "Ellunjoen suon jyrkänne"
+    },
+    "Ellun River Midstream Highland": {
+      "ko": "엘룬 강 중류 고지대",
+      "ja": "エルン川中流の高地",
+      "fi": "Ellunjoen keskijuoksun ylänkö"
+    },
+    "Ellun River Midstream Pond": {
+      "ko": "엘룬 강 중류 연못",
+      "ja": "エルン川中流の池",
+      "fi": "Ellunjoen keskijuoksun lampi"
+    },
+    "Garden of the Illusion God East Observatory": {
+      "ko": "환영신의 정원 동쪽 관측소",
+      "ja": "幻影神の庭園東観測所",
+      "fi": "Illuusiojumalan puutarhan itäinen tähystysasema"
+    },
+    "Garden of the Illusion God West Observatory": {
+      "ko": "환영신의 정원 서쪽 관측소",
+      "ja": "幻影神の庭園西観測所",
+      "fi": "Illuusiojumalan puutarhan läntinen tähystysasema"
+    },
+    "Gribade Highland Crossroad": {
+      "ko": "그리바데 고원 갈림길",
+      "ja": "グリバデ高原の分かれ道",
+      "fi": "Gribaden ylängön tienhaara"
+    },
+    "Guide's Dwelling": {
+      "ko": "안내자의 거처",
+      "ja": "案内人の住居",
+      "fi": "Oppaan asunto"
+    },
+    "Illusion Oratory Entrance": {
+      "ko": "환영 기도소 입구",
+      "ja": "幻影礼拝所入口",
+      "fi": "Illuusiorukoushuoneen sisäänkäynti"
+    },
+    "Impetusium Lower Path": {
+      "ko": "임페투시움 아랫길",
+      "ja": "インペトゥシウム下道",
+      "fi": "Impetusiumin alapolku"
+    },
+    "Kraka Footpath Wastewater Downstream": {
+      "ko": "크라카 오솔길 폐수 하류",
+      "ja": "クラカの小道の排水下流",
+      "fi": "Krakan polun jäteveden alajuoksu"
+    },
+    "Kraka Uphill Path": {
+      "ko": "크라카 오르막길",
+      "ja": "クラカの上り道",
+      "fi": "Krakan ylämäkipolku"
+    },
+    "Moslan Forest Cliff": {
+      "ko": "모슬란 숲 절벽",
+      "ja": "モスランの森の崖",
+      "fi": "Moslanin metsän jyrkänne"
+    },
+    "Moslan Forest Dry Shade": {
+      "ko": "모슬란 숲 메마른 그늘",
+      "ja": "モスランの森の乾いた木陰",
+      "fi": "Moslanin metsän kuiva varjo"
+    },
+    "Nahid Brigade Fortress Hill": {
+      "ko": "나히드 군단 요새 언덕",
+      "ja": "ナヒド旅団要塞の丘",
+      "fi": "Nahidin prikaatin linnoituksen kukkula"
+    },
+    "Nahid Disposal Plant": {
+      "ko": "나히드 처리장",
+      "ja": "ナヒド処理場",
+      "fi": "Nahidin käsittelylaitos"
+    },
+    "Purifying Forest Coastal Cliff": {
+      "ko": "정화의 숲 해안 절벽",
+      "ja": "浄化の森の海岸崖",
+      "fi": "Puhdistavan metsän rantajyrkänne"
+    },
+    "Purifying Forest Sunny Hill": {
+      "ko": "정화의 숲 양지 언덕",
+      "ja": "浄化の森の日向の丘",
+      "fi": "Puhdistavan metsän aurinkokukkula"
+    },
+    "Red Maple Forest": {
+      "ko": "붉은 단풍 숲",
+      "ja": "赤いカエデの森",
+      "fi": "Punainen vaahterametsä"
+    },
+    "Remote Island": {
+      "ko": "외딴 섬",
+      "ja": "離れ島",
+      "fi": "Syrjäinen saari"
+    },
+    "Safe Haven Cliff": {
+      "ko": "피난처 절벽",
+      "ja": "避難所の崖",
+      "fi": "Turvasataman jyrkänne"
+    },
+    "Sanctum Outpost Sky Island": {
+      "ko": "성소 전초기지 하늘섬",
+      "ja": "聖域前哨地の空島",
+      "fi": "Pyhäkön etuvartion taivassaari"
+    },
+    "Scar of the Wind": {
+      "ko": "바람의 상흔",
+      "ja": "風の傷跡",
+      "fi": "Tuulen arpi"
+    },
+    "Silent Hill Coastal Cliff": {
+      "ko": "고요한 언덕 해안 절벽",
+      "ja": "静かな丘の海岸崖",
+      "fi": "Hiljaisen kukkulan rantajyrkänne"
+    },
+    "Silent Hill Mushroom Rock": {
+      "ko": "고요한 언덕 버섯바위",
+      "ja": "静かな丘のキノコ岩",
+      "fi": "Hiljaisen kukkulan sienikallio"
+    },
+    "Southern Altamia Coastal Cliffs": {
+      "ko": "알타미아 남부 해안 절벽",
+      "ja": "アルタミア南部の海岸崖",
+      "fi": "Etelä-Altamian rantajyrkänteet"
+    },
+    "Tolbas Forest Outskirts": {
+      "ko": "톨바스 숲 외곽",
+      "ja": "トルバスの森の外れ",
+      "fi": "Tolbasin metsän reuna"
+    },
+    "Uruthumheim Cliff": {
+      "ko": "우루툼하임 절벽",
+      "ja": "ウルツムハイムの崖",
+      "fi": "Uruthumheimin jyrkänne"
+    },
+    "Verteron Fortress Valley": {
+      "ko": "베르테론 요새 계곡",
+      "ja": "ベルテロン要塞の渓谷",
+      "fi": "Verteronin linnoituksen laakso"
+    },
+    "Wave-Swept Cliff": {
+      "ko": "파도치는 절벽",
+      "ja": "波打つ崖",
+      "fi": "Aaltojen huuhtoma jyrkänne"
+    },
+    "Western Cantas Valley Camp": {
+      "ko": "칸타스 계곡 서부 야영지",
+      "ja": "カンタス渓谷西部野営地",
+      "fi": "Läntisen Cantasin laakson leiri"
+    },
+    "Witch's Cabin": {
+      "ko": "마녀의 오두막",
+      "ja": "魔女の小屋",
+      "fi": "Noidan mökki"
+    },
+    "Zumion Statue": {
+      "ko": "주미온 석상",
+      "ja": "ズミオンの像",
+      "fi": "Zumionin patsas"
+    },
+    "Zumion Temple Pilgrimage Path": {
+      "ko": "주미온 신전 순례길",
+      "ja": "ズミオン神殿の巡礼路",
+      "fi": "Zumionin temppelin pyhiinvaelluspolku"
+    }
+  }
+}

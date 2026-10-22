@@ -19,6 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest @AutoConfigureMockMvc @ActiveProfiles("test")
+@org.springframework.test.context.TestPropertySource(properties="app.community.password-auth-enabled=true")
 class SteamLoginControllerTest {
  static final String API="/api/community/auth/steam", ENDPOINT="https://steamcommunity.com/openid/login", STEAM="76561191234567890";
  @Autowired MockMvc mvc; @Autowired ObjectMapper mapper; @Autowired JdbcTemplate jdbc; @Autowired org.springframework.security.crypto.password.PasswordEncoder passwords;

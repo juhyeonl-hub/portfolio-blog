@@ -11,6 +11,8 @@ def ensure_open(panel, label):
     try: expect(panel.get_by_role('button', name='공식 지형 닫기', exact=True)).to_be_visible(timeout=4000)
     except AssertionError: panel.get_by_role('button', name=label, exact=True).click()
 def ensure_markers(panel):
+    controls=panel.locator('.terrain-controls')
+    if controls.get_attribute('open') is None: controls.locator(':scope > summary').click()
     try: expect(panel.get_by_role('button', name='마커 숨기기', exact=True)).to_be_visible(timeout=4000)
     except AssertionError: panel.get_by_role('button', name='마커 보기', exact=True).click()
 
@@ -32,12 +34,14 @@ with sync_playwright() as p:
 
     def open_map(slug):
         page.goto(URL)
+        page.get_by_text('내 서버에는 어떤 직업이 많을까요?',exact=True).wait_for(state='attached')
         click_tab(page,'지도 & 수집')
         panel = page.get_by_role('region', name='공식 글로벌 지형 지도', exact=True)
         panel.get_by_label('공식 지형 지역', exact=True).select_option(slug)
         ensure_markers(panel)
         expect(panel.get_by_role('button', name='마커 숨기기', exact=True)).to_be_visible()
         panel.get_by_role('button', name='항목 전체 끄기', exact=True).click()
+        panel.locator('.map-advanced > summary').click()
         return panel
 
     panel = open_map('verteron')
@@ -66,7 +70,7 @@ with sync_playwright() as p:
         panel = open_map(slug)
         expect(panel.get_by_text('확인 기록 1개', exact=False)).to_be_visible()
         panel.get_by_role('checkbox', name='깃털 (Empyrean Trace)', exact=True).check()
-        expect(panel.locator('[data-preview-marker="trace"]')).to_have_count(400)
+        assert panel.locator('[data-preview-marker="trace"]').evaluate_all('(els)=>els.reduce((n,e)=>n+Number(e.dataset.count),0)')==559
         expect(panel.get_by_text('검색 결과 559개', exact=False)).to_be_visible()
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
 

@@ -8908,5 +8908,660 @@
     "en": "Name and save this build",
     "ja": "名前を付けて保存",
     "fi": "Nimeä ja tallenna kokoonpano"
+  },
+  "Steam 로그인은 사이트 계정 확인용입니다. 게임 캐릭터 목록은 제공되지 않아 처음에는 이름으로 검색해야 합니다. 다시 불러올 때는 최근 목록을 이용하세요.": {
+    "en": "Steam sign-in identifies your site account, not your game roster. Search by name first, then use recent characters to load them again.",
+    "ja": "Steamログインはサイトの本人確認用です。ゲームのキャラクター一覧は取得できません。初回は名前で検索し、次回から最近の一覧を使ってください。",
+    "fi": "Steam-kirjautuminen tunnistaa sivustotilin, ei pelihahmoja. Hae ensin nimellä ja käytä myöhemmin viimeaikaisten hahmojen luetteloa."
+  },
+  "70레벨 미만 장비는 교체 시기를 먼저 확인하세요. 다음 던전 준비에 필요하다면 성장용 사용을 선택해 필요한 만큼 투자를 검토할 수 있습니다.": {
+    "en": "For gear below level 70, check when you will replace it. If needed for your next dungeon, select progression use to consider limited investment.",
+    "ja": "70未満の装備は交換時期を確認してください。次のダンジョンに必要なら成長用を選び、必要な投資を検討できます。",
+    "fi": "Alle 70-tason varusteille tarkista vaihtoaikataulu. Jos varustetta tarvitaan seuraavaan luolastoon, valitse etenemiskäyttö ja harkitse rajattua panostusta."
+  },
+  "다음 장비를 얻기 전까지 사용할지, 오래 사용할지 선택하면 목적에 맞게 안내합니다.": {
+    "en": "Choose whether this is for progression or long-term use to tailor the advice.",
+    "ja": "次の装備まで使うか、長く使うかを選ぶと目的に合わせて案内します。",
+    "fi": "Valitse etenemiskäyttö tai pitkäaikainen käyttö saadaksesi sopivat ohjeet."
+  },
+  "다음 던전 준비용 장비입니다. 필요한 강화·옵션 개선부터 검토하고, 반복 조율·영혼각인은 교체 예상 시기와 비용을 비교하세요.": {
+    "en": "This gear is for your next dungeon. Consider needed upgrades first; weigh repeated tuning or engraving against replacement timing and cost.",
+    "ja": "次のダンジョン準備用の装備です。必要な強化を優先し、繰り返す調整・刻印は交換時期と費用を比べてください。",
+    "fi": "Varuste on seuraavaa luolastoa varten. Harkitse ensin tarvittavat parannukset; vertaa toistuvaa säätöä ja kaiverrusta vaihtoaikaan ja kustannuksiin."
+  },
+  "이 옵션을 다른 옵션으로 바꾸고 싶어요": {
+    "en": "I want to replace this option",
+    "ja": "このオプションを変更したい",
+    "fi": "Haluan vaihtaa tämän ominaisuuden"
+  },
+  "랭커 장비 레벨 {0}은 비교 정보입니다. 낮다는 이유만으로 투자를 막지 않습니다. 70레벨은 이 사이트의 성장 상담 기준이며 공식 필수 조건이 아닙니다.": {
+    "en": "Ranked gear level {0} is only a comparison. Lower gear is not automatically excluded. Level 70 is this site’s guidance threshold, not an official requirement.",
+    "ja": "ランカー装備レベル{0}は比較情報です。低いだけで投資を除外しません。70は当サイトの目安であり公式条件ではありません。",
+    "fi": "Vertailuvarusteen taso {0} on vertailutieto. Alempi taso ei estä panostusta. Taso 70 on sivuston ohjeraja, ei virallinen vaatimus."
+  },
+  "이 장비를 언제까지 쓸 예정인가요?": {
+    "en": "How long will you use this gear?",
+    "ja": "この装備をいつまで使いますか？",
+    "fi": "Kuinka pitkään käytät tätä varustetta?"
+  },
+  "다음 던전 장비를 얻을 때까지": {
+    "en": "Until I get my next dungeon gear",
+    "ja": "次のダンジョン装備を入手するまで",
+    "fi": "Seuraavan luolaston varusteisiin asti"
+  },
+  "이 장비의 성장에 쓸 재료와 비용을 확인했어요": {
+    "en": "I checked the materials and costs for upgrading this gear",
+    "ja": "この装備の成長に必要な素材と費用を確認しました",
+    "fi": "Tarkistin tämän varusteen parannusmateriaalit ja kulut"
+  },
+  "옵션 변경 체크는 조율 후보를 고르는 표시입니다. 체크만으로 게임 장비가 바뀌지는 않습니다.": {
+    "en": "Checking an option marks it as a tuning candidate. It does not change your gear in the game.",
+    "ja": "チェックは調整候補の印です。ゲーム内の装備は変更されません。",
+    "fi": "Valinta merkitsee säätöehdokkaan. Se ei muuta varustetta pelissä."
+  },
+  "어느 쪽 장비든 마우스를 올리거나 누르면 같은 부위의 양쪽 옵션을 함께 보여 줍니다.": {
+    "en": "Hover or select gear on either side to compare both items in that slot.",
+    "ja": "どちらかの装備にカーソルを合わせるか選択すると、同じ部位の両方のオプションを表示します。",
+    "fi": "Osoita tai valitse varuste kummalta puolelta tahansa nähdäksesi molempien ominaisuudet."
+  },
+  "내 캐릭터 장비창": {
+    "en": "My equipment window",
+    "ja": "自分の装備ウィンドウ",
+    "fi": "Oma varusteikkuna"
+  },
+  "랭커 장비창": {
+    "en": "Ranked character equipment window",
+    "ja": "ランカーの装備ウィンドウ",
+    "fi": "Vertailuhahmon varusteikkuna"
+  },
+  "양쪽 장비 옵션 비교": {
+    "en": "Compare both items’ options",
+    "ja": "両方の装備オプション比較",
+    "fi": "Molempien varusteiden vertailu"
+  },
+  "비교할 장비 아이콘을 선택하세요.": {
+    "en": "Select a gear icon to compare.",
+    "ja": "比較する装備アイコンを選んでください。",
+    "fi": "Valitse vertailtavan varusteen kuvake."
+  },
+  "유지 · 이미 찍은 목표 노드": {
+    "en": "Keep · target node already learned",
+    "ja": "維持・取得済みの目標ノード",
+    "fi": "Säilytä · tavoitesolmu jo opittu"
+  },
+  "랭커와 다른 노드 · 해제 검토": {
+    "en": "Different from target · consider removing",
+    "ja": "ランカーと異なるノード・解除を検討",
+    "fi": "Eri kuin tavoite · harkitse poistamista"
+  },
+  "추가로 찍을 목표 노드": {
+    "en": "Target node to learn",
+    "ja": "追加する目標ノード",
+    "fi": "Opittava tavoitesolmu"
+  },
+  "목표에 없는 노드": {
+    "en": "Not in the target",
+    "ja": "目標にないノード",
+    "fi": "Ei tavoitteessa"
+  },
+  "데바니온 목표 비교": {
+    "en": "Daevanion target comparison",
+    "ja": "デバニオン目標比較",
+    "fi": "Daevanion-tavoitteen vertailu"
+  },
+  "내 캐릭터 실제 배치 기준": {
+    "en": "Based on my character’s actual layout",
+    "ja": "自分の実際の配置が基準",
+    "fi": "Oman hahmon todellisen jaon perusteella"
+  },
+  "내 계획 기준": {
+    "en": "Based on my plan",
+    "ja": "自分の計画が基準",
+    "fi": "Oman suunnitelman perusteella"
+  },
+  "결정 {0} / {1} · 아스펠 {2} / {3}": {
+    "en": "Crystals {0} / {1} · Asphel {2} / {3}",
+    "ja": "結晶 {0} / {1}・アスフェル {2} / {3}",
+    "fi": "Kiteet {0} / {1} · Asphel {2} / {3}"
+  },
+  "포인트가 부족해도 목표를 비교할 수 있습니다. 빨간 노드는 랭커와 다른 선택이며, 모든 빌드에서 불필요하다는 뜻은 아닙니다.": {
+    "en": "You can compare targets with insufficient points. Red nodes differ from this ranked build; they are not useless in every build.",
+    "ja": "ポイントが足りなくても比較できます。赤はランカーと異なる選択で、すべてのビルドで不要という意味ではありません。",
+    "fi": "Voit vertailla tavoitetta pistevajeesta huolimatta. Punaiset solmut eroavat vertailusta, eivätkä ole kaikissa kokoonpanoissa turhia."
+  },
+  "현재 레벨·포인트로는 전체 적용할 수 없습니다. 색으로 표시된 목표를 먼저 확인하고 필요한 포인트를 모아 주세요.": {
+    "en": "Your current level or points cannot apply the full layout yet. Review the colored target and work toward the needed points.",
+    "ja": "現在のレベル・ポイントでは全体を適用できません。色分けされた目標を確認し、必要なポイントを集めてください。",
+    "fi": "Nykyinen tasosi tai pisteesi eivät riitä koko jaon käyttöön. Tarkastele väritettyä tavoitetta ja kerää tarvittavat pisteet."
+  },
+  "자원별로 위치를 골라 볼 수 있습니다. 색칠된 구역은 원본 자료의 후보 위치를 묶은 것으로 실제 출현을 보장하지 않습니다.": {
+    "en": "Choose a resource to find its locations. Shaded cells group candidate positions from source data; actual spawns are not guaranteed.",
+    "ja": "資源ごとの位置を選べます。色付きの区画は元データの候補位置をまとめたもので、実際の出現を保証しません。",
+    "fi": "Valitse resurssi nähdäksesi sen sijainnit. Väritetyt ruudut kokoavat lähdetiedon ehdokassijainnit eivätkä takaa esiintymistä."
+  },
+  "찾을 채집물 · 후보 구역 색칠": {
+    "en": "Resource to find · shade candidate areas",
+    "ja": "探す採集物 · 候補区域を着色",
+    "fi": "Etsittävä resurssi · väritä ehdokasalueet"
+  },
+  "모든 채집물": {
+    "en": "All gathering resources",
+    "ja": "すべての採集物",
+    "fi": "Kaikki kerättävät resurssit"
+  },
+  "가까운 같은 종류의 위치는 숫자로 묶습니다. 숫자를 누르면 확대됩니다.": {
+    "en": "Nearby locations of the same type are grouped by number. Select a number to zoom in.",
+    "ja": "近くの同種の位置は数字にまとめます。数字を押すと拡大します。",
+    "fi": "Lähekkäiset samantyyppiset sijainnit on ryhmitelty numeroin. Lähennä valitsemalla numero."
+  },
+  "확대·이동 초기화": {
+    "en": "Reset zoom and position",
+    "ja": "拡大・位置をリセット",
+    "fi": "Palauta zoomaus ja sijainti"
+  },
+  "채집 후보 구역": {
+    "en": "Candidate gathering areas",
+    "ja": "採集候補区域",
+    "fi": "Keruun ehdokasalueet"
+  },
+  "{0} 위치 {1}개 · 확대": {
+    "en": "{0}: {1} locations · zoom in",
+    "ja": "{0}の位置{1}か所 · 拡大",
+    "fi": "{0}: {1} sijaintia · lähennä"
+  },
+  "지역명과 자원명은 글로벌 원문의 표시용 번역입니다. 게임 내 명칭과 다를 수 있습니다.": {
+    "en": "Place and resource names are display translations of the Global source and may differ from in-game names.",
+    "ja": "地名と資源名はグローバル原文の表示用翻訳です。ゲーム内の名称と異なる場合があります。",
+    "fi": "Paikkojen ja resurssien nimet ovat Global-lähteen näyttökäännöksiä ja voivat poiketa pelin nimistä."
+  },
+  "위치 목록 검색 · 완료 기록": {
+    "en": "Search location list · completion records",
+    "ja": "位置一覧の検索 · 完了記録",
+    "fi": "Sijaintiluettelon haku · valmistumismerkinnät"
+  },
+  "예: 새벽 군단 기지": {
+    "en": "e.g. Dawn Legion Base",
+    "ja": "例：暁軍団基地",
+    "fi": "Esim. Aamulegionan tukikohta"
+  },
+  "초록색 체크가 이 빌드에서 선택한 노드입니다. 노드를 누르면 이름과 비용을 확인할 수 있습니다.": {
+    "en": "Green checks mark this build’s selected nodes. Select a node to see its name and cost.",
+    "ja": "緑のチェックはこのビルドで選択したノードです。押すと名前とコストを確認できます。",
+    "fi": "Vihreä merkki osoittaa valitun solmun. Valitse solmu nähdäksesi nimen ja hinnan."
+  },
+  "선택 안 됨": {
+    "en": "Not selected",
+    "ja": "未選択",
+    "fi": "Ei valittu"
+  },
+  "빌드 미리보기": {
+    "en": "Build preview",
+    "ja": "ビルドのプレビュー",
+    "fi": "Buildin esikatselu"
+  },
+  "게임 퀵슬롯 배치 예시": {
+    "en": "Example in-game quickslot layout",
+    "ja": "ゲーム内クイックスロットの配置例",
+    "fi": "Esimerkki pelin pikapaikoista"
+  },
+  "반복 공격 배치": {
+    "en": "Repeated attack layout",
+    "ja": "反復攻撃の配置",
+    "fi": "Toistuvien hyökkäysten asettelu"
+  },
+  "먼저 확인": {
+    "en": "Checked first",
+    "ja": "最初に確認",
+    "fi": "Tarkistetaan ensin"
+  },
+  "그다음 {0}": {
+    "en": "Then {0}",
+    "ja": "次に {0}",
+    "fi": "Sitten {0}"
+  },
+  "↑ 각 세로줄은 맨 아래부터 확인 · 사용 가능한 스킬이 실행됩니다. 연속 콤보를 보장하는 순서가 아닙니다.": {
+    "en": "↑ Each column checks from the bottom and uses an available skill. This does not guarantee a combo sequence.",
+    "ja": "↑ 各列は一番下から確認し、使用可能なスキルを実行します。連続コンボを保証する順序ではありません。",
+    "fi": "↑ Kukin sarake tarkistetaan alhaalta ja käytettävissä oleva taito suoritetaan. Tämä ei takaa kombojärjestystä."
+  },
+  "이 직업은 검증된 반복 배치가 없어 자동 공격 배치를 제안하지 않습니다. 아래 기술을 개별 키로 사용하세요.": {
+    "en": "No verified repeat layout is available for this class. Use the skills below on separate keys.",
+    "ja": "この職業には確認済みの反復配置がありません。以下のスキルを個別キーで使用してください。",
+    "fi": "Tälle luokalle ei ole varmistettua toistoasettelua. Käytä alla olevia taitoja erillisillä näppäimillä."
+  },
+  "이동·회복·충전·생존 기술은 반복 공격 세로줄에 넣지 마세요. 쉬운 적에게 먼저 시험하고 위험하면 매크로 키를 놓으세요.": {
+    "en": "Keep movement, healing, charging and survival skills out of repeat columns. Test on an easy enemy and release the macro key when in danger.",
+    "ja": "移動・回復・チャージ・生存スキルは反復列に入れないでください。弱い敵で試し、危険ならマクロキーを離してください。",
+    "fi": "Pidä liike-, parannus-, lataus- ja selviytymistaidot erillään toistosarakkeista. Kokeile helppoon viholliseen ja vapauta makronäppäin vaarassa."
+  },
+  "필요할 때 직접 누르는 키": {
+    "en": "Keys to press when needed",
+    "ja": "必要なときに直接押すキー",
+    "fi": "Tarvittaessa itse painettavat näppäimet"
+  },
+  "아래 키는 반복 공격과 별도로 배치하세요. 각 스킬의 사용 상황을 보고 직접 누릅니다.": {
+    "en": "Keep these keys separate from repeated attacks. Use each skill in the situation described below.",
+    "ja": "以下は反復攻撃とは別に配置します。各スキルの使用場面を確認して直接押してください。",
+    "fi": "Pidä nämä näppäimet erillään toistuvista hyökkäyksistä. Käytä taitoja alla kuvatuissa tilanteissa."
+  },
+  "계획 포인트 현황": {
+    "en": "Planned point usage",
+    "ja": "計画のポイント状況",
+    "fi": "Suunnitelman pisteet"
+  },
+  "총량: 직접 입력한 값": {
+    "en": "Total: manually entered",
+    "ja": "総量：手入力",
+    "fi": "Yhteensä: itse syötetty"
+  },
+  "총량: 레벨 기준 추정값": {
+    "en": "Total: level-based estimate",
+    "ja": "総量：レベルに基づく推定",
+    "fi": "Yhteensä: tasoon perustuva arvio"
+  },
+  "조회한 캐릭터의 남은 포인트는 제공되지 않습니다. 게임의 사용량 + 남은 양으로 총량을 설정하세요.": {
+    "en": "Remaining character points are unavailable. Set the total to points spent plus points remaining in game.",
+    "ja": "取得したキャラクターの残りポイントは提供されません。ゲームの使用済み＋残りの合計を設定してください。",
+    "fi": "Hahmon jäljellä olevia pisteitä ei ole saatavilla. Aseta summaksi pelissä käytetyt ja jäljellä olevat pisteet."
+  },
+  "캐릭터를 불러와도 스킬·스티그마·데바니온의 총 보유량은 자동으로 확인되지 않습니다.": {
+    "en": "Importing a character does not verify total skill, stigma or Daevanion points.",
+    "ja": "キャラクターを読み込んでもスキル・スティグマ・デバニオンの総保有量は自動確認されません。",
+    "fi": "Hahmon tuonti ei varmista taito-, stigma- tai Daevanion-pisteiden kokonaismäärää."
+  },
+  "계정": {
+    "en": "Account",
+    "ja": "アカウント",
+    "fi": "Tili"
+  },
+  "먼 적에게 접근할 때 사용하세요. 도약할 지점에 장판이 없는지 먼저 확인하세요.": {
+    "en": "Close the gap only after checking the landing area.",
+    "ja": "着地点の安全を確認してから遠い敵に接近します。",
+    "fi": "Lähesty kaukaista vihollista vasta tarkistettuasi laskeutumispaikan."
+  },
+  "회피 후 재진입할 때 사용하세요. 적에게 이동하므로 회피 직후 무조건 누르지 마세요.": {
+    "en": "Re-engage after dodging only when the destination is safe.",
+    "ja": "回避後、安全な着地点を確認して再接近します。",
+    "fi": "Palaa lähitaisteluun väistön jälkeen vain turvalliseen paikkaan."
+  },
+  "앞쪽 적을 뚫고 이동하며 묶을 때 사용하세요. 돌진 경로가 안전한지 확인하세요.": {
+    "en": "Rush through enemies to root them; check the path first.",
+    "ja": "経路を確認して突進し、敵の移動を止めます。",
+    "fi": "Ryntää vihollisten läpi sitoaksesi ne. Tarkista reitti ensin."
+  },
+  "근접 진입과 공격 강화 효과를 함께 얻을 때 사용하세요. 적에게 돌진하는 기술입니다.": {
+    "en": "Approach the enemy and gain an offensive buff. This skill moves you.",
+    "ja": "敵に接近して攻撃強化を得ます。移動を伴う技です。",
+    "fi": "Lähesty vihollista ja vahvista hyökkäystä. Taito liikuttaa hahmoa."
+  },
+  "적 공격력을 낮추면서 내 공격을 강화할 때 사용하세요. 이어지는 내려찍기 기회도 확인하세요.": {
+    "en": "Weaken the enemy’s attack and boost yours; watch for the follow-up.",
+    "ja": "敵の攻撃力を下げ、自分を強化します。追撃の機会も確認します。",
+    "fi": "Heikennä vihollisen hyökkäystä ja vahvista omaasi. Tarkkaile jatkohyökkäystä."
+  },
+  "넘어진 적에게 쓰는 후속 공격입니다. 사용 가능 표시가 켜졌을 때 누르세요.": {
+    "en": "Use on a knocked-down enemy when the skill becomes available.",
+    "ja": "転倒した敵への追撃です。使用可能表示を確認します。",
+    "fi": "Käytä kaadettuun viholliseen, kun taito on käytettävissä."
+  },
+  "10초 동안 공격을 이어갈 수 있을 때 전투 속도를 높이세요.": {
+    "en": "Boost combat speed when you can keep attacking for 10 seconds.",
+    "ja": "10秒間攻撃を続けられる場面で戦闘速度を上げます。",
+    "fi": "Lisää taistelunopeutta, kun voit hyökätä 10 sekuntia."
+  },
+  "집중 공격 직전에 공격력과 명중을 높이세요.": {
+    "en": "Boost attack and accuracy before focused damage.",
+    "ja": "集中攻撃前に攻撃力と命中を上げます。",
+    "fi": "Lisää hyökkäystä ja tarkkuutta ennen keskitettyä vahinkoa."
+  },
+  "적의 공격이 닿기 직전에 막으세요. 막기에 성공하면 자원을 회복합니다.": {
+    "en": "Parry just before impact to reduce damage and restore resources.",
+    "ja": "被弾直前に受け流します。成功すると資源を回復します。",
+    "fi": "Torju juuri ennen osumaa vähentääksesi vahinkoa ja palauttaaksesi resursseja."
+  },
+  "막기 후 가까운 적을 묶어 이동을 제한할 때 사용하세요.": {
+    "en": "After blocking, root nearby enemies when you need to stop them.",
+    "ja": "防御後、近くの敵を動けなくしたいときに使います。",
+    "fi": "Sido lähiviholliset torjunnan jälkeen pysäyttääksesi ne."
+  },
+  "내 주변에 여러 적이 모였을 때 범위 공격으로 사용하세요.": {
+    "en": "Use when several enemies surround you.",
+    "ja": "周囲に複数の敵が集まったときに使います。",
+    "fi": "Käytä, kun ympärilläsi on useita vihollisia."
+  },
+  "회피 후 적에게 다시 접근할 때 사용하세요. 기절 후 심판으로 이어갈 수 있습니다.": {
+    "en": "Re-engage after dodging; follow the stun with Judgment.",
+    "ja": "回避後に再接近し、気絶から審判につなげます。",
+    "fi": "Palaa taisteluun väistön jälkeen ja jatka tainnutuksesta Judgmentilla."
+  },
+  "가까운 적들을 기절시키고 심판을 이어 쓸 때 사용하세요.": {
+    "en": "Stun nearby enemies to open a Judgment follow-up.",
+    "ja": "近くの敵を気絶させ、審判につなげます。",
+    "fi": "Tainnuta lähiviholliset avataksesi Judgment-jatkotaidon."
+  },
+  "심판 사용 가능 표시가 켜지면 적의 주의를 내게 유지하는 공격으로 쓰세요.": {
+    "en": "Use when available to keep the enemy’s attention on you.",
+    "ja": "使用可能になったら、敵の注意を自分に維持する攻撃に使います。",
+    "fi": "Pidä vihollisen huomio itsessäsi käyttämällä taitoa sen avautuessa."
+  },
+  "막기 후 적의 방어력을 낮출 때 사용하세요. 파티의 집중 공격과 맞추세요.": {
+    "en": "After blocking, lower enemy defense for your party’s burst.",
+    "ja": "防御後に敵の防御力を下げ、パーティーの集中攻撃に合わせます。",
+    "fi": "Heikennä vihollisen puolustusta torjunnan jälkeen ryhmän hyökkäystä varten."
+  },
+  "큰 공격을 받기 직전에 방패로 막으세요. 막기에 성공하면 자원을 회복합니다.": {
+    "en": "Block just before a heavy hit to mitigate it and restore resources.",
+    "ja": "大きな攻撃の直前に防御します。成功すると資源を回復します。",
+    "fi": "Torju juuri ennen kovaa iskua ja palauta resursseja."
+  },
+  "적이 파티원을 공격하거나 위협을 내게 모아야 할 때 도발하세요.": {
+    "en": "Taunt when enemies attack allies or you need to take threat.",
+    "ja": "敵が味方を狙ったときや注意を集めたいときに挑発します。",
+    "fi": "Käytä Tauntia, kun vihollinen hyökkää liittolaiseen tai tarvitset uhkan itsellesi."
+  },
+  "체력이 위험하거나 큰 피해를 받기 전에 최대 체력 증가와 즉시 회복을 활용하세요.": {
+    "en": "Use for an immediate heal and extra maximum HP before danger.",
+    "ja": "危険なときや大きな被害の前に、即時回復と最大HP増加を使います。",
+    "fi": "Paranna heti ja lisää enimmäisterveyttä ennen vaaraa."
+  },
+  "방어력에 비례한 공격력 증가를 집중 공격 직전에 사용하세요.": {
+    "en": "Turn defense into extra attack before a damage window.",
+    "ja": "集中攻撃前に防御力に応じた攻撃力増加を使います。",
+    "fi": "Muuta puolustusta hyökkäysvoimaksi ennen hyökkäysjaksoa."
+  },
+  "안전하게 충전할 수 있을 때 사용하세요. 공격 후 명중과 피해 증가 효과를 활용하세요.": {
+    "en": "Charge when safe, then benefit from accuracy and damage buffs.",
+    "ja": "安全な場面でチャージし、命中とダメージ増加を活用します。",
+    "fi": "Lataa turvallisessa tilanteessa ja hyödynnä tarkkuus- ja vahinkobonukset."
+  },
+  "기절하거나 넘어진 적에게 사용 가능한 후속 공격입니다. 조건 표시를 확인하세요.": {
+    "en": "Watch for availability against stunned or knocked-down enemies.",
+    "ja": "気絶・転倒した敵への使用可能表示を確認します。",
+    "fi": "Tarkkaile käyttömahdollisuutta tainnutettuihin tai kaadettuihin vihollisiin."
+  },
+  "떨어진 적을 앞으로 끌어올 때 사용하세요. 위험한 적을 파티 쪽으로 당기지 않게 주의하세요.": {
+    "en": "Pull a distant enemy toward you; avoid pulling danger into your party.",
+    "ja": "遠い敵を引き寄せます。危険な敵を味方に近づけないよう注意します。",
+    "fi": "Vedä kaukainen vihollinen luoksesi. Älä vedä vaaraa ryhmän keskelle."
+  },
+  "이동 방향을 고른 뒤 사용하세요. 이동하며 치명타를 높여 다음 공격을 준비합니다.": {
+    "en": "Choose a safe movement direction, then gain Precision for your next attack.",
+    "ja": "安全な移動方向を選び、次の攻撃に向けて精密効果を得ます。",
+    "fi": "Valitse turvallinen liikesuunta ja hanki Precision seuraavaa hyökkäystä varten."
+  },
+  "정밀 효과가 있을 때 적을 기절시키는 데 사용하세요. 제어가 필요한 적을 고르세요.": {
+    "en": "While Precision is active, use to stun a target that needs control.",
+    "ja": "精密効果中、制御したい敵を気絶させるために使います。",
+    "fi": "Tainnuta hallintaa vaativa kohde Precisionin ollessa aktiivinen."
+  },
+  "정밀 효과를 얻고 안전하게 충전할 시간이 있을 때 사용하세요.": {
+    "en": "Use with Precision when you have time to charge safely.",
+    "ja": "精密効果を得て、安全にチャージできるときに使います。",
+    "fi": "Käytä Precisionin kanssa, kun lataaminen on turvallista."
+  },
+  "10초 동안 공격을 이어갈 수 있을 때 공격력 버프를 켜세요.": {
+    "en": "Boost attack when you can attack for the next 10 seconds.",
+    "ja": "10秒間攻撃を続けられるときに攻撃力を上げます。",
+    "fi": "Lisää hyökkäystä, kun voit jatkaa hyökkäämistä 10 sekuntia."
+  },
+  "집중 공격 직전에 치명타와 명중을 높이세요.": {
+    "en": "Increase critical hit and accuracy before focused damage.",
+    "ja": "集中攻撃前にクリティカルと命中を上げます。",
+    "fi": "Lisää kriittistä osumaa ja tarkkuutta ennen keskitettyä hyökkäystä."
+  },
+  "지속 공격을 할 위치를 잡은 뒤 지원 구체를 소환하세요. 구체가 추가 공격과 체력 흡수를 돕습니다.": {
+    "en": "Summon after choosing your position for sustained fire and life steal.",
+    "ja": "立ち位置を決めて召喚し、継続攻撃とHP吸収を補助します。",
+    "fi": "Kutsu sijoittumisen jälkeen tukemaan jatkuvaa hyökkäystä ja elämänvarastusta."
+  },
+  "적이 다가올 위치에 덫을 놓으세요. 내 발밑에 설치되므로 위치를 먼저 잡으세요.": {
+    "en": "Place the trap under you where enemies will approach.",
+    "ja": "敵が来る位置で、自分の足元に罠を置きます。",
+    "fi": "Aseta ansa jalkoihisi kohtaan, johon viholliset lähestyvät."
+  },
+  "적의 뒤쪽이 안전할 때만 사용하세요. 뒤로 이동하며 기절시킵니다.": {
+    "en": "Move behind and stun the enemy only if the landing area is safe.",
+    "ja": "敵の背後が安全なときだけ移動し、気絶させます。",
+    "fi": "Siirry taakse ja tainnuta vain, jos laskeutumispaikka on turvallinen."
+  },
+  "회피 후 적의 뒤쪽으로 다시 진입할 때 사용하세요. 착지 지점의 장판을 확인하세요.": {
+    "en": "After dodging, check the enemy’s rear before re-engaging.",
+    "ja": "回避後、敵の背後の危険を確認して再接近します。",
+    "fi": "Tarkista vihollisen selusta väistön jälkeen ennen paluuta."
+  },
+  "적 반대편으로 빠져나가거나 위치를 바꿀 때 사용하세요. 앞뒤를 바꾸므로 반복 공격에 넣지 마세요.": {
+    "en": "Cross to the enemy’s opposite side deliberately; keep out of repeat columns.",
+    "ja": "敵の反対側へ意図して移動します。反復列には入れません。",
+    "fi": "Siirry harkitusti vihollisen vastapuolelle. Älä lisää toistosarakkeeseen."
+  },
+  "기절한 적에게 접근해 넘어뜨릴 때 사용하세요. 이동할 위치가 안전한지 확인하세요.": {
+    "en": "Approach a stunned target to knock it down; check the destination.",
+    "ja": "気絶した敵に接近して転倒させます。着地点を確認します。",
+    "fi": "Lähesty tainnutettua kohdetta kaataaksesi sen. Tarkista määränpää."
+  },
+  "적의 강화 효과를 제거하며 접근할 때 사용하세요. 돌진이 필요 없는 상황에는 아껴 두세요.": {
+    "en": "Rush in to remove an enemy buff only when approaching is appropriate.",
+    "ja": "接近して敵の強化を解除したいときに突進します。",
+    "fi": "Ryntää poistamaan vihollisen vahvistus vain, kun lähestyminen sopii tilanteeseen."
+  },
+  "여러 적에게 피해와 실명을 주고 방어력을 보완할 때 사용하세요.": {
+    "en": "Use against several targets for damage, blind and added defense.",
+    "ja": "複数の敵への攻撃・失明と防御補助に使います。",
+    "fi": "Käytä useaan kohteeseen vahinkoa, sokeutusta ja lisäpuolustusta varten."
+  },
+  "근접 거리에서 뒤로 물러나 은신할 때 사용하세요. 뒤쪽 지형과 위험 구역을 확인하세요.": {
+    "en": "Step back into stealth after checking the terrain behind you.",
+    "ja": "後方の地形を確認し、後退して隠れます。",
+    "fi": "Tarkista maasto takana ja vetäydy piiloon."
+  },
+  "보스가 그로기 상태일 때 쓰는 공격입니다. 평소 반복 입력에 넣지 말고 기회를 기다리세요.": {
+    "en": "Use during the enemy’s stagger window, not as a regular repeated attack.",
+    "ja": "敵のグロッキー中に使います。通常の反復攻撃には入れません。",
+    "fi": "Käytä vihollisen horjuessa, älä tavallisessa toistohyökkäyksessä."
+  },
+  "문양이 부족할 때 보충해 문양 소비 공격을 준비하세요.": {
+    "en": "Replenish marks when needed before a mark-consuming attack.",
+    "ja": "紋様が足りないときに補充し、消費攻撃を準備します。",
+    "fi": "Täydennä merkkejä ennen niitä kuluttavaa hyökkäystä."
+  },
+  "안전하게 적 뒤를 잡았을 때 사용하세요. 후방 공격 기회를 직접 고르세요.": {
+    "en": "Choose a safe rear position and use during a back-attack opportunity.",
+    "ja": "安全に背後を取れたときに使います。背面攻撃の機会を選びます。",
+    "fi": "Valitse turvallinen selusta ja käytä takahyökkäyksen tilaisuudessa."
+  },
+  "연속 공격을 시작하기 전에 켜세요. 적중 시 추가 피해를 얻는 10초를 활용하세요.": {
+    "en": "Activate before sustained attacks to gain extra damage for 10 seconds.",
+    "ja": "連続攻撃前に使い、10秒間の追加ダメージを活用します。",
+    "fi": "Aktivoi ennen jatkuvia hyökkäyksiä saadaksesi lisävahinkoa 10 sekunniksi."
+  },
+  "정령과 함께 큰 피해를 견디거나 집중 공격할 때 사용하세요. 회복과 공격·방어 효과를 함께 얻습니다.": {
+    "en": "Use with your spirit for healing and offensive/defensive support during danger or burst.",
+    "ja": "精霊と共に、危険時や集中攻撃時の回復・攻防強化に使います。",
+    "fi": "Käytä hengen kanssa parannukseen sekä hyökkäys- ja puolustustukeen."
+  },
+  "지속 공격이 가능한 구간에 고대 정령을 소환하세요. 소환 아이콘을 다시 누르면 해제되니 주의하세요.": {
+    "en": "Summon for a sustained damage window. Pressing the summon icon again dismisses it.",
+    "ja": "継続攻撃できる場面で召喚します。アイコンを再度押すと解除されます。",
+    "fi": "Kutsu jatkuvan hyökkäyksen ajaksi. Kutsukuvakkeen uusi painallus poistaa hengen."
+  },
+  "정령으로 집중 공격할 적에게 부식을 거세요. 소환한 정령 종류에 따라 협공 효과가 달라집니다.": {
+    "en": "Apply Corrode before spirit attacks; the coordinated effect depends on your spirit.",
+    "ja": "精霊の集中攻撃前に腐食を付与します。協攻効果は精霊で変わります。",
+    "fi": "Aseta Corrode ennen hengen hyökkäyksiä. Yhteisvaikutus riippuu hengestä."
+  },
+  "마나를 보충하면서 공격할 때 사용하세요.": {
+    "en": "Use to restore mana while attacking.",
+    "ja": "攻撃しながらマナを補充したいときに使います。",
+    "fi": "Käytä palauttaaksesi manaa hyökkäyksen aikana."
+  },
+  "적이 그로기에 빠졌을 때 사용하는 공격입니다. 그로기 표시를 보고 누르세요.": {
+    "en": "Wait for the enemy’s stagger window, then use this attack.",
+    "ja": "敵のグロッキーを確認して使う攻撃です。",
+    "fi": "Odota vihollisen horjumista ja käytä sitten tätä hyökkäystä."
+  },
+  "적을 공포로 제어할 필요가 있을 때 사용하세요. 제어 면역 여부를 확인하세요.": {
+    "en": "Use Fear when you need control; check whether the target is immune.",
+    "ja": "恐怖で制御したいときに使います。免疫を確認します。",
+    "fi": "Käytä Fearia hallintaan. Tarkista kohteen immuniteetti."
+  },
+  "불·물 속성 공격을 집중해서 사용할 직전에 켜세요.": {
+    "en": "Activate before a sequence of fire and water attacks.",
+    "ja": "火・水属性攻撃を集中して使う直前に発動します。",
+    "fi": "Aktivoi ennen tuli- ja vesihyökkäysten sarjaa."
+  },
+  "적들의 이동을 늦춰 거리를 확보할 때 사용하세요.": {
+    "en": "Slow groups of enemies to create distance.",
+    "ja": "敵集団を遅くして距離を取ります。",
+    "fi": "Hidasta vihollisryhmiä saadaksesi etäisyyttä."
+  },
+  "내 공격을 몰아넣기 직전에 사용하세요. 폭발까지 4초 동안 내가 주는 피해가 증가합니다.": {
+    "en": "Use before your burst; your damage increases during the 4-second delay.",
+    "ja": "集中攻撃前に使います。爆発までの4秒間、自分のダメージが増加します。",
+    "fi": "Käytä ennen tehohyökkäystä. Oma vahinko kasvaa neljän sekunnin viiveen aikana."
+  },
+  "충전하는 동안 안전할 때 사용하세요. 적이 모인 곳에 범위 피해를 줍니다.": {
+    "en": "Charge only when safe, then hit grouped enemies.",
+    "ja": "安全なときにチャージし、集まった敵を攻撃します。",
+    "fi": "Lataa vain turvallisesti ja osu ryhmittyneisiin vihollisiin."
+  },
+  "적들을 얼려 제어해야 할 때 사용하세요. 제어 면역인 적에게는 빙결을 기대하지 마세요.": {
+    "en": "Freeze enemies when control is needed; immune targets will not freeze.",
+    "ja": "制御が必要な敵を凍らせます。免疫のある敵には期待しないでください。",
+    "fi": "Jäädytä hallintaa vaativat viholliset. Immuunit kohteet eivät jäädy."
+  },
+  "적이 지나는 길에 불의 장벽을 놓으세요. 이동하는 적에게 지속 피해를 줄 수 있습니다.": {
+    "en": "Place the wall along enemy movement paths for damage over time.",
+    "ja": "敵の通り道に壁を置き、継続ダメージを与えます。",
+    "fi": "Aseta seinä vihollisten kulkureitille jatkuvaa vahinkoa varten."
+  },
+  "적들이 모인 위치에 폭풍을 놓아 이동을 늦추고 지속 피해를 주세요.": {
+    "en": "Place on grouped enemies to slow them and deal damage over time.",
+    "ja": "集まった敵に設置し、移動を遅くして継続ダメージを与えます。",
+    "fi": "Aseta vihollisryhmään hidastaaksesi ja aiheuttaaksesi jatkuvaa vahinkoa."
+  },
+  "적이 그로기에 빠졌을 때 사용하는 공격입니다. 기회가 열리면 직접 누르세요.": {
+    "en": "Use when the enemy becomes staggered.",
+    "ja": "敵がグロッキーになったときに使います。",
+    "fi": "Käytä, kun vihollinen horjuu."
+  },
+  "체력이 가장 낮은 파티원을 빠르게 회복해야 할 때 사용하세요.": {
+    "en": "Use when the party member with the lowest HP needs a quick heal.",
+    "ja": "HPが最も低い味方を急いで回復したいときに使います。",
+    "fi": "Käytä, kun vähiten terveyttä omaava ryhmäläinen tarvitsee nopean parannuksen."
+  },
+  "파티 여러 명이 다치거나 해제할 약화 효과가 있을 때 사용하세요.": {
+    "en": "Use when multiple allies are hurt or need a debuff removed.",
+    "ja": "複数の味方の回復や弱化解除が必要なときに使います。",
+    "fi": "Käytä usean liittolaisen parantamiseen tai heikennyksen poistoon."
+  },
+  "지속 피해가 예상되는 구간에 파티의 지속 회복을 미리 걸어 두세요.": {
+    "en": "Apply party healing over time before sustained incoming damage.",
+    "ja": "継続被害が予想される前にパーティーへ持続回復をかけます。",
+    "fi": "Aseta ryhmän jatkuva parannus ennen pitkäkestoista vahinkoa."
+  },
+  "파티 공격·방어 강화에 사용하세요. 호법성의 불패의 진언과 중복되지 않아 파티 효과를 확인하세요.": {
+    "en": "Maintain party offense/defense support; it does not stack with Undefeated Mantra.",
+    "ja": "攻防支援に使います。不敗の真言と重複しないため効果を確認します。",
+    "fi": "Ylläpidä ryhmän hyökkäys- ja puolustustukea. Ei kasaudu Undefeated Mantran kanssa."
+  },
+  "전투 전에 기운을 소환해 함께 공격하게 하세요. 이미 소환되어 있는지 확인하세요.": {
+    "en": "Summon the aura before combat; check whether it is already active.",
+    "ja": "戦闘前に気運を召喚します。すでに出ていないか確認します。",
+    "fi": "Kutsu aura ennen taistelua. Tarkista, onko se jo aktiivinen."
+  },
+  "파티 회복이 급하지 않고 충전할 여유가 있을 때 범위 공격으로 사용하세요.": {
+    "en": "Use this charged area attack only when healing is not urgent.",
+    "ja": "回復が急務でなく、安全にチャージできるときに範囲攻撃します。",
+    "fi": "Käytä ladattavaa aluehyökkäystä vain, kun parantaminen ei ole kiireellistä."
+  },
+  "회복이 급하지 않은 틈에 모인 적에게 범위 공격을 넣으세요.": {
+    "en": "Attack grouped enemies during gaps between urgent heals.",
+    "ja": "緊急回復の必要がない合間に、集まった敵を攻撃します。",
+    "fi": "Hyökkää vihollisryhmään kiireellisten parannusten välissä."
+  },
+  "쓰러진 파티원을 되살릴 때 사용하세요. 부활 후 다시 위험해지지 않을 상황인지 확인하세요.": {
+    "en": "Resurrect a fallen ally when they can return safely.",
+    "ja": "倒れた味方を安全に戻せる状況で蘇生します。",
+    "fi": "Herätä kaatunut liittolainen, kun paluu on turvallista."
+  },
+  "먼 적에게 접근하며 마나를 회복할 때 사용하세요. 돌진할 경로를 먼저 확인하세요.": {
+    "en": "Approach and restore mana after checking the charge path.",
+    "ja": "突進経路を確認し、接近しながらマナを回復します。",
+    "fi": "Tarkista ryntäysreitti, lähesty ja palauta manaa."
+  },
+  "파티의 공격·방어 효과를 유지하세요. 치유성의 보호의 빛과 중복되지 않아 파티 효과를 확인하세요.": {
+    "en": "Maintain party offense/defense support; it does not stack with Light of Protection.",
+    "ja": "攻防支援を維持します。保護の光と重複しないため確認します。",
+    "fi": "Ylläpidä hyökkäys- ja puolustustukea. Ei kasaudu Light of Protectionin kanssa."
+  },
+  "파티 이동 속도와 공격 시 회복이 필요할 때 진언을 사용하세요.": {
+    "en": "Use when the party needs movement speed and healing on attacks.",
+    "ja": "移動速度と攻撃時回復が必要なときに使います。",
+    "fi": "Käytä ryhmän tarvitessa liikkumisnopeutta ja parannusta hyökkäyksistä."
+  },
+  "파티 체력을 회복하고 약화 효과를 해제해야 할 때 사용하세요.": {
+    "en": "Heal the party and remove debuffs when needed.",
+    "ja": "パーティーの回復と弱化解除が必要なときに使います。",
+    "fi": "Paranna ryhmää ja poista heikennyksiä tarvittaessa."
+  },
+  "파티가 큰 피해를 받기 전에 보호막을 걸어 주세요.": {
+    "en": "Shield the party before a large incoming hit.",
+    "ja": "大きな被害を受ける前にパーティーへバリアをかけます。",
+    "fi": "Suojaa ryhmä ennen suurta tulevaa iskua."
+  },
+  "파티가 집중 공격할 때 전투 속도와 재사용 시간 감소를 지원하세요. 치유성 버프와의 중복 제한을 확인하세요.": {
+    "en": "Support the party’s burst with speed and cooldown reduction; check Cleric buff restrictions.",
+    "ja": "集中攻撃を速度と再使用時間短縮で支援します。治癒星の効果との制限を確認します。",
+    "fi": "Tue ryhmän hyökkäystä nopeudella ja lyhyemmillä latausajoilla. Tarkista Cleric-buffien rajoitukset."
+  },
+  "적을 기절시키고 암격쇄로 이어갈 때 사용하세요.": {
+    "en": "Stun the enemy to open a Dark Crush follow-up.",
+    "ja": "敵を気絶させ、暗撃砕につなげます。",
+    "fi": "Tainnuta vihollinen avataksesi Dark Crush -jatkotaidon."
+  },
+  "타격쇄 후 사용 가능한 2초 안에 후속 공격으로 누르세요.": {
+    "en": "Use within the 2-second window after the preceding strike.",
+    "ja": "前の技の後、使用可能な2秒以内に追撃します。",
+    "fi": "Käytä edeltävän iskun jälkeen avautuvan kahden sekunnin aikana."
+  },
+  "막기 후 가까운 적들을 봉쇄해야 할 때 사용하세요.": {
+    "en": "After blocking, use to seal nearby enemies.",
+    "ja": "防御後、近くの敵を封鎖したいときに使います。",
+    "fi": "Käytä torjunnan jälkeen lähivihollisten sulkemiseen."
+  },
+  "적이 그로기에 빠졌을 때 근접 공격으로 사용하세요.": {
+    "en": "Use at close range during the enemy’s stagger window.",
+    "ja": "敵のグロッキー中に近距離で使います。",
+    "fi": "Käytä lähietäisyydeltä vihollisen horjuessa."
+  },
+  "기절한 적을 넘어뜨릴 때 사용하세요. 사용 가능 조건을 먼저 확인하세요.": {
+    "en": "Use on a stunned enemy to knock it down; watch the activation condition.",
+    "ja": "気絶した敵を転倒させます。発動条件を確認します。",
+    "fi": "Kaada tainnutettu vihollinen. Tarkista aktivointiehto."
+  },
+  "기절·넘어짐 등 행동 불가 상태를 풀 때 사용하세요. 일반 공격 중에는 아껴 두세요.": {
+    "en": "Break out of stun, knockdown and similar control. Save it during normal attacks.",
+    "ja": "気絶・転倒などの行動不能を解除します。通常攻撃中は温存します。",
+    "fi": "Vapaudu tainnutuksesta, kaatumisesta ja vastaavista tiloista. Säästä tavallisessa taistelussa."
+  },
+  "숫자 키 바로 위의 세로줄에 공격을 배치하세요. 맨 아래 칸부터 위로 확인합니다. 키는 예시이며 게임 설정에 맞게 바꾸세요.": {
+    "en": "Place attacks in the column just above each number key. Slots are checked bottom to top. Keys are examples; adapt them to your game settings.",
+    "ja": "数字キーのすぐ上の縦列に攻撃を配置します。一番下から上へ確認します。キーは例なのでゲーム設定に合わせて変更してください。",
+    "fi": "Aseta hyökkäykset numeron yläpuoliseen sarakkeeseen. Paikat tarkistetaan alhaalta ylöspäin. Mukauta näppäimet pelin asetuksiin."
+  },
+  "반복 매크로 입력 예시: 2번 키 → 1번 키 · 각 10ms. 지연은 시작값이며 실제 게임에서 확인하세요.": {
+    "en": "Example macro input: key 2 → key 1, 10ms each. This delay is a starting point; test in game.",
+    "ja": "マクロ入力例：2キー → 1キー、各10ms。遅延は開始値なのでゲームで確認してください。",
+    "fi": "Makroesimerkki: näppäin 2 → näppäin 1, kumpikin 10 ms. Viive on lähtökohta; testaa pelissä."
+  },
+  "1·2번 키의 모든 칸에서 이동기를 뺐다": {
+    "en": "Removed movement skills from every slot above keys 1 and 2",
+    "ja": "1・2キーの全スロットから移動スキルを外した",
+    "fi": "Poistin liiketaidot kaikista näppäinten 1 ja 2 paikoista"
+  },
+  "총량: 플래너에 저장한 설정": {
+    "en": "Total: saved planner settings",
+    "ja": "総量：プランナーに保存した設定",
+    "fi": "Yhteensä: suunnittelijan tallennetut asetukset"
   }
 }

@@ -23,18 +23,18 @@ export function skillFit(id:string,knownIds:readonly string[],usedIds:readonly s
  if(inactiveStigmas.includes(id))return 'mismatch';
  return usedIds.includes(id)?'priority':'review';
 }
-export type Investment='unknown'|'replace'|'keep';
-export type Advice='unknown'|'replace'|'low'|'budget'|'plan'|'unsupported'|'tune'|'review'|'engrave';
+export type Investment='unknown'|'replace'|'progress'|'keep';
+export type Advice='unknown'|'replace'|'low'|'budget'|'plan'|'unsupported'|'tune'|'review'|'engrave'|'progress';
 export function equipmentAdvice(input:{detail:EquippedDetail|null;referenceLevel:number|null;investment:Investment;budget:boolean;unwanted:number;reviewed:boolean}):Advice{
- const {detail,referenceLevel,investment,budget,unwanted,reviewed}=input;
+ const {detail,investment,budget,unwanted,reviewed}=input;
  if(investment==='replace')return 'replace';
- if(!detail||!detail.optionsKnown||!referenceLevel||!Number.isFinite(referenceLevel)||referenceLevel<=0)return 'unknown';
- if(detail.level<referenceLevel)return 'low';
+ if(!detail||!detail.optionsKnown)return 'unknown';
+ if(detail.level<70&&investment!=='progress')return 'low';
  if(!budget)return 'budget';
- if(investment!=='keep')return 'plan';
+ if(investment!=='keep'&&investment!=='progress')return 'plan';
  if(!detail.subStatRandom||!detail.subStats.length&&!detail.subSkills.length)return 'unsupported';
  if(unwanted>0)return 'tune';
  if(!reviewed)return 'review';
  // This is a conditional review suggestion, never a claim about remaining rolls/costs or soulBindRate.
- return 'engrave';
+ return investment==='progress'?'progress':'engrave';
 }

@@ -86,3 +86,10 @@ for(const [kind,text] of Object.entries(ROSTER_TEXT)){
 assert.equal(rosterKind('combat-power'),'combat');assert.equal(rosterKind('abyss'),'abyss');assert.equal(rosterKind('arenaOfCooperation'),'arenaOfCooperation');assert.equal(rosterKind(undefined),'combat');
 for(const kind of ['abyss','arenaOfSolitude','arenaOfCooperation'])assert.equal(rosterKind(JSON.parse(readFileSync(`lib/data/rankers-${kind}.json`,'utf8')).metric),kind);
 console.log('Roster kinds: texts translated with placeholders, metric mapping PASS');
+
+const poor={...p,level:1,pointBudget:{sp:0,stigma:0,crystal:0,battle:0}};
+const poorBefore=JSON.stringify(poor);
+assert(previewRankerBoards(c,poor,ranker,profile,{allowUnavailable:true}).nodes.includes(target.id));
+assert.equal(JSON.stringify(poor),poorBefore);
+assert.throws(()=>previewRankerBoards(c,poor,ranker,{...profile,nodes:['unknown']},{allowUnavailable:true}));
+assert.throws(()=>previewRankerBoards(c,poor,ranker,{...profile,region:'as'},{allowUnavailable:true}));

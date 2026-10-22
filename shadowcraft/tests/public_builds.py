@@ -14,6 +14,8 @@ with sync_playwright() as p:
  page.on('pageerror',lambda e:errors.append(str(e)))
  def public(route):
   requests.append(route.request.url);parsed=urlparse(route.request.url)
+  if parsed.path.endswith('/community'):
+   route.fulfill(json={'votes':0,'voted':False});return
   if parsed.path.endswith('/'+id):
    if mode[0]=='missing':route.fulfill(status=404,json={'error':'Not found'})
    else:route.fulfill(json={**row,'shared':shared})
@@ -26,12 +28,14 @@ with sync_playwright() as p:
  before=page.evaluate('JSON.stringify(localStorage)')
  click_tab(page,'공개 빌드');panel=page.get_by_role('region',name='공개 빌드 목록',exact=True)
  expect(panel.get_by_role('heading',name='Reviewed build')).to_be_visible()
- expect(panel).to_contain_text('Plain <b>text</b>');assert panel.locator('article b').count()==0
+ assert panel.get_by_label('내 게시물만',exact=True).count()==0
  panel.get_by_label('빌드 직업').select_option('gladiator');expect(panel).to_contain_text('공개된 빌드가 없습니다')
  panel.get_by_label('빌드 직업').select_option('');panel.get_by_label('빌드 제목').fill('missing');panel.get_by_role('button',name='공개 빌드 검색').click();expect(panel).to_contain_text('공개된 빌드가 없습니다')
  mode[0]='invalid';panel.get_by_label('빌드 제목').fill('');panel.get_by_role('button',name='공개 빌드 검색').click();expect(panel.get_by_role('alert')).to_be_visible()
  mode[0]='ok';panel.get_by_role('button',name='공개 빌드 다시 불러오기').click();expect(panel.get_by_role('heading',name='Reviewed build')).to_be_visible()
- panel.get_by_role('link',name='빌드 상세 보기').click()
+ panel.get_by_role('link',name='Reviewed build',exact=True).click()
+ expect(page.get_by_role('region',name='공개 빌드 정보')).to_contain_text('Plain <b>text</b>')
+ assert page.locator('.published-article > p b').count()==0
  expect(page.get_by_role('region',name='공개 빌드 정보')).to_contain_text('Reviewed build')
  expect(page.get_by_role('region',name='공유 빌드 읽기 전용')).to_contain_text('살성 · Lv.45')
  assert page.evaluate('JSON.stringify(localStorage)')==before

@@ -9,6 +9,8 @@ def ensure_open(panel, label):
     try: expect(panel.get_by_role('button', name='공식 지형 닫기', exact=True)).to_be_visible(timeout=4000)
     except AssertionError: panel.get_by_role('button', name=label, exact=True).click()
 def ensure_markers(panel):
+    controls=panel.locator('.terrain-controls')
+    if controls.get_attribute('open') is None: controls.locator(':scope > summary').click()
     try: expect(panel.get_by_role('button', name='마커 숨기기', exact=True)).to_be_visible(timeout=4000)
     except AssertionError: panel.get_by_role('button', name='마커 보기', exact=True).click()
 URL=os.environ.get('SHADOWCRAFT_TEST_URL','http://127.0.0.1:5173/lab/shadowcraft/')
@@ -20,11 +22,13 @@ with sync_playwright() as p:
     page.route('**/api/public/shadowcraft/catalog?*',lambda r:r.fulfill(status=503,json={}))
     def open_map(name='altgard'):
         page.goto(URL)
+        page.get_by_text('내 서버에는 어떤 직업이 많을까요?',exact=True).wait_for(state='attached')
         click_tab(page,'지도 & 수집')
         panel=page.get_by_role('region',name='공식 글로벌 지형 지도',exact=True)
         panel.get_by_label('공식 지형 지역',exact=True).select_option(name)
         ensure_markers(panel)
         expect(panel.get_by_role('button',name='마커 숨기기',exact=True)).to_be_visible()
+        panel.locator('.map-advanced > summary').click()
         return panel
     panel=open_map()
     panel.get_by_role('button',name='항목 전체 끄기',exact=True).click()
@@ -47,11 +51,12 @@ with sync_playwright() as p:
     expect(panel.get_by_label('이 위치 확인 완료',exact=True)).to_be_checked()
     panel.get_by_role('button',name='항목 전체 끄기',exact=True).click()
     panel.get_by_role('checkbox',name='네임드 몬스터',exact=True).check()
-    panel.get_by_role('button',name='지형 전체 보기',exact=True).click()
+    panel.get_by_role('button',name='확대·이동 초기화',exact=True).click()
     marker=panel.locator('[data-preview-marker="named"]').first
+    marker_id=marker.get_attribute('data-marker-id')
     marker.focus();page.keyboard.press('Enter')
     expect(panel.get_by_label('이 위치 확인 완료',exact=True)).to_be_visible()
-    expect(marker).to_have_attribute('aria-pressed','true')
+    expect(panel.locator('[data-marker-id="'+marker_id+'"]')).to_have_attribute('aria-pressed','true')
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
     panel=open_map('verteron')
     expect(panel.get_by_text('확인 기록 0개',exact=False)).to_be_visible()
@@ -61,7 +66,7 @@ with sync_playwright() as p:
     for slug,count in [('poeta',55),('ishalgen',70),('reshanta-lower',548),('reshanta-middle',196)]:
         panel=open_map(slug)
         panel.get_by_role('button',name='항목 전체 켜기',exact=True).click()
-        expect(panel.locator('[data-preview-marker]')).to_have_count(min(400,count))
+        assert panel.locator('[data-preview-marker]').evaluate_all('(els)=>els.reduce((n,e)=>n+Number(e.dataset.count),0)')==count
         choices=panel.get_by_label('실험 위치 선택',exact=True)
         choices.select_option(choices.locator('option').nth(1).get_attribute('value'))
         expect(panel.get_by_label('이 위치 확인 완료',exact=True)).to_be_visible()
