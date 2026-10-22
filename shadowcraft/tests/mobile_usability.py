@@ -46,7 +46,7 @@ with sync_playwright() as p:
   if not canvas.is_visible():page.get_by_role('button',name=re.compile('공식 .* 지형 열기')).tap()
   expect(canvas).to_be_visible()
   page.get_by_role('button',name='지형 지도 확대',exact=True).tap()
-  expect(page.locator('.map-toolbar')).to_contain_text('2배')
+  expect(page.locator('.terrain-stage > .map-toolbar')).to_contain_text('2배')
   expect(page.locator('.map-help').filter(has_text='손가락')).to_be_visible()
   page.screenshot(path=str(OUT/f'after-map-{width}.png'))
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
