@@ -20,3 +20,8 @@ Last reviewed: Codex self-review. Last verified:2026-10-22. Next: scoped release
 ## Release authorization — 2026-10-22
 User explicitly approved this verified 370-point guidance scope for main commit/push/production deployment without Claude cross-review. Earlier local-only status superseded. Review waived, not marked passed. All199 unrelated hashes unchanged.
 Release candidate typecheck/lint/localization/build PASS; existing eight-class target-path PASS from audit. Scope: two source files and this record only.
+
+## Production release complete
+Source commit f0ab20cf5ab627e5cbb7d1adc00f9abdafb2134f pushed to origin/main. Cloudflare production deployment https://80415ab4.asbc-4c9.pages.dev ; custom domain https://asbc.app/ directly verified.
+CUA PC1440/mobile390: saved370 preserved; live donBshy target416/Azphel86, recommendation370/0, shortage46/86. Nezekan66 priority/1 later; Azphel0 priority/56 later and separate-currency explanation displayed. Initial preview calculation exceeded click timeout but rendered correctly on subsequent observation; no duplicate click. No target plan applied.
+All199 unrelated file hashes unchanged. Backend untouched. Claude review explicitly waived, not passed. Production proof: D:/CodexData/Projects/ASBC/artifacts/370-guide-audit-20261022/370-release.png. Status complete; no remaining release work.
