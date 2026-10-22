@@ -18,3 +18,11 @@ New file equipment-guidance.css removes nested scrolling and improves mobile rea
 Evidence: D:/CodexData/Projects/ASBC/artifacts/beginner-gear-20261022/{pc.png,mobile.png,build.log,before-sha256.json,verify-server.mjs}. Fixture is outside release source. First fixture startup had cwd/esbuild errors, resolved via Vite virtual modules with no dependency changes.
 Last verified: 2026-10-22. Last reviewed: self only. No commit/push/deploy. No existing unrelated changes edited. Automatic approval quota interrupted final checks; user continuation allowed completion. Temporary server session no longer exists.
 Next: user-directed release if requested.
+
+## User-directed release
+User requested next step after implementation report; scoped release announced before execution.
+Source commit: 8c02d94, pushed origin/main. Only this task's 5 files included; prior ranker-builds.tsx/recommendation.ts changes remain uncommitted and excluded.
+Built from git archive of commit in D:/CodexData/Projects/ASBC/artifacts/beginner-gear-20261022/release-8c02d94. Typecheck PASS, production build PASS 24.92s, existing warnings. No uncommitted source in deployed output.
+Cloudflare Pages deployment: https://243b2fcf.asbc-4c9.pages.dev
+Production asbc.app reload loaded /assets/asbc-D45Kwqq2.js exactly matching isolated build. Home-to-build comparison navigation verified. Actual private-character option flow not tested in production; prior PC/mobile component tests used explicit synthetic responses.
+No Claude review claimed (known usage limit, prior user self-validation release preference). Release complete.
