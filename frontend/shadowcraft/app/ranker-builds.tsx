@@ -19,9 +19,9 @@ import CharacterComparison from './character-comparison';
 import {useLocale} from './locale';
 import {SkillHover} from './skill-tip';
 
-export default function RankerBuilds({catalog,plan,onApply,onConnect}:{catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void;onConnect?:()=>void}){
+export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly=false,onChoose,initialSelection}:{rankingOnly?:boolean;onChoose?:(id:string,kind:string)=>void;initialSelection?:{id:string;kind:string}|null;catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void;onConnect?:()=>void}){
  const {t,locale,skill:localSkill}=useLocale();
- const [kind,setKind]=useState(SNAPSHOTS[0].key);
+ const [kind,setKind]=useState(()=>SNAPSHOTS.find(s=>s.key===initialSelection?.kind)?.key||SNAPSHOTS[0].key);
  const current=SNAPSHOTS.find(s=>s.key===kind)||SNAPSHOTS[0];
  const rows=(current.data.entries as Ranker[]).filter(r=>r.classKey===catalog.classKey);
  const [availability,setAvailability]=useState<RankingAvailability|null|undefined>(undefined);
@@ -54,6 +54,11 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect}:{catalog:C
   </details>;
  };
  async function inspect(row:Ranker){const token=++request.current;setSelectedId(row.characterId);setLive(null);setPreview(null);setError('');setLoading(true);try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId});if(request.current===token)setLive(result)}catch(e){if(request.current===token)setError(e instanceof Error?e.message:'공식 조회 실패')}finally{if(request.current===token)setLoading(false)}}
+ useEffect(()=>{const row=rows.find(r=>r.characterId===initialSelection?.id);if(!rankingOnly&&row)void inspect(row);
+ // The selection is consumed when this page mounts; later selections are made in its own list.
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ },[initialSelection,catalog.classKey]);
+ if(rankingOnly)return <section className="panel ranking-list" aria-label={t('랭킹')}><h2>{t('랭킹')}</h2><p>{t(ROSTER_TEXT[current.key].subtitle)}</p><p>{t(ROSTER_TEXT[current.key].note,[time(current.data.fetchedAt)])}</p><p>{(()=>{const note=rankingAvailabilityText(availability,t);return t(note.text,note.values);})()}</p><nav className="preview-tabs" aria-label={t('랭킹 종류')}>{SNAPSHOTS.map(s=><button key={s.key} aria-pressed={kind===s.key} onClick={()=>setKind(s.key)}>{t(ROSTER_TEXT[s.key].name)}</button>)}</nav><ol className="ranking-rows">{rows.map(row=><li key={row.characterId}><strong>{row.rank}. {row.name}</strong><span>{row.region.toUpperCase()} · {row.serverName} · {t(row.race===1?'천족':'마족')}</span><span>{t(ROSTER_TEXT[current.key].score,[row.combatPower.toLocaleString(),row.sampleRank])}</span><button className="button secondary" onClick={()=>onChoose?.(row.characterId,current.key)}>{t('빌드에서 비교')}</button></li>)}</ol></section>;
  return <section className="panel ranker-builds" aria-label={t('랭커 빌드 분석')}>
   <div className="section-heading"><div><span className="eyebrow">{t('실제 세팅')}</span><h2>{t('상위 캐릭터 세팅 살펴보기')}</h2><p>{t(ROSTER_TEXT[current.key].subtitle)}</p></div><OfficialLink href={current.data.source} target="_blank" rel="noreferrer">{t('순위 출처 ↗')}</OfficialLink></div>
   {SNAPSHOTS.length>1&&<div className="segmented ranker-kinds" role="group" aria-label={t('랭킹 종류')}>{SNAPSHOTS.map(s=><button key={s.key} aria-pressed={kind===s.key} className={kind===s.key?'selected':''} onClick={()=>setKind(s.key)}>{t(ROSTER_TEXT[s.key].name)}</button>)}</div>}

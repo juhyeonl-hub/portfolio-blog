@@ -1,4 +1,4 @@
-"""Shared navigation helpers for the clean UI: guided 빌드 entry with section pills, a class dropdown, a 랭커 tab."""
+"""Shared navigation helpers for the clean UI: guided 빌드 entry with section pills, a class dropdown, a ranking list and build comparison section."""
 import re
 
 SECTIONS = ['스킬 & 특화', '데바니온', '내 장비 & 성장', '매크로 & 키 배치', '보스전 운영']
@@ -6,6 +6,8 @@ SECTIONS = ['스킬 & 특화', '데바니온', '내 장비 & 성장', '매크로
 
 def click_tab(page, name):
     """Click a main-menu tab wherever it is visible: home tabs, sidebar, or the phone menu after opening it."""
+    if name == '랭커':
+        open_section(page, '랭커와 비교'); return
     tabs = page.get_by_role('tab', name=name, exact=True)
     for i in range(tabs.count()):
         if tabs.nth(i).is_visible():

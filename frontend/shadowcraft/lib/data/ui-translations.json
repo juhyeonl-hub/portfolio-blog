@@ -9563,5 +9563,60 @@
     "en": "Total: saved planner settings",
     "ja": "総量：プランナーに保存した設定",
     "fi": "Yhteensä: suunnittelijan tallennetut asetukset"
+  },
+  "데바니온 보드 선택": {
+    "en": "Choose a Daevanion board",
+    "ja": "デバニオンボード選択",
+    "fi": "Valitse Daevanion-lauta"
+  },
+  "랭킹": {
+    "en": "Rankings",
+    "ja": "ランキング",
+    "fi": "Sijoitukset"
+  },
+  "랭커와 비교": {
+    "en": "Compare with a ranked character",
+    "ja": "ランカーと比較",
+    "fi": "Vertaa sijoitettuun hahmoon"
+  },
+  "빌드에서 비교": {
+    "en": "Compare in Build",
+    "ja": "ビルドで比較",
+    "fi": "Vertaa hahmosuunnittelussa"
+  },
+  "먼저 찍기 · 내 포인트 안의 추천 경로": {
+    "en": "Prioritize · suggested path within your budget",
+    "ja": "優先 · ポイント内の推奨経路",
+    "fi": "Ensin · pisteisiin sopiva reitti"
+  },
+  "나중에 찍기 · 추가 포인트 또는 레벨 필요": {
+    "en": "Later · needs more points or levels",
+    "ja": "後回し · ポイントまたはレベルが必要",
+    "fi": "Myöhemmin · lisää pisteitä tai tasoja tarvitaan"
+  },
+  "추천 경로: 결정 {0}/{1} · 아스펠 {2}/{3}": {
+    "en": "Suggested path: crystals {0}/{1} · Azphel {2}/{3}",
+    "ja": "推奨経路：結晶 {0}/{1} · アスフェル {2}/{3}",
+    "fi": "Ehdotettu reitti: kiteet {0}/{1} · Azphel {2}/{3}"
+  },
+  "주력 스킬·플레이 스타일과 연결 비용을 고려한 재배분 제안입니다. 최적 DPS 순위는 아닙니다. 파란 노드는 보유 중이어도 이번 추천 경로에서 제외되며, 빨간 노드를 유지하면 추가 포인트가 필요할 수 있습니다.": {
+    "en": "A reallocation suggestion based on core skills, play style and connecting path costs, not an optimal DPS ranking. Blue nodes are outside this suggested path even if already owned. Keeping red nodes may require extra points.",
+    "ja": "主力スキル・プレイスタイルと接続コストに基づく再配分案で、最適DPS順位ではありません。青は取得済みでも今回の推奨経路外です。赤を維持すると追加ポイントが必要な場合があります。",
+    "fi": "Uudelleenjaon ehdotus huomioi ydintaidot, pelityylin ja yhdistävien reittien hinnan, ei optimaalista DPS-järjestystä. Siniset solmut jäävät reitin ulkopuolelle, vaikka omistaisit ne. Punaisten säilyttäminen voi vaatia lisäpisteitä."
+  },
+  "직업별 순위를 살펴보고 비교할 캐릭터를 빌드로 가져오세요.": {
+    "en": "Browse class rankings and choose a character to compare in Build.",
+    "ja": "職業別順位を見て、比較するキャラクターをビルドに移してください。",
+    "fi": "Katso luokkakohtaiset sijoitukset ja valitse hahmo vertailuun."
+  },
+  "내 캐릭터와 포인트를 확인한 뒤 비교할 랭커를 선택하세요.": {
+    "en": "Check your character and points, then choose a ranked character to compare.",
+    "ja": "自分のキャラクターとポイントを確認し、比較するランカーを選んでください。",
+    "fi": "Tarkista hahmosi ja pisteesi, sitten valitse vertailtava hahmo."
+  },
+  "처음이라면 빌드에서 직업을 고른 뒤 추천을 미리 보세요. 장비 비교는 빌드의 랭커와 비교에서 할 수 있습니다.": {
+    "en": "Start by choosing a class in Build and previewing a suggestion. Equipment comparison is under Compare with a ranked character in Build.",
+    "ja": "初めてならビルドで職業を選び、おすすめを確認してください。装備比較はビルド内のランカーと比較から行えます。",
+    "fi": "Aloita valitsemalla luokka hahmosuunnittelussa. Varusteita voi verrata sen hahmovertailussa."
   }
 }

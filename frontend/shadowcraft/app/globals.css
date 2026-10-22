@@ -642,3 +642,29 @@ footer,footer p,.asbc-footer div small,.side-bottom,.side-bottom small{color:#8f
 .preview-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 12px}.preview-tabs button{padding:10px 18px;border:1px solid var(--line);border-radius:7px;background:var(--panel2);min-height:44px}.preview-tabs button[aria-pressed=true]{border-color:var(--accent);color:var(--accent);background:#20313d}.visual-build-preview>section>h2{margin:16px 0 12px}.preview-metadata{margin:12px 0;padding:10px;border:1px solid var(--line);border-radius:6px}.preview-metadata summary{cursor:pointer}.preview-metadata ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0}.preview-metadata li{padding:4px 10px;background:var(--panel2);border-radius:4px}
 
 @media(max-width:900px){.reader-sidebar nav .nav{width:auto;flex:0 1 auto;font-size:12px;padding:8px 10px}.reader-sidebar nav{margin-top:8px}}
+
+/* Keep phone map filters compact without nested scrolling. */
+@media(max-width:700px){
+ .terrain-workspace .terrain-controls .map-layers{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ .terrain-controls .map-legend-row{grid-template-columns:18px minmax(0,1fr);padding:8px;min-height:64px;gap:4px}
+ .terrain-controls .map-legend-row>svg{display:none}
+ .terrain-controls .map-legend-name{font-size:12px;line-height:1.4}
+ .terrain-controls .map-legend-done{font-size:10px}
+ .terrain-controls .map-layers label{min-width:0;overflow-wrap:anywhere}
+}
+.preview-node-detail{padding:10px;border:1px solid var(--accent);border-radius:6px;overflow-wrap:anywhere;background:var(--panel2)}
+.visual-build-preview .goal-node[data-inspected=true]{opacity:1;outline:2px solid white;outline-offset:1px;z-index:1}
+
+/* One readable board at a time; shared by goal and public previews. */
+.goal-boards.single-board{display:block;width:100%;max-width:760px;margin-inline:auto}
+.single-board .goal-board{gap:4px;padding:8px}
+.single-board .goal-node img{min-height:0}
+.goal-node.later{border-color:#5ba8ff;opacity:1}
+.goal-legend .later{color:#79b9ff}
+.ranking-rows{list-style:none;padding:0;display:grid;gap:10px}
+.ranking-rows li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;padding:14px;border-bottom:1px solid var(--line)}
+.ranking-rows li>span{grid-column:1;font-size:12px;color:var(--muted)}
+.ranking-rows li>button{grid-column:2;grid-row:1/4}
+@media(max-width:480px){.single-board .goal-board{gap:2px;padding:3px}.ranking-rows li{grid-template-columns:minmax(0,1fr)}.ranking-rows li>button{grid-column:1;grid-row:auto}}
+
+@media(max-width:760px){.ranker-builds{padding:12px}.ranker-detail>.quick-preview{padding:10px}.ranker-board-comparison .preview-tabs{gap:5px}.ranker-board-comparison .preview-tabs button{padding:8px 10px}}

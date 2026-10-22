@@ -22,7 +22,7 @@ with sync_playwright() as p:
  expect(page.locator('#build-section-gear')).to_be_visible()
  page.wait_for_timeout(500)
  assert page.locator('.build-pills').bounding_box()['y']>=-1
- page.locator('.sidebar').get_by_role('tab',name='랭커',exact=True).click()
+ page.locator('.sidebar').get_by_role('tab',name='랭킹',exact=True).click()
  expect(page).to_have_url(URL+'#/rankers')
  page.go_back()
  expect(page).to_have_url(URL+'#/build/gear')

@@ -9,7 +9,7 @@ export default function HomePanel({onNavigate}:{onNavigate:(tab:string)=>void}) 
     <header className="home-heading"><div><span className="eyebrow">AION 2 · STEAM GLOBAL</span></div></header>
     <section className="home-start" aria-labelledby="home-start-title"><h1 id="home-start-title">{t('무엇을 하고 싶으세요?')}</h1><div className="home-start-grid">{[
       {id:'quick',title:'내 캐릭터 세팅하기',note:'직업을 고르고 추천을 미리 확인하세요.'},
-      {id:'rankers',title:'다른 캐릭터와 비교하기',note:'내 장비와 랭커 장비를 나란히 확인하세요.'},
+      {id:'compare',title:'다른 캐릭터와 비교하기',note:'내 장비와 랭커 장비를 나란히 확인하세요.'},
       {id:'map',title:'지도에서 위치 찾기',note:'수집물과 NPC를 검색하고 위치를 확인하세요.'},
     ].map((item,i)=><button key={item.id} onClick={()=>onNavigate(item.id)}><span className="start-number" aria-hidden="true">{i+1}</span><strong>{t(item.title)}</strong><span>{t(item.note)}</span><ArrowUpRight size={20} aria-hidden="true"/></button>)}</div></section>
     <HomeFavorites onNavigate={onNavigate}/>

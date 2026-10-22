@@ -77,3 +77,10 @@ export function recommendBuild(c:Catalog,p:Plan):Plan {
  next.specs=Object.fromEntries(c.skills.map(s=>[s.id,recommendSpecs(s,finalLevel(c,next,s),next.mode)]));
  return next;
 }
+
+/** Read-only target subset; separate currencies and prerequisite paths use the existing planner rules. */
+export function recommendTargetNodes(c:Catalog,p:Plan,target:Plan):string[]{
+ const goal=new Set(target.nodes);
+ const restricted={...c,boards:c.boards.map(b=>({...b,nodes:b.nodes.filter(n=>n.autoLearn||goal.has(n.id))}))};
+ return recommendBuild(restricted,{...p,nodes:[]}).nodes;
+}

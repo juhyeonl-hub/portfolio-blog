@@ -2,7 +2,7 @@
 const routes:Record<string,string>={
  home:'/',quick:'/build',skills:'/build/skills',daevanion:'/build/daevanion',
  gear:'/build/gear',macro:'/build/macro',rotation:'/build/rotation',
- rankers:'/rankers','public-builds':'/public-builds',map:'/map',
+ compare:'/build/compare',rankers:'/rankers','public-builds':'/public-builds',map:'/map',
  builds:'/builds',database:'/database',updates:'/updates',account:'/account',
 };
 export function screenHash(screen:string):string{return '#'+(routes[screen]||'/');}
