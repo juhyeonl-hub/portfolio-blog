@@ -22,3 +22,14 @@ Artifacts: D:/CodexData/Projects/ASBC/artifacts/ranking-guidance-20261022 (build
 User explicitly authorized this scope plus the production-usability follow-up to be committed to main, pushed and deployed, without Claude cross-review. This supersedes the earlier local-only status. Claude review is waived for this release, not recorded as passed. Unrelated files remain excluded.
 
 Release candidate verification: all 33 test:shadowcraft suites, typecheck:shadowcraft, lint, production build and git diff --check PASS. Logs: ranking-guidance-20261022/release-tests.log and release-build.log. All 199 pre-existing excluded file hashes unchanged.
+
+## Production release completed — 2026-10-22
+- Feature commit c0d6f55 pushed to origin/main. Exactly 20 scoped files, no unrelated changes included.
+- Cloudflare Pages production: https://6870f966.asbc-4c9.pages.dev ; custom domain https://asbc.app/ verified directly.
+- Published frontend main asset: asbc-Carmhf_C.js. Backend unchanged.
+- CUA production PC/mobile: ranking-only list; selecting donBshy opens #/build/compare with Build active; live official profile response succeeded (2026-10-22 14:08 Helsinki). Actual goal 416 crystals / 86 Azphel; with local default 136 / 0 the guide shows 136/136 and 0/0, orange/blue nodes and single-board tab changes. No plan applied.
+- Mobile 390: Vaizel tab and large board render; map filters render two columns. Public Test post: board tabs switch, planner link opens Build, no apply or account mutation.
+- Exact 416-to-370 fixture and all classes/currency/level constraints passed automated tests; real private Steam login/own-character comparison remains untested.
+- All 199 excluded hashes still unchanged after deployment. No Claude review claimed (explicit user waiver).
+- Evidence: D:/CodexData/Projects/ASBC/artifacts/ranking-guidance-20261022/release-production.png, release-tests.log, release-build.log, release-manifest.json.
+- Status: complete. Next: none for this release.
