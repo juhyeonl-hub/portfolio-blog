@@ -1,0 +1,14 @@
+.my-ranker-comparison .comparison-workbench{grid-template-columns:minmax(0,1fr)}
+.my-ranker-comparison .paired-option-inspector{position:static;max-height:none;overflow:visible}
+.my-ranker-comparison .investment-advice{margin-top:18px}
+.my-ranker-comparison .investment-advice h5{font-size:14px;margin:18px 0 6px;color:#bde7f7}
+.my-ranker-comparison .rolled-options small{font-size:12px;line-height:1.7}
+.my-ranker-comparison .investment-advice summary{cursor:pointer;font-size:12px;line-height:1.8}
+.my-ranker-comparison input[type=checkbox]{min-width:18px;min-height:18px;vertical-align:middle}
+.my-ranker-comparison .investment-advice select{min-height:44px}
+@media(max-width:600px){
+ .my-ranker-comparison .option-pair{grid-template-columns:minmax(0,1fr)}
+ .my-ranker-comparison .option-pair>div{padding:14px}
+ .my-ranker-comparison .actual-options p,.my-ranker-comparison .actual-options label{font-size:13px}
+ .my-ranker-comparison .actual-options h4{font-size:15px}
+}

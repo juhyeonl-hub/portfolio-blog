@@ -29,7 +29,6 @@ export function equipmentAdvice(input:{detail:EquippedDetail|null;referenceLevel
  const {detail,investment,budget,unwanted,reviewed}=input;
  if(investment==='replace')return 'replace';
  if(!detail||!detail.optionsKnown)return 'unknown';
- if(detail.level<70&&investment!=='progress')return 'low';
  if(!budget)return 'budget';
  if(investment!=='keep'&&investment!=='progress')return 'plan';
  if(!detail.subStatRandom||!detail.subStats.length&&!detail.subSkills.length)return 'unsupported';
@@ -37,4 +36,11 @@ export function equipmentAdvice(input:{detail:EquippedDetail|null;referenceLevel
  if(!reviewed)return 'review';
  // This is a conditional review suggestion, never a claim about remaining rolls/costs or soulBindRate.
  return investment==='progress'?'progress':'engrave';
+}
+
+// These labels explain the limited matching evidence, not calculated combat efficiency.
+export function optionReason(kind:'stat'|'skill',fit:Fit):string{
+ if(fit==='mismatch')return kind==='skill'?'현재 빌드에서 장착하지 않은 스티그마입니다. 사용할 예정이라면 유지할 수 있습니다.':'선택한 전투와 다른 PvE·PvP 전용 옵션입니다. 다른 전투에서도 쓸 장비라면 유지할 수 있습니다.';
+ if(fit==='priority')return kind==='skill'?'현재 빌드에 포함된 스킬입니다. 실제 사용 빈도와 효과를 확인해 주세요.':'공격 중심 안내에서 검토하는 옵션입니다. 다른 옵션보다 얼마나 좋은지는 계산하지 않았습니다.';
+ return '이 옵션의 효과나 내 조합과의 관계를 충분히 확인하지 못했습니다. 나쁜 옵션이라는 뜻은 아닙니다.';
 }

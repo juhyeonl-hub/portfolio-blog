@@ -1,3 +1,4 @@
+import './equipment-guidance.css';
 import {useEffect,useState} from 'react';
 import {useLocale} from './locale';
 import EquipmentGrid,{slotLabel} from './equipment-grid';
@@ -5,15 +6,17 @@ import {loadItemIndex,type ItemIndex} from '../lib/item-index';
 import {compareRankerEquipment,type Ranker,type RankerEquipment} from '../lib/ranker-builds';
 import {equipped,MODE_NAMES,type Catalog,type Plan} from '../lib/planner';
 import {queryArmory} from '../lib/armory-client';
-import {equipmentAdvice,parseEquippedDetail,skillFit,statFit,type EquippedDetail,type Investment} from '../lib/equipment-advice';
+import {equipmentAdvice,optionReason,parseEquippedDetail,skillFit,statFit,type EquippedDetail,type Investment} from '../lib/equipment-advice';
 
 type Identity={id:string;server:string;region:string};
-const ADVICE={progress:'다음 던전 준비용 장비입니다. 필요한 강화·옵션 개선부터 검토하고, 반복 조율·영혼각인은 교체 예상 시기와 비용을 비교하세요.',unknown:'장비 레벨 또는 실제 옵션 정보가 부족해 투자 판단을 보류합니다.',replace:'교체 예정 장비입니다. 조율·영혼각인보다 교체 자원을 우선 확보하세요.',low:'70레벨 미만 장비는 교체 시기를 먼저 확인하세요. 다음 던전 준비에 필요하다면 성장용 사용을 선택해 필요한 만큼 투자를 검토할 수 있습니다.',budget:'자원 여유가 확인되지 않았습니다. 조율·영혼각인 투자를 보류합니다.',plan:'다음 장비를 얻기 전까지 사용할지, 오래 사용할지 선택하면 목적에 맞게 안내합니다.',unsupported:'이 장비의 무작위 옵션 변경 가능 여부를 확인할 수 없습니다. 게임에서 지원 여부를 확인하세요.',tune:'우선순위가 낮은 옵션이 있습니다. 게임에서 조율 가능 옵션·비용·유지할 옵션을 확인한 뒤 조율을 검토하세요. 영혼각인은 옵션 구성을 정한 다음입니다.',review:'옵션별 용도를 확인하세요. 판단하지 못한 옵션을 나쁜 옵션으로 간주하지 않습니다.',engrave:'장기 사용과 옵션 구성이 확인되었습니다. 게임에서 영혼각인 대상·상승 여지·비용을 확인하고, 개선 여지가 있을 때만 진행하세요.'};
-const FIT={mismatch:'현재 빌드에서 낮은 우선순위',priority:'현재 빌드의 우선 옵션',review:'용도 확인 필요'};
+const ADVICE={progress:'다음 던전 준비용 장비입니다. 필요한 강화·옵션 개선부터 검토하고, 반복 조율·영혼각인은 교체 예상 시기와 비용을 비교하세요.',unknown:'장비 레벨 또는 실제 옵션 정보가 부족해 투자 판단을 보류합니다.',replace:'교체 예정 장비입니다. 조율·영혼각인보다 교체 자원을 우선 확보하세요.',low:'70레벨 미만 장비는 교체 시기를 먼저 확인하세요. 다음 던전 준비에 필요하다면 성장용 사용을 선택해 필요한 만큼 투자를 검토할 수 있습니다.',budget:'먼저 사용할 수 있는 재료와 비용을 확인하세요. 지금은 목표 옵션을 살펴보고, 재료를 쓰는 결정은 나중에 해도 됩니다.',plan:'다음 장비를 얻기 전까지 사용할지, 오래 사용할지 선택하면 목적에 맞게 안내합니다.',unsupported:'이 장비의 무작위 옵션 변경 가능 여부를 확인할 수 없습니다. 게임에서 지원 여부를 확인하세요.',tune:'직접 고른 변경 후보가 있습니다. 게임에서 조율 가능 옵션·비용·유지할 옵션을 확인한 뒤 조율을 검토하세요. 작업 순서는 확인하지 못했으므로 게임의 설명을 먼저 확인하세요.',review:'옵션별 용도를 확인하세요. 판단하지 못한 옵션을 나쁜 옵션으로 간주하지 않습니다.',engrave:'장기 사용을 선택하고 옵션 확인에 체크했습니다. 이것만으로 추가 투자가 꼭 필요한 것은 아닙니다. 게임에서 영혼각인 대상·상승 여지·비용을 확인하고, 개선 여지가 있을 때만 진행하세요.'};
+const FIT={mismatch:'사용 목적 확인',priority:'유지 후보',review:'판단 정보 부족'};
 function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index}:{identity:Identity|null;item:RankerEquipment|undefined;mine:boolean;catalog:Catalog;plan:Plan;referenceLevel:number|null;index:ItemIndex|null}){
  const {t,locale,skill:skillName}=useLocale();
  const [detail,setDetail]=useState<EquippedDetail|null>(null),[error,setError]=useState(''),[loading,setLoading]=useState(true),[retry,setRetry]=useState(0);
  const [investment,setInvestment]=useState<Investment>('unknown'),[budget,setBudget]=useState(false),[reviewed,setReviewed]=useState(false),[unwanted,setUnwanted]=useState<string[]>([]);
+ const [purpose,setPurpose]=useState('build');
+ const adviceMode=purpose==='build'?plan.mode:purpose==='pvp'?'pvp':purpose==='attack'?'damage':'safe';
  const id=identity?.id,server=identity?.server,region=identity?.region,itemId=item?.id,slot=item?.slotPos,enchant=item?.enchantLevel;
  useEffect(()=>{
   const controller=new AbortController();let active=true;
@@ -28,22 +31,35 @@ function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index}:{i
   return()=>{active=false;controller.abort();};
  },[id,server,region,itemId,slot,enchant,catalog.classKey,retry]);
  const known=catalog.skills.map(s=>s.id),used=catalog.skills.filter(s=>s.stigma?equipped(plan).includes(s.id):(plan.base[s.id]??1)>0).map(s=>s.id),inactive=catalog.skills.filter(s=>s.stigma&&!equipped(plan).includes(s.id)).map(s=>s.id);
- const options=detail?[...detail.subStats.map(s=>({key:'stat:'+s.id,name:locale==='ko'?(index?.stats[s.id]?.ko||s.name):s.name,value:s.value,fit:statFit(s.id,plan.mode)})),...detail.subSkills.map(s=>({key:'skill:'+s.id,name:skillName(catalog.skills.find(x=>x.id===String(s.id))?.name||s.name),value:'+'+s.level,fit:skillFit(String(s.id),known,used,inactive)}))]:[];
- const advice=equipmentAdvice({detail,referenceLevel,investment,budget,unwanted:options.filter(o=>o.fit==='mismatch'||unwanted.includes(o.key)).length,reviewed});
+ const options=detail?[...detail.subStats.map(s=>({key:'stat:'+s.id,name:locale==='ko'?(index?.stats[s.id]?.ko||s.name):s.name,value:s.value,fit:statFit(s.id,adviceMode)})),...detail.subSkills.map(s=>({key:'skill:'+s.id,name:skillName(catalog.skills.find(x=>x.id===String(s.id))?.name||s.name),value:'+'+s.level,fit:skillFit(String(s.id),known,used,inactive)}))]:[];
+ const advice=equipmentAdvice({detail,referenceLevel,investment,budget,unwanted:unwanted.length,reviewed});
  return <div className="actual-options">
   <h4>{t(mine?'내 장비의 실제 옵션':'랭커 장비의 실제 옵션')}</h4>
   {!item||!identity?<p>{t('캐릭터 또는 해당 부위의 조회 정보가 없습니다.')}</p>:loading?<p role="status">{t('실제 장착 옵션 조회 중…')}</p>:error?<><p role="alert">{t(error)}</p><button className="button ghost" onClick={()=>setRetry(n=>n+1)}>{t('다시 조회')}</button></>:detail&&<>
    <b>{detail.name}</b><p>{t('아이템 레벨 {0}',[detail.level])}</p>
    <p className="subtle">{t('아래는 이번 공식 응답의 실제 무작위 옵션과 스킬입니다. 기본 능력치·마석·신석은 투자 판단에서 제외합니다.')}</p>
    {!options.length&&<p>{t('공개된 무작위 옵션이 없습니다.')}</p>}
-   <ul className="rolled-options">{options.map((o,i)=><li key={o.key+':'+i}><span><b>{o.name}</b> {o.value}</span>{mine&&<><small className={'option-fit '+o.fit}>{t(FIT[o.fit])}</small>{o.fit!=='mismatch'&&<label><input type="checkbox" checked={unwanted.includes(o.key)} onChange={e=>{setReviewed(false);setUnwanted(v=>e.target.checked?[...v,o.key]:v.filter(x=>x!==o.key));}}/>{t('이 옵션을 다른 옵션으로 바꾸고 싶어요')}</label>}</>}</li>)}</ul>
    {mine&&<div className="investment-advice">
-    <h4>{t('이 장비에 투자해도 될까?')}</h4><p>{t('옵션 변경 체크는 조율 후보를 고르는 표시입니다. 체크만으로 게임 장비가 바뀌지는 않습니다.')}</p>
-    <p>{t('랭커 장비 레벨 {0}은 비교 정보입니다. 낮다는 이유만으로 투자를 막지 않습니다. 70레벨은 이 사이트의 성장 상담 기준이며 공식 필수 조건이 아닙니다.',[referenceLevel??'?'])}</p>
+    <h4>{t('이 장비로 무엇을 하고 싶나요?')}</h4>
+    <label>{t('장비 안내의 사용 목적')}<select value={purpose} onChange={e=>{setPurpose(e.target.value);setReviewed(false);setUnwanted([]);}}>
+     <option value="build">{t('현재 빌드 기준')}</option><option value="solo">{t('혼자 사냥')}</option><option value="attack">{t('파티에서 공격')}</option><option value="heal">{t('파티에서 회복')}</option><option value="pvp">{t('유저와 전투')}</option>
+    </select></label>
+    <p className="subtle">{t('이 선택은 아래 안내만 바꿉니다. 스킬 배치와 저장된 빌드는 바뀌지 않습니다. 회복량·생존력의 정확한 효율은 계산하지 않습니다.')}</p>
+   </div>}
+   <ul className="rolled-options">{options.map((o,i)=><li key={o.key+':'+i}><span><b>{o.name}</b> {o.value}</span>{mine&&<><small className={'option-fit '+o.fit}>{t(FIT[o.fit])}</small><small>{t(optionReason(o.key.startsWith('skill:')?'skill':'stat',o.fit))}</small><label><input type="checkbox" checked={unwanted.includes(o.key)} onChange={e=>{setReviewed(false);setUnwanted(v=>e.target.checked?[...v,o.key]:v.filter(x=>x!==o.key));}}/>{t('이 옵션을 다른 옵션으로 바꾸고 싶어요')}</label></>}</li>)}</ul>
+   {mine&&<div className="investment-advice">
+    <h4>{t('이 장비, 지금 무엇부터 할까요?')}</h4><p>{t('옵션 변경 체크는 조율 후보를 고르는 표시입니다. 체크만으로 게임 장비가 바뀌지는 않습니다.')}</p>
+    <p>{t('랭커 장비 레벨 {0}은 참고 정보입니다. 레벨이 낮거나 옵션이 다르다는 이유만으로 교체·조율을 권하지 않습니다.',[referenceLevel??t('미확인')])}</p>
     <label>{t('이 장비를 언제까지 쓸 예정인가요?')}<select value={investment} onChange={e=>setInvestment(e.target.value as Investment)}><option value="unknown">{t('아직 미정')}</option><option value="replace">{t('곧 교체')}</option><option value="progress">{t('다음 던전 장비를 얻을 때까지')}</option><option value="keep">{t('장기 사용')}</option></select></label>
     <label><input type="checkbox" checked={budget} onChange={e=>setBudget(e.target.checked)}/>{t('이 장비의 성장에 쓸 재료와 비용을 확인했어요')}</label>
     <label><input type="checkbox" checked={reviewed} onChange={e=>setReviewed(e.target.checked)}/>{t('모든 옵션이 내 운용에 필요한지 확인했어요')}</label>
+    <h5>{t('1. 지금 확인할 것')}</h5>
     <p className={'advice-result advice-'+advice} role="status">{t(ADVICE[advice])}</p>
+    <h5>{t('2. 바꾸기 전에 볼 것')}</h5>
+    <p>{unwanted.length?t('직접 고른 변경 후보 {0}개입니다. 게임에서 해당 줄을 바꿀 수 있는지, 다른 옵션이 유지되는지, 재료가 얼마나 드는지 확인하세요.',[unwanted.length]):t('아직 변경 후보를 고르지 않았습니다. 랭커와 다르다는 이유만으로 바꾸지 않아도 됩니다.')}</p>
+    <h5>{t('3. 어디서 멈추면 될까요?')}</h5>
+    <p>{t('현재 목적에 맞는 옵션이라면 더 좋은 옵션만 노리며 반복할 필요는 없습니다. 사용할 재료의 한도를 먼저 정하고, 한도에 도달하면 다시 판단하세요.')}</p>
+    <details><summary>{t('강화·조율·영혼각인, 확인이 필요한 정보')}</summary><p>{t('적정 강화 수치, 목표 옵션의 등장 여부와 확률, 작업 순서, 계승·귀속 조건은 여기서 확정하지 않습니다. 게임 안의 대상 장비 설명과 공식 안내를 확인해 주세요.')}</p><p>{t('현재 장비와 새 장비의 강화·영석 상태가 다르면 지금 보이는 수치만으로 어느 장비가 더 좋은지 결정할 수 없습니다.')}</p></details>
    </div>}
   </>}
  </div>;

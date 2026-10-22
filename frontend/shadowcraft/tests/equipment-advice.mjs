@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl} from './modules.mjs';
-const {parseEquippedDetail,statFit,skillFit,equipmentAdvice}=await import(moduleUrl(readFileSync('lib/equipment-advice.ts','utf8')));
+const {parseEquippedDetail,statFit,skillFit,equipmentAdvice,optionReason}=await import(moduleUrl(readFileSync('lib/equipment-advice.ts','utf8')));
 const expected={itemId:123,enchant:15,slot:1,id:'character',server:'1304',region:'eu'};
 const response={characterId:'character',serverId:'1304',region:'eu',slotPos:1,item:{id:123,name:'Sword',level:102,enchantLevel:15,subStatRandom:true,subStats:[{id:'PvPAmplifyDamage',name:'PvP Damage Boost',value:'7%'}]}};
 const detail=parseEquippedDetail(response,expected);assert(detail);assert.deepEqual(detail.subSkills,[]);
@@ -17,10 +17,17 @@ assert.equal(skillFit('2',['1','2'],['2'],[]),'priority');
 assert.equal(skillFit('3',['1','2'],['2'],[]),'review','unknown class skill does not imply useless');
 const ready={detail,referenceLevel:102,investment:'keep',budget:true,unwanted:0,reviewed:true};
 assert.equal(equipmentAdvice(ready),'engrave');
-for(const [patch,result] of [[{investment:'replace'},'replace'],[{detail:null},'unknown'],[{detail:missing},'unknown'],[{referenceLevel:null},'engrave'],[{referenceLevel:NaN},'engrave'],[{referenceLevel:103,unwanted:1},'tune'],[{detail:{...detail,level:20}},'low'],[{budget:false,unwanted:1},'budget'],[{investment:'unknown'},'plan'],[{detail:{...detail,subStatRandom:false}},'unsupported'],[{unwanted:1},'tune'],[{reviewed:false},'review']])assert.equal(equipmentAdvice({...ready,...patch}),result);
+for(const [patch,result] of [[{investment:'replace'},'replace'],[{detail:null},'unknown'],[{detail:missing},'unknown'],[{referenceLevel:null},'engrave'],[{referenceLevel:NaN},'engrave'],[{referenceLevel:103,unwanted:1},'tune'],[{detail:{...detail,level:20}},'engrave'],[{budget:false,unwanted:1},'budget'],[{investment:'unknown'},'plan'],[{detail:{...detail,subStatRandom:false}},'unsupported'],[{unwanted:1},'tune'],[{reviewed:false},'review']])assert.equal(equipmentAdvice({...ready,...patch}),result);
 const before=JSON.stringify(response);parseEquippedDetail(response,expected);equipmentAdvice(ready);assert.equal(JSON.stringify(response),before);
 console.log('Equipment advice: actual-roll identity, malformed/unknown data, content and skill fit, replacement/level/budget guards, conditional tuning/engraving PASS');
 
 for(const level of [70,80])assert.equal(equipmentAdvice({...ready,detail:{...detail,level},referenceLevel:120,unwanted:1,investment:'progress'}),'tune');
 assert.equal(equipmentAdvice({...ready,investment:'progress'}),'progress');
 assert.equal(equipmentAdvice({...ready,detail:{...detail,level:60},investment:'progress'}),'progress');
+
+assert.equal(equipmentAdvice({...ready,detail:{...detail,level:1},investment:'progress'}),'progress','level alone must not block growth');
+
+assert.match(optionReason('stat','review'),/나쁜 옵션이라는 뜻은 아닙니다/);
+assert.match(optionReason('skill','mismatch'),/사용할 예정이라면 유지/);
+assert.match(optionReason('stat','priority'),/계산하지 않았습니다/);
+assert.equal(equipmentAdvice({...ready,unwanted:0,reviewed:false}),'review','a different purpose is not automatic authorization to tune');
