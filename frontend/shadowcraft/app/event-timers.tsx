@@ -28,9 +28,11 @@ export default function EventTimers({children,expanded=false}:{children?:ReactNo
  function startStripDrag(e:ReactPointerEvent<HTMLDivElement>){
   const strip=e.currentTarget;
   // Touch keeps native scrolling and inertia; only the compact header uses mouse dragging.
-  if(expanded||e.pointerType!=='mouse'||e.button!==0||!e.isPrimary||strip.scrollWidth<=strip.clientWidth)return;
+  if(expanded||e.pointerType!=='mouse'||e.button!==0||!e.isPrimary)return;
+  // Pointer scrolling should not inherit a keyboard focus ring. Tab still focuses the strip.
   e.preventDefault();
-  strip.focus({preventScroll:true});
+  if(document.activeElement===strip)strip.blur();
+  if(strip.scrollWidth<=strip.clientWidth)return;
   stripDrag.current={pointerId:e.pointerId,startX:e.clientX,scrollLeft:strip.scrollLeft};
   strip.setPointerCapture(e.pointerId);
   strip.dataset.dragging='true';

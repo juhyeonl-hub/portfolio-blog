@@ -69,6 +69,7 @@
 .event-timer-header:not(.event-timer-page) .event-timer-strip{scrollbar-width:none;padding-bottom:0;cursor:grab;user-select:none;-webkit-user-select:none}
 .event-timer-header:not(.event-timer-page) .event-timer-strip::-webkit-scrollbar{display:none}
 .event-timer-header:not(.event-timer-page) .event-timer-strip[data-dragging=true]{cursor:grabbing}
+.event-timer-header:not(.event-timer-page) .event-timer-strip:focus:not(:focus-visible){outline:none}
 .event-timer-header:not(.event-timer-page) .event-timer-strip:focus-visible{outline:2px solid var(--accent,#8edbc8);outline-offset:2px}
 .event-timer-card{flex:1;min-width:115px;display:grid;gap:3px;padding:6px 12px;background:#202331;border-radius:7px;border:1px solid #343846}
 .event-timer-card b{font-size:12px}.event-timer-card strong{font-size:16px;font-variant-numeric:tabular-nums;color:#c3eeff;white-space:nowrap}.event-timer-card small{font-size:10px;color:#b1bfc5}
