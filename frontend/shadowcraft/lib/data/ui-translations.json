@@ -9748,5 +9748,95 @@
     "en": "Level 45 uses a completed-content baseline. If you have not finished or your total differs, edit the numbers below.",
     "ja": "レベル45はコンテンツ完了を前提に案内します。未完了の場合や合計が異なる場合は、下の数値を修正してください。",
     "fi": "Tasolla 45 oletetaan sisältö suoritetuksi. Jos et ole vielä valmis tai pistemääräsi on eri, muokkaa alla olevia lukuja."
+  },
+  "전체 화면을 열지 못했습니다. 현재 페이지에서도 모든 타이머를 볼 수 있습니다.": {
+    "en": "Fullscreen could not open. All timers are still available on this page.",
+    "ja": "全画面表示を開けませんでした。このページでもすべてのタイマーを確認できます。",
+    "fi": "Koko näytön tilaa ei voitu avata. Kaikki ajastimet näkyvät silti tällä sivulla."
+  },
+  "전체 화면 닫기": {
+    "en": "Exit fullscreen",
+    "ja": "全画面表示を終了",
+    "fi": "Poistu koko näytöstä"
+  },
+  "타이머만 크게 보기": {
+    "en": "Show timers fullscreen",
+    "ja": "タイマーを全画面表示",
+    "fi": "Näytä ajastimet koko näytöllä"
+  },
+  "게임을 하면서 출현 시간을 한눈에 확인하세요. 헤더에 고정한 콘텐츠도 함께 사용할 수 있습니다.": {
+    "en": "Keep spawn timers visible while you play. Use the same pinned content as your header.",
+    "ja": "プレイしながら出現時間を一覧で確認できます。ヘッダーに固定したコンテンツも使えます。",
+    "fi": "Seuraa ilmestymisaikoja pelatessasi. Voit käyttää myös yläpalkkiin kiinnittämiäsi sisältöjä."
+  },
+  "표시할 콘텐츠": {
+    "en": "Content to show",
+    "ja": "表示するコンテンツ",
+    "fi": "Näytettävä sisältö"
+  },
+  "전체 콘텐츠": {
+    "en": "All content",
+    "ja": "すべてのコンテンツ",
+    "fi": "Kaikki sisältö"
+  },
+  "내가 고정한 콘텐츠": {
+    "en": "My pinned content",
+    "ja": "固定したコンテンツ",
+    "fi": "Kiinnittämäni sisältö"
+  },
+  "콘텐츠 검색": {
+    "en": "Search content",
+    "ja": "コンテンツ検索",
+    "fi": "Hae sisältöä"
+  },
+  "타이머 분류": {
+    "en": "Timer category",
+    "ja": "タイマーの分類",
+    "fi": "Ajastinluokka"
+  },
+  "표시 중 {0}개": {
+    "en": "Showing {0}",
+    "ja": "{0}件を表示中",
+    "fi": "Näytetään {0}"
+  },
+  "관측 기록과 참고 일정이며 실제 출현과 다를 수 있습니다.": {
+    "en": "Based on observations and reference schedules; actual spawns may differ.",
+    "ja": "観測記録と参考スケジュールのため、実際の出現と異なる場合があります。",
+    "fi": "Perustuu havaintoihin ja viitteellisiin aikatauluihin. Todelliset ilmestymisajat voivat poiketa."
+  },
+  "콘텐츠 타이머 목록": {
+    "en": "Content timer list",
+    "ja": "コンテンツタイマー一覧",
+    "fi": "Sisältöajastimet"
+  },
+  "{0} 헤더에 고정": {
+    "en": "Pin {0} to header",
+    "ja": "{0}をヘッダーに固定",
+    "fi": "Kiinnitä {0} yläpalkkiin"
+  },
+  "헤더에 고정": {
+    "en": "Pin to header",
+    "ja": "ヘッダーに固定",
+    "fi": "Kiinnitä yläpalkkiin"
+  },
+  "고정됨": {
+    "en": "Pinned",
+    "ja": "固定済み",
+    "fi": "Kiinnitetty"
+  },
+  "조건에 맞는 콘텐츠가 없습니다. 검색어나 분류를 바꿔 보세요.": {
+    "en": "No matching content. Change your search or category.",
+    "ja": "条件に合うコンテンツがありません。検索語や分類を変更してください。",
+    "fi": "Ei hakua vastaavaa sisältöä. Vaihda hakusanaa tai luokkaa."
+  },
+  "고정한 콘텐츠가 없습니다. 전체 콘텐츠에서 헤더에 고정할 항목을 선택하세요.": {
+    "en": "No pinned content. Choose items to pin from All content.",
+    "ja": "固定したコンテンツがありません。すべてのコンテンツから固定する項目を選んでください。",
+    "fi": "Ei kiinnitettyä sisältöä. Valitse kiinnitettävät kohteet Kaikki sisältö -näkymästä."
+  },
+  "이벤트": {
+    "en": "Events",
+    "ja": "イベント",
+    "fi": "Tapahtumat"
   }
 }

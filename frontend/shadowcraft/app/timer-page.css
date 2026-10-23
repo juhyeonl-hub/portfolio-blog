@@ -1,0 +1,28 @@
+/* Dedicated timer board. The compact header keeps its existing layout. */
+.event-timer-page{position:relative;top:auto;z-index:auto;padding:0;border:0;background:transparent;backdrop-filter:none;min-width:0;display:flex;flex-direction:column;gap:16px}
+.event-timer-page .event-timer-toolbar{margin:0;gap:12px;font-size:13px;order:0}
+.event-timer-page h1{font-size:24px;margin:0;line-height:1.4}
+.event-timer-page .event-timer-toolbar>span{flex-basis:100%;white-space:normal;overflow:visible}
+.event-timer-page .event-timer-controls{margin:0;flex-wrap:wrap;flex-basis:100%}
+.event-timer-page .event-timer-controls .button{font-size:12px;min-height:44px;padding:8px 12px}
+.event-timer-page .event-timer-pins,.event-timer-page .event-timer-settings{position:static;width:100%;max-width:none;max-height:none;overflow:visible;margin:0;box-sizing:border-box;border-radius:10px;box-shadow:none;order:1}
+.event-timer-page .event-boss-options{max-height:none}
+.timer-page-filters{display:flex;flex-wrap:wrap;align-items:end;gap:12px;order:2}
+.timer-page-filters p{flex-basis:100%;margin:0;font-size:13px;color:var(--muted);line-height:1.7}
+.timer-page-view{display:flex;gap:6px;flex-wrap:wrap}
+.timer-page-view .button[aria-pressed=true],.timer-card-pin[aria-pressed=true]{border-color:#6198ad;background:#20323c;color:#d9f3ff}
+.timer-page-filters>label{display:grid;gap:5px;flex:1 1 220px;font-size:12px}
+.timer-page-filters input{width:100%;min-width:0;box-sizing:border-box;background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:10px}
+.timer-page-filters .event-boss-categories{flex-basis:100%}
+.event-timer-page .event-timer-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));overflow:visible;gap:12px;padding:0;order:3}
+.event-timer-page .event-timer-card{min-width:0;grid-template-columns:minmax(0,1fr);align-content:start;gap:12px;padding:18px;min-height:180px;box-sizing:border-box}
+.event-timer-page .event-timer-card b{font-size:15px;line-height:1.5}.event-timer-page .event-boss-side{display:block;margin-top:4px;font-size:12px;font-weight:400;color:var(--muted)}
+.event-timer-page .event-timer-card strong{text-align:left;font-size:30px;line-height:1.2;white-space:normal;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.event-timer-page .event-timer-card small{font-size:12px;line-height:1.5}
+.event-timer-page .timer-card-pin{justify-self:start;min-height:40px;margin-top:auto}
+.event-timer-page .event-timer-empty{display:grid;justify-items:start;gap:14px;padding:24px;border:1px dashed var(--line);border-radius:10px;font-size:14px;order:3}
+.event-timer-page .event-timer-error{order:2}.timer-no-results{grid-column:1/-1;padding:20px;color:var(--muted)}
+.event-timer-page:fullscreen{padding:24px;background:var(--bg,#0d1019);color:var(--text,#eee);overflow:auto;box-sizing:border-box;display:flex}
+.event-timer-page:fullscreen>*{margin-bottom:20px}
+@media(max-width:600px){.event-timer-page h1{font-size:22px}.event-timer-page .event-timer-controls .button{flex:1 1 140px}.event-timer-page .event-timer-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.event-timer-page .event-timer-card{padding:12px;gap:10px}.event-timer-page .event-timer-card b{font-size:13px}.event-timer-page .event-timer-card strong{font-size:22px}.event-timer-page .event-timer-card small,.event-timer-page .event-boss-side{font-size:11px}.timer-page-filters .event-boss-categories .button{flex:1 1 25%;min-height:42px}.event-timer-page:fullscreen{padding:12px}}
+@media(max-width:350px){.event-timer-page .event-timer-strip{grid-template-columns:1fr}}
