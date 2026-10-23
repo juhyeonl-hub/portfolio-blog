@@ -15,11 +15,11 @@ assert.equal(countdown(now+1000,now),'00:00:01');
 assert.equal(countdown(now-1000,now),'00:00:00');
 assert.equal(scheduleMinutes('shugo',emptyServer()).length,24);
 assert.deepEqual(scheduleMinutes('gartua',emptyServer()),[]);
-assert.deepEqual(scheduleMinutes('dimension',{...emptyServer(),dimension:'rift'}),[120,300,480,660,840,1020,1200,1380]);
+assert.deepEqual(scheduleMinutes('rift',emptyServer()),[120,300,480,660,840,1020,1200,1380]);
 assert.deepEqual(scheduleMinutes('shugo',{...emptyServer(),times:{shugo:''}}),[]);
 const settings={...emptySettings(),server:'1301',profiles:{'eu:1301':{...emptyServer(),offset:0,times:{gartua:'09:00'}}}};
 assert.deepEqual(parseSettings(JSON.stringify(settings)),settings);
-for(const profile of [{offset:9999},{hidden:['fake']},{times:{gartua:'25:00'}},{dimension:'fake'},{times:[]}])assert.throws(()=>parseSettings(JSON.stringify({...settings,profiles:{'eu:1301':{...emptyServer(),...profile}}})));
+for(const profile of [{offset:9999},{hidden:['fake']},{times:{gartua:'25:00'}},{times:[]}])assert.throws(()=>parseSettings(JSON.stringify({...settings,profiles:{'eu:1301':{...emptyServer(),...profile}}})));
 console.log('Timers: midnight/second/offset boundaries, missing schedules, defaults, validation and settings roundtrip PASS');
 
 assert.equal(nextZonedOccurrence(Date.parse('2026-01-01T00:00:00Z'),[9*60],'Asia/Seoul'),Date.parse('2026-01-01T00:00:00Z'));
@@ -35,14 +35,14 @@ assert.equal(parseSettings(JSON.stringify({...settings,profiles:{'eu:1301':{...e
 assert.throws(()=>parseSettings(JSON.stringify({...settings,profiles:{'eu:1301':{...emptyServer(),timeZone:'Mars/Unknown'}}})));
 console.log('Country time zones: Seoul, Helsinki summer/winter, DST gap/fold, exact boundary, legacy offset and validation PASS');
 
-const rift={...emptyServer(),dimension:'rift',timeZone:'Asia/Seoul'};
+const rift={...emptyServer(),timeZone:'Asia/Seoul'};
 const instant=Date.parse('2026-10-17T00:01:00Z');
 for(const [region,time] of [['eu','03:00'],['nae','03:00'],['naw','03:00'],['la','02:00'],['as','02:00']]){
-  assert.equal(nextContentOccurrence(instant,'dimension',rift,region),Date.parse(`2026-10-17T${time}:00Z`));
+  assert.equal(nextContentOccurrence(instant,'rift',rift,region),Date.parse(`2026-10-17T${time}:00Z`));
 }
-assert.equal(nextContentOccurrence(instant,'dimension',{...rift,times:{dimension:'11:00'}},'eu'),Date.parse('2026-10-17T02:00:00Z'));
-assert.equal(nextContentOccurrence(instant,'dimension',{...rift,times:{dimension:''}},'eu'),null);
-assert.equal(nextContentOccurrence(instant,'dimension',rift,'unknown'),null);
+assert.equal(nextContentOccurrence(instant,'rift',{...rift,times:{rift:'11:00'}},'eu'),Date.parse('2026-10-17T02:00:00Z'));
+assert.equal(nextContentOccurrence(instant,'rift',{...rift,times:{rift:''}},'eu'),null);
+assert.equal(nextContentOccurrence(instant,'rift',rift,'unknown'),null);
 console.log('Regional default rifts, visitor clock independence, explicit manual/empty overrides PASS');
 
 const legacyPins={...settings,profiles:{'eu:1301':{...emptyServer(),hidden:['tartan'],times:{gartua:'09:00'}}}};
@@ -96,3 +96,46 @@ assert(selectedBossIds(schedulePins,2).includes(kaira.id));
 assert.deepEqual(setBossPinned(schedulePins,1,kaira.id,false).pinnedSchedules,[]);
 for(const pinnedSchedules of [null,{},[1],['2001'],['scheduled:invented'],[kaira.id,kaira.id]])assert.throws(()=>parseSettings(JSON.stringify({...expanded,pinnedSchedules})));
 console.log('Scheduled Abyss bosses:5names, weekly region clocks, EU/US DST, gap/fold, next-week gap, local weekday, cache, separate compatible pins PASS');
+
+// The two different events must remain visible and configurable at the same time.
+assert.deepEqual(pinnedTimers(emptySettings()).slice(0,3),['shugo','invasion','rift']);
+assert.equal(nextContentOccurrence(instant,'invasion',rift,'eu'),Date.parse('2026-10-17T00:30:00Z'));
+assert.equal(nextContentOccurrence(instant,'rift',rift,'eu'),Date.parse('2026-10-17T03:00:00Z'));
+const separateTimes={...rift,times:{invasion:'11:00',rift:'14:00'}};
+assert.equal(nextContentOccurrence(instant,'invasion',separateTimes,'eu'),Date.parse('2026-10-17T02:00:00Z'));
+assert.equal(nextContentOccurrence(instant,'rift',separateTimes,'eu'),Date.parse('2026-10-17T05:00:00Z'));
+assert.equal(nextContentOccurrence(instant,'invasion',{...separateTimes,times:{invasion:'',rift:'14:00'}},'eu'),null);
+assert.equal(nextContentOccurrence(instant,'rift',{...separateTimes,times:{invasion:'',rift:'14:00'}},'eu'),Date.parse('2026-10-17T05:00:00Z'));
+assert.deepEqual(pinnedTimers(parseSettings(JSON.stringify({...settings,pinned:['invasion','rift']}))),['invasion','rift']);
+assert.deepEqual(pinnedTimers(parseSettings(JSON.stringify({...settings,pinned:['rift']}))),['rift']);
+assert.equal(parseSettings(JSON.stringify({...settings,profiles:{'eu:1301':{...emptyServer(),hidden:['shugo','invasion','rift','gartua','lagta','kashapa','tartan']}}})).profiles['eu:1301'].hidden.length,7);
+for(const invalid of [{...settings,version:3},{...settings,pinned:['dimension']},{...settings,profiles:{'eu:1301':{...emptyServer(),times:{dimension:'09:00'}}}}])assert.throws(()=>parseSettings(JSON.stringify(invalid)));
+
+const v1={version:1,region:'eu',server:'1301',pinned:['dimension','gartua'],pinnedBosses:['2001'],pinnedSchedules:['scheduled:watcher-kaira'],profiles:{
+ 'eu:1301':{offset:120,timeZone:'Asia/Seoul',dimension:'rift',hidden:['dimension','tartan'],times:{dimension:'11:00',gartua:'09:00'}},
+ 'eu:1302':{offset:-240,dimension:'invasion',hidden:[],times:{dimension:'18:30'}}
+}};
+const original=JSON.stringify(v1),migrated=parseSettings(original);
+assert.equal(migrated.version,2);
+assert.deepEqual(migrated.pinned,['rift','gartua']);
+assert.deepEqual(migrated.pinnedBosses,v1.pinnedBosses);
+assert.deepEqual(migrated.pinnedSchedules,v1.pinnedSchedules);
+assert.deepEqual(migrated.profiles['eu:1301'],{offset:120,timeZone:'Asia/Seoul',hidden:['rift','tartan','invasion'],times:{rift:'11:00',gartua:'09:00'}});
+assert.deepEqual(migrated.profiles['eu:1302'],{offset:-240,hidden:['rift'],times:{invasion:'18:30'}});
+assert.equal(nextContentOccurrence(instant,'rift',migrated.profiles['eu:1301'],'eu'),Date.parse('2026-10-17T02:00:00Z'));
+assert.equal(nextContentOccurrence(instant,'invasion',migrated.profiles['eu:1301'],'eu'),Date.parse('2026-10-17T00:30:00Z'));
+assert.deepEqual(parseSettings(JSON.stringify(migrated)),migrated);
+assert.equal(JSON.stringify(v1),original);
+assert.deepEqual(parseSettings(JSON.stringify({...v1,pinned:[]})).pinned,[]);
+assert.deepEqual(parseSettings(JSON.stringify({...v1,server:'1302'})).pinned,['invasion','gartua']);
+const noExplicitPin={...v1};delete noExplicitPin.pinned;
+const migratedProfiles=parseSettings(JSON.stringify(noExplicitPin));
+assert.equal(migratedProfiles.pinned,undefined);
+assert.deepEqual(pinnedTimers(migratedProfiles),['shugo','gartua','lagta','kashapa']);
+assert.deepEqual(pinnedTimers({...migratedProfiles,server:'1302'}),['shugo','invasion','gartua','lagta','kashapa','tartan']);
+assert.deepEqual(pinnedTimers(parseSettings(JSON.stringify({version:1,region:'eu',server:'',profiles:{}}))),['shugo','invasion','rift','gartua','lagta','kashapa','tartan']);
+const disabled=parseSettings(JSON.stringify({...v1,profiles:{'eu:1301':{...v1.profiles['eu:1301'],times:{dimension:''}}}}));
+assert.equal(nextContentOccurrence(instant,'rift',disabled.profiles['eu:1301'],'eu'),null);
+assert.notEqual(nextContentOccurrence(instant,'invasion',disabled.profiles['eu:1301'],'eu'),null);
+for(const invalid of [{...v1,pinned:['rift']},{...v1,profiles:{'eu:1301':{...v1.profiles['eu:1301'],dimension:'fake'}}},{...v1,profiles:{'eu:1301':{...v1.profiles['eu:1301'],times:{dimension:'25:00'}}}}])assert.throws(()=>parseSettings(JSON.stringify(invalid)));
+console.log('Separate invasion/rift: simultaneous defaults, independent pins/manual times, v1 migrations for both events/servers, empty pins/disabled schedules, clock/boss preservation and idempotent reload PASS');

@@ -1,17 +1,20 @@
 export const SCHEDULED_BOSS_IDS:string[]=["scheduled:watcher-kaira", "scheduled:guardian-nahma", "scheduled:executor-tamasa", "scheduled:executor-argo", "scheduled:executor-kaira"];
 export type BossSchedule={days:number[];starts:number[]};
-export const TIMER_IDS=['shugo','dimension','gartua','lagta','kashapa','tartan'] as const;
+export const EVENT_TIMER_IDS=['shugo','invasion','rift'] as const;
+export const TIMER_IDS=[...EVENT_TIMER_IDS,'gartua','lagta','kashapa','tartan'] as const;
+const LEGACY_TIMER_IDS=['shugo','dimension','gartua','lagta','kashapa','tartan'] as const;
 export type TimerId=typeof TIMER_IDS[number];
-export const TIMER_NAMES:Record<TimerId,string>={shugo:'슈고',dimension:'차원',gartua:'가르투아',lagta:'라그타',kashapa:'지배 카샤파',tartan:'타르탄'};
+export const TIMER_NAMES:Record<TimerId,string>={shugo:'슈고',invasion:'차원 침공',rift:'시공의 균열',gartua:'가르투아',lagta:'라그타',kashapa:'지배 카샤파',tartan:'타르탄'};
+// Keep the storage key so existing version-1 settings can be migrated on read.
 export const TIMER_KEY='a2bc-event-timers-v1';
 /** Fired in this tab after the timer settings are saved (other tabs get the storage event). */
 export const TIMER_SETTINGS_EVENT='asbc-timer-settings';
-export type ServerTimers={offset:number|null;timeZone?:string;dimension:'invasion'|'rift';hidden:TimerId[];times:Partial<Record<TimerId,string>>};
-export type TimerSettings={version:1;region:string;server:string;pinned?:TimerId[];pinnedBosses?:string[];pinnedSchedules?:string[];profiles:Record<string,ServerTimers>};
+export type ServerTimers={offset:number|null;timeZone?:string;hidden:TimerId[];times:Partial<Record<TimerId,string>>};
+export type TimerSettings={version:2;region:string;server:string;pinned?:TimerId[];pinnedBosses?:string[];pinnedSchedules?:string[];profiles:Record<string,ServerTimers>};
 // Old profiles keep their hidden selection until the user explicitly chooses common pins.
 export function pinnedTimers(settings:TimerSettings):TimerId[]{return settings.pinned??TIMER_IDS.filter(id=>!(settings.profiles[settings.region+':'+settings.server]?.hidden||[]).includes(id))}
-export const emptySettings=():TimerSettings=>({version:1,region:'eu',server:'',profiles:{}});
-export const emptyServer=():ServerTimers=>({offset:null,dimension:'invasion',hidden:[],times:{}});
+export const emptySettings=():TimerSettings=>({version:2,region:'eu',server:'',profiles:{}});
+export const emptyServer=():ServerTimers=>({offset:null,hidden:[],times:{}});
 export const TIME_ZONES=[
  ['Asia/Seoul','대한민국 · 서울'],['Europe/Helsinki','핀란드 · 헬싱키'],
  ['Europe/London','영국 · 런던'],['Europe/Berlin','독일 · 베를린'],['Europe/Paris','프랑스 · 파리'],
@@ -35,14 +38,26 @@ export function parseTimes(value:string):number[]{
 }
 export function parseSettings(raw:string):TimerSettings{
  const x=JSON.parse(raw);
- if(x?.version!==1||!['eu','nae','naw','la','as'].includes(x.region)||typeof x.server!=='string'||!/^\d{0,8}$/.test(x.server)||!x.profiles||Array.isArray(x.profiles)||typeof x.profiles!=='object'||Object.keys(x.profiles).length>200)throw Error('타이머 설정을 읽을 수 없습니다.');
- if(x.pinned!==undefined&&(!Array.isArray(x.pinned)||x.pinned.length>TIMER_IDS.length||new Set(x.pinned).size!==x.pinned.length||x.pinned.some((id:TimerId)=>!TIMER_IDS.includes(id))))throw Error('타이머 설정 형식이 잘못되었습니다.');
+ if(![1,2].includes(x?.version)||!['eu','nae','naw','la','as'].includes(x.region)||typeof x.server!=='string'||!/^\d{0,8}$/.test(x.server)||!x.profiles||Array.isArray(x.profiles)||typeof x.profiles!=='object'||Object.keys(x.profiles).length>200)throw Error('타이머 설정을 읽을 수 없습니다.');
+ const validIds:readonly string[]=x.version===1?LEGACY_TIMER_IDS:TIMER_IDS;
+ if(x.pinned!==undefined&&(!Array.isArray(x.pinned)||x.pinned.length>validIds.length||new Set(x.pinned).size!==x.pinned.length||x.pinned.some((id:TimerId)=>!validIds.includes(id))))throw Error('타이머 설정 형식이 잘못되었습니다.');
  if(x.pinnedBosses!==undefined&&(!Array.isArray(x.pinnedBosses)||x.pinnedBosses.length>200||new Set(x.pinnedBosses).size!==x.pinnedBosses.length||x.pinnedBosses.some((id:unknown)=>typeof id!=='string'||! /^[1-9]\d{0,7}$/.test(id))))throw Error('타이머 설정 형식이 잘못되었습니다.');
  if(x.pinnedSchedules!==undefined&&(!Array.isArray(x.pinnedSchedules)||x.pinnedSchedules.length>SCHEDULED_BOSS_IDS.length||new Set(x.pinnedSchedules).size!==x.pinnedSchedules.length||x.pinnedSchedules.some((id:unknown)=>typeof id!=='string'||!SCHEDULED_BOSS_IDS.includes(id))))throw Error('타이머 설정 형식이 잘못되었습니다.');
- for(const [key,p] of Object.entries(x.profiles) as [string,ServerTimers][]){
-  if(!/^(eu|nae|naw|la|as):\d{1,8}$/.test(key)||!p||!(p.offset===null||(Number.isInteger(p.offset)&&p.offset>=-720&&p.offset<=840))||!['invasion','rift'].includes(p.dimension)||!Array.isArray(p.hidden)||p.hidden.length>6||new Set(p.hidden).size!==p.hidden.length||p.hidden.some(id=>!TIMER_IDS.includes(id))||!p.times||typeof p.times!=='object'||Array.isArray(p.times))throw Error('타이머 설정 형식이 잘못되었습니다.');
+ for(const [key,p] of Object.entries(x.profiles) as [string,ServerTimers&{dimension?:string}][]){
+  if(!/^(eu|nae|naw|la|as):\d{1,8}$/.test(key)||!p||!(p.offset===null||(Number.isInteger(p.offset)&&p.offset>=-720&&p.offset<=840))||(x.version===1&&!['invasion','rift'].includes(p.dimension||''))||!Array.isArray(p.hidden)||p.hidden.length>validIds.length||new Set(p.hidden).size!==p.hidden.length||p.hidden.some(id=>!validIds.includes(id))||!p.times||typeof p.times!=='object'||Array.isArray(p.times))throw Error('타이머 설정 형식이 잘못되었습니다.');
   if(p.timeZone!==undefined&&!TIME_ZONES.some(([zone])=>zone===p.timeZone))throw Error('지원하지 않는 국가·지역 시간대입니다.');
-  for(const [id,value] of Object.entries(p.times)){if(!TIMER_IDS.includes(id as TimerId)||typeof value!=='string'||value.length>300)throw Error('시간표 형식이 잘못되었습니다.');parseTimes(value);}
+  for(const [id,value] of Object.entries(p.times)){if(!validIds.includes(id)||typeof value!=='string'||value.length>300)throw Error('시간표 형식이 잘못되었습니다.');parseTimes(value);}
+ }
+ if(x.version===1){
+  // Migrate the selected legacy event without copying its manual time to the other event.
+  const active=x.profiles[x.region+':'+x.server];
+  const mapId=(id:string,kind:string):TimerId=>(id==='dimension'?kind:id) as TimerId;
+  const pinned=x.pinned?.map((id:string)=>mapId(id,active?.dimension||'invasion'));
+  const profiles=Object.fromEntries(Object.entries(x.profiles).map(([key,value])=>{
+   const {dimension,...p}=value as ServerTimers&{dimension:'invasion'|'rift'};
+   return [key,{...p,hidden:[...p.hidden.map(id=>mapId(id,dimension)),dimension==='rift'?'invasion':'rift'],times:Object.fromEntries(Object.entries(p.times).map(([id,time])=>[mapId(id,dimension),time]))}];
+  }));
+  return {...x,version:2,...(pinned!==undefined?{pinned}:{}),profiles};
  }
  return x;
 }
@@ -50,7 +65,8 @@ export function scheduleMinutes(id:TimerId,p:ServerTimers):number[]{
  if(p.times[id]!==undefined)return parseTimes(p.times[id]!);
  // Reference facts: A2Tools-Plugins/plugins/event-timers/README.md (2026-10-17).
  if(id==='shugo')return Array.from({length:24},(_,h)=>h*60);
- if(id==='dimension')return p.dimension==='invasion'?Array.from({length:24},(_,h)=>h*60+30):Array.from({length:8},(_,i)=>(2+i*3)*60);
+ if(id==='invasion')return Array.from({length:24},(_,h)=>h*60+30);
+ if(id==='rift')return Array.from({length:8},(_,i)=>(2+i*3)*60);
  return [];
 }
 export function nextOccurrence(now:number,minutes:number[],offset:number|null):number|null{
