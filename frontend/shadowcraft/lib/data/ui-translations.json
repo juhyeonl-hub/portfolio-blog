@@ -9888,5 +9888,45 @@
     "en": "Skills follow the in-game order. Orange borders mark planned levels above your actual levels. Open View build for the simple allocation.",
     "ja": "ゲーム内のスキル順に表示します。オレンジの枠は現在より高い目標です。簡単な配分は「ビルドを見る」で確認できます。",
     "fi": "Taidot ovat pelin järjestyksessä. Oranssi reunus merkitsee nykyistä korkeampaa tavoitetta. Yksinkertainen pistejako löytyy kohdasta Näytä suunnitelma."
+  },
+  "레벨링 (45 미만)": {
+    "en": "Leveling (under 45)",
+    "ja": "レベリング（45未満）",
+    "fi": "Tasonnosto (alle 45)"
+  },
+  "PvE (45부터 원정)": {
+    "en": "PvE (expeditions from 45)",
+    "ja": "PvE（45からの遠征）",
+    "fi": "PvE (retket tasolta 45)"
+  },
+  "PvP": {
+    "en": "PvP",
+    "ja": "PvP",
+    "fi": "PvP"
+  },
+  "레벨링: 현재 레벨에서 열리는 스킬과 데바니온으로 공격 위주 배분을 안내합니다.": {
+    "en": "Leveling: attack-focused allocation using skills and Daevanion available at your current level.",
+    "ja": "レベリング：現在のレベルで使えるスキルとデバニオンで、攻撃重視の配分を案内します。",
+    "fi": "Tasonnosto: hyökkäyspainotteinen jako nykyisellä tasolla avautuville taidoille ja Daevanionille."
+  },
+  "PvE: 45레벨 원정을 위한 직업별 보스·파티 가이드에 생존을 고려해 배분합니다.": {
+    "en": "PvE: class boss and party priorities with survival in mind for expeditions from level 45.",
+    "ja": "PvE：45レベルからの遠征に向けて、職業別のボス・パーティガイドに生存を考慮して配分します。",
+    "fi": "PvE: luokan pomo- ja ryhmäoppaaseen perustuva jako, jossa huomioidaan selviytyminen tason 45 retkillä."
+  },
+  "PvP: 유저와의 전투용 능력치와 데바니온을 우선합니다. 스킬은 기존 직업 가이드를 참고합니다.": {
+    "en": "PvP: prioritizes player-combat stats and Daevanion. Skills follow the existing class guide.",
+    "ja": "PvP：対人戦向けの能力値とデバニオンを優先します。スキルは既存の職業ガイドを参照します。",
+    "fi": "PvP: painottaa pelaajataistelun ominaisuuksia ja Daevanionia. Taidot perustuvat nykyiseen luokkaoppaaseen."
+  },
+  "레벨링·PvE는 입력한 레벨에 맞춰 선택됩니다. PvP는 직접 선택할 수 있습니다.": {
+    "en": "Leveling or PvE follows your entered level. You can select PvP separately.",
+    "ja": "レベリング・PvEは入力したレベルに合わせて選択されます。PvPは直接選べます。",
+    "fi": "Tasonnosto tai PvE valitaan syötetyn tason mukaan. PvP:n voi valita erikseen."
+  },
+  "현재 포인트 안에서 계산한 참고 배분이며, 콘텐츠별 최적 세팅을 검증한 결과는 아닙니다.": {
+    "en": "A reference allocation within your points, not a verified optimal setup for each activity.",
+    "ja": "現在のポイント内で計算した参考配分であり、コンテンツ別の最適構成を検証した結果ではありません。",
+    "fi": "Viitteellinen jako käytettävissä olevilla pisteillä, ei kullekin sisällölle optimaaliseksi varmennettu kokoonpano."
   }
 }

@@ -17,3 +17,10 @@
 .direct-build-options{display:flex;align-items:center;flex-wrap:wrap;gap:8px 20px;margin:10px 0}
 .direct-build-options .growth-purpose{margin:0}
 .direct-build .growth-section-heading{margin:12px 0}
+
+.direct-build-options .growth-purpose{flex-basis:100%;order:-1;gap:8px}
+.direct-build .growth-purpose>span{font-weight:600}
+.direct-build .growth-purpose .button[aria-pressed=true]{border-color:#79cced;background:#183847;color:#c9f0ff;box-shadow:inset 0 0 0 1px #79cced}
+.direct-build .growth-purpose .button:disabled{opacity:.45;cursor:not-allowed}
+.direct-build .growth-purpose-note{line-height:1.6;color:#c9e5ef;font-size:13px}
+@media(max-width:520px){.direct-build .growth-purpose{align-items:stretch}.direct-build .growth-purpose>span{flex-basis:100%}.direct-build .growth-purpose .button{flex:1 1 85px;padding:10px 6px;font-size:12px;white-space:normal;min-height:44px}}

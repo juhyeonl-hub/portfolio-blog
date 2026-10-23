@@ -1,7 +1,7 @@
 import {useEffect,useState} from 'react';
 import {useLocale} from './locale';
 import {isEndgamePointLevel,pointBudgetSourceLabel,type Catalog,type Plan,pointLimits,totals,finalLevel,equipmentBonus,boardBonus,maxBase} from '@/lib/planner';
-import {recommendBuild} from '@/lib/recommendation';
+import {BUILD_PURPOSES,PURPOSE_NAMES,PURPOSE_MODES,buildPurpose,purposeAvailable,recommendPurposeBuild} from '@/lib/build-purpose';
 import './leveling-guide.css';
 import './direct-build.css';
 
@@ -10,9 +10,10 @@ export default function QuickBuild({catalog,plan,onApply,onEdit,onChange,applied
  const {t,skill:localSkill,node:localNode,specialization}=useLocale();
  const [result,setResult]=useState<{source:Plan;catalog:Catalog;next:Plan}|null>(null);
  const [error,setError]=useState(''),[group,setGroup]=useState('active'),[selectedSkill,setSelectedSkill]=useState(''),[boardId,setBoardId]=useState(catalog.boards[0]?.id),[nodeId,setNodeId]=useState('');
+ const purpose=buildPurpose(plan);
  const points=pointLimits(catalog,plan),candidate=result?.source===plan&&result.catalog===catalog?result.next:null;
  // Debounce input; stale results are hidden immediately, never labelled as current.
- useEffect(()=>{setError('');const timer=setTimeout(()=>{try{setResult({source:plan,catalog,next:recommendBuild(catalog,plan)})}catch{setResult(null);setError(t('추천 계산에 실패했습니다. 레벨과 포인트를 확인하세요.'))}},150);return()=>clearTimeout(timer)},[catalog,plan,t]);
+ useEffect(()=>{setError('');const timer=setTimeout(()=>{try{setResult({source:plan,catalog,next:recommendPurposeBuild(catalog,plan)})}catch{setResult(null);setError(t('추천 계산에 실패했습니다. 레벨과 포인트를 확인하세요.'))}},150);return()=>clearTimeout(timer)},[catalog,plan,t]);
  const board=catalog.boards.find(b=>b.id===boardId)||catalog.boards[0],node=board?.nodes.find(n=>n.id===nodeId);
  const firstRow=Math.min(...board.nodes.map(n=>n.row)),lastRow=Math.max(...board.nodes.map(n=>n.row)),firstCol=Math.min(...board.nodes.map(n=>n.column)),lastCol=Math.max(...board.nodes.map(n=>n.column));
  const skills=catalog.skills.filter(s=>group==='stigma'?s.stigma:!s.stigma&&s.kind===group);
@@ -36,9 +37,10 @@ export default function QuickBuild({catalog,plan,onApply,onEdit,onChange,applied
   </details>
   <div className="direct-build-options">
   <label className="ascension-confirm"><input type="checkbox" checked={plan.ascensionGrade3Confirmed===true} onChange={e=>onChange({ascensionGrade3Confirmed:e.target.checked})}/>{t('게임에서 3차 승급을 완료했습니다')}</label>
-  <div className="growth-purpose"><span>{t('플레이 목적')}</span>{(['damage','safe','pvp'] as const).map((mode,i)=><button className={'button secondary '+(plan.mode===mode?'selected':'')} aria-pressed={plan.mode===mode} key={mode} onClick={()=>onChange({mode})}>{t(['사냥 · 공격','생존도 고려','유저와 전투'][i])}</button>)}</div>
+  <div className="growth-purpose" role="group" aria-label={t('플레이 목적')}><span>{t('플레이 목적')}</span>{BUILD_PURPOSES.map(value=><button type="button" className={'button secondary '+(purpose===value?'selected':'')} aria-pressed={purpose===value} disabled={!purposeAvailable(plan,value)} key={value} onClick={()=>onChange({mode:PURPOSE_MODES[value]})}>{t(PURPOSE_NAMES[value])}</button>)}</div>
   </div>
-  <p className="subtle">{t('레벨 제한과 포인트 안에서 계산한 참고 배분입니다. 레벨링 최적 효율을 검증한 정답은 아닙니다.')}</p>
+  <p className="growth-purpose-note" role="status">{t(purpose==='leveling'?'레벨링: 현재 레벨에서 열리는 스킬과 데바니온으로 공격 위주 배분을 안내합니다.':purpose==='pve'?'PvE: 45레벨 원정을 위한 직업별 보스·파티 가이드에 생존을 고려해 배분합니다.':'PvP: 유저와의 전투용 능력치와 데바니온을 우선합니다. 스킬은 기존 직업 가이드를 참고합니다.')}</p>
+  <p className="subtle">{t('레벨링·PvE는 입력한 레벨에 맞춰 선택됩니다. PvP는 직접 선택할 수 있습니다.')} {t('현재 포인트 안에서 계산한 참고 배분이며, 콘텐츠별 최적 세팅을 검증한 결과는 아닙니다.')}</p>
   {!candidate&&!error&&<p role="status">{t('현재 레벨·포인트로 계산 중…')}</p>}{error&&<p role="alert">{error}</p>}
   {candidate&&<>
    <div className="growth-section-heading"><h3>{t('1. 스킬')}</h3><div className="segmented">{[['active','액티브'],['passive','패시브'],['stigma','스티그마']].map(([key,label])=><button key={key} aria-pressed={group===key} className={group===key?'selected':''} onClick={()=>{setGroup(key);setSelectedSkill('')}}>{t(label)}</button>)}</div></div>
