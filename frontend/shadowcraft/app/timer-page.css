@@ -20,6 +20,7 @@
 .event-timer-page .timer-card-title>span:last-child{min-width:0}
 .event-timer-page .event-boss-side{display:block;margin-top:2px;font-size:11px;font-weight:400;color:var(--muted)}
 .timer-kind-icon{display:grid;place-items:center;width:28px;height:28px;flex:0 0 28px;border:1px solid currentColor;border-radius:8px;background:#19232d;color:#b6cad4}
+.timer-kind-icon img{width:100%;height:100%;object-fit:contain;transform:scale(1.25);pointer-events:none}
 .timer-kind-shugo{color:#f0ce79;background:#332c1d}.timer-kind-invasion{color:#f5a08c;background:#32221f}.timer-kind-rift{color:#91d6eb;background:#1c3037}.timer-kind-field{color:#cbb8ee;background:#2b2438}.timer-kind-abyss{color:#a3b8ff;background:#242a40}
 .event-timer-page .event-timer-card strong{grid-column:1;grid-row:2;align-self:center;text-align:left;font-size:22px;line-height:1.2;white-space:normal;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
 .event-timer-page .event-timer-card small{grid-column:1/-1;grid-row:3;font-size:11px;line-height:1.4}

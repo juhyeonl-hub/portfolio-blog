@@ -1,4 +1,5 @@
-import {Coins,Swords,Orbit,Skull,Eclipse,CircleHelp,Pin} from 'lucide-react';
+import {Coins,Swords,Orbit,Skull,Eclipse,CircleHelp,Pin,type LucideIcon} from 'lucide-react';
+import mapIcons from '@/lib/data/map-icons.json';
 import {BOSS_CATALOG,bossName,bossMap,legacyBossIds,selectedBossIds,setBossPinned,type CatalogBoss} from '@/lib/boss-catalog';
 import {useLocale} from './locale';
 import './timer-page.css';
@@ -10,6 +11,13 @@ import {parseBossFeed,bossDisplay,type BossFeed} from '@/lib/boss-timers';
 import {pinnedTimers,TIMER_IDS,TIMER_NAMES,TIMER_KEY,TIMER_SETTINGS_EVENT,type TimerId,type TimerSettings,emptySettings,emptyServer,parseSettings,parseTimes,nextContentOccurrence,nextScheduledBossOccurrence,countdown,TIME_ZONES,legacyClockLabel} from '@/lib/event-timers';
 const regions=[['eu','유럽 EU'],['nae','북미 동부'],['naw','북미 서부'],['la','남미'],['as','아시아']];
 const servers=directory as Record<string,{serverId:number;serverName:string;raceId:number}[]>;
+// Verified Global client textures; unverified event types retain their existing symbols.
+const timerGameIcons:Record<string,string|undefined>={field:mapIcons.named.src,abyss:mapIcons.named.src,rift:mapIcons.rift.src};
+function TimerKindIcon({kind,icon:Fallback}:{kind:string;icon:LucideIcon}){
+ const src=timerGameIcons[kind];
+ const [failedSrc,setFailedSrc]=useState('');
+ return <span className={`timer-kind-icon timer-kind-${kind}`} aria-hidden="true">{src&&failedSrc!==src?<img src={src} width={28} height={28} alt="" draggable={false} onError={()=>setFailedSrc(src)}/>:<Fallback size={20}/>}</span>;
+}
 export default function EventTimers({children,expanded=false}:{children?:ReactNode;expanded?:boolean}){
  const {t,locale}=useLocale();
  const [initial]=useState(()=>{try{const raw=localStorage.getItem(TIMER_KEY);return {settings:raw?parseSettings(raw):emptySettings(),error:''}}catch{return {settings:emptySettings(),error:'저장된 타이머 설정을 읽지 못했습니다. 다시 설정해 주세요.'}}});
@@ -109,7 +117,7 @@ export default function EventTimers({children,expanded=false}:{children?:ReactNo
    const isPinned=boss?chosenBosses.includes(id):eventPins.includes(legacy!);
    return <div className={`event-timer-card${imminent?' event-timer-card-imminent':''}`} key={id} data-boss-id={boss?id:undefined} data-timer-kind={kind}>
     <b className={expanded?'timer-card-title':undefined} title={boss?bossMap(boss,locale):undefined}>
-     {expanded&&<span className={`timer-kind-icon timer-kind-${kind}`} aria-hidden="true"><Icon size={20}/></span>}
+     {expanded&&<TimerKindIcon kind={kind} icon={Icon}/>}
      <span>{name}{expanded?<span className="event-boss-side">{t(boss?category.label:'이벤트')}{kind==='field'&&boss?' · '+sideLabel(boss.side):''}</span>:boss&&<span className="event-boss-side">{sideLabel(boss.side)}</span>}</span>
     </b>
     <strong>{state?(state.target?countdown(state.target,clock):t(state.text)):target===null?t('시간표 미등록'):countdown(target,timerNow)}</strong>

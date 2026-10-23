@@ -1,0 +1,26 @@
+{
+  "source": "Existing original Global Steam client Texture2D PNG exports, build 25926599",
+  "bindings": {
+    "field": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/Worldmap_Monster_Boss_Aggressive.png",
+      "sha256": "4c1e79f1e6062fe88967965ee005d9b84601a6c66b928a7bc7fca10da9ecdd68"
+    },
+    "abyss": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/Worldmap_Monster_Boss_Aggressive.png",
+      "sha256": "4c1e79f1e6062fe88967965ee005d9b84601a6c66b928a7bc7fca10da9ecdd68"
+    },
+    "rift": {
+      "src": "/shadowcraft/maps/steam-25926599/icons/Rift.png",
+      "sha256": "e601be7367fe32ca349d62c28f2f39232474d842f059c128c2d9f9aa79631049"
+    }
+  },
+  "unverified": [
+    "shugo",
+    "invasion"
+  ],
+  "notes": [
+    "Field and Abyss use the same verified boss marker. Text and category colors distinguish them; no separate Abyss boss asset is claimed.",
+    "Existing extraction tool could not mount current installed client. No profile/key copied or changed.",
+    "Image load errors retain existing generic category icon; visible category label remains."
+  ]
+}
