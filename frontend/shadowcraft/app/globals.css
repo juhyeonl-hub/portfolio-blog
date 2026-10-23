@@ -65,6 +65,11 @@
 .event-timer-toolbar>span{color:#b1bfc5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .event-timer-toolbar>button{margin-left:auto;flex-shrink:0}
 .event-timer-strip{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+/* Compact header only: mouse drag, native touch/keyboard scroll, no scrollbar. */
+.event-timer-header:not(.event-timer-page) .event-timer-strip{scrollbar-width:none;padding-bottom:0;cursor:grab;user-select:none;-webkit-user-select:none}
+.event-timer-header:not(.event-timer-page) .event-timer-strip::-webkit-scrollbar{display:none}
+.event-timer-header:not(.event-timer-page) .event-timer-strip[data-dragging=true]{cursor:grabbing}
+.event-timer-header:not(.event-timer-page) .event-timer-strip:focus-visible{outline:2px solid var(--accent,#8edbc8);outline-offset:2px}
 .event-timer-card{flex:1;min-width:115px;display:grid;gap:3px;padding:6px 12px;background:#202331;border-radius:7px;border:1px solid #343846}
 .event-timer-card b{font-size:12px}.event-timer-card strong{font-size:16px;font-variant-numeric:tabular-nums;color:#c3eeff;white-space:nowrap}.event-timer-card small{font-size:10px;color:#b1bfc5}
 .event-timer-settings{max-height:60vh;overflow-y:auto;padding:16px;max-width:900px;margin:auto;overscroll-behavior:contain}

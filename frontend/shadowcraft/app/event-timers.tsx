@@ -4,7 +4,7 @@ import {BOSS_CATALOG,bossName,bossMap,legacyBossIds,selectedBossIds,setBossPinne
 import {useLocale} from './locale';
 import './timer-page.css';
 import MaintenanceBanner from './maintenance-banner';
-import {useEffect,useRef,useState,type ReactNode} from 'react';
+import {useEffect,useRef,useState,type ReactNode,type PointerEvent as ReactPointerEvent} from 'react';
 import directory from '@/lib/data/servers.json';
 import FactionPicker from './faction-picker';
 import {parseBossFeed,bossDisplay,type BossFeed} from '@/lib/boss-timers';
@@ -24,6 +24,29 @@ export default function EventTimers({children,expanded=false}:{children?:ReactNo
  const [settings,setSettings]=useState(initial.settings),[draft,setDraft]=useState(initial.settings),[error,setError]=useState(initial.error),[editing,setEditing]=useState(false),[now,setNow]=useState(()=>Date.now());
  const [draftRace,setDraftRace]=useState(1);
  const [pinnedOnly,setPinnedOnly]=useState(false),[pageSearch,setPageSearch]=useState(''),[pageSide,setPageSide]=useState('all'),[fullscreen,setFullscreen]=useState(false);
+ const stripDrag=useRef<{pointerId:number;startX:number;scrollLeft:number}|null>(null);
+ function startStripDrag(e:ReactPointerEvent<HTMLDivElement>){
+  const strip=e.currentTarget;
+  // Touch keeps native scrolling and inertia; only the compact header uses mouse dragging.
+  if(expanded||e.pointerType!=='mouse'||e.button!==0||!e.isPrimary||strip.scrollWidth<=strip.clientWidth)return;
+  e.preventDefault();
+  strip.focus({preventScroll:true});
+  stripDrag.current={pointerId:e.pointerId,startX:e.clientX,scrollLeft:strip.scrollLeft};
+  strip.setPointerCapture(e.pointerId);
+  strip.dataset.dragging='true';
+ }
+ function endStripDrag(e:ReactPointerEvent<HTMLDivElement>){
+  if(stripDrag.current?.pointerId!==e.pointerId)return;
+  stripDrag.current=null;
+  delete e.currentTarget.dataset.dragging;
+  if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);
+ }
+ function moveStripDrag(e:ReactPointerEvent<HTMLDivElement>){
+  const drag=stripDrag.current;
+  if(!drag||drag.pointerId!==e.pointerId)return;
+  if(!(e.buttons&1)){endStripDrag(e);return}
+  e.currentTarget.scrollLeft=drag.scrollLeft+drag.startX-e.clientX;
+ }
  const fullscreenButton=useRef<HTMLButtonElement>(null);
  useEffect(()=>{if(!expanded)return;const changed=()=>{const active=document.fullscreenElement===header.current;setFullscreen(active);if(!active)fullscreenButton.current?.focus()};const escape=(event:KeyboardEvent)=>{if(event.key==='Escape'&&document.fullscreenElement===header.current&&!header.current?.querySelector('#event-timer-pins,#event-timer-settings')){event.preventDefault();void document.exitFullscreen().catch(()=>{})}};document.addEventListener('fullscreenchange',changed);document.addEventListener('keydown',escape);return()=>{document.removeEventListener('fullscreenchange',changed);document.removeEventListener('keydown',escape)}},[expanded]);
  async function toggleFullscreen(){try{if(document.fullscreenElement===header.current)await document.exitFullscreen();else await header.current?.requestFullscreen();}catch{setError('전체 화면을 열지 못했습니다. 현재 페이지에서도 모든 타이머를 볼 수 있습니다.')}}
@@ -101,7 +124,10 @@ export default function EventTimers({children,expanded=false}:{children?:ReactNo
    <div className="event-boss-filters"><label>{t('보스 검색')}<input type="search" value={bossSearch} onChange={e=>setBossSearch(e.target.value)} placeholder={t('이름 또는 지역 검색')}/></label><div className="event-boss-categories" role="group" aria-label={t('진영 필터')}>{[['all','전체'],['elyos','천족'],['asmodian','마족'],['abyss','어비스'],...(catalog.some(b=>b.side==='unknown')?[['unknown','진영 미확인']]:[])].map(([value,name])=><button key={value} type="button" className="button secondary small" aria-pressed={bossSide===value} onClick={()=>setBossSide(value)}>{t(name)}</button>)}</div></div>
    <div className="event-pin-options event-boss-options">{visibleBosses.map(b=><label key={b.id}><input type="checkbox" aria-label={`${bossName(b,locale)} · ${sideLabel(b.side)}`} checked={chosenBosses.includes(b.id)} onChange={e=>persist(setBossPinned(settings,race,b.id,e.target.checked))}/><span>{bossName(b,locale)}<small>{sideLabel(b.side)} · {bossMap(b,locale)||t('지역 미확인')}</small><small>{t(b.schedule?'정기 출현 · 참고 일정':'관측 기록')}</small></span></label>)}</div>{visibleBosses.length===0&&<p>{t('검색 결과가 없습니다.')}</p>}
    <button type="button" className="button secondary small" onClick={()=>{setChoosingPins(false);pinButton.current?.focus()}}>{t('완료')}</button></section>}
-  {server?<div className="event-timer-strip" aria-label={expanded?t('콘텐츠 타이머 목록'):undefined}>{cards.map(({id,legacy,boss})=>{
+  {server?<div className="event-timer-strip" aria-label={t(expanded?'콘텐츠 타이머 목록':'고정 콘텐츠 타이머')} {...(!expanded?{
+   role:'region',tabIndex:0,onPointerDown:startStripDrag,onPointerMove:moveStripDrag,
+   onPointerUp:endStripDrag,onPointerCancel:endStripDrag,onLostPointerCapture:endStripDrag
+  }:{})}>{cards.map(({id,legacy,boss})=>{
    const manual=legacy!==undefined&&profile.times[legacy]!==undefined;
    const automatic=!!boss&&!boss.schedule&&!manual,clock=now+(current?.offset||0);
    const state=automatic?bossDisplay(current?.feed||null,id,clock,liveFailed===key):null;
