@@ -17,3 +17,11 @@ Evidence: D:/CodexData/Projects/ASBC/artifacts/header-timer-drag-20261023.
 - Mobile 360x800: page clientWidth=scrollWidth=345; header drag moved to 290; no text selection, no scrollbar, dragging state cleared. Native touch-action stays auto; no touch interception (physical phone not used).
 - Server settings button opens after drag. Dedicated timers page remains grid, no drag cursor/tabIndex, three event cards, independent pin button works.
 - Source scope exactly two files. All 212 preexisting dirty/untracked files unchanged.
+
+## Production release
+- Source commit 28e2ff2835959cce99d2eda002dd3528b28e30cc pushed to origin/main.
+- Cloudflare deployment: https://aec5077f.asbc-4c9.pages.dev
+- Canonical asbc.app HTTP 200 and all four entry asset SHA-256 values match the tested build (production-verification.json).
+- Deployed PC 1000x800: 400px drag changed scrollLeft 0 to 400, scrollbar none, no text selection, dragging released.
+- Deployed mobile viewport 360x800: next drag changed scrollLeft 400 to 560, dragging released, clientWidth=scrollWidth=345. No physical touch-device test; browser native touch handling preserved.
+- Final preservation: all 212 preexisting files unchanged. Production screenshots saved as production-pc.png / production-mobile.png.
