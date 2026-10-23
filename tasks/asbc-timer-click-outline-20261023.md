@@ -13,3 +13,5 @@ Verified: production build PASS (existing chunk-size/plugin timing warnings only
 Browser 1440x900: keyboard Tab focuses strip with 2px visible ring; ArrowRight scrolls 0 to 40. Pointer click clears ring even after keyboard focus. Mouse drag scrolls 40 to 340; capture state clears on release; no outline. Mobile 390x844: click has no outline; document width 375 equals scroll width. Dedicated-page CSS/behavior untouched.
 All 212 pre-existing dirty/untracked file hashes are unchanged. Isolated build includes only HEAD plus these two source edits.
 Typecheck:shadowcraft PASS. Ready for user-authorized immediate release.
+
+Production: source ff46e801bba7aad9597494e25622f27dd5c23cca pushed to main; deployed https://643b3a7d.asbc-4c9.pages.dev. Canonical https://asbc.app/ returns 200; four entry assets match the tested build hashes. Deployed pointer click after keyboard Tab leaves outline none, no focus-visible rectangle. Screenshot production-pc.png; hash evidence production-verification.json. Final 212 unrelated pending files unchanged. Temporary preview/tabs stopped. Complete.
