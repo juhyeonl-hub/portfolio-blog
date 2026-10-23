@@ -9858,5 +9858,35 @@
     "en": "See spawn times at a glance. Use the pin button to pin or unpin a timer in the header.",
     "ja": "出現時間を一覧で確認できます。ピンボタンでヘッダーへの固定・解除ができます。",
     "fi": "Näet ilmestymisajat yhdellä silmäyksellä. Kiinnitä ajastin ylätunnisteeseen tai poista kiinnitys nastapainikkeella."
+  },
+  "빌드 바로 보기": {
+    "en": "Open build",
+    "ja": "ビルドを開く",
+    "fi": "Avaa hahmosuunnitelma"
+  },
+  "직업과 레벨에 맞는 스킬·데바니온을 확인하세요.": {
+    "en": "See skills and Daevanion for your class and level.",
+    "ja": "クラスとレベルに合ったスキル・デバニオンを確認できます。",
+    "fi": "Katso luokkaasi ja tasoasi vastaavat taidot ja Daevanion."
+  },
+  "빌드 보기": {
+    "en": "View build",
+    "ja": "ビルドを見る",
+    "fi": "Näytä suunnitelma"
+  },
+  "포인트 계산 기준": {
+    "en": "How point totals are calculated",
+    "ja": "ポイント計算の基準",
+    "fi": "Pistemäärien laskentaperusteet"
+  },
+  "빌드를 열면 스킬과 데바니온 배분이 바로 보입니다. 직업·레벨·포인트를 바꾸면 배분도 갱신됩니다. 장비는 랭커와 비교에서 확인하세요.": {
+    "en": "Open the build to see skill and Daevanion allocations. Changing class, level or points updates them. Use Compare with a ranker for equipment.",
+    "ja": "ビルドを開くとスキルとデバニオンの配分が表示されます。クラス・レベル・ポイントを変えると配分も更新されます。装備はランカーとの比較で確認できます。",
+    "fi": "Avaa suunnitelma nähdäksesi taitojen ja Daevanionin pistejaon. Luokan, tason tai pisteiden muuttaminen päivittää jaon. Varusteita voit tarkastella kärkipelaajavertailussa."
+  },
+  "게임의 스킬 순서로 표시합니다. 주황 테두리는 실제보다 높은 계획 목표입니다. 간편한 배분은 빌드 보기에서 확인하세요.": {
+    "en": "Skills follow the in-game order. Orange borders mark planned levels above your actual levels. Open View build for the simple allocation.",
+    "ja": "ゲーム内のスキル順に表示します。オレンジの枠は現在より高い目標です。簡単な配分は「ビルドを見る」で確認できます。",
+    "fi": "Taidot ovat pelin järjestyksessä. Oranssi reunus merkitsee nykyistä korkeampaa tavoitetta. Yksinkertainen pistejako löytyy kohdasta Näytä suunnitelma."
   }
 }
