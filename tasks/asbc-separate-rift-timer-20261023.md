@@ -15,3 +15,11 @@ Evidence: D:/CodexData/Projects/ASBC/artifacts/separate-rift-timer-20261023.
 - Actual previous v1 preferences migrated with EU Ludra, Helsinki clock and seven existing pins intact. Added invasion becomes eighth pin.
 - All 212 preexisting modified/untracked files retain their initial SHA-256; staged index was empty.
 - Local screenshots: pc.png and mobile.png in the artifact folder.
+
+## Production release
+- Source commit c5efef3d7807cef3f342d4f67a5dcb53d539e383 pushed to origin/main.
+- Cloudflare production deployment: https://c916a116.asbc-4c9.pages.dev
+- Canonical https://asbc.app HTTP 200; all four entry assets match the tested isolated build SHA-256. Details: production-verification.json.
+- Deployed UI checked on PC and mobile 360x800: EU Ludra has three event cards together; invasion and rift pin independently. New preferences include both by default. Mobile has no page overflow.
+- Production screenshots: production-pc.png and production-mobile.png.
+- Final preservation check: all 212 preexisting modified/untracked files unchanged. No unrelated source deployed.
