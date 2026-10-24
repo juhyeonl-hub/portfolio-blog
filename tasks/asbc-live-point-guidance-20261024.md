@@ -24,3 +24,12 @@
 - Full candidate also passed typecheck, lint and production build. Existing home population disclosure remains in the release candidate.
 - New account settings sync is implemented/tested, but release confirmation for the shared cross-review rule is pending (async question). No actual Steam two-device verification; no production DB operation.
 - Signed-in users now see saving/saved/offline status; initialization failure blocks settings consumers rather than falling back to guest writes.
+
+## UI release completed
+- Source commit: `1d03e0dd4212c3a4277bb988a992bb243e1f2466`, pushed to origin/main.
+- Production deployment: https://a14869b0.asbc-4c9.pages.dev ; canonical https://asbc.app/ HTTP200. All five entry assets byte-match the isolated UI build (production-check.json).
+- Isolated UI release typecheck, all configured regression suites and production build PASS. Full candidate lint PASS; only existing chunk/plugin timing warnings.
+- Canonical production browser: reconnected GreenOrc on EU Ludra; current level45, crystal usage241, SP/stigma usage unavailable (not guessed), remaining blank. PC target370 recalculates to370 and shows11 next candidates on Nezekan. 390px target316 updates immediately with no horizontal overflow.
+- Screenshots in artifact folder: points-desktop.png, points-mobile.png (controlled Lv39 fixture), points-production-mobile.png (live Lv45 GreenOrc), points-ranker-mobile.png.
+- UI release explicitly excludes the account sync provider/API/migration and unrelated home disclosure changes. Existing unrelated baseline files remain byte-identical. Index clear after commit; pending settings changes remain local.
+- Account settings implementation and fixture validation are complete, including saving/saved feedback and safe initialization failure. **교차 리뷰 대기 / 운영 반영 확인 대기**: async question pending under shared workflow storage/auth rule. Actual Steam two-device verification remains unperformed. Claude unavailable due recorded usage limit; no cross-review claimed.
