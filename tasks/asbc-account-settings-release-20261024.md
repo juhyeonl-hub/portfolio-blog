@@ -26,3 +26,12 @@
 - Sync restores on login/app start/retry, not continuous live push. Settings include plan inputs/confirmed balances, timers, map progress, favorites and locale; full character responses, search history, saved build-library documents and gear notes remain local.
 - Artifacts: D:/CodexData/Projects/ASBC/artifacts/account-settings-release-20261024.
 - Next: deploy backend, then push/frontend, record production verification.
+
+## Release completed — 2026-10-24
+- Source commit `a2586cb68379dfc34b5a47f1d5ed79ec6628b659` committed to main and pushed. Only the selected 19 implementation/test files and this release record.
+- Backend installed atomically with existing same-user service restart (MainPID 760 -> 54566). Production JAR SHA256 matches the tested artifact. Previous JAR: `/home/juhyeonl/portfolio-blog-ops/blog.jar.before-settings-a2586cb`.
+- Production Flyway V18 success and settings/member ON DELETE CASCADE confirmed. No settings rows created for testing. GET/PUT without login return403; public health200; Steam start302 to steamcommunity.com. No credentials, authentication rules or system service settings changed.
+- Cloudflare Pages release: https://0c2a3d91.asbc-4c9.pages.dev . All five asbc.app entry JS/CSS hashes match the verified build. No backend/frontend deployment failure or rollback.
+- Direct production browser checks:1440px PC and390px mobile, existing guest GreenOrcLv45 snapshot/241 used preserved,370 total updates recommendations and survives reload,316 updates on mobile, default restored after testing, no horizontal overflow or browser console errors. Updated server-storage privacy disclosure present. This guest production smoke test is separate from the earlier two-origin authenticated fixture tests; actual Steam two-device sign-in remains unverified.
+-206 excluded original dirty/untracked files remain byte-identical. No home disclosure changes or collaboration logs included.
+- Done: scoped commit/push, DB backup, backend/schema/frontend deployment, production verification. No deployment blocker. No automation scheduled.
