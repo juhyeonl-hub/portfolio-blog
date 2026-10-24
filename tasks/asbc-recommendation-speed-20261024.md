@@ -7,10 +7,10 @@ Done when: measured improvement, regression/type/build pass, PC/mobile browser c
 Authorization: user requested speed work; existing immediate deployment and no-Claude-cross-review instructions apply. Claude 불가로 Codex 임시 조율: recorded usage limit until Oct 26; no retry or review-pass claim.
 Base: 5b2d266f8357ad91d707ab521006997ee945321f
 Evidence: D:/CodexData/Projects/ASBC/artifacts/recommendation-speed-20261024.
-Verification: pending.
-Last reviewed: self review pending.
+Verification: targeted regression, typecheck, build, local browser and production checks PASS; measured details below.
+Last reviewed: Codex self review complete; no cross-review claim (user waiver).
 Uncommitted: baseline captured; original pending files must remain unchanged except authorized recommendation patch.
-Next: benchmark baseline and optimize.
+Next: none for this scoped performance release.
 
 Measured baseline: templar 370 crystal + 63 Azphel, 2058ms production vs 881ms pending node-score cache. Extended scope: planner.boardBonus hot path (preserve original pending account-related edits), per-iteration skill-level reuse. No scoring weights, tie-breaking, path order, or point rules changed.
 
@@ -19,4 +19,7 @@ Browser: PC 1440x900 templar 370/416/0/370 updates correctly, UI action-to-resul
 Preservation: all235 other pending files unchanged, planner/package previous changes exactly retained. Initial line-diff comparison for package failed because both commands share a single JSON line; reversing only our inserted test command yields the exact original bytes.
 
 Final local browser checks: mobile Arwyn official profile returns416 general+78 Azphel; preview114/63 computes114/62 and changes node selection from WANN. Mobile30 switches to leveling with111SP/8stigma/76crystal, 12skills. Rapid114->370->416 updates only latest416 result. PvP->PvE updates and preserves budget. No console errors. Screenshots saved. No real-device CPU throttling or network-speed improvement claim.
-Source review: only remove repeated work; profile weights, path/tie order, final skill allocation and point rules unchanged. Node/skill caches reset after every selected path and for every invocation. No worker, persistent/global cache, dependency or API change. Deploy pending.
+Source review: only remove repeated work; profile weights, path/tie order, final skill allocation and point rules unchanged. Node/skill caches reset after every selected path and for every invocation. No worker, persistent/global cache, dependency or API change. Deployment completed below.
+
+Production complete: source `11e855c4520f0a9dc34258c3500fe50731d28121` committed and pushed to main. Pages deployment https://00836524.asbc-4c9.pages.dev. Canonical https://asbc.app/ returns200, all4 entry assets match isolated tested files (production-verification.json). Deployed PC verifies templar370/370 and12 skills, mobile390 verifies416/416 then level30 resetting to111/8/76/0 and Leveling; width375=scroll375, no console errors. Final1440px PC screenshot production-pc.png. Final preservation check:235 unrelated baseline files unchanged; planner/package unrelated edits retained; adopted previous node-score cache is now part of this scoped release. No authentication/settings/backend/point-rule/UI behavior changes deployed.
+Limitations: compute measurements are local Node; UI timings include debounce/tool overhead. Mobile means responsive viewport, not a physical phone CPU/network test. Upstream character fetch latency remains separate. Existing preview-closing-on-budget-edit UI remains outside scope. Temporary preview/tab cleanup performed at completion.
