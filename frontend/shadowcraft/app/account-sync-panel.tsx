@@ -6,7 +6,7 @@ export const AccountSyncContext=createContext<{status:SyncState;metadata:SyncMet
 export function AccountSyncPanel(){
  const sync=useContext(AccountSyncContext),{t,locale}=useLocale();
  if(!sync)return null;
- const {status,metadata,refresh}=sync,busy=status==='pending'||status==='loading';
+ const {status,metadata,refresh}=sync;
  const format=(date:string|number)=>new Intl.DateTimeFormat(locale,{dateStyle:'medium',timeStyle:'medium'}).format(new Date(date));
  return <section className="account-sync-panel" aria-label={t('기기 간 설정 동기화')}>
   <h3>{t('기기 간 설정 동기화')}</h3>
@@ -16,8 +16,9 @@ export function AccountSyncPanel(){
    <dl><div><dt>{t('마지막 계정 저장')}</dt><dd>{metadata?.savedAt?<time dateTime={metadata.savedAt}>{format(metadata.savedAt)}</time>:t('아직 저장 시각을 확인하지 못했습니다.')}</dd></div>
     <div><dt>{t('이 기기의 마지막 확인')}</dt><dd>{metadata?.checkedAt?<time dateTime={new Date(metadata.checkedAt).toISOString()}>{format(metadata.checkedAt)}</time>:t('확인 전')}</dd></div></dl>
   </div>
-  <button type="button" className="button secondary" disabled={busy} onClick={refresh}>{t(status==='loading'?'설정 불러오는 중…':'다른 기기 설정 불러오기')}</button>
-  <p className="muted">{t('다른 기기에서 저장을 마친 뒤 누르세요. 이 기기의 저장 대기 중인 변경은 유지하고 나머지 설정을 가져옵니다.')}</p>
+  {status==='offline'&&<button type="button" className="button secondary" onClick={refresh}>{t('설정 동기화 다시 시도')}</button>}
+  <p className="muted">{t('변경한 설정은 자동 저장됩니다. 화면으로 돌아오거나 사용 중일 때 약 10초마다 다른 기기의 변경을 확인합니다. 입력을 마치면 새 설정을 반영합니다.')}</p>
+  {metadata?.conflict&&<p role="status" className="muted">{t('두 기기에서 같은 항목을 수정해 이 기기의 변경을 유지했습니다. 현재 설정을 확인해 주세요.')}</p>}
   <div className="account-sync-columns"><div><h4>{t('계정에 저장되는 항목')}</h4><ul>
    <li>{t('직업별 빌드 배분 · 레벨 · 포인트 총량과 확인한 남은 포인트')}</li>
    <li>{t('콘텐츠 타이머의 서버 · 고정 항목 · 시간 설정')}</li>

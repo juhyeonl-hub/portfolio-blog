@@ -1,5 +1,5 @@
 import {useEffect,useState,type ReactNode} from 'react';
-import {AccountSettingsStore,SettingsSync,activateSettingsStore,type SyncState,type SyncMetadata} from '../lib/account-settings';
+import {AccountSettingsStore,SettingsSync,activateSettingsStore,AutomaticSettingsSync,publishSettingsChanges,type SyncState,type SyncMetadata} from '../lib/account-settings';
 import {useMemberSession,settingsRequest,MemberAccount} from './community';
 import {LocaleProvider,useLocale} from './locale';
 import './account-settings.css';
@@ -12,23 +12,25 @@ export function AccountSettings({children}:{children:ReactNode}){
 }
 function SettingsScope({children,memberId,token}:{children:ReactNode;memberId:string|null;token:string}){
  const [initializationError,setInitializationError]=useState(false),[attempt,setAttempt]=useState(0);
- const [mounted,setMounted]=useState(false),[epoch,setEpoch]=useState(0),[status,setStatus]=useState<SyncState>('loading'),[metadata,setMetadata]=useState<SyncMetadata|null>(null),[sync,setSync]=useState<SettingsSync|null>(null);
+ const [mounted,setMounted]=useState(false),[status,setStatus]=useState<SyncState>('loading'),[metadata,setMetadata]=useState<SyncMetadata|null>(null),[sync,setSync]=useState<SettingsSync|null>(null);
  useEffect(()=>{
-  let controller:SettingsSync|null=null,store:AccountSettingsStore|null=null;
+  let controller:SettingsSync|null=null,store:AccountSettingsStore|null=null,automatic:AutomaticSettingsSync|null=null;
   setInitializationError(false);setMounted(false);setMetadata(null);
+  const eligible=()=>!document.hidden&&navigator.onLine&&!document.activeElement?.matches('input,textarea,select,[contenteditable="true"]')&&!document.querySelector('#event-timer-settings');
   try{
    store=new AccountSettingsStore(()=>localStorage,memberId);activateSettingsStore(store);
-   if(memberId){controller=new SettingsSync(store,(method,body)=>settingsRequest(token,method,body),()=>setEpoch(n=>n+1),(state,next)=>{setStatus(state);if(next)setMetadata(next);});setSync(controller);void controller.start().finally(()=>setMounted(true));}
+   if(memberId){controller=new SettingsSync(store,(method,body)=>settingsRequest(token,method,body),publishSettingsChanges,(state,next)=>{setStatus(state);if(next)setMetadata(next);},eligible);setSync(controller);automatic=new AutomaticSettingsSync(controller,eligible);void controller.start().finally(()=>{setMounted(true);automatic?.start();});}
   }catch{activateSettingsStore(null);setInitializationError(true);setStatus('offline');}
   if(!controller)setMounted(true);
-  const retry=()=>void controller?.retry();
-  const changed=(e:StorageEvent)=>{if(store&&e.key===store.cacheKey){try{store.reload();setEpoch(n=>n+1);retry();}catch{setStatus('offline');}}};
-  window.addEventListener('online',retry);window.addEventListener('storage',changed);
-  return()=>{controller?.stop();activateSettingsStore(null);window.removeEventListener('online',retry);window.removeEventListener('storage',changed);};
+  const wake=()=>automatic?.wake();
+  let blurTimer:ReturnType<typeof setTimeout>;const edited=()=>{clearTimeout(blurTimer);blurTimer=setTimeout(wake,0);};
+  const changed=(e:StorageEvent)=>{if(store&&e.key===store.cacheKey){try{if(eligible()){store.reload();publishSettingsChanges();}wake();}catch{setStatus('offline');}}};
+  window.addEventListener('online',wake);window.addEventListener('focus',wake);document.addEventListener('visibilitychange',wake);document.addEventListener('focusout',edited);window.addEventListener('storage',changed);
+  return()=>{controller?.stop();automatic?.stop();clearTimeout(blurTimer);activateSettingsStore(null);window.removeEventListener('online',wake);window.removeEventListener('focus',wake);document.removeEventListener('visibilitychange',wake);document.removeEventListener('focusout',edited);window.removeEventListener('storage',changed);};
  },[memberId,token,attempt]);
  if(initializationError)return <LocaleProvider><InitializationNotice retry={()=>setAttempt(n=>n+1)}/><MemberAccount/></LocaleProvider>;
  if(!mounted)return <p role="status">ASBC…</p>;
- return <AccountSyncContext.Provider value={memberId?{status,metadata,refresh:()=>void sync?.retry()}:null}><LocaleProvider key={epoch}>{memberId&&<SyncNotice status={status} retry={()=>void sync?.retry()}/>}{children}</LocaleProvider></AccountSyncContext.Provider>;
+ return <AccountSyncContext.Provider value={memberId?{status,metadata,refresh:()=>void sync?.retry()}:null}><LocaleProvider>{memberId&&<SyncNotice status={status} retry={()=>void sync?.retry()}/>}{children}</LocaleProvider></AccountSyncContext.Provider>;
 }
 function SyncNotice({status,retry}:{status:string;retry:()=>void}){
  const {t}=useLocale();

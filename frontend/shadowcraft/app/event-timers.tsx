@@ -1,3 +1,4 @@
+import {useSettingsRefresh} from './use-settings-refresh';
 import {settingsStorage} from '../lib/account-settings';
 import {Coins,Swords,Orbit,Skull,Eclipse,CircleHelp,Pin,type LucideIcon} from 'lucide-react';
 import mapIcons from '@/lib/data/map-icons.json';
@@ -24,6 +25,7 @@ export default function EventTimers({children,expanded=false}:{children?:ReactNo
  const [initial]=useState(()=>{try{const raw=settingsStorage.getItem(TIMER_KEY);return {settings:raw?parseSettings(raw):emptySettings(),error:''}}catch{return {settings:emptySettings(),error:'저장된 타이머 설정을 읽지 못했습니다. 다시 설정해 주세요.'}}});
  const [settings,setSettings]=useState(initial.settings),[draft,setDraft]=useState(initial.settings),[error,setError]=useState(initial.error),[editing,setEditing]=useState(false),[now,setNow]=useState(()=>Date.now());
  const [draftRace,setDraftRace]=useState(1);
+ useSettingsRefresh(TIMER_KEY,()=>{const raw=settingsStorage.getItem(TIMER_KEY);setSettings(raw?parseSettings(raw):emptySettings());window.dispatchEvent(new Event(TIMER_SETTINGS_EVENT));});
  const [pinnedOnly,setPinnedOnly]=useState(false),[pageSearch,setPageSearch]=useState(''),[pageSide,setPageSide]=useState('all'),[fullscreen,setFullscreen]=useState(false);
  const stripDrag=useRef<{pointerId:number;startX:number;scrollLeft:number}|null>(null);
  function startStripDrag(e:ReactPointerEvent<HTMLDivElement>){

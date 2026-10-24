@@ -1,3 +1,4 @@
+import {useSettingsRefresh} from './use-settings-refresh';
 import {settingsStorage} from '../lib/account-settings';
 import {createContext,useContext,useEffect,useState,type ReactNode} from 'react';
 import {localizedValue} from '../lib/localization';
@@ -27,6 +28,7 @@ void load(savedLocale()).catch(()=>{/* Retried when the provider mounts or the l
 const Context=createContext({locale:'ko' as Locale,setLocale:(_value:Locale)=>{},t:<T,>(key:T,values?:unknown[]):T=>localizedValue(key,{},values),specialization:(source:string,_id?:string)=>source,skill:(name:string)=>name,skillRefs:(text:string)=>text,node:(name:string)=>name});
 export function LocaleProvider({children}:{children:ReactNode}){
  const [locale,setLocale]=useState<Locale>(savedLocale);
+ useSettingsRefresh('asbc-locale',()=>setLocale(savedLocale()));
  // Until the bundle arrives the screens show the Korean source text; every helper is a pass-through for Korean.
  const [bundle,setBundle]=useState<Bundle|null>(()=>loaded[locale]||null);
  useEffect(()=>{document.documentElement.lang=locale;document.title='ASBC · Aion2 Steam Build Craft';try{settingsStorage.setItem('asbc-locale',locale);}catch{}},[locale]);

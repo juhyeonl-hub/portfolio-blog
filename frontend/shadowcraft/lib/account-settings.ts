@@ -9,7 +9,7 @@ const classes=['assassin','gladiator','templar','ranger','sorcerer','elementalis
 const planFields=['classKey','level','mode','base','bonus','specs','nodes','checked','extraSP','extraStigma','extraCrystal','extraBattle','pointBudget','confirmedRemaining','confirmedRemainingContext','ascensionGrade3Confirmed','macroExtra'] as const;
 export type Entries=Record<string,string>;
 export type SettingsDocument={version:number;revision:number;entries:Entries;updatedAt?:string};
-type Cache={values:Entries;dirty:string[];revision?:number};
+type Cache={values:Entries;dirty:string[];revision?:number;base?:Entries;conflict?:boolean};
 type Port=Pick<Storage,'getItem'|'setItem'|'removeItem'|'key'|'length'>;
 export function settingKey(key:string):boolean {
  return ['asbc-locale','shadowcraft-selected-class','a2bc-event-timers-v1','favorites'].includes(key)
@@ -54,6 +54,35 @@ export function validateDocument(value:unknown):SettingsDocument {
  return {version:d.version,revision:d.revision,entries,...(updatedAt?{updatedAt}:{})};
 }
 
+// Three-way merge independent fields; a true collision keeps this device's edit and is disclosed.
+function mergeValue(base:unknown,local:unknown,remote:unknown,conflict:()=>void):unknown {
+ const equal=(a:unknown,b:unknown)=>JSON.stringify(a)===JSON.stringify(b);
+ if(equal(local,base))return remote;
+ if(equal(remote,base)||equal(local,remote))return local;
+ const object=(v:unknown):v is Record<string,unknown>=>!!v&&typeof v==='object'&&!Array.isArray(v);
+ if(object(base)&&object(local)&&object(remote)){
+  const merged:Record<string,unknown>={};
+  for(const key of new Set([...Object.keys(base),...Object.keys(local),...Object.keys(remote)])){
+   const value=mergeValue(base[key],local[key],remote[key],conflict);if(value!==undefined)merged[key]=value;
+  }
+  return merged;
+ }
+ conflict();return local;
+}
+function mergeSetting(key:string,base:string|undefined,local:string,remote:string|undefined,conflict:()=>void):string {
+ if(local===base)return remote??local;
+ if(remote===base||local===remote)return local;
+ if(base!==undefined&&remote!==undefined&&key.startsWith('a2bc-map-progress-v1:')){
+  const before=new Set<string>(JSON.parse(base).completed),mine=new Set<string>(JSON.parse(local).completed),theirs=new Set<string>(JSON.parse(remote).completed);
+  // Each marker is an independent boolean, so checking different locations never drops either change.
+  const completed=[...new Set([...before,...mine,...theirs])].filter(id=>mine.has(id)!==before.has(id)?mine.has(id):theirs.has(id)).sort();
+  return JSON.stringify({schema:'a2bc-map-progress-v1',completed});
+ }
+ if(base!==undefined&&remote!==undefined&&(key.startsWith('shadowcraft-plan-v1')||key==='a2bc-event-timers-v1'))
+  return projectSetting(key,JSON.stringify(mergeValue(JSON.parse(base),JSON.parse(local),JSON.parse(remote),conflict)));
+ conflict();return local;
+}
+
 /** Local account caches are separate from anonymous data and from other members. */
 export class AccountSettingsStore {
  private cache:Cache={values:{},dirty:[]};
@@ -88,14 +117,16 @@ export class AccountSettingsStore {
  private persist(){this.storage().setItem(this.cacheKey,JSON.stringify(this.cache));}
  snapshot():Entries {this.reload();const entries:Entries={};for(const [key,raw] of Object.entries(this.cache.values))entries[key]=projectSetting(key,raw);return entries;}
  dirty(){return [...this.cache.dirty];}
+ conflicted(){return this.cache.conflict===true;}
  /** Backup must succeed before a server snapshot replaces any local bytes. */
  apply(remote:Entries,revision=0):boolean {
   this.reload();
   if(revision<(this.cache.revision||0))throw Error('Stale server response');
   const before=JSON.stringify(this.cache.values),values:Entries={...remote};
-  for(const key of this.cache.dirty)if(this.cache.values[key]!==undefined)values[key]=this.cache.values[key];
+  let conflict=this.cache.conflict||false;
+  for(const key of this.cache.dirty)if(this.cache.values[key]!==undefined)values[key]=mergeSetting(key,this.cache.base?.[key],projectSetting(key,this.cache.values[key]),remote[key],()=>{conflict=true;});
   // Local-only fields survive synchronization on this device.
-  for(const key of Object.keys(values))if(key.startsWith('shadowcraft-plan-v1')&&!this.cache.dirty.includes(key)&&this.cache.values[key]){
+  for(const key of Object.keys(values))if(key.startsWith('shadowcraft-plan-v1')&&this.cache.values[key]){
    const local=JSON.parse(this.cache.values[key]),plan=JSON.parse(values[key]);
    for(const field of ['character','searchPrefs','recentCharacters'])if(local[field]!==undefined)plan[field]=local[field];
    const context=plan.confirmedRemainingContext,c=local.character;
@@ -104,60 +135,64 @@ export class AccountSettingsStore {
    if(plan.gear&&local.gear)for(const item of plan.gear.items){const old=local.gear.items[Number(item.id)];if(old&&old.slot===item.slot&&JSON.stringify(old.bonuses)===JSON.stringify(item.bonuses)){item.id=old.id;item.name=old.name;item.note=old.note;}}
    values[key]=JSON.stringify(plan);
   }
-  if(before===JSON.stringify(values)){this.cache.revision=revision;this.persist();return false;}
+  if(before===JSON.stringify(values)){this.cache={...this.cache,revision,base:remote,conflict};this.persist();return false;}
   this.storage().setItem(this.cacheKey+':backup',JSON.stringify(this.cache));
-  const old=this.cache;this.cache={values,dirty:old.dirty,revision};
+  const old=this.cache;this.cache={values,dirty:old.dirty,revision,base:remote,conflict};
   try{this.persist();}catch(e){this.cache=old;throw e;}
   return true;
  }
  acknowledge(sent:Entries,revision:number){
   this.reload();
   const old=this.cache;
-  this.cache={...old,revision:Math.max(old.revision||0,revision),dirty:old.dirty.filter(k=>projectSetting(k,old.values[k])!==sent[k])};
+  this.cache={...old,base:sent,revision:Math.max(old.revision||0,revision),dirty:old.dirty.filter(k=>projectSetting(k,old.values[k])!==sent[k])};
   try{this.persist();}catch(e){this.cache=old;throw e;}
  }
 }
 
 export type SyncState='saved'|'pending'|'loading'|'offline';
-export type SyncMetadata={savedAt:string|null;checkedAt:number};
+export type SyncMetadata={savedAt:string|null;checkedAt:number;conflict?:boolean};
 type Transport=(method:'GET'|'PUT',document?:SettingsDocument)=>Promise<unknown>;
 /** Serial requests + revisions prevent stale tabs from silently replacing newer account data. */
 export class SettingsSync {
  private revision:number|null=null;
  private stopped=false;
+ private conflictRetries=0;
  private running=false;
  private timer:ReturnType<typeof setTimeout>|undefined;
  private unsubscribe:()=>void;
- constructor(private store:AccountSettingsStore,private request:Transport,private applied:()=>void,private status:(state:SyncState,metadata?:SyncMetadata)=>void){
+ constructor(private store:AccountSettingsStore,private request:Transport,private applied:()=>void,private status:(state:SyncState,metadata?:SyncMetadata)=>void,private canApply:()=>boolean=()=>true){
   this.unsubscribe=store.subscribe(()=>this.schedule());
  }
  async start(){await this.refresh();}
  private schedule(){if(this.stopped)return;this.status('pending');clearTimeout(this.timer);this.timer=setTimeout(()=>void this.save(),SAVE_DELAY_MS);}
- async retry(){if(this.running||this.stopped)return;await this.refresh();}
- private async refresh(){
-  if(this.running||this.stopped)return;this.running=true;this.status('loading');
+ async retry(){return this.refresh();}
+ async poll(){return this.refresh(true);}
+ private async refresh(quiet=false):Promise<boolean>{
+  if(this.running||this.stopped)return true;this.running=true;if(!quiet)this.status('loading');
   try{
-   const remote=validateDocument(await this.request('GET'));if(this.stopped)return;
+   const remote=validateDocument(await this.request('GET'));if(this.stopped||(quiet&&!this.canApply()))return true;
    this.revision=remote.revision;
    // Revision zero means no server record. Seed it from this account's local cache.
    if(remote.revision>0&&this.store.apply(remote.entries,remote.revision))this.applied();
-   this.status('saved',{savedAt:remote.updatedAt||null,checkedAt:Date.now()});
+   this.status(this.store.dirty().length?'pending':'saved',{savedAt:remote.updatedAt||null,checkedAt:Date.now(),conflict:this.store.conflicted()});
    if(remote.revision===0||this.store.dirty().length)this.schedule();
-  }catch{if(!this.stopped){this.revision=null;this.status('offline');}}
+   return true;
+  }catch{if(!this.stopped){this.revision=null;this.status('offline');}return false;}
   finally{this.running=false;}
  }
  private async save(){
   if(this.stopped)return;
   if(this.running){this.schedule();return;}
   if(this.revision===null){await this.refresh();return;}
-  this.running=true;
+  this.running=true;let retryConflict=false;
   try{
    const entries=this.store.snapshot(),sent=validateDocument({version:SETTINGS_VERSION,revision:this.revision,entries});
    const result=validateDocument(await this.request('PUT',sent));if(this.stopped)return;
-   this.revision=result.revision;this.store.acknowledge(entries,result.revision);this.status('saved',{savedAt:result.updatedAt||null,checkedAt:Date.now()});
+   this.revision=result.revision;this.conflictRetries=0;this.store.acknowledge(entries,result.revision);this.status('saved',{savedAt:result.updatedAt||null,checkedAt:Date.now(),conflict:this.store.conflicted()});
    if(this.store.dirty().length)this.schedule();
-  }catch{if(!this.stopped){this.revision=null;this.status('offline');}}
+  }catch(error){if(!this.stopped){this.revision=null;retryConflict=(error as {status?:number}).status===409&&this.conflictRetries++<2;this.status(retryConflict?'pending':'offline');}}
   finally{this.running=false;}
+  if(retryConflict)await this.refresh(true);
  }
  stop(){this.stopped=true;clearTimeout(this.timer);this.unsubscribe();}
 }
@@ -169,3 +204,31 @@ export const settingsStorage={
  getItem:(key:string)=>active?active.getItem(key):localStorage.getItem(key),
  setItem:(key:string,value:string)=>active?active.setItem(key,value):localStorage.setItem(key,value),
 };
+
+// Remote updates notify consumers without unmounting forms, map views, routing or scroll containers.
+const settingsListeners=new Set<()=>void>();
+export function subscribeSettingsChanges(listener:()=>void){settingsListeners.add(listener);return()=>{settingsListeners.delete(listener);};}
+export function publishSettingsChanges(){settingsListeners.forEach(listener=>listener());}
+
+export const AUTO_SYNC_INTERVAL_MS=10_000;
+export class AutomaticSettingsSync {
+ private timer:ReturnType<typeof setTimeout>|undefined;
+ private stopped=false;
+ private running=false;
+ private lastWake=0;
+ private delay=AUTO_SYNC_INTERVAL_MS;
+ constructor(private sync:Pick<SettingsSync,'poll'>,private eligible:()=>boolean){}
+ start(){this.schedule();}
+ private schedule(){clearTimeout(this.timer);if(!this.stopped)this.timer=setTimeout(()=>void this.check(),this.delay);}
+ // Focus, visibility, reconnect and edit completion can arrive together; coalesce them.
+ wake(){if(this.stopped||Date.now()-this.lastWake<1500)return;this.lastWake=Date.now();void this.check();}
+ private async check(){
+  if(this.stopped||this.running)return;
+  clearTimeout(this.timer);
+  if(!this.eligible()){this.schedule();return;}
+  this.running=true;
+  try{const ok=await this.sync.poll();this.delay=ok?AUTO_SYNC_INTERVAL_MS:Math.min(this.delay*2,60_000);}
+  finally{this.running=false;this.schedule();}
+ }
+ stop(){this.stopped=true;clearTimeout(this.timer);}
+}

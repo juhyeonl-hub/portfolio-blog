@@ -10573,5 +10573,15 @@
     "en": "View sync status",
     "ja": "同期状態を見る",
     "fi": "Näytä synkronoinnin tila"
+  },
+  "변경한 설정은 자동 저장됩니다. 화면으로 돌아오거나 사용 중일 때 약 10초마다 다른 기기의 변경을 확인합니다. 입력을 마치면 새 설정을 반영합니다.": {
+    "en": "Changes save automatically. We check other devices when you return and about every 10 seconds while this page is visible. Updates apply when you finish editing.",
+    "ja": "変更は自動保存されます。画面に戻ったときと表示中の約10秒ごとに他の端末の変更を確認します。入力を終えると更新が反映されます。",
+    "fi": "Muutokset tallentuvat automaattisesti. Muiden laitteiden muutokset tarkistetaan palatessasi sivulle ja noin 10 sekunnin välein sivun ollessa näkyvissä. Päivitykset otetaan käyttöön, kun lopetat muokkaamisen."
+  },
+  "두 기기에서 같은 항목을 수정해 이 기기의 변경을 유지했습니다. 현재 설정을 확인해 주세요.": {
+    "en": "Both devices changed the same setting. This device’s edit was kept. Please check the current settings.",
+    "ja": "2台の端末で同じ項目が変更されたため、この端末の変更を保持しました。現在の設定を確認してください。",
+    "fi": "Molemmilla laitteilla muutettiin samaa asetusta. Tämän laitteen muutos säilytettiin. Tarkista nykyiset asetukset."
   }
 }

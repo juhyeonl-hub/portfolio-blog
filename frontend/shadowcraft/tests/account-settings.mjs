@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 import {moduleUrl,planner} from './modules.mjs';
 let source=readFileSync('lib/account-settings.ts','utf8');
 for(const name of ['plan-memory','event-timers','home-favorites'])source=source.replace(`'./${name}'`,JSON.stringify(moduleUrl(readFileSync(`lib/${name}.ts`,'utf8'))));
-const {AccountSettingsStore,SettingsSync,projectSetting,validateDocument,SAVE_DELAY_MS,activateSettingsStore,settingsStorage}=await import(moduleUrl(source));
+const {AccountSettingsStore,SettingsSync,projectSetting,validateDocument,SAVE_DELAY_MS,activateSettingsStore,settingsStorage,AutomaticSettingsSync,AUTO_SYNC_INTERVAL_MS}=await import(moduleUrl(source));
 class Storage {
  data=new Map(); fail=false;
  get length(){return this.data.size;}
@@ -93,5 +93,44 @@ try{
  const previousMetadata=metadata;manualFailure=true;await manual.retry();assert.equal(status,'offline');assert.equal(metadata,previousMetadata,'failed pull must not invent a new save/check time');manual.stop();
  assert.equal(validateDocument(doc(1,{})).updatedAt,undefined,'old server remains supported');
  assert.equal(validateDocument({...doc(1,{}),updatedAt:'not-a-date'}).updatedAt,undefined);
+ // Independent fields within one plan merge; identical-field collisions are disclosed.
+ const mergeStore=new AccountSettingsStore(()=>port,'merge');
+ const key='shadowcraft-plan-v1:templar';
+ const initial={...plan,character:null,pointBudget:{sp:200,stigma:20,crystal:114,battle:0}};
+ const raw=JSON.stringify(initial);mergeStore.apply({[key]:raw},1);
+ mergeStore.setItem(key,JSON.stringify({...initial,pointBudget:{...initial.pointBudget,crystal:115}}));
+ mergeStore.apply({[key]:JSON.stringify({...initial,pointBudget:{...initial.pointBudget,sp:201}})},2);
+ assert.deepEqual(JSON.parse(mergeStore.getItem(key)).pointBudget,{sp:201,stigma:20,crystal:115,battle:0});
+ assert.equal(mergeStore.conflicted(),false);
+ mergeStore.apply({[key]:JSON.stringify({...initial,pointBudget:{...initial.pointBudget,sp:201,crystal:116}})},3);
+ assert.equal(JSON.parse(mergeStore.getItem(key)).pointBudget.crystal,115);assert.equal(mergeStore.conflicted(),true);
+ // Map additions/removals merge independently rather than overwriting the completed list.
+ const mapKey='a2bc-map-progress-v1:'+'a'.repeat(64),progress=completed=>JSON.stringify({schema:'a2bc-map-progress-v1',completed});
+ const mapStore=new AccountSettingsStore(()=>port,'map-merge');mapStore.apply({[mapKey]:progress(['a','b'])},1);
+ mapStore.setItem(mapKey,progress(['b','local']));mapStore.apply({[mapKey]:progress(['a','b','remote'])},2);
+ assert.deepEqual(JSON.parse(mapStore.getItem(mapKey)).completed,['b','local','remote']);
+ // A 409 automatically rebases dirty fields and retries, preserving unrelated remote changes.
+ const conflictStore=new AccountSettingsStore(()=>port,'revision-conflict');let conflictRemote=doc(1,{'asbc-locale':'ko',favorites:'["map"]'}),attempts=0;
+ const conflictSync=new SettingsSync(conflictStore,async(method,input)=>{
+  if(method==='GET')return conflictRemote;
+  attempts++;if(input.revision!==conflictRemote.revision)throw Object.assign(Error('conflict'),{status:409});
+  return conflictRemote=doc(conflictRemote.revision+1,input.entries);
+ },()=>{},()=>{});
+ await conflictSync.start();conflictStore.setItem('asbc-locale','en');conflictRemote=doc(2,{'asbc-locale':'ko',favorites:'["database"]'});
+ await tick(SAVE_DELAY_MS);await tick(SAVE_DELAY_MS);
+ assert.equal(attempts,2);assert.equal(conflictRemote.entries['asbc-locale'],'en');assert.equal(conflictRemote.entries.favorites,'["database"]');conflictSync.stop();
+ // A user beginning to type while a GET is in flight defers applying it until a later poll.
+ let finishPoll,allowApply=true,pollCount=0;const typingStore=new AccountSettingsStore(()=>port,'typing');
+ const typingSync=new SettingsSync(typingStore,async()=>{pollCount++;return pollCount===2?new Promise(resolve=>finishPoll=resolve):doc(pollCount,{'asbc-locale':pollCount===1?'ko':'en'});},()=>{},()=>{},()=>allowApply);
+ await typingSync.start();const inFlight=typingSync.poll();allowApply=false;finishPoll(doc(2,{'asbc-locale':'en'}));await inFlight;
+ assert.equal(typingStore.getItem('asbc-locale'),'ko');allowApply=true;await typingSync.poll();assert.equal(typingStore.getItem('asbc-locale'),'en');typingSync.stop();
+ // Visible-page polling, edit/hidden pause, bounded retry backoff, and stop cleanup.
+ let eligible=true,automaticReads=0,healthy=true;
+ const automatic=new AutomaticSettingsSync({poll:async()=>{automaticReads++;return healthy;}},()=>eligible);
+ automatic.start();await tick(AUTO_SYNC_INTERVAL_MS-1);assert.equal(automaticReads,0);await tick(1);assert.equal(automaticReads,1);
+ eligible=false;await tick(AUTO_SYNC_INTERVAL_MS);assert.equal(automaticReads,1);eligible=true;automatic.wake();await tick(0);assert.equal(automaticReads,2);
+ automatic.wake();await tick(0);assert.equal(automaticReads,2,'coalesce simultaneous focus/visibility notifications');
+ healthy=false;await tick(AUTO_SYNC_INTERVAL_MS);assert.equal(automaticReads,3);await tick(AUTO_SYNC_INTERVAL_MS);assert.equal(automaticReads,3);await tick(AUTO_SYNC_INTERVAL_MS);assert.equal(automaticReads,4);
+ automatic.stop();await tick(120000);assert.equal(automaticReads,4);
  console.log('PASS account settings: load/apply, debounce, first-login rules, offline reload/retry, account isolation, logout race, in-flight edits, quota, schema, size, privacy projection, manual pull and server timestamps');
 }finally{activateSettingsStore(null);globalThis.setTimeout=originalSet;globalThis.clearTimeout=originalClear;}

@@ -1,3 +1,4 @@
+import {useSettingsRefresh} from './use-settings-refresh';
 import {settingsStorage} from '../lib/account-settings';
 import {AccountSettings} from './account-settings';
 import MacroGuide from './macro-guide';
@@ -235,6 +236,7 @@ function PlannerPage(){
  const [selected,setSelected]=useState('assassin'),[catalogs,setCatalogs]=useState<Record<string,Catalog>>({assassin:assassinInitial as Catalog}),[loadError,setLoadError]=useState(''),[retry,setRetry]=useState(0);
  useEffect(()=>{const pending=readPendingShared()?.plan.classKey;if(pending&&isClassKey(pending)){choose(pending);return;}try{const key=settingsStorage.getItem('shadowcraft-selected-class');if(key&&isClassKey(key))setSelected(key)}catch{}},[]); // eslint-disable-line react-hooks/exhaustive-deps
  useEffect(()=>{let active=true;setLoadError('');if(!catalogs[selected])loadBundledCatalog(selected).then(c=>{if(active)setCatalogs(old=>({...old,[selected]:c}))}).catch(()=>{if(active)setLoadError('직업 데이터를 불러오지 못했습니다. 다시 시도하세요.')});return()=>{active=false}},[selected,retry]);
+ useSettingsRefresh('shadowcraft-selected-class',()=>{const key=settingsStorage.getItem('shadowcraft-selected-class');if(key&&isClassKey(key))setSelected(key);});
  function choose(key:string){if(!isClassKey(key))return;setSelected(key);try{settingsStorage.setItem('shadowcraft-selected-class',key)}catch{}}
  if(!catalogs[selected])return <div className="class-loading"><div className="brand"><Swords/>ASBC</div><h2>{t('{0} 불러오는 중',[t(classProfile(selected).name)])}</h2>{loadError?<><p>{t(loadError)}</p><button className="button primary" onClick={()=>setRetry(v=>v+1)}>{t('다시 시도')}</button></>:<RefreshCw className="spin"/>}<div className="class-picker">{CLASSES.map(p=><button key={p.key} onClick={()=>choose(p.key)}>{t(p.name)}</button>)}</div></div>;
  return <Workshop classFocus={classFocus} tab={tab} setTab={setTab} key={selected} classKey={selected} initialCatalog={catalogs[selected]} onClassChange={key=>{classFocus.current=true;choose(key);}}/>;

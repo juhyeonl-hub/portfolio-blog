@@ -1,3 +1,4 @@
+import {useSettingsRefresh} from './use-settings-refresh';
 import {settingsStorage} from '../lib/account-settings';
 import {useEffect, useRef, useState} from 'react';
 import MapMarkerIcon from './map-marker-icon';
@@ -58,6 +59,7 @@ function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolea
   const [storageNotice, setStorageNotice] = useState('');
   const progressKey = useRef('');
   const writable = useRef(false);
+  useSettingsRefresh(progressKey.current||null,()=>{if(!preview.length)return;const progress=loadMapProgressWithLegacy(settingsStorage,progressKey.current,previewProgressDataset(terrainName,preview),(legacyProgressKeys as Record<string,string>)[terrainName]);if(progress.writable)setCompleted(new Set(progress.completed));});
   const previewResults = previewMatches(preview, enabledKinds, '', excludedGatherNames).filter(row=>[name(row.name),row.name].some(n=>previewQuery.trim().toLowerCase().split(/\s+/).every(w=>n.toLowerCase().includes(w)))).filter(row=>!hideCompleted || !completed.has(row.id));
   const paged = previewPage(previewResults, page, previewSelection);
   const previewVisible = visiblePreview(previewResults, view);

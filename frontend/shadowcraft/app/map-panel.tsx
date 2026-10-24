@@ -1,3 +1,4 @@
+import {useSettingsRefresh} from './use-settings-refresh';
 import {settingsStorage} from '../lib/account-settings';
 import {useMemo, useRef, useState} from 'react';
 import TerrainPanel from './terrain-panel';
@@ -55,6 +56,7 @@ export default function MapPanel({active=false}:{active?:boolean}) {
     try { saved = saveMapProgress(settingsStorage, key, [...next].sort()); } catch { /* Memory-only when storage is unavailable. */ }
     setStorageNotice(saved ? '' : '진행도를 저장하지 못했습니다. 이번 체크는 이 화면에서만 기억합니다.');
   }
+  useSettingsRefresh(key||null,()=>{if(!dataset)return;const progress=loadMapProgress(settingsStorage,key,dataset);if(progress.writable)setCompleted(new Set(progress.completed));});
   function focus(marker: MapMarker) {
     setSelected(marker.id);
     setView(v => constrainMapView({x: marker.x * 1000 - 500 / v.zoom, y: marker.y * 1000 - 500 / v.zoom, zoom: v.zoom}));

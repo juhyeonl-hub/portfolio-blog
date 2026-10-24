@@ -1,3 +1,4 @@
+import {useSettingsRefresh} from './use-settings-refresh';
 import {settingsStorage} from '../lib/account-settings';
 import {useRef,useState} from 'react';
 import {Star,ArrowUpRight} from 'lucide-react';
@@ -8,6 +9,7 @@ import {FAVORITE_TOOLS,favoritesKey,parseFavorites,type FavoriteId} from '../lib
 function MemberFavorites({memberId,onNavigate}:{memberId:string;onNavigate:(tab:string)=>void}){
  const {t}=useLocale();const details=useRef<HTMLDetailsElement>(null);
  const [saved,setSaved]=useState(()=>{try{const raw=settingsStorage.getItem(favoritesKey(memberId));return {ids:raw===null?[]:parseFavorites(raw),error:''};}catch{return {ids:[] as FavoriteId[],error:'즐겨찾기를 불러오지 못했습니다. 다시 선택해 주세요.'};}});
+ useSettingsRefresh(favoritesKey(memberId),()=>{const raw=settingsStorage.getItem(favoritesKey(memberId));setSaved({ids:raw===null?[]:parseFavorites(raw),error:''});});
  function toggle(id:FavoriteId){const ids=saved.ids.includes(id)?saved.ids.filter(item=>item!==id):[...saved.ids,id];try{settingsStorage.setItem(favoritesKey(memberId),JSON.stringify(ids));setSaved({ids,error:''});}catch{setSaved({...saved,error:'즐겨찾기를 저장하지 못했습니다. 브라우저 저장 공간을 확인해 주세요.'});}}
  return <>
   <div className="home-favorite-links">{saved.ids.map(id=>{const tool=FAVORITE_TOOLS.find(item=>item.id===id)!;return <button className="button secondary" key={id} onClick={()=>onNavigate(id)}><Star size={15}/><span>{t(tool.title)}</span><ArrowUpRight size={15}/></button>;})}</div>
