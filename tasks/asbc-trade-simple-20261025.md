@@ -8,5 +8,7 @@ Last verified: baseline captured.
 Last reviewed: no Claude review, user standing direct-deployment request.
 Findings: identical unit prices and percentage tax imply equal total profit apart from per-listing fees and rounding. Do not infer sale prices or sell-through from purchase price alone.
 Uncommitted: existing globals.css/home-panel.tsx/translation deletion and untracked files preserved.
-Next: deploy and verify canonical production.
+Next: complete.
 Blocker: none.
+
+Production: e68e21ab9b63274f23b48d66989bac2488742420 pushed to main; Pages https://365d412b.asbc-4c9.pages.dev deployed. Canonical HTML + 9 entry/calculator assets byte-match the isolated build. Actual Chrome PC and IAB390px mobile: only purchase-price input shown by default; purchase130000->200000 (PC) and130000->100000 (mobile) immediately updates break-even/5/10/20% sale prices and profit. Restored both browser drafts to purchase130000. Browser viewport reset; temporary tabs and owned QA server cleaned. No physical phone test. Existing changes preserved, backend unchanged, no Claude review. Evidence at D:/CodexData/Projects/ASBC/artifacts/trade-simple-20261025.
