@@ -1,3 +1,4 @@
+import {settingsStorage} from '../lib/account-settings';
 import {classProfile} from '../lib/classes';
 import {useLocale} from './locale';
 import {createContext,useContext,useEffect,useState,type ReactNode} from 'react';
@@ -11,7 +12,7 @@ type Member={id:string;username:string;steamLinked?:boolean};
 type SteamState={pending:string;notice:string;error:string};
 const STEAM_ERRORS:Record<string,string>={expired:'Steam 로그인이 만료되었습니다. 다시 시도하세요.',failed:'Steam 로그인을 확인하지 못했습니다. 다시 시도하세요.',taken:'이미 다른 계정에 연결된 Steam 계정입니다.',already:'이 계정에는 이미 Steam 계정이 연결되어 있습니다.'};
 /** Reads the one-time Steam hand-back once and removes it from the address bar immediately. */
-function readSteamHash():{kind:string;value:string}|null{const m=location.hash.match(/^#steam-(code|new|linked|error)=([A-Za-z0-9_-]{1,64})$/);if(!m)return null;try{history.replaceState(null,'',location.pathname+location.search);}catch{}return {kind:m[1],value:m[2]};}
+function readSteamHash():{kind:string;value:string}|null{const m=location.hash.match(/^#steam-(code|new|linked|error)=([A-Za-z0-9_-]{1,64})$/);if(!m)return null;try{history.replaceState(null,'',location.pathname+location.search+'#/account');}catch{}return {kind:m[1],value:m[2]};}
 export const steamReturn=()=>/^#steam-(code|new|linked|error)=/.test(location.hash);
 type Session={token:string;member:Member};
 const STORAGE='a2bc-member-session-v1';
@@ -27,9 +28,11 @@ async function call(path:string,token:string,method='GET',body?:unknown){
 export function MemberProvider({children}:{children:ReactNode}){
  const [session,setValue]=useState<Session|null>(null),[ready,setReady]=useState(false),[steam,setSteam]=useState<SteamState>({pending:'',notice:'',error:''});
  function setSession(value:Session|null){setValue(value);try{if(value)sessionStorage.setItem(STORAGE,JSON.stringify(value));else sessionStorage.removeItem(STORAGE);}catch{}}
- useEffect(()=>{let live=true;const returned=readSteamHash();async function restore(){if(returned?.kind==='code'){try{const result=await call('/api/community/auth/steam/exchange','','POST',{code:returned.value});if(live){setSession(result);setSteam({pending:'',notice:'Steam으로 로그인했습니다.',error:''});}}catch(e){if(live)setSteam({pending:'',notice:'',error:(e as Error).message});}finally{if(live)setReady(true);}return;}if(returned?.kind==='new'&&live)setSteam({pending:returned.value,notice:'',error:''});if(returned?.kind==='error'&&live)setSteam({pending:'',notice:'',error:STEAM_ERRORS[returned.value]||STEAM_ERRORS.failed});if(returned?.kind==='linked'&&live)setSteam({pending:'',notice:'Steam 계정을 연결했습니다.',error:''});try{const raw=sessionStorage.getItem(STORAGE);if(raw){const saved=JSON.parse(raw);if(typeof saved.token==='string'){const member=await call('/api/community/me',saved.token);if(live)setValue({token:saved.token,member});}}}catch{try{sessionStorage.removeItem(STORAGE);}catch{}}finally{if(live)setReady(true);}}void restore();return()=>{live=false;};},[]);
+ useEffect(()=>{let live=true;const returned=readSteamHash();async function restore(){if(returned?.kind==='code'){try{const result=await call('/api/community/auth/steam/exchange','','POST',{code:returned.value});if(live){setSession(result);setSteam({pending:'',notice:'Steam으로 로그인했습니다.',error:''});}}catch(e){if(live)setSteam({pending:'',notice:'',error:(e as Error).message});}finally{if(live)setReady(true);}return;}if(returned?.kind==='new'&&live)setSteam({pending:returned.value,notice:'',error:''});if(returned?.kind==='error'&&live)setSteam({pending:'',notice:'',error:STEAM_ERRORS[returned.value]||STEAM_ERRORS.failed});if(returned?.kind==='linked'&&live)setSteam({pending:'',notice:'Steam 계정을 연결했습니다.',error:''});try{const raw=sessionStorage.getItem(STORAGE);if(raw){const saved=JSON.parse(raw);if(typeof saved.token==='string'){try{const member=await call('/api/community/me',saved.token);if(live)setValue({token:saved.token,member});}catch(e){if((e as {status?:number}).status===401||(e as {status?:number}).status===403)throw e;if(live&&typeof saved.member?.id==='string')setValue(saved);}}}}catch{try{sessionStorage.removeItem(STORAGE);}catch{}}finally{if(live)setReady(true);}}void restore();return()=>{live=false;};},[]);
  return <Context.Provider value={{session,ready,setSession,steam,setSteam,request:async(path,method,body)=>{try{return await call(path,session?.token||'',method,body);}catch(e){if((e as any).status===401||(e as any).status===403)setSession(null);throw e;}}}}>{children}</Context.Provider>;
 }
+export function useMemberSession(){const {session,ready}=useContext(Context);return {session,ready};}
+export const settingsRequest=(token:string,method:string,body?:unknown)=>call('/api/community/settings',token,method,body);
 export function useMemberReady(){return useContext(Context).ready;}
 export function useMember(){return useContext(Context).session?.member||null;}
 export function MemberAccount(){
@@ -81,7 +84,7 @@ export function BuildDiscussion({build,onUpdated}:{build:PublicBuildDetail;onUpd
  const {session,request}=useContext(Context),[data,setData]=useState<Social|null>(null),[revision,setRevision]=useState(0),[error,setError]=useState(''),[busy,setBusy]=useState(false);
  const [editing,setEditing]=useState(false),[title,setTitle]=useState(build.title),[description,setDescription]=useState(build.description),[deleting,setDeleting]=useState(false);
  const [replacement,setReplacement]=useState<SharedBuild|null>(null);
- async function loadReplacement(){setBusy(true);setError('');try{const key=build.shared.plan.classKey||'assassin';const raw=localStorage.getItem(key==='assassin'?'shadowcraft-plan-v1':'shadowcraft-plan-v1:'+key);if(!raw)throw Error('이 직업의 저장된 배분이 없습니다. 플래너에서 먼저 배분을 저장하세요.');const plan=JSON.parse(raw);if(!validStoredPlan(plan,key))throw Error('저장된 배분을 읽지 못했습니다. 플래너에서 확인하세요.');setReplacement(publicBuild(await loadBundledCatalog(key),plan));}catch(e){setError(e instanceof Error?e.message:'배분을 불러오지 못했습니다.');}finally{setBusy(false);}}
+ async function loadReplacement(){setBusy(true);setError('');try{const key=build.shared.plan.classKey||'assassin';const raw=settingsStorage.getItem(key==='assassin'?'shadowcraft-plan-v1':'shadowcraft-plan-v1:'+key);if(!raw)throw Error('이 직업의 저장된 배분이 없습니다. 플래너에서 먼저 배분을 저장하세요.');const plan=JSON.parse(raw);if(!validStoredPlan(plan,key))throw Error('저장된 배분을 읽지 못했습니다. 플래너에서 확인하세요.');setReplacement(publicBuild(await loadBundledCatalog(key),plan));}catch(e){setError(e instanceof Error?e.message:'배분을 불러오지 못했습니다.');}finally{setBusy(false);}}
  useEffect(()=>{let live=true;setData(null);setError('');request('/api/public/shadowcraft/builds/'+build.id+'/community').then(d=>{if(!d||!Number.isSafeInteger(d.votes)||d.votes<0||typeof d.voted!=='boolean')throw Error('좋아요 응답을 확인하지 못했습니다.');if(live)setData(d);}).catch(e=>{if(live)setError(e.message);});return()=>{live=false;};},[build.id,revision,session?.token]);
  async function run(action:()=>Promise<unknown>){setBusy(true);setError('');try{await action();setRevision(v=>v+1);}catch(e){setError((e as Error).message);}finally{setBusy(false);}}
  const path='/api/community/builds/'+build.id;

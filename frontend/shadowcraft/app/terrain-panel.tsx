@@ -1,3 +1,4 @@
+import {settingsStorage} from '../lib/account-settings';
 import {useEffect, useRef, useState} from 'react';
 import MapMarkerIcon from './map-marker-icon';
 import {useLocale} from './locale';
@@ -77,7 +78,7 @@ function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolea
       const dataset=previewProgressDataset(terrainName,map.markers);
       const key=await mapProgressKey(dataset);
       let progress={completed:[] as string[],writable:false};
-      try {progress=loadMapProgressWithLegacy(localStorage,key,dataset,(legacyProgressKeys as Record<string,string>)[terrainName]);} catch { /* Storage unavailable. */ }
+      try {progress=loadMapProgressWithLegacy(settingsStorage,key,dataset,(legacyProgressKeys as Record<string,string>)[terrainName]);} catch { /* Storage unavailable. */ }
       progressKey.current=key;writable.current=progress.writable;
       setCompleted(new Set(progress.completed));
       setStorageNotice(progress.writable?'':'저장된 기록을 읽지 못했습니다. 기존 기록은 유지하고 이번 변경은 화면에서만 기억합니다.');
@@ -100,7 +101,7 @@ function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolea
     setCompleted(next);
     if(!writable.current)return;
     let saved=false;
-    try {saved=saveMapProgress(localStorage,progressKey.current,[...next].sort());} catch { /* Memory-only. */ }
+    try {saved=saveMapProgress(settingsStorage,progressKey.current,[...next].sort());} catch { /* Memory-only. */ }
     if(!saved)setStorageNotice('기록을 저장하지 못했습니다. 이번 변경은 화면에서만 기억합니다.');
   }
   const regionLabels = terrainLabels.maps.find(map=>map.name === terrainName);

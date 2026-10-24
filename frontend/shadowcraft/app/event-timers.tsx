@@ -1,3 +1,4 @@
+import {settingsStorage} from '../lib/account-settings';
 import {Coins,Swords,Orbit,Skull,Eclipse,CircleHelp,Pin,type LucideIcon} from 'lucide-react';
 import mapIcons from '@/lib/data/map-icons.json';
 import {BOSS_CATALOG,bossName,bossMap,legacyBossIds,selectedBossIds,setBossPinned,type CatalogBoss} from '@/lib/boss-catalog';
@@ -20,7 +21,7 @@ function TimerKindIcon({kind,icon:Fallback}:{kind:string;icon:LucideIcon}){
 }
 export default function EventTimers({children,expanded=false}:{children?:ReactNode;expanded?:boolean}){
  const {t,locale}=useLocale();
- const [initial]=useState(()=>{try{const raw=localStorage.getItem(TIMER_KEY);return {settings:raw?parseSettings(raw):emptySettings(),error:''}}catch{return {settings:emptySettings(),error:'저장된 타이머 설정을 읽지 못했습니다. 다시 설정해 주세요.'}}});
+ const [initial]=useState(()=>{try{const raw=settingsStorage.getItem(TIMER_KEY);return {settings:raw?parseSettings(raw):emptySettings(),error:''}}catch{return {settings:emptySettings(),error:'저장된 타이머 설정을 읽지 못했습니다. 다시 설정해 주세요.'}}});
  const [settings,setSettings]=useState(initial.settings),[draft,setDraft]=useState(initial.settings),[error,setError]=useState(initial.error),[editing,setEditing]=useState(false),[now,setNow]=useState(()=>Date.now());
  const [draftRace,setDraftRace]=useState(1);
  const [pinnedOnly,setPinnedOnly]=useState(false),[pageSearch,setPageSearch]=useState(''),[pageSide,setPageSide]=useState('all'),[fullscreen,setFullscreen]=useState(false);
@@ -67,11 +68,11 @@ export default function EventTimers({children,expanded=false}:{children?:ReactNo
   return()=>{document.removeEventListener('focusin',focusOutside);document.removeEventListener('keydown',close);document.removeEventListener('pointerdown',outside)};
  },[editing,choosingPins]);
  function persist(next:TimerSettings){
-  try{const valid=parseSettings(JSON.stringify(next));localStorage.setItem(TIMER_KEY,JSON.stringify(valid));setSettings(valid);window.dispatchEvent(new Event(TIMER_SETTINGS_EVENT));setError('')}
+  try{const valid=parseSettings(JSON.stringify(next));settingsStorage.setItem(TIMER_KEY,JSON.stringify(valid));setSettings(valid);window.dispatchEvent(new Event(TIMER_SETTINGS_EVENT));setError('')}
   catch(e){setError(e instanceof Error?e.message:'설정 저장에 실패했습니다.')}
  }
  function pin(id:TimerId,checked:boolean){
-  try{const selected=pinnedTimers(settings);const next=parseSettings(JSON.stringify({...settings,pinned:TIMER_IDS.filter(x=>x===id?checked:selected.includes(x))}));localStorage.setItem(TIMER_KEY,JSON.stringify(next));setSettings(next);window.dispatchEvent(new Event(TIMER_SETTINGS_EVENT));setError('')}
+  try{const selected=pinnedTimers(settings);const next=parseSettings(JSON.stringify({...settings,pinned:TIMER_IDS.filter(x=>x===id?checked:selected.includes(x))}));settingsStorage.setItem(TIMER_KEY,JSON.stringify(next));setSettings(next);window.dispatchEvent(new Event(TIMER_SETTINGS_EVENT));setError('')}
   catch(e){setError(e instanceof Error?e.message:'설정 저장에 실패했습니다.')}
  }
  useEffect(()=>{
@@ -108,7 +109,7 @@ export default function EventTimers({children,expanded=false}:{children?:ReactNo
  const allCards=[...EVENT_TIMER_IDS.map(id=>({id,legacy:id,boss:undefined as CatalogBoss|undefined})),...catalog.map(boss=>({id:boss.id,legacy:Object.entries(aliases).find(([,value])=>value===boss.id)?.[0] as TimerId|undefined,boss}))];
  const cards=(expanded?(pinnedOnly?pinnedCards:allCards):pinnedCards).filter(({boss,legacy})=>!expanded||((pageSide==='all'||(boss?.side|| (boss?'abyss':'events'))===pageSide)&&(boss?[...Object.values(boss.names),...Object.values(boss.maps)]:[t(label(legacy!))]).some(name=>name.toLocaleLowerCase().includes(pageSearch.trim().toLocaleLowerCase()))));
  function change(p:Partial<typeof draftProfile>){setDraft({...draft,profiles:{...draft.profiles,[draftKey]:{...draftProfile,...p}}})}
- function save(){try{const profileToSave={...draftProfile};if(!servers[draft.region].some(s=>String(s.serverId)===draft.server))throw Error('서버를 선택해 주세요.');if(profileToSave.offset===null&&!profileToSave.timeZone)profileToSave.timeZone=Intl.DateTimeFormat().resolvedOptions().timeZone&&TIME_ZONES.some(([zone])=>zone===Intl.DateTimeFormat().resolvedOptions().timeZone)?Intl.DateTimeFormat().resolvedOptions().timeZone:'Asia/Seoul';for(const value of Object.values(profileToSave.times))parseTimes(value);const next=parseSettings(JSON.stringify({...draft,profiles:{...draft.profiles,[draftKey]:profileToSave}}));localStorage.setItem(TIMER_KEY,JSON.stringify(next));window.dispatchEvent(new Event(TIMER_SETTINGS_EVENT));setSettings(next);setEditing(false);settingsButton.current?.focus();setError('')}catch(e){setError(e instanceof Error?e.message:'설정 저장에 실패했습니다.')}}
+ function save(){try{const profileToSave={...draftProfile};if(!servers[draft.region].some(s=>String(s.serverId)===draft.server))throw Error('서버를 선택해 주세요.');if(profileToSave.offset===null&&!profileToSave.timeZone)profileToSave.timeZone=Intl.DateTimeFormat().resolvedOptions().timeZone&&TIME_ZONES.some(([zone])=>zone===Intl.DateTimeFormat().resolvedOptions().timeZone)?Intl.DateTimeFormat().resolvedOptions().timeZone:'Asia/Seoul';for(const value of Object.values(profileToSave.times))parseTimes(value);const next=parseSettings(JSON.stringify({...draft,profiles:{...draft.profiles,[draftKey]:profileToSave}}));settingsStorage.setItem(TIMER_KEY,JSON.stringify(next));window.dispatchEvent(new Event(TIMER_SETTINGS_EVENT));setSettings(next);setEditing(false);settingsButton.current?.focus();setError('')}catch(e){setError(e instanceof Error?e.message:'설정 저장에 실패했습니다.')}}
  function label(id:TimerId){return TIMER_NAMES[id]}
  return <section ref={header} className={expanded?"event-timer-header event-timer-page":"event-timer-header"} aria-label={t(expanded?'콘텐츠 타이머':'고정 콘텐츠 타이머')}>
   <div className="event-timer-toolbar">{expanded?<h1>{t('콘텐츠 타이머')}</h1>:<strong>{t('콘텐츠 타이머')}</strong>}<span>{server?`${t(regions.find(r=>r[0]===settings.region)?.[1])} · ${server.serverName} · ${profile.timeZone?t(TIME_ZONES.find(([zone])=>zone===profile.timeZone)?.[1]):t('기존 시간 기준')}`:''}</span>{children}<div className="event-timer-controls"><button ref={pinButton} type="button" className="button secondary small" aria-expanded={choosingPins} aria-controls="event-timer-pins" onClick={()=>{setEditing(false);setChoosingPins(!choosingPins)}}>{t('고정할 콘텐츠')} <span>{pinnedCards.length}</span></button><button ref={settingsButton} className="button ghost small" aria-expanded={editing} aria-controls="event-timer-settings" onClick={()=>{setChoosingPins(false);setDraft(settings);setDraftRace(servers[settings.region].find(s=>String(s.serverId)===settings.server)?.raceId||1);setEditing(!editing)}}>{t('서버·타이머 설정')}</button>{expanded&&<button ref={fullscreenButton} type="button" className="button secondary small" onClick={toggleFullscreen}>{t(fullscreen?'전체 화면 닫기':'타이머만 크게 보기')}</button>}</div></div>

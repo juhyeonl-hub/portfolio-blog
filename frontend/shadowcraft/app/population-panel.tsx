@@ -1,3 +1,4 @@
+import {settingsStorage} from '../lib/account-settings';
 import OfficialLink from './official-link';
 import {useLocale} from './locale';
 import {useEffect,useState} from 'react';
@@ -12,7 +13,7 @@ const regions=[['eu','유럽'],['nae','북미 동부'],['naw','북미 서부'],[
 
 /** The content timer's server as a population entry (ids are "<region>/<lowercase name>"), or null when none is saved. */
 function timerServer():{region:string;race:number;id:string}|null{
- try{const raw=localStorage.getItem(TIMER_KEY);if(!raw)return null;const settings=parseSettings(raw);
+ try{const raw=settingsStorage.getItem(TIMER_KEY);if(!raw)return null;const settings=parseSettings(raw);
   const server=(directory as Record<string,{serverId:number;serverName:string;raceId:number}[]>)[settings.region]?.find(s=>String(s.serverId)===settings.server);
   const entry=server&&snapshot.servers.find(s=>s.id===settings.region+'/'+server.serverName.toLowerCase()&&s.race===server.raceId);
   return entry?{region:entry.region,race:entry.race,id:entry.id}:null;}catch{return null;}

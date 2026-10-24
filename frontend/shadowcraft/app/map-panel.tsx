@@ -1,3 +1,4 @@
+import {settingsStorage} from '../lib/account-settings';
 import {useMemo, useRef, useState} from 'react';
 import TerrainPanel from './terrain-panel';
 import {useLocale} from './locale';
@@ -35,7 +36,7 @@ export default function MapPanel({active=false}:{active?:boolean}) {
       const nextKey = await mapProgressKey(next);
       if (token !== generation.current) return;
       let progress = {completed: [] as string[], writable: false};
-      try { progress = loadMapProgress(localStorage, nextKey, next); } catch { /* Storage access itself can throw. */ }
+      try { progress = loadMapProgress(settingsStorage, nextKey, next); } catch { /* Storage access itself can throw. */ }
       writable.current = progress.writable;
       setStorageNotice(progress.writable ? '' : '저장된 진행도를 읽지 못했습니다. 기존 기록을 유지하며 이번 체크는 이 화면에서만 기억합니다.');
       setDataset(next); setKey(nextKey); setCompleted(new Set(progress.completed));
@@ -51,7 +52,7 @@ export default function MapPanel({active=false}:{active?:boolean}) {
     setCompleted(next);
     if (!writable.current) return;
     let saved = false;
-    try { saved = saveMapProgress(localStorage, key, [...next].sort()); } catch { /* Memory-only when storage is unavailable. */ }
+    try { saved = saveMapProgress(settingsStorage, key, [...next].sort()); } catch { /* Memory-only when storage is unavailable. */ }
     setStorageNotice(saved ? '' : '진행도를 저장하지 못했습니다. 이번 체크는 이 화면에서만 기억합니다.');
   }
   function focus(marker: MapMarker) {

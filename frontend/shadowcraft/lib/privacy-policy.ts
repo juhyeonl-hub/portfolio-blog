@@ -5,7 +5,7 @@
 import type {Locale} from '../app/locale';
 
 export const PRIVACY_CONTACT = 'contact@asbc.app';
-export const PRIVACY_UPDATED = '2026-10-20';
+export const PRIVACY_UPDATED = '2026-10-23';
 
 type Policy = {title: string; updated: string; sections: {heading: string; paragraphs: string[]}[]};
 
@@ -18,8 +18,8 @@ export const PRIVACY: Record<Locale, Policy> = {
         'ASBC(asbc.app)는 Juhyeon Lee가 개인 프로젝트 브랜드 "추억 게임즈"로 운영하는 비공식 팬 도구입니다. 엔씨소프트와는 관계가 없습니다.',
         `개인정보에 관한 문의와 요청: ${PRIVACY_CONTACT}`,
       ]},
-      {heading: '이 브라우저에만 저장되는 정보', paragraphs: [
-        '빌드 계획, 빌드 보관함, 장비, 지도 기록, 언어와 서버·타이머 설정은 이 브라우저의 저장소(localStorage)에만 저장되며 서버로 보내지 않습니다. 브라우저의 사이트 데이터를 지우면 함께 지워집니다.',
+      {heading: '설정의 로컬 저장과 계정 동기화', paragraphs: [
+        '로그아웃 상태의 설정은 이 브라우저(localStorage)에만 저장됩니다. 로그인하면 언어, 즐겨찾기, 직업별 배분·잔여 포인트와 해당 공개 캐릭터의 식별 정보·레벨, 장비 선택·보너스, 지도 완료 기록과 서버·타이머 설정을 계정에 저장하여 다른 기기에서도 복원합니다. 캐릭터 조회 응답·검색 기록, 장비 이름·개인 메모와 빌드 보관함은 동기화하지 않습니다. 로컬 계정 캐시와 복구용 백업은 사이트 데이터를 지울 때 삭제되며, 서버 설정은 계정 삭제 시 삭제됩니다.',
         '커뮤니티 로그인 상태는 이 탭의 세션 저장소(sessionStorage)에 저장되며 탭을 닫으면 지워집니다.',
       ]},
       {heading: '커뮤니티를 이용할 때 서버에 저장하는 정보', paragraphs: [
@@ -69,8 +69,8 @@ export const PRIVACY: Record<Locale, Policy> = {
         'ASBC (asbc.app) is an unofficial fan tool run by Juhyeon Lee under the personal project brand "추억 게임즈" (Memory Games). It is not affiliated with NCSOFT.',
         `Privacy questions and requests: ${PRIVACY_CONTACT}`,
       ]},
-      {heading: 'Data stored only in your browser', paragraphs: [
-        'Build plans, the build library, gear, map progress, language and server/timer settings are stored only in this browser (localStorage) and are not sent to the server. Clearing the site data in your browser removes them.',
+      {heading: 'Local settings and account sync', paragraphs: [
+        'Signed-out settings stay in this browser (localStorage). When signed in, language, favorites, class allocations and remaining points with the associated public character identifiers and level, equipment choices and bonuses, map completion and server/timer settings are stored with your account and restored on other devices. Character responses, search history, equipment names, personal notes and the build library are not synced. Local account caches and recovery backups are removed when you clear site data; server settings are removed when you delete your account.',
         'Your community sign-in is kept in this tab\'s session storage (sessionStorage) and is removed when the tab is closed.',
       ]},
       {heading: 'Data stored on the server when you use the community', paragraphs: [
@@ -120,8 +120,8 @@ export const PRIVACY: Record<Locale, Policy> = {
         'ASBC(asbc.app)は、Juhyeon Leeが個人プロジェクトブランド「추억 게임즈」として運営する非公式ファンツールです。NCSOFTとは関係ありません。',
         `個人情報に関するお問い合わせ・ご依頼: ${PRIVACY_CONTACT}`,
       ]},
-      {heading: 'このブラウザにのみ保存される情報', paragraphs: [
-        'ビルド計画、ビルド保管庫、装備、マップ記録、言語、サーバー・タイマー設定は、このブラウザのストレージ(localStorage)にのみ保存され、サーバーには送信されません。ブラウザのサイトデータを削除すると一緒に消えます。',
+      {heading: 'ローカル設定とアカウント同期', paragraphs: [
+        'ログアウト中の設定はブラウザ(localStorage)にのみ保存されます。ログインすると、言語、お気に入り、職業別の配分と残りポイントおよび対応する公開キャラクターの識別情報・レベル、装備選択とボーナス、マップ完了記録、サーバー・タイマー設定をアカウントに保存し、他の端末で復元します。キャラクター応答、検索履歴、装備名、個人メモ、ビルド保管庫は同期しません。ローカルキャッシュと復旧用バックアップはサイトデータの削除時に、サーバー設定はアカウント削除時に削除されます。',
         'コミュニティのログイン状態は、このタブのセッションストレージ(sessionStorage)に保存され、タブを閉じると消えます。',
       ]},
       {heading: 'コミュニティ利用時にサーバーに保存する情報', paragraphs: [
@@ -171,8 +171,8 @@ export const PRIVACY: Record<Locale, Policy> = {
         'ASBC (asbc.app) on epävirallinen fanityökalu, jota Juhyeon Lee ylläpitää henkilökohtaisen projektibrändin "추억 게임즈" nimellä. Sillä ei ole yhteyttä NCSOFTiin.',
         `Tietosuojaa koskevat kysymykset ja pyynnöt: ${PRIVACY_CONTACT}`,
       ]},
-      {heading: 'Vain selaimeesi tallennettavat tiedot', paragraphs: [
-        'Rakennesuunnitelmat, rakennekirjasto, varusteet, karttaedistyminen sekä kieli- ja palvelin-/ajastinasetukset tallennetaan vain tähän selaimeen (localStorage), eikä niitä lähetetä palvelimelle. Ne poistuvat, kun poistat sivuston tiedot selaimesta.',
+      {heading: 'Paikalliset asetukset ja tilin synkronointi', paragraphs: [
+        'Ilman kirjautumista asetukset säilyvät vain selaimessa (localStorage). Kirjautuneena kieli, suosikit, luokkakohtaiset pistejaot ja jäljellä olevat pisteet sekä niihin liittyvän julkisen hahmon tunnisteet ja taso, varustevalinnat ja bonukset, kartan suoritusmerkinnät sekä palvelin- ja ajastinasetukset tallennetaan tilille ja palautetaan muilla laitteilla. Hahmovastauksia, hakuhistoriaa, varusteiden nimiä, henkilökohtaisia muistiinpanoja ja rakennekirjastoa ei synkronoida. Paikalliset välimuistit ja palautusvarmuuskopiot poistuvat sivuston tietojen mukana; palvelimen asetukset poistuvat tilin poistamisen yhteydessä.',
         'Yhteisöön kirjautuminen säilyy tämän välilehden istuntomuistissa (sessionStorage) ja poistuu, kun välilehti suljetaan.',
       ]},
       {heading: 'Palvelimelle tallennettavat tiedot yhteisöä käytettäessä', paragraphs: [

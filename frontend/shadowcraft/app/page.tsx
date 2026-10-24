@@ -1,6 +1,8 @@
+import {settingsStorage} from '../lib/account-settings';
+import {AccountSettings} from './account-settings';
 import MacroGuide from './macro-guide';
 import ReaderShell from './reader-shell';
-import {LocaleProvider,LanguageSelect,useLocale} from './locale';
+import {LanguageSelect,useLocale} from './locale';
 import {MemberProvider,MemberAccount,useMember,steamReturn} from './community'
 import {MoveBanner,TransferImport} from './origin-transfer';
 import {PrivacyPolicy} from './privacy';
@@ -69,8 +71,8 @@ function Workshop({classKey,initialCatalog,onClassChange,tab,setTab,classFocus}:
  const goTo=(id:string)=>{setTab(id);if(BUILD_TABS.includes(id))setScrollRequest(v=>v+1);};
  const bar=(id:string)=><span key={id} id={'build-'+id} className="build-anchor" hidden={tab!==id}/>;
  // Collapsible sidebar (desktop): remembered per browser.
- const [navCollapsed,setNavCollapsed]=useState(()=>{try{return localStorage.getItem('asbc-nav-collapsed')==='1';}catch{return false;}});
- const toggleNav=()=>setNavCollapsed(v=>{try{localStorage.setItem('asbc-nav-collapsed',v?'0':'1');}catch{}return !v;});
+ const [navCollapsed,setNavCollapsed]=useState(()=>{try{return settingsStorage.getItem('asbc-nav-collapsed')==='1';}catch{return false;}});
+ const toggleNav=()=>setNavCollapsed(v=>{try{settingsStorage.setItem('asbc-nav-collapsed',v?'0':'1');}catch{}return !v;});
  const [leveling,setLeveling]=useState(false);
  const sidebarRef=useRef<HTMLElement>(null),menuRef=useRef<HTMLButtonElement>(null),navOpener=useRef<HTMLButtonElement|null>(null);
  useEffect(()=>{
@@ -221,7 +223,7 @@ export default function Page(){
  useEffect(()=>{const changed=()=>setHash(location.hash);window.addEventListener('hashchange',changed);return()=>window.removeEventListener('hashchange',changed);},[]);
  // Shared builds and the privacy policy are shown without the planner, with their own toolbar and footer.
  const standalone=hash==='#privacy'||hash.startsWith('#published=')||hash.startsWith('#build=');
- return <LocaleProvider><MemberProvider><AdRails/><MoveBanner/><TransferImport/>{screenFromHash(hash)!=='timers'&&<EventTimers><SteamActivity active={!standalone} compact/></EventTimers>}{hash==='#privacy'&&<div className="asbc-share-toolbar"><a href="#">ASBC</a><LanguageSelect/></div>}{hash==='#privacy'?<PrivacyPolicy/>:hash.startsWith('#published=')?<ReaderShell><PublishedBuildView id={hash.slice(11)}/></ReaderShell>:hash.startsWith('#build=')?<ReaderShell><SharedBuildView hash={hash}/></ReaderShell>:<PlannerPage/>}{standalone&&<AsbcFooter/>}</MemberProvider></LocaleProvider>;
+ return <MemberProvider><AccountSettings><AdRails/><MoveBanner/><TransferImport/>{screenFromHash(hash)!=='timers'&&<EventTimers><SteamActivity active={!standalone} compact/></EventTimers>}{hash==='#privacy'&&<div className="asbc-share-toolbar"><a href="#">ASBC</a><LanguageSelect/></div>}{hash==='#privacy'?<PrivacyPolicy/>:hash.startsWith('#published=')?<ReaderShell><PublishedBuildView id={hash.slice(11)}/></ReaderShell>:hash.startsWith('#build=')?<ReaderShell><SharedBuildView hash={hash}/></ReaderShell>:<PlannerPage/>}{standalone&&<AsbcFooter/>}</AccountSettings></MemberProvider>;
 }
 function PlannerPage(){
  const {t}=useLocale();
@@ -231,9 +233,9 @@ function PlannerPage(){
  const setTab=(screen:string)=>{updateTab(screen);const next=screenHash(screen);if(location.hash!==next)location.hash=next;};
  const classFocus=useRef(false);
  const [selected,setSelected]=useState('assassin'),[catalogs,setCatalogs]=useState<Record<string,Catalog>>({assassin:assassinInitial as Catalog}),[loadError,setLoadError]=useState(''),[retry,setRetry]=useState(0);
- useEffect(()=>{const pending=readPendingShared()?.plan.classKey;if(pending&&isClassKey(pending)){choose(pending);return;}try{const key=localStorage.getItem('shadowcraft-selected-class');if(key&&isClassKey(key))setSelected(key)}catch{}},[]); // eslint-disable-line react-hooks/exhaustive-deps
+ useEffect(()=>{const pending=readPendingShared()?.plan.classKey;if(pending&&isClassKey(pending)){choose(pending);return;}try{const key=settingsStorage.getItem('shadowcraft-selected-class');if(key&&isClassKey(key))setSelected(key)}catch{}},[]); // eslint-disable-line react-hooks/exhaustive-deps
  useEffect(()=>{let active=true;setLoadError('');if(!catalogs[selected])loadBundledCatalog(selected).then(c=>{if(active)setCatalogs(old=>({...old,[selected]:c}))}).catch(()=>{if(active)setLoadError('직업 데이터를 불러오지 못했습니다. 다시 시도하세요.')});return()=>{active=false}},[selected,retry]);
- function choose(key:string){if(!isClassKey(key))return;setSelected(key);try{localStorage.setItem('shadowcraft-selected-class',key)}catch{}}
+ function choose(key:string){if(!isClassKey(key))return;setSelected(key);try{settingsStorage.setItem('shadowcraft-selected-class',key)}catch{}}
  if(!catalogs[selected])return <div className="class-loading"><div className="brand"><Swords/>ASBC</div><h2>{t('{0} 불러오는 중',[t(classProfile(selected).name)])}</h2>{loadError?<><p>{t(loadError)}</p><button className="button primary" onClick={()=>setRetry(v=>v+1)}>{t('다시 시도')}</button></>:<RefreshCw className="spin"/>}<div className="class-picker">{CLASSES.map(p=><button key={p.key} onClick={()=>choose(p.key)}>{t(p.name)}</button>)}</div></div>;
  return <Workshop classFocus={classFocus} tab={tab} setTab={setTab} key={selected} classKey={selected} initialCatalog={catalogs[selected]} onClassChange={key=>{classFocus.current=true;choose(key);}}/>;
 }
