@@ -20,7 +20,14 @@ export function maxBase(s:Skill,lv:number,ascensionGrade3Confirmed=false){
  return Math.max(0,...s.learning.filter(l=>l.requiredCharacterLevel<=lv&&l.level<=limit).map(l=>l.level));
 }
 export function unmetAscensionSkills(c:Catalog,p:Plan){return p.ascensionGrade3Confirmed?[]:c.skills.filter(s=>ascensionGate(s)&&(p.base[s.id]??(s.stigma?0:1))>=ascensionGate(s));}
-export function boardBonus(c:Catalog,p:Plan,id:string){return c.boards.filter(b=>b.requiredLevel<=p.level).flatMap(b=>b.nodes).filter(n=>p.nodes.includes(n.id)&&n.skill?.id===id).reduce((a,n)=>a+(n.skillLevels||0),0)}
+export function boardBonus(c:Catalog,p:Plan,id:string){
+ // Most board nodes do not affect this skill; avoid allocating/scanning a selected-node list for them.
+ let bonus=0;
+ for(const board of c.boards)if(board.requiredLevel<=p.level){
+  for(const node of board.nodes)if(node.skill?.id===id&&p.nodes.includes(node.id))bonus+=node.skillLevels||0;
+ }
+ return bonus;
+}
 export function equipmentBonus(p:Plan,id:string):number {
  if(!p.gear||p.gear.mode==='manual')return p.bonus[id]||0;
  const items=p.gear.items||[],chosen=new Map<string,GearItem>();

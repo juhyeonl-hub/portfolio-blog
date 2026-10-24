@@ -1,12 +1,13 @@
 import {classProfile} from './classes';
-import {type Catalog,type Plan,type Board,type Node,CORE,equipped,pointLimits,applyRecommended,finalLevel,recommendSpecs} from './planner';
+import {type Catalog,type Plan,type Board,type Node,equipped,pointLimits,applyRecommended,finalLevel,recommendSpecs} from './planner';
 
-function nodeValue(c:Catalog,p:Plan,n:Node,battle:boolean):number {
+function nodeValue(c:Catalog,p:Plan,n:Node,battle:boolean,levels:Map<string,number>):number {
  const profile=classProfile(c.classKey||p.classKey);if(n.autoLearn)return 0;
  if(n.skill){
   const s=c.skills.find(s=>s.id===n.skill!.id);
   if(!s||s.stigma&&!equipped(p).includes(s.id))return 0;
-  const level=finalLevel(c,p,s);if(level>=s.maxLevel)return 0;
+  if(!levels.has(s.id))levels.set(s.id,finalLevel(c,p,s));
+  const level=levels.get(s.id)!;if(level>=s.maxLevel)return 0;
   const milestone=[8,12,16,20].some(v=>level<v&&level+(n.skillLevels||1)>=v);
   if(profile.sourceBoardWeights?.[s.id]!==undefined)return profile.sourceBoardWeights[s.id]+(milestone?30:0);
   if(profile.core.includes(s.id))return milestone?65:28;
@@ -56,13 +57,18 @@ export function recommendBuild(c:Catalog,p:Plan):Plan {
   const boards=allowed.filter(b=>(b.pointKind.code==='battlecrystal')===battle);
   for(let iteration=0;iteration<c.boards.reduce((sum,b)=>sum+b.nodes.length,0);iteration++){
    let best:{ids:string[];cost:number;score:number}|undefined;
+   // All candidate paths see the same selected nodes. Refresh after each chosen path.
+   const levels=new Map<string,number>();
    for(const board of boards){
     const routes=paths(board,selected);const byId=new Map(board.nodes.map(n=>[n.id,n]));
+    // Scores depend on this iteration's plan, not on the candidate path.
+    const values=new Map<string,number>();
+    const valueOf=(id:string)=>{if(!values.has(id))values.set(id,nodeValue(c,next,byId.get(id)!,battle,levels));return values.get(id)!;};
     for(const n of board.nodes){
      const cost=routes.dist.get(n.id)!;
      if(selected.has(n.id)||!Number.isFinite(cost)||cost>remaining)continue;
      const ids=routes.path(n.id);if(!ids.length)continue;
-     const value=ids.reduce((sum,id)=>sum+nodeValue(c,next,byId.get(id)!,battle),0);
+     const value=ids.reduce((sum,id)=>sum+valueOf(id),0);
      if(value<=0)continue;
      const score=value/Math.max(1,cost);
      if(!best||score>best.score||(score===best.score&&cost<best.cost))best={ids,cost,score};
