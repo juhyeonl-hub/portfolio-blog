@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl} from './modules.mjs';
-const {calculateTrade,minimumTradePrice,parseTradeDraft,parseTradeInteger,parseTradeRate,tradeExample,MAX_TRADE_MONEY}=await import(moduleUrl(readFileSync('lib/trade-calculator.ts','utf8')));
+const {calculateTrade,minimumTradePrice,parseTradeDraft,parseTradeInteger,parseTradeRate,parsePurchaseDraft,tradeProfitExamples,tradeExample,MAX_TRADE_MONEY}=await import(moduleUrl(readFileSync('lib/trade-calculator.ts','utf8')));
 const input=parseTradeDraft(tradeExample).value;
 assert.ok(input);
 for(const size of [25n,50n,100n]){
@@ -36,3 +36,19 @@ for(const rounding of ['up','down'])for(const taxBps of [0n,1n,1000n,1234n,9999n
 const rounded={...input,buy:0n,sell:1n,quantity:10n,bundle:1n};
 assert.equal(calculateTrade(rounded).tax,10n);assert.equal(calculateTrade(rounded,10n).tax,1n);
 console.log(`PASS trade calculator: screenshot example, lots/remainders, fees, loss, exact large integers, validation, rounding and minimum-price boundaries (${cases} oracle cases)`);
+
+const purchase=parsePurchaseDraft({...tradeExample,sell:'',target:'not-a-number'});assert.ok(purchase.value);assert.deepEqual(purchase.errors,{});
+const examples=tradeProfitExamples(purchase.value);
+assert.deepEqual(examples.map(row=>row.price),[144445n,151667n,158889n,173334n]);
+assert.equal(examples[2].result.profit,1300008n);
+for(const buy of [0n,1n,130000n,200000n])for(const quantity of [1n,101n,100n])for(const fee of [0n,1000n]){
+ const v={...purchase.value,buy,quantity,fee};
+ for(const row of tradeProfitExamples(v)){
+  assert.ok(row.result.profit>=row.target);assert.ok(row.target*100n>=buy*quantity*BigInt(row.percent));
+  if(row.price>0n)assert.ok(calculateTrade(v,v.bundle,row.price-1n).profit<row.target);
+ }
+}
+assert.ok(tradeProfitExamples({...purchase.value,taxBps:10000n}).every(row=>row.price===null&&row.result===null));
+assert.ok(parsePurchaseDraft({...tradeExample,tax:'101'}).errors.tax);
+assert.ok(parsePurchaseDraft({...tradeExample,quantity:''}).errors.quantity);
+console.log('PASS purchase-only examples: hidden manual fields ignored, exact ROI targets, changing cost/quantity/fees, minimum price boundaries and impossible rates');

@@ -48,3 +48,13 @@ export function minimumTradePrice(input:TradeInput,bundle=input.bundle,target=1n
  while(low+1n<high){const mid=(low+high)/2n;if(calculateTrade(input,bundle,mid).profit>=target)high=mid;else low=mid;}
  return high;
 }
+
+// Purchase-only mode ignores stale or unfinished manual sale/target drafts.
+export function parsePurchaseDraft(draft:TradeDraft){return parseTradeDraft({...draft,sell:'0',target:'0'});}
+export function tradeProfitExamples(input:TradeInput){
+ return [0,5,10,20].map(percent=>{
+  const target=(input.buy*input.quantity*BigInt(percent)+99n)/100n;
+  const price=minimumTradePrice(input,input.bundle,target);
+  return {percent,target,price,result:price===null?null:calculateTrade(input,input.bundle,price)};
+ });
+}

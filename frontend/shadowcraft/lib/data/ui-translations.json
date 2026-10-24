@@ -10883,5 +10883,140 @@
     "en": "Sale proceeds after tax and listing costs",
     "ja": "税金と登録費を引いた受取額",
     "fi": "Myynnistä saatu summa verojen ja listauskulujen jälkeen"
+  },
+  "{0}% 순이익 예시": {
+    "en": "{0}% profit example",
+    "ja": "純利益{0}%の例",
+    "fi": "{0} %:n voittoesimerkki"
+  },
+  "{0}개 구매 · {1}개씩 판매 · 세율 {2}% · 등록 1회당 {3}": {
+    "en": "Buy {0} · lots of {1} · tax {2}% · {3} per listing",
+    "ja": "{0}個購入 · {1}個ずつ販売 · 税率{2}% · 登録1回{3}",
+    "fi": "Osta {0} · {1} kpl erissä · vero {2} % · {3} / listaus"
+  },
+  "같은 개당 가격에 전부 팔리면 묶음을 나눠도 총이익은 같습니다. 다만 등록 1회당 비용이나 세금의 소수점 처리로 차이가 날 수 있습니다.": {
+    "en": "If everything sells at the same unit price, splitting lots leaves the same total profit, apart from per-listing costs or tax rounding.",
+    "ja": "同じ単価ですべて売れるなら、分割しても総利益は同じです。ただし登録ごとの費用や税金の端数処理で差が出る場合があります。",
+    "fi": "Jos kaikki myydään samalla kappalehinnalla, eriin jakaminen ei muuta kokonaisvoittoa. Listauskohtaiset kulut ja veron pyöristys voivat kuitenkin aiheuttaa eroja."
+  },
+  "개당 {0}": {
+    "en": "{0} per item",
+    "ja": "1個 {0}",
+    "fi": "{0} / kpl"
+  },
+  "개당 구매 가격 (키나)": {
+    "en": "Purchase price per item (kinah)",
+    "ja": "1個の購入価格（ギーナ）",
+    "fi": "Ostohinta / kpl (kinahia)"
+  },
+  "개당 구매 가격만 입력하세요. 세금까지 계산한 판매가가 바로 나옵니다.": {
+    "en": "Just enter the purchase price per item. Sale-price examples include tax automatically.",
+    "ja": "1個の購入価格を入力するだけ。税金を含めて販売価格を計算します。",
+    "fi": "Syötä vain ostohinta kappaleelta. Myyntihintaesimerkit huomioivat veron automaattisesti."
+  },
+  "계산 방식": {
+    "en": "Calculation mode",
+    "ja": "計算モード",
+    "fi": "Laskentatapa"
+  },
+  "구매 가격과 아래 계산 조건을 확인하세요.": {
+    "en": "Check the purchase price and calculation settings below.",
+    "ja": "購入価格と下の計算条件を確認してください。",
+    "fi": "Tarkista ostohinta ja alla olevat laskennan asetukset."
+  },
+  "구매가를 유지하고 기본 조건으로": {
+    "en": "Reset settings, keep purchase price",
+    "ja": "購入価格を維持して条件を初期化",
+    "fi": "Palauta oletukset ja säilytä ostohinta"
+  },
+  "구매가만 입력": {
+    "en": "Purchase price only",
+    "ja": "購入価格だけ入力",
+    "fi": "Vain ostohinta"
+  },
+  "묶음별 이익 비교": {
+    "en": "Compare sale lots",
+    "ja": "販売数量ごとの利益比較",
+    "fi": "Vertaa myyntieriä"
+  },
+  "본전 이상": {
+    "en": "Break-even or better",
+    "ja": "元本以上",
+    "fi": "Vähintään omilleen"
+  },
+  "선택한 이익률 예시의 가격입니다. 실제로 팔릴지는 시세를 확인하세요.": {
+    "en": "This price targets the selected profit percentage. Check the market to see if it can sell.",
+    "ja": "選んだ利益率の計算価格です。実際に売れるかは相場を確認してください。",
+    "fi": "Hinta tavoittelee valittua voittoprosenttia. Tarkista markkinoilta, voiko sillä myydä."
+  },
+  "세금을 뺀 뒤, 이만큼 남길 판매가": {
+    "en": "Sale prices for profit after tax",
+    "ja": "税引き後に利益を残す販売価格",
+    "fi": "Myyntihinnat voittoon verojen jälkeen"
+  },
+  "세율과 등록비를 확인하세요.": {
+    "en": "Check tax and listing costs.",
+    "ja": "税率と登録費を確認してください。",
+    "fi": "Tarkista vero ja listauskulut."
+  },
+  "수량·세율·등록비 변경 (선택)": {
+    "en": "Quantity, tax & listing costs (optional)",
+    "ja": "数量・税率・登録費を変更（任意）",
+    "fi": "Määrä, vero ja listauskulut (valinnainen)"
+  },
+  "얼마에 팔면 남을까요?": {
+    "en": "What price leaves a profit?",
+    "ja": "いくらで売れば利益が出る？",
+    "fi": "Millä hinnalla jää voittoa?"
+  },
+  "예: 130000 = 13만 키나": {
+    "en": "Example: 130000 = 130,000 kinah",
+    "ja": "例：130000 = 13万ギーナ",
+    "fi": "Esim. 130000 = 130 000 kinahia"
+  },
+  "이 가격에 모두 팔리면": {
+    "en": "If everything sells at this price",
+    "ja": "この価格ですべて売れたら",
+    "fi": "Jos kaikki myydään tällä hinnalla"
+  },
+  "이 가격으로 직접 비교": {
+    "en": "Compare manually at this price",
+    "ja": "この価格で直接比較",
+    "fi": "Vertaa käsin tällä hinnalla"
+  },
+  "이 조건으로는 목표 이익을 낼 수 없습니다. 세율과 등록비를 확인하세요.": {
+    "en": "This profit target is not possible with these settings. Check tax and listing costs.",
+    "ja": "この条件では目標利益を得られません。税率と登録費を確認してください。",
+    "fi": "Tavoitevoitto ei ole mahdollinen näillä asetuksilla. Tarkista vero ja listauskulut."
+  },
+  "이익률은 매입 비용 기준입니다. 시세 추천이 아닌 계산 예시입니다.": {
+    "en": "Profit percentages are based on purchase cost. These are calculations, not market price recommendations.",
+    "ja": "利益率は購入費用に対する割合です。相場の推奨ではなく計算例です。",
+    "fi": "Voittoprosentit perustuvat ostokuluihin. Nämä ovat laskelmia, eivät markkinahintasuosituksia."
+  },
+  "총 {0}개 · 매입 비용 {1}": {
+    "en": "{0} items · purchase cost {1}",
+    "ja": "計{0}個 · 購入費用{1}",
+    "fi": "{0} kappaletta · ostokulut {1}"
+  },
+  "총이익 {0}": {
+    "en": "Total profit {0}",
+    "ja": "総利益 {0}",
+    "fi": "Kokonaisvoitto {0}"
+  },
+  "판매 금액·세금 내역": {
+    "en": "Sales and tax breakdown",
+    "ja": "販売金額・税金の内訳",
+    "fi": "Myynti- ja veroerittely"
+  },
+  "판매가 직접 비교": {
+    "en": "Enter a sale price",
+    "ja": "販売価格を直接比較",
+    "fi": "Vertaa omaa myyntihintaa"
+  },
+  "표시된 판매가에 전부 팔린다는 가정의 예상치입니다. 실시간 시세·미판매·재등록 비용은 자동 반영하지 않습니다. 입력은 이 브라우저에만 보관됩니다.": {
+    "en": "Estimates assume everything sells at the displayed sale price. Live prices, unsold items and relisting costs are not included automatically. Inputs stay in this browser only.",
+    "ja": "表示された販売価格ですべて売れると仮定した見積もりです。リアルタイム相場・売れ残り・再登録費は自動反映されません。入力はこのブラウザにのみ保存されます。",
+    "fi": "Arvio olettaa kaiken myyvän näytetyllä myyntihinnalla. Markkinahinnat, myymättömät tuotteet ja uudelleenlistaus eivät päivity automaattisesti. Syötteet säilyvät vain tässä selaimessa."
   }
 }
