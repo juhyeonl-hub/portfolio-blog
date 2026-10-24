@@ -11018,5 +11018,80 @@
     "en": "Estimates assume everything sells at the displayed sale price. Live prices, unsold items and relisting costs are not included automatically. Inputs stay in this browser only.",
     "ja": "表示された販売価格ですべて売れると仮定した見積もりです。リアルタイム相場・売れ残り・再登録費は自動反映されません。入力はこのブラウザにのみ保存されます。",
     "fi": "Arvio olettaa kaiken myyvän näytetyllä myyntihinnalla. Markkinahinnat, myymättömät tuotteet ja uudelleenlistaus eivät päivity automaattisesti. Syötteet säilyvät vain tässä selaimessa."
+  },
+  "0~1조 키나를 입력하세요. 예: 130000, 13만, 13만 5천": {
+    "en": "Enter 0–1,000,000,000,000 Kinah. Examples: 130000, 13만, 13만 5천",
+    "ja": "0～1兆ギーナを入力。例：130000、13만、13만 5천",
+    "fi": "Syötä 0–1 000 000 000 000 kinahia. Esim. 130000, 13만, 13만 5천"
+  },
+  "예: 130000, 13만, 13만 5천": {
+    "en": "Examples: 130000, 13만, 13만 5천",
+    "ja": "例：130000、13만、13만 5천",
+    "fi": "Esim. 130000, 13만, 13만 5천"
+  },
+  "구매 비용을 입력하면 세금을 계산한 개당 판매가가 바로 나옵니다.": {
+    "en": "Enter your purchase cost to see unit sale prices with tax included.",
+    "ja": "購入費用を入力すると、税金を考慮した1個あたりの販売価格を表示します。",
+    "fi": "Syötä ostokustannus, niin näet veron huomioivat yksikkömyyntihinnat."
+  },
+  "구매 비용 입력 기준": {
+    "en": "Purchase cost basis",
+    "ja": "購入費用の入力基準",
+    "fi": "Ostokustannuksen peruste"
+  },
+  "한 개 가격": {
+    "en": "Price per item",
+    "ja": "1個の価格",
+    "fi": "Hinta kappaleelta"
+  },
+  "전체 구매 비용": {
+    "en": "Total purchase cost",
+    "ja": "購入費用の合計",
+    "fi": "Koko ostoksen hinta"
+  },
+  "전체 구매 비용 (키나)": {
+    "en": "Total purchase cost (Kinah)",
+    "ja": "購入費用の合計（ギーナ）",
+    "fi": "Koko ostoksen hinta (kinah)"
+  },
+  "위 금액으로 구매한 전체 수량": {
+    "en": "Total items bought for the amount above",
+    "ja": "上の金額で購入した合計個数",
+    "fi": "Yllä olevalla summalla ostettu kokonaismäärä"
+  },
+  "정확한 정수 금액으로 바꿀 수 없어 입력을 비웠습니다. 선택한 기준의 구매 비용을 입력하세요.": {
+    "en": "The amount cannot be converted to an exact whole number, so the field was cleared. Enter the purchase cost for the selected basis.",
+    "ja": "正確な整数に換算できないため入力欄を空にしました。選んだ基準で購入費用を入力してください。",
+    "fi": "Summaa ei voi muuntaa tarkaksi kokonaisluvuksi, joten kenttä tyhjennettiin. Syötä ostokustannus valitun perusteen mukaan."
+  },
+  "{0}개를 총 {1}에 구매한 것으로 계산합니다.": {
+    "en": "Calculated as buying {0} items for a total of {1}.",
+    "ja": "{0}個を合計{1}で購入したとして計算します。",
+    "fi": "Laskennassa {0} tuotteen kokonaishinta on {1}."
+  },
+  "구매 내용을 유지하고 판매 조건 초기화": {
+    "en": "Keep purchase details, reset sale conditions",
+    "ja": "購入内容を保持して販売条件をリセット",
+    "fi": "Säilytä ostotiedot, nollaa myyntiehdot"
+  },
+  "한 묶음 세후 수령액": {
+    "en": "Net proceeds per lot",
+    "ja": "1セットの税引後受取額",
+    "fi": "Nettotuotto erää kohti"
+  },
+  "마지막 {0}개 세후 수령액": {
+    "en": "Net proceeds from the last {0} items",
+    "ja": "最後の{0}個の税引後受取額",
+    "fi": "Viimeisten {0} tuotteen nettotuotto"
+  },
+  "매입 비용이 수량으로 나누어떨어지지 않아 묶음별로는 세후 수령액을 표시합니다. 총이익에는 전체 매입 비용을 반영했습니다.": {
+    "en": "The purchase cost does not divide evenly by quantity, so lots show net proceeds. Total profit deducts the full purchase cost.",
+    "ja": "購入費用が個数で割り切れないため、セット別には税引後受取額を表示します。総利益には購入費用全額を反映しています。",
+    "fi": "Ostokustannus ei jakaudu tasan määrällä, joten eristä näytetään nettotuotto. Kokonaisvoitosta on vähennetty koko ostokustannus."
+  },
+  "13만·13만 5천처럼 입력해도 됩니다.": {
+    "en": "Korean shorthand works too: 13만 = 130,000; 13만 5천 = 135,000.",
+    "ja": "韓国語の単位でも入力できます：13만 = 130,000、13만 5천 = 135,000。",
+    "fi": "Myös korealaiset yksiköt käyvät: 13만 = 130 000; 13만 5천 = 135 000."
   }
 }

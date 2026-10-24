@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl} from './modules.mjs';
-const {calculateTrade,minimumTradePrice,parseTradeDraft,parseTradeInteger,parseTradeRate,parsePurchaseDraft,tradeProfitExamples,tradeExample,MAX_TRADE_MONEY}=await import(moduleUrl(readFileSync('lib/trade-calculator.ts','utf8')));
+const {calculateTrade,minimumTradePrice,parseTradeDraft,parseTradeInteger,parseTradeRate,parsePurchaseDraft,tradeProfitExamples,tradeExample,MAX_TRADE_MONEY,parseTradeMoney,restoreTradeDraft,changePurchaseMode}=await import(moduleUrl(readFileSync('lib/trade-calculator.ts','utf8')));
 const input=parseTradeDraft(tradeExample).value;
 assert.ok(input);
 for(const size of [25n,50n,100n]){
@@ -52,3 +52,33 @@ assert.ok(tradeProfitExamples({...purchase.value,taxBps:10000n}).every(row=>row.
 assert.ok(parsePurchaseDraft({...tradeExample,tax:'101'}).errors.tax);
 assert.ok(parsePurchaseDraft({...tradeExample,quantity:''}).errors.quantity);
 console.log('PASS purchase-only examples: hidden manual fields ignored, exact ROI targets, changing cost/quantity/fees, minimum price boundaries and impossible rates');
+
+for(const [raw,expected] of [['13만',130000n],['13만 5천',135000n],['13.5만',135000n],['13만5천',135000n],['1억 5천만',150000000n],['1조',1000000000000n],['0.0001만',1n],['1천 2백 3십 4',1234n],['130,000',130000n],['0',0n],[' 13만  ',130000n]])assert.equal(parseTradeMoney(raw),expected,raw);
+for(const raw of ['', '13 000', '13만 원', '13만?', '-13만', '1.2', '1e6', '1만 2억', '1만 2만', '1백 2천', '0.00001만','1.001천 0.5','13,00','1조 1','2조','1..5만','만','13만 5 2천','1'.repeat(41)])assert.equal(parseTradeMoney(raw),null,raw);
+assert.equal(parsePurchaseDraft({...tradeExample,buy:'13만 5천'}).value.buy,135000n);
+assert.equal(parseTradeDraft({...tradeExample,sell:'15만',fee:'1천',target:'50만'}).value.target,500000n);
+const oldDraft={...tradeExample,buy:'20만',quantity:'3'};delete oldDraft.purchaseMode;
+assert.deepEqual(restoreTradeDraft(oldDraft),{...oldDraft,purchaseMode:'unit'});
+assert.deepEqual(restoreTradeDraft({...oldDraft,purchaseMode:'invalid'}),tradeExample);
+assert.deepEqual(restoreTradeDraft(null),tradeExample);
+const totalDraft=changePurchaseMode(tradeExample,'total');assert.equal(totalDraft.buy,'13000000');assert.equal(totalDraft.purchaseMode,'total');
+assert.equal(changePurchaseMode(totalDraft,'unit').buy,'130000');
+assert.equal(changePurchaseMode({...totalDraft,buy:'100',quantity:'3'},'unit').buy,'');
+assert.equal(changePurchaseMode({...tradeExample,buy:'1조'},'total').buy,'');
+const totalInput=parsePurchaseDraft({...tradeExample,purchaseMode:'total',buy:'1300만'}).value;
+assert.equal(calculateTrade(totalInput,25n,150000n).profit,500000n);
+assert.deepEqual(tradeProfitExamples(totalInput).map(row=>row.price),examples.map(row=>row.price));
+// Non-divisible cost remains exact; don't invent a rounded per-item acquisition price.
+for(const cost of [0n,1n,100n,1000000000000n])for(const quantity of [1n,3n,101n])for(const bundle of [1n,25n,100n]){
+ const v={...input,totalCost:cost,quantity,bundle};
+ const result=calculateTrade(v);assert.equal(result.cost,cost);assert.equal(result.profit,result.gross-result.tax-result.fees-cost);
+ assert.equal(result.full.profit===null,cost%quantity!==0n);
+ if(cost%quantity===0n)assert.equal(result.full.profit*result.fullCount+(result.last?.profit??0n),result.profit);
+ for(const row of tradeProfitExamples(v)){
+  assert.equal(row.target,(cost*BigInt(row.percent)+99n)/100n);
+  assert.ok(row.result.profit>=row.target);
+  if(row.price>0n)assert.ok(calculateTrade(v,bundle,row.price-1n).profit<row.target);
+ }
+}
+assert.throws(()=>calculateTrade({...input,totalCost:-1n}));
+console.log('PASS Korean money parsing, legacy draft migration, exact mode conversion, arbitrary total costs and ROI boundaries');

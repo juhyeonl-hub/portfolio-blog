@@ -1,17 +1,17 @@
 import {useEffect,useState} from 'react';
 import {Calculator,ArrowRight,Coins} from 'lucide-react';
 import {useLocale} from './locale';
-import {calculateTrade,minimumTradePrice,parseTradeDraft,parsePurchaseDraft,tradeProfitExamples,tradeExample,MAX_TRADE_MONEY,type TradeDraft,type TradeField} from '../lib/trade-calculator';
+import {calculateTrade,minimumTradePrice,parseTradeDraft,parsePurchaseDraft,tradeProfitExamples,tradeExample,parseTradeMoney,restoreTradeDraft,changePurchaseMode,MAX_TRADE_MONEY,type TradeDraft,type TradeField} from '../lib/trade-calculator';
 import './trade-calculator.css';
 const storageKey='asbc-trade-calculator-v1';
 function initialDraft():TradeDraft{
- try{const value=JSON.parse(localStorage.getItem(storageKey)||'null');
-  if(value&&Object.keys(tradeExample).every(key=>typeof value[key]==='string'&&value[key].length<=80)&&['up','down'].includes(value.rounding))return Object.fromEntries(Object.keys(tradeExample).map(key=>[key,value[key]])) as TradeDraft;
+ try{return restoreTradeDraft(JSON.parse(localStorage.getItem(storageKey)||'null'));
  }catch{/* A calculator remains usable with storage disabled. */}
  return {...tradeExample};
 }
 export default function TradeCalculator(){
- const {t,locale}=useLocale();const [draft,setDraft]=useState(initialDraft),[manual,setManual]=useState(false),[profitPercent,setProfitPercent]=useState(10);
+ const {t,locale}=useLocale();const [draft,setDraft]=useState(initialDraft),[manual,setManual]=useState(false),[profitPercent,setProfitPercent]=useState(10),[conversionNotice,setConversionNotice]=useState(false);
+ const totalPurchase=draft.purchaseMode==='total';
  const [settingsOpen,setSettingsOpen]=useState(()=>Object.keys(parsePurchaseDraft(draft).errors).some(key=>key!=='buy'));
  useEffect(()=>{try{localStorage.setItem(storageKey,JSON.stringify(draft));}catch{/* Optional browser-local draft. */}},[draft]);
  const {value,errors}=manual?parseTradeDraft(draft):parsePurchaseDraft(draft);
@@ -24,28 +24,34 @@ export default function TradeCalculator(){
  const compact=(n:bigint)=>new Intl.NumberFormat(locale,{notation:'compact',maximumFractionDigits:2}).format(n);
  const change=(key:TradeField,text:string)=>setDraft(old=>({...old,[key]:text}));
  const mode=(next:boolean)=>{if(next&&sale!==null&&sale!==undefined&&sale<=MAX_TRADE_MONEY)change('sell',String(sale));setManual(next);};
- const errorText=(key:TradeField)=>errors[key]==='rate'?t('0~100%를 소수 둘째 자리까지 입력하세요.'):errors[key]==='quantity'?t('수량은 1~1,000,000 사이의 정수로 입력하세요.'):t('금액은 0~1,000,000,000,000 사이의 정수로 입력하세요.');
- const field=(key:TradeField,label:string,hint?:string)=><label className="trade-field" key={key}><span>{t(label)}</span><input aria-label={t(label)} inputMode={key==='tax'?'decimal':'numeric'} autoComplete="off" spellCheck={false} maxLength={24} value={draft[key]} aria-invalid={!!errors[key]} aria-describedby={'trade-'+key+'-hint'} onChange={e=>change(key,e.target.value)}/><small id={'trade-'+key+'-hint'} className={errors[key]?'trade-error':''}>{errors[key]?errorText(key):hint||'\u00a0'}</small></label>;
+ const purchaseMode=(next:'unit'|'total')=>{const converted=changePurchaseMode(draft,next);setConversionNotice(!converted.buy);setDraft(converted);};
+ const errorText=(key:TradeField)=>errors[key]==='rate'?t('0~100%를 소수 둘째 자리까지 입력하세요.'):errors[key]==='quantity'?t('수량은 1~1,000,000 사이의 정수로 입력하세요.'):t('0~1조 키나를 입력하세요. 예: 130000, 13만, 13만 5천');
+ const field=(key:TradeField,label:string,hint?:string)=><label className="trade-field" key={key}><span>{t(label)}</span><input aria-label={t(label)} inputMode={key==='tax'?'decimal':key==='quantity'||key==='bundle'?'numeric':'text'} autoComplete="off" spellCheck={false} maxLength={key==='quantity'||key==='bundle'||key==='tax'?24:40} value={draft[key]} aria-invalid={!!errors[key]} aria-describedby={'trade-'+key+'-hint'} onChange={e=>{change(key,e.target.value);if(key==='buy')setConversionNotice(false);}}/><small id={'trade-'+key+'-hint'} className={errors[key]?'trade-error':''}>{errors[key]?errorText(key):hint||'\u00a0'}</small></label>;
+ const amountHint=(key:'buy'|'sell'|'target')=>{const n=parseTradeMoney(draft[key]);return n===null?t('예: 130000, 13만, 13만 5천'):money(n)+' · '+compact(n);};
  const result=calculation?calculateTrade(calculation):null;
  const minimum=value?minimumTradePrice(value):null,target=value?minimumTradePrice(value,value.bundle,value.target):null;
  const groups=value?[...new Set([25n<value.quantity?25n:value.quantity,50n<value.quantity?50n:value.quantity,value.quantity,value.bundle<value.quantity?value.bundle:value.quantity])].sort((a,b)=>a<b?-1:a>b?1:0):[];
  const bundleName=(r:NonNullable<typeof result>)=>r.listingCount===1n?t('한 번에 {0}개',[format(r.size)]):r.remainder?t('{0}개씩 {1}회 + {2}개 1회',[format(r.size),format(r.fullCount),format(r.remainder)]):t('{0}개씩 {1}회',[format(r.size),format(r.fullCount)]);
  const priceBox=(label:string,price:bigint|null)=><div className="trade-price"><span>{t(label)}</span><strong>{price===null?t('이익을 낼 수 없음'):money(price)}</strong><button className="button secondary small" disabled={price===null||price>MAX_TRADE_MONEY} onClick={()=>price!==null&&change('sell',String(price))}>{t('이 가격으로 계산')}<ArrowRight size={14}/></button>{price!==null&&price>MAX_TRADE_MONEY&&<small>{t('계산된 가격이 입력 가능한 범위를 넘습니다.')}</small>}</div>;
  return <section className="trade-calculator" aria-labelledby="trade-title">
-  <header className="trade-heading"><div><p className="eyebrow"><Calculator size={16}/>{t('거래소 계산기')}</p><h1 id="trade-title">{t('얼마에 팔면 남을까요?')}</h1><p>{t(manual?'개당 가격을 넣으면 세금과 매입 비용을 뺀 이익이 바로 바뀝니다.':'개당 구매 가격만 입력하세요. 세금까지 계산한 판매가가 바로 나옵니다.')}</p></div></header>
+  <header className="trade-heading"><div><p className="eyebrow"><Calculator size={16}/>{t('거래소 계산기')}</p><h1 id="trade-title">{t('얼마에 팔면 남을까요?')}</h1><p>{t(manual?'개당 가격을 넣으면 세금과 매입 비용을 뺀 이익이 바로 바뀝니다.':'구매 비용을 입력하면 세금을 계산한 개당 판매가가 바로 나옵니다.')}</p></div></header>
   <div className="trade-mode" role="group" aria-label={t('계산 방식')}><button className={'button '+(!manual?'primary':'ghost')} aria-pressed={!manual} onClick={()=>mode(false)}>{t('구매가만 입력')}</button><button className={'button '+(manual?'primary':'ghost')} aria-pressed={manual} disabled={!manual&&sale!=null&&sale>MAX_TRADE_MONEY} onClick={()=>mode(true)}>{t('판매가 직접 비교')}</button></div>
   <div className="trade-form panel">
-   <div className={'trade-purchase'+(manual?' manual':'')}>{field('buy','개당 구매 가격 (키나)',value?money(value.buy)+' · '+compact(value.buy):t('예: 130000 = 13만 키나'))}{manual&&field('sell','개당 팔 가격',value?money(value.sell)+' · '+compact(value.sell):undefined)}</div>
+   <div className="trade-purchase-mode" role="group" aria-label={t('구매 비용 입력 기준')}><button className={'button small '+(!totalPurchase?'secondary':'ghost')} aria-pressed={!totalPurchase} onClick={()=>purchaseMode('unit')}>{t('한 개 가격')}</button><button className={'button small '+(totalPurchase?'secondary':'ghost')} aria-pressed={totalPurchase} onClick={()=>purchaseMode('total')}>{t('전체 구매 비용')}</button></div>
+   <p className="trade-money-help">{t('13만·13만 5천처럼 입력해도 됩니다.')}</p>
+   {conversionNotice&&<p className="trade-conversion" role="status">{t('정확한 정수 금액으로 바꿀 수 없어 입력을 비웠습니다. 선택한 기준의 구매 비용을 입력하세요.')}</p>}
+   <div className={'trade-purchase'+(manual||totalPurchase?' expanded':'')}>{field('buy',totalPurchase?'전체 구매 비용 (키나)':'개당 구매 가격 (키나)',amountHint('buy'))}{totalPurchase&&field('quantity','산 수량',t('위 금액으로 구매한 전체 수량'))}{manual&&field('sell','개당 팔 가격',amountHint('sell'))}</div>
+   {totalPurchase&&value&&<p className="trade-cost-summary">{t('{0}개를 총 {1}에 구매한 것으로 계산합니다.',[format(value.quantity),money(value.totalCost!)])}</p>}
    <p className="trade-assumptions">{value?t('{0}개 구매 · {1}개씩 판매 · 세율 {2}% · 등록 1회당 {3}',[format(value.quantity),format(value.bundle<value.quantity?value.bundle:value.quantity),draft.tax,money(value.fee)]):t('구매 가격과 아래 계산 조건을 확인하세요.')}</p>
    <details className="trade-options" open={settingsOpen} onToggle={e=>setSettingsOpen(e.currentTarget.open)}><summary>{t('수량·세율·등록비 변경 (선택)')}</summary><div className="trade-fields">
-    {field('quantity','산 수량',t('모두 판매하는 것으로 계산'))}
+    {!totalPurchase&&field('quantity','산 수량',t('모두 판매하는 것으로 계산'))}
     {field('bundle','한 번에 팔 수량',t('남는 수량은 마지막에 따로 판매'))}
     {field('tax','판매 세율 (%)',t('기본 10% · 게임의 현재 세율로 수정'))}
     {field('fee','등록 1회당 고정 비용',t('확인한 비용만 입력 · 기본 0키나'))}
     <label className="trade-field"><span>{t('묶음별 세금 소수점 처리')}</span><select aria-label={t('묶음별 세금 소수점 처리')} value={draft.rounding} onChange={e=>setDraft(old=>({...old,rounding:e.target.value as 'up'|'down'}))}><option value="up">{t('올림 · 보수적으로 계산')}</option><option value="down">{t('버림')}</option></select><small>{t('게임의 실제 처리 방식은 미확인')}</small></label>
     <label className="trade-field"><span>{t('아이템 이름 (메모)')}</span><input aria-label={t('아이템 이름 (메모)')} maxLength={80} value={draft.item} onChange={e=>setDraft(old=>({...old,item:e.target.value}))}/></label>
-   </div><p>{t('고정 비용은 매 등록마다 같은 금액이 드는 경우에만 쓰세요. 판매 금액에 비례하는 등록비는 이 항목에 포함되지 않습니다.')}</p><button className="button ghost small" onClick={()=>{setDraft(old=>({...tradeExample,buy:old.buy,item:old.item}));setProfitPercent(10);}}>{t('구매가를 유지하고 기본 조건으로')}</button></details>
-   {manual&&<div className="trade-manual-target">{field('target','목표 총 순이익',value?money(value.target):undefined)}</div>}
+   </div><p>{t('고정 비용은 매 등록마다 같은 금액이 드는 경우에만 쓰세요. 판매 금액에 비례하는 등록비는 이 항목에 포함되지 않습니다.')}</p><button className="button ghost small" onClick={()=>{setDraft(old=>({...tradeExample,buy:old.buy,item:old.item,purchaseMode:old.purchaseMode,quantity:old.quantity}));setProfitPercent(10);}}>{t('구매 내용을 유지하고 판매 조건 초기화')}</button></details>
+   {manual&&<div className="trade-manual-target">{field('target','목표 총 순이익',amountHint('target'))}</div>}
   </div>
   {!value?<p className="trade-invalid" role="status">{t('구매 가격과 아래 계산 조건을 확인하세요.')}</p>:<>
    {!manual&&<section className="trade-examples" aria-labelledby="trade-examples-title"><h2 id="trade-examples-title">{t('세금을 뺀 뒤, 이만큼 남길 판매가')}</h2><p>{t('이익률은 매입 비용 기준입니다. 시세 추천이 아닌 계산 예시입니다.')}</p><div className="trade-example-grid">{examples.map(row=><button type="button" className={'trade-example'+(profitPercent===row.percent?' selected':'')} key={row.percent} aria-pressed={profitPercent===row.percent} onClick={()=>setProfitPercent(row.percent)}><span>{row.percent===0?t('본전 이상'):t('{0}% 순이익 예시',[row.percent])}</span><strong>{row.price===null?t('이익을 낼 수 없음'):money(row.price)}</strong><small>{row.result?t('총이익 {0}',[signed(row.result.profit)]):t('세율과 등록비를 확인하세요.')}</small></button>)}</div></section>}
@@ -57,7 +63,8 @@ export default function TradeCalculator(){
    <p className="trade-explanation">{t('같은 개당 가격에 전부 팔리면 묶음을 나눠도 총이익은 같습니다. 다만 등록 1회당 비용이나 세금의 소수점 처리로 차이가 날 수 있습니다.')}</p>
    <details className="trade-details"><summary>{t('판매 금액·세금 내역')}</summary><dl className="trade-breakdown"><div><dt>{t('총 판매 금액')}</dt><dd>{money(result.gross)}</dd></div><div><dt>{t('판매 세금')}</dt><dd>−{money(result.tax)}</dd></div><div><dt>{t('등록 비용 합계')}</dt><dd>−{money(result.fees)}</dd></div><div><dt>{t('총 매입 비용')}</dt><dd>−{money(result.cost)}</dd></div><div><dt>{t('세금·등록비 뺀 수령액')}</dt><dd>{money(result.net)}</dd></div></dl></details>
    <details className="trade-details"><summary>{t('묶음별 이익 비교')}</summary><section className="trade-compare" aria-labelledby="trade-compare-title"><h2 id="trade-compare-title"><Coins size={20}/>{t('나누어 팔면 얼마나 다를까요?')}</h2><p>{t('개당 {0}에 {1}개를 모두 판매하는 경우입니다.',[money(calculation.sell),format(value.quantity)])}</p>
-    <div className="trade-bundles">{groups.map(size=>{const r=calculateTrade(calculation,size),active=r.size===result.size;return <article key={String(size)} className={'trade-bundle'+(active?' selected':'')}><h3>{bundleName(r)}</h3><small>{t('전체 순이익')}</small><strong className={r.profit<0n?'trade-loss':r.profit>0n?'trade-gain':''}>{signed(r.profit)}</strong><dl><div><dt>{t('한 묶음 이익')}</dt><dd>{signed(r.full.profit)}</dd></div>{r.last&&<div><dt>{t('마지막 {0}개 이익',[format(r.remainder)])}</dt><dd>{signed(r.last.profit)}</dd></div>}<div><dt>{t('판매 세금')}</dt><dd>{money(r.tax)}</dd></div><div><dt>{t('등록 비용 합계')}</dt><dd>{money(r.fees)}</dd></div></dl><button className="button secondary" aria-pressed={manual?active:undefined} onClick={()=>{setManual(true);change('sell',String(calculation.sell));change('bundle',String(size));}} disabled={calculation.sell>MAX_TRADE_MONEY}>{t(!manual?'이 가격으로 직접 비교':active?'이 묶음으로 계산 중':'이 묶음으로 계산')}</button></article>})}</div>
+    {result.full.profit===null&&<p>{t('매입 비용이 수량으로 나누어떨어지지 않아 묶음별로는 세후 수령액을 표시합니다. 총이익에는 전체 매입 비용을 반영했습니다.')}</p>}
+    <div className="trade-bundles">{groups.map(size=>{const r=calculateTrade(calculation,size),active=r.size===result.size;return <article key={String(size)} className={'trade-bundle'+(active?' selected':'')}><h3>{bundleName(r)}</h3><small>{t('전체 순이익')}</small><strong className={r.profit<0n?'trade-loss':r.profit>0n?'trade-gain':''}>{signed(r.profit)}</strong><dl><div><dt>{t(r.full.profit===null?'한 묶음 세후 수령액':'한 묶음 이익')}</dt><dd>{r.full.profit===null?money(r.full.net):signed(r.full.profit)}</dd></div>{r.last&&<div><dt>{t(r.last.profit===null?'마지막 {0}개 세후 수령액':'마지막 {0}개 이익',[format(r.remainder)])}</dt><dd>{r.last.profit===null?money(r.last.net):signed(r.last.profit)}</dd></div>}<div><dt>{t('판매 세금')}</dt><dd>{money(r.tax)}</dd></div><div><dt>{t('등록 비용 합계')}</dt><dd>{money(r.fees)}</dd></div></dl><button className="button secondary" aria-pressed={manual?active:undefined} onClick={()=>{setManual(true);change('sell',String(calculation.sell));change('bundle',String(size));}} disabled={calculation.sell>MAX_TRADE_MONEY}>{t(!manual?'이 가격으로 직접 비교':active?'이 묶음으로 계산 중':'이 묶음으로 계산')}</button></article>})}</div>
    </section></details>
    </>:<p className="trade-invalid" role="status">{t('이 조건으로는 목표 이익을 낼 수 없습니다. 세율과 등록비를 확인하세요.')}</p>}
   </>}
