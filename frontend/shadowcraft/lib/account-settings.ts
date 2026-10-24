@@ -8,7 +8,7 @@ export const SAVE_DELAY_MS=800;
 const classes=['assassin','gladiator','templar','ranger','sorcerer','elementalist','cleric','chanter'];
 const planFields=['classKey','level','mode','base','bonus','specs','nodes','checked','extraSP','extraStigma','extraCrystal','extraBattle','pointBudget','confirmedRemaining','confirmedRemainingContext','ascensionGrade3Confirmed','macroExtra'] as const;
 export type Entries=Record<string,string>;
-export type SettingsDocument={version:number;revision:number;entries:Entries};
+export type SettingsDocument={version:number;revision:number;entries:Entries;updatedAt?:string};
 type Cache={values:Entries;dirty:string[];revision?:number};
 type Port=Pick<Storage,'getItem'|'setItem'|'removeItem'|'key'|'length'>;
 export function settingKey(key:string):boolean {
@@ -50,7 +50,8 @@ export function validateDocument(value:unknown):SettingsDocument {
  if(new TextEncoder().encode(JSON.stringify(d)).length>MAX_SETTINGS_BYTES)throw Error('Settings too large');
  const entries:Entries={};
  for(const [key,raw] of Object.entries(d.entries)){if(typeof raw!=='string')throw Error('Invalid setting');entries[key]=projectSetting(key,raw);}
- return {...d,entries};
+ const updatedAt=typeof d.updatedAt==='string'&&/^\d{4}-\d{2}-\d{2}T.*Z$/.test(d.updatedAt)&&Number.isFinite(Date.parse(d.updatedAt))?d.updatedAt:undefined;
+ return {version:d.version,revision:d.revision,entries,...(updatedAt?{updatedAt}:{})};
 }
 
 /** Local account caches are separate from anonymous data and from other members. */
@@ -117,6 +118,8 @@ export class AccountSettingsStore {
  }
 }
 
+export type SyncState='saved'|'pending'|'loading'|'offline';
+export type SyncMetadata={savedAt:string|null;checkedAt:number};
 type Transport=(method:'GET'|'PUT',document?:SettingsDocument)=>Promise<unknown>;
 /** Serial requests + revisions prevent stale tabs from silently replacing newer account data. */
 export class SettingsSync {
@@ -125,20 +128,20 @@ export class SettingsSync {
  private running=false;
  private timer:ReturnType<typeof setTimeout>|undefined;
  private unsubscribe:()=>void;
- constructor(private store:AccountSettingsStore,private request:Transport,private applied:()=>void,private status:(state:'saved'|'pending'|'offline')=>void){
+ constructor(private store:AccountSettingsStore,private request:Transport,private applied:()=>void,private status:(state:SyncState,metadata?:SyncMetadata)=>void){
   this.unsubscribe=store.subscribe(()=>this.schedule());
  }
  async start(){await this.refresh();}
  private schedule(){if(this.stopped)return;this.status('pending');clearTimeout(this.timer);this.timer=setTimeout(()=>void this.save(),SAVE_DELAY_MS);}
  async retry(){if(this.running||this.stopped)return;await this.refresh();}
  private async refresh(){
-  if(this.running||this.stopped)return;this.running=true;
+  if(this.running||this.stopped)return;this.running=true;this.status('loading');
   try{
    const remote=validateDocument(await this.request('GET'));if(this.stopped)return;
    this.revision=remote.revision;
    // Revision zero means no server record. Seed it from this account's local cache.
    if(remote.revision>0&&this.store.apply(remote.entries,remote.revision))this.applied();
-   this.status('saved');
+   this.status('saved',{savedAt:remote.updatedAt||null,checkedAt:Date.now()});
    if(remote.revision===0||this.store.dirty().length)this.schedule();
   }catch{if(!this.stopped){this.revision=null;this.status('offline');}}
   finally{this.running=false;}
@@ -151,7 +154,7 @@ export class SettingsSync {
   try{
    const entries=this.store.snapshot(),sent=validateDocument({version:SETTINGS_VERSION,revision:this.revision,entries});
    const result=validateDocument(await this.request('PUT',sent));if(this.stopped)return;
-   this.revision=result.revision;this.store.acknowledge(entries,result.revision);this.status('saved');
+   this.revision=result.revision;this.store.acknowledge(entries,result.revision);this.status('saved',{savedAt:result.updatedAt||null,checkedAt:Date.now()});
    if(this.store.dirty().length)this.schedule();
   }catch{if(!this.stopped){this.revision=null;this.status('offline');}}
   finally{this.running=false;}

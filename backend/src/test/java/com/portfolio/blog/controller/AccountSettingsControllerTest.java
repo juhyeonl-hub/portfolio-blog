@@ -84,6 +84,16 @@ class AccountSettingsControllerTest {
         jdbc.update("DELETE FROM shadowcraft_members WHERE id='alice'");
         assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_account_settings",Integer.class)).isZero();
     }
+    @Test void serverSaveTimestampIsStableOnReadAndCannotBeForged()throws Exception{
+        mvc.perform(get(API).header("Authorization","Bearer "+alice)).andExpect(jsonPath("$.updatedAt").doesNotExist());
+        var written=mapper.readTree(mvc.perform(put(API).header("Authorization","Bearer "+alice).contentType("application/json").content(body(0).toString())).andExpect(status().isOk()).andReturn().getResponse().getContentAsString());
+        assertThat(java.time.Instant.parse(written.path("updatedAt").asText())).isBeforeOrEqualTo(java.time.Instant.now());
+        var read=mapper.readTree(mvc.perform(get(API).header("Authorization","Bearer "+alice)).andReturn().getResponse().getContentAsString());
+        assertThat(read.path("updatedAt")).isEqualTo(written.path("updatedAt"));
+        save(alice,body(1).put("updatedAt","2099-01-01T00:00:00Z"),400);
+        save(alice,body(1),200); // Existing clients still send only version/revision/entries.
+        mvc.perform(get(API).header("Authorization","Bearer "+alice)).andExpect(jsonPath("$.revision").value(2)).andExpect(jsonPath("$.updatedAt").isString());
+    }
     @Test void concurrentFirstSavesCannotOverwriteEachOther()throws Exception{
         var codes=java.util.Collections.synchronizedList(new java.util.ArrayList<Integer>());
         try(var executor=java.util.concurrent.Executors.newFixedThreadPool(2)){

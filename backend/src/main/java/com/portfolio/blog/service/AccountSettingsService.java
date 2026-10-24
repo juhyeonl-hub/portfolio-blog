@@ -20,11 +20,14 @@ public class AccountSettingsService {
     public AccountSettingsService(JdbcTemplate jdbc,ObjectMapper mapper){this.jdbc=jdbc;this.mapper=mapper;}
 
     public JsonNode get(String member){
-        var rows=jdbc.queryForList("SELECT schema_version,revision,payload FROM shadowcraft_account_settings WHERE member_id=?",member);
-        var out=mapper.createObjectNode();
-        if(rows.isEmpty())return out.put("version",1).put("revision",0).set("entries",mapper.createObjectNode());
-        var row=rows.getFirst();
-        return out.put("version",((Number)row.get("schema_version")).intValue()).put("revision",((Number)row.get("revision")).longValue()).set("entries",parse((String)row.get("payload")));
+        var rows=jdbc.query("SELECT schema_version,revision,payload,updated_at FROM shadowcraft_account_settings WHERE member_id=?",(rs,index)->{
+            var out=mapper.createObjectNode().put("version",rs.getInt("schema_version")).put("revision",rs.getLong("revision"));
+            out.put("updatedAt",rs.getTimestamp("updated_at").toInstant().toString());
+            out.set("entries",parse(rs.getString("payload")));
+            return out;
+        },member);
+        if(rows.isEmpty())return mapper.createObjectNode().put("version",1).put("revision",0).set("entries",mapper.createObjectNode());
+        return rows.getFirst();
     }
     @Transactional
     public JsonNode save(String member,JsonNode input){
@@ -38,7 +41,7 @@ public class AccountSettingsService {
         String payload=input.path("entries").toString();
         if(current==0)jdbc.update("INSERT INTO shadowcraft_account_settings(member_id,schema_version,revision,payload,updated_at) VALUES (?,1,?,?,CURRENT_TIMESTAMP)",member,next,payload);
         else jdbc.update("UPDATE shadowcraft_account_settings SET schema_version=1,revision=?,payload=?,updated_at=CURRENT_TIMESTAMP WHERE member_id=?",next,payload,member);
-        return mapper.createObjectNode().put("version",1).put("revision",next).set("entries",input.path("entries"));
+        return get(member);
     }
     private JsonNode parse(String raw){try{return mapper.readTree(raw);}catch(Exception e){throw bad();}}
     private ResponseStatusException bad(){return new ResponseStatusException(HttpStatus.BAD_REQUEST,"설정 형식 또는 버전을 확인하세요.");}

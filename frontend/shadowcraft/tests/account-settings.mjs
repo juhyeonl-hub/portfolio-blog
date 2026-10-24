@@ -74,5 +74,24 @@ try{
  const previous=restored.getItem('asbc-locale');await future.start();await tick(SAVE_DELAY_MS);assert.equal(status,'offline');assert.equal(restored.getItem('asbc-locale'),previous);assert.equal(futurePuts,0);future.stop();
  for(const invalid of [doc(0,{token:'secret'}),{version:2,revision:0,entries:{}},doc(-1,{}),doc(0,{'asbc-locale':'xx'}),doc(0,{favorites:'["unknown"]'}),doc(0,{['a2bc-map-progress-v1:'+'a'.repeat(64)]:'{}'})])assert.throws(()=>validateDocument(invalid));
  assert.throws(()=>validateDocument(doc(0,{favorites:' '.repeat(1_000_001)})));
- console.log('PASS account settings: load/apply, debounce, first-login rules, offline reload/retry, account isolation, logout race, in-flight edits, quota, schema, size and privacy projection');
+ // Manual pull exposes loading, server save time and check time, even without changes.
+ let metadata=null,reads=0,manualPuts=0,manualApplied=0;
+ const manualStore=new AccountSettingsStore(()=>port,'manual');
+ let manualRemote={...doc(1,{'asbc-locale':'ko',favorites:'["map"]'}),updatedAt:'2026-10-24T18:00:00Z'},manualFailure=false;
+ const manualStates=[];
+ const manual=new SettingsSync(manualStore,async(method,input)=>{
+  if(manualFailure)throw Error('offline');
+  if(method==='GET'){reads++;return manualRemote;}
+  manualPuts++;assert.equal(input.updatedAt,undefined,'write payload must not echo read-only server metadata');
+  manualRemote={...doc(manualRemote.revision+1,input.entries),updatedAt:'2026-10-24T19:00:00Z'};return manualRemote;
+ },()=>manualApplied++,(s,m)=>{status=s;manualStates.push(s);if(m)metadata=m;});
+ await manual.start();assert.equal(metadata.savedAt,'2026-10-24T18:00:00Z');assert.ok(metadata.checkedAt>0);
+ const initialApplied=manualApplied;await manual.retry();assert.equal(reads,2);assert.equal(manualApplied,initialApplied);assert.equal(manualPuts,0);assert.equal(manualStates.at(-2),'loading');
+ manualRemote={...manualRemote,revision:2,entries:{'asbc-locale':'fi',favorites:'["database"]'}};
+ manualStore.setItem('asbc-locale','ja');await manual.retry();assert.equal(manualStore.getItem('asbc-locale'),'ja');assert.equal(manualStore.getItem('a2bc-home-favorites-v1:manual'),'["database"]');
+ await tick(SAVE_DELAY_MS);assert.equal(metadata.savedAt,'2026-10-24T19:00:00Z');assert.equal(manualPuts,1);
+ const previousMetadata=metadata;manualFailure=true;await manual.retry();assert.equal(status,'offline');assert.equal(metadata,previousMetadata,'failed pull must not invent a new save/check time');manual.stop();
+ assert.equal(validateDocument(doc(1,{})).updatedAt,undefined,'old server remains supported');
+ assert.equal(validateDocument({...doc(1,{}),updatedAt:'not-a-date'}).updatedAt,undefined);
+ console.log('PASS account settings: load/apply, debounce, first-login rules, offline reload/retry, account isolation, logout race, in-flight edits, quota, schema, size, privacy projection, manual pull and server timestamps');
 }finally{activateSettingsStore(null);globalThis.setTimeout=originalSet;globalThis.clearTimeout=originalClear;}

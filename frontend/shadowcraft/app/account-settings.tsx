@@ -1,8 +1,9 @@
 import {useEffect,useState,type ReactNode} from 'react';
-import {AccountSettingsStore,SettingsSync,activateSettingsStore} from '../lib/account-settings';
+import {AccountSettingsStore,SettingsSync,activateSettingsStore,type SyncState,type SyncMetadata} from '../lib/account-settings';
 import {useMemberSession,settingsRequest,MemberAccount} from './community';
 import {LocaleProvider,useLocale} from './locale';
 import './account-settings.css';
+import {AccountSyncContext} from './account-sync-panel';
 
 export function AccountSettings({children}:{children:ReactNode}){
  const {session,ready}=useMemberSession();
@@ -11,13 +12,13 @@ export function AccountSettings({children}:{children:ReactNode}){
 }
 function SettingsScope({children,memberId,token}:{children:ReactNode;memberId:string|null;token:string}){
  const [initializationError,setInitializationError]=useState(false),[attempt,setAttempt]=useState(0);
- const [mounted,setMounted]=useState(false),[epoch,setEpoch]=useState(0),[status,setStatus]=useState(''),[sync,setSync]=useState<SettingsSync|null>(null);
+ const [mounted,setMounted]=useState(false),[epoch,setEpoch]=useState(0),[status,setStatus]=useState<SyncState>('loading'),[metadata,setMetadata]=useState<SyncMetadata|null>(null),[sync,setSync]=useState<SettingsSync|null>(null);
  useEffect(()=>{
   let controller:SettingsSync|null=null,store:AccountSettingsStore|null=null;
-  setInitializationError(false);setMounted(false);
+  setInitializationError(false);setMounted(false);setMetadata(null);
   try{
    store=new AccountSettingsStore(()=>localStorage,memberId);activateSettingsStore(store);
-   if(memberId){controller=new SettingsSync(store,(method,body)=>settingsRequest(token,method,body),()=>setEpoch(n=>n+1),setStatus);setSync(controller);void controller.start().finally(()=>setMounted(true));}
+   if(memberId){controller=new SettingsSync(store,(method,body)=>settingsRequest(token,method,body),()=>setEpoch(n=>n+1),(state,next)=>{setStatus(state);if(next)setMetadata(next);});setSync(controller);void controller.start().finally(()=>setMounted(true));}
   }catch{activateSettingsStore(null);setInitializationError(true);setStatus('offline');}
   if(!controller)setMounted(true);
   const retry=()=>void controller?.retry();
@@ -27,11 +28,11 @@ function SettingsScope({children,memberId,token}:{children:ReactNode;memberId:st
  },[memberId,token,attempt]);
  if(initializationError)return <LocaleProvider><InitializationNotice retry={()=>setAttempt(n=>n+1)}/><MemberAccount/></LocaleProvider>;
  if(!mounted)return <p role="status">ASBC…</p>;
- return <LocaleProvider key={epoch}>{memberId&&<SyncNotice status={status} retry={()=>void sync?.retry()}/>}{children}</LocaleProvider>;
+ return <AccountSyncContext.Provider value={memberId?{status,metadata,refresh:()=>void sync?.retry()}:null}><LocaleProvider key={epoch}>{memberId&&<SyncNotice status={status} retry={()=>void sync?.retry()}/>}{children}</LocaleProvider></AccountSyncContext.Provider>;
 }
 function SyncNotice({status,retry}:{status:string;retry:()=>void}){
  const {t}=useLocale();
- return <aside className="account-sync-state" role="status"><span>{t(status==='offline'?'계정 설정 동기화에 실패했습니다. 이 기기의 설정을 유지합니다.':status==='pending'?'계정 설정 저장 중…':'계정 설정 저장됨')}</span>{status==='offline'&&<button className="button ghost" onClick={retry}>{t('설정 동기화 다시 시도')}</button>}</aside>;
+ return <aside className="account-sync-state" role="status"><span>{t(status==='offline'?'계정 설정 동기화에 실패했습니다. 이 기기의 설정을 유지합니다.':status==='loading'?'계정 설정 확인 중…':status==='pending'?'계정 설정 저장 중…':'계정 설정 저장됨')}</span><a href="#/account">{t('동기화 상태 보기')}</a>{status==='offline'&&<button className="button ghost" onClick={retry}>{t('설정 동기화 다시 시도')}</button>}</aside>;
 }
 
 function InitializationNotice({retry}:{retry:()=>void}){
