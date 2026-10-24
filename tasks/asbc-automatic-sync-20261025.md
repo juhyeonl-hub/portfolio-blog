@@ -10,3 +10,5 @@ Findings: old remote apply remounts LocaleProvider and child app, unsuitable for
 Uncommitted: existing globals.css/home-panel.tsx/ui-translations deletion preserved; hashes in D artifacts.
 Next: publish isolated scope and verify actual Steam browsers; evidence in D:/CodexData/Projects/ASBC/artifacts/automatic-sync-20261025.
 Blocker: none.
+
+Production round-trip found a stale display when a remote change returned a locally edited setting to its previous value. Fixed the settings subscriber to track local renders as well. Regression verified in independent browser origins: 118 -> 119 on device A, automatically119 on B, B restores118, A automatically118 while retaining focus and build route. Final TypeScript/account-settings regression/build PASS. QA server required a restart because WSL did not invalidate its compiled module cache for D-drive edits; the regression was rerun against the verified new module.

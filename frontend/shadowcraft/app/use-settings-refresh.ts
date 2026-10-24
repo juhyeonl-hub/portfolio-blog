@@ -1,14 +1,15 @@
 import {useEffect,useRef} from 'react';
 import {settingsStorage,subscribeSettingsChanges} from '../lib/account-settings';
 
-/** Only replace a consumer's saved state when that setting changed; preserve its transient UI. */
+/** Track local renders too: a remote return to the initial value must undo a local edit on screen. */
 export function useSettingsRefresh(key:string|null,refresh:()=>void){
  const callback=useRef(refresh);callback.current=refresh;
+ const previous=useRef<string|null>(null);
+ try{previous.current=key?settingsStorage.getItem(key):null;}catch{/* Keep the last readable snapshot. */}
  useEffect(()=>{
   if(!key)return;
-  let previous:string|null;try{previous=settingsStorage.getItem(key);}catch{return;}
   return subscribeSettingsChanges(()=>{
-   try{const next=settingsStorage.getItem(key);if(next===previous)return;previous=next;callback.current();}catch{/* Keep the current view when storage fails. */}
+   try{const next=settingsStorage.getItem(key);if(next===previous.current)return;previous.current=next;callback.current();}catch{/* Keep the current view when storage fails. */}
   });
  },[key]);
 }
