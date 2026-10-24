@@ -10583,5 +10583,305 @@
     "en": "Both devices changed the same setting. This device’s edit was kept. Please check the current settings.",
     "ja": "2台の端末で同じ項目が変更されたため、この端末の変更を保持しました。現在の設定を確認してください。",
     "fi": "Molemmilla laitteilla muutettiin samaa asetusta. Tämän laitteen muutos säilytettiin. Tarkista nykyiset asetukset."
+  },
+  "0~100%를 소수 둘째 자리까지 입력하세요.": {
+    "en": "Enter 0–100%, with up to two decimal places.",
+    "ja": "0〜100%を小数第2位までで入力してください。",
+    "fi": "Syötä 0–100 %, enintään kaksi desimaalia."
+  },
+  "13만 키나 예시로 채우기": {
+    "en": "Load 130,000 kinah example",
+    "ja": "13万ギーナの例を入力",
+    "fi": "Täytä 130 000 kinahin esimerkki"
+  },
+  "{0} 키나": {
+    "en": "{0} kinah",
+    "ja": "{0} ギーナ",
+    "fi": "{0} kinahia"
+  },
+  "{0}개씩 {1}회": {
+    "en": "{1} lots of {0}",
+    "ja": "{0}個を{1}回",
+    "fi": "{1} × {0} kpl"
+  },
+  "{0}개씩 {1}회 + {2}개 1회": {
+    "en": "{1} lots of {0} + 1 lot of {2}",
+    "ja": "{0}個を{1}回 + {2}個を1回",
+    "fi": "{1} × {0} kpl + 1 × {2} kpl"
+  },
+  "가격과 세율이 같다면 나눠 파는 것만으로 총이익이 늘지는 않습니다. 등록 횟수에 따른 비용과 세금의 소수점 처리 때문에 차이가 날 수 있습니다.": {
+    "en": "Splitting the sale alone does not increase profit at the same price and tax rate. Per-listing costs and tax rounding can cause differences.",
+    "ja": "同じ価格・税率なら、分けて売るだけでは総利益は増えません。登録回数による費用や税金の端数処理で差が出る場合があります。",
+    "fi": "Sama hinta ja veroprosentti eivät lisää voittoa eriä jakamalla. Listauskulut ja veron pyöristys voivat aiheuttaa eroja."
+  },
+  "개당 {0}에 {1}개를 모두 판매하는 경우입니다.": {
+    "en": "Assumes all {1} items sell at {0} each.",
+    "ja": "1個{0}で{1}個すべて売れた場合です。",
+    "fi": "Olettaa kaikkien {1} kappaleen myyvän hintaan {0} / kpl."
+  },
+  "개당 가격을 넣으면 세금과 매입 비용을 뺀 이익이 바로 바뀝니다.": {
+    "en": "Enter unit prices to see profit after tax and purchase costs update instantly.",
+    "ja": "単価を入力すると、税金と購入費用を引いた利益がすぐに更新されます。",
+    "fi": "Syötä kappalehinnat, niin voitto verojen ja ostokulujen jälkeen päivittyy heti."
+  },
+  "개당 산 가격": {
+    "en": "Purchase price per item",
+    "ja": "1個の購入価格",
+    "fi": "Ostohinta / kpl"
+  },
+  "개당 팔 가격": {
+    "en": "Sale price per item",
+    "ja": "1個の販売価格",
+    "fi": "Myyntihinta / kpl"
+  },
+  "거래소 계산기": {
+    "en": "Trading profit calculator",
+    "ja": "取引所計算機",
+    "fi": "Kauppalaskuri"
+  },
+  "게임의 실제 처리 방식은 미확인": {
+    "en": "In-game rounding is unverified",
+    "ja": "ゲームの実際の処理方法は未確認",
+    "fi": "Pelin pyöristystapaa ei ole vahvistettu"
+  },
+  "계산 결과": {
+    "en": "Calculation results",
+    "ja": "計算結果",
+    "fi": "Laskelman tulokset"
+  },
+  "계산기 불러오는 중…": {
+    "en": "Loading calculator…",
+    "ja": "計算機を読み込み中…",
+    "fi": "Ladataan laskuria…"
+  },
+  "계산된 가격이 입력 가능한 범위를 넘습니다.": {
+    "en": "The required price exceeds the input limit.",
+    "ja": "計算価格が入力可能な範囲を超えています。",
+    "fi": "Vaadittu hinta ylittää syöttörajan."
+  },
+  "고정 비용은 매 등록마다 같은 금액이 드는 경우에만 쓰세요. 판매 금액에 비례하는 등록비는 이 항목에 포함되지 않습니다.": {
+    "en": "Use a fixed cost only if every listing costs the same. This field does not cover percentage-based listing fees.",
+    "ja": "毎回同じ金額がかかる場合のみ固定費を入力してください。販売金額に比例する登録費はこの項目には含まれません。",
+    "fi": "Käytä kiinteää kulua vain, jos jokainen listaus maksaa saman verran. Prosenttiperusteiset listauskulut eivät sisälly tähän."
+  },
+  "금액은 0~1,000,000,000,000 사이의 정수로 입력하세요.": {
+    "en": "Enter a whole amount from 0 to 1,000,000,000,000.",
+    "ja": "金額は0〜1,000,000,000,000の整数で入力してください。",
+    "fi": "Syötä kokonaisluku väliltä 0–1 000 000 000 000."
+  },
+  "기본 10% · 게임의 현재 세율로 수정": {
+    "en": "Default 10% · use the current in-game rate",
+    "ja": "初期値10% · ゲーム内の現在税率に変更",
+    "fi": "Oletus 10 % · käytä pelin nykyistä veroa"
+  },
+  "나누어 팔면 얼마나 다를까요?": {
+    "en": "What changes if you split the sale?",
+    "ja": "分けて売るとどう変わる？",
+    "fi": "Mitä erissä myyminen muuttaa?"
+  },
+  "남는 수량은 마지막에 따로 판매": {
+    "en": "Remainder goes in a final listing",
+    "ja": "余りは最後に別途販売",
+    "fi": "Loput myydään viimeisessä erässä"
+  },
+  "등록 1회당 고정 비용": {
+    "en": "Fixed cost per listing",
+    "ja": "登録1回ごとの固定費",
+    "fi": "Kiinteä kulu / myyntierä"
+  },
+  "등록 비용 · 세금 소수점 설정": {
+    "en": "Listing costs & tax rounding",
+    "ja": "登録費用・税金の端数処理",
+    "fi": "Listauskulut ja veron pyöristys"
+  },
+  "등록 비용 합계": {
+    "en": "Total listing costs",
+    "ja": "登録費用の合計",
+    "fi": "Listauskulut yhteensä"
+  },
+  "마지막 {0}개 이익": {
+    "en": "Profit on the final {0} items",
+    "ja": "最後の{0}個の利益",
+    "fi": "Viimeisten {0} kappaleen voitto"
+  },
+  "모두 판매하는 것으로 계산": {
+    "en": "Assumes all items sell",
+    "ja": "すべて売れた場合で計算",
+    "fi": "Olettaa kaikkien myyvän"
+  },
+  "목표 이익을 남길 최소 개당 가격": {
+    "en": "Minimum unit price for target profit",
+    "ja": "目標利益を得る最低単価",
+    "fi": "Pienin hinta tavoitevoittoon"
+  },
+  "목표 총 순이익": {
+    "en": "Target total profit",
+    "ja": "目標の総純利益",
+    "fi": "Tavoiteltu kokonaisvoitto"
+  },
+  "묶음별 세금 소수점 처리": {
+    "en": "Tax rounding per listing",
+    "ja": "販売ごとの税金端数処理",
+    "fi": "Veron pyöristys myyntierittäin"
+  },
+  "버림": {
+    "en": "Round down",
+    "ja": "切り捨て",
+    "fi": "Pyöristä alas"
+  },
+  "본전": {
+    "en": "Break-even",
+    "ja": "損益ゼロ",
+    "fi": "Ei voittoa eikä tappiota"
+  },
+  "산 수량": {
+    "en": "Quantity purchased",
+    "ja": "購入数量",
+    "fi": "Ostettu määrä"
+  },
+  "선택한 묶음으로 전체 수량이 모두 팔렸을 때의 기준입니다.": {
+    "en": "Based on all items selling in the selected lot size.",
+    "ja": "選んだ数量の組み合わせですべて売れた場合の基準です。",
+    "fi": "Perustuu kaikkien tuotteiden myyntiin valitulla eräkoolla."
+  },
+  "세금은 묶음마다 1키나 단위로 버림": {
+    "en": "Tax rounds down to 1 kinah per listing",
+    "ja": "税金は販売ごとに1ギーナ単位で切り捨て",
+    "fi": "Vero pyöristyy alaspäin kokonaisiin kinaheihin erittäin"
+  },
+  "세금은 묶음마다 1키나 단위로 올림": {
+    "en": "Tax rounds up to 1 kinah per listing",
+    "ja": "税金は販売ごとに1ギーナ単位で切り上げ",
+    "fi": "Vero pyöristyy ylöspäin kokonaisiin kinaheihin erittäin"
+  },
+  "세율 {0}% · 등록 1회당 {1}": {
+    "en": "Tax {0}% · {1} per listing",
+    "ja": "税率{0}% · 登録1回{1}",
+    "fi": "Vero {0} % · {1} / listaus"
+  },
+  "손해": {
+    "en": "Loss",
+    "ja": "損失",
+    "fi": "Tappio"
+  },
+  "수량은 1~1,000,000 사이의 정수로 입력하세요.": {
+    "en": "Enter a whole quantity from 1 to 1,000,000.",
+    "ja": "数量は1〜1,000,000の整数で入力してください。",
+    "fi": "Syötä kokonaismäärä väliltä 1–1 000 000."
+  },
+  "아이템 이름 (메모)": {
+    "en": "Item name (note)",
+    "ja": "アイテム名（メモ）",
+    "fi": "Esineen nimi (muistiinpano)"
+  },
+  "올림 · 보수적으로 계산": {
+    "en": "Round up · conservative estimate",
+    "ja": "切り上げ · 控えめな見積もり",
+    "fi": "Pyöristä ylös · varovainen arvio"
+  },
+  "이 가격으로 계산": {
+    "en": "Use this price",
+    "ja": "この価格で計算",
+    "fi": "Käytä tätä hintaa"
+  },
+  "이 묶음으로 계산": {
+    "en": "Use this lot size",
+    "ja": "この数量で計算",
+    "fi": "Käytä tätä eräkokoa"
+  },
+  "이 묶음으로 계산 중": {
+    "en": "Using this lot size",
+    "ja": "この数量で計算中",
+    "fi": "Tämä eräkoko käytössä"
+  },
+  "이익": {
+    "en": "Profit",
+    "ja": "利益",
+    "fi": "Voitto"
+  },
+  "이익을 낼 수 없음": {
+    "en": "No profitable price",
+    "ja": "利益が出ません",
+    "fi": "Voitto ei ole mahdollinen"
+  },
+  "이익이 나기 시작하는 개당 가격": {
+    "en": "Lowest profitable unit price",
+    "ja": "利益が出始める単価",
+    "fi": "Pienin voitollinen kappalehinta"
+  },
+  "입력한 가격에 전부 팔린다는 가정의 예상치입니다. 실시간 시세·미판매·재등록 비용은 자동 반영하지 않습니다. 입력은 이 브라우저에만 보관됩니다.": {
+    "en": "Estimates assume everything sells at your price. Live prices, unsold items and relisting costs are not included automatically. Inputs stay in this browser only.",
+    "ja": "入力価格ですべて売れると仮定した見積もりです。リアルタイム相場・売れ残り・再登録費は自動反映されません。入力はこのブラウザにのみ保存されます。",
+    "fi": "Arvio olettaa kaiken myyvän syötetyllä hinnalla. Markkinahinnat, myymättömät tuotteet ja uudelleenlistaus eivät päivity automaattisesti. Syötteet säilyvät vain tässä selaimessa."
+  },
+  "입력한 값을 확인하면 계산 결과가 표시됩니다.": {
+    "en": "Check the inputs to see the calculation.",
+    "ja": "入力値を確認すると計算結果が表示されます。",
+    "fi": "Tarkista syötteet nähdäksesi tulokset."
+  },
+  "전체 순이익": {
+    "en": "Total profit",
+    "ja": "総純利益",
+    "fi": "Kokonaisvoitto"
+  },
+  "전체 판매 후 순이익": {
+    "en": "Profit after selling everything",
+    "ja": "すべて販売した後の純利益",
+    "fi": "Voitto kaikkien myynnin jälkeen"
+  },
+  "총 매입 비용": {
+    "en": "Total purchase cost",
+    "ja": "総購入費用",
+    "fi": "Ostokulut yhteensä"
+  },
+  "총 판매 금액": {
+    "en": "Gross sales",
+    "ja": "総販売金額",
+    "fi": "Myyntitulot ennen kuluja"
+  },
+  "추가 비용 0키나와 묶음별 세금 올림은 계산용 기본값입니다. 실제 등록비·정산 금액은 게임 화면에서 확인하세요.": {
+    "en": "Zero extra cost and tax rounded up per listing are calculation defaults. Check actual listing fees and settlement in-game.",
+    "ja": "追加費用0ギーナと販売ごとの税金切り上げは計算用の初期値です。実際の登録費と精算額はゲーム内で確認してください。",
+    "fi": "Lisäkulujen 0 kinahia ja veron pyöristys ylöspäin ovat laskennan oletuksia. Tarkista todelliset kulut ja tilitys pelistä."
+  },
+  "판매 세금": {
+    "en": "Sales tax",
+    "ja": "販売税",
+    "fi": "Myyntivero"
+  },
+  "판매 세율 (%)": {
+    "en": "Sales tax (%)",
+    "ja": "販売税率（%）",
+    "fi": "Myyntivero (%)"
+  },
+  "팔고 나면 얼마나 남을까요?": {
+    "en": "How much will you keep?",
+    "ja": "売ったらいくら残る？",
+    "fi": "Paljonko myynnistä jää?"
+  },
+  "한 묶음 이익": {
+    "en": "Profit per full lot",
+    "ja": "1組あたりの利益",
+    "fi": "Voitto täyttä erää kohti"
+  },
+  "한 번에 {0}개": {
+    "en": "All {0} at once",
+    "ja": "{0}個を一括販売",
+    "fi": "Kaikki {0} kerralla"
+  },
+  "한 번에 팔 수량": {
+    "en": "Items per listing",
+    "ja": "1回に売る数量",
+    "fi": "Kappaleita myyntierässä"
+  },
+  "확인한 비용만 입력 · 기본 0키나": {
+    "en": "Enter confirmed costs only · default 0",
+    "ja": "確認済みの費用のみ入力 · 初期値0",
+    "fi": "Syötä vain varmistetut kulut · oletus 0"
+  },
+  "세금·등록비 뺀 수령액": {
+    "en": "Sale proceeds after tax and listing costs",
+    "ja": "税金と登録費を引いた受取額",
+    "fi": "Myynnistä saatu summa verojen ja listauskulujen jälkeen"
   }
 }
