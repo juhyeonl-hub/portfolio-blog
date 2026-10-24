@@ -1,16 +1,24 @@
+import {characterPoints} from '../lib/character-points';
 import {useMemo,useState} from 'react';
+import {boardGuidance} from '../lib/growth-guide';
+import './leveling-guide.css';
 import {recommendTargetNodes} from '../lib/recommendation';
 import {useLocale} from './locale';
 import {totals,type Catalog,type Plan,type Node} from '../lib/planner';
-export default function RankerBoards({catalog,plan,target}:{catalog:Catalog;plan:Plan;target:Plan}){
+export default function RankerBoards({catalog,plan,target,boardId,onBoardChange}:{catalog:Catalog;plan:Plan;target:Plan;boardId?:string;onBoardChange?:(id:string)=>void}){
  const {t,node:nodeName}=useLocale();
  const [selected,setSelected]=useState('');
  const selectedNode=catalog.boards.flatMap(b=>b.nodes).find(n=>n.id===selected);
- const [boardId,setBoardId]=useState(catalog.boards[0]?.id);
- const board=catalog.boards.find(b=>b.id===boardId)||catalog.boards[0];
+ const [localBoard,setLocalBoard]=useState(catalog.boards[0]?.id);
+ const setBoardId=(id:string)=>{setLocalBoard(id);onBoardChange?.(id)};
+ const board=catalog.boards.find(b=>b.id===(boardId||localBoard))||catalog.boards[0];
  const priority=useMemo(()=>new Set(recommendTargetNodes(catalog,plan,target)),[catalog,plan,target]);
  const priorityCost=totals(catalog,{...plan,nodes:[...priority]});
  const owned=new Set<string>(Array.isArray(plan.character?.nodes)?plan.character.nodes:plan.nodes),goal=new Set(target.nodes);
+ const boardKnown=characterPoints(catalog,plan.character).crystal!==null;
+ const guidance=boardGuidance(board,[...priority],[...owned],plan.level);
+ const nextNodes=boardKnown&&board.requiredLevel<=plan.character.profile?.characterLevel?guidance.next:[];
+ const nextIds=new Set(nextNodes.map(n=>n.id));
  const nodeState=(n:Node)=>n.autoLearn?'empty':goal.has(n.id)?priority.has(n.id)?owned.has(n.id)?'keep':'add':'later':owned.has(n.id)?'remove':'empty';
  const cost=totals(catalog,target);
  const boardCounts={add:0,keep:0,later:0,remove:0,empty:0};
@@ -28,10 +36,11 @@ export default function RankerBoards({catalog,plan,target}:{catalog:Catalog;plan
   <nav className="preview-tabs" aria-label={t('데바니온 보드 선택')}>{catalog.boards.map(b=><button type="button" key={b.id} aria-pressed={board.id===b.id} onClick={()=>{setBoardId(b.id);setSelected('')}}>{t(b.name)}</button>)}</nav>
   <p>{t('이 보드: 유지 {0}개 · 먼저 찍기 {1}개 · 나중에 찍기 {2}개',[boardCounts.keep,boardCounts.add,boardCounts.later])}</p>
   {board.pointKind.code==='battlecrystal'&&<p>{t('아스펠은 일반 데바니온 결정과 별도입니다. 아스펠 총량 {0} 안에서 추천하며, 남은 일반 결정으로 대신 찍을 수 없습니다.',[cost.battleMax])}</p>}
+  {nextNodes.length>0&&<div className="growth-route-summary"><b>{t('다음 연결 후보')}</b><p>{t('현재 배치에서 바로 이어지는 후보에 화살표를 표시했습니다. 한꺼번에 모두 찍으라는 뜻은 아닙니다. 필요한 잔여량을 확인하세요.')}</p><div>{nextNodes.slice(0,3).map(n=><button className="button secondary" key={n.id} onClick={()=>{setSelected(n.id);document.getElementById('ranker-node-'+n.id)?.focus()}}>{t('{0}행 {1}열 · {2} · {3} P',[n.row,n.column,nodeName(n.name),n.pointCost])}</button>)}</div></div>}
   <p className="guide-node-feedback" role="status">{selectedNode?nodeName(selectedNode.name)+' · '+t(labels[nodeState(selectedNode)])+' · '+selectedNode.pointCost+' P':t('확인할 노드를 누르세요.')}</p>
   <div className="goal-boards single-board">{[board].filter(Boolean).map(board=>{const minRow=Math.min(...board.nodes.map(n=>n.row)),minCol=Math.min(...board.nodes.map(n=>n.column)),maxCol=Math.max(...board.nodes.map(n=>n.column));return <section key={board.id}><h4>{t(board.name)} · Lv.{board.requiredLevel}</h4><div className="goal-board" style={{gridTemplateColumns:`repeat(${maxCol-minCol+1},minmax(0,1fr))`}}>{board.nodes.map(n=>{
    const state=nodeState(n);
-   const name=nodeName(n.name);return <button type="button" key={n.id} className={'goal-node '+state} style={{gridRow:n.row-minRow+1,gridColumn:n.column-minCol+1}} data-inspected={selected===n.id} onClick={()=>setSelected(n.id)} title={name+' · '+t(labels[state])+' · '+n.pointCost+' P'} aria-label={name+' · '+t(labels[state])}><img src={'/shadowcraft/game'+n.iconPath} alt="" loading="lazy"/><span aria-hidden="true">{state==='keep'?'✓':state==='remove'?'−':state==='add'?'+':state==='later'?'…':''}</span></button>;
+   const name=nodeName(n.name);return <button type="button" id={'ranker-node-'+n.id} key={n.id} className={'goal-node '+state+(nextIds.has(n.id)?' next-node':'')} style={{gridRow:n.row-minRow+1,gridColumn:n.column-minCol+1}} data-inspected={selected===n.id} onClick={()=>setSelected(n.id)} title={name+' · '+t(labels[state])+' · '+n.pointCost+' P'} aria-label={name+' · '+t(labels[state])}><img src={'/shadowcraft/game'+n.iconPath} alt="" loading="lazy"/><span aria-hidden="true">{state==='keep'?'✓':state==='remove'?'−':state==='add'?(nextIds.has(n.id)?'→':'+'):state==='later'?'…':''}</span></button>;
   })}</div></section>})}</div>
 
  </section>;

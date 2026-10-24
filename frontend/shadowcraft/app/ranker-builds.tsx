@@ -1,5 +1,5 @@
 import OfficialLink from './official-link';
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useMemo,useRef,useState} from 'react';
 import {loadRankingAvailability,rankingAvailabilityText,type RankingAvailability} from '../lib/ranking-availability';
 import type {Catalog,Plan} from '../lib/planner';
 import {totals} from '../lib/planner';
@@ -30,13 +30,16 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
  const [compareLeft,setCompareLeft]=useState<string|null>(null),[compareRight,setCompareRight]=useState<string|null>(null);
  const selected=rows.find(r=>r.characterId===selectedId);
  const [live,setLive]=useState<any>(null),[loading,setLoading]=useState(false),[error,setError]=useState('');
- const [preview,setPreview]=useState<{source:Plan;next:Plan}|null>(null);
+ const [preview,setPreview]=useState(false);
+ const [previewBoard,setPreviewBoard]=useState(catalog.boards[0]?.id);
  const request=useRef(0);useEffect(()=>()=>{request.current++},[]);
- useEffect(()=>{request.current++;setSelectedId('');setLive(null);setLoading(false);setError('');setPreview(null);},[catalog.classKey,kind]);
+ useEffect(()=>{request.current++;setSelectedId('');setLive(null);setLoading(false);setError('');setPreview(false);},[catalog.classKey,kind]);
  const itemUsage=new Map<number,{name:string;count:number}>();
  for(const row of rows)for(const item of new Map(row.equipment.map(item=>[item.id,item])).values()){const entry=itemUsage.get(item.id)||{name:item.name,count:0};entry.count++;itemUsage.set(item.id,entry)}
  const commonItems=[...itemUsage.values()].sort((a,b)=>b.count-a.count).slice(0,6);
- const groups=groupRankers(rows),candidate=preview?.source===plan?preview.next:null;
+ const groups=groupRankers(rows);
+ const result=useMemo(()=>{if(!preview||!selected||!live)return {candidate:null,error:''};try{return {candidate:previewRankerBoards(catalog,plan,selected,live,{allowUnavailable:true}),error:''}}catch(e){return {candidate:null,error:e instanceof Error?e.message:'복사할 수 없습니다.'}}},[preview,catalog,plan,selected,live]);
+ const candidate=result.candidate;
  const candidateTotals=candidate?totals(catalog,candidate):null;
  const canApply=!!candidate&&!!candidateTotals&&candidateTotals.crystal<=candidateTotals.crystalMax&&candidateTotals.battle<=candidateTotals.battleMax&&!catalog.boards.some(b=>b.requiredLevel>plan.level&&b.nodes.some(n=>!n.autoLearn&&candidate.nodes.includes(n.id)));
  const left=groups.find(g=>g.ids.join(',')===compareLeft)||groups[0];
@@ -53,7 +56,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
    {ids.some(id=>!notes.some(n=>n.id===id))&&<p className="subtle">{t('추가 분석 전: {0}. 설명이 없는 기술의 효과나 우열은 추정하지 않았습니다.',[ids.filter(id=>!notes.some(n=>n.id===id)).map(skillName).join(' · ')])}</p>}
   </details>;
  };
- async function inspect(row:Ranker){const token=++request.current;setSelectedId(row.characterId);setLive(null);setPreview(null);setError('');setLoading(true);try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId});if(request.current===token)setLive(result)}catch(e){if(request.current===token)setError(e instanceof Error?e.message:'공식 조회 실패')}finally{if(request.current===token)setLoading(false)}}
+ async function inspect(row:Ranker){const token=++request.current;setSelectedId(row.characterId);setLive(null);setError('');setLoading(true);try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId});if(request.current===token)setLive(result)}catch(e){if(request.current===token)setError(e instanceof Error?e.message:'공식 조회 실패')}finally{if(request.current===token)setLoading(false)}}
  useEffect(()=>{const row=rows.find(r=>r.characterId===initialSelection?.id);if(!rankingOnly&&row)void inspect(row);
  // The selection is consumed when this page mounts; later selections are made in its own list.
  // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,8 +74,9 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
   <details key={selectedId||'choose'} className="comparison-picker" open={!selected}><summary>{selected?t('비교 대상: {0} · 다른 랭커 선택',[selected.name]):t('비교할 랭커 선택')}</summary><div className="ranker-list">{rows.map(row=><button className={'button secondary '+(selected===row?'selected':'')} key={row.characterId} aria-pressed={selected===row} onClick={()=>inspect(row)}><b>{row.rank}. {row.name}</b><span>{row.region.toUpperCase()} · {row.serverName} · {t(row.race===1?'천족':'마족')}</span><small>{t(ROSTER_TEXT[current.key].score,[row.combatPower.toLocaleString(),row.sampleRank])}</small></button>)}</div></details>
   {selected&&<div className="ranker-detail"><h3>{t('{0} 세팅',[selected.name])}</h3><OfficialLink href={selected.sourceProfile} target="_blank" rel="noreferrer">{t('명단 원본 캐릭터 ↗')}</OfficialLink><p>{t('장비·스킬 확인 {0} · 당시 공식 전투력 {1}',[time(selected.verifiedAt),selected.currentCombatPower.toLocaleString()])}</p>
    <p className="ranker-observation" role="status">{live?t('공식 상세 조회: {0} · 아래 장비·스킬·데바니온은 이번 응답 기준',[time(live.importedAt)]):t('저장 자료 표시: {0} · 공식 조회 성공 전까지 저장된 장비·스킬을 표시합니다.',[time(selected.verifiedAt)])}</p>
-   {live&&<><details><summary>{t('능력치·스킬·노드 상세 비교')}</summary><CharacterComparison current={plan.character} saved={live} ranker/></details><p>{t('따라하기는 공개된 데바니온 배치만 적용합니다. 내 장비·기본 스킬 투자·연결 캐릭터는 유지합니다. 배치 변경으로 잠기는 기존 특화는 해제됩니다.')}</p><button className="button secondary" onClick={()=>{try{setPreview({source:plan,next:previewRankerBoards(catalog,plan,selected,live,{allowUnavailable:true})});setError('')}catch(e){setPreview(null);setError(e instanceof Error?e.message:'복사할 수 없습니다.')}}}>{t('데바니온 따라하기 미리보기')}</button></>}
-   {candidate&&<div className="quick-preview"><RankerBoards catalog={catalog} plan={plan} target={candidate}/>{!canApply&&<p role="status">{t('현재 레벨·포인트로는 전체 적용할 수 없습니다. 색으로 표시된 목표를 먼저 확인하고 필요한 포인트를 모아 주세요.')}</p>}<h4>{t('내 계획에 적용할 변경')}</h4><p>{t('노드 {0} → {1} · 결정 {2} / {3}',[plan.nodes.length,candidate.nodes.length,totals(catalog,candidate).crystal,totals(catalog,candidate).crystalMax])}</p><button className="button primary" disabled={!canApply} onClick={()=>{if(canApply){onApply(candidate);setPreview(null)}}}>{t('이 데바니온 배치 적용')}</button><button className="button ghost" onClick={()=>setPreview(null)}>{t('취소')}</button></div>}
+   {live&&<><details><summary>{t('능력치·스킬·노드 상세 비교')}</summary><CharacterComparison current={plan.character} saved={live} ranker/></details><p>{t('따라하기는 공개된 데바니온 배치만 적용합니다. 내 장비·기본 스킬 투자·연결 캐릭터는 유지합니다. 배치 변경으로 잠기는 기존 특화는 해제됩니다.')}</p><button className="button secondary" onClick={()=>{setPreview(true);setError('')}}>{t('데바니온 따라하기 미리보기')}</button></>}
+   {result.error&&<p role="alert">{t(result.error)}</p>}
+   {candidate&&<div className="quick-preview"><RankerBoards catalog={catalog} plan={plan} target={candidate} boardId={previewBoard} onBoardChange={setPreviewBoard}/>{!canApply&&<p role="status">{t('현재 레벨·포인트로는 전체 적용할 수 없습니다. 색으로 표시된 목표를 먼저 확인하고 필요한 포인트를 모아 주세요.')}</p>}<h4>{t('내 계획에 적용할 변경')}</h4><p>{t('노드 {0} → {1} · 결정 {2} / {3}',[plan.nodes.length,candidate.nodes.length,totals(catalog,candidate).crystal,totals(catalog,candidate).crystalMax])}</p><button className="button primary" disabled={!canApply} onClick={()=>{if(canApply){onApply(candidate);setPreview(false)}}}>{t('이 데바니온 배치 적용')}</button><button className="button ghost" onClick={()=>setPreview(false)}>{t('취소')}</button></div>}
    <MyRankerComparison key={JSON.stringify([selected.characterId,plan.character?.profile,plan.character?.importedAt])} catalog={catalog} plan={plan} ranker={selected} live={live} onConnect={onConnect}/>
    <details className="ranker-preparation"><summary>{t('따라하기 전 준비 항목')}</summary><ol>
     <li><b>{t('장비:')}</b> {t('위 목록에서 부위·강화·초월을 확인하세요. 보유 여부는 자동 확인하지 않으며 내 장비 계획에 복사하지 않습니다.')}</li>

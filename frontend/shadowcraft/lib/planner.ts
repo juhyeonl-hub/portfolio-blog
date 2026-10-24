@@ -7,7 +7,7 @@ export type Catalog={reviewRequired?:boolean;baselineVersion?:string;origin?:str
 export type PointBudget={sp:number;stigma:number;crystal:number;battle:number};
 export type GearItem={id:string;name:string;slot:string;owned:boolean;current:boolean;target:boolean;bonuses:Record<string,number>;note:string};
 export type Gear={mode:"manual"|"current"|"target";items:GearItem[]};
-export type Plan={ascensionGrade3Confirmed?:boolean;searchPrefs?:{region:string;server:string;name:string};recentCharacters?:import('./plan-memory').RecentCharacter[];macroExtra?:boolean;gear?:Gear;classKey?:string;pointBudget?:PointBudget;level:number;extraSP:number;extraStigma:number;extraCrystal:number;extraBattle:number;mode:'safe'|'damage'|'pvp';base:Record<string,number>;bonus:Record<string,number>;specs:Record<string,string[]>;nodes:string[];checked:string[];character:any|null;};
+export type Plan={confirmedRemainingContext?:{region:string;serverId:string;characterId:string;level:number};ascensionGrade3Confirmed?:boolean;searchPrefs?:{region:string;server:string;name:string};recentCharacters?:import('./plan-memory').RecentCharacter[];macroExtra?:boolean;gear?:Gear;classKey?:string;pointBudget?:PointBudget;confirmedRemaining?:Partial<PointBudget>;level:number;extraSP:number;extraStigma:number;extraCrystal:number;extraBattle:number;mode:'safe'|'damage'|'pvp';base:Record<string,number>;bonus:Record<string,number>;specs:Record<string,string[]>;nodes:string[];checked:string[];character:any|null;};
 export const CORE=['13350000','13130000','13010000'];
 export const MOVEMENT=['13070000','13360000','13050000','13220000','13280000','13700000','13140000'];
 export const MANUAL=['13070000','13360000','13050000','13220000','13260000','13340000'];
@@ -38,7 +38,11 @@ export function equipmentBonus(p:Plan,id:string):number {
 export function updatePlan(c:Catalog,p:Plan,patch:Partial<Plan>):Plan {
  const next={...p,...patch};
  // A budget entered for another level/character must not fund this growth plan.
- const switched=patch.character && ['characterId','serverId'].some(k=>String(patch.character.profile?.[k])!==String(p.character?.profile?.[k]));
+ // Confirmations belong to the actual snapshot, not the hypothetical target level/budget.
+ const confirmation=p.confirmedRemainingContext;
+ const sameSyncedConfirmation=confirmation&&patch.character&&String(patch.character.profile?.characterId)===confirmation.characterId&&String(patch.character.profile?.serverId)===confirmation.serverId&&patch.character.region===confirmation.region&&patch.character.profile?.characterLevel===confirmation.level;
+ const switched=patch.character && !sameSyncedConfirmation && (['characterId','serverId'].some(k=>String(patch.character.profile?.[k])!==String(p.character?.profile?.[k]))||patch.character.region!==p.character?.region);
+ if(Object.prototype.hasOwnProperty.call(patch,'character')&&(patch.character===null||(!sameSyncedConfirmation&&(switched||patch.character?.profile?.characterLevel!==p.character?.profile?.characterLevel)))){next.confirmedRemaining=undefined;next.confirmedRemainingContext=undefined;}
  if((patch.level!==undefined&&patch.level!==p.level)||switched){
   if(!Object.prototype.hasOwnProperty.call(patch,'pointBudget'))next.pointBudget=undefined;
   for(const key of ['extraSP','extraStigma','extraCrystal','extraBattle'] as const)if(patch[key]===undefined)next[key]=0;

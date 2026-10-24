@@ -6,6 +6,8 @@ const numbers=(v:any)=>record(v)&&Object.values(v).every(n=>Number.isFinite(n)&&
 export function validStoredPlan(value:any,classKey:string):value is Plan {
  if(!record(value)||(value.classKey||'assassin')!==classKey||!Number.isInteger(value.level)||value.level<1||value.level>45||!['safe','damage','pvp'].includes(value.mode)||!numbers(value.base)||!numbers(value.bonus)||!record(value.specs)||!Object.values(value.specs).every(strings)||!strings(value.nodes)||!strings(value.checked))return false;
  if(value.ascensionGrade3Confirmed!==undefined&&typeof value.ascensionGrade3Confirmed!=='boolean')return false;
+ if(value.confirmedRemaining!==undefined&&(!numbers(value.confirmedRemaining)||!Object.keys(value.confirmedRemaining).every(k=>['sp','stigma','crystal','battle'].includes(k))))return false;
+ if(value.confirmedRemainingContext!==undefined){const c=value.confirmedRemainingContext;if(!record(c)||!['eu','nae','naw','la','as'].includes(c.region)||typeof c.serverId!=='string'||!/^\d{1,8}$/.test(c.serverId)||typeof c.characterId!=='string'||!c.characterId||c.characterId.length>160||!Number.isInteger(c.level)||c.level<1||c.level>45)return false;}
  if(value.pointBudget!==undefined&&!numbers(value.pointBudget))return false;
  if(value.gear!==undefined&&(!record(value.gear)||!['manual','current','target'].includes(value.gear.mode)||!Array.isArray(value.gear.items)||value.gear.items.length>80||!value.gear.items.every((i:any)=>record(i)&&['id','name','slot','note'].every(k=>typeof i[k]==='string')&&['owned','current','target'].every(k=>typeof i[k]==='boolean')&&numbers(i.bonuses))))return false;
  if(value.searchPrefs!==undefined&&(!record(value.searchPrefs)||!['region','server','name'].every(k=>typeof value.searchPrefs[k]==='string')))return false;

@@ -8754,11 +8754,6 @@
     "ja": "収集物やNPCを検索して場所を確認しましょう。",
     "fi": "Etsi keräilykohteita ja NPC-hahmoja kartalta."
   },
-  "접속 현황 보기": {
-    "en": "View player activity",
-    "ja": "接続状況を見る",
-    "fi": "Näytä pelaajien aktiivisuus"
-  },
   "처음부터": {
     "en": "Start here",
     "ja": "ここから開始",
@@ -9704,6 +9699,16 @@
     "ja": "合計：レベル別の最低基準",
     "fi": "Yhteensä: tason vähimmäisarvo"
   },
+  "직접 입력한 총량으로 계산 중입니다.": {
+    "en": "Using your manually entered total.",
+    "ja": "直接入力した合計で計算しています。",
+    "fi": "Laskenta käyttää itse syöttämääsi kokonaismäärää."
+  },
+  "레벨별 최소 기준으로 계산 중입니다.": {
+    "en": "Using the level-based minimum.",
+    "ja": "レベル別の最低基準で計算しています。",
+    "fi": "Laskenta käyttää tason vähimmäisarvoa."
+  },
   "레벨별 최소 기준으로 되돌리기": {
     "en": "Reset to level-based minimum",
     "ja": "レベル別の最低基準に戻す",
@@ -9723,6 +9728,21 @@
     "en": "The minimum uses published level-based reward totals. If you have more points, you can edit the totals.",
     "ja": "公開されているレベル別報酬の基本量を最低基準に使います。実際の所持量が多い場合は直接変更できます。",
     "fi": "Vähimmäisarvo perustuu julkaistuihin tasopalkintojen määriin. Jos sinulla on enemmän pisteitä, voit muokata kokonaismääriä."
+  },
+  "계산한 잔여량 · 게임 값으로 수정": {
+    "en": "Calculated remaining · edit to match the game",
+    "ja": "計算上の残り・ゲームの値に変更",
+    "fi": "Laskettu jäljellä oleva määrä · korjaa pelin mukaan"
+  },
+  "게임에서 확인한 남은 양": {
+    "en": "Remaining points shown in the game",
+    "ja": "ゲームで確認した残りポイント",
+    "fi": "Pelistä tarkistettu jäljellä oleva määrä"
+  },
+  "최소 기준으로는 실제 남은 양을 알 수 없어 빈칸으로 둡니다. 게임에서 확인한 숫자를 입력하면 개인 총량으로 바뀝니다.": {
+    "en": "The minimum cannot tell us your actual remaining points, so this field is left blank. Enter the number from the game to use your personal total.",
+    "ja": "最低基準では実際の残りポイントが分からないため空欄にしています。ゲームで確認した数字を入力すると、個人の合計に切り替わります。",
+    "fi": "Vähimmäisarvosta ei voi päätellä todellisia jäljellä olevia pisteitä, joten kenttä on tyhjä. Syötä pelissä näkyvä määrä käyttääksesi omaa kokonaismäärääsi."
   },
   "총량: 45레벨 콘텐츠 완료 기준": {
     "en": "Total: level 45 content completed",
@@ -9928,5 +9948,510 @@
     "en": "A reference allocation within your points, not a verified optimal setup for each activity.",
     "ja": "現在のポイント内で計算した参考配分であり、コンテンツ別の最適構成を検証した結果ではありません。",
     "fi": "Viitteellinen jako käytettävissä olevilla pisteillä, ei kullekin sisällölle optimaaliseksi varmennettu kokoonpano."
+  },
+  "게임에서 확인한 잔여량은 별도로 보존합니다. 사용량을 알 때만 입력한 잔여량을 계산용 총량에 반영합니다.": {
+    "en": "Game-confirmed remaining points are saved separately. They update the planning total only when spent points are known.",
+    "ja": "ゲームで確認した残量は別途保存します。使用量が判明している場合のみ、計算用の総量に反映します。",
+    "fi": "Pelissä vahvistetut jäljellä olevat pisteet tallennetaan erikseen. Kokonaismäärä päivittyy vain, kun käytetyt pisteet tunnetaan."
+  },
+  "확정 잔여량 · 게임에서 확인": {
+    "en": "Confirmed remaining · checked in game",
+    "ja": "確定残量 · ゲームで確認",
+    "fi": "Vahvistettu jäljellä oleva määrä · pelistä"
+  },
+  "계산한 잔여량 · 추정": {
+    "en": "Calculated remaining · estimate",
+    "ja": "計算上の残量 · 推定",
+    "fi": "Laskettu jäljellä oleva määrä · arvio"
+  },
+  "확정 잔여량 기반 추정 총량": {
+    "en": "Estimated total from confirmed remaining",
+    "ja": "確定残量に基づく推定総量",
+    "fi": "Vahvistettuun jäljellä olevaan määrään perustuva kokonaisarvio"
+  },
+  "사용량 미확인: 확정 잔여량은 보존하며 총량은 추정하지 않습니다.": {
+    "en": "Spent points unknown: confirmed remaining is preserved; the total cannot be estimated.",
+    "ja": "使用量不明：確定残量を保持し、総量は推定しません。",
+    "fi": "Käytetyt pisteet eivät ole tiedossa: vahvistettu jäljellä oleva määrä säilytetään, mutta kokonaismäärää ei arvioida."
+  },
+  "계산용 총량 · 설정값": {
+    "en": "Planning total · configured",
+    "ja": "計算用総量 · 設定値",
+    "fi": "Laskennan kokonaismäärä · asetettu"
+  },
+  "확정 잔여량은 직접 입력한 게임 값입니다. 계산한 잔여량과 총량은 추정값이며 재조회나 총량 변경으로 확정값을 덮어쓰지 않습니다.": {
+    "en": "Confirmed remaining is the game value you entered. Calculated remaining and totals are estimates; refreshing or changing totals will not overwrite your confirmation.",
+    "ja": "確定残量は入力したゲーム内の値です。計算上の残量と総量は推定値であり、再取得や総量の変更で確定値を上書きしません。",
+    "fi": "Vahvistettu jäljellä oleva määrä on syöttämäsi pelin arvo. Lasketut määrät ovat arvioita; päivitys tai kokonaismäärän muutos ei korvaa vahvistettua arvoa."
+  },
+  "내 캐릭터 포인트": {
+    "en": "My character points",
+    "ja": "自分のキャラクターポイント",
+    "fi": "Hahmoni pisteet"
+  },
+  "다른 레벨의 목표를 보는 중입니다. 잔여량 입력은 조회한 캐릭터 레벨에서 할 수 있습니다.": {
+    "en": "You are viewing a different target level. Enter remaining points at the loaded character level.",
+    "ja": "別レベルの目標を表示しています。残量は取得したキャラクターのレベルで入力できます。",
+    "fi": "Tarkastelet eri tavoitetasoa. Syötä jäljellä olevat pisteet ladatun hahmon tasolla."
+  },
+  "이미 사용": {
+    "en": "Already spent",
+    "ja": "使用済み",
+    "fi": "Käytetty"
+  },
+  "장비 확인 중…": {
+    "en": "Checking equipment…",
+    "ja": "装備を確認中…",
+    "fi": "Tarkistetaan varusteita…"
+  },
+  "확인 불가": {
+    "en": "Unknown",
+    "ja": "不明",
+    "fi": "Ei tiedossa"
+  },
+  "남은 스킬 포인트": {
+    "en": "Remaining skill points",
+    "ja": "残りスキルポイント",
+    "fi": "Jäljellä olevat taitopisteet"
+  },
+  "남은 스티그마 포인트": {
+    "en": "Remaining stigma points",
+    "ja": "残りスティグマポイント",
+    "fi": "Jäljellä olevat stigmapisteet"
+  },
+  "남은 데바니온 포인트": {
+    "en": "Remaining Daevanion points",
+    "ja": "残りデバニオンポイント",
+    "fi": "Jäljellä olevat Daevanion-pisteet"
+  },
+  "남은 아스펠 결정": {
+    "en": "Remaining Azphel crystals",
+    "ja": "残りアスフェル結晶",
+    "fi": "Jäljellä olevat Azphel-kristallit"
+  },
+  "게임에서 확인": {
+    "en": "Check in game",
+    "ja": "ゲームで確認",
+    "fi": "Tarkista pelistä"
+  },
+  "사용량이 설정 총량보다 큽니다. 남은 양을 입력해 추가 획득분을 반영하세요.": {
+    "en": "Spent points exceed the configured total. Enter remaining points to include additional rewards.",
+    "ja": "使用量が設定総量を超えています。残量を入力して追加獲得分を反映してください。",
+    "fi": "Käytetyt pisteet ylittävät asetetun kokonaismäärän. Syötä jäljellä olevat pisteet lisäpalkintojen huomioimiseksi."
+  },
+  "스킬 사용량은 실제 최종 레벨에서 조회한 데바니온·장비 스킬 보너스를 뺀 계산값입니다. 다른 보너스나 조회 지연이 있으면 게임과 다를 수 있습니다.": {
+    "en": "Skill spending is calculated after subtracting retrieved Daevanion and equipment bonuses from actual skill levels. Other bonuses or delayed data may cause differences from the game.",
+    "ja": "スキル使用量は実際の最終レベルから取得したデバニオン・装備ボーナスを差し引いた計算値です。他のボーナスや取得遅延によりゲームと異なる場合があります。",
+    "fi": "Taitopisteiden käyttö lasketaan vähentämällä haetut Daevanion- ja varustebonukset todellisista taitotasoista. Muut bonukset tai viivästyneet tiedot voivat aiheuttaa eroja peliin."
+  },
+  "계정 설정 동기화에 실패했습니다. 이 기기의 설정을 유지합니다.": {
+    "en": "Account settings could not sync. Settings on this device are preserved.",
+    "ja": "アカウント設定を同期できませんでした。この端末の設定は保持されます。",
+    "fi": "Tilin asetusten synkronointi epäonnistui. Tämän laitteen asetukset säilytetään."
+  },
+  "설정 동기화 다시 시도": {
+    "en": "Retry settings sync",
+    "ja": "設定の同期を再試行",
+    "fi": "Yritä asetusten synkronointia uudelleen"
+  },
+  "로그인한 계정에 동기화됩니다. 연결이 끊기면 이 기기에 보관합니다.": {
+    "en": "Synced with your signed-in account. Kept on this device while offline.",
+    "ja": "ログイン中のアカウントに同期します。オフライン時はこの端末に保存します。",
+    "fi": "Synkronoidaan kirjautuneelle tilille. Säilytetään tällä laitteella ilman verkkoyhteyttä."
+  },
+  "동기화된 확정 잔여량입니다. 같은 캐릭터와 레벨을 조회하면 다시 연결됩니다.": {
+    "en": "These are your synced confirmed balances. Load the same character and level to reconnect them.",
+    "ja": "同期した確定残量です。同じキャラクターとレベルを取得すると再接続されます。",
+    "fi": "Nämä ovat synkronoidut vahvistetut pisteet. Hae sama hahmo ja taso yhdistääksesi ne uudelleen."
+  },
+  "사용 / 남음 / 총량": {
+    "en": "Used / Remaining / Total",
+    "ja": "使用 / 残り / 合計",
+    "fi": "Käytetty / Jäljellä / Yhteensä"
+  },
+  "사용": {
+    "en": "Used",
+    "ja": "使用",
+    "fi": "Käytetty"
+  },
+  "사용은 조회 정보로 계산합니다. 게임에 남은 양을 입력하면, 사용량을 아는 항목의 총량과 추천이 바로 바뀝니다.": {
+    "en": "Used points are calculated from the retrieved data. Enter the balance shown in the game to update totals and recommendations where usage is known.",
+    "ja": "使用量は取得情報から計算します。ゲーム内の残りを入力すると、使用量が分かる項目の合計とおすすめがすぐに変わります。",
+    "fi": "Käyttö lasketaan haetuista tiedoista. Syötä pelin saldo: kokonaismäärä ja suositus päivittyvät, kun käyttö tunnetaan."
+  },
+  "캐릭터를 연결하면 사용량을 확인할 수 있습니다. 지금은 총량으로 추천을 볼 수 있습니다.": {
+    "en": "Connect a character to check usage. You can already use the totals to view recommendations.",
+    "ja": "キャラクターを接続すると使用量を確認できます。今は合計でおすすめを確認できます。",
+    "fi": "Yhdistä hahmo käytön tarkistamiseksi. Suosituksia voi jo katsoa kokonaismäärän perusteella."
+  },
+  "사용량 미확인: 남은 양은 보존하고, 추천은 입력한 총량으로 계산합니다.": {
+    "en": "Usage unknown: your entered balance is kept; recommendations use the configured total.",
+    "ja": "使用量不明：入力した残りは保持し、おすすめは設定した合計で計算します。",
+    "fi": "Käyttö tuntematon: syötetty saldo säilyy, suositus käyttää asetettua kokonaismäärää."
+  },
+  "총량과 게임에서 입력한 남은 양이 다릅니다. 추천에는 총량을 사용합니다.": {
+    "en": "The total does not match the entered game balance. Recommendations use the total.",
+    "ja": "合計と入力したゲーム内の残りが一致しません。おすすめには合計を使います。",
+    "fi": "Kokonaismäärä ei vastaa syötettyä pelisaldoa. Suositus käyttää kokonaismäärää."
+  },
+  "사용: 조회 기반 · 남음: 직접 확인 · 총량: 추천 계산용": {
+    "en": "Used: retrieved data · Remaining: entered from game · Total: recommendation budget",
+    "ja": "使用：取得情報 · 残り：手動確認 · 合計：おすすめ計算用",
+    "fi": "Käytetty: haettu tieto · Jäljellä: itse tarkistettu · Yhteensä: suosituksen budjetti"
+  },
+  "포인트 계산 기준과 확인되지 않은 값": {
+    "en": "Point calculation and unknown values",
+    "ja": "ポイントの計算基準と未確認値",
+    "fi": "Pistelaskenta ja tuntemattomat arvot"
+  },
+  "조회되지 않은 사용량 직접 계산": {
+    "en": "Calculate usage that could not be retrieved",
+    "ja": "取得できなかった使用量を手動計算",
+    "fi": "Laske käyttö, jota ei voitu hakea"
+  },
+  "다음 연결 후보": {
+    "en": "Next connection candidates",
+    "ja": "次につなぐ候補",
+    "fi": "Seuraavat yhdistettävät solmut"
+  },
+  "현재 배치에서 바로 이어지는 후보에 화살표를 표시했습니다. 한꺼번에 모두 찍으라는 뜻은 아닙니다. 필요한 잔여량을 확인하세요.": {
+    "en": "Arrows mark candidates directly connected to your current allocation. They are alternatives, not a command to take all at once. Check the remaining points needed.",
+    "ja": "現在の配置から直接つながる候補に矢印を表示しました。一度にすべて取得する意味ではありません。必要な残りポイントを確認してください。",
+    "fi": "Nuolet merkitsevät nykyiseen jakoon suoraan liittyviä ehdokkaita. Niitä ei ole tarkoitus ottaa kaikkia kerralla. Tarkista tarvittavat jäljellä olevat pisteet."
+  },
+  "{0}행 {1}열 · {2} · {3} P": {
+    "en": "Row {0}, column {1} · {2} · {3} P",
+    "ja": "{0}行 {1}列 · {2} · {3} P",
+    "fi": "Rivi {0}, sarake {1} · {2} · {3} P"
+  },
+  "→ 화살표: 현재 배치에서 다음 연결 후보": {
+    "en": "→ Arrow: next connection from your current allocation",
+    "ja": "→ 矢印：現在の配置から次につなぐ候補",
+    "fi": "→ Nuoli: seuraava yhteys nykyisestä jaosta"
+  },
+  "조회 오류 자세히 보기": {
+    "en": "View lookup error details",
+    "ja": "取得エラーの詳細を見る",
+    "fi": "Näytä hakuvirheen tiedot"
+  },
+  "계정 설정을 읽지 못했습니다. 기존 데이터는 보존했습니다. 다시 시도하거나 로그아웃해 주세요.": {
+    "en": "Account settings could not be read. Existing data has been preserved. Retry or sign out.",
+    "ja": "アカウント設定を読み込めませんでした。既存データは保持しています。再試行するかログアウトしてください。",
+    "fi": "Tiliasetuksia ei voitu lukea. Aiemmat tiedot on säilytetty. Yritä uudelleen tai kirjaudu ulos."
+  },
+  "이 장비로 무엇을 하고 싶나요?": {
+    "en": "What will you use this equipment for?",
+    "ja": "この装備を何に使いますか？",
+    "fi": "Mihin käytät tätä varustetta?"
+  },
+  "장비 안내의 사용 목적": {
+    "en": "Equipment guide purpose",
+    "ja": "装備ガイドの使用目的",
+    "fi": "Varusteoppaan käyttötarkoitus"
+  },
+  "현재 빌드 기준": {
+    "en": "Current build",
+    "ja": "現在のビルド基準",
+    "fi": "Nykyinen kokoonpano"
+  },
+  "혼자 사냥": {
+    "en": "Solo hunting",
+    "ja": "ソロ狩り",
+    "fi": "Yksin metsästys"
+  },
+  "파티에서 공격": {
+    "en": "Party damage",
+    "ja": "パーティーで攻撃",
+    "fi": "Ryhmän vahinko"
+  },
+  "파티에서 회복": {
+    "en": "Party healing",
+    "ja": "パーティーで回復",
+    "fi": "Ryhmän parannus"
+  },
+  "유저와 전투": {
+    "en": "Player combat",
+    "ja": "プレイヤーと戦闘",
+    "fi": "Pelaajataistelu"
+  },
+  "이 선택은 아래 안내만 바꿉니다. 스킬 배치와 저장된 빌드는 바뀌지 않습니다. 회복량·생존력의 정확한 효율은 계산하지 않습니다.": {
+    "en": "This changes only the guidance below, not skills or saved builds. Exact healing and survival efficiency is not calculated.",
+    "ja": "この選択は下の案内だけを変えます。スキル配置や保存済みビルドは変わりません。回復量・生存力の正確な効率は計算しません。",
+    "fi": "Valinta muuttaa vain alla olevaa ohjetta, ei taitoja tai tallennettua kokoonpanoa. Tarkkaa parannus- tai selviytymistehoa ei lasketa."
+  },
+  "이 장비, 지금 무엇부터 할까요?": {
+    "en": "What should I check first on this equipment?",
+    "ja": "この装備は何から確認しますか？",
+    "fi": "Mitä tästä varusteesta tarkistetaan ensin?"
+  },
+  "랭커 장비 레벨 {0}은 참고 정보입니다. 레벨이 낮거나 옵션이 다르다는 이유만으로 교체·조율을 권하지 않습니다.": {
+    "en": "The ranked player’s equipment level {0} is a reference. A lower level or different options alone do not justify replacing or tuning.",
+    "ja": "ランカーの装備レベル{0}は参考情報です。レベルが低い、オプションが違うという理由だけで交換・調律は勧めません。",
+    "fi": "Vertailupelaajan varustetaso {0} on viitetieto. Matalampi taso tai eri ominaisuudet eivät yksin ole syy vaihtaa tai virittää."
+  },
+  "1. 지금 확인할 것": {
+    "en": "1. Check now",
+    "ja": "1. 今確認すること",
+    "fi": "1. Tarkista nyt"
+  },
+  "2. 바꾸기 전에 볼 것": {
+    "en": "2. Before changing",
+    "ja": "2. 変更する前に見ること",
+    "fi": "2. Ennen muuttamista"
+  },
+  "직접 고른 변경 후보 {0}개입니다. 게임에서 해당 줄을 바꿀 수 있는지, 다른 옵션이 유지되는지, 재료가 얼마나 드는지 확인하세요.": {
+    "en": "You selected {0} candidates. Check in game whether the line can change, other options stay, and what materials it costs.",
+    "ja": "選んだ変更候補は{0}個です。ゲーム内でその行を変更できるか、他のオプションが残るか、材料費を確認してください。",
+    "fi": "Valitsit {0} ehdokasta. Tarkista pelistä rivin vaihdettavuus, muiden ominaisuuksien säilyminen ja materiaalikustannus."
+  },
+  "아직 변경 후보를 고르지 않았습니다. 랭커와 다르다는 이유만으로 바꾸지 않아도 됩니다.": {
+    "en": "No candidates selected. You do not need to change an option merely because a ranked player differs.",
+    "ja": "変更候補は未選択です。ランカーと違うだけで変える必要はありません。",
+    "fi": "Ehdokkaita ei ole valittu. Pelkkä ero vertailupelaajaan ei vaadi muutosta."
+  },
+  "3. 어디서 멈추면 될까요?": {
+    "en": "3. When should I stop?",
+    "ja": "3. どこで止めますか？",
+    "fi": "3. Milloin lopettaa?"
+  },
+  "현재 목적에 맞는 옵션이라면 더 좋은 옵션만 노리며 반복할 필요는 없습니다. 사용할 재료의 한도를 먼저 정하고, 한도에 도달하면 다시 판단하세요.": {
+    "en": "If the option suits your purpose, repeated rolls are unnecessary. Set a material limit first and reassess when you reach it.",
+    "ja": "目的に合うオプションなら、さらに良いものだけを狙って繰り返す必要はありません。先に材料の上限を決め、達したら再判断してください。",
+    "fi": "Jos ominaisuus sopii tarkoitukseen, sitä ei tarvitse jatkuvasti vaihtaa. Aseta materiaaliraja ja arvioi uudelleen sen täyttyessä."
+  },
+  "강화·조율·영혼각인, 확인이 필요한 정보": {
+    "en": "Enhancement, tuning and soul imprint: facts to verify",
+    "ja": "強化・調律・魂の刻印：確認が必要な情報",
+    "fi": "Vahvistus, viritys ja sielukaiverrus: tarkistettavat tiedot"
+  },
+  "적정 강화 수치, 목표 옵션의 등장 여부와 확률, 작업 순서, 계승·귀속 조건은 여기서 확정하지 않습니다. 게임 안의 대상 장비 설명과 공식 안내를 확인해 주세요.": {
+    "en": "Enhancement targets, option availability and odds, operation order, inheritance and binding rules are unconfirmed here. Check the item in game and official guidance.",
+    "ja": "適切な強化値、候補の出現と確率、作業順序、継承・帰属条件はここでは確定しません。ゲーム内の装備説明と公式案内を確認してください。",
+    "fi": "Vahvistustavoitteita, ominaisuuksien saatavuutta ja todennäköisyyksiä, työjärjestystä sekä siirto- ja sidontaehtoja ei vahvisteta täällä. Tarkista pelin esinekuvaus ja virallinen ohje."
+  },
+  "현재 장비와 새 장비의 강화·영석 상태가 다르면 지금 보이는 수치만으로 어느 장비가 더 좋은지 결정할 수 없습니다.": {
+    "en": "If enhancement or socketed stones differ, the displayed numbers alone cannot decide which equipment is better.",
+    "ja": "強化や魔石の状態が違う場合、表示数値だけでどちらが良いかは決められません。",
+    "fi": "Jos vahvistukset tai kivet eroavat, näkyvät luvut eivät yksin ratkaise parempaa varustetta."
+  },
+  "선택하면 그 캐릭터로 바꿉니다. 다른 캐릭터나 레벨로 바뀌면 포인트는 해당 레벨의 기본량으로 맞춥니다.": {
+    "en": "Selecting switches to that character. A different character or level resets points to that level’s baseline.",
+    "ja": "選ぶとそのキャラクターに切り替わります。別キャラクターやレベルになった場合、そのレベルの基本量に合わせます。",
+    "fi": "Valinta vaihtaa hahmon. Eri hahmo tai taso palauttaa pisteet kyseisen tason perustasolle."
+  },
+  "추천 계산에 실패했습니다. 레벨과 포인트를 확인하세요.": {
+    "en": "Recommendation failed. Check level and points.",
+    "ja": "おすすめの計算に失敗しました。レベルとポイントを確認してください。",
+    "fi": "Suosituksen laskenta epäonnistui. Tarkista taso ja pisteet."
+  },
+  "내 성장 안내": {
+    "en": "My progression guide",
+    "ja": "成長ガイド",
+    "fi": "Oma kehitysopas"
+  },
+  "지금 올릴 스킬과 데바니온": {
+    "en": "Skills and Daevanion to develop now",
+    "ja": "今伸ばすスキルとデバニオン",
+    "fi": "Nyt kehitettävät taidot ja Daevanion"
+  },
+  "조회한 캐릭터: {0} · Lv.{1}": {
+    "en": "Retrieved character: {0} · Lv.{1}",
+    "ja": "取得キャラクター：{0} · Lv.{1}",
+    "fi": "Haettu hahmo: {0} · Taso {1}"
+  },
+  "계산할 목표: Lv.{0}": {
+    "en": "Target level: {0}",
+    "ja": "計算目標：Lv.{0}",
+    "fi": "Tavoitetaso: {0}"
+  },
+  "입력한 레벨의 가상 목표입니다. 아래 현재 스킬·노드는 마지막 조회 당시의 정보입니다.": {
+    "en": "This is a hypothetical target at the entered level. Current skills and nodes reflect the last lookup.",
+    "ja": "入力レベルの仮の目標です。現在のスキル・ノードは最後に取得した時点の情報です。",
+    "fi": "Tämä on syötetyn tason laskennallinen tavoite. Nykyiset taidot ja solmut ovat viime haun tietoja."
+  },
+  "총 포인트 = 이미 쓴 양 + 남은 양. 캐릭터 조회로 총량은 확인되지 않습니다.": {
+    "en": "Total points = used + remaining. Character lookup does not reveal the total.",
+    "ja": "合計ポイント＝使用済み＋残り。キャラクター取得では合計は分かりません。",
+    "fi": "Pisteet yhteensä = käytetty + jäljellä. Hahmohaku ei paljasta kokonaismäärää."
+  },
+  "게임에서 3차 승급을 완료했습니다": {
+    "en": "I completed the third ascension in game",
+    "ja": "ゲーム内で3次昇級を完了しました",
+    "fi": "Olen suorittanut kolmannen ylennyksen pelissä"
+  },
+  "플레이 목적": {
+    "en": "Play purpose",
+    "ja": "プレイ目的",
+    "fi": "Pelitarkoitus"
+  },
+  "현재 레벨·포인트로 계산 중…": {
+    "en": "Calculating for current level and points…",
+    "ja": "現在のレベル・ポイントで計算中…",
+    "fi": "Lasketaan nykyisellä tasolla ja pisteillä…"
+  },
+  "1. 스킬": {
+    "en": "1. Skills",
+    "ja": "1. スキル",
+    "fi": "1. Taidot"
+  },
+  "조회된 스킬 중 목표가 더 높은 스킬 {0}개": {
+    "en": "{0} retrieved skills have a higher target",
+    "ja": "取得スキルのうち目標が高いスキル{0}個",
+    "fi": "{0} haetulla taidolla on nykyistä korkeampi tavoite"
+  },
+  "현재 스킬 정보가 없어 올릴 항목을 비교할 수 없습니다.": {
+    "en": "Current skills are unknown, so upgrades cannot be compared.",
+    "ja": "現在のスキル情報がないため、伸ばす項目を比較できません。",
+    "fi": "Nykyisiä taitoja ei tunneta, joten nostettavia taitoja ei voi verrata."
+  },
+  "숫자는 남은 포인트가 아닌 목표 레벨입니다.": {
+    "en": "Numbers show target levels, not remaining points.",
+    "ja": "数字は残りポイントではなく目標レベルです。",
+    "fi": "Numerot ovat tavoitetasoja, eivät jäljellä olevia pisteitä."
+  },
+  "왼쪽 → 오른쪽 → 다음 줄 순서입니다. 주황 테두리는 조회된 실제 레벨보다 높은 목표입니다.": {
+    "en": "Read left to right, then the next row. Orange borders mark targets above the retrieved skill level.",
+    "ja": "左→右→次の行の順です。オレンジ枠は取得した実際のレベルより高い目標です。",
+    "fi": "Järjestys on vasemmalta oikealle ja seuraavalle riville. Oranssi reunus merkitsee haettua tasoa korkeampaa tavoitetta."
+  },
+  "목표가 현재보다 낮아도 반드시 낮추라는 뜻은 아닙니다.": {
+    "en": "A lower target does not necessarily mean you should reduce the skill.",
+    "ja": "目標が現在より低くても、必ず下げるという意味ではありません。",
+    "fi": "Alempi tavoite ei tarkoita, että taitoa pitäisi välttämättä laskea."
+  },
+  "목표는 기본 투자 + 장비 + 추천 데바니온의 합계입니다. 아이콘을 누르면 각각의 수치와 특화가 나옵니다.": {
+    "en": "Targets include base investment, gear and recommended Daevanion. Select an icon for the breakdown and specializations.",
+    "ja": "目標は基本投資＋装備＋推奨デバニオンの合計です。アイコンで内訳と特化を確認できます。",
+    "fi": "Tavoite sisältää peruspanostuksen, varusteet ja suositellun Daevanionin. Valitse kuvake nähdäksesi erittelyn ja erikoistumiset."
+  },
+  "현재 미확인": {
+    "en": "Current unknown",
+    "ja": "現在不明",
+    "fi": "Nykyinen tuntematon"
+  },
+  "현재 {0}": {
+    "en": "Current {0}",
+    "ja": "現在 {0}",
+    "fi": "Nykyinen {0}"
+  },
+  "목표 {0}": {
+    "en": "Target {0}",
+    "ja": "目標 {0}",
+    "fi": "Tavoite {0}"
+  },
+  "기본 투자 {0} + 장비 {1} + 데바니온 {2} = 목표 {3}": {
+    "en": "Base {0} + Gear {1} + Daevanion {2} = Target {3}",
+    "ja": "基本 {0}＋装備 {1}＋デバニオン {2}＝目標 {3}",
+    "fi": "Perus {0} + Varusteet {1} + Daevanion {2} = Tavoite {3}"
+  },
+  "추천 특화": {
+    "en": "Recommended specializations",
+    "ja": "推奨特化",
+    "fi": "Suositellut erikoistumiset"
+  },
+  "현재 목표에서 선택할 특화 없음": {
+    "en": "No specializations at this target",
+    "ja": "現在の目標で選ぶ特化なし",
+    "fi": "Ei erikoistumisia tässä tavoitteessa"
+  },
+  "현재 수치에는 장비 효과가 포함될 수 있습니다. 목표 차이만큼 스킬 포인트를 쓰라는 뜻은 아닙니다.": {
+    "en": "Current levels may include gear bonuses. The target difference is not the number of skill points to spend.",
+    "ja": "現在値には装備効果が含まれる場合があります。目標との差だけポイントを使う意味ではありません。",
+    "fi": "Nykyinen luku voi sisältää varustelisät. Tavoitteen erotus ei ole käytettävien taitopisteiden määrä."
+  },
+  "2. 데바니온": {
+    "en": "2. Daevanion",
+    "ja": "2. デバニオン",
+    "fi": "2. Daevanion"
+  },
+  "이 보드: 추천 {0} P · 이미 찍은 추천 노드 {1}개 · 추가 목표 {2}개": {
+    "en": "This board: recommended {0} P · {1} recommended nodes owned · {2} additional targets",
+    "ja": "このボード：推奨 {0} P · 取得済み推奨ノード {1}個 · 追加目標 {2}個",
+    "fi": "Tämä lauta: suositus {0} P · {1} suositeltua solmua omistettu · {2} lisätavoitetta"
+  },
+  "이 보드: 추천 {0} P · 현재 배치 미확인": {
+    "en": "This board: recommended {0} P · current allocation unknown",
+    "ja": "このボード：推奨 {0} P · 現在配置不明",
+    "fi": "Tämä lauta: suositus {0} P · nykyinen jako tuntematon"
+  },
+  "✓ 초록: 이미 찍은 추천 노드": {
+    "en": "✓ Green: recommended nodes already owned",
+    "ja": "✓ 緑：取得済み推奨ノード",
+    "fi": "✓ Vihreä: jo omistetut suositellut solmut"
+  },
+  "+ 주황: 추가할 추천 경로": {
+    "en": "+ Orange: recommended path to add",
+    "ja": "+ オレンジ：追加する推奨経路",
+    "fi": "+ Oranssi: lisättävä suositusreitti"
+  },
+  "현재 데바니온 배치를 확인하지 못했습니다. 주황색은 추천 전체이며, 이미 찍은 노드는 게임에서 확인하세요.": {
+    "en": "Current Daevanion allocation is unknown. Orange shows the full recommendation; check owned nodes in game.",
+    "ja": "現在のデバニオン配置を確認できませんでした。オレンジは推奨全体です。取得済みノードはゲームで確認してください。",
+    "fi": "Nykyistä Daevanion-jakoa ei tunneta. Oranssi näyttää koko suosituksen; tarkista omistetut solmut pelistä."
+  },
+  "이 보드는 Lv.{0}부터 안내합니다.": {
+    "en": "This board is available in guidance from Lv.{0}.",
+    "ja": "このボードはLv.{0}から案内します。",
+    "fi": "Tämän laudan opastus alkaa tasolta {0}."
+  },
+  "{0} 추천 배치": {
+    "en": "{0} recommended layout",
+    "ja": "{0} 推奨配置",
+    "fi": "{0}: suositeltu jako"
+  },
+  "{0}행 {1}열 · {2} · {3}": {
+    "en": "Row {0}, column {1} · {2} · {3}",
+    "ja": "{0}行 {1}列 · {2} · {3}",
+    "fi": "Rivi {0}, sarake {1} · {2} · {3}"
+  },
+  "{0}행 {1}열 · {2} P": {
+    "en": "Row {0}, column {1} · {2} P",
+    "ja": "{0}行 {1}列 · {2} P",
+    "fi": "Rivi {0}, sarake {1} · {2} P"
+  },
+  "이 추천은 전체 포인트를 다시 배분하는 목표입니다. 현재 노드를 유지한 채 추가 투자만 계산한 결과는 아닙니다.": {
+    "en": "This recommendation redistributes the total budget. It is not limited to adding points while keeping every current node.",
+    "ja": "この推奨は全ポイントを再配分する目標です。現在の全ノードを維持した追加投資だけの計算ではありません。",
+    "fi": "Suositus jakaa koko budjetin uudelleen. Se ei laske vain lisäpanostuksia kaikki nykyiset solmut säilyttäen."
+  },
+  "이 목표를 사이트의 편집 계획으로 저장하기": {
+    "en": "Save this target as the site’s editable plan",
+    "ja": "この目標をサイトの編集計画として保存",
+    "fi": "Tallenna tavoite sivuston muokattavaksi suunnitelmaksi"
+  },
+  "저장하면 기존 스킬·특화·데바니온 계획이 바뀝니다. 게임에는 적용되지 않습니다.": {
+    "en": "Saving replaces the skill, specialization and Daevanion plan. It does not change anything in game.",
+    "ja": "保存すると既存のスキル・特化・デバニオン計画が変わります。ゲームには適用されません。",
+    "fi": "Tallennus vaihtaa taito-, erikoistumis- ja Daevanion-suunnitelman. Se ei muuta peliä."
+  },
+  "목표를 편집 계획에 저장": {
+    "en": "Save target to editable plan",
+    "ja": "目標を編集計画に保存",
+    "fi": "Tallenna tavoite suunnitelmaan"
+  },
+  "편집 계획에 저장했습니다.": {
+    "en": "Saved to the editable plan.",
+    "ja": "編集計画に保存しました。",
+    "fi": "Tallennettu suunnitelmaan."
+  },
+  "저장 전으로 되돌리기": {
+    "en": "Undo save",
+    "ja": "保存前に戻す",
+    "fi": "Kumoa tallennus"
+  },
+  "계정 설정 저장 중…": {
+    "en": "Saving account settings…",
+    "ja": "アカウント設定を保存中…",
+    "fi": "Tallennetaan tiliasetuksia…"
+  },
+  "계정 설정 저장됨": {
+    "en": "Account settings saved",
+    "ja": "アカウント設定を保存しました",
+    "fi": "Tiliasetukset tallennettu"
+  },
+  "접속 현황 보기": {
+    "en": "View player activity",
+    "ja": "接続状況を見る",
+    "fi": "Näytä pelaajien aktiivisuus"
   }
 }
