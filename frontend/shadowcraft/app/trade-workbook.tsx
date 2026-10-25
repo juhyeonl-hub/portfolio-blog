@@ -1,16 +1,19 @@
-import {useState} from 'react';
+import TradeDataTools from './trade-data-tools';
+import TradePurchase,{type PurchaseSeed} from './trade-purchase';
+import {useEffect,useState} from 'react';
 import {useLocale} from './locale';
 import {useTradeStore} from './use-trade-store';
 import {WORKBOOK_KEY,MAX_BOOKS,MAX_ENTRIES,emptyWorkbook,parseWorkbook,workbookTotals,workbookRemainingPrice,parseEntryAmount,legacyItemBook,type TradeWorkbook,type ItemBook,type TradeEntry} from '../lib/trade-workbook';
 import {parsePurchaseDraft,tradeExample} from '../lib/trade-calculator';
 import TradeScreenshot from './trade-screenshot';
 import './trade-workbook.css';
-export default function TradeWorkbookPanel(){
+export default function TradeWorkbookPanel({purchase,onPurchaseDone}:{purchase?:PurchaseSeed|null;onPurchaseDone?:()=>void}){
  const {t,locale}=useLocale(),store=useTradeStore(WORKBOOK_KEY,parseWorkbook,emptyWorkbook);
- const [newName,setNewName]=useState(''),[undo,setUndo]=useState<TradeWorkbook|null>(null),[message,setMessage]=useState('');
+ const [newName,setNewName]=useState(''),[undo,setUndo]=useState<{before:TradeWorkbook;after:string}|null>(null),[message,setMessage]=useState('');
+ useEffect(()=>{setUndo(u=>u&&u.after!==store.raw?null:u);},[store.raw]);
  const [legacy]=useState(()=>{try{return localStorage.getItem('asbc-trade-ledger-v1');}catch{return null;}});
  const book=store.value.books.find(b=>b.id===store.value.selected)||store.value.books[0];
- const save=(next:TradeWorkbook,reversible=false)=>{if(!store.save(next))return false;setUndo(reversible?store.value:null);setMessage('');return true;};
+ const save=(next:TradeWorkbook,reversible=false)=>{if(!store.save(next))return false;setUndo(reversible?{before:store.value,after:JSON.stringify(next)}:null);setMessage('');return true;};
  const update=(next:ItemBook,reversible=false)=>save({...store.value,books:store.value.books.map(b=>b.id===next.id?next:b)},reversible);
  const add=()=>{if(!newName.trim()||store.value.books.length>=MAX_BOOKS)return;const b={id:crypto.randomUUID(),name:newName.trim(),entries:[]};if(save({...store.value,selected:b.id,books:[...store.value.books,b]}))setNewName('');};
  const migrate=()=>{try{if(store.value.legacyImported||store.value.books.length>=MAX_BOOKS)return;const b=legacyItemBook(legacy,crypto.randomUUID(),new Date().toISOString());if(!b)return;if(save({...store.value,legacyImported:true,selected:b.id,books:[...store.value.books,b]},true))setMessage(t('이전 기록을 복사했습니다. 원본 기록은 그대로 남아 있습니다.'));}catch{setMessage(t('이전 기록의 수량·금액 또는 기록 한도를 확인해야 합니다. 원본은 변경하지 않았습니다.'));}};
@@ -18,12 +21,13 @@ export default function TradeWorkbookPanel(){
  const totals=store.value.books.map(b=>workbookTotals(b.entries)),profit=totals.reduce((v,x)=>v+x.realizedProfit,0n),stock=totals.reduce((v,x)=>v+x.inventoryCost,0n);
  return <div className="trade-workbook">
   <p>{t('품목을 고르고 산 물량과 팔린 물량을 차례대로 기록하세요. 가격이 다른 추가 구매도 계산합니다.')}</p>
-  <p className="trade-note">{t('이 장부는 현재 브라우저에만 저장됩니다. PC와 모바일 사이에는 아직 동기화되지 않습니다.')}</p>
+  <TradeDataTools dataKey={WORKBOOK_KEY} value={store.value} save={v=>save(v as TradeWorkbook)} disabled={store.error}/>
+  {purchase&&<TradePurchase key={purchase.id} seed={purchase} workbook={store.value} save={v=>save(v,true)} close={()=>onPurchaseDone?.()} disabled={store.error}/>}
   {store.error&&<div role="alert" className="trade-invalid">{t('기존 기록을 읽지 못했거나 다른 탭에서 바뀌어 저장을 멈췄습니다. 기존 데이터는 덮어쓰지 않았습니다.')} <button className="button secondary" onClick={()=>{store.reload();setUndo(null)}}>{t('저장된 내용 다시 불러오기')}</button></div>}
   <div className="trade-ledger-summary" aria-label={t('전체 장부 요약')}><div className="panel"><span>{t('전체 품목의 팔린 순이익')}</span><strong className={profit<0n?'trade-loss':'trade-gain'}>{money(profit)}</strong></div><div className="panel"><span>{t('전체 남은 재고 원가')}</span><strong>{money(stock)}</strong><small>{t('재고는 아직 이익으로 계산하지 않습니다.')}</small></div></div>
   <div className="panel book-picker"><label className="trade-field"><span>{t('기록할 품목')}</span><select aria-label={t('기록할 품목')} value={book?.id||''} onChange={e=>save({...store.value,selected:e.target.value})}><option value="" disabled>{t('품목을 추가하세요')}</option>{store.value.books.map(b=><option key={b.id} value={b.id}>{b.name}</option>)}</select></label><div className="book-add"><label className="trade-field"><span>{t('새 품목 이름')}</span><input value={newName} maxLength={80} onChange={e=>setNewName(e.target.value)} placeholder={t('예: 순수한 오드 · 루드라')}/></label><button className="button secondary" disabled={!newName.trim()||store.error||store.value.books.length>=MAX_BOOKS} onClick={add}>{t('품목 추가')}</button></div><small>{t('최대 50품목 · 품목마다 200개 기록 · 총 매입 수량 100만 개까지')}</small>
   {legacy&&!store.value.legacyImported&&<button className="button ghost" disabled={store.error||store.value.books.length>=MAX_BOOKS} onClick={migrate}>{t('이전 일부 판매 기록 가져오기')}</button>}</div>
-  {message&&<p role="status">{message}</p>}{undo&&<p role="status">{t('직전 변경을 되돌릴 수 있습니다.')} <button className="button secondary" disabled={store.error} onClick={()=>{if(store.save(undo)){setUndo(null);setMessage('')}}}>{t('되돌리기')}</button></p>}
+  {message&&<p role="status">{message}</p>}{undo&&<p role="status">{t('직전 변경을 되돌릴 수 있습니다.')} <button className="button secondary" disabled={store.error} onClick={()=>{if(store.save(undo.before)){setUndo(null);setMessage('')}}}>{t('되돌리기')}</button></p>}
   {book?<TradeBook key={book.id} book={book} disabled={store.error} update={update} remove={()=>save({...store.value,selected:store.value.books.find(b=>b.id!==book.id)?.id||'',books:store.value.books.filter(b=>b.id!==book.id)},true)}/>:<p className="trade-explanation">{t('먼저 품목 이름을 입력하고 추가하세요. 실제로 산 물량만 장부에 기록합니다.')}</p>}
  </div>;
 }

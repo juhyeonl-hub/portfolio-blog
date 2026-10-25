@@ -1,9 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {moduleUrl,planner} from './modules.mjs';
-let source=readFileSync('lib/account-settings.ts','utf8');
-for(const name of ['plan-memory','event-timers','home-favorites'])source=source.replace(`'./${name}'`,JSON.stringify(moduleUrl(readFileSync(`lib/${name}.ts`,'utf8'))));
-const {AccountSettingsStore,SettingsSync,projectSetting,validateDocument,SAVE_DELAY_MS,activateSettingsStore,settingsStorage,AutomaticSettingsSync,AUTO_SYNC_INTERVAL_MS}=await import(moduleUrl(source));
+import {moduleUrl,planner,localModuleUrl} from './modules.mjs';
+const {AccountSettingsStore,SettingsSync,projectSetting,validateDocument,SAVE_DELAY_MS,activateSettingsStore,settingsStorage,AutomaticSettingsSync,AUTO_SYNC_INTERVAL_MS}=await import(localModuleUrl('account-settings'));
 class Storage {
  data=new Map(); fail=false;
  get length(){return this.data.size;}

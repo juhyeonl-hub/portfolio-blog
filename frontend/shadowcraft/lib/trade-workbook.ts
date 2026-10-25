@@ -45,11 +45,12 @@ export function parseWorkbook(raw:string|null):TradeWorkbook{
  if(!value||value.version!==1||typeof value.selected!=='string'||typeof value.legacyImported!=='boolean'||!Array.isArray(value.books)||value.books.length>MAX_BOOKS)throw Error('invalid');
  const ids=new Set<string>();
  const books=value.books.map(book=>{
-  if(!book||typeof book.id!=='string'||!book.id||book.id.length>80||ids.has(book.id)||typeof book.name!=='string'||!book.name.trim()||book.name.length>80||!Array.isArray(book.entries)||book.entries.length>MAX_ENTRIES)throw Error('invalid');ids.add(book.id);
+  if(!book||typeof book.id!=='string'||!book.id.trim()||book.id.length>80||ids.has(book.id)||typeof book.name!=='string'||!book.name.trim()||book.name.length>80||!Array.isArray(book.entries)||book.entries.length>MAX_ENTRIES)throw Error('invalid');ids.add(book.id);
   const entryIds=new Set<string>();
   const entries=book.entries.map(row=>{
-   if(!row||typeof row.id!=='string'||!row.id||row.id.length>80||entryIds.has(row.id)||typeof row.quantity!=='string'||typeof row.amount!=='string'||typeof row.at!=='string'||!/^\d{4}-\d{2}-\d{2}T/.test(row.at)||!Number.isFinite(Date.parse(row.at)))throw Error('invalid');entryIds.add(row.id);
-   return {id:row.id,kind:row.kind,quantity:row.quantity,amount:row.amount,at:row.at};
+   if(!row||typeof row.id!=='string'||!row.id.trim()||row.id.length>80||entryIds.has(row.id)||typeof row.quantity!=='string'||typeof row.amount!=='string'||typeof row.at!=='string'||!/^\d{4}-\d{2}-\d{2}T/.test(row.at)||!Number.isFinite(Date.parse(row.at)))throw Error('invalid');entryIds.add(row.id);
+   const q=parseTradeInteger(row.quantity,MAX_TRADE_QUANTITY,1n),a=parseTradeInteger(row.amount,maxTotal);if(q===null||a===null)throw Error('invalid');
+   return {id:row.id,kind:row.kind,quantity:String(q),amount:String(a),at:new Date(row.at).toISOString()};
   });workbookTotals(entries);return {id:book.id,name:book.name,entries};
  });
  if(value.selected&&!ids.has(value.selected))throw Error('invalid');

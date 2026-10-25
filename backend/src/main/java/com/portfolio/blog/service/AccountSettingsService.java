@@ -3,6 +3,8 @@ package com.portfolio.blog.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.*;
+import java.math.BigInteger;
+import java.time.Instant;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -62,6 +64,8 @@ public class AccountSettingsService {
                 case "shadowcraft-selected-class" -> require(CLASSES.contains(value));
                 case "favorites" -> {var n=parse(value);strings(n,6,32);for(var id:n)require(Set.of("quick","map","public-builds","builds","database","updates").contains(id.textValue()));}
                 case "a2bc-event-timers-v1" -> timer(parse(value));
+                case "asbc-trade-workbook-v1" -> workbook(parse(value));
+                case "asbc-craft-plans-v1" -> craftPlans(parse(value));
                 default -> {
                     if(key.equals("shadowcraft-plan-v1")||key.startsWith("shadowcraft-plan-v1:")&&CLASSES.contains(key.substring(20)))plan(parse(value),key.equals("shadowcraft-plan-v1")?"assassin":key.substring(20));
                     else if(key.matches("a2bc-map-progress-v1:[a-f0-9]{64}")){var n=parse(value);fields(n,Set.of("schema","completed"));require(n.path("schema").asText().equals("a2bc-map-progress-v1"));strings(n.get("completed"),20000,160);}
@@ -69,6 +73,46 @@ public class AccountSettingsService {
                 }
             }
         });
+    }
+    private String text(JsonNode n,String key,boolean nonempty){
+        var value=n.path(key);require(value.isTextual()&&value.asText().length()<=80&&(!nonempty||!value.asText().isBlank()));return value.asText();
+    }
+    private BigInteger tradeNumber(JsonNode n,String key,BigInteger max,boolean positive){
+        var value=n.path(key);require(value.isTextual()&&value.asText().matches("[0-9]{1,24}"));
+        var number=new BigInteger(value.asText());require(number.signum()>=(positive?1:0)&&number.compareTo(max)<=0);return number;
+    }
+    private void workbook(JsonNode w){
+        fields(w,Set.of("version","selected","legacyImported","books"));require(integer(w.get("version"),1,1));
+        String selected=text(w,"selected",false);require(w.path("legacyImported").isBoolean());
+        var books=w.path("books");require(books.isArray()&&books.size()<=50);var ids=new HashSet<String>();
+        var maxQuantity=BigInteger.valueOf(1_000_000);var maxAmount=new BigInteger("1000000000000000000");
+        for(var book:books){
+            fields(book,Set.of("id","name","entries"));require(ids.add(text(book,"id",true)));text(book,"name",true);
+            var entries=book.path("entries");require(entries.isArray()&&entries.size()<=200);var rowIds=new HashSet<String>();
+            var remaining=BigInteger.ZERO;var bought=BigInteger.ZERO;
+            for(var row:entries){
+                fields(row,Set.of("id","kind","quantity","amount","at"));require(rowIds.add(text(row,"id",true)));
+                String kind=text(row,"kind",true);require(Set.of("buy","sale").contains(kind));
+                var q=tradeNumber(row,"quantity",maxQuantity,true);tradeNumber(row,"amount",maxAmount,false);
+                try{Instant.parse(text(row,"at",true));}catch(Exception e){throw bad();}
+                if(kind.equals("buy")){bought=bought.add(q);remaining=remaining.add(q);require(bought.compareTo(maxQuantity)<=0);}
+                else{remaining=remaining.subtract(q);require(remaining.signum()>=0);}
+            }
+        }
+        require(selected.isEmpty()||ids.contains(selected));
+    }
+    private void craftPlans(JsonNode collection){
+        fields(collection,Set.of("version","selected","plans"));require(integer(collection.get("version"),1,1));String selected=text(collection,"selected",false);
+        var plans=collection.path("plans");require(plans.isArray()&&plans.size()<=20);var ids=new HashSet<String>();
+        for(var plan:plans){
+            fields(plan,Set.of("id","name","draft"));require(ids.add(text(plan,"id",true)));text(plan,"name",true);
+            var d=plan.path("draft");fields(d,Set.of("item","materials","cost","output","sell","tax","fee","rounding"));
+            for(String k:List.of("item","cost","output","sell","tax","fee"))text(d,k,false);
+            require(Set.of("up","down").contains(text(d,"rounding",true)));
+            var materials=d.path("materials");require(materials.isArray()&&materials.size()>=1&&materials.size()<=20);var materialIds=new HashSet<String>();
+            for(var m:materials){fields(m,Set.of("id","name","quantity","price","owned"));require(materialIds.add(text(m,"id",true)));for(String k:List.of("name","quantity","price"))text(m,k,false);if(m.has("owned"))text(m,"owned",false);}
+        }
+        require(selected.isEmpty()||ids.contains(selected));
     }
     private void plan(JsonNode p,String classKey){
         fields(p,PLAN_FIELDS);require(CLASSES.contains(classKey));require(p.path("classKey").asText("assassin").equals(classKey));

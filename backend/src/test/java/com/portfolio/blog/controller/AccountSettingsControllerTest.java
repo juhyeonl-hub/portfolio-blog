@@ -104,4 +104,22 @@ class AccountSettingsControllerTest {
         }
         assertThat(codes).containsExactlyInAnyOrder(200,409);
     }
+    @Test void tradeBooksAndCraftPlansRoundTripWithoutCrossAccountAccess()throws Exception{
+        var b=body(0);var e=(ObjectNode)b.get("entries");
+        String workbook="""
+            {"version":1,"selected":"ore","legacyImported":false,"books":[{"id":"ore","name":"순수한 오드","entries":[{"id":"buy","kind":"buy","quantity":"100","amount":"13000000","at":"2026-10-25T10:00:00.000Z"},{"id":"sale","kind":"sale","quantity":"25","amount":"3375000","at":"2026-10-25T10:01:00.000Z"}]}]}
+            """;
+        String plans="""
+            {"version":1,"selected":"one","plans":[{"id":"one","name":"제작 계획","draft":{"item":"오드","materials":[{"id":"m","name":"재료","quantity":"10","price":"100","owned":"4"}],"cost":"100","output":"2","sell":"1000","tax":"10","fee":"0","rounding":"up"}}]}
+            """;
+        e.put("asbc-trade-workbook-v1",workbook);e.put("asbc-craft-plans-v1",plans);save(alice,b,200);
+        var response=mapper.readTree(mvc.perform(get(API).header("Authorization","Bearer "+alice)).andReturn().getResponse().getContentAsString());assertThat(response.path("entries")).isEqualTo(e);
+        mvc.perform(get(API).header("Authorization","Bearer "+bob)).andExpect(jsonPath("$.entries.asbc-trade-workbook-v1").doesNotExist());
+        for(String invalid:new String[]{workbook.replace("\"quantity\":\"25\"","\"quantity\":\"101\""),workbook.replace("\"id\":\"sale\"","\"id\":\"buy\""),workbook.replace("3375000","1000000000000000001"),workbook.replace("2026-10-25T10:01:00.000Z","not-a-date"),workbook.replace("\"name\":\"순수한 오드\"","\"name\":\"순수한 오드\",\"token\":\"secret\"")}){
+            var bad=body(1);((ObjectNode)bad.get("entries")).put("asbc-trade-workbook-v1",invalid);save(alice,bad,400);
+        }
+        var bad=body(1);((ObjectNode)bad.get("entries")).put("asbc-craft-plans-v1",plans.replace("\"owned\":\"4\"","\"owned\":4"));save(alice,bad,400);
+        mvc.perform(get(API).header("Authorization","Bearer "+alice)).andExpect(jsonPath("$.revision").value(1));
+    }
+
 }

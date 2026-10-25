@@ -1,8 +1,9 @@
+import type {PurchaseSeed} from './trade-purchase';
 import {useEffect,useRef,useState} from 'react';
 import {useLocale} from './locale';
 import {parseTradeDraft,parsePurchaseDraft,parseTradeMoney,parseTradeInteger,parseTradeRate,changePurchaseMode,maximumTradePurchase,calculateTradeLedger,restoreTradeLedger,MAX_TRADE_QUANTITY,type TradeDraft,type TradeField,type TradeLedger,type TradeSale} from '../lib/trade-calculator';
 
-export default function TradePlanning({mode,initial}:{mode:'limit'|'ledger';initial:TradeDraft}){
+export default function TradePlanning({mode,initial,onPurchase}:{mode:'limit'|'ledger';initial:TradeDraft;onPurchase?:(seed:Omit<PurchaseSeed,'id'>)=>void}){
  const {t,locale}=useLocale(),key=mode==='limit'?'asbc-trade-limit-v1':'asbc-trade-ledger-v1';
  const [saved]=useState(()=>{try{const raw=localStorage.getItem(key);return {raw,data:raw?restoreTradeLedger(JSON.parse(raw)):null,unreadable:!!raw&&!restoreTradeLedger(JSON.parse(raw))};}catch{return {raw:null,data:null,unreadable:true};}});
  const [book,setBook]=useState<TradeLedger>(saved.data??{draft:{...initial},sales:[]});
@@ -34,6 +35,7 @@ export default function TradePlanning({mode,initial}:{mode:'limit'|'ledger';init
    </div>
    <p className="trade-assumptions">{t('세율 {0}% · {1}개씩 판매 · 등록 1회당 {2}',[draft.tax,draft.bundle,parseTradeMoney(draft.fee)===null?'—':money(parseTradeMoney(draft.fee)!)])}</p>{conditions}
   </div>
+  {isLimit&&cap&&input&&onPurchase&&<div className="trade-purchase-link"><button className="button secondary" onClick={()=>onPurchase({item:draft.item,quantity:String(input.quantity),price:'',mode:'unit',fromLimit:true})}>{t('실제로 산 가격으로 장부 작성')}</button><small>{t('구매 상한은 실제 구매가가 아닙니다. 지불한 가격을 다음 화면에 입력하세요.')}</small></div>}
   {isLimit?<>{!input||rate===null?<p className="trade-invalid" role="status">{t('판매가·수량·목표 이익률을 확인하세요.')}</p>:cap?<section className="trade-results" aria-label={t('구매 상한 결과')} aria-live="polite"><div className="trade-total"><span>{t('개당 이 가격 이하로 구매')}</span><strong className="trade-gain">{money(cap.unit)}</strong><p>{t('{0}% 순이익 목표',[draft.profitRate])}</p></div><div className="trade-auto-sale"><span>{t('전체 구매 비용 상한')}</span><strong>{money(cap.total)}</strong><p>{t('{0}개를 모두 판매한 뒤의 기준입니다.',[format(input.quantity)])}</p><small>{t('개당 상한으로 샀을 때 예상 총이익 {0}',[signed(cap.profitAtUnit)])}</small></div></section>:<p className="trade-invalid" role="status">{t('판매 비용이 수령액보다 커서 이 조건으로는 구매할 수 없습니다.')}</p>}<p className="trade-note">{t('이 가격에 전부 팔린다는 가정입니다. 실제 판매 가능 가격을 먼저 확인하세요.')}</p></>:<>
    {!input?<p className="trade-invalid" role="status">{t('구매 가격과 아래 계산 조건을 확인하세요.')}</p>:!ledger?<p className="trade-invalid" role="status">{t('처음 산 수량이 판매 기록보다 적습니다. 구매 수량이나 판매 기록을 고쳐 주세요.')}</p>:<>
     <section className="trade-ledger-summary" aria-label={t('일부 판매 손익')} aria-live="polite">

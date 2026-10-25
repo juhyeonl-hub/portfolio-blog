@@ -34,7 +34,7 @@ function SettingsScope({children,memberId,token}:{children:ReactNode;memberId:st
 }
 function SyncNotice({status,retry}:{status:string;retry:()=>void}){
  const {t}=useLocale();
- return <aside className="account-sync-state" role="status"><span>{t(status==='offline'?'계정 설정 동기화에 실패했습니다. 이 기기의 설정을 유지합니다.':status==='loading'?'계정 설정 확인 중…':status==='pending'?'계정 설정 저장 중…':'계정 설정 저장됨')}</span><a href="#/account">{t('동기화 상태 보기')}</a>{status==='offline'&&<button className="button ghost" onClick={retry}>{t('설정 동기화 다시 시도')}</button>}</aside>;
+ return <aside className="account-sync-state" role="status"><span>{t(status==='full'?'계정 저장 한도 1MB를 넘었습니다. 기록을 백업하고 줄여 주세요. 이 기기의 기록은 보관 중입니다.':status==='conflict'?'거래 기록 확인이 필요합니다. 자동 덮어쓰기를 멈췄습니다.':status==='offline'?'계정 설정 동기화에 실패했습니다. 이 기기의 설정을 유지합니다.':status==='loading'?'계정 설정 확인 중…':status==='pending'?'계정 설정 저장 중…':'계정 설정 저장됨')}</span><a href="#/account">{t('동기화 상태 보기')}</a>{status==='offline'&&<button className="button ghost" onClick={retry}>{t('설정 동기화 다시 시도')}</button>}</aside>;
 }
 
 function InitializationNotice({retry}:{retry:()=>void}){

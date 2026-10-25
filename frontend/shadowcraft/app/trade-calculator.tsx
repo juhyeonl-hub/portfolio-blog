@@ -1,3 +1,4 @@
+import type {PurchaseSeed} from './trade-purchase';
 import {useEffect,useState} from 'react';
 import {Calculator,ArrowRight,Coins} from 'lucide-react';
 import {useLocale} from './locale';
@@ -16,6 +17,8 @@ function initialDraft():TradeDraft{
 export default function TradeCalculator(){
  const {t,locale}=useLocale();const [draft,setDraft]=useState(initialDraft),[manual,setManual]=useState(false),[conversionNotice,setConversionNotice]=useState(false);
  const [tool,setTool]=useState<'sale'|'limit'|'ledger'|'craft'>('sale');
+ const [purchase,setPurchase]=useState<PurchaseSeed|null>(null);
+ const startPurchase=(seed:Omit<PurchaseSeed,'id'>)=>{setPurchase({...seed,id:crypto.randomUUID()});setTool('ledger');};
  const totalPurchase=draft.purchaseMode==='total';
  const [settingsOpen,setSettingsOpen]=useState(()=>Object.keys(parsePurchaseDraft(draft).errors).some(key=>key!=='buy'));
  useEffect(()=>{try{localStorage.setItem(storageKey,JSON.stringify(draft));}catch{/* Optional browser-local draft. */}},[draft]);
@@ -44,7 +47,7 @@ export default function TradeCalculator(){
  return <section className="trade-calculator" aria-labelledby="trade-title">
   <header className="trade-heading"><div><p className="eyebrow"><Calculator size={16}/>{t('거래소 계산기')}</p><h1 id="trade-title">{t(tool==='limit'?'얼마까지 사도 될까요?':tool==='ledger'?'팔고 남은 물건, 지금 손익은?':tool==='craft'?'제작할까요, 재료를 팔까요?':'얼마에 팔면 남을까요?')}</h1><p>{tool==='sale'?t(manual?'개당 가격을 넣으면 세금과 매입 비용을 뺀 이익이 바로 바뀝니다.':'구매 비용을 입력하면 세금을 계산한 개당 판매가가 바로 나옵니다.'):t(tool==='limit'?'팔 가격을 먼저 정하면, 목표 이익을 남길 구매 상한을 계산합니다.':tool==='craft'?'재료와 완성품의 가격으로 두 방법의 손익을 비교합니다.':'산 물량과 실제 정산 금액을 기록하면 재고와 순이익을 계산합니다.')}</p></div></header>
   <div className="trade-tools" role="group" aria-label={t('거래 도구')} >{(['sale','limit','ledger','craft'] as const).map(key=><button className={'button '+(tool===key?'primary':'ghost')} aria-pressed={tool===key} key={key} onClick={()=>setTool(key)}>{t(key==='sale'?'얼마에 팔까':key==='limit'?'얼마까지 살까':key==='ledger'?'거래 장부':'제작 비교')}</button>)}</div>
-  {tool==='ledger'?<TradeWorkbookPanel/>:tool==='craft'?<CraftComparison/>:tool==='limit'?<TradePlanning key={tool} mode={tool} initial={draft}/>:<>
+  {tool==='ledger'?<TradeWorkbookPanel purchase={purchase} onPurchaseDone={()=>setPurchase(null)}/>:tool==='craft'?<CraftComparison/>:tool==='limit'?<TradePlanning key={tool} mode={tool} initial={draft} onPurchase={startPurchase}/>:<>
   <div className="trade-mode" role="group" aria-label={t('계산 방식')}><button className={'button '+(!manual?'primary':'ghost')} aria-pressed={!manual} onClick={()=>mode(false)}>{t('구매가만 입력')}</button><button className={'button '+(manual?'primary':'ghost')} aria-pressed={manual} disabled={!manual&&sale!=null&&sale>MAX_TRADE_MONEY} onClick={()=>mode(true)}>{t('판매가 직접 비교')}</button></div>
   <TradeScreenshot onApply={scan=>{setDraft(old=>({...old,item:scan.name,buy:scan.price,quantity:scan.quantity,purchaseMode:'unit'}));setConversionNotice(false);setSettingsOpen(true)}}/>
   <div className="trade-form panel">
@@ -64,6 +67,7 @@ export default function TradeCalculator(){
    </div><p>{t('고정 비용은 매 등록마다 같은 금액이 드는 경우에만 쓰세요. 판매 금액에 비례하는 등록비는 이 항목에 포함되지 않습니다.')}</p><button className="button ghost small" onClick={()=>{setDraft(old=>({...tradeExample,buy:old.buy,item:old.item,purchaseMode:old.purchaseMode,quantity:old.quantity}));}}>{t('구매 내용을 유지하고 판매 조건 초기화')}</button></details>
    {manual&&<div className="trade-manual-target">{field('target','목표 총 순이익 (선택)',draft.target.trim()?amountHint('target'):t('비워 두어도 현재 판매가의 손익은 계산됩니다.'))}</div>}
   </div>
+  {parsePurchaseDraft(draft).value&&<div className="trade-purchase-link"><button className="button secondary" onClick={()=>startPurchase({item:draft.item,quantity:draft.quantity,price:draft.buy,mode:draft.purchaseMode})}>{t('이 구매 내용으로 장부 작성')}</button><small>{t('다음 화면에서 실제 구매를 확인한 뒤 저장합니다.')}</small></div>}
   {!value?<p className="trade-invalid" role="status">{t('구매 가격과 아래 계산 조건을 확인하세요.')}</p>:<>
    {!manual&&<section className="trade-examples" aria-labelledby="trade-examples-title"><h2 id="trade-examples-title">{t('세금을 뺀 뒤, 이만큼 남길 판매가')}</h2><p>{t('이익률은 매입 비용 기준입니다. 시세 추천이 아닌 계산 예시입니다.')}</p><div className="trade-example-grid">{examples.map(row=><button type="button" className={'trade-example'+(profitBps===BigInt(row.percent)*100n?' selected':'')} key={row.percent} aria-pressed={profitBps===BigInt(row.percent)*100n} onClick={()=>change('profitRate',String(row.percent))}><span>{row.percent===0?t('본전 이상'):t('{0}% 순이익 예시',[row.percent])}</span><strong>{row.price===null?t('이익을 낼 수 없음'):money(row.price)}</strong><small>{row.result?t('총이익 {0}',[signed(row.result.profit)]):t('세율과 등록비를 확인하세요.')}</small></button>)}</div><div className="trade-profit-rate">{field('profitRate','목표 순이익률 (%)',t('매입 비용 대비 · 0~100% · 소수 둘째 자리까지'))}</div></section>}
    {result&&calculation?<>
@@ -81,6 +85,6 @@ export default function TradeCalculator(){
   </>}
   </>}
   {tool!=='ledger'&&<p className="trade-note">{t('추가 비용 0키나와 묶음별 세금 올림은 계산용 기본값입니다. 실제 등록비·정산 금액은 게임 화면에서 확인하세요.')}</p>}
-  {tool!=='ledger'&&<p className="trade-note">{t('표시된 판매가에 전부 팔린다는 가정의 예상치입니다. 실시간 시세·미판매·재등록 비용은 자동 반영하지 않습니다. 입력은 이 브라우저에만 보관됩니다.')}</p>}
+  {tool!=='ledger'&&tool!=='craft'&&<p className="trade-note">{t('표시된 판매가에 전부 팔린다는 가정의 예상치입니다. 실시간 시세·미판매·재등록 비용은 자동 반영하지 않습니다. 입력은 이 브라우저에만 보관됩니다.')}</p>}
  </section>;
 }

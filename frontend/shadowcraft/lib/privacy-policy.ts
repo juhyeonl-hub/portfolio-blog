@@ -19,8 +19,8 @@ export const PRIVACY: Record<Locale, Policy> = {
         `개인정보에 관한 문의와 요청: ${PRIVACY_CONTACT}`,
       ]},
       {heading: '설정의 로컬 저장과 계정 동기화', paragraphs: [
-        '거래 장부의 품목·매입·판매 기록과 제작 비교 입력은 이 브라우저에만 저장됩니다. 거래소 스크린샷은 브라우저 안에서만 읽으며 이미지 자체를 서버로 보내거나 저장하지 않습니다.',
-        "거래소 계산기 입력·판매 기록과 캐릭터 성장 기록은 이 브라우저에만 보관하며 계정으로 동기화하지 않습니다. 성장 기록은 캐릭터별 최근 변화 20개까지 보관하며 화면에서 비울 수 있습니다. 사이트 데이터를 삭제하면 이러한 로컬 기록도 삭제됩니다.",
+        '로그인한 계정의 거래 장부 품목·매입·판매 기록과 저장한 제작 계획은 계정 서버에 저장되어 같은 계정의 다른 기기와 자동 동기화됩니다. 로그인 전 브라우저 기록은 확인 후 가져올 수 있으며 자동으로 계정에 합치지 않습니다. JSON 백업·복원은 사용자가 직접 실행합니다. 거래소 스크린샷은 브라우저 안에서만 읽으며 이미지 자체를 서버로 보내거나 저장하지 않습니다.',
+        "일반 계산기 입력과 저장하지 않은 제작 초안, 캐릭터 성장 기록은 이 브라우저에만 보관하며 계정으로 동기화하지 않습니다. 로그인 중 제작 초안은 계정별로 분리합니다. 성장 기록은 캐릭터별 최근 변화 20개까지 보관하며 화면에서 비울 수 있습니다. 사이트 데이터를 삭제하면 이러한 로컬 기록도 삭제됩니다.",
         '로그아웃 상태의 설정은 이 브라우저(localStorage)에만 저장됩니다. 로그인하면 언어, 즐겨찾기, 직업별 배분·잔여 포인트와 해당 공개 캐릭터의 식별 정보·레벨, 장비 선택·보너스, 지도 완료 기록과 서버·타이머 설정을 계정에 저장하여 다른 기기에서도 복원합니다. 캐릭터 조회 응답·검색 기록, 장비 이름·개인 메모와 빌드 보관함은 동기화하지 않습니다. 로컬 계정 캐시와 복구용 백업은 사이트 데이터를 지울 때 삭제되며, 서버 설정은 계정 삭제 시 삭제됩니다.',
         '커뮤니티 로그인 상태는 이 탭의 세션 저장소(sessionStorage)에 저장되며 탭을 닫으면 지워집니다.',
       ]},
@@ -72,8 +72,8 @@ export const PRIVACY: Record<Locale, Policy> = {
         `Privacy questions and requests: ${PRIVACY_CONTACT}`,
       ]},
       {heading: 'Local settings and account sync', paragraphs: [
-        "Trade ledger items, purchases, sales and crafting comparison inputs stay in this browser only. Market screenshots are read in the browser; the images themselves are neither stored nor sent to the server.",
-        "Trade-calculator inputs, sale records and character growth history stay in this browser and are not synced to your account. Growth history keeps up to 20 changed snapshots per character and can be cleared on screen. Clearing site data also deletes these local records.",
+        "When signed in, trade workbook items, purchases, sales and saved crafting plans are stored on the account server and automatically synced to other devices on the same account. Pre-login browser records require explicit import and are not merged automatically. JSON backup and restore are user-initiated. Market screenshots are read in the browser; the images themselves are neither stored nor sent to the server.",
+        "General calculator inputs, unsaved crafting drafts and character growth history stay in this browser and are not synced to your account. Signed-in crafting drafts are kept separately per account. Growth history keeps up to 20 changed snapshots per character and can be cleared on screen. Clearing site data also deletes these local records.",
         'Signed-out settings stay in this browser (localStorage). When signed in, language, favorites, class allocations and remaining points with the associated public character identifiers and level, equipment choices and bonuses, map completion and server/timer settings are stored with your account and restored on other devices. Character responses, search history, equipment names, personal notes and the build library are not synced. Local account caches and recovery backups are removed when you clear site data; server settings are removed when you delete your account.',
         'Your community sign-in is kept in this tab\'s session storage (sessionStorage) and is removed when the tab is closed.',
       ]},
@@ -125,8 +125,8 @@ export const PRIVACY: Record<Locale, Policy> = {
         `個人情報に関するお問い合わせ・ご依頼: ${PRIVACY_CONTACT}`,
       ]},
       {heading: 'ローカル設定とアカウント同期', paragraphs: [
-        "取引帳簿の品目・購入・販売記録と製作比較入力はこのブラウザーのみに保存されます。取引所画像はブラウザー内で読み取り、画像自体を保存したりサーバーへ送ったりしません。",
-        "取引所計算機の入力・販売記録とキャラクター成長記録はこのブラウザーのみに保管し、アカウントに同期しません。成長記録はキャラクターごとに最新20件の変化を保管し、画面から消去できます。サイトデータを削除するとこれらの記録も削除されます。",
+        "ログイン中の取引帳簿の品目・購入・販売記録と保存した製作計画はアカウントのサーバーに保存され、同じアカウントの他端末と自動同期します。ログイン前の記録は確認して取り込む必要があり、自動では統合しません。JSONのバックアップと復元は利用者が実行します。取引所画像はブラウザー内で読み取り、画像自体を保存したりサーバーへ送ったりしません。",
+        "通常の計算入力、未保存の製作下書きとキャラクター成長記録はこのブラウザーのみに保管し、アカウントに同期しません。ログイン中の製作下書きはアカウント別に分けます。成長記録はキャラクターごとに最新20件の変化を保管し、画面から消去できます。サイトデータを削除するとこれらの記録も削除されます。",
         'ログアウト中の設定はブラウザ(localStorage)にのみ保存されます。ログインすると、言語、お気に入り、職業別の配分と残りポイントおよび対応する公開キャラクターの識別情報・レベル、装備選択とボーナス、マップ完了記録、サーバー・タイマー設定をアカウントに保存し、他の端末で復元します。キャラクター応答、検索履歴、装備名、個人メモ、ビルド保管庫は同期しません。ローカルキャッシュと復旧用バックアップはサイトデータの削除時に、サーバー設定はアカウント削除時に削除されます。',
         'コミュニティのログイン状態は、このタブのセッションストレージ(sessionStorage)に保存され、タブを閉じると消えます。',
       ]},
@@ -178,8 +178,8 @@ export const PRIVACY: Record<Locale, Policy> = {
         `Tietosuojaa koskevat kysymykset ja pyynnöt: ${PRIVACY_CONTACT}`,
       ]},
       {heading: 'Paikalliset asetukset ja tilin synkronointi', paragraphs: [
-        "Kauppakirjanpidon tuotteet, ostot, myynnit ja valmistusvertailun syötteet tallentuvat vain tähän selaimeen. Kauppapaikan kuvat luetaan selaimessa; itse kuvia ei tallenneta eikä lähetetä palvelimelle.",
-        "Kaupankäyntilaskurin syötteet, myyntikirjaukset ja hahmon kehityshistoria säilyvät vain tässä selaimessa eikä niitä synkronoida tilille. Historia säilyttää enintään 20 muuttunutta tilannekuvaa hahmoa kohden ja sen voi tyhjentää näkymästä. Sivustotietojen tyhjentäminen poistaa myös nämä paikalliset tiedot.",
+        "Kirjautuneena kauppakirjanpidon tuotteet, ostot, myynnit ja tallennetut valmistussuunnitelmat tallennetaan tilin palvelimelle ja synkronoidaan automaattisesti saman tilin laitteille. Ennen kirjautumista luodut tiedot tuodaan vain käyttäjän vahvistuksella. Käyttäjä käynnistää JSON-varmuuskopioinnin ja palautuksen. Kauppapaikan kuvat luetaan selaimessa; itse kuvia ei tallenneta eikä lähetetä palvelimelle.",
+        "Laskurin tavalliset syötteet, tallentamattomat valmistusluonnokset ja hahmon kehityshistoria säilyvät vain tässä selaimessa eikä niitä synkronoida tilille. Kirjautuneen käyttäjän valmistusluonnokset pidetään tilikohtaisina. Historia säilyttää enintään 20 muuttunutta tilannekuvaa hahmoa kohden ja sen voi tyhjentää näkymästä. Sivustotietojen tyhjentäminen poistaa myös nämä paikalliset tiedot.",
         'Ilman kirjautumista asetukset säilyvät vain selaimessa (localStorage). Kirjautuneena kieli, suosikit, luokkakohtaiset pistejaot ja jäljellä olevat pisteet sekä niihin liittyvän julkisen hahmon tunnisteet ja taso, varustevalinnat ja bonukset, kartan suoritusmerkinnät sekä palvelin- ja ajastinasetukset tallennetaan tilille ja palautetaan muilla laitteilla. Hahmovastauksia, hakuhistoriaa, varusteiden nimiä, henkilökohtaisia muistiinpanoja ja rakennekirjastoa ei synkronoida. Paikalliset välimuistit ja palautusvarmuuskopiot poistuvat sivuston tietojen mukana; palvelimen asetukset poistuvat tilin poistamisen yhteydessä.',
         'Yhteisöön kirjautuminen säilyy tämän välilehden istuntomuistissa (sessionStorage) ja poistuu, kun välilehti suljetaan.',
       ]},

@@ -1,3 +1,4 @@
+import {isTradeCollection,parseTradeCollection,mergeTradeCollection,tradeBackup,TradeSyncConflict} from './trade-collections';
 import {validStoredPlan} from './plan-memory';
 import {parseSettings} from './event-timers';
 import {parseFavorites} from './home-favorites';
@@ -5,14 +6,15 @@ import {parseFavorites} from './home-favorites';
 export const SETTINGS_VERSION=1;
 export const MAX_SETTINGS_BYTES=1_000_000;
 export const SAVE_DELAY_MS=800;
+export class SettingsSizeLimit extends Error{}
 const classes=['assassin','gladiator','templar','ranger','sorcerer','elementalist','cleric','chanter'];
 const planFields=['classKey','level','mode','base','bonus','specs','nodes','checked','extraSP','extraStigma','extraCrystal','extraBattle','pointBudget','confirmedRemaining','confirmedRemainingContext','ascensionGrade3Confirmed','macroExtra'] as const;
 export type Entries=Record<string,string>;
 export type SettingsDocument={version:number;revision:number;entries:Entries;updatedAt?:string};
-type Cache={values:Entries;dirty:string[];revision?:number;base?:Entries;conflict?:boolean};
+type Cache={values:Entries;dirty:string[];revision?:number;base?:Entries;conflict?:boolean;tradeConflict?:{key:string;remote:string|null}};
 type Port=Pick<Storage,'getItem'|'setItem'|'removeItem'|'key'|'length'>;
 export function settingKey(key:string):boolean {
- return ['asbc-locale','shadowcraft-selected-class','a2bc-event-timers-v1','favorites'].includes(key)
+ return isTradeCollection(key)||['asbc-locale','shadowcraft-selected-class','a2bc-event-timers-v1','favorites'].includes(key)
   || /^a2bc-map-progress-v1:[a-f0-9]{64}$/.test(key)
   || key==='shadowcraft-plan-v1'||classes.some(c=>key==='shadowcraft-plan-v1:'+c);
 }
@@ -20,6 +22,7 @@ function planClass(key:string){return key.split(':')[1]||'assassin';}
 /** Explicit projection: no tokens, character/search history, gear labels or personal notes leave the browser. */
 export function projectSetting(key:string,raw:string):string {
  if(!settingKey(key))throw Error('Unknown setting');
+ if(isTradeCollection(key))return JSON.stringify(parseTradeCollection(key,raw));
  if(key==='asbc-locale'){if(!['ko','en','ja','fi'].includes(raw))throw Error('Invalid language');return raw;}
  if(key==='shadowcraft-selected-class'){if(!classes.includes(raw))throw Error('Invalid class');return raw;}
  if(key==='favorites')return JSON.stringify(parseFavorites(raw));
@@ -47,7 +50,7 @@ export function projectSetting(key:string,raw:string):string {
 export function validateDocument(value:unknown):SettingsDocument {
  const d=value as SettingsDocument;
  if(!d||d.version!==SETTINGS_VERSION||!Number.isSafeInteger(d.revision)||d.revision<0||!d.entries||typeof d.entries!=='object'||Array.isArray(d.entries)||Object.keys(d.entries).length>256)throw Error('Unsupported settings');
- if(new TextEncoder().encode(JSON.stringify(d)).length>MAX_SETTINGS_BYTES)throw Error('Settings too large');
+ if(new TextEncoder().encode(JSON.stringify(d)).length>MAX_SETTINGS_BYTES)throw new SettingsSizeLimit('Settings too large');
  const entries:Entries={};
  for(const [key,raw] of Object.entries(d.entries)){if(typeof raw!=='string')throw Error('Invalid setting');entries[key]=projectSetting(key,raw);}
  const updatedAt=typeof d.updatedAt==='string'&&/^\d{4}-\d{2}-\d{2}T.*Z$/.test(d.updatedAt)&&Number.isFinite(Date.parse(d.updatedAt))?d.updatedAt:undefined;
@@ -70,6 +73,7 @@ function mergeValue(base:unknown,local:unknown,remote:unknown,conflict:()=>void)
  conflict();return local;
 }
 function mergeSetting(key:string,base:string|undefined,local:string,remote:string|undefined,conflict:()=>void):string {
+ if(isTradeCollection(key))return mergeTradeCollection(key,base,local,remote);
  if(local===base)return remote??local;
  if(remote===base||local===remote)return local;
  if(base!==undefined&&remote!==undefined&&key.startsWith('a2bc-map-progress-v1:')){
@@ -95,7 +99,7 @@ export class AccountSettingsStore {
    if(raw!==null){const c=JSON.parse(raw);if(!c||!c.values||!Array.isArray(c.dirty))throw Error('Invalid account cache');this.cache=c;}
    else {
     const port=storage();
-    for(let i=0;i<port.length;i++){const key=port.key(i);if(key&&settingKey(key)&&key!=='favorites'){const raw=port.getItem(key);if(raw!==null)this.cache.values[key]=raw;}}
+    for(let i=0;i<port.length;i++){const key=port.key(i);if(key&&settingKey(key)&&!isTradeCollection(key)&&key!=='favorites'){const raw=port.getItem(key);if(raw!==null)this.cache.values[key]=raw;}}
     const favorites=port.getItem('a2bc-home-favorites-v1:'+memberId);if(favorites!==null)this.cache.values.favorites=favorites;
     this.persist();
    }
@@ -115,16 +119,33 @@ export class AccountSettingsStore {
  }
  subscribe(fn:()=>void){this.listeners.add(fn);return()=>{this.listeners.delete(fn);};}
  private persist(){this.storage().setItem(this.cacheKey,JSON.stringify(this.cache));}
- snapshot():Entries {this.reload();const entries:Entries={};for(const [key,raw] of Object.entries(this.cache.values))entries[key]=projectSetting(key,raw);return entries;}
+ snapshot():Entries {this.reload();if(this.cache.tradeConflict)throw new TradeSyncConflict(this.cache.tradeConflict!.key);const entries:Entries={};for(const [key,raw] of Object.entries(this.cache.values))entries[key]=projectSetting(key,raw);return entries;}
  dirty(){return [...this.cache.dirty];}
  conflicted(){return this.cache.conflict===true;}
+ tradeConflict(){this.reload();const c=this.cache.tradeConflict;return c?{...c,local:this.cache.values[c.key]??null}:null;}
+ resolveTradeConflict(choice:'local'|'remote'){
+  this.reload();const c=this.cache.tradeConflict;if(!c)return;
+  this.storage().setItem(this.cacheKey+':trade-resolution-backup',JSON.stringify(this.cache));
+  this.storage().setItem('asbc-trade-restore-backup-v1:'+this.memberId+':'+c.key,tradeBackup(c.key,parseTradeCollection(c.key,this.cache.values[c.key]??null)));
+  const old=this.cache,values={...old.values},base={...old.base};
+  if(c.remote===null)delete base[c.key];else base[c.key]=c.remote;
+  if(choice==='remote')values[c.key]=c.remote??JSON.stringify(parseTradeCollection(c.key,null));
+  this.cache={...old,values,base,tradeConflict:undefined,dirty:[...new Set([...old.dirty,c.key])]};
+  try{this.persist();}catch(e){this.cache=old;throw e;}this.listeners.forEach(fn=>fn());
+ }
+
  /** Backup must succeed before a server snapshot replaces any local bytes. */
  apply(remote:Entries,revision=0):boolean {
   this.reload();
   if(revision<(this.cache.revision||0))throw Error('Stale server response');
+  if(this.cache.tradeConflict){
+   this.cache={...this.cache,tradeConflict:{...this.cache.tradeConflict,remote:remote[this.cache.tradeConflict.key]??null}};this.persist();
+   throw new TradeSyncConflict(this.cache.tradeConflict!.key);
+  }
   const before=JSON.stringify(this.cache.values),values:Entries={...remote};
   let conflict=this.cache.conflict||false;
-  for(const key of this.cache.dirty)if(this.cache.values[key]!==undefined)values[key]=mergeSetting(key,this.cache.base?.[key],projectSetting(key,this.cache.values[key]),remote[key],()=>{conflict=true;});
+  try{for(const key of this.cache.dirty)if(this.cache.values[key]!==undefined)values[key]=mergeSetting(key,this.cache.base?.[key],projectSetting(key,this.cache.values[key]),remote[key],()=>{conflict=true;});}
+  catch(error){if(error instanceof TradeSyncConflict){this.cache={...this.cache,tradeConflict:{key:error.key,remote:remote[error.key]??null}};this.persist();}throw error;}
   // Local-only fields survive synchronization on this device.
   for(const key of Object.keys(values))if(key.startsWith('shadowcraft-plan-v1')&&this.cache.values[key]){
    const local=JSON.parse(this.cache.values[key]),plan=JSON.parse(values[key]);
@@ -149,7 +170,7 @@ export class AccountSettingsStore {
  }
 }
 
-export type SyncState='saved'|'pending'|'loading'|'offline';
+export type SyncState='saved'|'pending'|'loading'|'offline'|'conflict'|'full';
 export type SyncMetadata={savedAt:string|null;checkedAt:number;conflict?:boolean};
 type Transport=(method:'GET'|'PUT',document?:SettingsDocument)=>Promise<unknown>;
 /** Serial requests + revisions prevent stale tabs from silently replacing newer account data. */
@@ -164,7 +185,7 @@ export class SettingsSync {
   this.unsubscribe=store.subscribe(()=>this.schedule());
  }
  async start(){await this.refresh();}
- private schedule(){if(this.stopped)return;this.status('pending');clearTimeout(this.timer);this.timer=setTimeout(()=>void this.save(),SAVE_DELAY_MS);}
+ private schedule(){if(this.stopped)return;this.status(this.store.tradeConflict()?'conflict':'pending');clearTimeout(this.timer);this.timer=setTimeout(()=>void this.save(),SAVE_DELAY_MS);}
  async retry(){return this.refresh();}
  async poll(){return this.refresh(true);}
  private async refresh(quiet=false):Promise<boolean>{
@@ -177,7 +198,7 @@ export class SettingsSync {
    this.status(this.store.dirty().length?'pending':'saved',{savedAt:remote.updatedAt||null,checkedAt:Date.now(),conflict:this.store.conflicted()});
    if(remote.revision===0||this.store.dirty().length)this.schedule();
    return true;
-  }catch{if(!this.stopped){this.revision=null;this.status('offline');}return false;}
+  }catch(error){if(!this.stopped){this.revision=null;this.status(error instanceof TradeSyncConflict?'conflict':error instanceof SettingsSizeLimit?'full':'offline',error instanceof TradeSyncConflict?{savedAt:null,checkedAt:Date.now()}:undefined);}return false;}
   finally{this.running=false;}
  }
  private async save(){
@@ -190,7 +211,7 @@ export class SettingsSync {
    const result=validateDocument(await this.request('PUT',sent));if(this.stopped)return;
    this.revision=result.revision;this.conflictRetries=0;this.store.acknowledge(entries,result.revision);this.status('saved',{savedAt:result.updatedAt||null,checkedAt:Date.now(),conflict:this.store.conflicted()});
    if(this.store.dirty().length)this.schedule();
-  }catch(error){if(!this.stopped){this.revision=null;retryConflict=(error as {status?:number}).status===409&&this.conflictRetries++<2;this.status(retryConflict?'pending':'offline');}}
+  }catch(error){if(!this.stopped){this.revision=null;retryConflict=(error as {status?:number}).status===409&&this.conflictRetries++<2;this.status(error instanceof TradeSyncConflict?'conflict':error instanceof SettingsSizeLimit?'full':retryConflict?'pending':'offline');}}
   finally{this.running=false;}
   if(retryConflict)await this.refresh(true);
  }
@@ -199,8 +220,15 @@ export class SettingsSync {
 
 let active:AccountSettingsStore|null=null;
 export function activateSettingsStore(store:AccountSettingsStore|null){active=store;}
+export function activeTradeConflict(){return active?.tradeConflict()??null;}
+export function resolveActiveTradeConflict(choice:'local'|'remote',expected:ReturnType<typeof activeTradeConflict>){if(JSON.stringify(activeTradeConflict())!==JSON.stringify(expected))throw Error('changed');active?.resolveTradeConflict(choice);publishSettingsChanges();}
+export function tradeAccountId(){return active?.memberId??null;}
+export function previousTradeBackup(key:string){return localStorage.getItem('asbc-trade-restore-backup-v1:'+(active?.memberId||'guest')+':'+key);}
+export function preserveTradeBackup(key:string,raw:string){localStorage.setItem('asbc-trade-restore-backup-v1:'+ (active?.memberId||'guest')+':'+key,raw);}
+
 /** Explicit adapter, never a global Storage prototype patch. Anonymous calls retain their original keys. */
 export const settingsStorage={
+ reload:()=>active?.reload(),
  getItem:(key:string)=>active?active.getItem(key):localStorage.getItem(key),
  setItem:(key:string,value:string)=>active?active.setItem(key,value):localStorage.setItem(key,value),
 };
