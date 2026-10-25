@@ -15,7 +15,7 @@
 - Last reviewed: Claude 미실시. 단독 검증을 교차 리뷰 통과로 기록하지 않음.
 - Findings: 장부는 이동평균 원가로 거래 순서를 보존. 세후 실수령액에서 세금을 다시 빼지 않음. 제작은 확률/레시피를 추정하지 않고 입력한 결과 수량 조건의 비교.
 - Uncommitted: baseline.json에 기존 경로 해시 기록.
-- Next: 관련 파일만 commit/push, 격리 빌드 Cloudflare Pages 배포 및 운영 파일/화면 검증.
+- Next: 본 작업 완료. 후속 범위는 사용자 요청에 따름.
 - Blocker: 없음.
 
 ## 실제 확인 결과
@@ -30,3 +30,11 @@
 - 과거 단일 장부는 명시적 가져오기로 복사하며 원본 보존. 계정 동기화는 이번 범위 밖.
 - 기존206경로 SHA256 대조(번역은 기존 JSON+본 작업 키만 합성) 통과. 전역CSS/홈패널/기존 번역 변경 배포 제외.
 - Evidence: D:/CodexData/Projects/ASBC/artifacts/trade-workbench-20261025/{baseline.json,regression.log,build.log,ocr-experiment.log}.
+
+## 배포 완료
+- Feature commit: 10143b581bc9c9ae033d8c6ad7adbe2a8d0e7860, main push 완료.
+- Cloudflare Pages: https://e8c6a576.asbc-4c9.pages.dev (project asbc, branch main).
+- Canonical https://asbc.app/#/trade : index와JS/CSS/언어12개 파일이 격리 배포본과 바이트 단위 일치.
+- 운영 PC1440 장부 메뉴와 기존 단일 장부 가져오기 표시 확인(가져오기 실행하지 않음). 운영 모바일390 제작 비교·스크린샷 입력 열림/미확인 반영 차단/가로 넘침 없음(375=375) 확인. JS console error 없음.
+- Screenshots: trade-production-pc.png, trade-production-mobile.png, trade-mobile-qa.png in evidence directory.
+- 기존 unrelated206개 내용 보존, Claude 교차 리뷰 없이 사용자 승인된 단독 검증/배포.
