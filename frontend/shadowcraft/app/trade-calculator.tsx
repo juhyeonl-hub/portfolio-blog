@@ -3,6 +3,9 @@ import {Calculator,ArrowRight,Coins} from 'lucide-react';
 import {useLocale} from './locale';
 import {calculateTrade,minimumTradePrice,parseSaleDraft,parseTradeRate,tradeProfitTarget,parsePurchaseDraft,tradeProfitExamples,tradeExample,parseTradeMoney,restoreTradeDraft,changePurchaseMode,MAX_TRADE_MONEY,type TradeDraft,type TradeField} from '../lib/trade-calculator';
 import TradePlanning from './trade-planning';
+import TradeWorkbookPanel from './trade-workbook';
+import CraftComparison from './craft-comparison';
+import TradeScreenshot from './trade-screenshot';
 import './trade-calculator.css';
 const storageKey='asbc-trade-calculator-v1';
 function initialDraft():TradeDraft{
@@ -12,7 +15,7 @@ function initialDraft():TradeDraft{
 }
 export default function TradeCalculator(){
  const {t,locale}=useLocale();const [draft,setDraft]=useState(initialDraft),[manual,setManual]=useState(false),[conversionNotice,setConversionNotice]=useState(false);
- const [tool,setTool]=useState<'sale'|'limit'|'ledger'>('sale');
+ const [tool,setTool]=useState<'sale'|'limit'|'ledger'|'craft'>('sale');
  const totalPurchase=draft.purchaseMode==='total';
  const [settingsOpen,setSettingsOpen]=useState(()=>Object.keys(parsePurchaseDraft(draft).errors).some(key=>key!=='buy'));
  useEffect(()=>{try{localStorage.setItem(storageKey,JSON.stringify(draft));}catch{/* Optional browser-local draft. */}},[draft]);
@@ -39,10 +42,11 @@ export default function TradeCalculator(){
  const bundleName=(r:NonNullable<typeof result>)=>r.listingCount===1n?t('한 번에 {0}개',[format(r.size)]):r.remainder?t('{0}개씩 {1}회 + {2}개 1회',[format(r.size),format(r.fullCount),format(r.remainder)]):t('{0}개씩 {1}회',[format(r.size),format(r.fullCount)]);
  const priceBox=(label:string,price:bigint|null)=><div className="trade-price"><span>{t(label)}</span><strong>{price===null?t('이익을 낼 수 없음'):money(price)}</strong><button className="button secondary small" disabled={price===null||price>MAX_TRADE_MONEY} onClick={()=>price!==null&&change('sell',String(price))}>{t('이 가격으로 계산')}<ArrowRight size={14}/></button>{price!==null&&price>MAX_TRADE_MONEY&&<small>{t('계산된 가격이 입력 가능한 범위를 넘습니다.')}</small>}</div>;
  return <section className="trade-calculator" aria-labelledby="trade-title">
-  <header className="trade-heading"><div><p className="eyebrow"><Calculator size={16}/>{t('거래소 계산기')}</p><h1 id="trade-title">{t(tool==='limit'?'얼마까지 사도 될까요?':tool==='ledger'?'팔고 남은 물건, 지금 손익은?':'얼마에 팔면 남을까요?')}</h1><p>{tool==='sale'?t(manual?'개당 가격을 넣으면 세금과 매입 비용을 뺀 이익이 바로 바뀝니다.':'구매 비용을 입력하면 세금을 계산한 개당 판매가가 바로 나옵니다.'):t(tool==='limit'?'팔 가격을 먼저 정하면, 목표 이익을 남길 구매 상한을 계산합니다.':'실제로 팔린 수량과 정산 후 받은 금액을 기록하세요.')}</p></div></header>
-  <div className="trade-tools" role="group" aria-label={t('거래 도구')} >{(['sale','limit','ledger'] as const).map(key=><button className={'button '+(tool===key?'primary':'ghost')} aria-pressed={tool===key} key={key} onClick={()=>setTool(key)}>{t(key==='sale'?'얼마에 팔까':key==='limit'?'얼마까지 살까':'일부 팔았어요')}</button>)}</div>
-  {tool!=='sale'?<TradePlanning key={tool} mode={tool} initial={draft}/>:<>
+  <header className="trade-heading"><div><p className="eyebrow"><Calculator size={16}/>{t('거래소 계산기')}</p><h1 id="trade-title">{t(tool==='limit'?'얼마까지 사도 될까요?':tool==='ledger'?'팔고 남은 물건, 지금 손익은?':tool==='craft'?'제작할까요, 재료를 팔까요?':'얼마에 팔면 남을까요?')}</h1><p>{tool==='sale'?t(manual?'개당 가격을 넣으면 세금과 매입 비용을 뺀 이익이 바로 바뀝니다.':'구매 비용을 입력하면 세금을 계산한 개당 판매가가 바로 나옵니다.'):t(tool==='limit'?'팔 가격을 먼저 정하면, 목표 이익을 남길 구매 상한을 계산합니다.':tool==='craft'?'재료와 완성품의 가격으로 두 방법의 손익을 비교합니다.':'산 물량과 실제 정산 금액을 기록하면 재고와 순이익을 계산합니다.')}</p></div></header>
+  <div className="trade-tools" role="group" aria-label={t('거래 도구')} >{(['sale','limit','ledger','craft'] as const).map(key=><button className={'button '+(tool===key?'primary':'ghost')} aria-pressed={tool===key} key={key} onClick={()=>setTool(key)}>{t(key==='sale'?'얼마에 팔까':key==='limit'?'얼마까지 살까':key==='ledger'?'거래 장부':'제작 비교')}</button>)}</div>
+  {tool==='ledger'?<TradeWorkbookPanel/>:tool==='craft'?<CraftComparison/>:tool==='limit'?<TradePlanning key={tool} mode={tool} initial={draft}/>:<>
   <div className="trade-mode" role="group" aria-label={t('계산 방식')}><button className={'button '+(!manual?'primary':'ghost')} aria-pressed={!manual} onClick={()=>mode(false)}>{t('구매가만 입력')}</button><button className={'button '+(manual?'primary':'ghost')} aria-pressed={manual} disabled={!manual&&sale!=null&&sale>MAX_TRADE_MONEY} onClick={()=>mode(true)}>{t('판매가 직접 비교')}</button></div>
+  <TradeScreenshot onApply={scan=>{setDraft(old=>({...old,item:scan.name,buy:scan.price,quantity:scan.quantity,purchaseMode:'unit'}));setConversionNotice(false);setSettingsOpen(true)}}/>
   <div className="trade-form panel">
    <div className="trade-purchase-mode" role="group" aria-label={t('구매 비용 입력 기준')}><button className={'button small '+(!totalPurchase?'secondary':'ghost')} aria-pressed={!totalPurchase} onClick={()=>purchaseMode('unit')}>{t('한 개 가격')}</button><button className={'button small '+(totalPurchase?'secondary':'ghost')} aria-pressed={totalPurchase} onClick={()=>purchaseMode('total')}>{t('전체 구매 비용')}</button></div>
    <p className="trade-money-help">{t('13만·13만 5천처럼 입력해도 됩니다.')}</p>
@@ -76,7 +80,7 @@ export default function TradeCalculator(){
    </>:<p className="trade-invalid" role="status">{t(!manual&&profitBps===null?'목표 순이익률을 0~100%로 입력하거나 위의 예시를 선택하세요.':'이 조건으로는 목표 이익을 낼 수 없습니다. 세율과 등록비를 확인하세요.')}</p>}
   </>}
   </>}
-  <p className="trade-note">{t('추가 비용 0키나와 묶음별 세금 올림은 계산용 기본값입니다. 실제 등록비·정산 금액은 게임 화면에서 확인하세요.')}</p>
-  <p className="trade-note">{t('표시된 판매가에 전부 팔린다는 가정의 예상치입니다. 실시간 시세·미판매·재등록 비용은 자동 반영하지 않습니다. 입력은 이 브라우저에만 보관됩니다.')}</p>
+  {tool!=='ledger'&&<p className="trade-note">{t('추가 비용 0키나와 묶음별 세금 올림은 계산용 기본값입니다. 실제 등록비·정산 금액은 게임 화면에서 확인하세요.')}</p>}
+  {tool!=='ledger'&&<p className="trade-note">{t('표시된 판매가에 전부 팔린다는 가정의 예상치입니다. 실시간 시세·미판매·재등록 비용은 자동 반영하지 않습니다. 입력은 이 브라우저에만 보관됩니다.')}</p>}
  </section>;
 }

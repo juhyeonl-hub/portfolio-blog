@@ -11708,5 +11708,620 @@
     "en": "No records. Recording resumes with the next refresh.",
     "ja": "記録がありません。次の再取得から記録します。",
     "fi": "Ei tallenteita. Tallennus jatkuu seuraavalla päivityksellä."
+  },
+  "각 재료 한 줄을 한 번에, 완성품도 한 번에 등록한다고 계산합니다. 재등록 비용은 별도입니다.": {
+    "en": "Assumes one listing per material row and one listing for all output. Relisting costs are separate.",
+    "ja": "材料は各行を1回、完成品もまとめて1回出品する計算です。再出品費用は別です。",
+    "fi": "Laskelma olettaa yhden ilmoituksen kutakin materiaaliriviä ja yhtä koko tuotantoerää kohden. Uudelleenlistaus maksaa erikseen."
+  },
+  "각 재료의 개당 거래 가격과 이번에 사용할 총수량을 적으세요. 같은 재료는 한 줄로 합치세요.": {
+    "en": "Enter each material's unit market price and total quantity for this craft. Combine identical materials in one row.",
+    "ja": "各材料の単価と今回使う合計数を入力してください。同じ材料は1行にまとめてください。",
+    "fi": "Anna kunkin materiaalin yksikköhinta ja koko valmistuksessa käytettävä määrä. Yhdistä sama materiaali yhdelle riville."
+  },
+  "개당 가격": {
+    "en": "Unit price",
+    "ja": "単価",
+    "fi": "Yksikköhinta"
+  },
+  "거래 기록 저장": {
+    "en": "Save transaction",
+    "ja": "取引を保存",
+    "fi": "Tallenna kauppa"
+  },
+  "거래 기록 추가": {
+    "en": "Add a transaction",
+    "ja": "取引を追加",
+    "fi": "Lisää kauppa"
+  },
+  "거래 내역 {0}개": {
+    "en": "{0} transactions",
+    "ja": "取引履歴 {0}件",
+    "fi": "{0} kauppaa"
+  },
+  "거래 목록 한 줄을 캡처하면 읽기 쉽습니다. 여러 가격이 보이면 개당 가격을 직접 선택하세요.": {
+    "en": "Capture one listing row for better recognition. If several prices appear, select the unit price.",
+    "ja": "出品一覧を1行だけ撮ると読み取りやすくなります。金額が複数ある場合は単価を選んでください。",
+    "fi": "Yksi ilmoitusrivi tunnistuu helpommin. Jos hintoja on useita, valitse yksikköhinta."
+  },
+  "거래 장부": {
+    "en": "Trade ledger",
+    "ja": "取引帳簿",
+    "fi": "Kauppakirjanpito"
+  },
+  "거래소 인식 텍스트": {
+    "en": "Recognized market text",
+    "ja": "取引所の認識テキスト",
+    "fi": "Tunnistettu kauppapaikan teksti"
+  },
+  "게임에서 확인한 재료 수량·가격·제작 비용·결과 수량을 입력하세요. 레시피와 성공 확률은 자동으로 추정하지 않습니다.": {
+    "en": "Enter material quantities, prices, crafting cost and output quantity checked in game. Recipes and success chances are not inferred.",
+    "ja": "ゲームで確認した材料数・価格・製作費・完成数を入力してください。レシピや成功率は推定しません。",
+    "fi": "Anna pelissä tarkistetut materiaalimäärät, hinnat, valmistuskulu ja tuotantomäärä. Reseptejä tai onnistumistodennäköisyyksiä ei arvioida."
+  },
+  "계산용 기본값: 세율 10%, 등록비 0, 묶음별 세금 올림. 게임 화면의 조건으로 수정하세요.": {
+    "en": "Calculation defaults: 10% tax, no listing fee, tax rounded up per lot. Adjust to your game screen.",
+    "ja": "計算の初期値は税率10%、出品費0、束ごとの税金切り上げです。ゲーム画面の条件に直してください。",
+    "fi": "Oletukset: vero 10 %, ilmoitusmaksu 0 ja vero pyöristetään ylöspäin eräkohtaisesti. Muuta ne pelin tietojen mukaisiksi."
+  },
+  "기록할 품목": {
+    "en": "Item to record",
+    "ja": "記録する品目",
+    "fi": "Kirjattava tuote"
+  },
+  "기존 기록을 읽지 못했거나 다른 탭에서 바뀌어 저장을 멈췄습니다. 기존 데이터는 덮어쓰지 않았습니다.": {
+    "en": "Saving stopped because stored data could not be read or changed in another tab. Existing data was not overwritten.",
+    "ja": "保存済みデータを読めないか別タブで変更されたため保存を停止しました。既存データは上書きしていません。",
+    "fi": "Tallennus pysähtyi: tietoja ei voitu lukea tai niitä muutettiin toisessa välilehdessä. Vanhoja tietoja ei korvattu."
+  },
+  "나누어떨어지는 경우에만 채웁니다. 반드시 같은 거래 줄의 금액인지 확인하세요.": {
+    "en": "Fills only an exact whole-number quantity. Check that both amounts belong to the same listing.",
+    "ja": "整数で割り切れる場合のみ入力します。必ず同じ出品行の金額か確認してください。",
+    "fi": "Täyttää vain tarkan kokonaisluvun. Varmista, että summat kuuluvat samaan ilmoitukseen."
+  },
+  "남은 물건": {
+    "en": "Remaining inventory",
+    "ja": "残りの品物",
+    "fi": "Jäljellä oleva varasto"
+  },
+  "남은 물건을 얼마에 팔아야 전체 본전일까요?": {
+    "en": "What price recovers all purchase costs?",
+    "ja": "残りをいくらで売れば全体の元が取れる？",
+    "fi": "Millä hinnalla kaikki ostokulut saadaan takaisin?"
+  },
+  "남은 재고의 평균 매입가: 개당 {0}": {
+    "en": "Average remaining cost: {0} each",
+    "ja": "残り在庫の平均原価：1個 {0}",
+    "fi": "Jäljellä olevan varaston keskihinta: {0}/kpl"
+  },
+  "마지막 거래 취소": {
+    "en": "Undo last transaction",
+    "ja": "最後の取引を取り消す",
+    "fi": "Peru viimeisin kauppa"
+  },
+  "매입": {
+    "en": "Purchase",
+    "ja": "仕入れ",
+    "fi": "Osto"
+  },
+  "모든 재료의 수량·가격과 제작 결과를 입력하면 비교가 나옵니다.": {
+    "en": "Enter all material quantities, prices and output to see the comparison.",
+    "ja": "全材料の数量・価格と製作結果を入力すると比較できます。",
+    "fi": "Syötä kaikkien materiaalien määrät, hinnat ja valmistustulos nähdäksesi vertailun."
+  },
+  "삭제 직후 되돌릴 수 있습니다. 이 화면을 떠나면 되돌리기가 사라집니다.": {
+    "en": "Deletion can be undone here until you leave this view.",
+    "ja": "削除直後はこの画面で元に戻せます。画面を離れると戻せません。",
+    "fi": "Poiston voi perua tässä näkymässä, kunnes poistut siitä."
+  },
+  "선택한 품목 손익": {
+    "en": "Selected item profit",
+    "ja": "選択品目の損益",
+    "fi": "Valitun tuotteen tulos"
+  },
+  "세금·비용을 뺀 총 수령액": {
+    "en": "Total received after tax and fees",
+    "ja": "税・費用を引いた受取総額",
+    "fi": "Verojen ja kulujen jälkeinen kokonaistulo"
+  },
+  "스크린샷 입력 닫기": {
+    "en": "Close screenshot input",
+    "ja": "画像入力を閉じる",
+    "fi": "Sulje kuvan syöttö"
+  },
+  "스크린샷으로 구매 정보 입력": {
+    "en": "Read purchase from screenshot",
+    "ja": "画像から購入情報を入力",
+    "fi": "Lue ostotiedot kuvasta"
+  },
+  "실제로 받은 금액을 입력하세요. 세금을 다시 차감하지 않습니다.": {
+    "en": "Enter the amount actually received. Tax is not deducted again.",
+    "ja": "実際の受取額を入力してください。税金は再度引きません。",
+    "fi": "Anna todella saamasi summa. Veroa ei vähennetä uudelleen."
+  },
+  "완성품 개당 판매가": {
+    "en": "Output unit sale price",
+    "ja": "完成品の販売単価",
+    "fi": "Valmiin tuotteen myyntihinta/kpl"
+  },
+  "완성품 세후 수령액 {0}": {
+    "en": "Output receipts after tax: {0}",
+    "ja": "完成品の税引後受取額 {0}",
+    "fi": "Tuotteen tulo verojen jälkeen: {0}"
+  },
+  "완성품 이름 (메모)": {
+    "en": "Output name (note)",
+    "ja": "完成品名（メモ）",
+    "fi": "Valmiin tuotteen nimi (muistiinpano)"
+  },
+  "원본과 비교해서 확인": {
+    "en": "Check against the original",
+    "ja": "元の画像と照合",
+    "fi": "Tarkista alkuperäisestä"
+  },
+  "이 장부는 현재 브라우저에만 저장됩니다. PC와 모바일 사이에는 아직 동기화되지 않습니다.": {
+    "en": "This ledger stays in this browser only. It does not yet sync between desktop and mobile.",
+    "ja": "帳簿はこのブラウザーのみに保存されます。PCとスマホ間ではまだ同期されません。",
+    "fi": "Kirjanpito tallentuu vain tähän selaimeen. Se ei vielä synkronoidu tietokoneen ja puhelimen välillä."
+  },
+  "이 조건으로는 본전을 회수할 수 없습니다.": {
+    "en": "These conditions cannot recover the cost.",
+    "ja": "この条件では元が取れません。",
+    "fi": "Näillä ehdoilla kuluja ei saada takaisin."
+  },
+  "이름 수정·품목 삭제": {
+    "en": "Rename or delete item",
+    "ja": "名前変更・品目削除",
+    "fi": "Nimeä uudelleen tai poista tuote"
+  },
+  "이름 저장": {
+    "en": "Save name",
+    "ja": "名前を保存",
+    "fi": "Tallenna nimi"
+  },
+  "이미 가진 재료라면?": {
+    "en": "Already own the materials?",
+    "ja": "すでに持っている材料なら？",
+    "fi": "Entä jos materiaalit ovat jo omiasi?"
+  },
+  "이미지가 너무 큽니다. 거래 목록 한 줄만 캡처해 주세요.": {
+    "en": "Image is too large. Capture just one listing row.",
+    "ja": "画像が大きすぎます。出品一覧を1行だけ撮ってください。",
+    "fi": "Kuva on liian suuri. Ota kuva vain yhdestä ilmoitusrivistä."
+  },
+  "이미지는 이 브라우저에서만 읽고 저장하거나 서버로 보내지 않습니다. 확인한 숫자만 계산에 반영합니다.": {
+    "en": "Images are read only in this browser, never stored or sent to a server. Only confirmed values enter the calculation.",
+    "ja": "画像はブラウザー内で読み取り、保存やサーバー送信はしません。確認した値だけを計算に反映します。",
+    "fi": "Kuvat luetaan vain selaimessa. Niitä ei tallenneta eikä lähetetä palvelimelle. Laskentaan siirtyvät vain vahvistetut arvot."
+  },
+  "이번 매입 비용 {0}": {
+    "en": "Purchase cost: {0}",
+    "ja": "今回の仕入費用 {0}",
+    "fi": "Tämän oston hinta: {0}"
+  },
+  "이번 제작에 들어갈 전체 재료": {
+    "en": "All materials for this craft",
+    "ja": "今回の製作に使う全材料",
+    "fi": "Tämän valmistuksen kaikki materiaalit"
+  },
+  "이번 제작으로 얻을 전체 수량": {
+    "en": "Total output quantity",
+    "ja": "今回得られる完成品の合計数",
+    "fi": "Valmistuksen koko tuotantomäärä"
+  },
+  "이번 판매 순이익 {0}": {
+    "en": "Profit on this sale: {0}",
+    "ja": "今回の販売純利益 {0}",
+    "fi": "Tämän myynnin voitto: {0}"
+  },
+  "이번에 산 수량": {
+    "en": "Quantity bought now",
+    "ja": "今回買った数",
+    "fi": "Nyt ostettu määrä"
+  },
+  "이전 기록을 복사했습니다. 원본 기록은 그대로 남아 있습니다.": {
+    "en": "Copied the previous records. The originals are unchanged.",
+    "ja": "以前の記録をコピーしました。原本はそのまま残っています。",
+    "fi": "Aiemmat kirjaukset kopioitiin. Alkuperäiset säilyivät ennallaan."
+  },
+  "이전 기록의 수량·금액 또는 기록 한도를 확인해야 합니다. 원본은 변경하지 않았습니다.": {
+    "en": "Check the previous quantities, amounts or record limit. The original was not changed.",
+    "ja": "以前の数量・金額または記録上限を確認してください。原本は変更していません。",
+    "fi": "Tarkista aiemmat määrät, summat tai kirjausraja. Alkuperäistä ei muutettu."
+  },
+  "이전 일부 판매 기록 가져오기": {
+    "en": "Import previous partial-sale records",
+    "ja": "以前の一部販売記録を取り込む",
+    "fi": "Tuo aiemmat osamyyntikirjaukset"
+  },
+  "인식 시간이 길어졌습니다. 거래 한 줄만 선택하고 다시 읽어 주세요.": {
+    "en": "Recognition timed out. Select one listing row and retry.",
+    "ja": "認識がタイムアウトしました。取引1行だけ選んで読み直してください。",
+    "fi": "Tunnistus aikakatkaistiin. Valitse yksi ilmoitusrivi ja yritä uudelleen."
+  },
+  "인식한 텍스트 확인·수정": {
+    "en": "Review or edit recognized text",
+    "ja": "認識テキストを確認・修正",
+    "fi": "Tarkista tai korjaa tunnistettu teksti"
+  },
+  "읽을 거래 한 줄을 드래그한 뒤 다시 읽으세요. 모바일에서도 손가락으로 선택할 수 있습니다.": {
+    "en": "Drag over one listing row, then read again. You can also select with a finger on mobile.",
+    "ja": "取引1行をドラッグしてから再読み取りしてください。スマホでも指で選択できます。",
+    "fi": "Rajaa yksi ilmoitusrivi vetämällä ja lue uudelleen. Puhelimella voit rajata sormella."
+  },
+  "읽힌 금액 중 개당 구매 가격을 고르세요": {
+    "en": "Choose the unit purchase price from the recognized amounts",
+    "ja": "読み取った金額から購入単価を選択",
+    "fi": "Valitse tunnistetuista summista ostohinta kappaleelta"
+  },
+  "입력한 수량의 결과물이 나오고 모두 판매되는 경우의 계산입니다. 실패·대성공·귀속 여부·거래 제한·제작 시간은 반영하지 않습니다. 보유 재료도 공짜로 계산하지 않습니다.": {
+    "en": "Assumes the entered output quantity is produced and sold. Failure, bonus output, binding, trade restrictions and crafting time are excluded. Owned materials are not treated as free.",
+    "ja": "入力数の完成品ができて全て売れる場合の計算です。失敗・大成功・帰属・取引制限・製作時間は含みません。所持材料も無料とは扱いません。",
+    "fi": "Olettaa, että syötetty määrä valmistuu ja myydään. Epäonnistuminen, lisätuotto, sidonta, kaupparajoitukset ja valmistusaika eivät sisälly. Omia materiaaleja ei käsitellä ilmaisina."
+  },
+  "입력한 조건에서는 두 방법의 수령액이 같습니다.": {
+    "en": "Both methods return the same amount with these inputs.",
+    "ja": "入力条件では両方の受取額が同じです。",
+    "fi": "Näillä arvoilla molemmat tavat tuottavat saman summan."
+  },
+  "장부에서는 입력칸만 채웁니다. 실제 매입 기록은 거래 기록 저장을 눌러야 추가됩니다.": {
+    "en": "In the ledger this only fills the form. Press Save transaction to record a purchase.",
+    "ja": "帳簿では入力欄だけを埋めます。仕入れの記録は「取引を保存」を押して追加します。",
+    "fi": "Kirjanpidossa tämä täyttää vain lomakkeen. Kirjaa osto painamalla Tallenna kauppa."
+  },
+  "재고 원가 {0}": {
+    "en": "Inventory cost: {0}",
+    "ja": "在庫原価 {0}",
+    "fi": "Varaston hankintahinta: {0}"
+  },
+  "재고는 아직 이익으로 계산하지 않습니다.": {
+    "en": "Unsold inventory is not counted as profit.",
+    "ja": "未販売の在庫は利益に含めません。",
+    "fi": "Myymätöntä varastoa ei lasketa voitoksi."
+  },
+  "재료 {0}": {
+    "en": "Material {0}",
+    "ja": "材料 {0}",
+    "fi": "Materiaali {0}"
+  },
+  "재료 {0} 개당 가격": {
+    "en": "Material {0} unit price",
+    "ja": "材料 {0} 単価",
+    "fi": "Materiaalin {0} yksikköhinta"
+  },
+  "재료 {0} 삭제": {
+    "en": "Remove material {0}",
+    "ja": "材料 {0} を削除",
+    "fi": "Poista materiaali {0}"
+  },
+  "재료 {0} 수량": {
+    "en": "Material {0} quantity",
+    "ja": "材料 {0} 数量",
+    "fi": "Materiaalin {0} määrä"
+  },
+  "재료 {0} 이름": {
+    "en": "Material {0} name",
+    "ja": "材料 {0} 名前",
+    "fi": "Materiaalin {0} nimi"
+  },
+  "재료 매입과 제작 비용을 모두 뺀 순이익": {
+    "en": "Net profit after buying materials and crafting",
+    "ja": "材料購入・製作費を引いた純利益",
+    "fi": "Voitto materiaalien oston ja valmistuksen jälkeen"
+  },
+  "재료 외 추가 제작 비용": {
+    "en": "Extra crafting cost excluding materials",
+    "ja": "材料以外の追加製作費",
+    "fi": "Valmistuksen lisäkulu ilman materiaaleja"
+  },
+  "재료로 팔면 {0} 더 받습니다.": {
+    "en": "Selling the materials returns {0} more.",
+    "ja": "材料のまま売ると {0} 多く受け取れます。",
+    "fi": "Materiaalien myynti tuottaa {0} enemmän."
+  },
+  "재료를 그대로 판매": {
+    "en": "Sell materials as they are",
+    "ja": "材料をそのまま売る",
+    "fi": "Myy materiaalit sellaisinaan"
+  },
+  "재료를 새로 사서 제작·판매하면": {
+    "en": "Buy materials, craft and sell",
+    "ja": "材料を買って製作・販売",
+    "fi": "Osta materiaalit, valmista ja myy"
+  },
+  "재료비 + 제작비": {
+    "en": "Materials + crafting cost",
+    "ja": "材料費＋製作費",
+    "fi": "Materiaalit + valmistuskulu"
+  },
+  "재료와 완성품의 가격으로 두 방법의 손익을 비교합니다.": {
+    "en": "Compare both methods using material and output prices.",
+    "ja": "材料と完成品の価格で両方の損益を比較します。",
+    "fi": "Vertaa tuloksia materiaalien ja tuotteen hintojen avulla."
+  },
+  "저장된 내용 다시 불러오기": {
+    "en": "Reload saved data",
+    "ja": "保存内容を読み直す",
+    "fi": "Lataa tallennetut tiedot uudelleen"
+  },
+  "전체 남은 재고 원가": {
+    "en": "Total remaining inventory cost",
+    "ja": "全品目の残り在庫原価",
+    "fi": "Jäljellä olevan varaston kokonaishinta"
+  },
+  "전체 장부 요약": {
+    "en": "Ledger overview",
+    "ja": "帳簿全体の概要",
+    "fi": "Kirjanpidon yhteenveto"
+  },
+  "전체 품목의 팔린 순이익": {
+    "en": "Realized profit across all items",
+    "ja": "全品目の販売済み純利益",
+    "fi": "Kaikkien tuotteiden toteutunut voitto"
+  },
+  "제작 결과와 비용": {
+    "en": "Output and crafting cost",
+    "ja": "製作結果と費用",
+    "fi": "Valmistustulos ja kulut"
+  },
+  "제작 비교": {
+    "en": "Crafting comparison",
+    "ja": "製作比較",
+    "fi": "Valmistusvertailu"
+  },
+  "제작 손익 결과": {
+    "en": "Crafting profit results",
+    "ja": "製作損益の結果",
+    "fi": "Valmistuksen tuloslaskelma"
+  },
+  "제작할까요, 재료를 팔까요?": {
+    "en": "Craft or sell the materials?",
+    "ja": "製作する？材料を売る？",
+    "fi": "Valmistatko vai myytkö materiaalit?"
+  },
+  "제작해서 완성품 판매": {
+    "en": "Craft and sell the output",
+    "ja": "製作して完成品を売る",
+    "fi": "Valmista ja myy tuote"
+  },
+  "제작해서 팔면 {0} 더 받습니다.": {
+    "en": "Crafting and selling returns {0} more.",
+    "ja": "製作して売ると {0} 多く受け取れます。",
+    "fi": "Valmistus ja myynti tuottaa {0} enemmän."
+  },
+  "지금까지 받은 금액을 포함해 총 매입 비용을 회수하는 가격입니다. 남은 재고를 모두 판매한다고 가정합니다.": {
+    "en": "Price to recover total purchases including receipts so far. Assumes all remaining stock sells.",
+    "ja": "これまでの受取額を含めて総仕入額を回収する価格です。残り在庫が全て売れると仮定します。",
+    "fi": "Hinta, jolla kaikki ostokulut katetaan tähänastiset tulot mukaan lukien. Olettaa kaiken jäljellä olevan varaston myynnin."
+  },
+  "직전 변경을 되돌릴 수 있습니다.": {
+    "en": "You can undo the last change.",
+    "ja": "直前の変更を元に戻せます。",
+    "fi": "Voit perua viimeisimmän muutoksen."
+  },
+  "총 구매 비용 {0}": {
+    "en": "Total purchase cost: {0}",
+    "ja": "購入費用合計 {0}",
+    "fi": "Oston kokonaishinta: {0}"
+  },
+  "총 수령액 {0}": {
+    "en": "Total received: {0}",
+    "ja": "受取額合計 {0}",
+    "fi": "Saadut tulot yhteensä: {0}"
+  },
+  "총액 ÷ 개당 가격으로 수량 채우기": {
+    "en": "Fill quantity from total ÷ unit price",
+    "ja": "総額÷単価で数量を入力",
+    "fi": "Täytä määrä jakamalla kokonaishinta yksikköhinnalla"
+  },
+  "총액으로 수량 확인": {
+    "en": "Check quantity from total",
+    "ja": "総額から数量を確認",
+    "fi": "Tarkista määrä kokonaissummasta"
+  },
+  "텍스트에서 금액 다시 찾기": {
+    "en": "Find amounts in text again",
+    "ja": "テキストから金額を再抽出",
+    "fi": "Etsi summat tekstistä uudelleen"
+  },
+  "판매": {
+    "en": "Sale",
+    "ja": "販売",
+    "fi": "Myynti"
+  },
+  "판매 {0}개 · 실제 수령액 {1}": {
+    "en": "Sold {0} · Actually received {1}",
+    "ja": "販売 {0}個・実受取額 {1}",
+    "fi": "Myyty {0} · Todella saatu {1}"
+  },
+  "판매 세금·등록비·추가 제작비를 뺀 수령액": {
+    "en": "Receipts after sales tax, listing and extra crafting cost",
+    "ja": "販売税・出品費・追加製作費を引いた受取額",
+    "fi": "Tulo myyntiveron, ilmoitusmaksun ja valmistuslisäkulun jälkeen"
+  },
+  "판매 세금·등록비를 뺀 수령액": {
+    "en": "Receipts after sales tax and listing fees",
+    "ja": "販売税・出品費を引いた受取額",
+    "fi": "Tulo myyntiveron ja ilmoitusmaksun jälkeen"
+  },
+  "판매 순이익 {0}": {
+    "en": "Sale profit: {0}",
+    "ja": "販売純利益 {0}",
+    "fi": "Myynnin voitto: {0}"
+  },
+  "판매 시점의 평균 원가로 이익을 계산합니다. 나중에 추가 구매해도 이전 판매 이익은 바뀌지 않습니다. 1키나 미만 원가 차이는 남은 재고에 두고 마지막 판매에 반영합니다.": {
+    "en": "Profit uses the average cost at each sale. Later purchases do not change past profit. Sub-Kinah cost remainders stay in stock until the final sale.",
+    "ja": "販売時点の平均原価で計算します。後の追加購入で過去の利益は変わりません。1キナ未満の原価差は在庫に残し最後の販売に反映します。",
+    "fi": "Voitto lasketaan myyntihetken keskihinnalla. Myöhemmät ostot eivät muuta aiempaa voittoa. Alle Kinahin jäännökset säilyvät varastossa viimeiseen myyntiin asti."
+  },
+  "판매 조건 확인": {
+    "en": "Check sale conditions",
+    "ja": "販売条件を確認",
+    "fi": "Tarkista myyntiehdot"
+  },
+  "판매 조건을 확인하세요.": {
+    "en": "Check the sale conditions.",
+    "ja": "販売条件を確認してください。",
+    "fi": "Tarkista myyntiehdot."
+  },
+  "품목 삭제": {
+    "en": "Delete item",
+    "ja": "品目を削除",
+    "fi": "Poista tuote"
+  },
+  "품목 이름 수정": {
+    "en": "Rename item",
+    "ja": "品目名を変更",
+    "fi": "Muuta tuotteen nimeä"
+  },
+  "품목·개당 가격·수량을 원본과 확인했습니다.": {
+    "en": "I checked the item, unit price and quantity against the original.",
+    "ja": "品目・単価・数量を原本と照合しました。",
+    "fi": "Tarkistin tuotteen, yksikköhinnan ja määrän alkuperäisestä."
+  },
+  "품목을 고르고 산 물량과 팔린 물량을 차례대로 기록하세요. 가격이 다른 추가 구매도 계산합니다.": {
+    "en": "Choose an item and record purchases and sales in order. Additional purchases at different prices are supported.",
+    "ja": "品目を選び、購入・販売を順番に記録してください。異なる価格の追加購入も計算します。",
+    "fi": "Valitse tuote ja kirjaa ostot ja myynnit järjestyksessä. Myös lisäostot eri hinnoilla lasketaan."
+  },
+  "필요 수량": {
+    "en": "Required quantity",
+    "ja": "必要数",
+    "fi": "Tarvittava määrä"
+  },
+  "화면의 묶음 판매 총액": {
+    "en": "Lot total shown in game",
+    "ja": "画面の束の販売総額",
+    "fi": "Pelin näyttämä erän kokonaishinta"
+  },
+  "확인한 개당 구매 가격": {
+    "en": "Confirmed unit purchase price",
+    "ja": "確認した購入単価",
+    "fi": "Vahvistettu ostohinta/kpl"
+  },
+  "확인한 구매 수량": {
+    "en": "Confirmed purchase quantity",
+    "ja": "確認した購入数",
+    "fi": "Vahvistettu ostomäärä"
+  },
+  "확인한 구매 정보 반영": {
+    "en": "Use confirmed purchase values",
+    "ja": "確認した購入情報を反映",
+    "fi": "Käytä vahvistettuja ostotietoja"
+  },
+  "확인한 구매 정보를 입력했습니다.": {
+    "en": "Confirmed purchase values entered.",
+    "ja": "確認した購入情報を入力しました。",
+    "fi": "Vahvistetut ostotiedot täytettiin."
+  },
+  "확인한 품목 이름": {
+    "en": "Confirmed item name",
+    "ja": "確認した品目名",
+    "fi": "Vahvistettu tuotteen nimi"
+  },
+  "확인할 거래소 스크린샷": {
+    "en": "Market screenshot to review",
+    "ja": "確認する取引所画像",
+    "fi": "Tarkistettava kauppapaikan kuva"
+  },
+  "품목을 추가하세요": {
+    "en": "Add an item",
+    "ja": "品目を追加してください",
+    "fi": "Lisää tuote"
+  },
+  "새 품목 이름": {
+    "en": "New item name",
+    "ja": "新しい品目名",
+    "fi": "Uuden tuotteen nimi"
+  },
+  "예: 순수한 오드 · 루드라": {
+    "en": "e.g. Pure Aether · Rudra",
+    "ja": "例：純粋なオード · ルドラ",
+    "fi": "Esim. Pure Aether · Rudra"
+  },
+  "품목 추가": {
+    "en": "Add item",
+    "ja": "品目を追加",
+    "fi": "Lisää tuote"
+  },
+  "최대 50품목 · 품목마다 200개 기록 · 총 매입 수량 100만 개까지": {
+    "en": "Up to 50 items · 200 entries and 1,000,000 purchased units per item",
+    "ja": "最大50品目 · 品目ごとに200件、累計購入数100万個まで",
+    "fi": "Enintään 50 tuotetta · 200 kirjausta ja 1 000 000 ostettua kappaletta tuotetta kohti"
+  },
+  "먼저 품목 이름을 입력하고 추가하세요. 실제로 산 물량만 장부에 기록합니다.": {
+    "en": "Add an item name first. Record only purchases you actually made.",
+    "ja": "まず品目名を入力して追加してください。実際に購入した分だけ記録します。",
+    "fi": "Lisää ensin tuotteen nimi. Kirjaa vain toteutuneet ostot."
+  },
+  "수량과 금액을 확인하세요. 수량은 1개 이상, 금액은 0 이상입니다.": {
+    "en": "Check the quantity and amount. Quantity must be at least 1 and amount at least 0.",
+    "ja": "数量は1以上、金額は0以上で入力してください。",
+    "fi": "Tarkista määrä ja summa. Määrän on oltava vähintään 1 ja summan vähintään 0."
+  },
+  "이 품목의 기록 한도에 도달했습니다. 새 장부로 이어서 기록하세요.": {
+    "en": "This item has reached its entry limit. Continue in a new item ledger.",
+    "ja": "この品目の記録上限に達しました。新しい品目帳簿で続けてください。",
+    "fi": "Tuotteen kirjausraja on saavutettu. Jatka uudessa tuotekirjassa."
+  },
+  "이 품목의 총 매입 수량이 100만 개를 넘습니다.": {
+    "en": "Total purchases for this item exceed 1,000,000 units.",
+    "ja": "この品目の累計購入数が100万個を超えています。",
+    "fi": "Tuotteen ostojen kokonaismäärä ylittää 1 000 000 kappaletta."
+  },
+  "샀어요": {
+    "en": "Bought",
+    "ja": "買いました",
+    "fi": "Ostin"
+  },
+  "팔았어요": {
+    "en": "Sold",
+    "ja": "売りました",
+    "fi": "Myin"
+  },
+  "재료 추가": {
+    "en": "Add material",
+    "ja": "材料を追加",
+    "fi": "Lisää materiaali"
+  },
+  "PC에서는 이 영역을 누르고 Ctrl+V로 이미지를 붙여넣을 수 있습니다.": {
+    "en": "On a PC, click this area and press Ctrl+V to paste an image.",
+    "ja": "PCではこの領域をクリックしてCtrl+Vで画像を貼り付けられます。",
+    "fi": "Tietokoneella voit napsauttaa tätä aluetta ja liittää kuvan painamalla Ctrl+V."
+  },
+  "이미지에서 거래 한 줄을 선택한 뒤 선택 영역 읽기를 누르세요.": {
+    "en": "Select one trade row in the image, then choose Read selected area.",
+    "ja": "画像内の取引を1行選び、「選択範囲を読み取る」を押してください。",
+    "fi": "Valitse kuvasta yksi kaupparivi ja paina Lue valittu alue."
+  },
+  "선택 영역 읽기": {
+    "en": "Read selected area",
+    "ja": "選択範囲を読み取る",
+    "fi": "Lue valittu alue"
+  },
+  "산 물량과 실제 정산 금액을 기록하면 재고와 순이익을 계산합니다.": {
+    "en": "Record purchases and actual sale proceeds to track stock and profit.",
+    "ja": "購入数と実際の受取額を記録すると在庫と純利益を計算します。",
+    "fi": "Kirjaa ostot ja toteutuneet myyntitulot, niin näet varaston ja voiton."
+  },
+  "선택 영역 확대 · 옆으로 밀어 금액을 확인하세요.": {
+    "en": "Enlarged selection · scroll sideways to check the amounts.",
+    "ja": "選択範囲の拡大 · 横にスクロールして金額を確認してください。",
+    "fi": "Suurennettu valinta · tarkista summat vierittämällä sivulle."
+  },
+  "선택 영역 확대": {
+    "en": "Enlarged selection",
+    "ja": "選択範囲の拡大",
+    "fi": "Suurennettu valinta"
+  },
+  "선택한 거래 줄 확대": {
+    "en": "Enlarged selected trade row",
+    "ja": "選択した取引行の拡大画像",
+    "fi": "Valitun kaupparivin suurennos"
+  },
+  "숫자나 만·천 단위를 잘못 읽을 수 있습니다. 원본과 다르면 아래 금액을 수정하세요.": {
+    "en": "Digits and Korean number units may be misread. Correct the amount below if it differs from the original.",
+    "ja": "数字や万・千の単位を誤認する場合があります。原本と違う場合は下の金額を修正してください。",
+    "fi": "Numerot ja korealaiset lukuyksiköt voivat tunnistua väärin. Korjaa alla oleva summa, jos se eroaa alkuperäisestä."
   }
 }

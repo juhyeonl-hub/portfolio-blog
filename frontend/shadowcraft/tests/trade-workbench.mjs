@@ -1,0 +1,46 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {moduleUrl} from './modules.mjs';
+const tradeUrl=moduleUrl(readFileSync('lib/trade-calculator.ts','utf8'));
+const load=file=>import(moduleUrl(readFileSync(file,'utf8').replace("'./trade-calculator'",JSON.stringify(tradeUrl))));
+const {emptyWorkbook,workbookTotals,workbookRemainingPrice,parseWorkbook,parseEntryAmount,legacyItemBook}=await load('lib/trade-workbook.ts');
+const {emptyCraft,calculateCraft,parseCraft}=await load('lib/craft-comparison.ts');
+const {tradePriceCandidates,quantityFromPrices}=await load('lib/trade-screenshot.ts');
+const {tradeExample,parsePurchaseDraft,calculateTrade}=await import(tradeUrl);
+const at='2026-10-25T00:00:00.000Z';
+const e=(kind,q,amount,id=Math.random().toString())=>({id,kind,quantity:String(q),amount:String(amount),at});
+const entries=[e('buy',100,13000000),e('sale',25,3375000)];
+let total=workbookTotals(entries);assert.equal(total.realizedProfit,125000n);assert.equal(total.remaining,75n);assert.equal(total.inventoryCost,9750000n);
+entries.push(e('buy',25,3000000));total=workbookTotals(entries);assert.equal(total.realizedProfit,125000n);assert.equal(total.inventoryCost,12750000n);assert.equal(total.average,127500n);assert.equal(total.rows[1].profit,125000n);
+entries.push(e('sale',100,13500000));total=workbookTotals(entries);assert.equal(total.realizedProfit,875000n);assert.equal(total.remaining,0n);assert.equal(total.inventoryCost,0n);
+assert.equal(total.spent,total.soldCost+total.inventoryCost);assert.equal(total.received-total.spent,total.realizedProfit-total.inventoryCost);
+const fractional=workbookTotals([e('buy',3,100),e('sale',1,40),e('sale',1,40),e('sale',1,40)]);assert.deepEqual(fractional.rows.slice(1).map(r=>r.assignedCost),[33n,33n,34n]);assert.equal(fractional.realizedProfit,20n);
+assert.throws(()=>workbookTotals([e('sale',1,1)]));assert.throws(()=>workbookTotals([e('buy',1,100),e('sale',2,200)]));assert.throws(()=>workbookTotals([e('buy',1000000,1),e('buy',1,1)]));
+assert.throws(()=>workbookTotals([e('buy',1,-1)]));assert.throws(()=>workbookTotals([e('wat',1,1)]));
+assert.deepEqual(parseEntryAmount('13만','100','unit'),{quantity:100n,amount:13000000n});assert.deepEqual(parseEntryAmount('1300만','100','total'),{quantity:100n,amount:13000000n});assert.equal(parseEntryAmount('13x','1','unit'),null);
+const partial=workbookTotals(entries.slice(0,2)),conditions=parsePurchaseDraft(tradeExample).value;
+assert.equal(workbookRemainingPrice(partial,conditions),142593n);assert.equal(workbookRemainingPrice(partial,{...conditions,taxBps:10000n}),null);assert.equal(workbookRemainingPrice(total,conditions),null);
+// Cash recovery supports aggregate receipts well above a single input's money limit.
+const huge=workbookTotals([e('buy',1000000,1000000000000000000n),e('sale',500000,900000000000000000n)]);
+const price=workbookRemainingPrice(huge,conditions);assert.ok(price>0n);const needed=huge.spent-huge.received,future={...conditions,buy:0n,totalCost:0n,quantity:huge.remaining};assert.ok(calculateTrade(future,future.bundle,price).net>=needed);assert.ok(calculateTrade(future,future.bundle,price-1n).net<needed);
+const recovered=workbookTotals([e('buy',2,1),e('sale',1,100)]);assert.equal(workbookRemainingPrice(recovered,conditions),0n);
+const book={version:1,selected:'x',legacyImported:false,books:[{id:'x',name:'오드',entries}]};assert.deepEqual(parseWorkbook(JSON.stringify(book)),book);assert.deepEqual(parseWorkbook(null),emptyWorkbook());
+for(const value of [{...book,version:2},{...book,selected:'missing'},{...book,books:[book.books[0],book.books[0]]},{...book,books:[{...book.books[0],entries:[entries[0],entries[0]]}]},{...book,books:[{...book.books[0],entries:[{...entries[0],at:'bad'}]}]}])assert.throws(()=>parseWorkbook(JSON.stringify(value)));
+assert.throws(()=>parseWorkbook('{bad'));assert.throws(()=>parseWorkbook(' '.repeat(4000001)));
+const old={draft:{...tradeExample,buy:'13만'},sales:[{id:'old',quantity:'25',received:'337만5천'}]};const migrated=legacyItemBook(JSON.stringify(old),'import',at);assert.equal(workbookTotals(migrated.entries).realizedProfit,125000n);assert.equal(old.sales[0].received,'337만5천');assert.throws(()=>legacyItemBook('{}','bad',at));
+// Deterministic transaction series checks conservation and no retroactive revaluation.
+for(let seed=1;seed<=100;seed++){const rows=[];let previousProfit=0n;for(let j=0;j<20;j++){rows.push(e('buy',seed%7+3,seed*13+j+1));let v=workbookTotals(rows);assert.equal(v.realizedProfit,previousProfit);rows.push(e('sale',1,j+30));v=workbookTotals(rows);previousProfit=v.realizedProfit;assert.equal(v.spent,v.soldCost+v.inventoryCost);assert.equal(v.received-v.spent,v.realizedProfit-v.inventoryCost);}}
+console.log('PASS workbook: sequential weighted cost, partial/additional purchases, oversold, limits, exact residuals, recovery boundary, migration, corrupt data, 2000 transaction pairs');
+let craft={...emptyCraft(),materials:[{id:'a',name:'재료',quantity:'10',price:'100'}],cost:'100',output:'2',sell:'1000'};
+let result=calculateCraft(craft);assert.equal(result.totalCost,1100n);assert.equal(result.profit,700n);assert.equal(result.materialNet,900n);assert.equal(result.craftNet,1700n);assert.equal(result.advantage,800n);
+assert.deepEqual(parseCraft(JSON.stringify(craft)),craft);assert.deepEqual(parseCraft(null),emptyCraft());
+assert.equal(calculateCraft({...craft,tax:'100'}).profit,-1100n);assert.equal(calculateCraft({...craft,sell:'100'}).advantage,-820n);assert.equal(calculateCraft({...craft,fee:'10'}).profit,690n);
+for(const patch of [{output:'0'},{cost:'-1'},{sell:''},{tax:'100.01'},{materials:[]},{materials:[{id:'a',name:'',quantity:'0',price:'1'}]}])assert.equal(calculateCraft({...craft,...patch}),null);
+assert.throws(()=>parseCraft(JSON.stringify({...craft,materials:[craft.materials[0],craft.materials[0]]})));assert.throws(()=>parseCraft('{bad'));
+craft={...craft,materials:[{id:'a',name:'a',quantity:'1',price:'1'},{id:'b',name:'b',quantity:'1',price:'1'}],cost:'0',output:'2',sell:'1',tax:'10',fee:'0'};assert.equal(calculateCraft(craft).materialNet,0n);assert.equal(calculateCraft(craft).craftNet,1n);assert.equal(calculateCraft({...craft,rounding:'down'}).advantage,0n);
+console.log('PASS crafting: acquired vs owned materials, fees per listing, rounding, loss, 100% tax, incomplete/invalid values');
+assert.deepEqual(tradePriceCandidates('순수한 오드\n12만9998 38만9994\n2일 23시간\n현재 세율 10%').map(x=>x.value),['129998','389994']);
+assert.deepEqual(tradePriceCandidates('129,998\n129,998\n100개\n150%\n0\n-').map(x=>x.value),['129998']);
+assert.equal(quantityFromPrices('12만9998','38만9994'),'3');assert.equal(quantityFromPrices('13만','1300만'),'100');assert.equal(quantityFromPrices('3','10'),'');assert.equal(quantityFromPrices('0','0'),'');assert.equal(quantityFromPrices('1','1000001'),'');
+assert.equal(tradePriceCandidates('아무 숫자도 없습니다').length,0);
+console.log('PASS OCR parsing: Korean price candidates, quantity/time/percent exclusions, duplicates and exact quantity inference');
