@@ -21,3 +21,20 @@
 - PC 1440x1000 and mobile 390x844: maximum purchase 122727 / 12272727; partial sold profit125000, stock9750000, remaining price142593; all-sold500000; oversized sale blocked; delete undo and reload persistence checked. No horizontal overflow on mobile.
 - Corrupt saved ledger and conflicting browser-tab writes are preserved rather than overwritten. No unverified game rounding/fees represented as fact.
 - Baseline206 unrelated paths preserved; translation deployment rebuilt from HEAD plus only task keys.
+
+## Stage 1 release
+- Source fd7ddebe26e25976ded0d656b500918155ada742 pushed to main. Deployment https://d2bd646d.asbc-4c9.pages.dev. Canonical HTML+9 assets match isolated build. Production PC/mobile result checked, disposable sale record cleared.
+
+## Stage 2 scope
+- gear-guidance.ts/tsx/css (new), gear-panel.tsx, page.tsx, tests/gear-guidance.mjs, own translations. Current/target/saved build references give conservative keep reasons; skill reinvestment preserves final levels subject to gate/budget and supports parent plan undo.
+
+## Stage 3 scope
+- character-history.ts/tsx/css (new), page.tsx, tests/character-history.mjs, privacy-policy.ts factual local retention note, own translations. Public snapshots only, 20 change records per character/region/server/class, no inferred personal point balances. Missing/failed boards and changed catalog versions cannot appear as lost progress.
+
+## Stage 2/3 verification
+- TypeScript and ESLint PASS; new gear-guidance test across all 8 classes, existing gear regression, character-history tests, localization coverage (49 screens) PASS.
+- Browser UI: 390x844 mobile and 1440x1000 desktop. Test fixture imported through the supported build file chooser in IAB. Current/target/unused/saved-build keep reasons correct; same final Lv10 with base8→6 frees6 SP, total375→369; zero budget disables apply. Parent undo restores base8. Repeated target-mode apply was found and fixed, verified absent after apply.
+- Actual snapshot fixture: level40→41, equipment +3→+5, skill10→12, one added Daevanion node. Clear/undo restores history. No-change and stale responses deduplicate, identity and catalog-version isolation tested. Missing data is unknown rather than removed.
+- Browser file import in Chrome unavailable because extension file-URL access is off. No permission change made; IAB used for PC and mobile fixture checks. Earlier trade UI passed in Chrome and IAB.
+- UX: 14px guidance, responsive cards, and shortcuts above point settings to avoid long scrolling. Growth history stores only projected public data, 20 changed snapshots, browser-local; no server schema/auth change.
+- Final shortcut visual checks PASS: target card positioned below sticky navigation; mobile390, desktop1440, no horizontal overflow. Deployment authorized and ready.

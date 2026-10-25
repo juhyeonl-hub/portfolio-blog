@@ -11438,5 +11438,275 @@
     "en": "Enter at least 1 sold item.",
     "ja": "売れた数量を1個以上で入力してください。",
     "fi": "Syötä vähintään 1 myyty tuote."
+  },
+  "보관 · 현재 사용 중": {
+    "en": "Keep · currently equipped",
+    "ja": "保管 · 現在使用中",
+    "fi": "Säilytä · käytössä"
+  },
+  "보관 · 목표 장비": {
+    "en": "Keep · target equipment",
+    "ja": "保管 · 目標装備",
+    "fi": "Säilytä · tavoitevaruste"
+  },
+  "보관 · 저장한 빌드에서 사용": {
+    "en": "Keep · used in a saved build",
+    "ja": "保管 · 保存ビルドで使用",
+    "fi": "Säilytä · tallennetussa kokoonpanossa"
+  },
+  "다른 용도 확인": {
+    "en": "Check other uses",
+    "ja": "他の用途を確認",
+    "fi": "Tarkista muu käyttö"
+  },
+  "아직 보유하지 않은 후보입니다.": {
+    "en": "A candidate you do not own yet.",
+    "ja": "まだ所持していない候補です。",
+    "fi": "Ehdokas, jota et vielä omista."
+  },
+  "실제 교체를 마치기 전에는 현재 장비를 유지하세요.": {
+    "en": "Keep your current item until you have actually replaced it.",
+    "ja": "実際の交換が終わるまでは現在の装備を保管してください。",
+    "fi": "Säilytä nykyinen varuste, kunnes olet vaihtanut sen."
+  },
+  "목표 세팅에 지정한 장비입니다.": {
+    "en": "This item is assigned to your target setup.",
+    "ja": "目標設定に指定した装備です。",
+    "fi": "Tämä varuste kuuluu tavoitekokoonpanoosi."
+  },
+  "이 장비를 지정한 저장 빌드가 있습니다.": {
+    "en": "A saved build references this item.",
+    "ja": "この装備を指定した保存ビルドがあります。",
+    "fi": "Tallennettu kokoonpano käyttää tätä varustetta."
+  },
+  "등록된 계획에서 사용처를 찾지 못했습니다. 다른 캐릭터·다른 세팅에서 쓰는지 먼저 확인하세요.": {
+    "en": "No use was found in registered plans. Check other characters and setups first.",
+    "ja": "登録済みの計画では使用先が見つかりません。他のキャラクターや設定で使うか確認してください。",
+    "fi": "Tallennetuista suunnitelmista ei löytynyt käyttöä. Tarkista muut hahmot ja kokoonpanot ensin."
+  },
+  "사용 중인 빌드: {0}": {
+    "en": "Referenced by: {0}",
+    "ja": "使用ビルド：{0}",
+    "fi": "Käyttävät kokoonpanot: {0}"
+  },
+  "보관함을 읽지 못했습니다. 보관 여부를 직접 확인하세요.": {
+    "en": "Could not read the build library. Check whether to keep this item yourself.",
+    "ja": "保管庫を読み込めません。保管の必要性を直接確認してください。",
+    "fi": "Kokoonpanokirjastoa ei voitu lukea. Tarkista säilytystarve itse."
+  },
+  "다른 캐릭터의 장비·귀속·조율 재료 조건은 확인하지 못합니다. 판매·분해해도 된다는 뜻은 아닙니다.": {
+    "en": "Other characters, binding and tuning-material eligibility are unknown. This does not mean the item is safe to sell or dismantle.",
+    "ja": "他のキャラクターの装備・帰属・調律素材の条件は未確認です。売却・分解してよいという意味ではありません。",
+    "fi": "Muiden hahmojen varusteita, sidontaa tai materiaalikelpoisuutta ei tunneta. Tämä ei tarkoita, että varusteen voi myydä tai purkaa."
+  },
+  "장비를 바꾸면 스킬 포인트는?": {
+    "en": "How does changing gear affect skill points?",
+    "ja": "装備を変えるとスキルポイントは？",
+    "fi": "Miten varusteiden vaihto vaikuttaa taitopisteisiin?"
+  },
+  "현재 스킬의 최종 레벨을 유지하면서, 목표 장비에 맞춰 기본 투자를 계산합니다. 등록한 장비 보너스만 반영합니다.": {
+    "en": "Calculate base investment for your target gear while keeping current final skill levels. Only registered gear bonuses are included.",
+    "ja": "現在の最終スキルレベルを維持し、目標装備に合わせた基本投資を計算します。登録した装備ボーナスのみ反映します。",
+    "fi": "Laske tavoitevarusteiden perustasot säilyttäen nykyiset lopulliset taitotasot. Vain kirjatut varustebonukset huomioidaan."
+  },
+  "현재 장착과 목표 세팅을 각각 지정하면 필요한 포인트가 나옵니다.": {
+    "en": "Assign current and target equipment to see the required points.",
+    "ja": "現在装備と目標設定を指定すると必要ポイントが表示されます。",
+    "fi": "Määritä nykyiset ja tavoitevarusteet nähdäksesi pisteet."
+  },
+  "장비 교체로 달라지는 스킬 보너스가 없습니다.": {
+    "en": "No skill bonuses change with this gear swap.",
+    "ja": "装備交換によるスキルボーナスの変更はありません。",
+    "fi": "Taitobonukset eivät muutu tässä vaihdossa."
+  },
+  "스킬 포인트 사용 {0} → {1}": {
+    "en": "Skill points used: {0} → {1}",
+    "ja": "スキルポイント使用 {0} → {1}",
+    "fi": "Käytetyt taitopisteet: {0} → {1}"
+  },
+  "스티그마 사용 {0} → {1}": {
+    "en": "Stigma points used: {0} → {1}",
+    "ja": "スティグマ使用 {0} → {1}",
+    "fi": "Käytetyt stigmapisteet: {0} → {1}"
+  },
+  "유지할 최종 레벨 {0}": {
+    "en": "Final level to keep: {0}",
+    "ja": "維持する最終レベル {0}",
+    "fi": "Säilytettävä lopullinen taso: {0}"
+  },
+  "현재 레벨·승급 조건으로는 유지할 수 없습니다.": {
+    "en": "Current level or ascension limits prevent keeping this level.",
+    "ja": "現在のレベル・昇級条件では維持できません。",
+    "fi": "Nykyinen taso tai ylenemisraja estää tason säilyttämisen."
+  },
+  "기본 투자 {0} → {1} · {2} 포인트 {3}": {
+    "en": "Base level {0} → {1} · {2} points {3}",
+    "ja": "基本投資 {0} → {1} · {2}ポイント {3}",
+    "fi": "Perustaso {0} → {1} · {2}pisteet {3}"
+  },
+  "유지할 수 없는 스킬이 있어 자동 적용을 멈췄습니다.": {
+    "en": "Cannot apply because some skill levels cannot be preserved.",
+    "ja": "維持できないスキルがあるため適用できません。",
+    "fi": "Ei voida ottaa käyttöön, koska joitakin taitotasoja ei voi säilyttää."
+  },
+  "부족한 포인트 · 스킬 {0} / 스티그마 {1}": {
+    "en": "Missing points · skill {0} / stigma {1}",
+    "ja": "不足ポイント · スキル {0} / スティグマ {1}",
+    "fi": "Puuttuvat pisteet · taito {0} / stigma {1}"
+  },
+  "남는 포인트는 자동으로 다른 스킬에 쓰지 않습니다. 데바니온 배치는 그대로 유지합니다.": {
+    "en": "Freed points are not automatically spent on other skills. Daevanion allocation stays the same.",
+    "ja": "余ったポイントは他のスキルに自動投入しません。デバニオン配置は維持します。",
+    "fi": "Vapautuvia pisteitä ei käytetä automaattisesti muihin taitoihin. Daevanion-jako säilyy."
+  },
+  "목표 장비로 바꾸고 스킬 투자 맞추기": {
+    "en": "Use target gear and adjust skill investment",
+    "ja": "目標装備に変更してスキル投資を調整",
+    "fi": "Vaihda tavoitevarusteisiin ja säädä taitopisteet"
+  },
+  "사이트의 계획에 적용됩니다. 게임에서는 장비 교체와 스킬 재설정을 직접 해야 합니다.": {
+    "en": "Applies to the site plan. Change equipment and reset skills yourself in the game.",
+    "ja": "サイト内の計画に適用します。ゲーム内の装備交換とスキル再設定は直接行ってください。",
+    "fi": "Koskee sivuston suunnitelmaa. Vaihda varusteet ja nollaa taidot itse pelissä."
+  },
+  "목표 장비 기준으로 계산 중입니다. 같은 교체를 반복 적용하지 않습니다.": {
+    "en": "Already calculating with target gear. The same swap is not applied repeatedly.",
+    "ja": "目標装備を基準に計算中です。同じ交換を繰り返し適用しません。",
+    "fi": "Lasketaan jo tavoitevarusteilla. Samaa vaihtoa ei tehdä toistuvasti."
+  },
+  "장비 안내 바로가기": {
+    "en": "Equipment guide shortcuts",
+    "ja": "装備ガイドへ移動",
+    "fi": "Varusteoppaan pikavalinnat"
+  },
+  "성장 기록 보기": {
+    "en": "View growth history",
+    "ja": "成長記録を見る",
+    "fi": "Näytä kehityshistoria"
+  },
+  "장비 보관 확인": {
+    "en": "Check equipment to keep",
+    "ja": "保管する装備を確認",
+    "fi": "Tarkista säilytettävät varusteet"
+  },
+  "스킬 포인트 조정": {
+    "en": "Adjust skill points",
+    "ja": "スキルポイント調整",
+    "fi": "Säädä taitopisteitä"
+  },
+  "캐릭터 성장 기록": {
+    "en": "Character growth history",
+    "ja": "キャラクター成長記録",
+    "fi": "Hahmon kehityshistoria"
+  },
+  "캐릭터를 연결하면 조회한 장비·스킬·데바니온 변화를 이 브라우저에 기록합니다.": {
+    "en": "Connect a character to record retrieved equipment, skill and Daevanion changes in this browser.",
+    "ja": "キャラクターを接続すると、取得した装備・スキル・デバニオンの変化をこのブラウザーに記録します。",
+    "fi": "Yhdistä hahmo tallentaaksesi haetut varuste-, taito- ja Daevanion-muutokset tähän selaimeen."
+  },
+  "{0}의 실제 조회 정보입니다. 계획에서 바꾼 숫자는 기록하지 않습니다.": {
+    "en": "Retrieved data for {0}. Edits to the plan are not recorded.",
+    "ja": "{0}の実際の取得情報です。計画で編集した数値は記録しません。",
+    "fi": "Hahmon {0} haetut tiedot. Suunnitelman muokkauksia ei tallenneta."
+  },
+  "변화가 있을 때 최근 20개를 이 브라우저에 보관합니다. 다른 기기로 동기화하지 않으며, 첫 기록 이전의 변화는 알 수 없습니다.": {
+    "en": "Keeps the latest 20 changed snapshots in this browser only. No cross-device sync or history before the first record.",
+    "ja": "変化がある場合、最新20件をこのブラウザーに保管します。他の端末への同期や初回以前の履歴はありません。",
+    "fi": "Säilyttää 20 uusinta muuttunutta tilannekuvaa vain tässä selaimessa. Ei laitesynkronointia eikä ensimmäistä tallennetta edeltävää historiaa."
+  },
+  "기록을 저장하거나 읽지 못했습니다. 기존 기록은 덮어쓰지 않았습니다.": {
+    "en": "Could not save or read history. Existing records were not overwritten.",
+    "ja": "記録を保存または読込できません。既存の記録は上書きしていません。",
+    "fi": "Historiaa ei voitu lukea tai tallentaa. Aiemmat tiedot säilytettiin."
+  },
+  "최근 변화: {0} · Lv.{1}": {
+    "en": "Latest change: {0} · Lv.{1}",
+    "ja": "最新の変化：{0} · Lv.{1}",
+    "fi": "Viimeisin muutos: {0} · taso {1}"
+  },
+  "첫 기록을 준비했습니다. 게임에서 성장한 뒤 새로 조회하면 달라진 부분이 나옵니다.": {
+    "en": "First record saved. Refresh after progressing in the game to see changes.",
+    "ja": "最初の記録を保存しました。ゲームで成長した後に再取得すると変化が表示されます。",
+    "fi": "Ensimmäinen tilanne tallennettu. Päivitä pelissä edistyttyäsi nähdäksesi muutokset."
+  },
+  "비교할 이전 기록": {
+    "en": "Earlier record to compare",
+    "ja": "比較する以前の記録",
+    "fi": "Vertailtava aiempi tallenne"
+  },
+  "캐릭터 레벨 {0} → {1}": {
+    "en": "Character level {0} → {1}",
+    "ja": "キャラクターレベル {0} → {1}",
+    "fi": "Hahmotaso {0} → {1}"
+  },
+  "게임 데이터 버전이 달라 스킬·데바니온 비교를 생략했습니다.": {
+    "en": "Skill and Daevanion comparison skipped because game-data versions differ.",
+    "ja": "ゲームデータのバージョンが異なるためスキル・デバニオン比較を省略しました。",
+    "fi": "Taito- ja Daevanion-vertailu ohitettiin pelidatan versioeron vuoksi."
+  },
+  "장비 변화": {
+    "en": "Equipment changes",
+    "ja": "装備の変化",
+    "fi": "Varustemuutokset"
+  },
+  "조회 정보가 부족해 비교할 수 없습니다.": {
+    "en": "Not enough retrieved data to compare.",
+    "ja": "取得情報が不足しているため比較できません。",
+    "fi": "Haettuja tietoja ei ole riittävästi vertailuun."
+  },
+  "스킬 레벨 변화": {
+    "en": "Skill-level changes",
+    "ja": "スキルレベルの変化",
+    "fi": "Taitotasojen muutokset"
+  },
+  "장비·데바니온 보너스가 포함된 조회 레벨입니다. 직접 투자한 포인트 증가는 아닙니다.": {
+    "en": "Retrieved levels include gear and Daevanion bonuses, not just invested points.",
+    "ja": "取得レベルには装備・デバニオンボーナスを含みます。直接投資したポイント増加ではありません。",
+    "fi": "Haetut tasot sisältävät varuste- ja Daevanion-bonukset, eivät vain sijoitettuja pisteitä."
+  },
+  "데바니온 변화": {
+    "en": "Daevanion changes",
+    "ja": "デバニオンの変化",
+    "fi": "Daevanion-muutokset"
+  },
+  "추가 {0}개 · 해제 {1}개": {
+    "en": "Added {0} · removed {1}",
+    "ja": "追加 {0}個 · 解除 {1}個",
+    "fi": "Lisätty {0} · poistettu {1}"
+  },
+  "변경된 노드 보기": {
+    "en": "View changed nodes",
+    "ja": "変更されたノードを見る",
+    "fi": "Näytä muuttuneet solmut"
+  },
+  "{0}행 {1}열": {
+    "en": "Row {0}, column {1}",
+    "ja": "{0}行 {1}列",
+    "fi": "Rivi {0}, sarake {1}"
+  },
+  "공식 조회가 늦거나 일부 정보가 빠질 수 있습니다. 기록은 조회 시점끼리 비교하며, 표시되지 않은 장비·스킬을 없어진 것으로 단정하지 않습니다.": {
+    "en": "Official data may lag or omit information. Comparisons use query snapshots; missing items or skills are not assumed to be removed.",
+    "ja": "公式情報は遅延・欠落する場合があります。取得時点同士を比較し、表示のない装備・スキルがなくなったとは断定しません。",
+    "fi": "Virallinen tieto voi viivästyä tai olla puutteellista. Vertailu käyttää hakutilanteita; puuttuvia varusteita tai taitoja ei oleteta poistetuiksi."
+  },
+  "이 캐릭터 기록 비우기": {
+    "en": "Clear this character history",
+    "ja": "このキャラクターの記録を消去",
+    "fi": "Tyhjennä tämän hahmon historia"
+  },
+  "기록을 비웠습니다. 이 화면을 떠나기 전에는 되돌릴 수 있습니다.": {
+    "en": "History cleared. You can undo before leaving this screen.",
+    "ja": "記録を消去しました。この画面を離れる前に元に戻せます。",
+    "fi": "Historia tyhjennetty. Voit perua ennen tältä näkymältä poistumista."
+  },
+  "조회에서 보이지 않음": {
+    "en": "Not present in retrieved data",
+    "ja": "取得情報に表示なし",
+    "fi": "Ei näy haetuissa tiedoissa"
+  },
+  "기록이 없습니다. 다음 새로 조회부터 다시 기록합니다.": {
+    "en": "No records. Recording resumes with the next refresh.",
+    "ja": "記録がありません。次の再取得から記録します。",
+    "fi": "Ei tallenteita. Tallennus jatkuu seuraavalla päivityksellä."
   }
 }
