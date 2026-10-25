@@ -1,11 +1,9 @@
+import BuildComposer from './build-composer';
 import {AccountSyncPanel} from './account-sync-panel';
-import {settingsStorage} from '../lib/account-settings';
 import {classProfile} from '../lib/classes';
 import {useLocale} from './locale';
 import {createContext,useContext,useEffect,useState,type ReactNode} from 'react';
-import {publicBuild,encodeShare,type SharedBuild} from '../lib/build-share';
-import {loadBundledCatalog} from '../lib/catalog-loaders';
-import {validStoredPlan} from '../lib/plan-memory';
+import {publicBuild,type SharedBuild} from '../lib/build-share';
 import type {Catalog,Plan} from '../lib/planner';
 import type {PublicBuildDetail} from '../lib/public-builds';
 
@@ -60,10 +58,8 @@ function DeleteAccount(){
  </form></details>;
 }
 export function PublishBuild({catalog,plan,onPublished}:{catalog:Catalog;plan:Plan;onPublished:()=>void}){
- const {t}=useLocale();
- const {session,request}=useContext(Context),[title,setTitle]=useState(''),[description,setDescription]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[saved,setSaved]=useState('');
- if(!session)return null;
- return <details className="card"><summary>{t("현재 플래너 배분 게시하기")}</summary><p>{t("빌드 직업")}: <strong>{t(classProfile(plan.classKey).name)}</strong> · <a href="#/build">{t("내 플래너 열기")}</a></p><p>{t("현재 직업의 스킬·특화·데바니온 배분을 공개합니다. 캐릭터·검색 기록·장비 이름·개인 메모는 제외됩니다. 설명에는 공개할 내용만 입력하세요.")}</p><form onSubmit={async e=>{e.preventDefault();setBusy(true);setError('');setSaved('');try{const data=await request('/api/community/builds','POST',{title,description,published:true,shared:publicBuild(catalog,plan)});setSaved(data.id);setTitle('');setDescription('');onPublished();}catch(e){setError((e as Error).message);}finally{setBusy(false);}}}><label>{t("게시 제목")}<input aria-label={t("게시 제목")} required maxLength={80} value={title} onChange={e=>setTitle(e.target.value)}/></label><label>{t("빌드 설명")}<textarea aria-label={t("빌드 설명")} maxLength={2000} value={description} onChange={e=>setDescription(e.target.value)}/></label><button className="button primary" disabled={busy}>{t("현재 배분 공개 게시")}</button></form>{error&&<p role="alert">{t(error)}</p>}{saved&&<p role="status">{t("게시했습니다.")}{' '}<a href={'#published='+saved}>{t("게시한 빌드 보기")}</a></p>}</details>;
+ const {t}=useLocale();const {session,request}=useContext(Context);const [draft,setDraft]=useState<SharedBuild|null>(null),[saved,setSaved]=useState(''),[error,setError]=useState('');
+ return <section className="card"><div className="public-compose-entry"><h2>{t('나만의 빌드 공유')}</h2>{session?<button type="button" className="button primary" disabled={!!draft} onClick={()=>{try{setDraft(publicBuild(catalog,plan));setError('');setSaved('')}catch(e){setError((e as Error).message)}}}>{t('빌드 글쓰기')}</button>:<a className="button secondary" href="#/account">{t('Steam으로 로그인')}</a>}</div><p>{t('현재 플래너를 초안으로 가져와 스킬·데바니온·장비 추천을 직접 작성합니다.')}</p>{error&&<p role="alert">{t(error)}</p>}{draft&&<BuildComposer initial={draft} submitLabel={'빌드 공개 게시'} onCancel={()=>setDraft(null)} onSave={async value=>{const data=await request('/api/community/builds','POST',{...value,published:true});setSaved(data.id);setDraft(null);onPublished()}}/>}{saved&&<p role="status">{t('게시했습니다.')} <a href={'#published='+saved}>{t('게시한 빌드 보기')}</a></p>}</section>;
 }
 type Social={votes:number;voted:boolean};
 const REPORT_REASONS:[string,string][]=[['spam','스팸·광고'],['abuse','욕설·괴롭힘'],['hate','혐오·차별'],['sexual','성적인 내용'],['other','기타']];
@@ -80,16 +76,16 @@ function ReportControl({endpoint,label}:{endpoint:string;label:string}){
   {error&&<p role="alert">{t(error)}</p>}
  </form>;
 }
-export function BuildDiscussion({build,onUpdated}:{build:PublicBuildDetail;onUpdated:()=>void}){
+export function BuildDiscussion({build,onUpdated,onEditingChange}:{build:PublicBuildDetail;onUpdated:()=>void;onEditingChange?:(editing:boolean)=>void}){
  const {t}=useLocale();
  const {session,request}=useContext(Context),[data,setData]=useState<Social|null>(null),[revision,setRevision]=useState(0),[error,setError]=useState(''),[busy,setBusy]=useState(false);
- const [editing,setEditing]=useState(false),[title,setTitle]=useState(build.title),[description,setDescription]=useState(build.description),[deleting,setDeleting]=useState(false);
- const [replacement,setReplacement]=useState<SharedBuild|null>(null);
- async function loadReplacement(){setBusy(true);setError('');try{const key=build.shared.plan.classKey||'assassin';const raw=settingsStorage.getItem(key==='assassin'?'shadowcraft-plan-v1':'shadowcraft-plan-v1:'+key);if(!raw)throw Error('이 직업의 저장된 배분이 없습니다. 플래너에서 먼저 배분을 저장하세요.');const plan=JSON.parse(raw);if(!validStoredPlan(plan,key))throw Error('저장된 배분을 읽지 못했습니다. 플래너에서 확인하세요.');setReplacement(publicBuild(await loadBundledCatalog(key),plan));}catch(e){setError(e instanceof Error?e.message:'배분을 불러오지 못했습니다.');}finally{setBusy(false);}}
+ const [editing,setEditing]=useState(false),[deleting,setDeleting]=useState(false);
+ const changeEditing=(value:boolean)=>{setEditing(value);onEditingChange?.(value)};
  useEffect(()=>{let live=true;setData(null);setError('');request('/api/public/shadowcraft/builds/'+build.id+'/community').then(d=>{if(!d||!Number.isSafeInteger(d.votes)||d.votes<0||typeof d.voted!=='boolean')throw Error('좋아요 응답을 확인하지 못했습니다.');if(live)setData(d);}).catch(e=>{if(live)setError(e.message);});return()=>{live=false;};},[build.id,revision,session?.token]);
  async function run(action:()=>Promise<unknown>){setBusy(true);setError('');try{await action();setRevision(v=>v+1);}catch(e){setError((e as Error).message);}finally{setBusy(false);}}
  const path='/api/community/builds/'+build.id;
  return <section className="community-discussion" aria-label={t("빌드 좋아요")}>{error&&<p role="alert">{t(error)} <button className="button ghost" onClick={()=>setRevision(v=>v+1)}>{t("다시 불러오기")}</button></p>}
- {session&&session.member.id===build.authorId&&<div><button className="button ghost" disabled={busy} onClick={()=>{setEditing(!editing);setReplacement(null);}}>{t("내 게시물 수정")}</button><button className="button danger" disabled={busy} onClick={()=>setDeleting(!deleting)}>{t("내 게시물 삭제")}</button>{deleting&&<p>{t("게시물과 좋아요를 삭제할까요?")}{' '}<button className="button danger" disabled={busy} onClick={()=>void run(async()=>{await request(path+'?revision='+build.revision,'DELETE');location.hash='';})}>{t("삭제 확인")}</button><button className="button ghost" onClick={()=>setDeleting(false)}>{t("취소")}</button></p>}{editing&&<form onSubmit={e=>{e.preventDefault();void run(async()=>{await request(path,'PUT',{title,description,published:true,revision:build.revision,shared:replacement||build.shared});setEditing(false);onUpdated();});}}><p>{t("제목·설명을 수정하거나 이 기기에 저장된 같은 직업의 배분으로 교체하세요. 저장 전에는 게시물이 바뀌지 않습니다.")}</p><button type="button" className="button ghost" disabled={busy} onClick={()=>void loadReplacement()}>{t("저장된 내 배분 불러오기")}</button>{replacement&&<div role="status"><p>{t('교체할 배분: Lv.{0} · 특화 {1}개 · 데바니온 {2}개. 캐릭터·검색 기록·장비 이름·개인 메모는 제외됩니다.',[replacement.plan.level,Object.values(replacement.plan.specs).reduce((n,x)=>n+x.length,0),replacement.plan.nodes.length])}</p><a className="button ghost" href={encodeShare(replacement)} target="_blank" rel="noreferrer">{t("교체 배분 미리보기")}</a><button type="button" className="button ghost" onClick={()=>setReplacement(null)}>{t("기존 배분 유지")}</button></div>}<label>{t("수정 제목")}<input aria-label={t("수정 제목")} required maxLength={80} value={title} onChange={e=>setTitle(e.target.value)}/></label><label>{t("수정 설명")}<textarea aria-label={t("수정 설명")} maxLength={2000} value={description} onChange={e=>setDescription(e.target.value)}/></label><button className="button primary" disabled={busy}>{t("게시물 수정 저장")}</button></form>}</div>}
+ {session&&session.member.id===build.authorId&&<div><button className="button ghost" disabled={busy||editing} onClick={()=>{setDeleting(false);changeEditing(true);}}>{t("내 게시물 수정")}</button><button className="button danger" disabled={busy||editing} onClick={()=>setDeleting(!deleting)}>{t("내 게시물 삭제")}</button>{deleting&&<p>{t("게시물과 좋아요를 삭제할까요?")}{' '}<button className="button danger" disabled={busy} onClick={()=>void run(async()=>{await request(path+'?revision='+build.revision,'DELETE');location.hash='';})}>{t("삭제 확인")}</button><button className="button ghost" onClick={()=>setDeleting(false)}>{t("취소")}</button></p>}</div>}
+{editing&&<BuildComposer initial={build.shared} title={build.title} description={build.description} submitLabel={'게시물 수정 저장'} onCancel={()=>changeEditing(false)} onSave={async value=>{await request(path,'PUT',{...value,published:true,revision:build.revision});changeEditing(false);onUpdated();}}/>}
  {session&&session.member.id!==build.authorId&&<ReportControl endpoint={path+'/report'} label={'이 빌드 신고'}/>}{data?<><button className={'button like-button'+(data.voted?' liked':'')} disabled={!session||busy} aria-pressed={data.voted} aria-label={t(data.voted?'좋아요 취소':'좋아요')} onClick={()=>void run(()=>request(path+'/vote',data.voted?'DELETE':'PUT'))}><span aria-hidden="true">{data.voted?'♥':'♡'}</span> {data.votes}</button>{!session&&<p>{t("로그인하면 좋아요를 누를 수 있습니다.")}</p>}</>:!error&&<p role="status">{t("불러오는 중…")}</p>}</section>;
 }

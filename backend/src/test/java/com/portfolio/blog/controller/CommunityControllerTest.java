@@ -30,6 +30,29 @@ class CommunityControllerTest {
  String register(String name)throws Exception{return mapper.readTree(mvc.perform(post(API+"/auth/register").contentType("application/json").content("{\"username\":\""+name+"\",\"password\":\"testPassword123!\"}")).andExpect(status().isOk()).andExpect(jsonPath("$.member.username").value(name)).andReturn().getResponse().getContentAsString()).path("token").asText();}
  ObjectNode payload(){var r=mapper.createObjectNode().put("title","Member build").put("description","My allocation").put("published",true);var shared=r.putObject("shared");shared.put("schema","a2bc-share-v1").put("catalogVersion","2.0.7.0");var p=shared.putObject("plan");p.put("classKey","assassin").put("level",45).put("mode","safe").put("extraSP",0).put("extraStigma",0).put("extraCrystal",0).put("extraBattle",0).putNull("character");p.putObject("base");p.putObject("bonus");p.putObject("specs");p.putArray("nodes");p.putArray("checked");return r;}
  String create(String token)throws Exception{return mapper.readTree(mvc.perform(post(API+"/builds").header("Authorization","Bearer "+token).contentType("application/json").content(payload().toString())).andExpect(status().isCreated()).andReturn().getResponse().getContentAsString()).path("id").asText();}
+ @Test void authorCanPublishAndEditStructuredGuideWithoutReplacingOtherPosts()throws Exception{
+  String owner=register("guide_owner"),other=register("guide_other");var body=payload();
+  var shared=(ObjectNode)body.path("shared");((ObjectNode)shared.path("plan")).putArray("stigmaSkills").add("13270000");
+  var guide=shared.putObject("guide").put("skills","Use this skill first").put("daevanion","Connect from the center").put("equipment","Keep a small budget");
+  guide.putArray("items").addObject().put("slot","MainHand").put("name","Author weapon").put("upgrade","+7").put("options","Skill +1").put("reason","Temporary choice");
+  var result=mvc.perform(post(API+"/builds").header("Authorization","Bearer "+owner).contentType("application/json").content(body.toString())).andExpect(status().isCreated()).andReturn();
+  String id=mapper.readTree(result.getResponse().getContentAsString()).path("id").asText();
+  mvc.perform(get(PUBLIC+"/"+id)).andExpect(status().isOk()).andExpect(jsonPath("$.shared.guide.items[0].name").value("Author weapon")).andExpect(jsonPath("$.shared.plan.stigmaSkills[0]").value("13270000"));
+  body.put("revision",0);guide.put("skills","Changed guidance");
+  mvc.perform(put(API+"/builds/"+id).header("Authorization","Bearer "+other).contentType("application/json").content(body.toString())).andExpect(status().isNotFound());
+  mvc.perform(put(API+"/builds/"+id).header("Authorization","Bearer "+owner).contentType("application/json").content(body.toString())).andExpect(status().isOk()).andExpect(jsonPath("$.shared.guide.skills").value("Changed guidance"));
+  mvc.perform(put(API+"/builds/"+id).header("Authorization","Bearer "+owner).contentType("application/json").content(body.toString())).andExpect(status().isConflict());
+ }
+ @Test void rejectsInvalidGuideAndStigmaWithoutSaving()throws Exception{
+  String token=register("guide_invalid");
+  for(String bad:new String[]{"private","length","duplicate","slot","stigma"}){
+   var body=payload();var shared=(ObjectNode)body.path("shared");var g=shared.putObject("guide").put("skills","").put("daevanion","").put("equipment","");
+   var items=g.putArray("items");var item=items.addObject().put("slot","MainHand").put("name","Weapon").put("upgrade","").put("options","").put("reason","");
+   switch(bad){case "private"->item.put("owner","private");case "length"->g.put("skills","x".repeat(601));case "duplicate"->items.add(item.deepCopy());case "slot"->item.put("slot","unknown");case "stigma"->((ObjectNode)shared.path("plan")).putArray("stigmaSkills").add("13010000");}
+   mvc.perform(post(API+"/builds").header("Authorization","Bearer "+token).contentType("application/json").content(body.toString())).andExpect(status().isBadRequest());
+  }
+  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_public_builds",Integer.class)).isZero();
+ }
  @Test void pvpModeBuildsCanBePublishedAndReplaced()throws Exception{
   String token=register("member_pvp");
   var body=payload();((ObjectNode)body.path("shared").path("plan")).put("mode","pvp");

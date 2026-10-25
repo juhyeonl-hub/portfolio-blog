@@ -5,6 +5,7 @@ const strings=(v:any)=>Array.isArray(v)&&v.every(x=>typeof x==='string');
 const numbers=(v:any)=>record(v)&&Object.values(v).every(n=>Number.isFinite(n)&&Number.isInteger(n)&&Number(n)>=0&&Number(n)<=9999);
 export function validStoredPlan(value:any,classKey:string):value is Plan {
  if(!record(value)||(value.classKey||'assassin')!==classKey||!Number.isInteger(value.level)||value.level<1||value.level>45||!['safe','damage','pvp'].includes(value.mode)||!numbers(value.base)||!numbers(value.bonus)||!record(value.specs)||!Object.values(value.specs).every(strings)||!strings(value.nodes)||!strings(value.checked))return false;
+ if(value.stigmaSkills!==undefined&&(!strings(value.stigmaSkills)||value.stigmaSkills.length>4||new Set(value.stigmaSkills).size!==value.stigmaSkills.length||!value.stigmaSkills.every((id:string)=>/^\d{1,20}$/.test(id))))return false;
  if(value.ascensionGrade3Confirmed!==undefined&&typeof value.ascensionGrade3Confirmed!=='boolean')return false;
  if(value.confirmedRemaining!==undefined&&(!numbers(value.confirmedRemaining)||!Object.keys(value.confirmedRemaining).every(k=>['sp','stigma','crystal','battle'].includes(k))))return false;
  if(value.confirmedRemainingContext!==undefined){const c=value.confirmedRemainingContext;if(!record(c)||!['eu','nae','naw','la','as'].includes(c.region)||typeof c.serverId!=='string'||!/^\d{1,8}$/.test(c.serverId)||typeof c.characterId!=='string'||!c.characterId||c.characterId.length>160||!Number.isInteger(c.level)||c.level<1||c.level>45)return false;}

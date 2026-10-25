@@ -75,9 +75,10 @@ public class PublicBuildService {
         if(jdbc.update("DELETE FROM shadowcraft_public_builds WHERE id=? AND revision=?",id,revision)!=1)throw new ResponseStatusException(HttpStatus.CONFLICT,"다른 창에서 수정됐습니다. 최신 내용을 다시 불러오세요.");
     }
     private void validate(JsonNode shared) throws Exception {
-        only(shared,Set.of("schema","catalogVersion","plan"));
+        only(shared,Set.of("schema","catalogVersion","plan","guide"));
+        if(shared.has("guide"))validateGuide(shared.path("guide"));
         if(!shared.path("schema").asText().equals("a2bc-share-v1")||!shared.path("catalogVersion").isTextual()||shared.path("catalogVersion").asText().isEmpty()||shared.path("catalogVersion").asText().length()>100)bad("공유 형식을 확인하세요.");
-        JsonNode p=shared.path("plan");only(p,Set.of("classKey","level","mode","extraSP","extraStigma","extraCrystal","extraBattle","base","bonus","specs","nodes","checked","character","pointBudget","ascensionGrade3Confirmed"));
+        JsonNode p=shared.path("plan");only(p,Set.of("classKey","level","mode","extraSP","extraStigma","extraCrystal","extraBattle","base","bonus","specs","nodes","checked","character","pointBudget","ascensionGrade3Confirmed","stigmaSkills"));
         String key=p.path("classKey").asText();catalogs.profile(key);
         if(!number(p.path("level"),1,45)||!Set.of("safe","damage","pvp").contains(p.path("mode").asText())||!p.path("character").isNull()||!p.path("checked").isArray()||!p.path("checked").isEmpty())bad("개인정보를 제외한 공유 배분이 필요합니다.");
         for(String field:List.of("extraSP","extraStigma","extraCrystal","extraBattle"))if(!number(p.path(field),0,9999))bad("포인트를 확인하세요.");
@@ -91,7 +92,16 @@ public class PublicBuildService {
             var entries=values.fields();while(entries.hasNext()){var entry=entries.next();if(!skills.containsKey(entry.getKey()))bad("알 수 없는 스킬입니다.");if(field.equals("specs"))ids(entry.getValue(),skills.get(entry.getKey()));else if(!number(entry.getValue(),0,9999))bad("스킬 레벨을 확인하세요.");}
         }
         ids(p.path("nodes"),nodes);
+        if(p.has("stigmaSkills")){Set<String> stigma=new HashSet<>();for(JsonNode skill:catalog.path("skills"))if(skill.path("stigma").asBoolean())stigma.add(skill.path("id").asText());ids(p.path("stigmaSkills"),stigma);if(p.path("stigmaSkills").size()>4)bad("스티그마 선택을 확인하세요.");}
     }
+    private void validateGuide(JsonNode guide){
+        only(guide,Set.of("skills","daevanion","equipment","items"));
+        for(String key:List.of("skills","daevanion","equipment"))guideText(guide.path(key),600);
+        Set<String> allowed=Set.of("MainHand","SubHand","Helmet","Torso","Pants","Shoulder","Gloves","Boots","Cape","Belt","Necklace","Earring1","Earring2","Ring1","Ring2","Bracelet1","Bracelet2","Rune1","Rune2","Amulet","Arcana1","Arcana2","Arcana3","Arcana4","Arcana5"),seen=new HashSet<>();
+        var items=guide.path("items");if(!items.isArray()||items.size()>allowed.size())bad("추천 장비 내용을 확인하세요.");
+        for(JsonNode item:items){only(item,Set.of("slot","name","upgrade","options","reason"));if(!item.path("slot").isTextual()||!allowed.contains(item.path("slot").asText())||!seen.add(item.path("slot").asText()))bad("추천 장비 부위를 확인하세요.");for(String key:List.of("name","upgrade","options","reason"))guideText(item.path(key),key.equals("name")||key.equals("upgrade")?80:240);if(item.path("name").asText().trim().isEmpty())bad("추천 장비 이름을 입력하세요.");}
+    }
+    private static void guideText(JsonNode value,int max){if(!value.isTextual()||value.asText().length()>max)bad("빌드 작성 내용을 확인하세요.");if(ContentPolicy.blocked(value.asText()))bad("부적절한 표현이 포함되어 있습니다. 수정한 뒤 다시 시도하세요.");}
     private void ids(JsonNode values,Set<String> allowed) {
         if(!values.isArray()||values.size()>1000)bad("노드·특화 목록을 확인하세요.");Set<String> seen=new HashSet<>();
         for(JsonNode value:values)if(!value.isTextual()||!allowed.contains(value.asText())||!seen.add(value.asText()))bad("알 수 없거나 중복된 노드·특화입니다.");

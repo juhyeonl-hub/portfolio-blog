@@ -12738,5 +12738,260 @@
     "en": "Remaining: {0} · Realized profit: {1}",
     "ja": "残り{0}個・販売済み純利益{1}",
     "fi": "Jäljellä {0} · Toteutunut voitto {1}"
+  },
+  "빌드 작성 내용을 확인하세요.": {
+    "en": "Check the build guide content.",
+    "ja": "ビルドの説明内容を確認してください。",
+    "fi": "Tarkista oppaan sisältö."
+  },
+  "추천 장비 내용을 확인하세요.": {
+    "en": "Check the equipment recommendations.",
+    "ja": "推奨装備の内容を確認してください。",
+    "fi": "Tarkista varustesuositukset."
+  },
+  "스티그마 선택을 확인하세요.": {
+    "en": "Check the selected Stigmas.",
+    "ja": "選択したスティグマを確認してください。",
+    "fi": "Tarkista valitut stigmat."
+  },
+  "사용 포인트가 총량을 넘습니다. 배분을 줄이거나 총량을 확인하세요.": {
+    "en": "Points used exceed the total. Reduce the allocation or check the total.",
+    "ja": "使用ポイントが総量を超えています。配分を減らすか総量を確認してください。",
+    "fi": "Käytetyt pisteet ylittävät kokonaismäärän. Vähennä jakoa tai tarkista kokonaismäärä."
+  },
+  "현재 레벨·승급 조건에 맞지 않는 스킬이 있습니다.": {
+    "en": "Some skills exceed the current level or ascension limits.",
+    "ja": "現在のレベル・昇級条件に合わないスキルがあります。",
+    "fi": "Osa taidoista ylittää nykyisen tason tai ylennyksen rajat."
+  },
+  "사용 가능한 스티그마 칸을 초과했습니다.": {
+    "en": "Too many Stigmas selected for this level.",
+    "ja": "使用可能なスティグマ枠を超えています。",
+    "fi": "Valittuja stigmoja on liikaa tälle tasolle."
+  },
+  "데바니온의 레벨 조건이나 연결 경로를 확인하세요.": {
+    "en": "Check Daevanion level requirements and connected paths.",
+    "ja": "デヴァニオンのレベル条件と接続経路を確認してください。",
+    "fi": "Tarkista Daevanionin tasovaatimukset ja yhdistetyt polut."
+  },
+  "빌드 작성·수정": {
+    "en": "Build editor",
+    "ja": "ビルドの作成・編集",
+    "fi": "Buildin muokkaus"
+  },
+  "여기서 직접 배분하고 설명을 작성하세요. 저장 전에는 게시물과 내 플래너가 바뀌지 않습니다.": {
+    "en": "Edit the allocation and write your guide here. Your post and personal planner stay unchanged until you save.",
+    "ja": "ここで配分と説明を編集できます。保存するまでは投稿と自分のプランナーは変更されません。",
+    "fi": "Muokkaa jakoa ja kirjoita ohjeet tässä. Julkaisu ja oma suunnitelmasi eivät muutu ennen tallennusta."
+  },
+  "사용 {0} · 남음 {1}": {
+    "en": "Used {0} · Remaining {1}",
+    "ja": "使用 {0} · 残り {1}",
+    "fi": "Käytetty {0} · Jäljellä {1}"
+  },
+  "레벨을 낮추면 잠긴 배분이 해제됩니다. 포인트는 새 레벨 기준으로 돌아가므로 실제 총량을 확인하세요.": {
+    "en": "Lowering the level removes locked allocations. Point totals reset for the new level; check your actual totals.",
+    "ja": "レベルを下げると未解放の配分が解除されます。ポイントは新しいレベルの基準値に戻るため、実際の総量を確認してください。",
+    "fi": "Tason laskeminen poistaa lukitut valinnat. Pistemäärät palautuvat uuden tason mukaisiksi; tarkista todelliset kokonaismäärät."
+  },
+  "저장된 배분을 초안으로 불러왔습니다. 작성한 설명과 장비 추천은 유지됩니다.": {
+    "en": "Saved allocation loaded into the draft. Your guide text and equipment recommendations are kept.",
+    "ja": "保存済みの配分を下書きに読み込みました。説明と装備の推奨内容は保持されます。",
+    "fi": "Tallennettu jako ladattiin luonnokseen. Ohjeteksti ja varustesuositukset säilyvät."
+  },
+  "빌드 편집 항목": {
+    "en": "Build editing sections",
+    "ja": "ビルド編集項目",
+    "fi": "Buildin muokkausosiot"
+  },
+  "장비 추천": {
+    "en": "Equipment recommendations",
+    "ja": "推奨装備",
+    "fi": "Varustesuositukset"
+  },
+  "게시 전 미리보기": {
+    "en": "Preview before publishing",
+    "ja": "投稿前のプレビュー",
+    "fi": "Esikatsele ennen julkaisua"
+  },
+  "스킬 레벨과 특화를 직접 선택하세요": {
+    "en": "Choose skill levels and specializations",
+    "ja": "スキルレベルと特化を選択してください",
+    "fi": "Valitse taitotasot ja erikoistumiset"
+  },
+  "이 스티그마 사용": {
+    "en": "Use this Stigma",
+    "ja": "このスティグマを使用",
+    "fi": "Käytä tätä stigmaa"
+  },
+  "데바니온 보너스 +{0}": {
+    "en": "Daevanion bonus +{0}",
+    "ja": "デヴァニオンボーナス +{0}",
+    "fi": "Daevanion-bonus +{0}"
+  },
+  "스킬을 올리는 순서와 사용하는 이유": {
+    "en": "Skill upgrade order and reasons",
+    "ja": "スキル育成の順番と使用する理由",
+    "fi": "Taitojen kehitysjärjestys ja perustelut"
+  },
+  "노드를 선택한 뒤 추가·해제하세요": {
+    "en": "Select a node, then add or remove it",
+    "ja": "ノードを選択して追加・解除してください",
+    "fi": "Valitse solmu ja lisää tai poista se"
+  },
+  "추가하면 필요한 연결 노드도 함께 선택됩니다. 해제하면 연결이 끊긴 노드도 함께 해제됩니다.": {
+    "en": "Adding a node includes the required connecting path. Removing one also removes nodes disconnected from the start.",
+    "ja": "追加すると必要な接続ノードも選択されます。解除すると接続が切れたノードも解除されます。",
+    "fi": "Lisääminen valitsee myös tarvittavan yhdistävän polun. Poistaminen poistaa myös aloituksesta irronneet solmut."
+  },
+  "선택 노드 해제": {
+    "en": "Remove selected node",
+    "ja": "選択ノードを解除",
+    "fi": "Poista valittu solmu"
+  },
+  "선택 노드 추가": {
+    "en": "Add selected node",
+    "ja": "選択ノードを追加",
+    "fi": "Lisää valittu solmu"
+  },
+  "아래에서 노드를 누르세요.": {
+    "en": "Select a node below.",
+    "ja": "下のノードを選択してください。",
+    "fi": "Valitse solmu alta."
+  },
+  "우선 찍을 노드와 나중에 찍을 노드 설명": {
+    "en": "Explain which nodes to take first and later",
+    "ja": "優先して取るノードと後で取るノードの説明",
+    "fi": "Kerro ensin ja myöhemmin valittavat solmut"
+  },
+  "부위를 고르고 추천 장비를 작성하세요": {
+    "en": "Choose a slot and describe the recommended equipment",
+    "ja": "部位を選んで推奨装備を入力してください",
+    "fi": "Valitse paikka ja kuvaile suositeltu varuste"
+  },
+  "작성자의 추천입니다. 장비 이름만 입력해도 저장할 수 있습니다. 옵션과 강화 목표는 직접 확인한 내용을 적어 주세요.": {
+    "en": "These are your recommendations. An equipment name is enough to save a slot. Enter options and enhancement targets you have checked.",
+    "ja": "投稿者による推奨です。装備名だけでも保存できます。オプションと強化目標は確認した内容を入力してください。",
+    "fi": "Nämä ovat omia suosituksiasi. Varusteen nimi riittää tallentamiseen. Kirjoita tarkistamasi ominaisuudet ja vahvistustavoitteet."
+  },
+  "작성 안 함": {
+    "en": "Not specified",
+    "ja": "未記入",
+    "fi": "Ei määritetty"
+  },
+  "추천 장비 이름": {
+    "en": "Recommended equipment name",
+    "ja": "推奨装備名",
+    "fi": "Suositellun varusteen nimi"
+  },
+  "강화·초월 목표 (선택)": {
+    "en": "Enhancement / transcendence target (optional)",
+    "ja": "強化・超越目標（任意）",
+    "fi": "Vahvistus- ja transsendenssitavoite (valinnainen)"
+  },
+  "원하는 스킬·옵션 (선택)": {
+    "en": "Desired skills / options (optional)",
+    "ja": "目標スキル・オプション（任意）",
+    "fi": "Halutut taidot ja ominaisuudet (valinnainen)"
+  },
+  "추천 이유·대체 장비 (선택)": {
+    "en": "Reasons / alternatives (optional)",
+    "ja": "推奨理由・代替装備（任意）",
+    "fi": "Perustelut ja vaihtoehdot (valinnainen)"
+  },
+  "이 부위 추천 지우기": {
+    "en": "Clear this slot recommendation",
+    "ja": "この部位の推奨を削除",
+    "fi": "Tyhjennä tämän paikan suositus"
+  },
+  "장비를 맞추는 순서와 예산 안내": {
+    "en": "Equipment priorities and budget guidance",
+    "ja": "装備を揃える順番と予算の説明",
+    "fi": "Varusteiden hankintajärjestys ja budjettiohjeet"
+  },
+  "나만의 빌드 공유": {
+    "en": "Share your build",
+    "ja": "自分のビルドを共有",
+    "fi": "Jaa oma buildisi"
+  },
+  "빌드 글쓰기": {
+    "en": "Write a build post",
+    "ja": "ビルドを投稿",
+    "fi": "Kirjoita buildijulkaisu"
+  },
+  "현재 플래너를 초안으로 가져와 스킬·데바니온·장비 추천을 직접 작성합니다.": {
+    "en": "Start with your current planner, then edit skills, Daevanion and equipment recommendations in the post.",
+    "ja": "現在のプランナーを下書きに読み込み、スキル・デヴァニオン・推奨装備を編集できます。",
+    "fi": "Aloita nykyisestä suunnitelmasta ja muokkaa julkaisun taitoja, Daevanionia ja varustesuosituksia."
+  },
+  "빌드 공개 게시": {
+    "en": "Publish build",
+    "ja": "ビルドを公開",
+    "fi": "Julkaise buildi"
+  },
+  "빌드 글쓰기로 첫 빌드를 공유해 보세요.": {
+    "en": "Use Write a build post to share the first build.",
+    "ja": "ビルド投稿から最初のビルドを共有してください。",
+    "fi": "Jaa ensimmäinen buildi kirjoittamalla buildijulkaisu."
+  },
+  "작성자가 직접 적은 장비 추천입니다. 장비 효과는 위 스킬 보너스에 별도로 반영한 값입니다.": {
+    "en": "Equipment recommendations written by the author. Skill bonuses are entered separately in the allocation.",
+    "ja": "投稿者が入力した推奨装備です。スキルボーナスは配分に別途入力されています。",
+    "fi": "Kirjoittajan varustesuositukset. Taitobonukset syötetään jakoon erikseen."
+  },
+  "작성된 장비 추천이 없습니다.": {
+    "en": "No equipment recommendations written yet.",
+    "ja": "推奨装備はまだ記入されていません。",
+    "fi": "Varustesuosituksia ei ole vielä kirjoitettu."
+  },
+  "스킬 종류": {
+    "en": "Skill type",
+    "ja": "スキルの種類",
+    "fi": "Taitotyyppi"
+  },
+  "장비 부위": {
+    "en": "Equipment slot",
+    "ja": "装備部位",
+    "fi": "Varustepaikka"
+  },
+  "기본 {0} · 장비 +{1} · 데바니온 +{2} · 최종 {3}": {
+    "en": "Base {0} · Gear +{1} · Daevanion +{2} · Final {3}",
+    "ja": "基本 {0} · 装備 +{1} · デヴァニオン +{2} · 最終 {3}",
+    "fi": "Perus {0} · Varusteet +{1} · Daevanion +{2} · Lopullinen {3}"
+  },
+  "작성 내용이 너무 큽니다. 설명이나 장비 추천을 줄여 주세요.": {
+    "en": "The draft is too large. Shorten the guide text or equipment recommendations.",
+    "ja": "内容が大きすぎます。説明や装備の推奨内容を短くしてください。",
+    "fi": "Luonnos on liian suuri. Lyhennä ohjetekstiä tai varustesuosituksia."
+  },
+  "작성자가 직접 정한 배분과 장비 추천입니다. 장비 추천의 효과는 스킬 보너스로 따로 입력합니다.": {
+    "en": "Allocation and equipment recommendations chosen by the author. Equipment skill bonuses are entered separately.",
+    "ja": "投稿者が決めた配分と推奨装備です。装備のスキルボーナスは別途入力します。",
+    "fi": "Kirjoittajan valitsema jako ja varustesuositukset. Varusteiden taitobonukset syötetään erikseen."
+  },
+  "작은 화면에서는 보드를 좌우로 밀어 다른 노드를 볼 수 있습니다.": {
+    "en": "On small screens, swipe the board sideways to see other nodes.",
+    "ja": "小さい画面ではボードを左右にスワイプして他のノードを確認できます。",
+    "fi": "Pienellä näytöllä näet muut solmut pyyhkäisemällä lautaa sivulle."
+  },
+  "장비 옵션이나 이유를 적은 부위에는 추천 장비 이름도 입력하세요.": {
+    "en": "Add an equipment name for each slot with options or a recommendation reason.",
+    "ja": "オプションや理由を書いた部位には、推奨装備の名前も入力してください。",
+    "fi": "Lisää varusteen nimi jokaiseen paikkaan, johon kirjoitit ominaisuuksia tai suosituksen syyn."
+  },
+  "3차 승급을 완료했다면 위의 완료 항목을 체크하세요.": {
+    "en": "If you completed the third ascension, check the confirmation above.",
+    "ja": "3次昇級を完了している場合は、上の完了項目にチェックしてください。",
+    "fi": "Jos olet suorittanut kolmannen ylennyksen, vahvista se yllä."
+  },
+  "캐릭터 레벨이 부족하여 아직 투자할 수 없습니다.": {
+    "en": "Your character level is too low to invest in this skill yet.",
+    "ja": "キャラクターレベルが足りないため、まだ投資できません。",
+    "fi": "Hahmon taso ei vielä riitä tämän taidon kehittämiseen."
+  },
+  "작성자가 직접 적은 장비 추천입니다. 장비 이름·옵션만 적으면 스킬 보너스가 자동으로 더해지지 않습니다.": {
+    "en": "Equipment recommendations written by the author. Names and options alone do not automatically add skill bonuses.",
+    "ja": "投稿者が記入した推奨装備です。名前やオプションだけではスキルボーナスは自動加算されません。",
+    "fi": "Kirjoittajan varustesuositukset. Nimet ja ominaisuudet eivät automaattisesti lisää taitobonuksia."
   }
 }

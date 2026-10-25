@@ -801,3 +801,14 @@ Translation quality result: local Argos and M2M100 samples failed semantic prese
 ## ASBC community localization continuation — 2026-10-19
 [Task Goal]: Continue full localization with manually translated community publishing/listing/detail/vote/comment screens. Scope: community.tsx, public-builds.tsx, locale dictionary and browser regression; keep API requests, auth/session handling, user titles/descriptions/comments and author names unchanged. Inputs: ko/en/ja/fi locale and public/member views. Outputs: localized controls/help/status and dates; numbers/IDs/user content remain exact. Failure cases: missing translation falls back to source, user content resembling a translation key must stay literal, locale switch must not clear editing text or send mutations, absent/failed API responses remain recoverable. Validate translated branches, user text preservation and unchanged request bodies with controlled browser API fixtures, plus complete existing suite/type/lint/build. No automatic deployment.
 Specialization continuation: manually reviewed exact phrase templates for repeated numeric effect descriptions. Preserve original catalog bytes; translate only recognized full phrases at render time. Unknown phrases remain original. Verify all896descriptions are accounted for as matched/unmatched; decimal values, percent signs, guaranteed critical/multi-hit, cooldown direction and unknown mixed effects must not be altered. No machine drafts imported.
+
+## Public build authoring — 2026-10-25
+ Let members author and edit an independent public build with skills, specializations, Daevanion, equipment recommendations and guidance inside the post editor.
+Scope: public build composer/view, optional validated guide payload, explicit stigma selection, compatible saved plan validation. No unrelated ledger/SEO changes or new locales.
+Done when: create/edit/cancel/preview/reopen works on PC/mobile, changes do not alter personal planner, server ownership/revision/validation remain enforced.
+Inputs/expected: skill level or node changes update only draft and costs; manual equipment recommendations and notes survive save/reopen; legacy posts without guide still work.
+Failure cases: invalid ID, excessive text, over-budget/locked/disconnected nodes, conflicting revision, failed save, wrong author, empty draft, privacy leak, mobile overflow.
+
+- [x] Implement direct public post editing and authored equipment guidance.
+- [x] Verify PC/mobile, independent drafts, server validation and backward compatibility.
+Verification: backend24 tests,43 frontend suites, final integrated TypeScript/targeted regressions and production build PASS.226 existing paths preserved. No commit/push/deploy. User explicitly waived Claude cross-review and approved this scope for main/push/production release; task: tasks/asbc-public-build-editor.md.

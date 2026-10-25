@@ -8,7 +8,7 @@ export const MAX_SETTINGS_BYTES=1_000_000;
 export const SAVE_DELAY_MS=800;
 export class SettingsSizeLimit extends Error{}
 const classes=['assassin','gladiator','templar','ranger','sorcerer','elementalist','cleric','chanter'];
-const planFields=['classKey','level','mode','base','bonus','specs','nodes','checked','extraSP','extraStigma','extraCrystal','extraBattle','pointBudget','confirmedRemaining','confirmedRemainingContext','ascensionGrade3Confirmed','macroExtra'] as const;
+const planFields=['classKey','level','mode','base','bonus','specs','nodes','checked','extraSP','extraStigma','extraCrystal','extraBattle','pointBudget','confirmedRemaining','confirmedRemainingContext','ascensionGrade3Confirmed','stigmaSkills','macroExtra'] as const;
 export type Entries=Record<string,string>;
 export type SettingsDocument={version:number;revision:number;entries:Entries;updatedAt?:string};
 type Cache={values:Entries;dirty:string[];revision?:number;base?:Entries;conflict?:boolean;tradeConflict?:{key:string;remote:string|null}};

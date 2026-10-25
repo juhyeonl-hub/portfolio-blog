@@ -66,6 +66,7 @@ class AccountSettingsControllerTest {
         var plan=mapper.createObjectNode().put("classKey","templar").put("level",39).put("mode","safe").putNull("character");
         plan.putObject("base").put("100",5);plan.putObject("bonus");plan.putObject("specs");plan.putArray("nodes");plan.putArray("checked");plan.putObject("confirmedRemaining").put("sp",17);
         plan.putObject("confirmedRemainingContext").put("region","eu").put("serverId","1001").put("characterId","char-1").put("level",39);
+        plan.putArray("stigmaSkills").add("100").add("101");
         entries.put("shadowcraft-plan-v1:templar",plan.toString());
         entries.put("favorites","[\"map\",\"quick\"]");
         entries.put("a2bc-event-timers-v1","{\"version\":2,\"region\":\"eu\",\"server\":\"1001\",\"pinned\":[\"rift\"],\"profiles\":{\"eu:1001\":{\"offset\":null,\"timeZone\":\"Europe/Helsinki\",\"hidden\":[],\"times\":{\"rift\":\"09:00, 21:00\"}}}}");

@@ -132,3 +132,8 @@ try{
  automatic.stop();await tick(120000);assert.equal(automaticReads,4);
  console.log('PASS account settings: load/apply, debounce, first-login rules, offline reload/retry, account isolation, logout race, in-flight edits, quota, schema, size, privacy projection, manual pull and server timestamps');
 }finally{activateSettingsStore(null);globalThis.setTimeout=originalSet;globalThis.clearTimeout=originalClear;}
+
+// Explicit stigma selection survives the same privacy projection as an applied public plan.
+const manualStigmas={...planner.emptyPlan(JSON.parse(readFileSync('lib/data/catalogs/templar.json'))),stigmaSkills:['14080000']};
+assert.deepEqual(JSON.parse(projectSetting('shadowcraft-plan-v1:templar',JSON.stringify(manualStigmas))).stigmaSkills,['14080000']);
+console.log('Account settings: explicit stigma selection roundtrip PASS');
