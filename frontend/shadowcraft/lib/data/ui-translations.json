@@ -11138,5 +11138,305 @@
     "en": "Enter a target profit rate from 0–100%, or choose an example above.",
     "ja": "目標純利益率を0～100%で入力するか、上の例を選んでください。",
     "fi": "Syötä tavoitevoitto väliltä 0–100 % tai valitse yllä oleva esimerkki."
+  },
+  "{0}% 순이익 목표": {
+    "en": "Target profit: {0}%",
+    "ja": "純利益の目標：{0}%",
+    "fi": "Voittotavoite: {0}%"
+  },
+  "{0}개 판매 · 실제 받은 금액 {1}": {
+    "en": "{0} sold · actually received {1}",
+    "ja": "{0}個販売 · 実際の受取額 {1}",
+    "fi": "Myyty {0} · saatu summa {1}"
+  },
+  "{0}개를 모두 판매한 뒤의 기준입니다.": {
+    "en": "Assumes all {0} items are sold.",
+    "ja": "{0}個すべての販売を前提にしています。",
+    "fi": "Olettaa kaikkien {0} tuotteen myynnin."
+  },
+  "{0}번째 판매 · {1}개": {
+    "en": "Sale {0} · {1} items",
+    "ja": "販売{0} · {1}個",
+    "fi": "Myynti {0} · {1} tuotetta"
+  },
+  "{0}번째 판매 기록 삭제": {
+    "en": "Remove sale {0}",
+    "ja": "販売記録{0}を削除",
+    "fi": "Poista myynti {0}"
+  },
+  "같은 가격에 함께 산 물량을 기록하세요. 구매 내용을 고치면 기존 판매 손익도 다시 계산됩니다.": {
+    "en": "Record one purchase batch bought at the same price. Editing the purchase also recalculates existing sale profits.",
+    "ja": "同じ価格でまとめて買った分を記録してください。購入内容を変えると、既存の販売損益も再計算されます。",
+    "fi": "Kirjaa samalla hinnalla ostettu erä. Ostotietojen muutos laskee myös aiempien myyntien voitot uudelleen."
+  },
+  "개당 {0} 이상": {
+    "en": "At least {0} per item",
+    "ja": "1個あたり{0}以上",
+    "fi": "Vähintään {0} kappaleelta"
+  },
+  "개당 상한으로 샀을 때 예상 총이익 {0}": {
+    "en": "Estimated total profit when bought at the unit ceiling: {0}",
+    "ja": "1個あたりの購入上限価格で買った場合の予想総利益 {0}",
+    "fi": "Arvioitu kokonaisvoitto yksikköhinnan ylärajalla: {0}"
+  },
+  "개당 이 가격 이하로 구매": {
+    "en": "Buy at this price or less per item",
+    "ja": "1個あたりこの価格以下で購入",
+    "fi": "Osta enintään tällä kappalehinnalla"
+  },
+  "거래 도구": {
+    "en": "Trading tools",
+    "ja": "取引ツール",
+    "fi": "Kaupankäyntityökalut"
+  },
+  "거래소에서 직접 확인한 판매가": {
+    "en": "A sale price you checked in the marketplace",
+    "ja": "取引所で確認した販売価格",
+    "fi": "Kauppapaikalta tarkistamasi myyntihinta"
+  },
+  "구매 상한 결과": {
+    "en": "Purchase ceiling result",
+    "ja": "購入上限の計算結果",
+    "fi": "Ostohinnan yläraja"
+  },
+  "구매비는 수량 비율로 나누며, 1키나 미만 원가는 남은 재고에 포함합니다.": {
+    "en": "Purchase cost is allocated by quantity. Fractions below 1 Kinah remain in unsold stock.",
+    "ja": "購入費は数量に比例して配分し、1キナ未満の端数は残りの在庫に含めます。",
+    "fi": "Ostohinta jaetaan määrän suhteessa. Alle 1 Kinahin jäännökset jäävät myymättömän varaston kustannuksiin."
+  },
+  "구매할 수량": {
+    "en": "Quantity to buy",
+    "ja": "購入する数量",
+    "fi": "Ostettava määrä"
+  },
+  "기록 가능한 수량: {0}개": {
+    "en": "Available to record: {0} items",
+    "ja": "記録できる数量：{0}個",
+    "fi": "Kirjattavissa: {0} tuotetta"
+  },
+  "남은 물건은 얼마에 팔면 본전일까요?": {
+    "en": "What price recovers the total purchase cost?",
+    "ja": "残りをいくらで売れば元が取れる？",
+    "fi": "Millä hinnalla katat koko ostohinnan?"
+  },
+  "남은 물건을 한 번에 팔 수량": {
+    "en": "Remaining items per listing",
+    "ja": "残りの1回あたり販売数",
+    "fi": "Jäljellä olevia tuotteita myyntierässä"
+  },
+  "남은 물건의 매입 비용": {
+    "en": "Cost of unsold stock",
+    "ja": "残りの在庫の仕入れ費用",
+    "fi": "Myymättömän varaston ostohinta"
+  },
+  "남은 수량보다 많이 기록할 수 없습니다.": {
+    "en": "You cannot record more than the remaining quantity.",
+    "ja": "残りの数量を超えて記録することはできません。",
+    "fi": "Et voi kirjata jäljellä olevaa määrää enempää."
+  },
+  "되돌리기": {
+    "en": "Undo",
+    "ja": "元に戻す",
+    "fi": "Kumoa"
+  },
+  "모두 판매했습니다": {
+    "en": "All items sold",
+    "ja": "すべて販売しました",
+    "fi": "Kaikki tuotteet myyty"
+  },
+  "브라우저에 저장하지 못했습니다. 이 화면에서는 계속 계산할 수 있습니다.": {
+    "en": "Could not save in this browser. You can still calculate on this screen.",
+    "ja": "ブラウザに保存できませんでした。この画面での計算は続けられます。",
+    "fi": "Tallennus selaimeen epäonnistui. Voit silti jatkaa laskemista tällä sivulla."
+  },
+  "세금·등록비를 뺀 실제 수령액 · 다시 차감하지 않습니다.": {
+    "en": "Actual receipt after tax and listing fees · no second deduction",
+    "ja": "税金・登録費を引いた実際の受取額 · 二重に差し引きません",
+    "fi": "Todellinen saatu summa veron ja ilmoitusmaksujen jälkeen · ei uutta vähennystä"
+  },
+  "세율 {0}% · {1}개씩 판매 · 등록 1회당 {2}": {
+    "en": "Tax {0}% · {1} per listing · fee {2} per listing",
+    "ja": "税率{0}% · {1}個ずつ販売 · 登録1回あたり{2}",
+    "fi": "Vero {0}% · {1} tuotetta erässä · ilmoitusmaksu {2}"
+  },
+  "세율·묶음·등록비 확인": {
+    "en": "Check tax, bundle size and listing fee",
+    "ja": "税率・販売数・登録費を確認",
+    "fi": "Tarkista vero, eräkoko ja ilmoitusmaksu"
+  },
+  "실제 수령액 {0}": {
+    "en": "Actually received {0}",
+    "ja": "実際の受取額 {0}",
+    "fi": "Todella saatu {0}"
+  },
+  "실제로 팔린 수량과 정산 후 받은 금액을 기록하세요.": {
+    "en": "Record the quantity actually sold and the amount received after settlement.",
+    "ja": "実際に売れた数量と精算後の受取額を記録してください。",
+    "fi": "Kirjaa todellinen myyty määrä ja tilityksen jälkeen saatu summa."
+  },
+  "아직 팔지 않은 {0}개": {
+    "en": "{0} items not sold yet",
+    "ja": "未販売の{0}個",
+    "fi": "Vielä myymättä {0} tuotetta"
+  },
+  "얼마까지 사도 될까요?": {
+    "en": "How much can I pay?",
+    "ja": "いくらまでなら買ってよい？",
+    "fi": "Paljonko voin maksaa?"
+  },
+  "얼마까지 살까": {
+    "en": "How much to pay",
+    "ja": "いくらまで買う？",
+    "fi": "Ostohinnan raja"
+  },
+  "얼마에 팔까": {
+    "en": "How much to sell for",
+    "ja": "いくらで売る？",
+    "fi": "Myyntihinta"
+  },
+  "예상 개당 판매가": {
+    "en": "Expected sale price per item",
+    "ja": "予想販売価格（1個）",
+    "fi": "Arvioitu kappalemyyntihinta"
+  },
+  "이 가격에 전부 팔린다는 가정입니다. 실제 판매 가능 가격을 먼저 확인하세요.": {
+    "en": "Assumes everything sells at this price. Check a realistic sale price first.",
+    "ja": "この価格ですべて売れる前提です。実際に売れる価格を先に確認してください。",
+    "fi": "Olettaa kaiken myynnin tällä hinnalla. Tarkista ensin realistinen myyntihinta."
+  },
+  "이 조건으로는 본전 회수가 불가능합니다.": {
+    "en": "These conditions cannot recover the purchase cost.",
+    "ja": "この条件では購入費を回収できません。",
+    "fi": "Näillä ehdoilla ostohintaa ei voi kattaa."
+  },
+  "이미 받은 돈과 남은 {0}개 판매대금을 합쳐 전체 구매 비용을 회수하는 가격입니다.": {
+    "en": "This price combines previous receipts with sales of the remaining {0} items to recover the full purchase cost.",
+    "ja": "これまでの受取額と残り{0}個の販売代金を合わせて、購入費全額を回収する価格です。",
+    "fi": "Tällä hinnalla aiemmat tuotot ja jäljellä olevien {0} tuotteen myynti kattavat koko ostohinnan."
+  },
+  "이미 판 수량도 포함한 전체 수량": {
+    "en": "Total quantity, including items already sold",
+    "ja": "販売済みも含めた全数量",
+    "fi": "Kokonaismäärä, myös jo myydyt tuotteet"
+  },
+  "이번에 팔린 물건 기록": {
+    "en": "Record a completed sale",
+    "ja": "今回の販売を記録",
+    "fi": "Kirjaa toteutunut myynti"
+  },
+  "이번에 팔린 수량": {
+    "en": "Quantity sold this time",
+    "ja": "今回売れた数量",
+    "fi": "Nyt myyty määrä"
+  },
+  "일부 판매 손익": {
+    "en": "Partial sale profit and loss",
+    "ja": "一部販売の損益",
+    "fi": "Osittaisen myynnin tulos"
+  },
+  "일부 팔았어요": {
+    "en": "I sold some",
+    "ja": "一部売れました",
+    "fi": "Myin osan"
+  },
+  "저장된 기록을 읽지 못해 새 계산으로 시작했습니다.": {
+    "en": "Could not read the saved records; started a new calculation.",
+    "ja": "保存した記録を読み込めず、新しい計算を開始しました。",
+    "fi": "Tallennettuja tietoja ei voitu lukea; aloitettiin uusi laskelma."
+  },
+  "전부 판매하는 것으로 계산": {
+    "en": "Assumes all items are sold",
+    "ja": "すべて販売する前提で計算",
+    "fi": "Olettaa kaikkien tuotteiden myynnin"
+  },
+  "전체 구매 비용 상한": {
+    "en": "Maximum total purchase cost",
+    "ja": "購入総額の上限",
+    "fi": "Koko ostohinnan yläraja"
+  },
+  "정산 후 받은 총금액": {
+    "en": "Total received after settlement",
+    "ja": "精算後に受け取った総額",
+    "fi": "Tilityksen jälkeen saatu kokonaissumma"
+  },
+  "정산 후 받은 총금액을 입력하세요.": {
+    "en": "Enter the total amount received after settlement.",
+    "ja": "精算後に受け取った総額を入力してください。",
+    "fi": "Syötä tilityksen jälkeen saatu kokonaissumma."
+  },
+  "처음 산 수량": {
+    "en": "Original purchase quantity",
+    "ja": "最初に買った数量",
+    "fi": "Alun perin ostettu määrä"
+  },
+  "처음 산 수량이 판매 기록보다 적습니다. 구매 수량이나 판매 기록을 고쳐 주세요.": {
+    "en": "The purchase quantity is below the recorded sales. Correct the purchase quantity or sale records.",
+    "ja": "購入数量が販売記録より少なくなっています。購入数量か販売記録を修正してください。",
+    "fi": "Ostettu määrä on kirjattua myyntimäärää pienempi. Korjaa ostomäärä tai myyntitiedot."
+  },
+  "최종 순이익 {0}": {
+    "en": "Final net profit {0}",
+    "ja": "最終純利益 {0}",
+    "fi": "Lopullinen nettovoitto {0}"
+  },
+  "판매 기록": {
+    "en": "Sale records",
+    "ja": "販売記録",
+    "fi": "Myyntikirjaukset"
+  },
+  "판매 기록 전체 비우기": {
+    "en": "Clear all sale records",
+    "ja": "販売記録をすべて消去",
+    "fi": "Tyhjennä myyntikirjaukset"
+  },
+  "판매 기록 추가": {
+    "en": "Add sale record",
+    "ja": "販売記録を追加",
+    "fi": "Lisää myyntikirjaus"
+  },
+  "판매 기록은 구매 물량당 200개까지 보관합니다.": {
+    "en": "Up to 200 sale records per purchase batch.",
+    "ja": "購入した物量ごとに販売記録を200件まで保存できます。",
+    "fi": "Enintään 200 myyntikirjausta ostettua erää kohti."
+  },
+  "판매 기록은 이 브라우저에만 보관됩니다. 다른 구매 물량을 기록하려면 기존 판매 기록을 먼저 비우세요.": {
+    "en": "Records stay in this browser. Clear the sale records before starting a different purchase batch.",
+    "ja": "記録はこのブラウザにのみ保存されます。別の購入分を記録する前に、販売記録を消去してください。",
+    "fi": "Kirjaukset säilyvät tässä selaimessa. Tyhjennä myyntikirjaukset ennen toisen ostoerän aloittamista."
+  },
+  "판매 기록을 지웠습니다.": {
+    "en": "Sale records removed.",
+    "ja": "販売記録を削除しました。",
+    "fi": "Myyntikirjaukset poistettu."
+  },
+  "판매 비용이 수령액보다 커서 이 조건으로는 구매할 수 없습니다.": {
+    "en": "Selling costs exceed the receipts, so no purchase price works.",
+    "ja": "販売費用が受取額を超えるため、この条件では購入できません。",
+    "fi": "Myyntikulut ylittävät tuotot, joten sopivaa ostohintaa ei ole."
+  },
+  "판매가·수량·목표 이익률을 확인하세요.": {
+    "en": "Check the sale price, quantity and target profit rate.",
+    "ja": "販売価格・数量・目標利益率を確認してください。",
+    "fi": "Tarkista myyntihinta, määrä ja voittotavoite."
+  },
+  "팔 가격을 먼저 정하면, 목표 이익을 남길 구매 상한을 계산합니다.": {
+    "en": "Enter a sale price to calculate the purchase ceiling for your target profit.",
+    "ja": "販売価格を決めると、目標利益を残せる購入上限を計算します。",
+    "fi": "Syötä myyntihinta, niin saat voittotavoitteen mukaisen ostohinnan ylärajan."
+  },
+  "팔고 남은 물건, 지금 손익은?": {
+    "en": "What is my result so far?",
+    "ja": "一部売れた後の損益は？",
+    "fi": "Mikä on tulokseni tähän mennessä?"
+  },
+  "팔린 물건의 순이익": {
+    "en": "Net profit on sold items",
+    "ja": "販売済み商品の純利益",
+    "fi": "Myytyjen tuotteiden nettovoitto"
+  },
+  "팔린 수량을 1개 이상 입력하세요.": {
+    "en": "Enter at least 1 sold item.",
+    "ja": "売れた数量を1個以上で入力してください。",
+    "fi": "Syötä vähintään 1 myyty tuote."
   }
 }

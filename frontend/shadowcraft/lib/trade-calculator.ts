@@ -117,3 +117,49 @@ export function tradeProfitTarget(input:TradeInput,rateBps:bigint){
 export function tradeProfitExamples(input:TradeInput){
  return [0,5,10,20].map(percent=>({percent,...tradeProfitTarget(input,BigInt(percent)*100n)}));
 }
+
+// Reverse the purchase-cost ROI inequality using the exact per-listing net receipt.
+export function maximumTradePurchase(input:TradeInput,rateBps:bigint){
+ if(rateBps<0n||rateBps>10000n)throw Error('Invalid profit rate');
+ const net=calculateTrade({...input,buy:0n,totalCost:0n}).net;
+ if(net<0n)return null;
+ const total=net*10000n/(10000n+rateBps),unit=total/input.quantity;
+ return {total,unit,net,profitAtUnit:net-unit*input.quantity};
+}
+export type TradeSale={id:string;quantity:string;received:string};
+export type TradeLedger={draft:TradeDraft;sales:TradeSale[]};
+export function restoreTradeLedger(raw:unknown):TradeLedger|null{
+ if(!raw||typeof raw!=='object')return null;
+ const value=raw as Partial<TradeLedger>;
+ if(!value.draft||typeof value.draft!=='object'||!Object.keys(tradeExample).every(k=>typeof (value.draft as Record<string,unknown>)[k]==='string'&&String((value.draft as Record<string,unknown>)[k]).length<=80)||!['up','down'].includes(value.draft.rounding)||!['unit','total'].includes(value.draft.purchaseMode)||!Array.isArray(value.sales)||value.sales.length>200)return null;
+ const ids=new Set<string>();
+ for(const row of value.sales){
+  if(!row||typeof row.id!=='string'||row.id.length>80||ids.has(row.id)||typeof row.quantity!=='string'||typeof row.received!=='string'||parseTradeInteger(row.quantity,MAX_TRADE_QUANTITY,1n)===null||parseTradeMoney(row.received)===null)return null;
+  ids.add(row.id);
+ }
+ return {draft:restoreTradeDraft(value.draft),sales:value.sales.map(({id,quantity,received})=>({id,quantity,received}))};
+}
+export function calculateTradeLedger(input:TradeInput,sales:TradeSale[]){
+ check(input,input.bundle);
+ let sold=0n,received=0n;
+ for(const row of sales){
+  const quantity=parseTradeInteger(row.quantity,MAX_TRADE_QUANTITY,1n),net=parseTradeMoney(row.received);
+  if(quantity===null||net===null)throw Error('Invalid sale');sold+=quantity;received+=net;
+ }
+ if(sold>input.quantity)throw Error('Oversold');
+ const cost=tradePurchaseCost(input),soldCost=cost*sold/input.quantity,remaining=input.quantity-sold;
+ // Allocate sub-Kinah cost remainders to unsold stock; all cost is assigned on the final sale.
+ const inventoryCost=cost-soldCost,realizedProfit=received-soldCost,cashBalance=received-cost;
+ let remainingPrice:bigint|null=null;
+ if(remaining){
+  const future={...input,buy:0n,totalCost:0n,quantity:remaining},needed=cost-received;
+  if(calculateTrade(future,future.bundle,0n).net>=needed)remainingPrice=0n;
+  else if(future.taxBps!==10000n){
+   let low=0n,high=1n;
+   while(calculateTrade(future,future.bundle,high).net<needed)high*=2n;
+   while(low+1n<high){const mid=(low+high)/2n;if(calculateTrade(future,future.bundle,mid).net>=needed)high=mid;else low=mid;}
+   remainingPrice=high;
+  }
+ }
+ return {cost,sold,received,soldCost,remaining,inventoryCost,realizedProfit,cashBalance,remainingPrice};
+}

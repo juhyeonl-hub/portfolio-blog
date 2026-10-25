@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl} from './modules.mjs';
-const {calculateTrade,minimumTradePrice,parseTradeDraft,parseTradeInteger,parseTradeRate,parsePurchaseDraft,tradeProfitExamples,tradeExample,MAX_TRADE_MONEY,parseSaleDraft,tradeProfitTarget,parseTradeMoney,restoreTradeDraft,changePurchaseMode}=await import(moduleUrl(readFileSync('lib/trade-calculator.ts','utf8')));
+const {calculateTrade,minimumTradePrice,parseTradeDraft,parseTradeInteger,parseTradeRate,parsePurchaseDraft,tradeProfitExamples,tradeExample,MAX_TRADE_MONEY,maximumTradePurchase,calculateTradeLedger,restoreTradeLedger,parseSaleDraft,tradeProfitTarget,parseTradeMoney,restoreTradeDraft,changePurchaseMode}=await import(moduleUrl(readFileSync('lib/trade-calculator.ts','utf8')));
 const input=parseTradeDraft(tradeExample).value;
 assert.ok(input);
 for(const size of [25n,50n,100n]){
@@ -104,3 +104,38 @@ const previousDraft={...tradeExample,buy:'13만 5천'};delete previousDraft.prof
 assert.equal(restoreTradeDraft(previousDraft).profitRate,'10');
 assert.equal(restoreTradeDraft({...tradeExample,profitRate:'7.5'}).profitRate,'7.5');
 console.log('PASS custom ROI targets/boundaries, exact break-even, independent optional goal, and saved percentage migration');
+
+const upper=maximumTradePurchase(input,1000n);
+assert.equal(upper.total,12272727n);assert.equal(upper.unit,122727n);assert.equal(upper.profitAtUnit,1227300n);
+assert.equal(maximumTradePurchase({...input,sell:0n,fee:1n},0n),null);
+assert.throws(()=>maximumTradePurchase(input,-1n));
+for(const rounding of ['up','down'])for(const quantity of [1n,3n,7n])for(const bundle of [1n,2n,10n])for(const taxBps of [0n,1234n,10000n])for(const rate of [0n,750n,10000n]){
+ const v={...input,sell:17n,quantity,bundle,taxBps,fee:1n,rounding};
+ let net=0n;for(let left=quantity;left>0n;){const count=left<bundle?left:bundle,gross=count*v.sell;net+=gross-(gross*taxBps+(rounding==='up'?9999n:0n))/10000n-1n;left-=count;}
+ const cap=maximumTradePurchase(v,rate);
+ if(net<0n)assert.equal(cap,null);else{assert.ok((net-cap.total)*10000n>=cap.total*rate);assert.ok((net-cap.total-1n)*10000n<(cap.total+1n)*rate);assert.equal(cap.unit,cap.total/quantity);}
+}
+const oneSale=[{id:'a',quantity:'25',received:'3375000'}],partial=calculateTradeLedger(input,oneSale);
+assert.equal(partial.realizedProfit,125000n);assert.equal(partial.inventoryCost,9750000n);assert.equal(partial.remainingPrice,142593n);assert.equal(partial.remaining,75n);
+const noSales=calculateTradeLedger(input,[]);assert.equal(noSales.realizedProfit,0n);assert.equal(noSales.remainingPrice,144445n);
+const allSales=calculateTradeLedger(input,[...oneSale,{id:'b',quantity:'75',received:'10125000'}]);assert.equal(allSales.realizedProfit,500000n);assert.equal(allSales.remaining,0n);assert.equal(allSales.remainingPrice,null);assert.equal(allSales.inventoryCost,0n);
+assert.throws(()=>calculateTradeLedger(input,[{id:'a',quantity:'101',received:'0'}]));
+assert.throws(()=>calculateTradeLedger(input,[{id:'a',quantity:'-1',received:'0'}]));
+const odd={...input,totalCost:100n,quantity:3n,taxBps:0n,fee:0n};
+assert.equal(calculateTradeLedger(odd,[{id:'a',quantity:'1',received:'50'}]).soldCost,33n);
+assert.equal(calculateTradeLedger(odd,[{id:'a',quantity:'1',received:'50'}]).inventoryCost,67n);
+assert.equal(calculateTradeLedger(odd,[{id:'a',quantity:'1',received:'150'}]).remainingPrice,0n);
+assert.equal(calculateTradeLedger({...odd,taxBps:10000n},[{id:'a',quantity:'1',received:'50'}]).remainingPrice,null);
+for(const received of [0n,20n,100n,150n])for(const taxBps of [0n,1234n,10000n])for(const fee of [0n,10n,100n]){
+ const v={...odd,taxBps,fee},row=calculateTradeLedger(v,[{id:'a',quantity:'1',received:String(received)}]);
+ assert.equal(row.soldCost+row.inventoryCost,row.cost);assert.equal(row.sold+row.remaining,v.quantity);
+ if(row.remainingPrice!==null){const future={...v,totalCost:0n,quantity:row.remaining};assert.ok(calculateTrade(future,future.bundle,row.remainingPrice).net+received>=100n);if(row.remainingPrice>0n)assert.ok(calculateTrade(future,future.bundle,row.remainingPrice-1n).net+received<100n);}
+}
+assert.deepEqual(restoreTradeLedger({draft:tradeExample,sales:oneSale}),{draft:tradeExample,sales:oneSale});
+assert.equal(restoreTradeLedger({draft:tradeExample,sales:[...oneSale,...oneSale]}),null);
+assert.equal(restoreTradeLedger({draft:tradeExample,sales:[{id:'a',quantity:'no',received:'1'}]}),null);
+assert.equal(restoreTradeLedger(null),null);
+console.log('PASS buy ceiling independent oracle, partial/full sales, allocation conservation, remainder break-even and safe ledger restoration');
+
+assert.equal(restoreTradeLedger({draft:{...tradeExample,rounding:'broken'},sales:[]}),null);
+assert.equal(restoreTradeLedger({draft:{...tradeExample,buy:'x'.repeat(81)},sales:[]}),null);
