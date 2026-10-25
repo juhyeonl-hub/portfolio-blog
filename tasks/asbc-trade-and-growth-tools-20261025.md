@@ -8,12 +8,12 @@
 - Base commit: dd8d7f2d8ccad32dff2a3098a51805e62ea243cc
 - Expected stage1: 예상판매150000/100개/25개묶음/세10/비용0/목표10% -> 구매상한 개당122727, 전체구매비상한12272727. 구매130000*100/25개판매/정산수령3375000 -> 팔린이익125000, 재고75개/원가9750000, 남은본전판매가142593.
 - Failure cases: 잘못된 숫자·음수·100%세금·이익불가·미판매/전량판매·초과판매·소수원가배분·잘못된 저장값·저장실패·원본 캐릭터 부족/다른캐릭터/비교불가능 스킬정보는 단정금지.
-- Verification: 진행 중.
-- Last verified: 시작 상태 보존, baseline.json 기록.
+- Verification: 5개 기능 계산/회귀/PC·모바일 UI 검사 및 운영 배포 완료. 최종 부위명 표시 보완 배포 확인 중.
+- Last verified: 실제 GreenOrc 운영 재조회에서 장비·스킬·데바니온 변화 확인; 기존 206개 경로 및 번역 원본 변경 보존.
 - Last reviewed: Claude 미실시; 단독 검증을 교차 리뷰로 기록하지 않음.
 - Findings: 일부 판매는 실제 정산 수령액을 입력받아 세금 중복 차감을 방지. 한 번에 산 물량 단위로 계산하며 예상 판매가와 실제 판매기록을 구분.
 - Uncommitted: 기존 206개 파일 해시를 D:/CodexData/Projects/ASBC/artifacts/trade-and-growth-tools-20261025/baseline.json에 보존.
-- Next: 1단계 구현→검사→분리배포→운영QA, 이후 3~5 조사/구현.
+- Next: 최종 부위명 보완 배포 자산/화면 확인 후 작업 종료.
 - Blocker: 없음.
 
 ## Stage 1 verification
@@ -37,4 +37,10 @@
 - Actual snapshot fixture: level40→41, equipment +3→+5, skill10→12, one added Daevanion node. Clear/undo restores history. No-change and stale responses deduplicate, identity and catalog-version isolation tested. Missing data is unknown rather than removed.
 - Browser file import in Chrome unavailable because extension file-URL access is off. No permission change made; IAB used for PC and mobile fixture checks. Earlier trade UI passed in Chrome and IAB.
 - UX: 14px guidance, responsive cards, and shortcuts above point settings to avoid long scrolling. Growth history stores only projected public data, 20 changed snapshots, browser-local; no server schema/auth change.
-- Final shortcut visual checks PASS: target card positioned below sticky navigation; mobile390, desktop1440, no horizontal overflow. Deployment authorized and ready.
+- Final shortcut visual checks PASS: target card positioned below sticky navigation; mobile390, desktop1440, no horizontal overflow. Deployed and verified in production.
+
+## Stage 2/3 release and live verification
+- Source a5c5f48c0aeaa07433593cd0d6ed5d1d2e19c7a2 pushed to main; production deployment https://8a0641bc.asbc-4c9.pages.dev. Canonical index and core/trade assets matched isolated build.
+- Actual GreenOrc production requery (Oct25 04:25 Europe/Helsinki): previous and latest Lv45 snapshots; 5 equipment slot changes, skill-level changes, 78 added/30 removed Daevanion nodes. These are public query snapshots, not an inferred point balance or guaranteed real-time game state.
+- Production mobile390x844 displays first baseline correctly. No synthetic fixture imported into production.
+- Final polish reuses existing localized slotLabel in growth history (SubHand→보조무기, Bracelet→팔찌). TypeScript/ESLint PASS; localization initially invoked from incorrect cwd, corrected shadowcraft cwd PASS.
