@@ -44,3 +44,8 @@
 - Actual GreenOrc production requery (Oct25 04:25 Europe/Helsinki): previous and latest Lv45 snapshots; 5 equipment slot changes, skill-level changes, 78 added/30 removed Daevanion nodes. These are public query snapshots, not an inferred point balance or guaranteed real-time game state.
 - Production mobile390x844 displays first baseline correctly. No synthetic fixture imported into production.
 - Final polish reuses existing localized slotLabel in growth history (SubHand→보조무기, Bracelet→팔찌). TypeScript/ESLint PASS; localization initially invoked from incorrect cwd, corrected shadowcraft cwd PASS.
+
+## Final UI polish
+- Localized growth equipment slots released in 94cc843 at https://af903dbc.asbc-4c9.pages.dev; canonical HTML and 9 related assets matched.
+- Production GreenOrc changes displayed at desktop1440 and mobile390; mobile body width375 within viewport390. IAB mobile existing baseline also remains intact after successful Ludra lookup with no new change record.
+- Found fixed 200px shortcut offset could hide the heading with a taller mobile timer. Replaced only new guidance CSS margin with existing --a2bc-timer-height + 86px; no changes to global CSS or existing timer.
