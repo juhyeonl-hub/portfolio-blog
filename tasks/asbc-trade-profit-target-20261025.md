@@ -13,5 +13,17 @@
 - Last reviewed: Claude 미실시, 단독 검증을 교차 리뷰로 기록하지 않음.
 - Findings: 즉시 재계산은 기존 구현에 있음. 추가 중복 화면 대신 결과 영역에 선택한 이익률과 본전 기준을 표시.
 - Uncommitted: 시작 기준 206개 파일 해시를 D:/CodexData/Projects/ASBC/artifacts/trade-profit-target-20261025/baseline.json에 보존.
-- Next: Scope-only main commit/push, deploy isolated build, canonical bytes and production PC/mobile verification.
+- Next: 완료. 신규 요청 전 관련 없는 변경 보존.
 - Blocker: 없음.
+
+## 운영 반영 결과
+
+- Source commit: dff190d96aa62daee08bc89bbff5112a6a034fa6 (main -> origin/main push 완료).
+- Production deployment: https://cbdc82f8.asbc-4c9.pages.dev / https://asbc.app/#/trade
+- Canonical verification: HTML 및 9개 JS/CSS 자산이 분리 빌드와 바이트 단위 일치. production-release-check.json에 SHA256 기록.
+- Production UI: Chrome 실제 viewport1440 / 모바일 viewport390에서 7.5% -> sale155278/profit975020/break-even144445 일치. 목표 총 순익을 비운 판매가150000 -> 순익500000 유지. 가로 넘침 없음. 물리 모바일 기기 검증은 아님.
+- 기존 저장값 profitRate 누락 ->10% 마이그레이션 확인. 검증 뒤 원래 구매단가130000/수량100/묶음25/세율10/등록비0/판매가150000/목표500000 복원. 새 이익률 기본10. 공개 이용 유지.
+- Artifact directory: D:/CodexData/Projects/ASBC/artifacts/trade-profit-target-20261025 (production-pc.png, production-mobile.png, browser-evidence.json, production-release-check.json, build.log, deploy.log).
+- Final preservation: 시작 시 기존 파일206개 SHA256 및 번역 before+9개 추가키 동등성 PASS. 릴리스에 기존 globals.css/home-panel.tsx 변경과 무관한 번역 변경 미포함. 임시 QA 탭2개와 해당 HTTP 서버 정리, 브라우저 화면 크기 복원.
+- Limitation: 실제 게임 세금 소수점 처리·비례 등록비는 확정하지 않음. 화면의 기존 미확인 안내 및 조정 가능 입력 유지.
+- Review: 사용자 기존 명시 승인으로 Claude 교차 리뷰 생략. Claude usage_limit 재시도 없음.
