@@ -8,12 +8,12 @@
 - Base commit: dd8d7f2d8ccad32dff2a3098a51805e62ea243cc
 - Expected stage1: 예상판매150000/100개/25개묶음/세10/비용0/목표10% -> 구매상한 개당122727, 전체구매비상한12272727. 구매130000*100/25개판매/정산수령3375000 -> 팔린이익125000, 재고75개/원가9750000, 남은본전판매가142593.
 - Failure cases: 잘못된 숫자·음수·100%세금·이익불가·미판매/전량판매·초과판매·소수원가배분·잘못된 저장값·저장실패·원본 캐릭터 부족/다른캐릭터/비교불가능 스킬정보는 단정금지.
-- Verification: 5개 기능 계산/회귀/PC·모바일 UI 검사 및 운영 배포 완료. 최종 부위명 표시 보완 배포 확인 중.
+- Verification: 5개 기능 계산/회귀/PC·모바일 UI 검사 및 운영 배포 완료. 마지막 부위명·고정 타이머 여백 보완도 운영 확인 완료.
 - Last verified: 실제 GreenOrc 운영 재조회에서 장비·스킬·데바니온 변화 확인; 기존 206개 경로 및 번역 원본 변경 보존.
 - Last reviewed: Claude 미실시; 단독 검증을 교차 리뷰로 기록하지 않음.
 - Findings: 일부 판매는 실제 정산 수령액을 입력받아 세금 중복 차감을 방지. 한 번에 산 물량 단위로 계산하며 예상 판매가와 실제 판매기록을 구분.
 - Uncommitted: 기존 206개 파일 해시를 D:/CodexData/Projects/ASBC/artifacts/trade-and-growth-tools-20261025/baseline.json에 보존.
-- Next: 최종 부위명 보완 배포 자산/화면 확인 후 작업 종료.
+- Next: 완료. 추가 작업 없음.
 - Blocker: 없음.
 
 ## Stage 1 verification
@@ -49,3 +49,10 @@
 - Localized growth equipment slots released in 94cc843 at https://af903dbc.asbc-4c9.pages.dev; canonical HTML and 9 related assets matched.
 - Production GreenOrc changes displayed at desktop1440 and mobile390; mobile body width375 within viewport390. IAB mobile existing baseline also remains intact after successful Ludra lookup with no new change record.
 - Found fixed 200px shortcut offset could hide the heading with a taller mobile timer. Replaced only new guidance CSS margin with existing --a2bc-timer-height + 86px; no changes to global CSS or existing timer.
+
+## Completion
+- Final product source 3ec9c7f deployed https://2b296bbf.asbc-4c9.pages.dev; https://asbc.app canonical HTML +9 related assets exactly match clean isolated build.
+- Production mobile390: timer180.67px, shortcut margin266.67px, history top266.33px below navigation bottom260.47px; heading readable, body375px, no horizontal overflow.
+- All five requested improvements completed; calculations remain explicit about assumed fees/tax and unknown game information. Gear advice requires recorded bonuses/current/target selection; history local-only, max20 changes, no pre-baseline history. No backend/auth/account-sync change.
+- Existing baseline206 paths preserved byte-for-byte except the translations file, whose previous contents plus exactly this task's translation additions were verified. No unrelated changes staged or deployed. Claude cross-review was not performed.
+- QA screenshots and build/deploy/hash records: D:/CodexData/Projects/ASBC/artifacts/trade-and-growth-tools-20261025. Owned local QA server stopped.
