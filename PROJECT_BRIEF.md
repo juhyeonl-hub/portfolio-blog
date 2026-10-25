@@ -812,3 +812,5 @@ Failure cases: invalid ID, excessive text, over-budget/locked/disconnected nodes
 - [x] Implement direct public post editing and authored equipment guidance.
 - [x] Verify PC/mobile, independent drafts, server validation and backward compatibility.
 Verification: backend24 tests,43 frontend suites, final integrated TypeScript/targeted regressions and production build PASS.226 existing paths preserved. No commit/push/deploy. User explicitly waived Claude cross-review and approved this scope for main/push/production release; task: tasks/asbc-public-build-editor.md.
+
+Release complete: public build editor source d8e28b4 pushed; backend and Pages4e719122 deployed, production PC/mobile draft-edit/cancel verified,10 assets matched. Claude review waived by explicit user request. Existing unrelated work preserved.
