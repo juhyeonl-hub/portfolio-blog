@@ -1,11 +1,11 @@
 // Kinah arithmetic stays integer-exact, including values above Number.MAX_SAFE_INTEGER.
 export const MAX_TRADE_MONEY=1_000_000_000_000n;
 export const MAX_TRADE_QUANTITY=1_000_000n;
-export type TradeField='buy'|'sell'|'quantity'|'bundle'|'tax'|'fee'|'target';
+export type TradeField='buy'|'sell'|'quantity'|'bundle'|'tax'|'fee'|'target'|'profitRate';
 export type PurchaseMode='unit'|'total';
 export type TradeDraft=Record<TradeField,string> & {item:string;rounding:'up'|'down';purchaseMode:PurchaseMode};
 export type TradeInput={totalCost?:bigint;buy:bigint;sell:bigint;quantity:bigint;bundle:bigint;taxBps:bigint;fee:bigint;target:bigint;rounding:'up'|'down'};
-export const tradeExample:TradeDraft={purchaseMode:'unit',item:'순수한 오드',buy:'130000',sell:'150000',quantity:'100',bundle:'25',tax:'10',fee:'0',target:'500000',rounding:'up'};
+export const tradeExample:TradeDraft={profitRate:'10',purchaseMode:'unit',item:'순수한 오드',buy:'130000',sell:'150000',quantity:'100',bundle:'25',tax:'10',fee:'0',target:'500000',rounding:'up'};
 export function parseTradeInteger(raw:string,max:bigint,min=0n):bigint|null{
  const text=raw.trim();
  if(text.length>24||! /^(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)$/.test(text))return null;
@@ -51,7 +51,7 @@ export function parseTradeMoney(raw:string):bigint|null{
 export function restoreTradeDraft(value:unknown):TradeDraft{
  if(!value||typeof value!=='object')return {...tradeExample};
  const record=value as Record<string,unknown>;
- const candidate={...record,purchaseMode:record.purchaseMode??'unit'};
+ const candidate={...record,purchaseMode:record.purchaseMode??'unit',profitRate:record.profitRate??'10'};
  if(!Object.keys(tradeExample).every(key=>typeof candidate[key as keyof typeof candidate]==='string'&&String(candidate[key as keyof typeof candidate]).length<=80)||!['up','down'].includes(String(record.rounding))||!['unit','total'].includes(String(candidate.purchaseMode)))return {...tradeExample};
  return Object.fromEntries(Object.keys(tradeExample).map(key=>[key,candidate[key as keyof typeof candidate]])) as TradeDraft;
 }
@@ -106,10 +106,14 @@ export function minimumTradePrice(input:TradeInput,bundle=input.bundle,target=1n
 
 // Purchase-only mode ignores stale or unfinished manual sale/target drafts.
 export function parsePurchaseDraft(draft:TradeDraft){return parseTradeDraft({...draft,sell:'0',target:'0'});}
+// A manual sale remains calculable while the optional profit goal is edited.
+export function parseSaleDraft(draft:TradeDraft){return parseTradeDraft({...draft,target:'0'});}
+export function tradeProfitTarget(input:TradeInput,rateBps:bigint){
+ if(rateBps<0n||rateBps>10000n)throw Error('Invalid profit rate');
+ const target=(tradePurchaseCost(input)*rateBps+9999n)/10000n;
+ const price=minimumTradePrice(input,input.bundle,target);
+ return {target,price,result:price===null?null:calculateTrade(input,input.bundle,price)};
+}
 export function tradeProfitExamples(input:TradeInput){
- return [0,5,10,20].map(percent=>{
-  const target=(tradePurchaseCost(input)*BigInt(percent)+99n)/100n;
-  const price=minimumTradePrice(input,input.bundle,target);
-  return {percent,target,price,result:price===null?null:calculateTrade(input,input.bundle,price)};
- });
+ return [0,5,10,20].map(percent=>({percent,...tradeProfitTarget(input,BigInt(percent)*100n)}));
 }

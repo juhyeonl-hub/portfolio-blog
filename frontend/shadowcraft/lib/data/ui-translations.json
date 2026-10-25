@@ -11093,5 +11093,50 @@
     "en": "Korean shorthand works too: 13만 = 130,000; 13만 5천 = 135,000.",
     "ja": "韓国語の単位でも入力できます：13만 = 130,000、13만 5천 = 135,000。",
     "fi": "Myös korealaiset yksiköt käyvät: 13만 = 130 000; 13만 5천 = 135 000."
+  },
+  "목표 총 순이익 (선택)": {
+    "en": "Target total profit (optional)",
+    "ja": "目標純利益の合計（任意）",
+    "fi": "Tavoiteltu kokonaisvoitto (valinnainen)"
+  },
+  "비워 두어도 현재 판매가의 손익은 계산됩니다.": {
+    "en": "Leave blank to calculate profit at your sale price without a target.",
+    "ja": "空欄でも現在の販売価格での損益を計算できます。",
+    "fi": "Voit jättää tyhjäksi. Myyntihinnan voitto tai tappio lasketaan silti."
+  },
+  "목표 순이익률 (%)": {
+    "en": "Target net profit (%)",
+    "ja": "目標純利益率（%）",
+    "fi": "Tavoiteltu nettovoitto (%)"
+  },
+  "매입 비용 대비 · 0~100% · 소수 둘째 자리까지": {
+    "en": "Relative to purchase cost · 0–100% · up to 2 decimal places",
+    "ja": "購入費用に対する割合・0～100%・小数第2位まで",
+    "fi": "Suhteessa ostokustannukseen · 0–100 % · enintään 2 desimaalia"
+  },
+  "손해 보지 않는 최소 개당 가격": {
+    "en": "Minimum unit price to avoid a loss",
+    "ja": "損をしない最低販売単価",
+    "fi": "Pienin yksikköhinta ilman tappiota"
+  },
+  "목표 총이익을 입력하면 그만큼 남길 판매가도 계산합니다.": {
+    "en": "Enter a total profit target to calculate the sale price needed to reach it.",
+    "ja": "目標利益の合計を入力すると、それを達成する販売価格も計算します。",
+    "fi": "Syötä kokonaisvoittotavoite, niin näet sen saavuttamiseen tarvittavan myyntihinnan."
+  },
+  "{0}% 순이익 목표의 판매가": {
+    "en": "Sale price for a {0}% net profit target",
+    "ja": "純利益率{0}%を目指す販売価格",
+    "fi": "Myyntihinta {0} %:n nettovoittotavoitteelle"
+  },
+  "손해 보지 않으려면 개당 {0} 이상": {
+    "en": "To avoid a loss: at least {0} per item",
+    "ja": "損をしないためには1個あたり{0}以上",
+    "fi": "Tappion välttämiseksi vähintään {0} kappaleelta"
+  },
+  "목표 순이익률을 0~100%로 입력하거나 위의 예시를 선택하세요.": {
+    "en": "Enter a target profit rate from 0–100%, or choose an example above.",
+    "ja": "目標純利益率を0～100%で入力するか、上の例を選んでください。",
+    "fi": "Syötä tavoitevoitto väliltä 0–100 % tai valitse yllä oleva esimerkki."
   }
 }

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl} from './modules.mjs';
-const {calculateTrade,minimumTradePrice,parseTradeDraft,parseTradeInteger,parseTradeRate,parsePurchaseDraft,tradeProfitExamples,tradeExample,MAX_TRADE_MONEY,parseTradeMoney,restoreTradeDraft,changePurchaseMode}=await import(moduleUrl(readFileSync('lib/trade-calculator.ts','utf8')));
+const {calculateTrade,minimumTradePrice,parseTradeDraft,parseTradeInteger,parseTradeRate,parsePurchaseDraft,tradeProfitExamples,tradeExample,MAX_TRADE_MONEY,parseSaleDraft,tradeProfitTarget,parseTradeMoney,restoreTradeDraft,changePurchaseMode}=await import(moduleUrl(readFileSync('lib/trade-calculator.ts','utf8')));
 const input=parseTradeDraft(tradeExample).value;
 assert.ok(input);
 for(const size of [25n,50n,100n]){
@@ -82,3 +82,25 @@ for(const cost of [0n,1n,100n,1000000000000n])for(const quantity of [1n,3n,101n]
 }
 assert.throws(()=>calculateTrade({...input,totalCost:-1n}));
 console.log('PASS Korean money parsing, legacy draft migration, exact mode conversion, arbitrary total costs and ROI boundaries');
+
+const custom=tradeProfitTarget(input,750n);
+assert.equal(custom.target,975000n);assert.equal(custom.price,155278n);assert.equal(custom.result.profit,975020n);
+for(const rate of [0n,1n,750n,1234n,9999n,10000n])for(const cost of [0n,1n,100n,13000000n,1000000000000n])for(const quantity of [1n,3n,101n]){
+ const v={...input,totalCost:cost,quantity,fee:100n},row=tradeProfitTarget(v,rate);
+ assert.equal(row.target,(cost*rate+9999n)/10000n);
+ assert.ok(row.result.profit>=row.target);
+ if(row.price>0n)assert.ok(calculateTrade(v,v.bundle,row.price-1n).profit<row.target);
+}
+assert.throws(()=>tradeProfitTarget(input,-1n));assert.throws(()=>tradeProfitTarget(input,10001n));
+assert.equal(tradeProfitTarget({...input,taxBps:10000n},750n).price,null);
+assert.equal(minimumTradePrice({...input,taxBps:0n},input.bundle,0n),130000n);
+assert.equal(minimumTradePrice({...input,taxBps:0n},input.bundle,1n),130001n);
+for(const target of ['', 'bad', '-5', '50만']){
+ const parsed=parseSaleDraft({...tradeExample,target});assert.ok(parsed.value);assert.deepEqual(parsed.errors,{});
+ assert.equal(calculateTrade(parsed.value).profit,500000n);
+}
+assert.ok(parseSaleDraft({...tradeExample,sell:''}).errors.sell);
+const previousDraft={...tradeExample,buy:'13만 5천'};delete previousDraft.profitRate;
+assert.equal(restoreTradeDraft(previousDraft).profitRate,'10');
+assert.equal(restoreTradeDraft({...tradeExample,profitRate:'7.5'}).profitRate,'7.5');
+console.log('PASS custom ROI targets/boundaries, exact break-even, independent optional goal, and saved percentage migration');
