@@ -32,4 +32,19 @@
 - QA 서버 설정 qa-trade.vite.mjs와 합성 기록·빌드 출력은 반영 목록에서 제외.
 - Last reviewed: Claude 미실시(usage_limit). 이번 범위의 리뷰 생략은 사용자 승인; 단독 검증을 교차 리뷰 통과로 기록하지 않음.
 - Release authorization: 사용자가 운영 배포 및 이번 저장 기능의 Claude 리뷰 생략 확인에 "진행"으로 승인(2026-10-25). 이 범위만 main 커밋·푸시·운영 배포. 교차 리뷰 미실시를 통과로 기록하지 않음.
-- Next: 승인 후 이번 23개 파일만 선별 커밋; 기존 번역 작업은 index에 섞지 않고 별도 보존. 백엔드 먼저 배포 후 프런트 배포, 운영 검증.
+- Next: 구현·배포 완료. Chrome 확장 프로그램 UI 차단이 해제된 뒤 실제 두 브라우저 자동 동기화 검증만 재개 가능. 새 기능을 추가하지 않음.
+
+
+## 운영 반영 — 2026-10-25
+- 사용자 "진행" 승인에 따라 Claude 리뷰 없이 이번 범위만 배포. source commit `212f162cfe1178d96663cf5dfd9122d4359b7be5`, main push 완료.
+- 기존 206개 변경 보존. 공용 번역 83개 새 키만 index에 포함; 기존 홈패널/전역 CSS/번역 작업은 미커밋 상태 유지.
+- DB 백업: `/home/juhyeonl/portfolio-blog-ops/backups/portfolio_blog_20261025T150100Z_before-trade-sync.dump`, pg_restore 목록 및 account_settings 포함 확인.
+- 기존 JAR 보존: `/home/juhyeonl/portfolio-blog-ops/blog.jar.before-trade-sync-212f162`. 검증 JAR SHA256 `a9644d479f3db64e3738e84af3e67ebbf8dfdfc0a23e444f9b6ed95000a6beaf` 원자적 교체; 같은 사용자 systemd MainPID58780→84012. 설정/권한/인증 정책 변경 없음.
+- 최초 로컬 health 조회는 잘못된 기본8080으로 연결 실패. 운영 설정8081 확인 후 로컬/공개 health JSON status ok.
+- 최초 Pages 배포9504c97c는 frontend에서 실행하여 ASBC 기존 API Functions 누락. 로그인된 브라우저 새로고침에서 HTML API 응답으로 member null 오류 관측. 앱 소스 변경 대신 올바른 frontend/asbc-pages 작업 디렉터리에서 Functions를 포함해 재배포. 실패를 성공으로 기록하지 않음.
+- 최종 Pages 배포: https://815ced6c.asbc-4c9.pages.dev . 실행: frontend/asbc-pages에서 기존 Wrangler `pages deploy ../dist-asbc --project-name asbc --branch main` 및 source commit metadata 지정. Worker 컴파일/Functions 업로드 확인.
+- 최종 asbc.app HTML과 entry/trade/account/locale 자산9개가 검증 빌드와 바이트 일치. /api/health200 JSON, 미인증 /api/community/me 및 /settings403. 로그인 계정 화면 정상 복구, 새 계정 저장 항목 표시.
+- 운영 IAB 실제 Steam 연결 계정: 검증용100개×130000 매입,25개 판매 실수령3375000 → 순익125000/잔량75/재고원가9750000. 자동 저장 상태 확인, 새로고침 후 기록 유지. JSON 백업 다운로드와 내용 검증. 테스트 전 계정 장부0품목이었으며 검증용 품목만 삭제하여 원상 복원; 기존 비로그인 장부/입력/기타 설정 미변경.
+- 운영 모바일390px(문서375px) 가로 넘침 없음. 증거: production-mobile-workbook.png, production-test-workbook-backup.json, production-assets.json, deployment-with-functions.log.
+- Chrome 실제 로그인 탭에서 최신 계산기→구매 확인 화면까지 확인. 이후 확장 프로그램 UI가 브라우저 자동화를 차단. 사용자 닫기 완료 응답 뒤 1회 재확인에서도 동일 차단. 우회하지 않음. 실제 Chrome↔IAB 운영 양방향 갱신은 최종 미완료; 이전 합성 두 origin 회귀 검증과 혼동하지 않음.
+- 실제 휴대폰 하드웨어 검증 아님. Chrome 차단 중 내장 브라우저1440 override가 해당 탭에 적용되지 않았으므로 그 캡처를 PC 검증 증거로 사용하지 않음.
