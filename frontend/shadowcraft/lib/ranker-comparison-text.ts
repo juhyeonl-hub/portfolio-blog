@@ -36,6 +36,16 @@ const messages = {
  noSkills: ['조회되지 않은 스킬은 미습득·미장착으로 판단하지 않습니다.', 'Missing skills do not mean unlearned or unequipped.', '未取得の情報を未習得・未装着とは判断しません。', 'Puuttuva tieto ei tarkoita oppimatonta tai pois käytöstä olevaa taitoa.'],
  boardMissing: ['이번 응답에서 데바니온 배치를 확인하지 못했습니다. 미확인 상태이며, 0포인트를 썼다는 뜻은 아닙니다.', 'This response did not provide a verified Daevanion allocation. Unknown does not mean zero points spent.', '今回の応答ではデバニオン配置を確認できませんでした。未確認は消費ポイント0を意味しません。', 'Vastaus ei sisältänyt vahvistettua Daevanion-jakoa. Tuntematon ei tarkoita nollaa käytettyä pistettä.'],
  planReview: ['내 계획에 적용하기 전 확인', 'Review before changing my plan', '自分の計画への適用前に確認', 'Tarkista ennen oman suunnitelman muuttamista'],
+ budgetTitle: ['내 포인트에 맞춰 지금 적용할 배치', 'Allocation to apply within my points', '自分のポイント内で適用する配置', 'Omien pisteiden mukainen jako'],
+ applyBudget: ['내 포인트에 맞춘 배치 적용', 'Apply allocation for my points', '自分のポイントに合う配置を適用', 'Käytä omille pisteille sopivaa jakoa'],
+ applyFull: ['랭커 전체 배치 적용', 'Apply the full ranker allocation', 'ランカーの全配置を適用', 'Käytä vertailuhahmon koko jakoa'],
+ fullBudget: ['전체 배치에는 포인트가 더 필요합니다. 지금은 위에 표시한 내 포인트 안의 경로를 적용할 수 있습니다.', 'The full allocation needs more points. You can apply the path shown above within your current points.', '全配置には追加ポイントが必要です。今は上に表示した予算内の経路を適用できます。', 'Koko jako vaatii lisää pisteitä. Voit käyttää yllä näkyvää nykyisiin pisteisiisi sopivaa reittiä.'],
+ fullLevel: ['전체 배치에는 아직 열리지 않은 노드가 있습니다. 내 레벨에서 열린 경로만 적용합니다.', 'The full allocation includes nodes locked at your level. The guide uses only paths unlocked for you.', '全配置には未開放ノードがあります。自分のレベルで開放された経路だけを適用します。', 'Koko jaossa on tasollasi lukittuja solmuja. Ohje käyttää vain sinulle avattuja reittejä.'],
+ emptyGuide: ['현재 레벨과 포인트로 선택할 수 있는 목표 노드가 없습니다. 내 포인트 설정을 확인하세요.', 'No target nodes fit your current level and points. Check your point settings.', '現在のレベルとポイントで選べる目標ノードはありません。ポイント設定を確認してください。', 'Nykyinen taso ja pisteet eivät riitä kohdesolmuihin. Tarkista pisteasetukset.'],
+ applied: ['내 플래너에 데바니온 배치를 적용했습니다.', 'Daevanion allocation applied to my planner.', 'プランナーにデバニオン配置を適用しました。', 'Daevanion-jako on otettu käyttöön suunnitelmassasi.'],
+ appliedHelp: ['데바니온에서 직접 수정하고 이름을 붙여 보관할 수 있습니다. 게임에는 직접 찍어 주세요.', 'Edit the nodes, then save a named copy. Allocate the nodes in the game yourself.', 'ノードを編集し、名前を付けて保存できます。ゲーム内では自分で割り振ってください。', 'Muokkaa solmuja ja tallenna nimetty kopio. Valitse solmut itse pelissä.'],
+ editNodes: ['데바니온 수정', 'Edit Daevanion', 'デバニオンを編集', 'Muokkaa Daevanionia'],
+ saveCopy: ['이름 붙여 보관', 'Save a named copy', '名前を付けて保存', 'Tallenna nimetty kopio'],
 } as const;
 export function rankerText(locale: string, key: keyof typeof messages): string {
  return messages[key][locale === 'ko' ? 0 : locale === 'ja' ? 2 : locale === 'fi' ? 3 : 1];

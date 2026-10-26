@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {moduleUrl,plannerUrl,classesUrl,planner} from './modules.mjs';
-const {rankerItemNeedsProfile,groupRankers,compareRankerSkills,compareRankerEquipment,previewRankerBoards,rankerObservationTime,rankerDisplaySkills,rankerSkillRows}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
+import {moduleUrl,plannerUrl,classesUrl,planner,classes} from './modules.mjs';
+const recommendationUrl=moduleUrl(readFileSync('lib/recommendation.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl)));
+const {recommendTargetNodes}=await import(recommendationUrl);
+const {rankerItemNeedsProfile,groupRankers,compareRankerSkills,compareRankerEquipment,previewRankerBoards,rankerObservationTime,rankerDisplaySkills,rankerSkillRows}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./recommendation'",JSON.stringify(recommendationUrl)).replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
 const c=JSON.parse(readFileSync('lib/data/catalogs/assassin.json'));
 c.classKey='assassin';
 const p={...planner.emptyPlan(c),pointBudget:{sp:9999,stigma:9999,crystal:9999,battle:9999}};
@@ -77,7 +79,7 @@ for(const kind of ['abyss','arenaOfSolitude','arenaOfCooperation']){
 }
 console.log('Official ranker placeholders: metric and entry shape PASS');
 // Every roster kind has translated subtitle/note/score texts with the right placeholders, and metrics map to kinds.
-const {ROSTER_TEXT,rosterKind}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
+const {ROSTER_TEXT,rosterKind}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./recommendation'",JSON.stringify(recommendationUrl)).replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
 const dictionary=JSON.parse(readFileSync('lib/data/ui-translations.json','utf8'));
 assert.deepEqual(Object.keys(ROSTER_TEXT),['combat','abyss','arenaOfSolitude','arenaOfCooperation']);
 for(const [kind,text] of Object.entries(ROSTER_TEXT)){
@@ -117,3 +119,33 @@ assert(rankerItemNeedsProfile('장비가 바뀌었거나 조회 정보가 일치
 assert(rankerItemNeedsProfile('실제 장비 옵션을 확인하지 못했습니다. 캐릭터를 다시 조회하세요.'));
 for(const error of ['', '조회 연결이 차단되었거나 끊겼습니다.', '조회 응답이 지연되고 있습니다. 잠시 후 다시 시도하세요.'])assert.equal(rankerItemNeedsProfile(error),false);
 console.log('Ranker item recovery: stale item identity reloads profile; transient lookup errors retain retry PASS');
+
+// Fitting cannot bypass observation validation or silently replace any non-Daevanion field.
+for(const patch of [{failedBoards:['1']},{nodes:['unknown']},{region:'as'},{boards:[]},{profile:{...profile.profile,pcId:11}},{profile:{...profile.profile,characterId:'other'}}])assert.throws(()=>previewRankerBoards(c,p,ranker,{...profile,...patch},{fitToBudget:true}));
+const isolated=board.nodes.find(n=>!n.autoLearn&&!planner.connected(board,[n.id]).includes(n.id));
+assert(isolated);assert.throws(()=>previewRankerBoards(c,p,ranker,{...profile,nodes:[isolated.id]},{fitToBudget:true}));
+const full=previewRankerBoards(c,p,ranker,profile),fittedFull=previewRankerBoards(c,p,ranker,profile,{fitToBudget:true});
+assert.deepEqual(new Set(fittedFull.nodes),new Set(full.nodes),'affordable short path stays complete');
+let budgetCases=0;
+for(const key of ['assassin','gladiator','templar','ranger','elementalist','sorcerer','cleric','chanter']){
+ const catalog={...JSON.parse(readFileSync(`lib/data/catalogs/${key}.json`)),classKey:key};
+ const row={...ranker,classKey:key};
+ const observed={...profile,classKey:key,profile:{...profile.profile,pcId:classes.classProfile(key).pcIds[0]},boards:catalog.boards.map(b=>({id:b.id,open:1})),nodes:catalog.boards.flatMap(b=>b.nodes.map(n=>n.id))};
+ for(const [level,crystal,battle] of [[1,0,0],[20,40,0],[30,80,0],[36,114,0],[45,316,0],[45,370,10],[45,9999,9999]]){
+  const original={...planner.emptyPlan(catalog),classKey:key,level,pointBudget:{sp:383,stigma:29,crystal,battle},checked:['preserve'],character:{marker:'keep observed data'},searchPrefs:{region:'eu',server:'Ludra',name:'GreenOrc'}};
+  // Keep explicitly chosen specs, rather than accepting the recommender's different choices.
+  original.specs=Object.fromEntries(catalog.skills.map(skill=>[skill.id,skill.specializations.map(s=>s.id).reverse()]));
+  const before=JSON.stringify(original);
+  const raw=previewRankerBoards(catalog,original,row,observed,{allowUnavailable:true});
+  const fitted=previewRankerBoards(catalog,original,row,observed,{fitToBudget:true}),used=planner.totals(catalog,fitted);
+  assert.equal(JSON.stringify(original),before,'input plan is immutable');
+  assert.deepEqual(new Set(fitted.nodes),new Set(recommendTargetNodes(catalog,original,raw)),'applied nodes are the displayed guide');
+  const {nodes:oldNodes,specs:oldSpecs,...restBefore}=original,{nodes:newNodes,specs:newSpecs,...restAfter}=fitted;
+  assert.deepEqual(restAfter,restBefore,'only Daevanion and newly locked specs may change');
+  assert(used.crystal<=crystal&&used.battle<=battle,'separate point budgets');
+  for(const b of catalog.boards){const connected=new Set(planner.connected(b,fitted.nodes));for(const n of b.nodes.filter(n=>fitted.nodes.includes(n.id)&&!n.autoLearn)){assert(b.requiredLevel<=level&&n.requiredLevel<=level);assert(connected.has(n.id));assert(observed.nodes.includes(n.id));}}
+  for(const skill of catalog.skills){const kept=fitted.specs[skill.id],lv=planner.finalLevel(catalog,fitted,skill);assert(kept.every(id=>original.specs[skill.id].includes(id)),'never invent specializations');assert(kept.every(id=>skill.specializations.some(s=>s.id===id&&s.requiredParentLevel<=lv)));assert(kept.length<=planner.slots(skill,lv));}
+  budgetCases++;
+ }
+}
+console.log(`Ranker budget apply: ${budgetCases} class/level/budget cases, exact guide nodes, independent currencies, connected unlocked target paths, spec pruning and preservation PASS`);

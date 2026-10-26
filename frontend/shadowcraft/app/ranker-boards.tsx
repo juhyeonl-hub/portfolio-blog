@@ -8,7 +8,7 @@ import './leveling-guide.css';
 import {recommendTargetNodes} from '../lib/recommendation';
 import {useLocale} from './locale';
 import {totals,type Catalog,type Plan,type Node} from '../lib/planner';
-export default function RankerBoards({catalog,plan,target,boardId,onBoardChange,guideOnly=false,mode,onModeChange}:{mode?:'actual'|'guide';onModeChange?:(mode:'actual'|'guide')=>void;guideOnly?:boolean;catalog:Catalog;plan:Plan;target:Plan;boardId?:string;onBoardChange?:(id:string)=>void}){
+export default function RankerBoards({catalog,plan,target,boardId,onBoardChange,guideOnly=false,mode,onModeChange,priorityNodes}:{priorityNodes?:string[];mode?:'actual'|'guide';onModeChange?:(mode:'actual'|'guide')=>void;guideOnly?:boolean;catalog:Catalog;plan:Plan;target:Plan;boardId?:string;onBoardChange?:(id:string)=>void}){
  const {t,locale,node:nodeName}=useLocale();
  const [view,setView]=useState<'actual'|'guide'>('actual');
  const currentMode=mode??view;
@@ -19,7 +19,7 @@ export default function RankerBoards({catalog,plan,target,boardId,onBoardChange,
  const [localBoard,setLocalBoard]=useState(catalog.boards[0]?.id);
  const setBoardId=(id:string)=>{setLocalBoard(id);onBoardChange?.(id)};
  const board=catalog.boards.find(b=>b.id===(boardId||localBoard))||catalog.boards[0];
- const priority=useMemo(()=>new Set(isGuide?recommendTargetNodes(catalog,plan,target):[]),[isGuide,catalog,plan,target]);
+ const priority=useMemo(()=>new Set(isGuide?(priorityNodes??recommendTargetNodes(catalog,plan,target)):[]),[isGuide,catalog,plan,target,priorityNodes]);
  const priorityCost=totals(catalog,{...plan,nodes:[...priority]});
  const owned=new Set<string>(Array.isArray(plan.character?.nodes)?plan.character.nodes:plan.nodes),goal=new Set(target.nodes);
  const boardKnown=characterPoints(catalog,plan.character).crystal!==null;

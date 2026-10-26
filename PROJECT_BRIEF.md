@@ -874,3 +874,8 @@ Search discovery completed: reviewed source4affa508 (Claude NO_FINDINGS0) is on 
 Ranker switching audit2026-10-27: sticky selector, preserved guide/board, request cancellation, truthful loading/error and stale equipment recovery implemented and PC/mobile verified; scoped task tasks/asbc-ranker-switch-20261027.md. Exact-source Claude review and production release pending.
 
 2026-10-27 release complete: ranker switching source f9c68fc passed Claude NO_FINDINGS0, main pushed and Pages17bab529 deployed. Production PC/mobile GreenOrc gear/skills/Daevanion switching, guide retention and popup verified; existing unrelated changes preserved. See tasks/asbc-ranker-switch-20261027.md.
+
+
+## 2026-10-27 — GreenOrc ranker budget apply / edit / save
+- Current authorized work: match the displayed budget-fit Daevanion guide with the applied plan, then verify desktop/mobile edit and named-save/reopen. Preserve original plans and unrelated pending work.
+- Task: tasks/asbc-ranker-apply-20261027.md; isolated base eed1392; Claude coordination successful, exact-source review pending.

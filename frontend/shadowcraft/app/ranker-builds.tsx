@@ -44,12 +44,12 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
  const [compareLeft,setCompareLeft]=useState<string|null>(null),[compareRight,setCompareRight]=useState<string|null>(null);
  const selected=rows.find(r=>r.characterId===selectedId);
  const [live,setLive]=useState<any>(null),[loading,setLoading]=useState(false),[error,setError]=useState('');
- const [preview,setPreview]=useState(false);
+ const [preview,setPreview]=useState(false),[applied,setApplied]=useState(false);
  const [boardMode,setBoardMode]=useState<'actual'|'guide'>('actual');
  const [view,setView]=useState<'equipment'|'skills'|'daevanion'>('equipment');
  const [previewBoard,setPreviewBoard]=useState(catalog.boards[0]?.id);
  const request=useRef(0),profileController=useRef<AbortController|null>(null);useEffect(()=>()=>{request.current++;profileController.current?.abort();},[]);
- useEffect(()=>{request.current++;profileController.current?.abort();setSelectedId('');setLive(null);setLoading(false);setError('');setPreview(false);setBoardMode('actual');setPreviewBoard(catalog.boards[0]?.id);},[catalog.classKey,kind]);
+ useEffect(()=>{request.current++;profileController.current?.abort();setSelectedId('');setLive(null);setLoading(false);setError('');setPreview(false);setApplied(false);setBoardMode('actual');setPreviewBoard(catalog.boards[0]?.id);},[catalog.classKey,kind]);
  const itemUsage=new Map<number,{name:string;count:number}>();
  for(const row of rows)for(const item of new Map(row.equipment.map(item=>[item.id,item])).values()){const entry=itemUsage.get(item.id)||{name:item.name,count:0};entry.count++;itemUsage.set(item.id,entry)}
  const commonItems=[...itemUsage.values()].sort((a,b)=>b.count-a.count).slice(0,6);
@@ -57,7 +57,13 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
  const result=useMemo(()=>{if(!selected||!live)return {candidate:null,error:''};try{return {candidate:previewRankerBoards(catalog,plan,selected,live,{allowUnavailable:true}),error:''}}catch(e){return {candidate:null,error:e instanceof Error?e.message:'복사할 수 없습니다.'}}},[catalog,plan,selected,live]);
  const candidate=result.candidate;
  const candidateTotals=candidate?totals(catalog,candidate):null;
- const canApply=!!candidate&&!!candidateTotals&&candidateTotals.crystal<=candidateTotals.crystalMax&&candidateTotals.battle<=candidateTotals.battleMax&&!catalog.boards.some(b=>b.requiredLevel>plan.level&&b.nodes.some(n=>!n.autoLearn&&candidate.nodes.includes(n.id)));
+ const overLevel=!!candidate&&catalog.boards.some(b=>b.nodes.some(n=>!n.autoLearn&&candidate.nodes.includes(n.id)&&Math.max(b.requiredLevel,n.requiredLevel)>plan.level));
+ const canApply=!!candidate&&!!candidateTotals&&candidateTotals.crystal<=candidateTotals.crystalMax&&candidateTotals.battle<=candidateTotals.battleMax&&!overLevel;
+ const budgetResult=useMemo(()=>{if(!candidate||!selected||!live||view!=='daevanion'||(!preview&&boardMode!=='guide'))return {candidate:null,error:''};try{return {candidate:previewRankerBoards(catalog,plan,selected,live,{fitToBudget:true}),error:''}}catch(e){return {candidate:null,error:e instanceof Error?e.message:'복사할 수 없습니다.'}}},[catalog,plan,selected,live,candidate,view,preview,boardMode]);
+ const budgetCandidate=budgetResult.candidate,budgetTotals=budgetCandidate?totals(catalog,budgetCandidate):null;
+ const canApplyBudget=!!budgetCandidate&&!!budgetTotals&&budgetTotals.crystal<=budgetTotals.crystalMax&&budgetTotals.battle<=budgetTotals.battleMax&&catalog.boards.some(b=>b.nodes.some(n=>!n.autoLearn&&budgetCandidate.nodes.includes(n.id)));
+ const sameAllocation=!!candidate&&!!budgetCandidate&&candidate.nodes.length===budgetCandidate.nodes.length&&candidate.nodes.every(id=>budgetCandidate.nodes.includes(id));
+ const apply=(next:Plan,mode:'actual'|'guide'='guide')=>{onApply(next);setPreview(false);setBoardMode(mode);setApplied(true);};
  const left=groups.find(g=>g.ids.join(',')===compareLeft)||groups[0];
  const right=groups.find(g=>g.ids.join(',')===compareRight)||groups[1]||groups[0];
  const difference=compareRankerSkills(left?.ids||[],right?.ids||[]);
@@ -74,7 +80,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
  };
  async function inspect(row:Ranker){
   const token=++request.current;profileController.current?.abort();const controller=new AbortController();profileController.current=controller;
-  setSelectedId(row.characterId);setPreview(false);setLive(null);setError('');setLoading(true);
+  setSelectedId(row.characterId);setPreview(false);setApplied(false);setLive(null);setError('');setLoading(true);
   try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId},controller.signal);if(request.current===token&&!controller.signal.aborted)setLive(result)}
   catch(e){if(request.current===token&&!controller.signal.aborted)setError(e instanceof Error?e.message:'공식 조회 실패')}
   finally{if(request.current===token)setLoading(false)}
@@ -106,9 +112,22 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
    {view==='daevanion'&&<>
     {result.error&&<p role="alert">{t(result.error)}</p>}
     {!candidate&&<p className="ranker-board-wait">{rankerText(locale,loading?'boardLoading':error?'boardRetry':'boardMissing')}</p>}
-    {candidate&&<><RankerBoards key={selected.characterId+String(preview)} catalog={catalog} plan={plan} target={candidate} boardId={previewBoard} onBoardChange={setPreviewBoard} guideOnly={preview} mode={boardMode} onModeChange={setBoardMode}/>
-     {!preview&&<button className="button secondary" onClick={()=>{setPreview(true);setError('')}}>{rankerText(locale,'planReview')}</button>}
-     {preview&&<div className="quick-preview"><p>{t('따라하기는 공개된 데바니온 배치만 적용합니다. 내 장비·기본 스킬 투자·연결 캐릭터는 유지합니다. 배치 변경으로 잠기는 기존 특화는 해제됩니다.')}</p>{!canApply&&<p role="status">{t('현재 레벨·포인트로는 전체 적용할 수 없습니다. 색으로 표시된 목표를 먼저 확인하고 필요한 포인트를 모아 주세요.')}</p>}<h4>{t('내 계획에 적용할 변경')}</h4><p>{t('노드 {0} → {1} · 결정 {2} / {3}',[plan.nodes.length,candidate.nodes.length,totals(catalog,candidate).crystal,totals(catalog,candidate).crystalMax])}</p><button className="button primary" disabled={!canApply} onClick={()=>{if(canApply){onApply(candidate);setPreview(false)}}}>{t('이 데바니온 배치 적용')}</button><button className="button ghost" onClick={()=>setPreview(false)}>{t('취소')}</button></div>}
+    {candidate&&<><RankerBoards key={selected.characterId+String(preview)} catalog={catalog} plan={plan} target={candidate} boardId={previewBoard} onBoardChange={setPreviewBoard} guideOnly={preview} mode={boardMode} onModeChange={setBoardMode} priorityNodes={budgetCandidate?.nodes}/>
+     {!preview&&<button className="button secondary" onClick={()=>{setPreview(true);setApplied(false);setError('')}}>{rankerText(locale,'planReview')}</button>}
+     {preview&&<div className="quick-preview ranker-apply-preview">
+      <h4>{rankerText(locale,'budgetTitle')}</h4>
+      <p>{t('따라하기는 공개된 데바니온 배치만 적용합니다. 내 장비·기본 스킬 투자·연결 캐릭터는 유지합니다. 배치 변경으로 잠기는 기존 특화는 해제됩니다.')}</p>
+      {budgetResult.error&&<p role="alert">{t(budgetResult.error)}</p>}
+      {budgetCandidate&&budgetTotals&&<><p>{t('노드 {0} → {1} · 결정 {2} / {3}',[plan.nodes.length,budgetCandidate.nodes.length,budgetTotals.crystal,budgetTotals.crystalMax])} · {t('아스펠')} {budgetTotals.battle} / {budgetTotals.battleMax}</p>
+       {!canApplyBudget&&<p role="status">{rankerText(locale,'emptyGuide')}</p>}
+       {canApplyBudget&&!canApply&&<p>{rankerText(locale,overLevel?'fullLevel':'fullBudget')}</p>}
+       <div className="ranker-apply-actions"><button className="button primary" disabled={!canApplyBudget} onClick={()=>{if(canApplyBudget)apply(budgetCandidate)}}>{rankerText(locale,'applyBudget')}</button>
+        {!sameAllocation&&<button className="button secondary" disabled={!canApply} onClick={()=>{if(canApply)apply(candidate,'actual')}}>{rankerText(locale,'applyFull')}</button>}
+       </div>
+      </>}
+      <button className="button ghost" onClick={()=>setPreview(false)}>{t('취소')}</button>
+     </div>}
+     {applied&&<div className="ranker-apply-success"><p role="status"><strong>{rankerText(locale,'applied')}</strong></p><p>{rankerText(locale,'appliedHelp')}</p><div className="ranker-apply-actions"><a className="button primary" href="#/build/daevanion">{rankerText(locale,'editNodes')}</a><a className="button secondary" href="#/builds">{rankerText(locale,'saveCopy')}</a></div></div>}
     </>}
    </>}
    {live&&<details><summary>{t('능력치·스킬·노드 상세 비교')}</summary><CharacterComparison current={plan.character} saved={live} ranker/></details>}
