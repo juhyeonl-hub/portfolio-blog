@@ -8,11 +8,12 @@ import './leveling-guide.css';
 import {recommendTargetNodes} from '../lib/recommendation';
 import {useLocale} from './locale';
 import {totals,type Catalog,type Plan,type Node} from '../lib/planner';
-export default function RankerBoards({catalog,plan,target,boardId,onBoardChange,guideOnly=false}:{guideOnly?:boolean;catalog:Catalog;plan:Plan;target:Plan;boardId?:string;onBoardChange?:(id:string)=>void}){
+export default function RankerBoards({catalog,plan,target,boardId,onBoardChange,guideOnly=false,mode,onModeChange}:{mode?:'actual'|'guide';onModeChange?:(mode:'actual'|'guide')=>void;guideOnly?:boolean;catalog:Catalog;plan:Plan;target:Plan;boardId?:string;onBoardChange?:(id:string)=>void}){
  const {t,locale,node:nodeName}=useLocale();
  const [view,setView]=useState<'actual'|'guide'>('actual');
- const isGuide=guideOnly||view==='guide';
- const modes=!guideOnly&&<nav className="ranker-view-tabs" aria-label={rankerText(locale,'tabs')}>{(['actual','guide'] as const).map(mode=><button type="button" key={mode} aria-pressed={view===mode} onClick={()=>setView(mode)}>{rankerText(locale,mode==='actual'?'raw':'guide')}</button>)}</nav>;
+ const currentMode=mode??view;
+ const isGuide=guideOnly||currentMode==='guide';
+ const modes=!guideOnly&&<nav className="ranker-view-tabs" aria-label={rankerText(locale,'tabs')}>{(['actual','guide'] as const).map(mode=><button type="button" key={mode} aria-pressed={currentMode===mode} onClick={()=>{setView(mode);onModeChange?.(mode)}}>{rankerText(locale,mode==='actual'?'raw':'guide')}</button>)}</nav>;
  const [selected,setSelected]=useState('');
  const selectedNode=catalog.boards.flatMap(b=>b.nodes).find(n=>n.id===selected);
  const [localBoard,setLocalBoard]=useState(catalog.boards[0]?.id);

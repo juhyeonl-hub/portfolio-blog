@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl,plannerUrl,classesUrl,planner} from './modules.mjs';
-const {groupRankers,compareRankerSkills,compareRankerEquipment,previewRankerBoards,rankerObservationTime,rankerDisplaySkills,rankerSkillRows}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
+const {rankerItemNeedsProfile,groupRankers,compareRankerSkills,compareRankerEquipment,previewRankerBoards,rankerObservationTime,rankerDisplaySkills,rankerSkillRows}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
 const c=JSON.parse(readFileSync('lib/data/catalogs/assassin.json'));
 c.classKey='assassin';
 const p={...planner.emptyPlan(c),pointBudget:{sp:9999,stigma:9999,crystal:9999,battle:9999}};
@@ -112,3 +112,8 @@ const copyKeys=[...scopedCopy.matchAll(/^ (\w+): \[/gm)].map(m=>m[1]);
 assert(copyKeys.length>15);
 for(const key of copyKeys)for(const language of ['ko','en','ja','fi']){const value=rankerText(language,key);assert(value.length>0);if(language!=='ko')assert(!/[가-힣]/.test(value),language+' '+key);}
 console.log('Ranker visual: catalog order, final observations, missing/zero/malformed/equipped distinctions and four locales PASS');
+
+assert(rankerItemNeedsProfile('장비가 바뀌었거나 조회 정보가 일치하지 않습니다. 캐릭터를 다시 조회하세요.'));
+assert(rankerItemNeedsProfile('실제 장비 옵션을 확인하지 못했습니다. 캐릭터를 다시 조회하세요.'));
+for(const error of ['', '조회 연결이 차단되었거나 끊겼습니다.', '조회 응답이 지연되고 있습니다. 잠시 후 다시 시도하세요.'])assert.equal(rankerItemNeedsProfile(error),false);
+console.log('Ranker item recovery: stale item identity reloads profile; transient lookup errors retain retry PASS');

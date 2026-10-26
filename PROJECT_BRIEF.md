@@ -867,3 +867,8 @@ Search discovery completed: reviewed source4affa508 (Claude NO_FINDINGS0) is on 
 [Task Goal]: Visible paired equipment popup, game-order final-level skill cards and direct raw Daevanion view with separate point guidance. Inputs: GreenOrc vs Bless, PC/mobile. No inferred investment/specs or automatic planner mutation. Missing/stale data and dialog focus/viewport tested. Scope and progress: tasks/asbc-ranker-visual-20261026.md. Existing pending changes remain isolated.
 
 2026-10-26 ranker comparison release: source6e317a8850cb passed Claude exact-commit review (NO_FINDINGS0), isolated main push and Pages deployment c4d1be1a. Production Chrome/mobile390px popup/skills/raw-board/budget-guide checks passed. Unrelated primary work preserved. See tasks/asbc-ranker-visual-20261026.md.
+
+## Ranker switching audit — 2026-10-27
+[Task Goal]: GreenOrc comparison continuity and beginner clarity while changing rankers on desktop/mobile; preserve guide mode and show lookup state clearly, with visible quick ranker controls. Scope, expected results and failures: tasks/asbc-ranker-switch-20261027.md. Scoped release explicitly authorized after verification and review.
+
+Ranker switching audit2026-10-27: sticky selector, preserved guide/board, request cancellation, truthful loading/error and stale equipment recovery implemented and PC/mobile verified; scoped task tasks/asbc-ranker-switch-20261027.md. Exact-source Claude review and production release pending.

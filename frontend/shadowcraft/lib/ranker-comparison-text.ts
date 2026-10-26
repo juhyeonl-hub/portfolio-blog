@@ -1,5 +1,17 @@
 // Scoped copy keeps unrelated pending global translations out of this release.
 const messages = {
+ gearChanged: ['저장된 장비 정보로는 옵션을 확인할 수 없습니다. 캐릭터 정보를 다시 불러오세요.', 'These saved item details could not be verified. Reload the character’s information.', '保存済み情報から装備オプションを確認できません。キャラクター情報を再取得してください。', 'Tallennetun varusteen tietoja ei voitu varmistaa. Hae hahmon tiedot uudelleen.'],
+ ownGearError: ['내 장비 옵션을 불러오지 못했습니다. 잠시 후 다시 조회해 주세요.', 'Your item options could not be loaded. Try the lookup again shortly.', '自分の装備オプションを取得できませんでした。少し待って再取得してください。', 'Oman varusteen ominaisuuksia ei voitu hakea. Yritä pian uudelleen.'],
+ rankerGearError: ['랭커 장비 옵션을 불러오지 못했습니다. 잠시 후 다시 조회해 주세요.', 'The ranker’s item options could not be loaded. Try the lookup again shortly.', 'ランカーの装備オプションを取得できませんでした。少し待って再取得してください。', 'Vertailuhahmon varusteen ominaisuuksia ei voitu hakea. Yritä pian uudelleen.'],
+ reloadMine: ['내 캐릭터 다시 불러오기', 'Reload my character', '自分のキャラクターを再取得', 'Hae oma hahmo uudelleen'],
+ reloadRanker: ['랭커 최신 세팅 조회', 'Reload ranker setup', 'ランカーの最新設定を再取得', 'Hae vertailuhahmon kokoonpano uudelleen'],
+ changeRanker: ['비교할 랭커', 'Ranker to compare', '比較するランカー', 'Vertailuhahmo'],
+ previous: ['이전 랭커', 'Previous ranker', '前のランカー', 'Edellinen hahmo'],
+ next: ['다음 랭커', 'Next ranker', '次のランカー', 'Seuraava hahmo'],
+ loading: ['최신 장비·스킬·데바니온 조회 중…', 'Loading current equipment, skills and Daevanion…', '最新の装備・スキル・デバニオンを取得中…', 'Haetaan nykyisiä varusteita, taitoja ja Daevanionia…'],
+ lookupFailed: ['최신 정보를 불러오지 못했습니다. 다시 조회할 수 있습니다.', 'Current information could not be loaded. You can retry the lookup.', '最新情報を取得できませんでした。再取得できます。', 'Nykyisiä tietoja ei voitu hakea. Voit yrittää uudelleen.'],
+ boardLoading: ['이 랭커의 실제 데바니온 배치를 불러오는 중입니다…', 'Loading this ranker’s actual Daevanion nodes…', 'このランカーの実際のデバニオン配置を取得中です…', 'Haetaan tämän hahmon todellisia Daevanion-solmuja…'],
+ boardRetry: ['배치를 불러오지 못했습니다. 위의 다시 조회 버튼을 눌러 주세요.', 'The nodes could not be loaded. Use the retry button above.', '配置を取得できませんでした。上の再取得ボタンを押してください。', 'Solmuja ei voitu hakea. Yritä uudelleen yllä olevasta painikkeesta.'],
  reference: ['스킬 설명과 가능한 특화 · 랭커가 고른 특화는 미확인', 'Skill reference and possible specializations · the ranker’s choices are unknown', 'スキル説明と選択可能な特化・ランカーの特化選択は未確認', 'Taidon kuvaus ja mahdolliset erikoistumiset · vertailuhahmon valinnat eivät ole tiedossa'],
  boardPrep: ['먼저 랭커 실제 배치를 확인하세요. 내 총 포인트를 입력하고 ‘내 포인트로 따라가기’를 선택하면 예산 안의 경로를 볼 수 있습니다.', 'Read the ranker’s actual nodes first. Enter your total points and choose Guide for my points to see a path within your budget.', 'まずランカーの実際の配置を確認します。総ポイントを入力し、自分のポイントで参考にするを選ぶと予算内の経路を確認できます。', 'Katso ensin vertailuhahmon todelliset solmut. Syötä kokonaispisteesi ja valitse Ohje omille pisteille nähdäksesi budjettiisi sopivan reitin.'],
  zoom: ['보드 확대', 'Enlarge board', 'ボードを拡大', 'Suurenna lautaa'],
@@ -22,7 +34,7 @@ const messages = {
  unknown: ['미확인', 'Unknown', '未確認', 'Ei tiedossa'],
  difference: ['최종 레벨 차이', 'Final level difference', '最終レベル差', 'Lopullinen tasoero'],
  noSkills: ['조회되지 않은 스킬은 미습득·미장착으로 판단하지 않습니다.', 'Missing skills do not mean unlearned or unequipped.', '未取得の情報を未習得・未装着とは判断しません。', 'Puuttuva tieto ei tarkoita oppimatonta tai pois käytöstä olevaa taitoa.'],
- boardMissing: ['공식 데바니온 배치를 확인한 뒤 표시합니다. 조회 상태와 오류를 확인하세요.', 'The board appears after its official allocation is verified. Check the lookup status or error.', '公式配置の確認後に表示します。照会状態やエラーを確認してください。', 'Lauta näkyy, kun virallinen solmujako on varmistettu. Tarkista haun tila tai virhe.'],
+ boardMissing: ['이번 응답에서 데바니온 배치를 확인하지 못했습니다. 미확인 상태이며, 0포인트를 썼다는 뜻은 아닙니다.', 'This response did not provide a verified Daevanion allocation. Unknown does not mean zero points spent.', '今回の応答ではデバニオン配置を確認できませんでした。未確認は消費ポイント0を意味しません。', 'Vastaus ei sisältänyt vahvistettua Daevanion-jakoa. Tuntematon ei tarkoita nollaa käytettyä pistettä.'],
  planReview: ['내 계획에 적용하기 전 확인', 'Review before changing my plan', '自分の計画への適用前に確認', 'Tarkista ennen oman suunnitelman muuttamista'],
 } as const;
 export function rankerText(locale: string, key: keyof typeof messages): string {

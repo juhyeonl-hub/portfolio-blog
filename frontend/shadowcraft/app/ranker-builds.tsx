@@ -21,6 +21,18 @@ import RankerSkillOverview from './ranker-skill-overview';
 import {rankerText} from '../lib/ranker-comparison-text';
 import './ranker-visual.css';
 
+function RankerSwitcher({rows,selected,onSelect}:{rows:Ranker[];selected:Ranker;onSelect:(row:Ranker)=>void}){
+ const {locale}=useLocale();
+ const [navHeight,setNavHeight]=useState(0);
+ useEffect(()=>{const nav=document.querySelector('.build-pills');if(!nav)return;const measure=()=>setNavHeight(nav.getBoundingClientRect().height);measure();const observer=new ResizeObserver(measure);observer.observe(nav);return()=>observer.disconnect();},[]);
+ const position=rows.findIndex(row=>row.characterId===selected.characterId);
+ return <div className="ranker-switcher" style={{top:`calc(var(--a2bc-timer-height,0px) + ${navHeight}px)`}}>
+  <button type="button" className="button secondary" aria-label={rankerText(locale,'previous')} title={rankerText(locale,'previous')} disabled={position<=0} onClick={()=>onSelect(rows[position-1])}>‹</button>
+  <label><span>{rankerText(locale,'changeRanker')}</span><select value={selected.characterId} onChange={e=>{const row=rows.find(row=>row.characterId===e.target.value);if(row)onSelect(row);}}>{rows.map(row=><option key={row.characterId} value={row.characterId}>{row.rank}. {row.name} · {row.region.toUpperCase()} / {row.serverName}</option>)}</select></label>
+  <button type="button" className="button secondary" aria-label={rankerText(locale,'next')} title={rankerText(locale,'next')} disabled={position<0||position>=rows.length-1} onClick={()=>onSelect(rows[position+1])}>›</button>
+ </div>;
+}
+
 export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly=false,onChoose,initialSelection}:{rankingOnly?:boolean;onChoose?:(id:string,kind:string)=>void;initialSelection?:{id:string;kind:string}|null;catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void;onConnect?:()=>void}){
  const {t,locale,skill:localSkill}=useLocale();
  const [kind,setKind]=useState(()=>SNAPSHOTS.find(s=>s.key===initialSelection?.kind)?.key||SNAPSHOTS[0].key);
@@ -33,10 +45,11 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
  const selected=rows.find(r=>r.characterId===selectedId);
  const [live,setLive]=useState<any>(null),[loading,setLoading]=useState(false),[error,setError]=useState('');
  const [preview,setPreview]=useState(false);
+ const [boardMode,setBoardMode]=useState<'actual'|'guide'>('actual');
  const [view,setView]=useState<'equipment'|'skills'|'daevanion'>('equipment');
  const [previewBoard,setPreviewBoard]=useState(catalog.boards[0]?.id);
- const request=useRef(0);useEffect(()=>()=>{request.current++},[]);
- useEffect(()=>{request.current++;setSelectedId('');setLive(null);setLoading(false);setError('');setPreview(false);},[catalog.classKey,kind]);
+ const request=useRef(0),profileController=useRef<AbortController|null>(null);useEffect(()=>()=>{request.current++;profileController.current?.abort();},[]);
+ useEffect(()=>{request.current++;profileController.current?.abort();setSelectedId('');setLive(null);setLoading(false);setError('');setPreview(false);setBoardMode('actual');setPreviewBoard(catalog.boards[0]?.id);},[catalog.classKey,kind]);
  const itemUsage=new Map<number,{name:string;count:number}>();
  for(const row of rows)for(const item of new Map(row.equipment.map(item=>[item.id,item])).values()){const entry=itemUsage.get(item.id)||{name:item.name,count:0};entry.count++;itemUsage.set(item.id,entry)}
  const commonItems=[...itemUsage.values()].sort((a,b)=>b.count-a.count).slice(0,6);
@@ -59,7 +72,13 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
    {ids.some(id=>!notes.some(n=>n.id===id))&&<p className="subtle">{t('추가 분석 전: {0}. 설명이 없는 기술의 효과나 우열은 추정하지 않았습니다.',[ids.filter(id=>!notes.some(n=>n.id===id)).map(skillName).join(' · ')])}</p>}
   </details>;
  };
- async function inspect(row:Ranker){const token=++request.current;setSelectedId(row.characterId);setPreview(false);setLive(null);setError('');setLoading(true);try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId});if(request.current===token)setLive(result)}catch(e){if(request.current===token)setError(e instanceof Error?e.message:'공식 조회 실패')}finally{if(request.current===token)setLoading(false)}}
+ async function inspect(row:Ranker){
+  const token=++request.current;profileController.current?.abort();const controller=new AbortController();profileController.current=controller;
+  setSelectedId(row.characterId);setPreview(false);setLive(null);setError('');setLoading(true);
+  try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId},controller.signal);if(request.current===token&&!controller.signal.aborted)setLive(result)}
+  catch(e){if(request.current===token&&!controller.signal.aborted)setError(e instanceof Error?e.message:'공식 조회 실패')}
+  finally{if(request.current===token)setLoading(false)}
+ }
  useEffect(()=>{const row=rows.find(r=>r.characterId===initialSelection?.id);if(!rankingOnly&&row)void inspect(row);
  // The selection is consumed when this page mounts; later selections are made in its own list.
  // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -75,15 +94,19 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
   <details className="ranker-analysis"><summary>{t('10명의 공통 구성과 빌드 분기 ({0}가지)',[groups.length])}</summary><p>{t('공개된 장착 Dp 스킬 조합으로 묶었습니다. 특화·스킬 운용은 공개되지 않아 조합만으로 성능이나 콘텐츠 적합성을 단정하지 않습니다.')}</p>{left&&right&&<section className="ranker-compare" aria-label={t('빌드 구성 비교')}><h3>{t('두 구성 비교')}</h3><p>{t('사용자 수는 이 표본의 선택 빈도입니다. 성능 순위가 아닙니다. 비교해도 내 빌드는 바뀌지 않습니다.')}</p><div className="ranker-compare-grid">{([{label:'기준 구성',value:left,set:setCompareLeft},{label:'비교 구성',value:right,set:setCompareRight}]).map(choice=><label key={choice.label}>{t(choice.label)}<select aria-label={t(choice.label)} value={choice.value.ids.join(',')} onChange={e=>choice.set(e.target.value)}>{groups.map((g,i)=><option key={g.ids.join(',')} value={g.ids.join(',')}>{t('구성 {0} · {1}명 · {2}개 기술',[i+1,g.members.length,g.ids.length])}</option>)}</select></label>)}</div><details className="ranker-shared"><summary>{t('공통 기술 {0}개',[difference.shared.length])}</summary><p>{difference.shared.map(skillName).join(' · ')||t('없음')}</p></details><div className="ranker-compare-grid">{([{label:'기준 구성에만 있는 기술',ids:difference.leftOnly},{label:'비교 구성에만 있는 기술',ids:difference.rightOnly}]).map(side=><div className="ranker-difference" key={side.label}><h4>{t('{0} · {1}개',[t(side.label),side.ids.length])}</h4><p>{side.ids.map(skillName).join(' · ')||t('없음')}</p>{side.ids.length>0&&guidance(side.ids)}</div>)}</div>{!difference.leftOnly.length&&!difference.rightOnly.length&&<p role="status">{t('두 구성의 공개 장착 기술이 같습니다.')}</p>}</section>}<h3>{t('자주 사용하는 장비')}</h3><ul>{commonItems.map(item=><li key={item.name}>{item.name} · {t('{0}/10명',[item.count])}</li>)}</ul>{groups.map((g,i)=><article key={g.ids.join(',')}><h3>{t('구성 {0} · {1}/10명',[i+1,g.members.length])}</h3><p>{g.ids.map(skillName).join(' · ')||t('공개된 장착 Dp 스킬 없음')}</p><p>{t('사용 캐릭터: {0}',[g.members.map(r=>r.name).join(', ')])}</p>{guidance(g.ids)}</article>)}</details>
   <RankerEquipmentComparison key={catalog.classKey} rows={rows}/>
   <details key={selectedId||'choose'} className="comparison-picker" open={!selected}><summary>{selected?t('비교 대상: {0} · 다른 랭커 선택',[selected.name]):t('비교할 랭커 선택')}</summary><div className="ranker-list">{rows.map(row=><button className={'button secondary '+(selected===row?'selected':'')} key={row.characterId} aria-pressed={selected===row} onClick={()=>inspect(row)}><b>{row.rank}. {row.name}</b><span>{row.region.toUpperCase()} · {row.serverName} · {t(row.race===1?'천족':'마족')}</span><small>{t(ROSTER_TEXT[current.key].score,[row.combatPower.toLocaleString(),row.sampleRank])}</small></button>)}</div></details>
-  {selected&&<div className="ranker-detail"><h3>{t('{0} 세팅',[selected.name])}</h3><OfficialLink href={selected.sourceProfile} target="_blank" rel="noreferrer">{t('명단 원본 캐릭터 ↗')}</OfficialLink><p>{t('장비·스킬 확인 {0} · 당시 공식 전투력 {1}',[time(selected.verifiedAt),selected.currentCombatPower.toLocaleString()])}</p>
-   <p className="ranker-observation" role="status">{live?t('공식 상세 조회: {0} · 아래 장비·스킬·데바니온은 이번 응답 기준',[time(live.importedAt)]):t('저장 자료 표시: {0} · 공식 조회 성공 전까지 저장된 장비·스킬을 표시합니다.',[time(selected.verifiedAt)])}</p>
+  {selected&&<div className="ranker-detail"><RankerSwitcher rows={rows} selected={selected} onSelect={inspect}/><h3>{t('{0} 세팅',[selected.name])}</h3><OfficialLink href={selected.sourceProfile} target="_blank" rel="noreferrer">{t('명단 원본 캐릭터 ↗')}</OfficialLink><p>{t('장비·스킬 확인 {0} · 당시 공식 전투력 {1}',[time(selected.verifiedAt),selected.currentCombatPower.toLocaleString()])}</p>
+   <div className="ranker-lookup-state" data-state={loading?'loading':error?'error':live?'ready':'stored'}>
+    <p className="ranker-observation" role="status">{loading?selected.name+' · '+rankerText(locale,'loading'):live?t('공식 상세 조회: {0} · 아래 장비·스킬·데바니온은 이번 응답 기준',[time(live.importedAt)]):rankerText(locale,'lookupFailed')}</p>
+    {!live&&<small>{t('저장 자료 표시: {0} · 공식 조회 성공 전까지 저장된 장비·스킬을 표시합니다.',[time(selected.verifiedAt)])}</small>}
+    {error&&<div role="alert"><details><summary>{t('조회 오류 자세히 보기')}</summary><p>{t(error)}</p></details><button className="button secondary" onClick={()=>inspect(selected)}>{t('공식 세팅 다시 조회')}</button></div>}
+   </div>
    <nav className="ranker-view-tabs ranker-primary-tabs" aria-label={rankerText(locale,'tabs')}>{([{key:'equipment',label:'장비'},{key:'skills',label:'스킬'},{key:'daevanion',label:'데바니온'}] as const).map(tab=><button type="button" key={tab.key} aria-pressed={view===tab.key} onClick={()=>setView(tab.key)}>{t(tab.label)}</button>)}</nav>
-   {view==='equipment'&&<MyRankerComparison key={JSON.stringify([selected.characterId,plan.character?.profile,plan.character?.importedAt])} catalog={catalog} plan={plan} ranker={selected} live={live} onConnect={onConnect}/>}
+   {view==='equipment'&&<MyRankerComparison key={JSON.stringify([selected.characterId,plan.character?.profile,plan.character?.importedAt])} catalog={catalog} plan={plan} ranker={selected} live={live} onConnect={onConnect} onRefreshRanker={()=>inspect(selected)}/>}
    {view==='skills'&&<RankerSkillOverview catalog={catalog} plan={plan} skills={live?live.skills:selected.skills}/>}
    {view==='daevanion'&&<>
     {result.error&&<p role="alert">{t(result.error)}</p>}
-    {!candidate&&<p>{rankerText(locale,'boardMissing')}</p>}
-    {candidate&&<><RankerBoards key={selected.characterId+String(preview)} catalog={catalog} plan={plan} target={candidate} boardId={previewBoard} onBoardChange={setPreviewBoard} guideOnly={preview}/>
+    {!candidate&&<p className="ranker-board-wait">{rankerText(locale,loading?'boardLoading':error?'boardRetry':'boardMissing')}</p>}
+    {candidate&&<><RankerBoards key={selected.characterId+String(preview)} catalog={catalog} plan={plan} target={candidate} boardId={previewBoard} onBoardChange={setPreviewBoard} guideOnly={preview} mode={boardMode} onModeChange={setBoardMode}/>
      {!preview&&<button className="button secondary" onClick={()=>{setPreview(true);setError('')}}>{rankerText(locale,'planReview')}</button>}
      {preview&&<div className="quick-preview"><p>{t('따라하기는 공개된 데바니온 배치만 적용합니다. 내 장비·기본 스킬 투자·연결 캐릭터는 유지합니다. 배치 변경으로 잠기는 기존 특화는 해제됩니다.')}</p>{!canApply&&<p role="status">{t('현재 레벨·포인트로는 전체 적용할 수 없습니다. 색으로 표시된 목표를 먼저 확인하고 필요한 포인트를 모아 주세요.')}</p>}<h4>{t('내 계획에 적용할 변경')}</h4><p>{t('노드 {0} → {1} · 결정 {2} / {3}',[plan.nodes.length,candidate.nodes.length,totals(catalog,candidate).crystal,totals(catalog,candidate).crystalMax])}</p><button className="button primary" disabled={!canApply} onClick={()=>{if(canApply){onApply(candidate);setPreview(false)}}}>{t('이 데바니온 배치 적용')}</button><button className="button ghost" onClick={()=>setPreview(false)}>{t('취소')}</button></div>}
     </>}
@@ -95,8 +118,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
     <li><b>{t('데바니온:')}</b> {rankerText(locale,'boardPrep')}</li>
     <li><b>{t('적용 확인:')}</b> {t('미리보기에서 변경을 확인한 뒤 적용하세요. 데바니온 배치만 바꾸며 잠기는 기존 특화는 해제될 수 있습니다. 적용 전으로 되돌릴 수 있습니다.')}</li>
    </ol><p className="subtle">{t('장비 획득 비용·소요 시간과 미공개 옵션은 추정하지 않습니다.')}</p></details>
-   {loading&&<p role="status">{t('공식 프로필과 데바니온을 조회하고 있습니다…')}</p>}{error&&<p role="alert">{(m=>m?t('내 데바니온 총량이 부족합니다. 필요한 결정 {0}, 아스펠 {1}. 포인트 설정에서 실제 총량을 확인하세요.',[m[1],m[2]]):t(error))(error.match(/^내 데바니온 총량이 부족합니다\. 필요한 결정 (\d+), 아스펠 (\d+)\. 포인트 설정에서 실제 총량을 확인하세요\.$/))}</p>}
-   {!loading&&<button className="button ghost" onClick={()=>inspect(selected)}>{t('공식 세팅 다시 조회')}</button>}
+   {!loading&&!error&&<button className="button ghost" onClick={()=>inspect(selected)}>{t('공식 세팅 다시 조회')}</button>}
 
   </div>}
  </section>;

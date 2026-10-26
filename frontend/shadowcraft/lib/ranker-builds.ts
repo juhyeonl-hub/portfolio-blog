@@ -86,3 +86,8 @@ export function rankerSkillRows(catalog:Catalog,mine:unknown,ranker:unknown){
   equipped:right?.category==='Dp'?right.equip===1:null,
  };});
 }
+
+/** These API/validation failures need a new profile, not a retry with the old item identity. */
+export function rankerItemNeedsProfile(error:string):boolean{
+ return error==='장비가 바뀌었거나 조회 정보가 일치하지 않습니다. 캐릭터를 다시 조회하세요.'||error==='실제 장비 옵션을 확인하지 못했습니다. 캐릭터를 다시 조회하세요.';
+}
