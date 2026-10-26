@@ -872,3 +872,5 @@ Search discovery completed: reviewed source4affa508 (Claude NO_FINDINGS0) is on 
 [Task Goal]: GreenOrc comparison continuity and beginner clarity while changing rankers on desktop/mobile; preserve guide mode and show lookup state clearly, with visible quick ranker controls. Scope, expected results and failures: tasks/asbc-ranker-switch-20261027.md. Scoped release explicitly authorized after verification and review.
 
 Ranker switching audit2026-10-27: sticky selector, preserved guide/board, request cancellation, truthful loading/error and stale equipment recovery implemented and PC/mobile verified; scoped task tasks/asbc-ranker-switch-20261027.md. Exact-source Claude review and production release pending.
+
+2026-10-27 release complete: ranker switching source f9c68fc passed Claude NO_FINDINGS0, main pushed and Pages17bab529 deployed. Production PC/mobile GreenOrc gear/skills/Daevanion switching, guide retention and popup verified; existing unrelated changes preserved. See tasks/asbc-ranker-switch-20261027.md.
