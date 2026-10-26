@@ -838,3 +838,5 @@ Completed: scoped source fa3eddd deployed to production; PC1440/mobile390 apply/
 Status: 8 scoped frontend files implemented and verified; no commit/push/deployment. People-builds remains review pending; 236 unrelated pending files and existing mixed-file changes preserved. Full evidence: tasks/asbc-english-journey-20261026.md and D:/CodexData/Projects/ASBC/artifacts/english-journey-20261026.
 
 Release authorized: user requested main commit/push/production for the verified English journey only, without Claude cross-review. People-builds remains review pending and excluded.
+
+Release completed: English journey source 35efa90 pushed and deployed to https://88e1e136.asbc-4c9.pages.dev. Custom-domain assets and PC1440/mobile390 apply/edit/save/reopen/anonymous share verified. People-builds remains review pending and excluded; all unrelated working content preserved. Claude cross-review explicitly waived for this scope.
