@@ -1,16 +1,16 @@
 # People builds — 2026-10-26
-Owner: Codex. Claude 불가로 Codex 임시 조율; usage_limit recorded through Oct26 14:00 Helsinki. No retry.
+Owner: Codex implementation/verification/release; Claude coordination and read-only cross-review completed.
 [Task Goal]: Let visitors find a person's actual character setup and that author's public build posts in a simple dedicated page.
 Scope: read-only public author search/count/pagination, existing character search/profile reuse, isolated person page, links from public author names, navigation and translations. No account identity linkage inferred; no private draft/user data exposure; no planner mutation; no unrelated changes.
 Inputs/expected: region/class/server/name returns official character selection with actual skill/gear/node details; author name returns only authors with published posts, profile lists only that ID's public posts. Reload/back/direct links retain selected identity. PC1440/mobile390 usable.
 Failure cases: unknown/empty name, duplicate visible names, same name on different servers, invalid URL, stale/partial API response, failed boards, wrong class/profile identity, private-only author, escaped wildcard, pagination, request race, mobile overflow.
 Done when: scoped tests/typecheck/build and PC/mobile flow verified; prior changes preserved. No guessed gameplay recommendations.
-Base commit: c2d017938a169fcd981a5ce4dd580734be24a63e
+Base commit: e3f6dc08bf9b24a864cef6af686da63463711267
 Verification: passed; evidence below.
-Last reviewed: Codex self-review completed. Claude cross-review pending.
+Last reviewed: Claude d9c632e and827e218 both NO_FINDINGS(0).
 Uncommitted: baseline recorded before work.
-Next: Claude read-only cross-review when available; address findings and deploy only this feature after review passes.
-Blocker: Claude cross-review required by explicit user decision; recorded usage limit prevents retry before availability.
+Next: complete; production verification passed.
+Blocker: none.
 
 ## Implementation and checks
 - Added people page with character lookup and author public-build search; ID-based links distinguish accounts and server+region+character identity distinguishes characters. Personal plans are not set or applied by this page.
@@ -45,3 +45,12 @@ Blocker: Claude cross-review required by explicit user decision; recorded usage 
 ## People builds reviewed release — 2026-10-26
 User authorized Claude cross-review, fixes, PC/mobile verification and main/push/production. Scoped feature provides game-character current setup and site-author public posts through separate tabs. New anonymous build-authors endpoint exposes only published-post authors and public count; no schema/auth/storage changes.
 Claude read-only review d9c632e and incremental review827e218 both NO_FINDINGS(0). Frontend type/people/navigation/public-build/share/localization checks passed; backend78 tests passed with isolated JVMs; release JAR and ASBC bundle built. PC1440/mobile390 browser viewport checks covered real GreenOrc(EU Ludra), skills/equipment/boards, author search and public post links, reload/back, no horizontal overflow. Pre-release author-directory UI used an explicit fixture; production API/UI verification follows deployment. Existing English journey retained; all unrelated pending work excluded. Evidence: D:/CodexData/Projects/ASBC/artifacts/people-builds-20261026/release.
+
+## Production completion — 2026-10-26
+- Main and origin advanced to f9a4755 (implementation d9c632e, English count refinement827e218, review/check recordf9a4755). Both Claude reviews completed NO_FINDINGS(0).
+- Database dump verified; previous JAR retained. Tested JAR deployed and local/public health plus anonymous author endpoint passed. Initial Python urllib public health request returned403; subsequent standard curl health/directory checks passed without configuration/security changes.
+- Pages deployed: https://205a1978.asbc-4c9.pages.dev ; https://asbc.app HTML and12 related assets match the built output.
+- Actual production anonymous author directory shows1 author and2 public builds; author-ID filtered count agrees. No fixture in deployed code.
+- Production PC1440: GreenOrc EU/Ludra Lv45, Vicious Strike14,20 gear entries, Nezekan50 and Zikel45 selected-node counts, author directory. Mobile390: actual author partial/empty search, public post→author, reload, character direct link and skills/boards/equipment. Client/scroll1425/1425 and375/375; no console errors. Mobile is a browser viewport, not a physical-device test.
+-249 baseline paths checked; only task-owned record and count wording changed. Inverse checks verify unrelated content in mixed translations and PROJECT_BRIEF unchanged. Pending SEO/ledger/other work remains local.
+- Evidence and screenshots: D:/CodexData/Projects/ASBC/artifacts/people-builds-20261026/release/production-verification.json.
