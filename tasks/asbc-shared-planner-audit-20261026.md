@@ -6,11 +6,11 @@ Done when: PC1440/mobile390 apply/edit/save/reopen verified; original GreenOrc p
 Inputs/expected: published test post f1337ebe; Fierce Strike base8/final10 and selected Capture node apply exactly; personal edits persist without modifying the source post.
 Failure cases: wrong route/class, overwritten personal data without recovery, shared guidance disappearing without notice, budget change, save failure, mobile overflow, stale auto recommendation replacing authored allocation.
 Base commit: d5abae93c623cac654f5d47cc3e88d4a08d4c2f6
-Verification: in progress.
-Last reviewed: pending self-review; user requested direct deployment if issues found.
-Findings: pending browser verification.
-Uncommitted: baseline captured before changes.
-Next: reproduce production apply/edit/save flow.
+Verification: PASS — local and deployed PC1440/mobile390 apply/edit/named save/reload/reapply; original personal plan restored exactly.
+Last reviewed: self-review complete; no Claude cross-review claimed. User authorized immediate scoped fix/deploy.
+Findings: false edited-warning, unstable apply URL and missing saved-plan preview fixed; save navigation made visible on mobile.
+Uncommitted: all 227 preexisting pending paths preserved; mixed files checked by removing this task's changes.
+Next: none for this task. Other pending work is outside scope.
 Blocker: none for verification.
 Original plan: saved via UI as [검증 전 원본] 수호성 2026-10-26 and exported to artifacts/shared-planner-audit-20261026/planner-before.json. Do not overwrite this evidence.
 
@@ -31,3 +31,11 @@ Original plan: saved via UI as [검증 전 원본] 수호성 2026-10-26 and expo
 
 ## Release decision
 User explicitly requested fixes and immediate production deployment. Self-review and isolated/integrated checks complete. Claude remains unavailable under recorded usage limit; no cross-review was performed or claimed. Changes are presentation/navigation and content equality only; no persistence format, authentication, backend or database changes.
+
+## Production release verification
+- Source commit fa3eddd9aa2a19787873f666db3f1786e8cc6605 pushed to origin/main. Cloudflare production deployment https://d53b10a4.asbc-4c9.pages.dev. Production HTML and 10 relevant assets byte-match tested build.
+- Deployed PC1440: shared apply opens #/build/skills; base8 → 7; named save/reload preview shows base7 + Daevanion2 = final9; reapply opens editor.
+- Deployed mobile390: editor base7 → 6; named save/reload shows base6 + Daevanion2 = final8; node preview visible; reapply editor retains6. Scroll/client widths both375. No false edited-warning after apply or restore.
+- Initial and final exported original GreenOrc plans deep-equal. Source public post revision/title unchanged. Five clearly labelled local snapshots remain (original, two initial tests, two deployment tests).
+- Isolated production build, isolated and integrated TypeScript, plan-memory, build-library, build-share, public-builds, navigation, account-settings and localization checks passed. Existing chunk-size warnings remain; no gameplay, auth, persistence-format or database changes.
+- Evidence: D:/CodexData/Projects/ASBC/artifacts/shared-planner-audit-20261026/{production-assets.json,final-verification.json,production-pc-library.png,production-mobile-library.png,planner-restored-production.json}. Mobile verification used browser viewport, not physical phone.

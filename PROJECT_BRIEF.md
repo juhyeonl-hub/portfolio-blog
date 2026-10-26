@@ -830,3 +830,5 @@ Release complete: public build draft recovery/sharing source 887ce19 pushed and 
 
 ## Shared public build to personal planner — 2026-10-26
 [Task Goal]: Verify shared build apply/edit/save/reopen on production PC/mobile, preserve and restore original personal plan, fix evidenced issues only and deploy if needed. Scope and expected results: tasks/asbc-shared-planner-audit-20261026.md. Existing unrelated work preserved.
+
+Completed: scoped source fa3eddd deployed to production; PC1440/mobile390 apply/edit/save/reopen verified. Original GreenOrc plan restored exactly; 227 prior pending paths preserved. Evidence: D:/CodexData/Projects/ASBC/artifacts/shared-planner-audit-20261026.
