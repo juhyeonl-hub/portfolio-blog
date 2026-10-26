@@ -75,3 +75,14 @@ export const ROSTER_TEXT:Record<RosterKind,{name:string;subtitle:string;note:str
  arenaOfSolitude:{name:'고독의 아레나',subtitle:'공식 고독의 아레나 랭킹 상위 10명 · 선택한 직업',note:'NCSOFT 공식 고독의 아레나 랭킹에서 직업별 10명을 골랐습니다. 명단 확인 {0} · 수동 갱신',score:'고독의 아레나 점수 {0} · 서버 순위 {1}위'},
  arenaOfCooperation:{name:'협력의 아레나',subtitle:'공식 협력의 아레나 랭킹 상위 10명 · 선택한 직업',note:'NCSOFT 공식 협력의 아레나 랭킹에서 직업별 10명을 골랐습니다. 명단 확인 {0} · 수동 갱신',score:'협력의 아레나 점수 {0} · 서버 순위 {1}위'}};
 export const rosterKind=(metric:unknown):RosterKind=>metric==='abyss'||metric==='arenaOfSolitude'||metric==='arenaOfCooperation'?metric:'combat';
+
+// A final level is an observation, never an estimate of base points or specialization choices.
+export function rankerSkillRows(catalog:Catalog,mine:unknown,ranker:unknown){
+ const own=new Map((rankerDisplaySkills(mine)||[]).map(s=>[String(s.id),s]));
+ const other=new Map((rankerDisplaySkills(ranker)||[]).map(s=>[String(s.id),s]));
+ return catalog.skills.map(skill=>{const left=own.get(skill.id),right=other.get(skill.id);return {
+  skill,mine:left?.skillLevel??null,ranker:right?.skillLevel??null,
+  difference:left&&right?right.skillLevel-left.skillLevel:null,
+  equipped:right?.category==='Dp'?right.equip===1:null,
+ };});
+}

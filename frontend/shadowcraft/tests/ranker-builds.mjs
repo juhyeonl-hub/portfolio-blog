@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl,plannerUrl,classesUrl,planner} from './modules.mjs';
-const {groupRankers,compareRankerSkills,compareRankerEquipment,previewRankerBoards,rankerObservationTime,rankerDisplaySkills}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
+const {groupRankers,compareRankerSkills,compareRankerEquipment,previewRankerBoards,rankerObservationTime,rankerDisplaySkills,rankerSkillRows}=await import(moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
 const c=JSON.parse(readFileSync('lib/data/catalogs/assassin.json'));
 c.classKey='assassin';
 const p={...planner.emptyPlan(c),pointBudget:{sp:9999,stigma:9999,crystal:9999,battle:9999}};
@@ -93,3 +93,22 @@ assert(previewRankerBoards(c,poor,ranker,profile,{allowUnavailable:true}).nodes.
 assert.equal(JSON.stringify(poor),poorBefore);
 assert.throws(()=>previewRankerBoards(c,poor,ranker,{...profile,nodes:['unknown']},{allowUnavailable:true}));
 assert.throws(()=>previewRankerBoards(c,poor,ranker,{...profile,region:'as'},{allowUnavailable:true}));
+
+const observedCatalog={skills:[{id:'2'},{id:'1'},{id:'3'}]};
+const obs=(id,skillLevel,category='Active',equip=0)=>({id,name:'Observed',category,skillLevel,equip});
+const observedRows=rankerSkillRows(observedCatalog,[obs(1,0),obs(2,8)],[obs(2,15),obs(1,0,'Dp',1)]);
+assert.deepEqual(observedRows.map(r=>r.skill.id),['2','1','3'],'catalog order stays fixed');
+assert.deepEqual(observedRows.map(r=>r.difference),[7,0,null]);
+assert.equal(observedRows[1].ranker,0,'observed zero is valid');
+assert.equal(observedRows[1].equipped,true);
+assert.equal(observedRows[2].ranker,null,'missing never becomes zero');
+assert.equal(observedRows[2].equipped,null,'missing never becomes unequipped');
+assert(rankerSkillRows(observedCatalog,undefined,[obs(2,-1)]).every(r=>r.ranker===null));
+assert(rankerSkillRows(observedCatalog,[obs(2,8),obs(2,9)],[obs(2,15)]).every(r=>r.mine===null));
+assert.equal(rankerSkillRows(observedCatalog,[],[obs(1,0,'Dp',0)])[1].equipped,false);
+const scopedCopy=readFileSync('lib/ranker-comparison-text.ts','utf8');
+const {rankerText}=await import(moduleUrl(scopedCopy));
+const copyKeys=[...scopedCopy.matchAll(/^ (\w+): \[/gm)].map(m=>m[1]);
+assert(copyKeys.length>15);
+for(const key of copyKeys)for(const language of ['ko','en','ja','fi']){const value=rankerText(language,key);assert(value.length>0);if(language!=='ko')assert(!/[가-힣]/.test(value),language+' '+key);}
+console.log('Ranker visual: catalog order, final observations, missing/zero/malformed/equipped distinctions and four locales PASS');

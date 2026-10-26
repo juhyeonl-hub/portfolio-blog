@@ -1,5 +1,7 @@
 import './equipment-guidance.css';
-import {useEffect,useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
+import {rankerText} from '../lib/ranker-comparison-text';
+import './ranker-visual.css';
 import {useLocale} from './locale';
 import EquipmentGrid,{slotLabel} from './equipment-grid';
 import {loadItemIndex,type ItemIndex} from '../lib/item-index';
@@ -16,6 +18,7 @@ function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index}:{i
  const [detail,setDetail]=useState<EquippedDetail|null>(null),[error,setError]=useState(''),[loading,setLoading]=useState(true),[retry,setRetry]=useState(0);
  const [investment,setInvestment]=useState<Investment>('unknown'),[budget,setBudget]=useState(false),[reviewed,setReviewed]=useState(false),[unwanted,setUnwanted]=useState<string[]>([]);
  const [purpose,setPurpose]=useState('build');
+ const [showAdvice,setShowAdvice]=useState(false);
  const adviceMode=purpose==='build'?plan.mode:purpose==='pvp'?'pvp':purpose==='attack'?'damage':'safe';
  const id=identity?.id,server=identity?.server,region=identity?.region,itemId=item?.id,slot=item?.slotPos,enchant=item?.enchantLevel;
  useEffect(()=>{
@@ -38,16 +41,17 @@ function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index}:{i
   {!item||!identity?<p>{t('캐릭터 또는 해당 부위의 조회 정보가 없습니다.')}</p>:loading?<p role="status">{t('실제 장착 옵션 조회 중…')}</p>:error?<><p role="alert">{t(mine?'내 장비 옵션을 불러오지 못했습니다. 옵션을 추측해 안내하지 않습니다.':'랭커 장비 옵션을 불러오지 못했습니다. 내 장비가 조회됐다면 왼쪽 또는 위쪽의 성장 안내는 계속 사용할 수 있습니다.')}</p><details><summary>{t('조회 오류 자세히 보기')}</summary><p>{t(error)}</p></details><button className="button ghost" onClick={()=>setRetry(n=>n+1)}>{t('다시 조회')}</button></>:detail&&<>
    <b>{detail.name}</b><p>{t('아이템 레벨 {0}',[detail.level])} · {t('강화 +{0} · 초월 +{1}',[detail.enchantLevel,item.exceedLevel])}</p>
    <p className="subtle">{t('아래는 이번 공식 응답의 실제 무작위 옵션과 스킬입니다. 기본 능력치·마석·신석은 투자 판단에서 제외합니다.')}</p>
+   {mine&&<button className="button ghost" aria-expanded={showAdvice} onClick={()=>setShowAdvice(v=>!v)}>{rankerText(locale,'advice')}</button>}
    {!options.length&&<p>{t('공개된 무작위 옵션이 없습니다.')}</p>}
-   {mine&&<div className="investment-advice">
+   {mine&&showAdvice&&<div className="investment-advice">
     <h4>{t('이 장비로 무엇을 하고 싶나요?')}</h4>
     <label>{t('장비 안내의 사용 목적')}<select value={purpose} onChange={e=>{setPurpose(e.target.value);setReviewed(false);setUnwanted([]);}}>
      <option value="build">{t('현재 빌드 기준')}</option><option value="solo">{t('혼자 사냥')}</option><option value="attack">{t('파티에서 공격')}</option><option value="heal">{t('파티에서 회복')}</option><option value="pvp">{t('유저와 전투')}</option>
     </select></label>
     <p className="subtle">{t('이 선택은 아래 안내만 바꿉니다. 스킬 배치와 저장된 빌드는 바뀌지 않습니다. 회복량·생존력의 정확한 효율은 계산하지 않습니다.')}</p>
    </div>}
-   <ul className="rolled-options">{options.map((o,i)=><li key={o.key+':'+i}><span><b>{o.name}</b> {o.value}</span>{mine&&<><small className={'option-fit '+o.fit}>{t(FIT[o.fit])}</small><small>{t(optionReason(o.key.startsWith('skill:')?'skill':'stat',o.fit))}</small><label><input type="checkbox" checked={unwanted.includes(o.key)} onChange={e=>{setReviewed(false);setUnwanted(v=>e.target.checked?[...v,o.key]:v.filter(x=>x!==o.key));}}/>{t('이 옵션을 다른 옵션으로 바꾸고 싶어요')}</label></>}</li>)}</ul>
-   {mine&&<div className="investment-advice">
+   <ul className="rolled-options">{options.map((o,i)=><li key={o.key+':'+i}><span><b>{o.name}</b> {o.value}</span>{mine&&showAdvice&&<><small className={'option-fit '+o.fit}>{t(FIT[o.fit])}</small><small>{t(optionReason(o.key.startsWith('skill:')?'skill':'stat',o.fit))}</small><label><input type="checkbox" checked={unwanted.includes(o.key)} onChange={e=>{setReviewed(false);setUnwanted(v=>e.target.checked?[...v,o.key]:v.filter(x=>x!==o.key));}}/>{t('이 옵션을 다른 옵션으로 바꾸고 싶어요')}</label></>}</li>)}</ul>
+   {mine&&showAdvice&&<div className="investment-advice">
     <h4>{t('이 장비, 지금 무엇부터 할까요?')}</h4><p>{t('옵션 변경 체크는 조율 후보를 고르는 표시입니다. 체크만으로 게임 장비가 바뀌지는 않습니다.')}</p>
     <p>{t('랭커 장비 레벨 {0}은 참고 정보입니다. 레벨이 낮거나 옵션이 다르다는 이유만으로 교체·조율을 권하지 않습니다.',[referenceLevel??t('미확인')])}</p>
     <label>{t('이 장비를 언제까지 쓸 예정인가요?')}<select value={investment} onChange={e=>setInvestment(e.target.value as Investment)}><option value="unknown">{t('아직 미정')}</option><option value="replace">{t('곧 교체')}</option><option value="progress">{t('다음 던전 장비를 얻을 때까지')}</option><option value="keep">{t('장기 사용')}</option></select></label>
@@ -65,25 +69,30 @@ function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index}:{i
  </div>;
 }
 export default function MyRankerComparison({catalog,plan,ranker,live,onConnect}:{catalog:Catalog;plan:Plan;ranker:Ranker;live:any;onConnect?:()=>void}){
- const {t}=useLocale();
+ const {t,locale}=useLocale();
+ const dialog=useRef<HTMLDialogElement>(null);
  const [index,setIndex]=useState<ItemIndex|null>(null),[slot,setSlot]=useState<number|null>(null);
  useEffect(()=>{let active=true;loadItemIndex().then(x=>{if(active)setIndex(x)});return()=>{active=false};},[]);
- const mine=plan.character,comparison=compareRankerEquipment(mine?.equipment,live?.equipment??ranker.equipment);
+ const mine=plan.character,comparison=compareRankerEquipment(mine?.equipment,live?live.equipment:ranker.equipment);
  const row=comparison.rows.find(r=>r.slot===slot);
+ useEffect(()=>{const element=dialog.current;if(!slot||!element)return;const opener=document.activeElement; element.showModal();return()=>{element.close();if(opener instanceof HTMLElement&&opener.isConnected)opener.focus();};},[slot]);
  const identity:Identity|null=mine?.classKey===catalog.classKey&&mine?.profile?.characterId&&mine?.profile?.serverId&&mine?.region?{id:mine.profile.characterId,server:String(mine.profile.serverId),region:mine.region}:null;
  const other:Identity={id:ranker.characterId,server:String(ranker.serverId),region:ranker.region};
  return <section className="my-ranker-comparison" aria-label={t('내 캐릭터와 랭커 비교')}>
   <h3>{t('내 캐릭터와 랭커 비교')}</h3>
-  <p>{t('어느 쪽 장비든 마우스를 올리거나 누르면 같은 부위의 양쪽 옵션을 함께 보여 줍니다.')}</p>
+  <p>{rankerText(locale,'clickGear')}</p>
   <p className="subtle">{t('판단 기준: {0} · {1}. 레벨 비교는 글로벌 아이템 자료 기준이며 랭커의 옵션을 정답으로 취급하지 않습니다.',[t(catalog.className||catalog.classKey||''),t(MODE_NAMES[plan.mode])])}</p>
   {!identity&&(onConnect?<button className="button primary" onClick={onConnect}>{t('내 캐릭터 연결하고 비교')}</button>:<p role="status">{t('빌드 화면에서 내 캐릭터를 먼저 연결하세요.')}</p>)}
   <div className="equipment-pair headings"><div><strong>{t('내 캐릭터')}</strong><b>{mine?.profile?.characterName||t('연결되지 않음')}</b><small>{mine?.importedAt?new Date(mine.importedAt).toLocaleString():''}</small></div><div><strong>{t('비교할 랭커')}</strong><b>{ranker.name}</b><small>{t(live?'이번 공식 응답':'저장된 장비 목록')}</small></div></div>
-  <div className="comparison-workbench"><div className="visual-equipment-windows"><section aria-label={t('내 캐릭터 장비창')}><EquipmentGrid items={comparison.rows.flatMap(r=>r.left?[r.left]:[])} selectedSlot={slot} onInspect={setSlot}/></section><section aria-label={t('랭커 장비창')}><EquipmentGrid items={comparison.rows.flatMap(r=>r.right?[r.right]:[])} selectedSlot={slot} onInspect={setSlot}/></section></div>
-   <div className="paired-option-inspector" aria-label={t('양쪽 장비 옵션 비교')}>
-   {row?<><h4>{slotLabel(row.left?.slotPosName||row.right?.slotPosName||String(row.slot),t)}</h4><div className="equipment-pair option-pair" key={JSON.stringify([identity,other,row.left,row.right,plan.mode,plan.base,live?.importedAt])}>
+  <div className="comparison-workbench"><div className="visual-equipment-windows"><section aria-label={t('내 캐릭터 장비창')}><EquipmentGrid items={comparison.rows.flatMap(r=>r.left?[r.left]:[])} selectedSlot={slot} onInspect={setSlot} inspectOnHover={false}/></section><section aria-label={t('랭커 장비창')}><EquipmentGrid items={comparison.rows.flatMap(r=>r.right?[r.right]:[])} selectedSlot={slot} onInspect={setSlot} inspectOnHover={false}/></section></div>
+  </div>
+  {row&&<dialog ref={dialog} className="equipment-option-dialog" aria-labelledby="equipment-option-title" onCancel={()=>setSlot(null)} onClose={()=>setSlot(null)} onClick={e=>{if(e.target===e.currentTarget)setSlot(null)}}>
+   <header><div><small>{rankerText(locale,'gearDialog')} · {mine?.profile?.characterName||t('내 캐릭터')} ↔ {ranker.name}</small><h3 id="equipment-option-title">{slotLabel(row.left?.slotPosName||row.right?.slotPosName||String(row.slot),t)}</h3></div><button autoFocus type="button" className="button secondary" onClick={()=>setSlot(null)}>{t('닫기')}</button></header>
+   <div className="equipment-pair option-pair" key={JSON.stringify([identity,other,row.left,row.right,plan.mode,plan.base,live?.importedAt])}>
     <ActualOptions identity={identity} item={row.left} mine catalog={catalog} plan={plan} referenceLevel={row.right?index?.items[row.right.id]?.lv??null:null} index={index}/>
     <ActualOptions identity={other} item={row.right} mine={false} catalog={catalog} plan={plan} referenceLevel={null} index={index}/>
-   </div></>:<p>{t('비교할 장비 아이콘을 선택하세요.')}</p>}
-   </div></div>
+   </div>
+  </dialog>}
+
  </section>;
 }

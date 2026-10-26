@@ -17,7 +17,9 @@ import MyRankerComparison from './my-ranker-comparison';
 import RankerEquipmentComparison from './ranker-equipment';
 import CharacterComparison from './character-comparison';
 import {useLocale} from './locale';
-import {SkillHover} from './skill-tip';
+import RankerSkillOverview from './ranker-skill-overview';
+import {rankerText} from '../lib/ranker-comparison-text';
+import './ranker-visual.css';
 
 export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly=false,onChoose,initialSelection}:{rankingOnly?:boolean;onChoose?:(id:string,kind:string)=>void;initialSelection?:{id:string;kind:string}|null;catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void;onConnect?:()=>void}){
  const {t,locale,skill:localSkill}=useLocale();
@@ -31,6 +33,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
  const selected=rows.find(r=>r.characterId===selectedId);
  const [live,setLive]=useState<any>(null),[loading,setLoading]=useState(false),[error,setError]=useState('');
  const [preview,setPreview]=useState(false);
+ const [view,setView]=useState<'equipment'|'skills'|'daevanion'>('equipment');
  const [previewBoard,setPreviewBoard]=useState(catalog.boards[0]?.id);
  const request=useRef(0);useEffect(()=>()=>{request.current++},[]);
  useEffect(()=>{request.current++;setSelectedId('');setLive(null);setLoading(false);setError('');setPreview(false);},[catalog.classKey,kind]);
@@ -38,7 +41,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
  for(const row of rows)for(const item of new Map(row.equipment.map(item=>[item.id,item])).values()){const entry=itemUsage.get(item.id)||{name:item.name,count:0};entry.count++;itemUsage.set(item.id,entry)}
  const commonItems=[...itemUsage.values()].sort((a,b)=>b.count-a.count).slice(0,6);
  const groups=groupRankers(rows);
- const result=useMemo(()=>{if(!preview||!selected||!live)return {candidate:null,error:''};try{return {candidate:previewRankerBoards(catalog,plan,selected,live,{allowUnavailable:true}),error:''}}catch(e){return {candidate:null,error:e instanceof Error?e.message:'복사할 수 없습니다.'}}},[preview,catalog,plan,selected,live]);
+ const result=useMemo(()=>{if(!selected||!live)return {candidate:null,error:''};try{return {candidate:previewRankerBoards(catalog,plan,selected,live,{allowUnavailable:true}),error:''}}catch(e){return {candidate:null,error:e instanceof Error?e.message:'복사할 수 없습니다.'}}},[catalog,plan,selected,live]);
  const candidate=result.candidate;
  const candidateTotals=candidate?totals(catalog,candidate):null;
  const canApply=!!candidate&&!!candidateTotals&&candidateTotals.crystal<=candidateTotals.crystalMax&&candidateTotals.battle<=candidateTotals.battleMax&&!catalog.boards.some(b=>b.requiredLevel>plan.level&&b.nodes.some(n=>!n.autoLearn&&candidate.nodes.includes(n.id)));
@@ -56,7 +59,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
    {ids.some(id=>!notes.some(n=>n.id===id))&&<p className="subtle">{t('추가 분석 전: {0}. 설명이 없는 기술의 효과나 우열은 추정하지 않았습니다.',[ids.filter(id=>!notes.some(n=>n.id===id)).map(skillName).join(' · ')])}</p>}
   </details>;
  };
- async function inspect(row:Ranker){const token=++request.current;setSelectedId(row.characterId);setLive(null);setError('');setLoading(true);try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId});if(request.current===token)setLive(result)}catch(e){if(request.current===token)setError(e instanceof Error?e.message:'공식 조회 실패')}finally{if(request.current===token)setLoading(false)}}
+ async function inspect(row:Ranker){const token=++request.current;setSelectedId(row.characterId);setPreview(false);setLive(null);setError('');setLoading(true);try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId});if(request.current===token)setLive(result)}catch(e){if(request.current===token)setError(e instanceof Error?e.message:'공식 조회 실패')}finally{if(request.current===token)setLoading(false)}}
  useEffect(()=>{const row=rows.find(r=>r.characterId===initialSelection?.id);if(!rankingOnly&&row)void inspect(row);
  // The selection is consumed when this page mounts; later selections are made in its own list.
  // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,17 +77,24 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
   <details key={selectedId||'choose'} className="comparison-picker" open={!selected}><summary>{selected?t('비교 대상: {0} · 다른 랭커 선택',[selected.name]):t('비교할 랭커 선택')}</summary><div className="ranker-list">{rows.map(row=><button className={'button secondary '+(selected===row?'selected':'')} key={row.characterId} aria-pressed={selected===row} onClick={()=>inspect(row)}><b>{row.rank}. {row.name}</b><span>{row.region.toUpperCase()} · {row.serverName} · {t(row.race===1?'천족':'마족')}</span><small>{t(ROSTER_TEXT[current.key].score,[row.combatPower.toLocaleString(),row.sampleRank])}</small></button>)}</div></details>
   {selected&&<div className="ranker-detail"><h3>{t('{0} 세팅',[selected.name])}</h3><OfficialLink href={selected.sourceProfile} target="_blank" rel="noreferrer">{t('명단 원본 캐릭터 ↗')}</OfficialLink><p>{t('장비·스킬 확인 {0} · 당시 공식 전투력 {1}',[time(selected.verifiedAt),selected.currentCombatPower.toLocaleString()])}</p>
    <p className="ranker-observation" role="status">{live?t('공식 상세 조회: {0} · 아래 장비·스킬·데바니온은 이번 응답 기준',[time(live.importedAt)]):t('저장 자료 표시: {0} · 공식 조회 성공 전까지 저장된 장비·스킬을 표시합니다.',[time(selected.verifiedAt)])}</p>
-   {live&&<><details><summary>{t('능력치·스킬·노드 상세 비교')}</summary><CharacterComparison current={plan.character} saved={live} ranker/></details><p>{t('따라하기는 공개된 데바니온 배치만 적용합니다. 내 장비·기본 스킬 투자·연결 캐릭터는 유지합니다. 배치 변경으로 잠기는 기존 특화는 해제됩니다.')}</p><button className="button secondary" onClick={()=>{setPreview(true);setError('')}}>{t('데바니온 따라하기 미리보기')}</button></>}
-   {result.error&&<p role="alert">{t(result.error)}</p>}
-   {candidate&&<div className="quick-preview"><RankerBoards catalog={catalog} plan={plan} target={candidate} boardId={previewBoard} onBoardChange={setPreviewBoard}/>{!canApply&&<p role="status">{t('현재 레벨·포인트로는 전체 적용할 수 없습니다. 색으로 표시된 목표를 먼저 확인하고 필요한 포인트를 모아 주세요.')}</p>}<h4>{t('내 계획에 적용할 변경')}</h4><p>{t('노드 {0} → {1} · 결정 {2} / {3}',[plan.nodes.length,candidate.nodes.length,totals(catalog,candidate).crystal,totals(catalog,candidate).crystalMax])}</p><button className="button primary" disabled={!canApply} onClick={()=>{if(canApply){onApply(candidate);setPreview(false)}}}>{t('이 데바니온 배치 적용')}</button><button className="button ghost" onClick={()=>setPreview(false)}>{t('취소')}</button></div>}
-   <MyRankerComparison key={JSON.stringify([selected.characterId,plan.character?.profile,plan.character?.importedAt])} catalog={catalog} plan={plan} ranker={selected} live={live} onConnect={onConnect}/>
+   <nav className="ranker-view-tabs ranker-primary-tabs" aria-label={rankerText(locale,'tabs')}>{([{key:'equipment',label:'장비'},{key:'skills',label:'스킬'},{key:'daevanion',label:'데바니온'}] as const).map(tab=><button type="button" key={tab.key} aria-pressed={view===tab.key} onClick={()=>setView(tab.key)}>{t(tab.label)}</button>)}</nav>
+   {view==='equipment'&&<MyRankerComparison key={JSON.stringify([selected.characterId,plan.character?.profile,plan.character?.importedAt])} catalog={catalog} plan={plan} ranker={selected} live={live} onConnect={onConnect}/>}
+   {view==='skills'&&<RankerSkillOverview catalog={catalog} plan={plan} skills={live?live.skills:selected.skills}/>}
+   {view==='daevanion'&&<>
+    {result.error&&<p role="alert">{t(result.error)}</p>}
+    {!candidate&&<p>{rankerText(locale,'boardMissing')}</p>}
+    {candidate&&<><RankerBoards key={selected.characterId+String(preview)} catalog={catalog} plan={plan} target={candidate} boardId={previewBoard} onBoardChange={setPreviewBoard} guideOnly={preview}/>
+     {!preview&&<button className="button secondary" onClick={()=>{setPreview(true);setError('')}}>{rankerText(locale,'planReview')}</button>}
+     {preview&&<div className="quick-preview"><p>{t('따라하기는 공개된 데바니온 배치만 적용합니다. 내 장비·기본 스킬 투자·연결 캐릭터는 유지합니다. 배치 변경으로 잠기는 기존 특화는 해제됩니다.')}</p>{!canApply&&<p role="status">{t('현재 레벨·포인트로는 전체 적용할 수 없습니다. 색으로 표시된 목표를 먼저 확인하고 필요한 포인트를 모아 주세요.')}</p>}<h4>{t('내 계획에 적용할 변경')}</h4><p>{t('노드 {0} → {1} · 결정 {2} / {3}',[plan.nodes.length,candidate.nodes.length,totals(catalog,candidate).crystal,totals(catalog,candidate).crystalMax])}</p><button className="button primary" disabled={!canApply} onClick={()=>{if(canApply){onApply(candidate);setPreview(false)}}}>{t('이 데바니온 배치 적용')}</button><button className="button ghost" onClick={()=>setPreview(false)}>{t('취소')}</button></div>}
+    </>}
+   </>}
+   {live&&<details><summary>{t('능력치·스킬·노드 상세 비교')}</summary><CharacterComparison current={plan.character} saved={live} ranker/></details>}
    <details className="ranker-preparation"><summary>{t('따라하기 전 준비 항목')}</summary><ol>
     <li><b>{t('장비:')}</b> {t('위 목록에서 부위·강화·초월을 확인하세요. 보유 여부는 자동 확인하지 않으며 내 장비 계획에 복사하지 않습니다.')}</li>
     <li><b>{t('스킬:')}</b> {t('목표 레벨에는 장비·데바니온 보너스가 포함됩니다. 기본 투자 포인트와 특화는 공개되지 않아 직접 맞춰야 합니다.')}</li>
-    <li><b>{t('데바니온:')}</b> {t('내 캐릭터 레벨과 실제 결정 총량을 먼저 입력하세요. 공식 조회 후 미리보기를 누르면 보드 개방·연결·필요 포인트를 검사합니다.')}</li>
+    <li><b>{t('데바니온:')}</b> {rankerText(locale,'boardPrep')}</li>
     <li><b>{t('적용 확인:')}</b> {t('미리보기에서 변경을 확인한 뒤 적용하세요. 데바니온 배치만 바꾸며 잠기는 기존 특화는 해제될 수 있습니다. 적용 전으로 되돌릴 수 있습니다.')}</li>
    </ol><p className="subtle">{t('장비 획득 비용·소요 시간과 미공개 옵션은 추정하지 않습니다.')}</p></details>
-   <details className="ranker-skills"><summary>{t('스킬 목표 레벨 확인')}</summary><p>{t(live?'이번 공식 응답의 스킬':'저장 자료의 스킬')} · {time(live?live.importedAt:selected.verifiedAt)}</p>{(!displaySkills||!displaySkills.length)&&<p>{t('표시할 스킬 정보를 확인하지 못했습니다. 공식 세팅을 다시 조회해 주세요.')}</p>}<p>{t('장비·데바니온 보너스가 포함된 최종 레벨입니다. 투자 포인트 및 특화 선택은 미확인입니다.')}</p><ul>{(displaySkills||[]).filter(s=>s.skillLevel>0).map(s=><li key={s.id}><SkillHover skill={catalog.skills.find(x=>x.id===String(s.id))} level={s.skillLevel}>{skillName(String(s.id))}</SkillHover> · Lv.{s.skillLevel}{s.category==='Dp'?' · '+t(s.equip===1?'장착':'미장착'):''}</li>)}</ul></details>
    {loading&&<p role="status">{t('공식 프로필과 데바니온을 조회하고 있습니다…')}</p>}{error&&<p role="alert">{(m=>m?t('내 데바니온 총량이 부족합니다. 필요한 결정 {0}, 아스펠 {1}. 포인트 설정에서 실제 총량을 확인하세요.',[m[1],m[2]]):t(error))(error.match(/^내 데바니온 총량이 부족합니다\. 필요한 결정 (\d+), 아스펠 (\d+)\. 포인트 설정에서 실제 총량을 확인하세요\.$/))}</p>}
    {!loading&&<button className="button ghost" onClick={()=>inspect(selected)}>{t('공식 세팅 다시 조회')}</button>}
 

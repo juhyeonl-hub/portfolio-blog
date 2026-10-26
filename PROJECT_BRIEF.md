@@ -862,3 +862,6 @@ Failure cases: stale guide labels, broken tool links, locale reset, hidden/noind
 Claude coordination completed; exact-commit review and fresh checks required before main/push/Pages. User authorized this scoped release by proceeding with proposed priority1.
 
 Search discovery completed: reviewed source4affa508 (Claude NO_FINDINGS0) is on main/origin and live at https://asbc.app via Pages https://04a8c246.asbc-4c9.pages.dev. All15HTML/16asset production bytes match;14guides xPC1440/mobile390 and anonymous tool flows passed. Google ownership verified and /sitemap.xml reports Success with15discovered pages. Individual /guides/ indexing request failed with Google's reCAPTCHA connection error; actual indexing remains pending, not claimed complete. All unrelated work preserved. Full record and evidence: tasks/asbc-search-discovery.md and D:/CodexData/Projects/ASBC/artifacts/search-release-20261026.
+
+## Ranker visual comparison — 2026-10-26
+[Task Goal]: Visible paired equipment popup, game-order final-level skill cards and direct raw Daevanion view with separate point guidance. Inputs: GreenOrc vs Bless, PC/mobile. No inferred investment/specs or automatic planner mutation. Missing/stale data and dialog focus/viewport tested. Scope and progress: tasks/asbc-ranker-visual-20261026.md. Existing pending changes remain isolated.
