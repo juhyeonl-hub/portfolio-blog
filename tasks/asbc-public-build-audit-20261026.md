@@ -9,8 +9,8 @@ Base commit:00644f6c914da5ef6bc507e6f278ea5a0a1bf502
 Verification: production create/edit/anonymous share PASS; isolated/integrated TypeScript, targeted suites, final build and PC1440/mobile390 UI PASS. See artifact verification.md.
 Last reviewed: self-review complete; Claude cross-review explicitly waived for this release by the user on 2026-10-26. Waived, not passed.
 Findings: production expired session on publish remounts scoped app and loses draft; sticky editor tabs hidden under fixed timers; textarea uses browser white styling.
-Uncommitted:7 task source/test files plus task/brief records;226 preexisting paths preserved.
-Next: commit only this verified scope to main, push origin and deploy the isolated frontend; verify production.
+Uncommitted: no source changes for this task; unrelated pending work preserved.
+Next: complete. Keep unrelated pending work out of future releases unless authorized.
 Blocker: none. User explicitly authorized main commit, push and production deployment without Claude cross-review.
 
 ## Completion
@@ -54,3 +54,17 @@ Blocker: none. User explicitly authorized main commit, push and production deplo
 
 ## Release authorization — 2026-10-26
 User explicitly requested only the verified public build authoring, editing and sharing improvements on main, push and production deployment, without Claude cross-review. Claude remains usage-limited; Codex temporary coordination continues. Cross-review waived, not recorded as passed. No backend or database change.
+
+## Production release — 2026-10-26
+- Explicit user authorization: commit only the verified public build authoring/editing/sharing scope to main, push and deploy without Claude cross-review. Waived, not passed.
+- Source commit: 887ce19d6b0cfe55a5c1e4cef8550742adf39476; pushed to origin/main.7 source/test files and2 task-only records. Dictionary changes are exactly14new entries; unrelated dictionary/SEO/ledger/global/home work excluded.
+- Cloudflare Pages deployment: https://b32be9cc.asbc-4c9.pages.dev; production https://asbc.app . Existing Wrangler4.151.3 used; API Functions compiled/uploaded. Frontend-only release; no backend restart, migration, auth/security setting change.
+- All2143tracked frontend files match the selected release tree. TypeScript, build-editor/recovery, build-share, public-builds, localization and account-settings suites PASS. Isolated production build PASS; existing chunk-size/plugin-timing warnings remain.
+- Production HTML and10selected JS/CSS/locale assets match release bytes. Public health status ok. Existing test post remains readable and revision unchanged after final browser checks.
+- PC1440x1000: new share URL field and copy success feedback shown. Edit base8->7 changed used SP195->191 only in the unpublished draft. Navigating to account shows return-to-draft; resuming at390x844 restores the exact temporary title and base7.
+- Mobile390: document/client375/375; input16px; sticky tabs top180.671875px equals timer height. Equipment tab clickable, dark inputs and bottom save/cancel visible. Cancel confirmation/discard clears the test draft and restores original read-only base8. No saved post, private planner, like or comment mutated in this release verification.
+- Separate anonymous mobile reader shows correct title, base8/final10, share URL, and login-required voting; console errors empty. Physical phone hardware not tested. Account page and normal viewport restored.
+- Clipboard limitation: production copy success feedback appeared, but tool clipboard read/paste retained the earlier localhost fixture text. Exact clipboard contents were not confirmed by this production tool run; the displayed production URL was confirmed. Prior isolated clipboard success/denial tests passed. No speculative application change made for this tool discrepancy.
+- Evidence: release-pc-share.png, release-mobile-editor.png, release-mobile-share.png, production-assets.json, checks.log, build.log and deployment.log under D:/CodexData/Projects/ASBC/artifacts/public-build-release-20261026.
+- All233previously captured working paths unchanged by source commit/deployment. Only the task record and task-only brief addition updated in this final documentation commit. Ordinary index stays empty; no stash/checkout/reset of working files.
+- Completion: requested source release and production verification complete. No pending Claude approval for this scope.
