@@ -13295,7 +13295,7 @@
     "fi": "Julkisia buildeja julkaisseita tekijöitä ei löytynyt. Kokeile toista nimeä."
   },
   "공개 빌드 {0}개": {
-    "en": "{0} public builds",
+    "en": "Public builds: {0}",
     "ja": "公開ビルド {0}件",
     "fi": "{0} julkista buildia"
   },

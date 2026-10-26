@@ -35,3 +35,9 @@ Blocker: Claude cross-review required by explicit user decision; recorded usage 
 - Claude coordination succeeded: tasks/collaboration/runs/asbc-people-release-coordinate-20261026-1793017868802 (status0, scope empty). Codex implements/verifies/releases; Claude read-only exact-commit review.
 - Scope: people page, character/author lookup, navigation and author links, relevant translations/tests; new read-only build-authors endpoint. No schema/auth/storage changes. Unrelated SEO/ledger/other pending work excluded.
 - Review candidate only: not yet main, pushed or deployed. New checks and review are pending.
+
+## Cross-review and UI follow-up
+- Claude exact-commit review d9c632ef8c42d9415867555b71b651d095653dab completed with NO_FINDINGS (0), exit0; .agents/reviews/d9c632ef8c42-1793018365994.
+- PC audit on current main + people scope: real GreenOrc EU/Ludra Lv45, Vicious Strike14, 20 equipment entries, Nezekan and Zikel board views; returning to search retains name/server. 1440 viewport client/scroll1425.
+- Author fixture: empty search, simulated503, recovery to partial-name search; author posts read real production API.
+- UI follow-up: reuse Results: {0} and Public builds: {0} English count phrasing so a single result no longer says 1 results / 1 public builds. No other behavior changes. Incremental review requested.
