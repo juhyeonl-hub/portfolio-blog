@@ -12993,5 +12993,75 @@
     "en": "Equipment recommendations written by the author. Names and options alone do not automatically add skill bonuses.",
     "ja": "投稿者が記入した推奨装備です。名前やオプションだけではスキルボーナスは自動加算されません。",
     "fi": "Kirjoittajan varustesuositukset. Nimet ja ominaisuudet eivät automaattisesti lisää taitobonuksia."
+  },
+  "이 탭에 남아 있던 작성 내용을 복구했습니다. 아직 게시되지 않은 초안입니다.": {
+    "en": "Your draft from this tab has been restored. These changes are not published yet.",
+    "ja": "このタブの下書きを復元しました。変更はまだ公開されていません。",
+    "fi": "Tämän välilehden luonnos palautettiin. Muutoksia ei ole vielä julkaistu."
+  },
+  "이 탭에 초안을 보관하지 못했습니다. 화면을 떠나기 전에 내용을 복사해 두세요.": {
+    "en": "The draft could not be kept in this tab. Copy your text before leaving.",
+    "ja": "このタブに下書きを保存できませんでした。移動する前に内容をコピーしてください。",
+    "fi": "Luonnosta ei voitu säilyttää tässä välilehdessä. Kopioi teksti ennen poistumista."
+  },
+  "작성 내용은 이 탭에 24시간 임시 보관됩니다. 다시 로그인한 뒤 이어 쓸 수 있습니다. 다른 기기에는 공유되지 않습니다.": {
+    "en": "Your draft is kept in this tab for 24 hours. Sign in again to continue. It is not synced to other devices.",
+    "ja": "下書きはこのタブに24時間一時保存されます。再ログイン後に続けられます。他の端末には同期されません。",
+    "fi": "Luonnos säilytetään tässä välilehdessä 24 tuntia. Voit jatkaa kirjautumisen jälkeen. Sitä ei synkronoida muihin laitteisiin."
+  },
+  "입력한 포인트는 총량입니다. 기본 투자에 장비·데바니온 보너스를 더한 값이 최종 레벨입니다.": {
+    "en": "Enter total points. Final skill level adds gear and Daevanion bonuses to your base investment.",
+    "ja": "入力するポイントは合計です。基本投資に装備・デヴァニオンのボーナスを加えた値が最終レベルです。",
+    "fi": "Syötä pisteiden kokonaismäärä. Lopullinen taitotaso sisältää peruspanostuksen sekä varusteiden ja Daevanionin bonukset."
+  },
+  "게시 제목을 입력하세요.": {
+    "en": "Enter a post title.",
+    "ja": "投稿タイトルを入力してください。",
+    "fi": "Kirjoita julkaisun otsikko."
+  },
+  "안내를 확인하고 배분을 수정하세요.": {
+    "en": "Review the message and adjust the allocation.",
+    "ja": "案内を確認して配分を修正してください。",
+    "fi": "Lue ilmoitus ja korjaa pistejako."
+  },
+  "작성 중인 초안을 버릴까요? 게시된 빌드는 바뀌지 않습니다.": {
+    "en": "Discard this draft? The published build will stay unchanged.",
+    "ja": "編集中の下書きを破棄しますか？公開済みのビルドは変更されません。",
+    "fi": "Hylätäänkö luonnos? Julkaistu hahmonkehitys ei muutu."
+  },
+  "초안 버리기": {
+    "en": "Discard draft",
+    "ja": "下書きを破棄",
+    "fi": "Hylkää luonnos"
+  },
+  "계속 작성": {
+    "en": "Keep editing",
+    "ja": "編集を続ける",
+    "fi": "Jatka muokkausta"
+  },
+  "작성 중인 공개 빌드로 돌아가기": {
+    "en": "Return to your public build draft",
+    "ja": "公開ビルドの下書きに戻る",
+    "fi": "Palaa julkisen hahmonkehityksen luonnokseen"
+  },
+  "작성 중인 빌드 이어쓰기": {
+    "en": "Continue your draft",
+    "ja": "下書きの続きを書く",
+    "fi": "Jatka luonnosta"
+  },
+  "게시물 공유 링크": {
+    "en": "Post sharing link",
+    "ja": "投稿の共有リンク",
+    "fi": "Julkaisun jakolinkki"
+  },
+  "로그인 없이 읽을 수 있습니다. 이 게시물을 수정하면 같은 링크에 최신 내용이 표시됩니다.": {
+    "en": "Anyone can read without signing in. Edits to this post appear at the same link.",
+    "ja": "ログインせずに閲覧できます。投稿を編集すると同じリンクに最新の内容が表示されます。",
+    "fi": "Sisällön voi lukea kirjautumatta. Julkaisun muutokset näkyvät samassa linkissä."
+  },
+  "로그인이 만료되었습니다. 다시 로그인한 뒤 작성 중인 빌드를 확인하세요.": {
+    "en": "Your sign-in expired. Sign in again, then check your unfinished build.",
+    "ja": "ログインの有効期限が切れました。再ログイン後に編集中のビルドを確認してください。",
+    "fi": "Kirjautuminen vanheni. Kirjaudu uudelleen ja tarkista keskeneräinen hahmonkehitys."
   }
 }

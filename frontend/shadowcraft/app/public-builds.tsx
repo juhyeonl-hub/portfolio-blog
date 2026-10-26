@@ -1,3 +1,4 @@
+import './build-composer.css';
 import {useLocale} from './locale';
 import {PublishBuild,BuildDiscussion,useMember} from './community';
 import type {Catalog,Plan} from '../lib/planner';
@@ -18,9 +19,10 @@ export default function PublicBuilds({active,catalog,plan}:{active:boolean;catal
 }
 export function PublishedBuildView({id}:{id:string}) {
  const {t,locale}=useLocale();
- const [editing,setEditing]=useState(false);
+ const [editing,setEditing]=useState(false),[copyState,setCopyState]=useState('');
+ const link=location.origin+location.pathname+'#published='+id;
  const [data,setData]=useState<PublicBuildDetail|null>(null),[error,setError]=useState(''),[retry,setRetry]=useState(0);
- useEffect(()=>{let live=true;setData(null);setEditing(false);setError('');if(!buildId(id)){setError('공개 빌드 주소가 올바르지 않습니다.');return;}
+ useEffect(()=>{let live=true;setData(null);setEditing(false);setCopyState('');setError('');if(!buildId(id)){setError('공개 빌드 주소가 올바르지 않습니다.');return;}
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);fetch('/api/public/shadowcraft/builds/'+id,{signal:controller.signal}).then(async r=>{if(!r.ok)throw Error(r.status===404?'비공개 또는 삭제된 빌드입니다.':'공개 빌드를 불러오지 못했습니다.');const next=parsePublicBuild(await r.json(),id);encodeShare(next.shared);if(live)setData(next);}).catch(e=>{if(live)setError(e.name==='AbortError'?'조회 시간이 초과되었습니다.':e.message);}).finally(()=>clearTimeout(timer));return()=>{live=false;controller.abort();clearTimeout(timer);};},[id,retry]);
- return <><section className="card published-article" aria-label={t("공개 빌드 정보")} style={{overflowWrap:'anywhere'}}>{error?<><p role="alert">{t(error)}</p><button className="button ghost" onClick={()=>setRetry(v=>v+1)}>{t("공개 빌드 다시 확인")}</button><a href={location.pathname}>{t("내 플래너 열기")}</a></>:!data?<p role="status">{t("공개 빌드를 불러오는 중…")}</p>:<><h1>{data.title}</h1><p style={{whiteSpace:'pre-wrap'}}>{data.description}</p><p>{data.author||t('관리자')}{' '}{t('공개 · 수정')}{' '}{new Date(data.updatedAt).toLocaleString(locale)}</p></>}{data&&<><BuildDiscussion key={data.id+':'+data.revision} build={data} onEditingChange={setEditing} onUpdated={()=>setRetry(v=>v+1)}/>{!editing&&<SharedBuildView hash={encodeShare(data.shared)} embedded/>}</>}</section></>;
+ return <><section className="card published-article" aria-label={t("공개 빌드 정보")} style={{overflowWrap:'anywhere'}}>{error?<><p role="alert">{t(error)}</p><button className="button ghost" onClick={()=>setRetry(v=>v+1)}>{t("공개 빌드 다시 확인")}</button><a href={location.pathname}>{t("내 플래너 열기")}</a></>:!data?<p role="status">{t("공개 빌드를 불러오는 중…")}</p>:<><h1>{data.title}</h1><p style={{whiteSpace:'pre-wrap'}}>{data.description}</p><p>{data.author||t('관리자')}{' '}{t('공개 · 수정')}{' '}{new Date(data.updatedAt).toLocaleString(locale)}</p></>}{data&&<><div className="published-share"><label>{t('게시물 공유 링크')}<input aria-label={t('게시물 공유 링크')} readOnly value={link} onFocus={e=>e.target.select()}/></label><button type="button" className="button secondary" onClick={async()=>{try{await navigator.clipboard.writeText(link);setCopyState('공유 링크를 복사했습니다.')}catch{setCopyState('자동 복사가 허용되지 않았습니다. 링크를 선택해 직접 복사하세요.')}}}>{t('공유 링크 복사')}</button><p>{t('로그인 없이 읽을 수 있습니다. 이 게시물을 수정하면 같은 링크에 최신 내용이 표시됩니다.')}</p>{copyState&&<p role="status">{t(copyState)}</p>}</div><BuildDiscussion key={data.id+':'+data.revision} build={data} onEditingChange={setEditing} onUpdated={()=>setRetry(v=>v+1)}/>{!editing&&<SharedBuildView hash={encodeShare(data.shared)} embedded/>}</>}</section></>;
 }

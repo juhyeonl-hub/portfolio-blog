@@ -29,3 +29,22 @@ for(const key of ['assassin','gladiator','templar','ranger','elementalist','sorc
  assert.equal(editor.changeDraftNode(c,low,board,target.id),low);
 }
 console.log('Build editor: 8 classes, isolated drafts, explicit stigma selection, guide roundtrip/privacy validation, node paths, locked levels and budgets PASS');
+
+const recovery=await import(moduleUrl(readFileSync('lib/build-draft.ts','utf8').replace("'./build-share'",JSON.stringify(moduleUrl(readFileSync('lib/build-share.ts','utf8').replace("'./plan-memory'",JSON.stringify(memoryUrl)).replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl)))))));
+const data=new Map();const store={getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v),removeItem:k=>data.delete(k),key:i=>[...data.keys()][i],get length(){return data.size}};
+const c=JSON.parse(readFileSync('lib/data/catalogs/ranger.json')),context={owner:'author-a',scope:'new',revision:0},now=100000;
+const draft={title:'Unfinished guide',description:'Notes',shared:{...share.publicBuild(c,planner.emptyPlan(c)),guide:{skills:'First skill',daevanion:'Route',equipment:'Budget',items:[{slot:'MainHand',name:'',upgrade:'Target',options:'',reason:''}]}}};
+assert.equal(recovery.writeDraft(store,context,draft,now),true);
+assert.deepEqual(recovery.readDraft(store,context,now+1),draft,'unfinished fields survive remount and reauthentication');
+assert.equal(recovery.readDraft(store,{...context,owner:'other'},now),null,'different account never recovers draft');
+assert.equal(recovery.readDraft(store,{...context,scope:'other'},now),null);
+assert.equal(recovery.readDraft(store,{...context,revision:1},now),null,'new server revision must not be overwritten by old draft');
+assert.equal(recovery.readDraft(store,context,now+recovery.DRAFT_TTL+1),null);
+assert.equal(recovery.readDraft(store,context,now-1),null);
+assert.equal(recovery.latestDraftLink(store,'author-a',now),'#/public-builds');assert.equal(recovery.latestDraftLink(store,'other',now),null);
+const malicious=structuredClone(draft);malicious.shared.plan.character={profile:{name:'Private'}};assert.equal(recovery.writeDraft(store,context,malicious,now),false);
+const extra=structuredClone(draft);extra.shared.guide.items[0].secret='private';assert.equal(recovery.writeDraft(store,context,extra,now),false);
+assert.equal(recovery.writeDraft({...store,setItem(){throw Error('quota')}},context,draft,now),false);
+store.setItem(recovery.draftKey(context),'{broken');assert.equal(recovery.readDraft(store,context,now),null);
+recovery.writeDraft(store,context,draft,now);recovery.clearDraft(store,context);assert.equal(recovery.readDraft(store,context,now),null);
+console.log('Draft recovery: account/post/revision isolation, incomplete fields, TTL, corrupt/quota/private data rejection, cleanup PASS');

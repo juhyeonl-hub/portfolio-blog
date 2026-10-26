@@ -814,3 +814,14 @@ Failure cases: invalid ID, excessive text, over-budget/locked/disconnected nodes
 Verification: backend24 tests,43 frontend suites, final integrated TypeScript/targeted regressions and production build PASS.226 existing paths preserved. No commit/push/deploy. User explicitly waived Claude cross-review and approved this scope for main/push/production release; task: tasks/asbc-public-build-editor.md.
 
 Release complete: public build editor source d8e28b4 pushed; backend and Pages4e719122 deployed, production PC/mobile draft-edit/cancel verified,10 assets matched. Claude review waived by explicit user request. Existing unrelated work preserved.
+
+## Public build live usability audit — 2026-10-26
+ Exercise production create/edit/share on PC and mobile, then fix evidenced beginner friction without unrelated changes.
+Scope: public build composer/discussion/view and scoped CSS, recovery helper and tests. No backend, auth configuration, personal planner, ledger or SEO changes.
+Done when: real production test post saved/reopened/edited/shared, findings addressed in isolated source and tested at1440/390, prior changes preserved.
+Inputs/expected: skill/node/equipment edits survive save and share; expired login cannot silently lose the authored draft; fields and actions stay readable and reachable below timers.
+Failure cases:401,500,invalid or stale draft,other account,over-budget,clipboard failure,mobile overflow,unintended planner mutation.
+
+Verification: real production test post f1337ebe created/edited/shared; private planner unchanged. New draft recovery, post-link copy and responsive editor improvements validated in isolated/integrated source (type/targeted suites/build, PC1440/mobile390). No commit/push/deploy; task asbc-public-build-audit-20261026.md.
+
+Release authorized: user explicitly requested only this verified scope on main, origin push and production deployment without Claude cross-review on 2026-10-26. Unrelated pending work excluded.
