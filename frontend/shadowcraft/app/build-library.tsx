@@ -1,9 +1,12 @@
 import {useEffect, useState} from 'react';
+import './build-library.css';
+import BuildPreview from './build-preview';
+import {totals,type Catalog} from '../lib/planner';
 import type {Plan} from '../lib/planner';
 import CharacterComparison from './character-comparison';
 import {useLocale} from './locale';
 import {libraryKey, parseLibrary, snapshot, writeLibrary, type BuildLibrary, type SavedBuild} from '../lib/build-library';
-export default function BuildLibraryPanel({classKey, catalogVersion, plan, onApply}: {classKey: string; catalogVersion: string; plan: Plan; onApply: (plan: Plan) => void}) {
+export default function BuildLibraryPanel({classKey, catalog, catalogVersion, plan, onApply}: {classKey: string; catalog: Catalog; catalogVersion: string; plan: Plan; onApply: (plan: Plan) => void}) {
   const {t,locale} = useLocale();
   const [state,setState] = useState<{raw:string|null; data:BuildLibrary}|null>(null);
   const [name,setName] = useState('');
@@ -50,7 +53,9 @@ export default function BuildLibraryPanel({classKey, catalogVersion, plan, onApp
       setPending(null);setMessage('보관한 빌드를 적용했습니다. 직전 계획도 복구할 수 있습니다.');
     } catch(e){setError(e instanceof Error?e.message:'복원 실패');}
   }
-  return <section className="card" aria-label={t('빌드 보관함')}><h2>{t('빌드 보관함')}</h2>
+  const pendingTotals=pending?totals(catalog,pending.plan):null;
+  return <section className="card build-library" aria-label={t('빌드 보관함')}><h2>{t('빌드 보관함')}</h2>
+    <p>{t('편집한 계획은 자동 저장됩니다. 이름을 붙여 보관하면 나중에 이 상태를 다시 불러올 수 있습니다.')}</p>
     <p>{t('현재 직업의 캐릭터·장비·포인트 조합을 최대 20개 보관합니다. 이 브라우저에만 저장됩니다. 다른 기기로 옮길 때는 빌드 내보내기를 사용하세요.')}</p>
     {error&&<p role="alert">{t(error)}</p>}{message&&<p role="status">{t(message)}</p>}
     <button className="button ghost small library-reload" onClick={reload}>{t('보관함 다시 불러오기')}</button>
@@ -60,7 +65,7 @@ export default function BuildLibraryPanel({classKey, catalogVersion, plan, onApp
       <div className="database-list">{state.data.entries.map(entry=><div key={entry.id}><button onClick={()=>{setPending(entry);setRemoving(null);setMessage('');}}><strong>{entry.name}</strong><small>Lv.{entry.plan.level} · {t(entry.plan.mode==='safe'?'안정형':'공격형')} · {entry.plan.character?.profile?.characterName||t('캐릭터 미연결')} · {new Date(entry.savedAt).toLocaleString(locale==='ko'?'ko-KR':locale)}</small></button><button className="button ghost" aria-label={t('{0} 보관본 내보내기',[entry.name])} onClick={()=>download(entry)}>{t('내보내기')}</button><button className="button ghost" aria-label={t('{0} 보관본 삭제',[entry.name])} onClick={()=>{setRemoving(entry.id);setPending(null);}}>{t('삭제')}</button></div>)}</div>
       {removing&&<div role="group" aria-label={t('보관본 삭제 확인')}><p>{t('선택한 보관본을 삭제합니다. 현재 적용된 계획은 유지됩니다.')}</p><button className="button ghost" onClick={async()=>{if(await write({...state.data,entries:state.data.entries.filter(e=>e.id!==removing)})){setRemoving(null);setMessage('보관본을 삭제했습니다.');}}}>{t('보관본 삭제 확인')}</button><button className="button ghost" onClick={()=>setRemoving(null)}>{t('삭제 취소')}</button></div>}
       {state.data.recovery&&<button className="button ghost" onClick={()=>{setPending(state.data.recovery);setRemoving(null);}}>{t('복원 직전 계획 보기')}</button>}
-      {pending&&<div className="database-detail" aria-label={t('빌드 복원 미리보기')}><h3>{pending===state.data.recovery?t(pending.name):pending.name}</h3><p>Lv.{pending.plan.level} · {t(pending.plan.mode==='safe'?'안정형':'공격형')} · {t('보관 당시 데이터 {0}',[pending.catalogVersion])}</p><p>{t('적용하면 현재 캐릭터·장비·포인트·검색 조건이 보관 당시 값으로 바뀝니다. 직전 계획은 복구용으로 저장합니다.')}</p>{pending.catalogVersion!==catalogVersion&&<p>{t('현재 데이터 버전과 다릅니다. 적용 후 배분과 잠긴 조건을 확인하세요.')}</p>}<CharacterComparison key={pending.id} current={plan.character} saved={pending.plan.character}/><button className="button primary" onClick={apply}>{t('이 빌드 적용')}</button><button className="button ghost" onClick={()=>setPending(null)}>{t('복원 취소')}</button></div>}
+      {pending&&<div className="database-detail library-preview" aria-label={t('빌드 복원 미리보기')}><h3>{pending===state.data.recovery?t(pending.name):pending.name}</h3><p>Lv.{pending.plan.level} · {t(pending.plan.mode==='safe'?'안정형':'공격형')} · {t('보관 당시 데이터 {0}',[pending.catalogVersion])}</p><p>{t('적용하면 현재 캐릭터·장비·포인트·검색 조건이 보관 당시 값으로 바뀝니다. 직전 계획은 복구용으로 저장합니다.')}</p>{pending.catalogVersion!==catalogVersion&&<p>{t('현재 데이터 버전과 다릅니다. 적용 후 배분과 잠긴 조건을 확인하세요.')}</p>}<div className="library-actions"><button className="button primary" onClick={apply}>{t('적용하고 스킬 수정')}</button><button className="button ghost" onClick={()=>setPending(null)}>{t('복원 취소')}</button></div>{pendingTotals&&<p className="library-budget">{t('스킬')}: {pendingTotals.sp} / {pendingTotals.spMax} · {t('스티그마')}: {pendingTotals.stigma} / {pendingTotals.stigmaMax} · {t('데바니온')}: {pendingTotals.crystal} / {pendingTotals.crystalMax} · {t('아스펠 결정')}: {pendingTotals.battle} / {pendingTotals.battleMax}</p>}<BuildPreview key={pending.id} catalog={catalog} plan={pending.plan}/>{plan.character&&pending.plan.character&&<details><summary>{t('캐릭터 조회 결과 비교')}</summary><CharacterComparison key={pending.id} current={plan.character} saved={pending.plan.character}/></details>}</div>}
     </>}
   </section>;
 }

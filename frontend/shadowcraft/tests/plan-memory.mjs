@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl,planner} from './modules.mjs';
-const {PlanMemory,rememberCharacter}=await import(moduleUrl(readFileSync('lib/plan-memory.ts','utf8')));
+const {PlanMemory,rememberCharacter,sameStoredPlan}=await import(moduleUrl(readFileSync('lib/plan-memory.ts','utf8')));
 const catalog=JSON.parse(readFileSync('lib/data/catalogs/assassin.json','utf8'));
 const base=planner.emptyPlan(catalog);
 const previous={...base,level:44,character:{profile:{characterName:'기억할 캐릭터'}},gear:{mode:'current',items:[{id:'a',name:'단도',slot:'주무기',owned:true,current:true,target:false,bonuses:{'13350000':2},note:''}]},pointBudget:{sp:123},searchPrefs:{region:'eu',server:'1001',name:'기억할 캐릭터'},macroExtra:true,checked:['이동기 분리']};
@@ -27,3 +27,11 @@ console.log('Malformed public character skills/nodes cannot poison saved plans')
 for(const invalid of ['true',1,null,{},[]]){entries.set('plan',JSON.stringify({...base,ascensionGrade3Confirmed:invalid}));memory=create();memory.restore();assert.equal(memory.readFailed,true)}
 for(const confirmed of [false,true]){entries.set('plan',JSON.stringify({...previous,ascensionGrade3Confirmed:confirmed}));memory=create();assert.equal(memory.restore().ascensionGrade3Confirmed,confirmed)}
 console.log('Ascension confirmation: optional legacy field, strict boolean validation and persistence PASS');
+
+// Account sync serializes the same data with a different object-key order.
+const reorder=value=>Array.isArray(value)?value.map(reorder):value&&typeof value==='object'?Object.fromEntries(Object.entries(value).reverse().map(([k,v])=>[k,reorder(v)])):value;
+assert.equal(sameStoredPlan(previous,reorder(previous)),true);
+assert.equal(sameStoredPlan({...previous,optional:undefined},JSON.parse(JSON.stringify(previous))),true);
+for(const changed of [{...previous,level:43},{...previous,base:{...previous.base,test:2}},{...previous,nodes:[...previous.nodes,'new']},{...previous,character:null},{...previous,gear:{...previous.gear,items:[]}},{...previous,specs:{...previous.specs,test:['a']}}])assert.equal(sameStoredPlan(previous,changed),false);
+assert.equal(sameStoredPlan({...previous,nodes:['a','b']},{...previous,nodes:['b','a']}),false,'array order remains significant');
+console.log('Plan comparison: serialization order ignored; actual edits and missing/null data detected PASS');

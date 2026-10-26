@@ -18,6 +18,17 @@ export function validStoredPlan(value:any,classKey:string):value is Plan {
  if(value.character?.nodes!==undefined&&!strings(value.character.nodes))return false;
  return true;
 }
+/** Compare JSON plan content without treating account serialization key order as an edit. */
+export function sameStoredPlan(a:Plan,b:Plan):boolean {
+ const equal=(x:any,y:any):boolean=>{
+  if(x===y)return true;
+  if(!x||!y||typeof x!=='object'||typeof y!=='object')return false;
+  if(Array.isArray(x)||Array.isArray(y))return Array.isArray(x)&&Array.isArray(y)&&x.length===y.length&&x.every((v,i)=>equal(v,y[i]));
+  const keys=Object.keys(x).filter(k=>x[k]!==undefined),other=Object.keys(y).filter(k=>y[k]!==undefined);
+  return keys.length===other.length&&keys.every(k=>Object.prototype.hasOwnProperty.call(y,k)&&equal(x[k],y[k]));
+ };
+ return equal(a,b);
+}
 // A device's saved plan is authoritative. A delayed account response must never replace local edits.
 export class PlanMemory {
  value:Plan;hasData=false;edited=false;localSaved=false;readFailed=false;

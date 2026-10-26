@@ -13063,5 +13063,25 @@
     "en": "Your sign-in expired. Sign in again, then check your unfinished build.",
     "ja": "ログインの有効期限が切れました。再ログイン後に編集中のビルドを確認してください。",
     "fi": "Kirjautuminen vanheni. Kirjaudu uudelleen ja tarkista keskeneräinen hahmonkehitys."
+  },
+  "이름 붙여 보관": {
+    "en": "Save a named copy",
+    "ja": "名前を付けて保存",
+    "fi": "Tallenna nimetty kopio"
+  },
+  "적용하고 스킬 수정": {
+    "en": "Apply and edit skills",
+    "ja": "適用してスキルを編集",
+    "fi": "Ota käyttöön ja muokkaa taitoja"
+  },
+  "편집한 계획은 자동 저장됩니다. 이름을 붙여 보관하면 나중에 이 상태를 다시 불러올 수 있습니다.": {
+    "en": "Your current plan saves automatically. Save a named copy to return to this version later.",
+    "ja": "編集中のプランは自動保存されます。名前を付けて保存すると、後でこの状態を呼び出せます。",
+    "fi": "Nykyinen suunnitelmasi tallentuu automaattisesti. Tallenna nimetty kopio, jotta voit palata tähän versioon myöhemmin."
+  },
+  "스킬·특화·데바니온 배분을 내 계획으로 복사합니다. 작성자의 장비 추천과 설명은 원본 게시물에서 확인하세요. 내 수정은 원본에 반영되지 않습니다.": {
+    "en": "Copy the skills, specializations and Daevanion allocation into your plan. Equipment recommendations and notes remain in the original post. Your edits do not change the original.",
+    "ja": "スキル・特化・デヴァニオンの配分を自分のプランにコピーします。装備の推奨と説明は元の投稿で確認してください。自分の編集は元の投稿に反映されません。",
+    "fi": "Kopioi taidot, erikoistumiset ja Daevanion-pistejako omaan suunnitelmaasi. Varustesuositukset ja ohjeet ovat alkuperäisessä julkaisussa. Muokkauksesi eivät muuta alkuperäistä."
   }
 }

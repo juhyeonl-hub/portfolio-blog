@@ -27,7 +27,8 @@ export default function SharedBuildView({hash,embedded=false}:{hash:string;embed
  <details className="preview-metadata"><summary>{t("공유 포인트 사용량")}</summary><p>{t(state.shared.plan.pointBudget?'총량: 플래너에 저장한 설정':'총량: 레벨 기준 추정값')}</p> <p>{t('승급 3단계 확인')}: {t(state.shared.plan.ascensionGrade3Confirmed?'확인됨':'확인 전')}</p>
  {budget&&<ul aria-label={t("공유 포인트 사용량")}>{[['스킬',budget.sp,budget.spMax],['스티그마',budget.stigma,budget.stigmaMax],['데바니온',budget.crystal,budget.crystalMax],['PvP',budget.battle,budget.battleMax]].map(([name,used,max])=><li key={name}>{t(name)}: {used} / {max}{Number(used)>Number(max)?' · '+t('예산 초과'):''}</li>)}</ul>}
 </details>
+ <p>{t("스킬·특화·데바니온 배분을 내 계획으로 복사합니다. 작성자의 장비 추천과 설명은 원본 게시물에서 확인하세요. 내 수정은 원본에 반영되지 않습니다.")}</p>
  <BuildPreview catalog={state.catalog} plan={state.shared.plan} guide={state.shared.guide}/>
- <div className="shared-actions"><button className="button primary" onClick={()=>{try{sessionStorage.setItem(PENDING_SHARED_PLAN,JSON.stringify({schema:'shadowcraft-v1',catalogVersion:state.shared.catalogVersion,plan:state.shared.plan}));location.hash='';}catch{setError('이 브라우저에 임시 저장하지 못했습니다. JSON을 받아 플래너에서 불러오세요.');}}}>{t("내 플래너에 적용")}</button><button className="button ghost" onClick={()=>download(state.shared)}>{t("공유 빌드 JSON 받기")}</button></div><p>{t("적용하면 이 직업의 현재 계획이 공유 빌드로 바뀝니다. 적용한 뒤 바로 되돌릴 수 있고, 미리 보관함에 저장해 둘 수도 있습니다.")}</p>
+ <div className="shared-actions"><button className="button primary" onClick={()=>{try{sessionStorage.setItem(PENDING_SHARED_PLAN,JSON.stringify({schema:'shadowcraft-v1',catalogVersion:state.shared.catalogVersion,plan:state.shared.plan}));location.hash='#/build/skills';}catch{setError('이 브라우저에 임시 저장하지 못했습니다. JSON을 받아 플래너에서 불러오세요.');}}}>{t("내 플래너에 적용")}</button><button className="button ghost" onClick={()=>download(state.shared)}>{t("공유 빌드 JSON 받기")}</button></div><p>{t("적용하면 이 직업의 현재 계획이 공유 빌드로 바뀝니다. 적용한 뒤 바로 되돌릴 수 있고, 미리 보관함에 저장해 둘 수도 있습니다.")}</p>
  </>}</section>;
 }
