@@ -865,3 +865,5 @@ Search discovery completed: reviewed source4affa508 (Claude NO_FINDINGS0) is on 
 
 ## Ranker visual comparison — 2026-10-26
 [Task Goal]: Visible paired equipment popup, game-order final-level skill cards and direct raw Daevanion view with separate point guidance. Inputs: GreenOrc vs Bless, PC/mobile. No inferred investment/specs or automatic planner mutation. Missing/stale data and dialog focus/viewport tested. Scope and progress: tasks/asbc-ranker-visual-20261026.md. Existing pending changes remain isolated.
+
+2026-10-26 ranker comparison release: source6e317a8850cb passed Claude exact-commit review (NO_FINDINGS0), isolated main push and Pages deployment c4d1be1a. Production Chrome/mobile390px popup/skills/raw-board/budget-guide checks passed. Unrelated primary work preserved. See tasks/asbc-ranker-visual-20261026.md.
