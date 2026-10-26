@@ -31,3 +31,9 @@ Pending implementation, meaningful tests, PC/mobile UI verification, exact-sourc
 - Actual local mobile390×844 KO: points316→370/10→0/0→370/10 update immediately; zero apply disabled without contradictory availability claim. WANN268nodes changed to Bless243nodes after fresh lookup (Bless raw416/101). Apply370/10 → remove4point leaf →242nodes/366points → named save, undo, reload/reopen → complete exported Plan exactly matches saved edited Plan. No page horizontal overflow (scrollWidth375 <=390).
 - Saved local QA copies and backed-up production IAB original. Production plan has not yet been modified. Chrome extension popup prevented native Chrome interaction; desktop and mobile checks above use Chromium IAB, not a claim of Chrome completion or a physical mobile device.
 - Evidence: D:/CodexData/Projects/ASBC/artifacts/ranker-apply-20261027. Cross-review and deployment still pending.
+
+## Mobile follow-up before deployment
+- Initial exact-source review: 93875ba949da59eadecba34064340b6990e66120, NO_FINDINGS0, execution0/error null, .agents/reviews/93875ba949da-1793058250181. Initial source integrated locally; not pushed/deployed yet.
+- Inspecting the mobile applied screenshot revealed scroll anchoring left success/edit/save actions below the viewport. Added focus+scroll to the success block with sticky-header clearance. No calculation/storage changes. Verify visible bounds on desktop/mobile and request incremental exact-source review before release.
+
+Follow-up verified in the browser: success/edit/save block focused and visible at 390x844 (top 394.8, bottom 602) and 1440x1000 (top 493.4, bottom 626.2). Reverting the plan immediately removes the success block on both sizes. Success tracks the current node allocation, so an undone application is never presented as still applied. Final typecheck and production build logs: typecheck-final.log / build-final.log in the task artifacts. Incremental source review pending.

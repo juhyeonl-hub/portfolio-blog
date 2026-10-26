@@ -44,12 +44,15 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
  const [compareLeft,setCompareLeft]=useState<string|null>(null),[compareRight,setCompareRight]=useState<string|null>(null);
  const selected=rows.find(r=>r.characterId===selectedId);
  const [live,setLive]=useState<any>(null),[loading,setLoading]=useState(false),[error,setError]=useState('');
- const [preview,setPreview]=useState(false),[applied,setApplied]=useState(false);
+ const [preview,setPreview]=useState(false),[appliedNodes,setAppliedNodes]=useState<string[]|null>(null);
+ const applied=!!appliedNodes&&plan.nodes.length===appliedNodes.length&&appliedNodes.every(id=>plan.nodes.includes(id));
+ const appliedRef=useRef<HTMLDivElement>(null);
+ useEffect(()=>{if(applied){appliedRef.current?.scrollIntoView({block:'center'});appliedRef.current?.focus({preventScroll:true});}},[applied,appliedNodes]);
  const [boardMode,setBoardMode]=useState<'actual'|'guide'>('actual');
  const [view,setView]=useState<'equipment'|'skills'|'daevanion'>('equipment');
  const [previewBoard,setPreviewBoard]=useState(catalog.boards[0]?.id);
  const request=useRef(0),profileController=useRef<AbortController|null>(null);useEffect(()=>()=>{request.current++;profileController.current?.abort();},[]);
- useEffect(()=>{request.current++;profileController.current?.abort();setSelectedId('');setLive(null);setLoading(false);setError('');setPreview(false);setApplied(false);setBoardMode('actual');setPreviewBoard(catalog.boards[0]?.id);},[catalog.classKey,kind]);
+ useEffect(()=>{request.current++;profileController.current?.abort();setSelectedId('');setLive(null);setLoading(false);setError('');setPreview(false);setAppliedNodes(null);setBoardMode('actual');setPreviewBoard(catalog.boards[0]?.id);},[catalog.classKey,kind]);
  const itemUsage=new Map<number,{name:string;count:number}>();
  for(const row of rows)for(const item of new Map(row.equipment.map(item=>[item.id,item])).values()){const entry=itemUsage.get(item.id)||{name:item.name,count:0};entry.count++;itemUsage.set(item.id,entry)}
  const commonItems=[...itemUsage.values()].sort((a,b)=>b.count-a.count).slice(0,6);
@@ -63,7 +66,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
  const budgetCandidate=budgetResult.candidate,budgetTotals=budgetCandidate?totals(catalog,budgetCandidate):null;
  const canApplyBudget=!!budgetCandidate&&!!budgetTotals&&budgetTotals.crystal<=budgetTotals.crystalMax&&budgetTotals.battle<=budgetTotals.battleMax&&catalog.boards.some(b=>b.nodes.some(n=>!n.autoLearn&&budgetCandidate.nodes.includes(n.id)));
  const sameAllocation=!!candidate&&!!budgetCandidate&&candidate.nodes.length===budgetCandidate.nodes.length&&candidate.nodes.every(id=>budgetCandidate.nodes.includes(id));
- const apply=(next:Plan,mode:'actual'|'guide'='guide')=>{onApply(next);setPreview(false);setBoardMode(mode);setApplied(true);};
+ const apply=(next:Plan,mode:'actual'|'guide'='guide')=>{onApply(next);setPreview(false);setBoardMode(mode);setAppliedNodes(next.nodes);};
  const left=groups.find(g=>g.ids.join(',')===compareLeft)||groups[0];
  const right=groups.find(g=>g.ids.join(',')===compareRight)||groups[1]||groups[0];
  const difference=compareRankerSkills(left?.ids||[],right?.ids||[]);
@@ -80,7 +83,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
  };
  async function inspect(row:Ranker){
   const token=++request.current;profileController.current?.abort();const controller=new AbortController();profileController.current=controller;
-  setSelectedId(row.characterId);setPreview(false);setApplied(false);setLive(null);setError('');setLoading(true);
+  setSelectedId(row.characterId);setPreview(false);setAppliedNodes(null);setLive(null);setError('');setLoading(true);
   try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId},controller.signal);if(request.current===token&&!controller.signal.aborted)setLive(result)}
   catch(e){if(request.current===token&&!controller.signal.aborted)setError(e instanceof Error?e.message:'공식 조회 실패')}
   finally{if(request.current===token)setLoading(false)}
@@ -113,7 +116,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
     {result.error&&<p role="alert">{t(result.error)}</p>}
     {!candidate&&<p className="ranker-board-wait">{rankerText(locale,loading?'boardLoading':error?'boardRetry':'boardMissing')}</p>}
     {candidate&&<><RankerBoards key={selected.characterId+String(preview)} catalog={catalog} plan={plan} target={candidate} boardId={previewBoard} onBoardChange={setPreviewBoard} guideOnly={preview} mode={boardMode} onModeChange={setBoardMode} priorityNodes={budgetCandidate?.nodes}/>
-     {!preview&&<button className="button secondary" onClick={()=>{setPreview(true);setApplied(false);setError('')}}>{rankerText(locale,'planReview')}</button>}
+     {!preview&&<button className="button secondary" onClick={()=>{setPreview(true);setAppliedNodes(null);setError('')}}>{rankerText(locale,'planReview')}</button>}
      {preview&&<div className="quick-preview ranker-apply-preview">
       <h4>{rankerText(locale,'budgetTitle')}</h4>
       <p>{t('따라하기는 공개된 데바니온 배치만 적용합니다. 내 장비·기본 스킬 투자·연결 캐릭터는 유지합니다. 배치 변경으로 잠기는 기존 특화는 해제됩니다.')}</p>
@@ -127,7 +130,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
       </>}
       <button className="button ghost" onClick={()=>setPreview(false)}>{t('취소')}</button>
      </div>}
-     {applied&&<div className="ranker-apply-success"><p role="status"><strong>{rankerText(locale,'applied')}</strong></p><p>{rankerText(locale,'appliedHelp')}</p><div className="ranker-apply-actions"><a className="button primary" href="#/build/daevanion">{rankerText(locale,'editNodes')}</a><a className="button secondary" href="#/builds">{rankerText(locale,'saveCopy')}</a></div></div>}
+     {applied&&<div className="ranker-apply-success" ref={appliedRef} tabIndex={-1}><p role="status"><strong>{rankerText(locale,'applied')}</strong></p><p>{rankerText(locale,'appliedHelp')}</p><div className="ranker-apply-actions"><a className="button primary" href="#/build/daevanion">{rankerText(locale,'editNodes')}</a><a className="button secondary" href="#/builds">{rankerText(locale,'saveCopy')}</a></div></div>}
     </>}
    </>}
    {live&&<details><summary>{t('능력치·스킬·노드 상세 비교')}</summary><CharacterComparison current={plan.character} saved={live} ranker/></details>}
