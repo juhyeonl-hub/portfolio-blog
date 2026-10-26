@@ -37,6 +37,7 @@ class PublicBuildControllerTest {
   mvc.perform(post(ADMIN).header("oai-authenticated-user-id","owner").contentType("application/json").content(payload("assassin").toString())).andExpect(status().isForbidden());
   mvc.perform(get(ADMIN)).andExpect(status().isForbidden());
   mvc.perform(get(PUBLIC)).andExpect(status().isOk()).andExpect(jsonPath("$.totalElements").value(0));
+  mvc.perform(get("/api/public/shadowcraft/build-authors")).andExpect(status().isOk()).andExpect(jsonPath("$.totalElements").value(0));
  }
  @Test @WithMockUser(roles="USER") void ordinaryUsersCannotWrite()throws Exception{mvc.perform(post(ADMIN).contentType("application/json").content(payload("assassin").toString())).andExpect(status().isForbidden());}
  @Test @WithMockUser(roles="ADMIN") void draftPublishSearchConflictUnpublishDelete()throws Exception {
@@ -73,5 +74,23 @@ class PublicBuildControllerTest {
   for(int i=0;i<13;i++){var input=payload("assassin");input.put("published",true);create(input);}
   mvc.perform(get(PUBLIC)).andExpect(jsonPath("$.totalElements").value(21)).andExpect(jsonPath("$.totalPages").value(2)).andExpect(jsonPath("$.items.length()").value(20));
   mvc.perform(get(PUBLIC).param("page","1")).andExpect(jsonPath("$.items.length()").value(1));
+ }
+ private String author(String name){String id=java.util.UUID.randomUUID().toString();jdbc.update("INSERT INTO shadowcraft_members(id,username,password_hash,created_at) VALUES (?,?,?,CURRENT_TIMESTAMP)",id,name,"test-only");return id;}
+ private void authored(String author,boolean published)throws Exception{var value=payload("templar");value.put("published",published);String id=create(value).path("id").asText();jdbc.update("UPDATE shadowcraft_public_builds SET author_id=? WHERE id=?",author,id);}
+ @Test @WithMockUser(roles="ADMIN") void authorsExposeOnlyPublishedAccountsAndLiteralNames()throws Exception {
+  String visible=author("Player%_One"),privateOnly=author("Private Only");author("No Posts");
+  authored(visible,true);authored(visible,true);authored(visible,false);authored(privateOnly,false);create(payload("templar").put("published",true));
+  mvc.perform(get("/api/public/shadowcraft/build-authors").param("q","PLAYER%_"))
+   .andExpect(status().isOk()).andExpect(header().string("Cache-Control","no-store")).andExpect(jsonPath("$.totalElements").value(1)).andExpect(jsonPath("$.items[0].id").value(visible)).andExpect(jsonPath("$.items[0].builds").value(2)).andExpect(jsonPath("$.items[0].password_hash").doesNotExist());
+  mvc.perform(get("/api/public/shadowcraft/build-authors").param("q","Private")).andExpect(jsonPath("$.totalElements").value(0));
+  mvc.perform(get("/api/public/shadowcraft/build-authors").param("q","No Posts")).andExpect(jsonPath("$.totalElements").value(0));
+  mvc.perform(get(PUBLIC).param("author",visible)).andExpect(jsonPath("$.totalElements").value(2)).andExpect(jsonPath("$.items[0].authorId").value(visible));
+  mvc.perform(get("/api/public/shadowcraft/build-authors").param("q","x".repeat(33))).andExpect(status().isBadRequest());
+  mvc.perform(get("/api/public/shadowcraft/build-authors").param("page","-1")).andExpect(status().isBadRequest());
+ }
+ @Test @WithMockUser(roles="ADMIN") void authorsPaginateWithoutDuplicateRows()throws Exception {
+  for(int i=0;i<21;i++){String id=author(String.format("Writer%02d",i));authored(id,true);authored(id,true);}
+  mvc.perform(get("/api/public/shadowcraft/build-authors")).andExpect(jsonPath("$.totalElements").value(21)).andExpect(jsonPath("$.totalPages").value(2)).andExpect(jsonPath("$.items.length()").value(20)).andExpect(jsonPath("$.items[0].name").value("Writer00"));
+  mvc.perform(get("/api/public/shadowcraft/build-authors").param("page","1")).andExpect(jsonPath("$.items.length()").value(1)).andExpect(jsonPath("$.items[0].name").value("Writer20")).andExpect(jsonPath("$.items[0].builds").value(2));
  }
 }

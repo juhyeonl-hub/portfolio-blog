@@ -38,6 +38,15 @@ public class PublicBuildService {
         },admin,key,key,search,author,author,page*20);
         return new Listing(rows,page,count==null?0:count,count==null?0:(count+19)/20);
     }
+    // Only members who have published builds are discoverable; never enumerate private-only accounts.
+    public Listing authors(String query,int page) {
+        if(query.length()>32||page<0||page>10000)bad("검색 조건을 확인하세요.");
+        String search="%"+query.trim().toLowerCase(Locale.ROOT).replace("!","!!").replace("%","!%").replace("_","!_")+"%";
+        String from=" FROM shadowcraft_members m JOIN shadowcraft_public_builds b ON b.author_id=m.id WHERE b.published=TRUE AND LOWER(m.username) LIKE ? ESCAPE '!'";
+        Long count=jdbc.queryForObject("SELECT COUNT(DISTINCT m.id)"+from,Long.class,search);
+        var rows=jdbc.query("SELECT m.id,m.username,COUNT(*) AS builds"+from+" GROUP BY m.id,m.username ORDER BY LOWER(m.username),m.id LIMIT 20 OFFSET ?",(r,n)->mapper.createObjectNode().put("id",r.getString("id")).put("name",r.getString("username")).put("builds",r.getLong("builds")),search,page*20);
+        return new Listing(rows,page,count==null?0:count,count==null?0:(count+19)/20);
+    }
     public ObjectNode get(String id,boolean admin) {
         validId(id);
         var rows=jdbc.query("SELECT b.*, (SELECT username FROM shadowcraft_members WHERE id=b.author_id) AS author, (SELECT COUNT(*) FROM shadowcraft_build_votes WHERE build_id=b.id) AS votes FROM shadowcraft_public_builds b WHERE id = ? AND (? = TRUE OR published = TRUE)",(r,n)->{

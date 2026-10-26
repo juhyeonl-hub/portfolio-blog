@@ -13213,5 +13213,190 @@
     "en": "Not recommended for this point budget. You do not necessarily need to remove it if already allocated.",
     "ja": "今回のポイント予算の推奨には含まれません。取得済みでも必ず解除する必要はありません。",
     "fi": "Ei suositella tällä pistebudjetilla. Jo valittua solmua ei välttämättä tarvitse poistaa."
+  },
+  "사람별 빌드": {
+    "en": "Player builds",
+    "ja": "プレイヤーのビルド",
+    "fi": "Pelaajien buildit"
+  },
+  "캐릭터의 현재 세팅을 조회하거나, 작성자가 공개한 빌드를 찾아보세요.": {
+    "en": "Look up a character’s current setup or find an author’s published builds.",
+    "ja": "キャラクターの現在の構成や、投稿者の公開ビルドを検索できます。",
+    "fi": "Katso hahmon nykyinen kokoonpano tai etsi tekijän julkaisemia buildeja."
+  },
+  "사람 검색 종류": {
+    "en": "Player search type",
+    "ja": "検索の種類",
+    "fi": "Pelaajahaun tyyppi"
+  },
+  "캐릭터 세팅 조회": {
+    "en": "Character lookup",
+    "ja": "キャラクター検索",
+    "fi": "Hahmohaku"
+  },
+  "작성자 공개 빌드": {
+    "en": "Author’s builds",
+    "ja": "投稿者の公開ビルド",
+    "fi": "Tekijän buildit"
+  },
+  "게임 캐릭터 이름과 사이트 작성자 이름은 서로 다를 수 있습니다.": {
+    "en": "In-game character names and site author names may differ.",
+    "ja": "ゲーム内のキャラクター名とサイトの投稿者名は異なる場合があります。",
+    "fi": "Pelihahmon nimi voi olla eri kuin sivuston tekijänimi."
+  },
+  "사람 검색 주소가 올바르지 않습니다. 위에서 다시 선택하세요.": {
+    "en": "This player link is invalid. Choose a search above.",
+    "ja": "検索リンクが無効です。上から選び直してください。",
+    "fi": "Pelaajalinkki on virheellinen. Valitse haku yläpuolelta."
+  },
+  "작성자 찾기": {
+    "en": "Find an author",
+    "ja": "投稿者を探す",
+    "fi": "Etsi tekijä"
+  },
+  "다른 작성자 찾기": {
+    "en": "Find another author",
+    "ja": "別の投稿者を探す",
+    "fi": "Etsi toinen tekijä"
+  },
+  "사이트 작성자 이름": {
+    "en": "Site author name",
+    "ja": "サイトの投稿者名",
+    "fi": "Sivuston tekijänimi"
+  },
+  "이름의 일부로도 검색할 수 있습니다": {
+    "en": "You can search with part of a name",
+    "ja": "名前の一部でも検索できます",
+    "fi": "Voit hakea myös nimen osalla"
+  },
+  "작성자 검색": {
+    "en": "Search authors",
+    "ja": "投稿者を検索",
+    "fi": "Hae tekijöitä"
+  },
+  "공개한 빌드만 표시됩니다. 비공개 글과 개인 플래너는 보이지 않습니다.": {
+    "en": "Only published builds are shown. Private posts and personal planners stay private.",
+    "ja": "公開ビルドのみ表示します。非公開の投稿や個人プランナーは表示されません。",
+    "fi": "Vain julkaistut buildit näkyvät. Yksityisiä julkaisuja ja suunnitelmia ei näytetä."
+  },
+  "검색 결과를 불러오는 중…": {
+    "en": "Loading search results…",
+    "ja": "検索結果を読み込み中…",
+    "fi": "Ladataan hakutuloksia…"
+  },
+  "이 작성자가 공개한 빌드가 없습니다.": {
+    "en": "This author has no published builds.",
+    "ja": "この投稿者の公開ビルドはありません。",
+    "fi": "Tällä tekijällä ei ole julkaistuja buildeja."
+  },
+  "공개 빌드를 작성한 사람이 없습니다. 이름을 바꿔 검색해 보세요.": {
+    "en": "No authors with public builds found. Try another name.",
+    "ja": "公開ビルドの投稿者が見つかりません。別の名前で検索してください。",
+    "fi": "Julkisia buildeja julkaisseita tekijöitä ei löytynyt. Kokeile toista nimeä."
+  },
+  "공개 빌드 {0}개": {
+    "en": "{0} public builds",
+    "ja": "公開ビルド {0}件",
+    "fi": "{0} julkista buildia"
+  },
+  "이 사람의 빌드 보기": {
+    "en": "View this author’s builds",
+    "ja": "この人のビルドを見る",
+    "fi": "Katso tekijän buildit"
+  },
+  "다른 캐릭터 찾기": {
+    "en": "Find another character",
+    "ja": "別のキャラクターを探す",
+    "fi": "Etsi toinen hahmo"
+  },
+  "캐릭터 이름으로 찾기": {
+    "en": "Find by character name",
+    "ja": "キャラクター名で探す",
+    "fi": "Etsi hahmon nimellä"
+  },
+  "캐릭터 검색": {
+    "en": "Search characters",
+    "ja": "キャラクターを検索",
+    "fi": "Hae hahmoja"
+  },
+  "검색 결과가 없습니다. 이름·지역·직업·서버를 확인하세요.": {
+    "en": "No characters found. Check the name, region, class and server.",
+    "ja": "見つかりませんでした。名前・地域・クラス・サーバーを確認してください。",
+    "fi": "Hahmoja ei löytynyt. Tarkista nimi, alue, luokka ja palvelin."
+  },
+  "최대 20명까지 표시됩니다. 서버를 선택하거나 이름을 더 정확히 입력하세요.": {
+    "en": "Up to 20 characters are shown. Select a server or enter a more specific name.",
+    "ja": "最大20件表示します。サーバーを選ぶか、より正確な名前を入力してください。",
+    "fi": "Enintään 20 hahmoa näytetään. Valitse palvelin tai tarkenna nimeä."
+  },
+  "공식 상세 조회: {0}": {
+    "en": "Official profile checked: {0}",
+    "ja": "公式詳細情報の照会: {0}",
+    "fi": "Virallinen profiili tarkistettu: {0}"
+  },
+  "조회만으로 내 플래너는 바뀌지 않습니다. 공식 정보는 게임 내 변경보다 늦게 갱신될 수 있습니다.": {
+    "en": "Viewing a character does not change your planner. Official information may lag behind in-game changes.",
+    "ja": "閲覧だけでは自分のプランナーは変わりません。公式情報の更新はゲーム内の変更より遅れる場合があります。",
+    "fi": "Hahmon katselu ei muuta suunnitelmaasi. Viralliset tiedot voivat päivittyä pelin muutoksia myöhemmin."
+  },
+  "캐릭터 세팅": {
+    "en": "Character setup",
+    "ja": "キャラクターの構成",
+    "fi": "Hahmon kokoonpano"
+  },
+  "장비·데바니온 보너스가 포함된 최종 레벨입니다. 기본 투자량·특화·남은 포인트는 공개되지 않습니다.": {
+    "en": "These are final levels including gear and Daevanion bonuses. Base investment, specializations and remaining points are not public.",
+    "ja": "装備・デヴァニオンのボーナスを含む最終レベルです。基本投資量・特化・残りポイントは公開されません。",
+    "fi": "Tasot sisältävät varuste- ja Daevanion-bonukset. Peruspanostus, erikoistumiset ja jäljellä olevat pisteet eivät ole julkisia."
+  },
+  "데바니온 일부를 조회하지 못했습니다. 선택 안 된 노드로 간주하지 않고 다시 조회해 주세요.": {
+    "en": "Some Daevanion data could not be loaded. Missing nodes do not mean unselected; please refresh.",
+    "ja": "デヴァニオン情報の一部を取得できませんでした。未選択とは判断せず、再照会してください。",
+    "fi": "Osaa Daevanion-tiedoista ei saatu. Puuttuvat solmut eivät tarkoita valitsemattomia solmuja. Päivitä tiedot."
+  },
+  "검색 응답의 형식을 확인하지 못했습니다.": {
+    "en": "The search response could not be validated.",
+    "ja": "検索結果の形式を確認できませんでした。",
+    "fi": "Hakuvastauksen muotoa ei voitu vahvistaa."
+  },
+  "선택한 캐릭터와 조회 결과가 다릅니다. 다시 검색하세요.": {
+    "en": "The response does not match the selected character. Search again.",
+    "ja": "選んだキャラクターと照会結果が異なります。再検索してください。",
+    "fi": "Vastaus ei vastaa valittua hahmoa. Hae uudelleen."
+  },
+  "검색 결과를 불러오지 못했습니다. 다시 시도하세요.": {
+    "en": "Could not load search results. Please try again.",
+    "ja": "検索結果を読み込めませんでした。再試行してください。",
+    "fi": "Hakutuloksia ei voitu ladata. Yritä uudelleen."
+  },
+  "이전 페이지": {
+    "en": "Previous page",
+    "ja": "前のページ",
+    "fi": "Edellinen sivu"
+  },
+  "다음 페이지": {
+    "en": "Next page",
+    "ja": "次のページ",
+    "fi": "Seuraava sivu"
+  },
+  "직업": {
+    "en": "Class",
+    "ja": "クラス",
+    "fi": "Luokka"
+  },
+  "모든 서버": {
+    "en": "All servers",
+    "ja": "すべてのサーバー",
+    "fi": "Kaikki palvelimet"
+  },
+  "검색 중…": {
+    "en": "Searching…",
+    "ja": "検索中…",
+    "fi": "Haetaan…"
+  },
+  "조회에서 열린 데바니온 보드가 없습니다.": {
+    "en": "No unlocked Daevanion boards were reported.",
+    "ja": "照会結果に解放済みのデヴァニオンボードがありません。",
+    "fi": "Haussa ei ilmoitettu avattuja Daevanion-lautoja."
   }
 }

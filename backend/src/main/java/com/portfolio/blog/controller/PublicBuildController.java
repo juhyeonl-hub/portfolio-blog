@@ -17,6 +17,8 @@ public class PublicBuildController {
     public ResponseEntity<?> list(@RequestParam(defaultValue="",name="class")String key,@RequestParam(defaultValue="")String q,@RequestParam(defaultValue="0")int page,@RequestParam(defaultValue="")String author,@RequestParam(defaultValue="latest")String sort){return response(service.list(false,key,q,page,author,sort));}
     @GetMapping("/api/admin/shadowcraft/builds")
     public ResponseEntity<?> adminList(@RequestParam(defaultValue="",name="class")String key,@RequestParam(defaultValue="")String q,@RequestParam(defaultValue="0")int page){return response(service.list(true,key,q,page));}
+    @GetMapping("/api/public/shadowcraft/build-authors")
+    public ResponseEntity<?> authors(@RequestParam(defaultValue="")String q,@RequestParam(defaultValue="0")int page){return response(service.authors(q,page));}
     @GetMapping("/api/public/shadowcraft/builds/{id}")
     public ResponseEntity<?> detail(@PathVariable String id){return response(service.get(id,false));}
     @GetMapping("/api/admin/shadowcraft/builds/{id}")

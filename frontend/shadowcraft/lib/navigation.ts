@@ -1,6 +1,6 @@
 // Screen-only hashes never overlap the existing build payload, Steam or transfer hashes.
 const routes:Record<string,string>={
- home:'/',quick:'/build',skills:'/build/skills',daevanion:'/build/daevanion',
+ people:'/people',home:'/',quick:'/build',skills:'/build/skills',daevanion:'/build/daevanion',
  gear:'/build/gear',macro:'/build/macro',rotation:'/build/rotation',
  compare:'/build/compare',rankers:'/rankers','public-builds':'/public-builds',map:'/map',
  timers:'/timers',trade:'/trade',builds:'/builds',database:'/database',updates:'/updates',account:'/account',
@@ -8,5 +8,6 @@ const routes:Record<string,string>={
 export function screenHash(screen:string):string{return '#'+(routes[screen]||'/');}
 export function screenFromHash(hash:string):string|null{
  if(!hash||hash==='#')return 'home';
+ if(hash.startsWith('#/people?'))return 'people';
  return Object.keys(routes).find(screen=>'#'+routes[screen]===hash)??null;
 }
