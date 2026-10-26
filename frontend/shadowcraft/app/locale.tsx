@@ -1,9 +1,9 @@
+import {initialLocale} from '../lib/initial-locale';
 import {useSettingsRefresh} from './use-settings-refresh';
 import {settingsStorage} from '../lib/account-settings';
 import {createContext,useContext,useEffect,useState,type ReactNode} from 'react';
 import {localizedValue} from '../lib/localization';
 export type Locale='ko'|'en'|'ja'|'fi';
-const supported=['ko','en','ja','fi'];
 
 // Korean is the source language: its screens need neither a dictionary nor the specialization/skill-name data, so
 // those are loaded only for the other languages, each language in its own chunk (see asbc-vite-plugins.js).
@@ -21,7 +21,7 @@ function load(locale:Locale):Promise<Bundle|null>{
   .finally(()=>{delete loading[locale];});
  return loading[locale]!;
 }
-function savedLocale():Locale{try{const saved=settingsStorage.getItem('asbc-locale');return supported.includes(saved||'')?saved as Locale:'ko';}catch{return 'ko';}}
+function savedLocale():Locale{const languages=typeof navigator==='undefined'?[]:navigator.languages;try{return initialLocale(settingsStorage.getItem('asbc-locale'),languages);}catch{return initialLocale(null,languages);}}
 // Start fetching the saved language's bundle right away, in parallel with the rest of the app.
 void load(savedLocale()).catch(()=>{/* Retried when the provider mounts or the language changes. */});
 
@@ -31,7 +31,7 @@ export function LocaleProvider({children}:{children:ReactNode}){
  useSettingsRefresh('asbc-locale',()=>setLocale(savedLocale()));
  // Until the bundle arrives the screens show the Korean source text; every helper is a pass-through for Korean.
  const [bundle,setBundle]=useState<Bundle|null>(()=>loaded[locale]||null);
- useEffect(()=>{document.documentElement.lang=locale;document.title='ASBC · Aion2 Steam Build Craft';try{settingsStorage.setItem('asbc-locale',locale);}catch{}},[locale]);
+ useEffect(()=>{document.documentElement.lang=locale;document.title='AION 2 Global Tools: Build Planner & Trade Calculator | ASBC';try{settingsStorage.setItem('asbc-locale',locale);}catch{}},[locale]);
  useEffect(()=>{let current=true;setBundle(loaded[locale]||null);
   load(locale).then(next=>{if(current)setBundle(next);}).catch(()=>{/* Keep the fallback text; the next change retries. */});
   return()=>{current=false;};},[locale]);

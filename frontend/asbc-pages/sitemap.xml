@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://asbc.app/</loc></url>
+  <url><loc>https://asbc.app/guides/</loc></url>
+  <url><loc>https://asbc.app/guides/aion2-trade-calculator/</loc></url>
+  <url><loc>https://asbc.app/guides/aion2-public-builds/</loc></url>
+  <url><loc>https://asbc.app/guides/aion2-build-planner/</loc></url>
+  <url><loc>https://asbc.app/guides/aion2-daevanion-guide/</loc></url>
+  <url><loc>https://asbc.app/guides/aion2-boss-timers/</loc></url>
+  <url><loc>https://asbc.app/guides/aion2-map/</loc></url>
+  <url><loc>https://asbc.app/ko/guides/</loc></url>
+  <url><loc>https://asbc.app/ko/guides/aion2-trade-calculator/</loc></url>
+  <url><loc>https://asbc.app/ko/guides/aion2-public-builds/</loc></url>
+  <url><loc>https://asbc.app/ko/guides/aion2-build-planner/</loc></url>
+  <url><loc>https://asbc.app/ko/guides/aion2-daevanion-guide/</loc></url>
+  <url><loc>https://asbc.app/ko/guides/aion2-boss-timers/</loc></url>
+  <url><loc>https://asbc.app/ko/guides/aion2-map/</loc></url>
 </urlset>

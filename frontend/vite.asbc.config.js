@@ -7,6 +7,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { asbcLocaleBundles } from './asbc-vite-plugins.js'
 import base from './vite.config.js'
+import { writeSeoPages } from './asbc-seo.mjs'
 
 const out = 'dist-asbc'
 export default defineConfig({
@@ -15,7 +16,8 @@ export default defineConfig({
     name: 'asbc-pages-output',
     closeBundle() {
       renameSync(`${out}/asbc.html`, `${out}/index.html`)
-      for (const file of ['_headers', 'robots.txt', 'sitemap.xml', 'asbc-icon.svg', 'asbc-og.png', ...[16, 32, 48, 180, 512].map(size => `asbc-icon-${size}.png`)]) copyFileSync(`asbc-pages/${file}`, `${out}/${file}`)
+      for (const file of ['_headers', 'robots.txt', 'asbc-icon.svg', 'asbc-og.png', ...[16, 32, 48, 180, 512].map(size => `asbc-icon-${size}.png`)]) copyFileSync(`asbc-pages/${file}`, `${out}/${file}`)
+      writeSeoPages(out)
     },
   }],
   resolve: { alias: { '@': fileURLToPath(new URL('./shadowcraft', import.meta.url)) } },

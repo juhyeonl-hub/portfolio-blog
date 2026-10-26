@@ -217,7 +217,7 @@ function historyRows(history:{checked_at:string;status:string;message:string}[])
  for(const h of history){const same=h.status==='ok'&&rows.find(r=>r.status==='ok'&&r.message===h.message);if(same)same.count++;else rows.push({...h,count:1});}
  return rows;
 }
-function AsbcFooter(){const {t}=useLocale();return <footer className="asbc-footer"><div><b>{'추억 게임즈'}</b><small>{t('개인 프로젝트 브랜드')} · ASBC</small></div><p>{t('비공식 팬 도구 · 게임 데이터 © NCSOFT')}</p><nav><a href="https://aion2.plaync.com/en-us/index" target="_blank" rel="noreferrer">{t('공식 사이트')}</a><a href="#privacy">{t('개인정보 처리방침')}</a><a href="mailto:contact@asbc.app">{t('문의')}</a></nav></footer>;}
+function AsbcFooter(){const {t,locale}=useLocale();return <footer className="asbc-footer"><div><b>{'추억 게임즈'}</b><small>{t('개인 프로젝트 브랜드')} · ASBC</small></div><p>{t('비공식 팬 도구 · 게임 데이터 © NCSOFT')}</p><nav><a href={locale==='ko'?'/ko/guides/':'/guides/'}>{locale==='ko'?'도구 이용 안내':'Tool guides (English)'}</a><a href="https://aion2.plaync.com/en-us/index" target="_blank" rel="noreferrer">{t('공식 사이트')}</a><a href="#privacy">{t('개인정보 처리방침')}</a><a href="mailto:contact@asbc.app">{t('문의')}</a></nav></footer>;}
 
 // Official global class names, shown under the localized name (the internal key differs for Spiritmaster: elementalist).
 const CLASS_NAMES_EN:Record<string,string>={gladiator:'GLADIATOR',templar:'TEMPLAR',ranger:'RANGER',assassin:'ASSASSIN',elementalist:'SPIRITMASTER',sorcerer:'SORCERER',cleric:'CLERIC',chanter:'CHANTER'};

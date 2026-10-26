@@ -853,3 +853,10 @@ Claude read-only review d9c632e and incremental review827e218 both NO_FINDINGS(0
 - Production PC1440: GreenOrc EU/Ludra Lv45, Vicious Strike14,20 gear entries, Nezekan50 and Zikel45 selected-node counts, author directory. Mobile390: actual author partial/empty search, public post→author, reload, character direct link and skills/boards/equipment. Client/scroll1425/1425 and375/375; no console errors. Mobile is a browser viewport, not a physical-device test.
 -249 baseline paths checked; only task-owned record and count wording changed. Inverse checks verify unrelated content in mixed translations and PROJECT_BRIEF unchanged. Pending SEO/ledger/other work remains local.
 - Evidence and screenshots: D:/CodexData/Projects/ASBC/artifacts/people-builds-20261026/release/production-verification.json.
+
+## Search discovery reviewed release — 2026-10-26
+[Task Goal]: Publish current English/Korean tool guides and crawlable landing content, preserving existing app flows and all unrelated pending work.
+Scope: SEO metadata/static pages/sitemap, guide-to-tool links, initial locale defaults, public Google Search Console verification tag. No ledger summary, backend, auth or game-rule changes.
+Expected: all guide URLs render without JavaScript; canonical/alternate links agree; actual tools remain accessible; saved locale wins; calculator example yields500000; PC1440/mobile390/320 fit.
+Failure cases: stale guide labels, broken tool links, locale reset, hidden/noindex content, missing assets/API proxy, unrelated changes in release.
+Claude coordination completed; exact-commit review and fresh checks required before main/push/Pages. User authorized this scoped release by proceeding with proposed priority1.
