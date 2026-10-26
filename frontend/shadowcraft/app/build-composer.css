@@ -13,3 +13,10 @@
 .composer-discard{padding:16px;border:1px solid #b98c59;border-radius:8px}.composer-discard .button{margin:4px}
 .published-share{display:flex;gap:10px;flex-wrap:wrap;align-items:end;padding:14px 0;border-block:1px solid #35465a;margin:16px 0}.published-share label{flex:1 1 250px;min-width:0}.published-share input{display:block;width:100%;box-sizing:border-box;min-width:0;margin-top:6px}.published-share p{flex-basis:100%;margin:0;font-size:12px;color:#b6c7d8}
 @media(max-width:700px){.build-composer input:not([type=checkbox]),.build-composer textarea,.published-share input{font-size:16px}.composer-actions>.button{flex:1;min-height:44px}}
+
+/* Discovery and required investment stay visible before long skill lists. */
+.home-public-entry{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:16px 0}.home-public-entry p{margin:0;flex:1 1 240px;color:#b6c7d8}
+.public-build-excerpt{white-space:pre-wrap;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:#b6c7d8}
+.build-requirements{border:1px solid #35465a;border-radius:10px;padding:16px;margin:16px 0;background:#111c27}.build-requirements h3{margin:0 0 8px}.build-requirements p{margin:8px 0}.build-requirement-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0 0}.build-requirement-grid>div{min-width:0}.build-requirement-grid dt{font-size:13px;color:#b6c7d8}.build-requirement-grid dd{margin:4px 0 0;display:flex;flex-direction:column;gap:4px}.build-requirement-grid strong{font-size:24px;color:#8ce1ff}.build-requirement-grid span{font-size:12px}.requirement-warning{color:#ffc384}
+.shared-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.shared-actions .button{min-height:44px}
+@media(max-width:700px){.build-requirement-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-public-entry>.button{width:100%}.shared-actions>.button{width:100%}.build-requirements{padding:12px}}

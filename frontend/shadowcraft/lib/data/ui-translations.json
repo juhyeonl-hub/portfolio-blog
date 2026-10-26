@@ -13083,5 +13083,135 @@
     "en": "Copy the skills, specializations and Daevanion allocation into your plan. Equipment recommendations and notes remain in the original post. Your edits do not change the original.",
     "ja": "スキル・特化・デヴァニオンの配分を自分のプランにコピーします。装備の推奨と説明は元の投稿で確認してください。自分の編集は元の投稿に反映されません。",
     "fi": "Kopioi taidot, erikoistumiset ja Daevanion-pistejako omaan suunnitelmaasi. Varustesuositukset ja ohjeet ovat alkuperäisessä julkaisussa. Muokkauksesi eivät muuta alkuperäistä."
+  },
+  "다른 유저의 빌드 찾기": {
+    "en": "Find a community build",
+    "ja": "ほかのプレイヤーのビルドを探す",
+    "fi": "Etsi yhteisön buildi"
+  },
+  "로그인 없이 빌드를 둘러보고 내 플래너에서 수정할 수 있습니다.": {
+    "en": "Browse builds and edit a copy in your planner. No sign-in needed.",
+    "ja": "ログインせずにビルドを閲覧し、コピーを自分のプランナーで編集できます。",
+    "fi": "Selaa buildeja ja muokkaa kopiota suunnittelijassasi. Kirjautumista ei tarvita."
+  },
+  "제목은 작성한 언어 그대로 검색합니다. 게시물은 자동 번역되지 않습니다.": {
+    "en": "Search titles in the language they were written. Posts are not automatically translated.",
+    "ja": "タイトルは投稿された言語で検索します。投稿は自動翻訳されません。",
+    "fi": "Hae otsikoita niiden alkuperäisellä kielellä. Julkaisuja ei käännetä automaattisesti."
+  },
+  "이 배분에 필요한 포인트": {
+    "en": "Points needed for this allocation",
+    "ja": "この配分に必要なポイント",
+    "fi": "Tähän jakoon tarvittavat pisteet"
+  },
+  "배분에 실제로 쓰는 포인트입니다. 작성자의 총량 설정과 구분해서 게임에 표시된 내 총량과 비교하세요.": {
+    "en": "These are the points spent by this build. Compare them with your in-game total, not the author's total setting.",
+    "ja": "このビルドで実際に使うポイントです。投稿者の総量設定とは区別し、ゲーム内の自分の総量と比較してください。",
+    "fi": "Nämä ovat buildin käyttämät pisteet. Vertaa niitä pelissä näkyvään omaan kokonaismäärääsi, älä tekijän kokonaismääräasetukseen."
+  },
+  "작성자 총량 {0}": {
+    "en": "Author's total: {0}",
+    "ja": "投稿者の総量: {0}",
+    "fi": "Tekijän kokonaismäärä: {0}"
+  },
+  "총량보다 {0}포인트 초과": {
+    "en": "{0} points over the total",
+    "ja": "総量を{0}ポイント超過",
+    "fi": "{0} pistettä yli kokonaismäärän"
+  },
+  "승급 확인이 필요한 스킬이 포함되어 있습니다. 게임에서 해금 조건을 확인하세요.": {
+    "en": "Some allocated skills need an unconfirmed Ascension requirement. Check their unlock conditions in game.",
+    "ja": "昇級の確認が必要なスキルが含まれています。ゲーム内で解放条件を確認してください。",
+    "fi": "Osa valituista taidoista vaatii vahvistamattoman Ascension-ehdon. Tarkista avaamisehdot pelissä."
+  },
+  "배분 방식": {
+    "en": "Allocation style",
+    "ja": "配分方針",
+    "fi": "Jakotapa"
+  },
+  "현재 계획 스킬 수정": {
+    "en": "Continue editing skills",
+    "ja": "現在のプランのスキルを編集",
+    "fi": "Jatka taitojen muokkaamista"
+  },
+  "검색 결과: {0}": {
+    "en": "Results: {0}",
+    "ja": "検索結果: {0}",
+    "fi": "Tulokset: {0}"
+  },
+  "이 배분을 내 플래너에서 수정할 수 있습니다. 수정한 내용은 새 공유 링크를 만들어야 전달됩니다.": {
+    "en": "Edit a copy in your planner. Create a new share link to share your changes.",
+    "ja": "この配分のコピーを自分のプランナーで編集できます。変更を共有するには新しいリンクを作成してください。",
+    "fi": "Muokkaa kopiota suunnittelijassasi. Luo uusi jakolinkki jakaaksesi muutokset."
+  },
+  "시작점": {
+    "en": "Starting node",
+    "ja": "開始ノード",
+    "fi": "Aloitussolmu"
+  },
+  "이미 찍은 추천 노드": {
+    "en": "Recommended node already allocated",
+    "ja": "取得済みの推奨ノード",
+    "fi": "Jo valittu suositeltu solmu"
+  },
+  "추가할 추천 경로": {
+    "en": "Recommended path to add",
+    "ja": "追加する推奨ルート",
+    "fi": "Lisättävä suositeltu reitti"
+  },
+  "이번 추천에 없음": {
+    "en": "Not in this recommendation",
+    "ja": "今回の推奨に含まれていません",
+    "fi": "Ei mukana tässä suosituksessa"
+  },
+  "↑ 올릴 목표": {
+    "en": "↑ Target to raise",
+    "ja": "↑ 上げる目標",
+    "fi": "↑ Nostettava tavoite"
+  },
+  "게임에서 비교": {
+    "en": "Compare in game",
+    "ja": "ゲーム内で比較",
+    "fi": "Vertaa pelissä"
+  },
+  "해금 조건 확인": {
+    "en": "Check unlock requirements",
+    "ja": "解放条件を確認",
+    "fi": "Tarkista avaamisehdot"
+  },
+  "현재 목표 충족": {
+    "en": "Current target met",
+    "ja": "現在の目標を達成",
+    "fi": "Nykyinen tavoite saavutettu"
+  },
+  "아스펠 결정: 추천 {0} / 총 {1} P": {
+    "en": "Azphel crystals: recommended {0} / total {1} points",
+    "ja": "アスフェル結晶: 推奨 {0} / 総量 {1} P",
+    "fi": "Azphel-kristallit: suositus {0} / yhteensä {1} pistettä"
+  },
+  "일반 데바니온: 전체 보드 추천 {0} / 총 {1} P": {
+    "en": "Daevanion: recommended across all boards {0} / total {1} points",
+    "ja": "デーヴァニオン: 全ボードの推奨 {0} / 総量 {1} P",
+    "fi": "Daevanion: kaikkien taulujen suositus {0} / yhteensä {1} pistettä"
+  },
+  "이 노드는 경로의 시작점입니다.": {
+    "en": "This node is the start of the path.",
+    "ja": "このノードがルートの開始点です。",
+    "fi": "Tämä solmu on reitin alkupiste."
+  },
+  "이미 찍은 추천 노드입니다. 다시 투자할 필요가 없습니다.": {
+    "en": "This recommended node is already allocated. No additional investment is needed.",
+    "ja": "取得済みの推奨ノードです。追加の投資は不要です。",
+    "fi": "Tämä suositeltu solmu on jo valittu. Lisäpisteitä ei tarvita."
+  },
+  "추가 목표입니다. 시작점에서 이어지는 초록·주황 경로를 따라 확인하세요.": {
+    "en": "This is a target to add. Follow the green and orange path from the starting node.",
+    "ja": "追加する目標です。開始点から続く緑とオレンジのルートを確認してください。",
+    "fi": "Tämä on lisättävä tavoite. Seuraa vihreää ja oranssia reittiä aloitussolmusta."
+  },
+  "이번 예산의 추천에 포함되지 않습니다. 이미 찍었다고 반드시 해제할 필요는 없습니다.": {
+    "en": "Not recommended for this point budget. You do not necessarily need to remove it if already allocated.",
+    "ja": "今回のポイント予算の推奨には含まれません。取得済みでも必ず解除する必要はありません。",
+    "fi": "Ei suositella tällä pistebudjetilla. Jo valittua solmua ei välttämättä tarvitse poistaa."
   }
 }

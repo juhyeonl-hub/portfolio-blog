@@ -832,3 +832,9 @@ Release complete: public build draft recovery/sharing source 887ce19 pushed and 
 [Task Goal]: Verify shared build apply/edit/save/reopen on production PC/mobile, preserve and restore original personal plan, fix evidenced issues only and deploy if needed. Scope and expected results: tasks/asbc-shared-planner-audit-20261026.md. Existing unrelated work preserved.
 
 Completed: scoped source fa3eddd deployed to production; PC1440/mobile390 apply/edit/save/reopen verified. Original GreenOrc plan restored exactly; 227 prior pending paths preserved. Evidence: D:/CodexData/Projects/ASBC/artifacts/shared-planner-audit-20261026.
+
+## English beginner journey — 2026-10-26
+[Task Goal]: English first visit → discovery/filtering/requirements → apply/edit/save/share on PC1440/mobile390.
+Status: 8 scoped frontend files implemented and verified; no commit/push/deployment. People-builds remains review pending; 236 unrelated pending files and existing mixed-file changes preserved. Full evidence: tasks/asbc-english-journey-20261026.md and D:/CodexData/Projects/ASBC/artifacts/english-journey-20261026.
+
+Release authorized: user requested main commit/push/production for the verified English journey only, without Claude cross-review. People-builds remains review pending and excluded.

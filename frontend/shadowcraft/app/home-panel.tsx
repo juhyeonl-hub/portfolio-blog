@@ -12,6 +12,7 @@ export default function HomePanel({onNavigate}:{onNavigate:(tab:string)=>void}) 
       {id:'compare',title:'다른 캐릭터와 비교하기',note:'내 장비와 랭커 장비를 나란히 확인하세요.'},
       {id:'map',title:'지도에서 위치 찾기',note:'수집물과 NPC를 검색하고 위치를 확인하세요.'},
     ].map((item,i)=><button key={item.id} onClick={()=>onNavigate(item.id)}><span className="start-number" aria-hidden="true">{i+1}</span><strong>{t(item.title)}</strong><span>{t(item.note)}</span><ArrowUpRight size={20} aria-hidden="true"/></button>)}</div></section>
+    <div className="home-public-entry"><button className="button secondary" onClick={()=>onNavigate('public-builds')}>{t('다른 유저의 빌드 찾기')}</button><p>{t('로그인 없이 빌드를 둘러보고 내 플래너에서 수정할 수 있습니다.')}</p></div>
     <HomeFavorites onNavigate={onNavigate}/>
     <div className="home-utility-links" aria-label={t('추가 도구')}>{[
       {id:'builds',title:'저장한 빌드',note:'내 세팅 이어서 편집',icon:Archive},
