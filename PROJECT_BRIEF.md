@@ -886,3 +886,5 @@ Ranker switching audit2026-10-27: sticky selector, preserved guide/board, reques
 
 ## Ranker skills and specialization follow — 2026-10-27
 [Task Goal]: GreenOrc personal point-fit skill targets and editable site-suggested specializations, explicit apply/edit/save, PC/mobile verification and reviewed scoped deployment. Observed final levels never treated as ranker base investment or known specialization choices. Scope and cases: tasks/asbc-ranker-skills-20261027.md.
+
+2026-10-27 GreenOrc ranker skill follow released: source cdbaf87, Claude final NO_FINDINGS after2 low fixes; personal SP/Stigma budget guide with disclosed unknown ranker base/specs, scoped apply/edit/save. Full suite +576 skill cases +56 Daevanion cases, final types/build and production PC1440/mobile390 UI roundtrips passed. Production dcf3491e / asbc-BglpQph9.js. Original plans restored; baseline263 pending changes preserved. Details: tasks/asbc-ranker-skills-20261027.md.
