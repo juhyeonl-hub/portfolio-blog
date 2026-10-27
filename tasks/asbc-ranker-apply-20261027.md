@@ -37,3 +37,13 @@ Pending implementation, meaningful tests, PC/mobile UI verification, exact-sourc
 - Inspecting the mobile applied screenshot revealed scroll anchoring left success/edit/save actions below the viewport. Added focus+scroll to the success block with sticky-header clearance. No calculation/storage changes. Verify visible bounds on desktop/mobile and request incremental exact-source review before release.
 
 Follow-up verified in the browser: success/edit/save block focused and visible at 390x844 (top 394.8, bottom 602) and 1440x1000 (top 493.4, bottom 626.2). Reverting the plan immediately removes the success block on both sizes. Success tracks the current node allocation, so an undone application is never presented as still applied. Final typecheck and production build logs: typecheck-final.log / build-final.log in the task artifacts. Incremental source review pending.
+
+## Completed — production verified 2026-10-27
+- Scoped source commits: 93875ba949da and 9885316dc9b1. Claude initial and incremental exact-source reviews both returned NO_FINDINGS, 0 findings, exit 0. Incremental review: .agents/reviews/9885316dc9b1-1793059052771.
+- Final typecheck and build passed; full Shadowcraft tests and 56 budget/level/class cases passed before the UI-only focus follow-up.
+- Pushed main and deployed the clean isolated build: https://1bfa5ff6.asbc-4c9.pages.dev. asbc.app loaded /assets/asbc-C5VR3wl_.js.
+- Live PC viewport 1440x1000 (English): GreenOrc / WANN, budget 316 ordinary / 0 Azphel; applied 232 nodes, edited to 231 / 315 ordinary, saved named copy, reverted, refreshed, reopened. Exported complete saved and reopened plans exactly match.
+- Live mobile viewport 390x844 (Korean): budget 370/10, then 0/0 disabled, back to 370/10. WANN 268 nodes switched to Bless 243 nodes; applied, edited to 242 nodes / 366 ordinary / 10 Azphel, named save, revert, refresh and reopen. Exported entire plans exactly match. Document width 375 <= 390. Success actions visible and focused; undo clears success. These are browser viewport tests, not physical-phone tests.
+- Current imported GreenOrc was EU / Ludra, level 45, retrieved ordinary usage 276. Total budgets are configured guidance values, not a claim of the character's unobserved actual total.
+- Original IAB plan restored in full and confirmed by exported JSON equality (5 planned nodes); original English locale restored. Named private QA copies retained for inspection. The user's Chrome plan was never mutated; its extension interruption was not bypassed. No public build was published.
+- All 255 preexisting pending files/content preserved; only owned source/task and appended brief notes integrated. Screenshots and before/after JSON: D:/CodexData/Projects/ASBC/artifacts/ranker-apply-20261027.

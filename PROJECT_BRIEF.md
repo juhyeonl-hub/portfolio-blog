@@ -879,3 +879,7 @@ Ranker switching audit2026-10-27: sticky selector, preserved guide/board, reques
 ## 2026-10-27 — GreenOrc ranker budget apply / edit / save
 - Current authorized work: match the displayed budget-fit Daevanion guide with the applied plan, then verify desktop/mobile edit and named-save/reopen. Preserve original plans and unrelated pending work.
 - Task: tasks/asbc-ranker-apply-20261027.md; isolated base eed1392; Claude coordination successful, exact-source review pending.
+
+### 2026-10-27 ranker Daevanion apply: deployed
+- Scoped 93875ba + 9885316 passed Claude exact-source reviews and typecheck/tests/build; deployed to https://1bfa5ff6.asbc-4c9.pages.dev (asbc-C5VR3wl_).
+- GreenOrc production PC/mobile viewport apply/edit/save/reopen verified at 316/0 and 370/10; zero budget disabled and original plan restored exactly. Existing unrelated changes preserved. Details: tasks/asbc-ranker-apply-20261027.md.
