@@ -50,6 +50,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
  useEffect(()=>{if(applied){appliedRef.current?.scrollIntoView({block:'center'});appliedRef.current?.focus({preventScroll:true});}},[applied,appliedNodes]);
  const [boardMode,setBoardMode]=useState<'actual'|'guide'>('actual');
  const [view,setView]=useState<'equipment'|'skills'|'daevanion'>('equipment');
+ const [skillSpecMode,setSkillSpecMode]=useState<'suggest'|'keep'>('suggest'),[focusSkillGuide,setFocusSkillGuide]=useState(false);
  const [previewBoard,setPreviewBoard]=useState(catalog.boards[0]?.id);
  const request=useRef(0),profileController=useRef<AbortController|null>(null);useEffect(()=>()=>{request.current++;profileController.current?.abort();},[]);
  useEffect(()=>{request.current++;profileController.current?.abort();setSelectedId('');setLive(null);setLoading(false);setError('');setPreview(false);setAppliedNodes(null);setBoardMode('actual');setPreviewBoard(catalog.boards[0]?.id);},[catalog.classKey,kind]);
@@ -83,7 +84,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
  };
  async function inspect(row:Ranker){
   const token=++request.current;profileController.current?.abort();const controller=new AbortController();profileController.current=controller;
-  setSelectedId(row.characterId);setPreview(false);setAppliedNodes(null);setLive(null);setError('');setLoading(true);
+  setFocusSkillGuide(false);setSelectedId(row.characterId);setPreview(false);setAppliedNodes(null);setLive(null);setError('');setLoading(true);
   try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId},controller.signal);if(request.current===token&&!controller.signal.aborted)setLive(result)}
   catch(e){if(request.current===token&&!controller.signal.aborted)setError(e instanceof Error?e.message:'공식 조회 실패')}
   finally{if(request.current===token)setLoading(false)}
@@ -109,9 +110,9 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
     {!live&&<small>{t('저장 자료 표시: {0} · 공식 조회 성공 전까지 저장된 장비·스킬을 표시합니다.',[time(selected.verifiedAt)])}</small>}
     {error&&<div role="alert"><details><summary>{t('조회 오류 자세히 보기')}</summary><p>{t(error)}</p></details><button className="button secondary" onClick={()=>inspect(selected)}>{t('공식 세팅 다시 조회')}</button></div>}
    </div>
-   <nav className="ranker-view-tabs ranker-primary-tabs" aria-label={rankerText(locale,'tabs')}>{([{key:'equipment',label:'장비'},{key:'skills',label:'스킬'},{key:'daevanion',label:'데바니온'}] as const).map(tab=><button type="button" key={tab.key} aria-pressed={view===tab.key} onClick={()=>setView(tab.key)}>{t(tab.label)}</button>)}</nav>
+   <nav className="ranker-view-tabs ranker-primary-tabs" aria-label={rankerText(locale,'tabs')}>{([{key:'equipment',label:'장비'},{key:'skills',label:'스킬'},{key:'daevanion',label:'데바니온'}] as const).map(tab=><button type="button" key={tab.key} aria-pressed={view===tab.key} onClick={()=>{setFocusSkillGuide(false);setView(tab.key)}}>{t(tab.label)}</button>)}</nav>
    {view==='equipment'&&<MyRankerComparison key={JSON.stringify([selected.characterId,plan.character?.profile,plan.character?.importedAt])} catalog={catalog} plan={plan} ranker={selected} live={live} onConnect={onConnect} onRefreshRanker={()=>inspect(selected)}/>}
-   {view==='skills'&&<RankerSkillFollow key={selected.characterId+catalog.classKey} catalog={catalog} plan={plan} ranker={selected} profile={live} onApply={onApply}/>}
+   {view==='skills'&&<RankerSkillFollow key={selected.characterId+catalog.classKey} catalog={catalog} plan={plan} ranker={selected} profile={live} onApply={onApply} specMode={skillSpecMode} onSpecModeChange={setSkillSpecMode} focusOnOpen={focusSkillGuide}/>}
    {view==='daevanion'&&<>
     {result.error&&<p role="alert">{t(result.error)}</p>}
     {!candidate&&<p className="ranker-board-wait">{rankerText(locale,loading?'boardLoading':error?'boardRetry':'boardMissing')}</p>}
@@ -130,7 +131,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
       </>}
       <button className="button ghost" onClick={()=>setPreview(false)}>{t('취소')}</button>
      </div>}
-     {applied&&<div className="ranker-apply-success" ref={appliedRef} tabIndex={-1}><p role="status"><strong>{rankerText(locale,'applied')}</strong></p><p>{rankerText(locale,'appliedHelp')}</p><div className="ranker-apply-actions"><a className="button primary" href="#/build/daevanion">{rankerText(locale,'editNodes')}</a><a className="button secondary" href="#/builds">{rankerText(locale,'saveCopy')}</a></div></div>}
+     {applied&&<div className="ranker-apply-success" ref={appliedRef} tabIndex={-1}><p role="status"><strong>{rankerText(locale,'applied')}</strong></p><p>{rankerText(locale,'appliedHelp')}</p><div className="ranker-apply-actions"><button type="button" className="button primary" onClick={()=>{setFocusSkillGuide(true);setView('skills')}}>{rankerText(locale,'nextSkills')}</button><a className="button secondary" href="#/build/daevanion">{rankerText(locale,'editNodes')}</a><a className="button secondary" href="#/builds">{rankerText(locale,'saveCopy')}</a></div></div>}
     </>}
    </>}
    {live&&<details><summary>{t('능력치·스킬·노드 상세 비교')}</summary><CharacterComparison current={plan.character} saved={live} ranker/></details>}

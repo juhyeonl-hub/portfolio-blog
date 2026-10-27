@@ -181,3 +181,39 @@ for(const key of new Set(snapshot.entries.map(r=>r.classKey))){
  const missingSpec={...plain.plan,specs:{...plain.plan.specs,[active.id]:['unknown']}};assert.deepEqual(previewRankerSkills(cat,missingSpec,rank,live,'keep').plan.specs[active.id],[]);
 }
 console.log(`Ranker personal skill guide: ${skillCases} class/level/ascension/budget cases; slots, bonus subtraction, valid specs, missing/identity rejection, immutability PASS`);
+
+// Integrated board-first flow: both previews use one current plan, preserving user-owned fields.
+let combinedCases=0;
+for(const key of new Set(snapshot.entries.map(r=>r.classKey))){
+ const cat={...JSON.parse(readFileSync(`lib/data/catalogs/${key}.json`)),classKey:key},rank=snapshot.entries.find(r=>r.classKey===key);
+ const live={classKey:key,region:rank.region,profile:{characterId:rank.characterId,serverId:rank.serverId,pcId:classes.classProfile(key).pcIds[0]},skills:rank.skills,failedBoards:[],boards:cat.boards.map(b=>({id:b.id,open:1})),nodes:cat.boards.flatMap(b=>b.nodes.map(n=>n.id))};
+ for(const [sp,stigma,crystal] of [[0,0,114],[70,5,114],[383,29,316]]){
+  const original={...planner.emptyPlan(cat),level:45,ascensionGrade3Confirmed:true,pointBudget:{sp,stigma,crystal,battle:0},character:{marker:'untouched'},checked:['manual-check']};
+  const snapshotBefore=JSON.stringify(original),boardApplied=previewRankerBoards(cat,original,rank,live,{fitToBudget:true});
+  const first=previewRankerSkills(cat,boardApplied,rank,live),skillApplied=first.plan;
+  assert.deepEqual(skillApplied.nodes,boardApplied.nodes);assert.deepEqual(skillApplied.character,original.character);assert.deepEqual(skillApplied.gear,original.gear);
+  assert(first.used.sp<=sp&&first.used.stigma<=stigma&&first.used.crystal<=crystal&&first.used.battle===0);
+  const boardReapplied=previewRankerBoards(cat,skillApplied,rank,live,{fitToBudget:true});
+  assert.deepEqual(boardReapplied.base,skillApplied.base,'reapplying boards never replaces skill allocation');
+  const manualSkill=cat.skills.find(s=>!s.stigma&&skillApplied.base[s.id]>1);
+  const edited={...skillApplied,base:{...skillApplied.base},specs:{...skillApplied.specs}};
+  if(manualSkill)edited.base[manualSkill.id]=1;
+  const roundTrip=JSON.parse(JSON.stringify(edited));assert.deepEqual(roundTrip,edited,'combined serialized save retains nodes, manual skill edits and specs');
+  const kept=previewRankerSkills(cat,roundTrip,rank,live,'keep');
+  for(const skill of cat.skills)assert(kept.plan.specs[skill.id].every(id=>(roundTrip.specs[skill.id]||[]).includes(id)),'keep cannot invent newly available choices');
+  assert.equal(JSON.stringify(original),snapshotBefore);combinedCases++;
+ }
+ // Isolate a real board skill bonus with affordable targets, then remove it and recompute.
+ const original={...planner.emptyPlan(cat),level:45,ascensionGrade3Confirmed:true,pointBudget:{sp:9999,stigma:9999,crystal:9999,battle:9999}};
+ const withBoards=previewRankerBoards(cat,original,rank,live,{fitToBudget:true});
+ const skill=cat.skills.find(s=>!s.stigma&&planner.boardBonus(cat,withBoards,s.id)>0&&planner.maxBase(s,45,true)>=8);assert(skill);
+ const fixture={...live,skills:live.skills.map(s=>String(s.id)===skill.id?{...s,skillLevel:8}:s)};
+ const bonuses=planner.boardBonus(cat,withBoards,skill.id),fitted=previewRankerSkills(cat,withBoards,rank,fixture);
+ assert.equal(fitted.plan.base[skill.id],Math.max(1,8-bonuses),'personal board bonus reduces paid base target');
+ const removed={...fitted.plan,nodes:original.nodes};
+ const refitted=previewRankerSkills(cat,removed,rank,fixture,'keep');assert.equal(refitted.plan.base[skill.id],8,'removing bonus recomputes paid target');
+ assert.deepEqual(refitted.plan.nodes,original.nodes);assert.deepEqual(fitted.plan.nodes,withBoards.nodes);
+ for(const s of cat.skills){const final=planner.finalLevel(cat,refitted.plan,s);assert(refitted.plan.specs[s.id].every(id=>s.specializations.some(x=>x.id===id&&x.requiredParentLevel<=final)));assert(refitted.plan.specs[s.id].length<=planner.slots(s,final));}
+ combinedCases++;
+}
+console.log(`Combined Daevanion -> skills: ${combinedCases} cases, board bonus gain/removal, zero/tight budgets, keep-spec safety, scope preservation and serialized manual edits PASS`);
