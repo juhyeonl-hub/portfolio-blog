@@ -44,3 +44,34 @@ assert.deepEqual(tradePriceCandidates('129,998\n129,998\n100개\n150%\n0\n-').ma
 assert.equal(quantityFromPrices('12만9998','38만9994'),'3');assert.equal(quantityFromPrices('13만','1300만'),'100');assert.equal(quantityFromPrices('3','10'),'');assert.equal(quantityFromPrices('0','0'),'');assert.equal(quantityFromPrices('1','1000001'),'');
 assert.equal(tradePriceCandidates('아무 숫자도 없습니다').length,0);
 console.log('PASS OCR parsing: Korean price candidates, quantity/time/percent exclusions, duplicates and exact quantity inference');
+
+// New price-first crafting guide: auxiliary materials, yield, rounding, and
+// partial input must never depend on knowing a sale price or owning materials.
+const {craftSalePrices}=await load('lib/craft-sale.ts');
+const wood={...emptyCraft(),materials:[{id:'wood',name:'wood',quantity:'2',price:'5254'},{id:'paper',name:'sandpaper',quantity:'1',price:'400'}]};
+let guide=craftSalePrices(wood);
+assert.equal(guide.totalCost,10908n);assert.deepEqual(guide.lines,[10508n,400n]);assert.equal(guide.breakEven,12120n);assert.equal(guide.firstProfit,12122n);
+assert.deepEqual(guide.examples.map(x=>x.price),[12120n,12727n,13333n,14545n]);
+assert.deepEqual(guide.examples.map(x=>x.target),[0n,546n,1091n,2182n]);
+assert.equal(guide.target.result.profit,1091n);assert.equal(guide.target.result.net,11999n);
+assert.equal(craftSalePrices({...wood,sell:'13000'}).actual.profit,792n);
+assert.equal(craftSalePrices({...wood,sell:'bad'}).breakEven,12120n);
+assert.equal(craftSalePrices({...wood,materials:wood.materials.map(m=>({...m,owned:'100'}))}).totalCost,10908n);
+assert.equal(craftSalePrices(wood,'').target,null);assert.equal(craftSalePrices(wood,'100.01').target,null);
+assert.equal(craftSalePrices({...wood,tax:'0'}).breakEven,10908n);
+assert.equal(craftSalePrices({...wood,tax:'100'}).breakEven,null);
+assert.equal(craftSalePrices({...wood,output:'2'}).breakEven,6060n);
+assert.equal(craftSalePrices({...wood,output:'2',fee:'100'}).breakEven,6116n);
+assert.equal(craftSalePrices({...wood,cost:'100'}).totalCost,11008n);
+for(const patch of [{output:'0'},{output:'1000001'},{tax:'100.01'},{cost:'-1'},{fee:''},{rounding:'invalid'},{materials:[]},{materials:[{...wood.materials[0],quantity:''}]},{materials:[{...wood.materials[0],price:'bad'}]}])assert.equal(craftSalePrices({...wood,...patch}),null);
+let checked=0;
+for(const rounding of ['up','down'])for(const tax of ['0','10','99.99','100'])for(const output of ['1','2','100'])for(const fee of ['0','400']){
+ const g=craftSalePrices({...wood,rounding,tax,output,fee});
+ for(const x of g.examples){if(x.price===null){assert.equal(tax,'100');continue;}assert.ok(calculateTrade(g.input,g.quantity,x.price).profit>=x.target);if(x.price>0n)assert.ok(calculateTrade(g.input,g.quantity,x.price-1n).profit<x.target);checked++;}
+}
+const hugeGuide=craftSalePrices({...wood,materials:[{id:'huge',name:'',quantity:'1000000',price:'1000000000000'}]});assert.equal(hugeGuide.totalCost,1000000000000000000n);assert.ok(hugeGuide.target.price>1000000000000n);
+const zero=craftSalePrices({...wood,materials:[{id:'z',name:'',quantity:'1',price:'0'}],tax:'100'});assert.equal(zero.breakEven,0n);assert.equal(zero.firstProfit,null);
+assert.deepEqual(parseCraft(JSON.stringify(wood)),wood);assert.equal(calculateCraft(wood),null); // Legacy behavior preserved.
+const {craftSaleCopy,craftSaleText}=await import(moduleUrl(readFileSync('lib/craft-sale-text.ts','utf8')));
+for(const [key,variants] of Object.entries(craftSaleCopy)){assert.equal(variants.length,4);const placeholders=v=>[...v.matchAll(/\{(\d+)\}/g)].map(m=>m[1]).sort();for(const [i,lang] of ['ko','en','ja','fi'].entries()){assert.ok(variants[i]);assert.deepEqual(placeholders(variants[i]),placeholders(variants[0]));assert.equal(craftSaleText(lang,key,['A','B','C','D']),variants[i].replace(/\{(\d+)\}/g,(_,n)=>['A','B','C','D'][Number(n)]));}}
+console.log('PASS material-sale guide: 10908 example, exact minimum boundaries '+checked+', yield, fees, unknown sale, invalid inputs, huge costs, legacy draft compatibility, four-language parity');

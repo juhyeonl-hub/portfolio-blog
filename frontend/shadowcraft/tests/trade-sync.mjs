@@ -51,3 +51,8 @@ try{
 }finally{globalThis.setTimeout=oldSet;globalThis.clearTimeout=oldClear;}
 assert.deepEqual(validateDocument({version:1,revision:0,entries:{[WORKBOOK_KEY]:str(local),[CRAFT_PLANS_KEY]:str(plans)}}).entries,{[WORKBOOK_KEY]:str(local),[CRAFT_PLANS_KEY]:str(plans)});
 console.log('PASS trade sync: independent books, concurrent trades/deletion conflicts, both resolutions, backup failure, reload persistence, no blocked PUT, member isolation, guest migration safety, backups and crafting funding');
+
+const noSalePlans={version:1,selected:'new',plans:[...plans.plans,{id:'new',name:'price first',draft:{...draft,sell:''}}]};
+assert.deepEqual(parseCraftPlans(str(noSalePlans)),noSalePlans);
+assert.deepEqual(parseTradeBackup(CRAFT_PLANS_KEY,tradeBackup(CRAFT_PLANS_KEY,noSalePlans)),noSalePlans);
+console.log('PASS crafting plans: old priced and new unpriced drafts coexist and round-trip through backup');

@@ -893,3 +893,11 @@ Ranker switching audit2026-10-27: sticky selector, preserved guide/board, reques
 [Task Goal]: Verify and improve the board-first -> point-fit skills/specs -> edit/save journey, preserving explicit application and unknown-data disclosures. Confirmed tab switch resets keep-spec preference; add clear next-step cue. Scoped checks/review/release: tasks/asbc-ranker-combined-20261027.md.
 
 GreenOrc combined follow closeout: source72a39f1 reviewed by Claude with NO_FINDINGS, main pushed and production d1c6a6be deployed. PC1440/mobile390 verified board-first skills/specs apply, manual edit/save/reload, same-ranker board bonus refresh and keep-mode persistence. All original plans and previous changes restored/preserved. Detailed evidence: tasks/asbc-ranker-combined-20261027.md.
+
+
+## Material-cost selling price calculator — 2026-10-27
+[Task Goal]: Simplify the trade calculator around entered material costs, output quantity and tax, showing break-even and target-profit sale prices immediately. Preserve ledger, existing crafting plans and unrelated pending work. Scope/checks/review: tasks/asbc-trade-crafting-20261027.md.
+
+[Trade material-sale 2026-10-27 closeout] Implemented and locally validated (full tests/typecheck/build, desktop/mobile four locales). Uncommitted/not deployed. Claude read-only review timed out twice; cross-review pending. Automatic approval review rejected Git stage/commit because latest request lacks explicit release authorization. Await explicit commit/push/deploy approval and review waiver, or completed review. See tasks/asbc-trade-crafting-20261027.md.
+
+[Release authorization 2026-10-27] User replied "반영 하고 진행" to the explicit proposal to commit/push this calculator scope to main and deploy without Claude cross-review. Prior automatic-review blocker is resolved by this fresh authorization. Claude review remains unsuccessful (two timeouts), not a review pass. Proceed with scoped release and production PC/mobile verification.
