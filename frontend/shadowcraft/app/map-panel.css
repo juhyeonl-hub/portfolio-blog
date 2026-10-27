@@ -1,0 +1,33 @@
+/* Map-only layout: keep the square coordinate surface fully visible. */
+.shell .map-panel.card{margin:0;padding:12px;min-width:0}
+.shell .map-panel>h2{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.shell .map-panel .terrain-panel{padding:0;border:0;background:transparent}
+.shell .map-panel .terrain-workspace{display:flex;flex-direction:column;gap:12px}
+.shell .map-panel .terrain-workspace>*{min-width:0;width:100%;order:0}
+.shell .map-panel .terrain-stage>.map-toolbar{margin:0 0 8px;gap:8px;flex-wrap:wrap}
+.shell .map-panel .terrain-stage>.map-toolbar button{min-height:40px;min-width:44px}
+.shell .map-panel .terrain-stage>.map-toolbar span{min-width:36px;text-align:center;font-variant-numeric:tabular-nums}
+.shell .map-panel .terrain-map-frame{display:grid;justify-items:center;position:relative}
+.shell .map-panel .terrain-canvas{margin:0;width:min(100%,var(--terrain-fit-side,600px));height:auto;aspect-ratio:1;max-height:none}
+.shell .map-panel .terrain-controls{margin:0;padding:12px;max-height:none;overflow:visible}
+.shell .map-panel .terrain-controls>summary{min-height:24px;line-height:24px;font-size:12px}
+.shell .map-panel .terrain-controls[open]>summary{margin-bottom:12px}
+.shell .map-panel .terrain-search{display:grid;gap:8px;margin:0 0 12px}
+.shell .map-panel .terrain-search label{display:grid;gap:4px;font-size:12px}
+.shell .map-panel .terrain-search input,.shell .map-panel .terrain-search select{margin:0;min-width:0;width:100%}
+.shell .map-panel .terrain-controls .map-layers{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:10px 0}
+.shell .map-panel .terrain-controls .map-legend-row{padding:6px;gap:4px;min-width:0}
+.shell .map-panel .terrain-controls p{line-height:1.6;margin:8px 0}
+.shell .map-panel .terrain-source{margin:12px 0 0}
+.shell .map-panel .terrain-marker-card{justify-self:stretch}
+@media(min-width:1000px){
+ .shell .map-panel .terrain-workspace{display:grid;grid-template-columns:240px minmax(0,1fr);gap:14px;align-items:start}
+ .shell .map-panel .terrain-stage{grid-column:2;grid-row:1}
+ .shell .map-panel .terrain-controls{grid-column:1;grid-row:1;max-height:calc(var(--terrain-fit-side,600px) + 48px);overflow:auto;scrollbar-width:thin}
+ .shell .map-panel .terrain-controls .map-layers{grid-template-columns:minmax(0,1fr)}
+ .shell .map-panel .terrain-controls .map-toolbar{gap:6px;margin:10px 0}
+ .shell .map-panel .terrain-marker-card{max-height:calc(100% - 24px);scrollbar-width:thin}
+}
+.shell .map-panel .terrain-stage .terrain-region{width:auto;max-width:100%;min-width:0;min-height:40px;margin:0 auto 0 0}
+@media(max-width:600px){.shell .map-panel .terrain-stage .terrain-region{flex-basis:100%;width:100%;margin:0}}
+.shell .map-panel .terrain-stage{scroll-margin-top:calc(var(--a2bc-timer-height,0px) + 72px)}

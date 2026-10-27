@@ -1,6 +1,6 @@
 import {useSettingsRefresh} from './use-settings-refresh';
 import {settingsStorage} from '../lib/account-settings';
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState, type CSSProperties, type ReactNode} from 'react';
 import MapMarkerIcon from './map-marker-icon';
 import {useLocale} from './locale';
 import verteron from '../lib/data/terrain-catalog.json';
@@ -22,18 +22,20 @@ export default function TerrainPanel({active=false}:{active?:boolean}) {
   const [selected, setSelected] = useState('verteron');
   const terrain = terrains[selected] ?? verteron;
   return <section className="terrain-panel" aria-label={t('공식 글로벌 지형 지도')}>
-    <label>{t('공식 지형 지역')}<select aria-label={t('공식 지형 지역')} value={selected} onChange={e => setSelected(e.target.value)}>
-      {Object.entries(terrains).map(([key, value]) => <option key={key} value={key}>{mapName(value.name,locale)}</option>)}
-    </select></label>
-    <TerrainView key={selected} terrain={terrain} active={active}/>
+    <TerrainView key={selected} terrain={terrain} active={active} regionPicker={
+      <select className="terrain-region" aria-label={t('공식 지형 지역')} value={selected} onChange={e => setSelected(e.target.value)}>
+        {Object.entries(terrains).map(([key, value]) => <option key={key} value={key}>{mapName(value.name,locale)}</option>)}
+      </select>
+    }/>
   </section>;
 }
 
-function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolean}) {
+function TerrainView({terrain,active,regionPicker}: {terrain: typeof verteron; active: boolean; regionPicker: ReactNode}) {
   const {t,locale} = useLocale();
   const {name: terrainName, source, gridSize, basePath} = terrain;
   const [open, setOpen] = useState(false);
-  const [controlsOpen,setControlsOpen]=useState(()=>!window.matchMedia('(max-width:760px)').matches);
+  const [controlsOpen,setControlsOpen]=useState(false);
+  useEffect(()=>{setControlsOpen(!window.matchMedia('(max-width:999px)').matches);},[]);
   const [view, setView] = useState<MapView>({x:0, y:0, zoom:1});
   const [failed, setFailed] = useState<Set<string>>(new Set());
   const [retry, setRetry] = useState(0);
@@ -114,10 +116,31 @@ function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolea
   const selectedLabel = labels.find(label => label.id === selectedLocation);
   const drag = useRef<{id:number; x:number; y:number; width:number; view:MapView} | null>(null);
   const canvasRef = useRef<SVGSVGElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const [fitHeight,setFitHeight]=useState(600);
+  useEffect(()=>{
+    const frame=frameRef.current;
+    if(!active || !open || !frame)return;
+    let pending=0;
+    const measure=()=>{
+      // Document position stays stable while scrolling. The SVG itself remains square,
+      // so existing pointer coordinates and screen-sized marker hit areas stay accurate.
+      const top=frame.getBoundingClientRect().top+window.scrollY;
+      const next=Math.max(160,Math.floor(window.innerHeight-top-16));
+      setFitHeight(previous=>previous===next?previous:next);
+    };
+    const observer=new ResizeObserver(()=>{cancelAnimationFrame(pending);pending=requestAnimationFrame(measure);});
+    observer.observe(document.documentElement);
+    if(frame.parentElement)observer.observe(frame.parentElement);
+    window.addEventListener('resize',measure);
+    measure();
+    return ()=>{observer.disconnect();cancelAnimationFrame(pending);window.removeEventListener('resize',measure);};
+  },[active,open]);
+
   useEffect(()=>{
     const canvas=canvasRef.current;
     if(!canvas)return;
-    const observer=new ResizeObserver(()=>setCanvasWidth(canvas.getBoundingClientRect().width));observer.observe(canvas);
+    const observer=new ResizeObserver(()=>{const width=canvas.getBoundingClientRect().width;if(width>0)setCanvasWidth(width);});observer.observe(canvas);
     function wheel(event: WheelEvent) {
       if(!canvas || event.deltaY===0 || event.ctrlKey)return;
       event.preventDefault();
@@ -137,25 +160,95 @@ function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolea
   },[open]);
   const size = 1000 / view.zoom;
   const tiles = visibleTerrainTiles(view, gridSize);
-  return <div className={open?"terrain-workspace terrain-workspace-open":"terrain-workspace"}>
-    <div className="terrain-overview"><h3>{t('{0} 지형 지도',[name(terrainName)])}</h3>
-    <p className="subtle">{t('게임 클라이언트 자료로 표시한 위치입니다. 일부는 실제 게임과 다를 수 있습니다.')}</p>
-    <details className="terrain-source"><summary>{t('지도 출처와 데이터 안내')}</summary><p>{t('공식 글로벌 Steam 클라이언트 · 빌드 {0} · 지형 이미지 {1}개. 수집물·NPC의 좌표는 대조 중입니다. 사용자 지도 파일과는 별도로 표시합니다.',[source.buildId,gridSize * gridSize])}</p><p>{t('지역명과 자원명은 글로벌 원문의 표시용 번역입니다. 게임 내 명칭과 다를 수 있습니다.')}</p></details>
-    <button className="button secondary" aria-expanded={open} onClick={() => {if(open)setOpen(false);else showTerrain();drag.current=null;}}>{open ? t('공식 지형 닫기') : t('공식 {0} 지형 열기',[name(terrainName)])}</button>
+  return <div className={open?"terrain-workspace terrain-workspace-open":"terrain-workspace"} style={{'--terrain-fit-side':`${fitHeight}px`} as CSSProperties}>
+    {open && <div className="terrain-stage">
+      <div className="map-toolbar">{regionPicker}<button className="button ghost" aria-label={t('지형 지도 축소')} disabled={view.zoom===1} onClick={()=>setView(v=>zoomMap(v,v.zoom/2))}>−</button>
+        <span>{t('{0}배',[Number(view.zoom.toFixed(1))])}</span><button className="button ghost" aria-label={t('지형 지도 확대')} disabled={view.zoom===8} onClick={()=>setView(v=>zoomMap(v,v.zoom*2))}>+</button>
+        <button className="button ghost" disabled={view.zoom===1&&view.x===0&&view.y===0} onClick={()=>{setView({x:0,y:0,zoom:1});drag.current=null;}}>{t('전체 보기')}</button>
+        </div>
+      {selectedLabel && <p role="status">{t('선택한 지역:')} <strong>{selectedLabel.name}</strong>
+        <button className="button ghost" onClick={()=>setView(terrainLocationView(selectedLabel))}>{t('선택 위치로 이동')}</button>
+        <button className="button ghost" onClick={()=>setSelectedLocation('')}>{t('위치 선택 해제')}</button></p>}
+      {failed.size>0 && <p role="alert">{t('지형 이미지 {0}개를 불러오지 못했습니다.',[failed.size])} <button className="button ghost" onClick={()=>{setFailed(new Set());setRetry(v=>v+1);}}>{t('지형 다시 불러오기')}</button></p>}
+
+      {areaCells.length>0&&<p className="gather-area-note"><strong>{name(gatherArea)}</strong> · {t('자원별로 위치를 골라 볼 수 있습니다. 색칠된 구역은 원본 자료의 후보 위치를 묶은 것으로 실제 출현을 보장하지 않습니다.')}</p>}
+      <div ref={frameRef} className="terrain-map-frame"><svg ref={canvasRef} className="map-canvas terrain-canvas" role="group" aria-label={t('{0} 지형 이미지',[name(terrainName)])} tabIndex={0} viewBox={`${view.x} ${view.y} ${size} ${size}`}
+        onKeyDown={e=>{const delta:Record<string,[number,number]>={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]};if(Object.hasOwn(delta,e.key)){e.preventDefault();const [x,y]=delta[e.key];setView(v=>constrainMapView({...v,x:v.x+x*size/10,y:v.y+y*size/10}));}}}
+        onPointerDown={e=>{if(e.button!==0)return;e.preventDefault();drag.current={id:e.pointerId,x:e.clientX,y:e.clientY,width:e.currentTarget.getBoundingClientRect().width,view};e.currentTarget.setPointerCapture(e.pointerId);}}
+        onPointerMove={e=>{const d=drag.current;if(!d||d.id!==e.pointerId||!d.width)return;const scale=1000/d.view.zoom/d.width;setView(constrainMapView({...d.view,x:d.view.x-(e.clientX-d.x)*scale,y:d.view.y-(e.clientY-d.y)*scale}));}}
+        onPointerUp={()=>{drag.current=null;}} onPointerCancel={()=>{drag.current=null;}} onLostPointerCapture={()=>{drag.current=null;}}>
+        <rect width="1000" height="1000" fill="#11141b"/>
+        {tiles.map(tile=>{const id=`${tile.x}_${tile.y}`;return <image key={`${retry}-${id}`} x={tile.left} y={tile.top} width={tile.width} height={tile.width}
+          href={`${basePath}/${id}.webp`} preserveAspectRatio="none" pointerEvents="none"
+          onError={()=>setFailed(old=>new Set([...old,id]))} onLoad={()=>setFailed(old=>{if(!old.has(id))return old;const next=new Set(old);next.delete(id);return next;})}/>;})}
+        {previewOn&&areaCells.length>0&&<g className="gather-area" pointerEvents="none" aria-label={t('채집 후보 구역')}>
+          {areaCells.map(cell=><rect key={cell.x+':'+cell.y} x={cell.x} y={cell.y} width={25} height={25} fill="#ffbd4538" stroke="#ffbd4599" strokeWidth={.5}/>)}</g>}
+        {previewOn && previewDraw.map(group=>{const {row,x,y,members}=group,cluster=members.length>1;
+          const markerSize=28*1000/view.zoom/canvasWidth,selected=row.id===previewSelection;
+          const choose=()=>{if(cluster){const zoom=Math.min(8,view.zoom*2);setView(constrainMapView({zoom,x:x-500/zoom,y:y-500/zoom}));}else focusPreview(row);};
+          const click=(event:React.MouseEvent<SVGGElement>)=>{
+            const bounds=canvasRef.current?.getBoundingClientRect();
+            if(cluster || !event.detail || !bounds?.width){choose();return;}
+            // Fitted maps can overlap individual hit areas. Pick the nearest point
+            // to the pointer instead of whichever neighboring SVG was drawn last.
+            const px=view.x+(event.clientX-bounds.left)*size/bounds.width;
+            const py=view.y+(event.clientY-bounds.top)*size/bounds.height;
+            const distance=(g:typeof group)=>(g.x-px)**2+(g.y-py)**2;
+            const nearest=previewDraw.reduce((best,g)=>g.members.length===1&&distance(g)<distance(best)?g:best,group);
+            focusPreview(nearest.row);
+          };
+          return <g key={members.length===1?row.id:group.key} data-preview-marker={row.kind} data-marker-id={cluster?undefined:row.id} data-count={members.length}
+          opacity={members.every(m=>completed.has(m.id))?.4:1} role="button" tabIndex={0} aria-label={cluster?t('{0} 위치 {1}개 · 확대',[name(row.name),members.length]):t('{0} 후보 위치',[name(row.name)])} aria-pressed={selected}
+          onPointerDown={e=>{e.preventDefault();e.stopPropagation();}} onClick={click}
+          onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();choose();}}}>
+          <title>{t('{0} · {1} · 미검증 후보 위치',[name(row.name),t(previewKindLabel(row.kind))])}</title>
+          <rect className="marker-hit" x={x-markerSize/2} y={y-markerSize/2} width={markerSize} height={markerSize} rx={markerSize/2} fill={selected?'#79cced55':'transparent'} stroke={selected?'#79cced':'none'} strokeWidth={markerSize/16}/>
+          <MapMarkerIcon kind={row.kind} objectId={row.objectId} completed={completed.has(row.id)} region={terrainName} x={x-markerSize/2} y={y-markerSize/2} size={markerSize}/>
+          {cluster&&<><circle cx={x+markerSize*.3} cy={y-markerSize*.25} r={markerSize*.33} fill="#152433" stroke="#79cced" strokeWidth={markerSize/24}/><text x={x+markerSize*.3} y={y-markerSize*.25} textAnchor="middle" dominantBaseline="central" fontSize={markerSize*.37} fill="white">{members.length}</text></>}
+        </g>})}
+        {previewOn && nearbyFocus && <g aria-label={t('가까운 이동 지점: {0}',[name(nearbyFocus.name)])} pointerEvents="none"><title>{name(nearbyFocus.name)}</title><rect x={nearbyFocus.x-24/Math.sqrt(view.zoom)} y={nearbyFocus.y-24/Math.sqrt(view.zoom)} width={48/Math.sqrt(view.zoom)} height={48/Math.sqrt(view.zoom)} fill="#5eead433" stroke="#5eead4" strokeWidth={2/Math.sqrt(view.zoom)}/><MapMarkerIcon kind="teleport" region={terrainName} x={nearbyFocus.x-22/Math.sqrt(view.zoom)} y={nearbyFocus.y-22/Math.sqrt(view.zoom)} size={44/Math.sqrt(view.zoom)}/></g>}
+        {selectedLabel && <circle aria-label={t('선택 위치: {0}',[selectedLabel.name])} cx={selectedLabel.x} cy={selectedLabel.y}
+          r={10 / Math.sqrt(view.zoom)} fill="#fbbf2433" stroke="#fbbf24" strokeWidth={2 / Math.sqrt(view.zoom)} pointerEvents="none"/>}
+        {showLabels && labels.map(label=><g key={label.id} pointerEvents="none" aria-label={label.name}>
+          <title>{label.name}</title><circle cx={label.x} cy={label.y} r={2 / Math.sqrt(view.zoom)} fill="#fff" stroke="#11141b" strokeWidth={1 / Math.sqrt(view.zoom)}/>
+          {(labelNames.has(label.id) || label.id === selectedLocation) && <text x={label.x} y={label.y} textAnchor="middle"
+          fontSize={12 / Math.sqrt(view.zoom)} fill="#fff" stroke="#11141b" strokeWidth={3 / Math.sqrt(view.zoom)}
+          paintOrder="stroke" pointerEvents="none">{label.name}</text>}</g>)}
+      </svg>
+      {previewOn && chosenPreview && <section ref={detailRef} className={"map-detail terrain-marker-card"+(chosenPreview.x<view.x+size/2?" card-right":"")+(chosenPreview.y>view.y+size/2?" card-top":"")} aria-label={t('선택한 마커 정보')}>
+        <button className="button ghost small" aria-label={t('마커 정보 닫기')} onClick={()=>{setPreviewSelection('');setNearbyId('');}}>{t('닫기')} ×</button>
+        <h3><MapMarkerIcon kind={chosenPreview.kind} objectId={chosenPreview.objectId} completed={completed.has(chosenPreview.id)} region={terrainName}/> {name(chosenPreview.name)}</h3><p>{t(previewKindLabel(chosenPreview.kind))} · {name(terrainName)}</p>
+        {chosenPreview.locationType==='area-center' && <p>{t('주둔지 구역 중심입니다. 입구·NPC 위치가 아니며 구역 안에서 탐험 퀘스트를 확인하세요.')}</p>}
+        {chosenPreview.kind==='cube' && <p className="subtle">{t('히든큐브는 게임 원본 큐브 이미지로 표시합니다.')}</p>}
+        <label className="map-check"><input type="checkbox" checked={completed.has(chosenPreview.id)} onChange={()=>markPreview(chosenPreview.id)}/>{t('이 위치 확인 완료')}</label><p role="status">{t('확인 {0}/{1}',[preview.filter(r=>r.kind===chosenPreview.kind&&completed.has(r.id)).length,preview.filter(r=>r.kind===chosenPreview.kind).length])}</p>
+        <button className="button ghost small" onClick={()=>{setNearbyId('');focusPreview(chosenPreview,true);}}>{t('후보 위치로 돌아가기')}</button>
+        <h4>{t('가까운 순간이동 지점')}</h4>
+        {nearby.length ? nearby.map((row,index)=><button key={row.id} className="button secondary small" aria-pressed={nearbyFocus?.id===row.id} onClick={()=>{setNearbyId(row.id);setView(terrainLocationView(row));drag.current=null;}}>{index+1}. {name(row.name)}</button>) : <p>{t('이 지역에 다른 이동 지점 정보가 없습니다.')}</p>}
+        <details><summary>{t('원본 위치 정보')}</summary><p>{chosenPreview.name} · {terrainName}</p><p>{chosenPreview.world.map(v=>Math.round(v)).join(', ')} · {t('같은 이름의 여러 지점은 조건별·대체 배치일 수 있습니다.')}</p></details>
+        <p className="subtle">{t('지도상 직선거리 순입니다. 실제 이동 경로·해금·이용 가능 여부는 게임에서 확인하세요. 위치는 대조 중인 후보이며 출현을 보장하지 않습니다.')}</p>
+      </section>}
+      </div>
+    </div>}
+    {<details className="terrain-controls" open={controlsOpen} onToggle={e=>setControlsOpen(e.currentTarget.open)}>
+      <summary>{t('위치 검색')} · {t('지도 표시 항목')}</summary><div>
     {labels.length > 0 && <div className="terrain-search">
       <label>{t('지역명 검색')}<input type="search" aria-label={t('공식 지도 지역명 검색')} value={query} maxLength={100}
         placeholder={t('예: 새벽 군단 기지')} onChange={e=>setQuery(e.target.value)}/></label>
       <label>{t('검색한 위치')}<select aria-label={t('공식 지도 검색 결과')} value={matches.some(label=>label.id===selectedLocation) ? selectedLocation : ''}
         onChange={e=>{const label=labels.find(item=>item.id===e.target.value);if(!label)return;
-          setSelectedLocation(label.id);setView(terrainLocationView(label));setShowLabels(true);showTerrain();}}>
+          setSelectedLocation(label.id);setView(terrainLocationView(label));setShowLabels(true);showTerrain();
+          if(window.matchMedia('(max-width:999px)').matches){
+            setControlsOpen(false);
+            requestAnimationFrame(()=>{canvasRef.current?.focus({preventScroll:true});frameRef.current?.parentElement?.scrollIntoView({block:'start'});});
+          }}}>
         <option value="">{matches.length ? t('위치 선택 ({0}개)',[matches.length]) : t('검색 결과 없음')}</option>
         {matches.map(label=><option key={label.id} value={label.id}>{label.name}</option>)}
       </select></label>
       {query.trim() && <p role="status">{t('검색 결과 {0}개',[matches.length])}</p>}
     </div>}
-    </div>
-    {<details className="terrain-controls" open={controlsOpen} onToggle={e=>setControlsOpen(e.currentTarget.open)}>
-      <summary>{t('지도 표시 항목')}</summary><div>
+
+{labels.length > 0 && <label><input type="checkbox" checked={showLabels} onChange={e=>setShowLabels(e.target.checked)}/>{t('지역명 표시 ({0})',[labels.length])}</label>}
+
       <button className="button secondary" disabled={previewLoading} aria-expanded={previewOn} onClick={()=>void togglePreview()}>
         {previewLoading?t('위치 자료 불러오는 중'):previewOn?t('마커 숨기기'):t('마커 보기')}</button>
       {previewError && <p role="alert">{t('위치 자료를 불러오지 못했습니다. 다시 시도해 주세요.')}</p>}
@@ -214,66 +307,15 @@ function TerrainView({terrain,active}: {terrain: typeof verteron; active: boolea
         </details>
 
       </>}
+      <details className="terrain-source"><summary>{t('지도 출처와 데이터 안내')}</summary>
+        <p>{t('공식 글로벌 지형 지도')} · Steam · {source.buildId}</p>
+        <p>{t('게임 클라이언트 자료로 표시한 위치입니다. 일부는 실제 게임과 다를 수 있습니다.')}</p>
+        <p>{t('지역명과 자원명은 글로벌 원문의 표시용 번역입니다. 게임 내 명칭과 다를 수 있습니다.')}</p>
+      {labels.length > 0 && <p>{t('공식 지도에 배치된 지역명 {0}개입니다. 겹치는 이름은 확대하면 나타납니다.',[labels.length])}{!!regionLabels?.unresolvedLabels.length && ' '+t('이름을 확인하지 못한 {0}개는 표시하지 않습니다.',[regionLabels.unresolvedLabels.length])}</p>}
+      <p className="map-help">{t('＋/− 버튼으로 확대·축소 · 지도를 손가락이나 마우스로 끌어 이동 · 표시를 눌러 상세 보기')}</p>
+      </details>
       </div>
     </details>}
-    {open && <div className="terrain-stage">
-      <div className="map-toolbar"><button className="button ghost" aria-label={t('지형 지도 축소')} disabled={view.zoom===1} onClick={()=>setView(v=>zoomMap(v,v.zoom/2))}>−</button>
-        <span>{t('{0}배',[Number(view.zoom.toFixed(1))])}</span><button className="button ghost" aria-label={t('지형 지도 확대')} disabled={view.zoom===8} onClick={()=>setView(v=>zoomMap(v,v.zoom*2))}>+</button>
-        <button className="button ghost" disabled={view.zoom===1&&view.x===0&&view.y===0} onClick={()=>{setView({x:0,y:0,zoom:1});drag.current=null;}}>{t('확대·이동 초기화')}</button>
-        {labels.length > 0 && <label><input type="checkbox" checked={showLabels} onChange={e=>setShowLabels(e.target.checked)}/>{t('지역명 표시 ({0})',[labels.length])}</label>}</div>
-      {labels.length > 0 && <p>{t('공식 지도에 배치된 지역명 {0}개입니다. 겹치는 이름은 확대하면 나타납니다.',[labels.length])}{!!regionLabels?.unresolvedLabels.length && ' '+t('이름을 확인하지 못한 {0}개는 표시하지 않습니다.',[regionLabels.unresolvedLabels.length])}</p>}
-      {selectedLabel && <p role="status">{t('선택한 지역:')} <strong>{selectedLabel.name}</strong>
-        <button className="button ghost" onClick={()=>setView(terrainLocationView(selectedLabel))}>{t('선택 위치로 이동')}</button>
-        <button className="button ghost" onClick={()=>setSelectedLocation('')}>{t('위치 선택 해제')}</button></p>}
-      {failed.size>0 && <p role="alert">{t('지형 이미지 {0}개를 불러오지 못했습니다.',[failed.size])} <button className="button ghost" onClick={()=>{setFailed(new Set());setRetry(v=>v+1);}}>{t('지형 다시 불러오기')}</button></p>}
 
-      <p className="map-help">{t('＋/− 버튼으로 확대·축소 · 지도를 손가락이나 마우스로 끌어 이동 · 표시를 눌러 상세 보기')}</p>
-      {areaCells.length>0&&<p className="gather-area-note"><strong>{name(gatherArea)}</strong> · {t('자원별로 위치를 골라 볼 수 있습니다. 색칠된 구역은 원본 자료의 후보 위치를 묶은 것으로 실제 출현을 보장하지 않습니다.')}</p>}
-      <div className="terrain-map-frame"><svg ref={canvasRef} className="map-canvas terrain-canvas" role="group" aria-label={t('{0} 지형 이미지',[name(terrainName)])} tabIndex={0} viewBox={`${view.x} ${view.y} ${size} ${size}`}
-        onKeyDown={e=>{const delta:Record<string,[number,number]>={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]};if(Object.hasOwn(delta,e.key)){e.preventDefault();const [x,y]=delta[e.key];setView(v=>constrainMapView({...v,x:v.x+x*size/10,y:v.y+y*size/10}));}}}
-        onPointerDown={e=>{if(e.button!==0)return;e.preventDefault();drag.current={id:e.pointerId,x:e.clientX,y:e.clientY,width:e.currentTarget.getBoundingClientRect().width,view};e.currentTarget.setPointerCapture(e.pointerId);}}
-        onPointerMove={e=>{const d=drag.current;if(!d||d.id!==e.pointerId||!d.width)return;const scale=1000/d.view.zoom/d.width;setView(constrainMapView({...d.view,x:d.view.x-(e.clientX-d.x)*scale,y:d.view.y-(e.clientY-d.y)*scale}));}}
-        onPointerUp={()=>{drag.current=null;}} onPointerCancel={()=>{drag.current=null;}} onLostPointerCapture={()=>{drag.current=null;}}>
-        <rect width="1000" height="1000" fill="#11141b"/>
-        {tiles.map(tile=>{const id=`${tile.x}_${tile.y}`;return <image key={`${retry}-${id}`} x={tile.left} y={tile.top} width={tile.width} height={tile.width}
-          href={`${basePath}/${id}.webp`} preserveAspectRatio="none" pointerEvents="none"
-          onError={()=>setFailed(old=>new Set([...old,id]))} onLoad={()=>setFailed(old=>{if(!old.has(id))return old;const next=new Set(old);next.delete(id);return next;})}/>;})}
-        {previewOn&&areaCells.length>0&&<g className="gather-area" pointerEvents="none" aria-label={t('채집 후보 구역')}>
-          {areaCells.map(cell=><rect key={cell.x+':'+cell.y} x={cell.x} y={cell.y} width={25} height={25} fill="#ffbd4538" stroke="#ffbd4599" strokeWidth={.5}/>)}</g>}
-        {previewOn && previewDraw.map(group=>{const {row,x,y,members}=group,cluster=members.length>1;
-          const markerSize=28*1000/view.zoom/canvasWidth,selected=row.id===previewSelection;
-          const choose=()=>{if(cluster){const zoom=Math.min(8,view.zoom*2);setView(constrainMapView({zoom,x:x-500/zoom,y:y-500/zoom}));}else focusPreview(row);};
-          return <g key={members.length===1?row.id:group.key} data-preview-marker={row.kind} data-marker-id={cluster?undefined:row.id} data-count={members.length}
-          opacity={members.every(m=>completed.has(m.id))?.4:1} role="button" tabIndex={0} aria-label={cluster?t('{0} 위치 {1}개 · 확대',[name(row.name),members.length]):t('{0} 후보 위치',[name(row.name)])} aria-pressed={selected}
-          onPointerDown={e=>{e.preventDefault();e.stopPropagation();}} onClick={choose}
-          onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();choose();}}}>
-          <title>{t('{0} · {1} · 미검증 후보 위치',[name(row.name),t(previewKindLabel(row.kind))])}</title>
-          <rect className="marker-hit" x={x-markerSize/2} y={y-markerSize/2} width={markerSize} height={markerSize} rx={markerSize/2} fill={selected?'#79cced55':'transparent'} stroke={selected?'#79cced':'none'} strokeWidth={markerSize/16}/>
-          <MapMarkerIcon kind={row.kind} objectId={row.objectId} completed={completed.has(row.id)} region={terrainName} x={x-markerSize/2} y={y-markerSize/2} size={markerSize}/>
-          {cluster&&<><circle cx={x+markerSize*.3} cy={y-markerSize*.25} r={markerSize*.33} fill="#152433" stroke="#79cced" strokeWidth={markerSize/24}/><text x={x+markerSize*.3} y={y-markerSize*.25} textAnchor="middle" dominantBaseline="central" fontSize={markerSize*.37} fill="white">{members.length}</text></>}
-        </g>})}
-        {previewOn && nearbyFocus && <g aria-label={t('가까운 이동 지점: {0}',[name(nearbyFocus.name)])} pointerEvents="none"><title>{name(nearbyFocus.name)}</title><rect x={nearbyFocus.x-24/Math.sqrt(view.zoom)} y={nearbyFocus.y-24/Math.sqrt(view.zoom)} width={48/Math.sqrt(view.zoom)} height={48/Math.sqrt(view.zoom)} fill="#5eead433" stroke="#5eead4" strokeWidth={2/Math.sqrt(view.zoom)}/><MapMarkerIcon kind="teleport" region={terrainName} x={nearbyFocus.x-22/Math.sqrt(view.zoom)} y={nearbyFocus.y-22/Math.sqrt(view.zoom)} size={44/Math.sqrt(view.zoom)}/></g>}
-        {selectedLabel && <circle aria-label={t('선택 위치: {0}',[selectedLabel.name])} cx={selectedLabel.x} cy={selectedLabel.y}
-          r={10 / Math.sqrt(view.zoom)} fill="#fbbf2433" stroke="#fbbf24" strokeWidth={2 / Math.sqrt(view.zoom)} pointerEvents="none"/>}
-        {showLabels && labels.map(label=><g key={label.id} pointerEvents="none" aria-label={label.name}>
-          <title>{label.name}</title><circle cx={label.x} cy={label.y} r={2 / Math.sqrt(view.zoom)} fill="#fff" stroke="#11141b" strokeWidth={1 / Math.sqrt(view.zoom)}/>
-          {(labelNames.has(label.id) || label.id === selectedLocation) && <text x={label.x} y={label.y} textAnchor="middle"
-          fontSize={12 / Math.sqrt(view.zoom)} fill="#fff" stroke="#11141b" strokeWidth={3 / Math.sqrt(view.zoom)}
-          paintOrder="stroke" pointerEvents="none">{label.name}</text>}</g>)}
-      </svg>
-      {previewOn && chosenPreview && <section ref={detailRef} className={"map-detail terrain-marker-card"+(chosenPreview.x<view.x+size/2?" card-right":"")+(chosenPreview.y>view.y+size/2?" card-top":"")} aria-label={t('선택한 마커 정보')}>
-        <button className="button ghost small" aria-label={t('마커 정보 닫기')} onClick={()=>{setPreviewSelection('');setNearbyId('');}}>{t('닫기')} ×</button>
-        <h3><MapMarkerIcon kind={chosenPreview.kind} objectId={chosenPreview.objectId} completed={completed.has(chosenPreview.id)} region={terrainName}/> {name(chosenPreview.name)}</h3><p>{t(previewKindLabel(chosenPreview.kind))} · {name(terrainName)}</p>
-        {chosenPreview.locationType==='area-center' && <p>{t('주둔지 구역 중심입니다. 입구·NPC 위치가 아니며 구역 안에서 탐험 퀘스트를 확인하세요.')}</p>}
-        {chosenPreview.kind==='cube' && <p className="subtle">{t('히든큐브는 게임 원본 큐브 이미지로 표시합니다.')}</p>}
-        <label className="map-check"><input type="checkbox" checked={completed.has(chosenPreview.id)} onChange={()=>markPreview(chosenPreview.id)}/>{t('이 위치 확인 완료')}</label><p role="status">{t('확인 {0}/{1}',[preview.filter(r=>r.kind===chosenPreview.kind&&completed.has(r.id)).length,preview.filter(r=>r.kind===chosenPreview.kind).length])}</p>
-        <button className="button ghost small" onClick={()=>{setNearbyId('');focusPreview(chosenPreview,true);}}>{t('후보 위치로 돌아가기')}</button>
-        <h4>{t('가까운 순간이동 지점')}</h4>
-        {nearby.length ? nearby.map((row,index)=><button key={row.id} className="button secondary small" aria-pressed={nearbyFocus?.id===row.id} onClick={()=>{setNearbyId(row.id);setView(terrainLocationView(row));drag.current=null;}}>{index+1}. {name(row.name)}</button>) : <p>{t('이 지역에 다른 이동 지점 정보가 없습니다.')}</p>}
-        <details><summary>{t('원본 위치 정보')}</summary><p>{chosenPreview.name} · {terrainName}</p><p>{chosenPreview.world.map(v=>Math.round(v)).join(', ')} · {t('같은 이름의 여러 지점은 조건별·대체 배치일 수 있습니다.')}</p></details>
-        <p className="subtle">{t('지도상 직선거리 순입니다. 실제 이동 경로·해금·이용 가능 여부는 게임에서 확인하세요. 위치는 대조 중인 후보이며 출현을 보장하지 않습니다.')}</p>
-      </section>}
-      </div>
-    </div>}
   </div>;
 }

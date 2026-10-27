@@ -917,3 +917,8 @@ GreenOrc combined follow closeout: source72a39f1 reviewed by Claude with NO_FIND
 - Quantity follow-up verified on PC/mobile, including safe undo and cross-tab preservation. Claude core review + final NO_FINDINGS delta review completed; typecheck, calculation/store/localization tests and production build passed. Only this task is authorized for immediate production deployment.
 
 - Quantity controls deployed: source 190b6b9, https://ef4a27da.asbc-4c9.pages.dev ; live PC/mobile eight-case verification passed. Production inputs restored; existing pending work preserved. Evidence: artifacts/trade-quantity-20261027/verification.json .
+
+## 2026-10-27 — map viewport simplification (in progress)
+Task: tasks/asbc-map-layout-20261027.md. Codex implements, Claude final read-only review. Narrow map UI; primary302 pending files preserved. Remove close/import controls, fit the full map and move search/filters off the top. No game-data/storage changes.
+
+- ASBC map layout: Claude final delta review NO_FINDINGS; typecheck/build and PC/mobile checks passed. Scoped release ready; existing pending work preserved.
