@@ -910,3 +910,8 @@ GreenOrc combined follow closeout: source72a39f1 reviewed by Claude with NO_FIND
 - 2026-10-27: Calculator simplification verified on PC/mobile browser viewports (not physical phone); same math/storage, single sale result and mobile live summary. Claude read-only retry NO_FINDINGS; task asbc-trade-simple-20261027 ready for scoped release.
 
 - Released calculator simplification: source9e4ea7c, Pages efe9a565; asbc.app new UI verified, PC/mobile deployment calculation/update tests passed. Existing unrelated edits preserved; details tasks/asbc-trade-simple-20261027.md.
+
+## Calculator quantity audit — 2026-10-27
+[Task Goal]: Clarify material/output batch totals and add explicit proportional production-volume changes after live PC/mobile audit. Same price engine and storage; user requests immediate scoped deployment. Details tasks/asbc-trade-quantity-20261027.md.
+
+- Quantity follow-up verified on PC/mobile, including safe undo and cross-tab preservation. Claude core review + final NO_FINDINGS delta review completed; typecheck, calculation/store/localization tests and production build passed. Only this task is authorized for immediate production deployment.

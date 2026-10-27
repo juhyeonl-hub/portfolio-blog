@@ -1,5 +1,5 @@
 import type {CraftDraft} from './craft-comparison';
-import {calculateTrade,minimumTradePrice,tradeProfitExamples,tradeProfitTarget,parseTradeMoney,parseTradeInteger,parseTradeRate,MAX_TRADE_QUANTITY,type TradeInput} from './trade-calculator';
+import {calculateTrade,minimumTradePrice,tradeProfitExamples,tradeProfitTarget,parseTradeMoney,parseTradeInteger,parseTradeRate,MAX_TRADE_QUANTITY,MAX_TRADE_MONEY,type TradeInput} from './trade-calculator';
 
 // A selling-price guide must work before a sale price is known. Existing craft
 // drafts and legacy comparison semantics remain unchanged.
@@ -16,4 +16,13 @@ export function craftSalePrices(d:CraftDraft,goal='10'){
  return {lines:lines as bigint[],materialCost,totalCost,extraCost:cost,quantity,input,breakEven,firstProfit,
   examples:tradeProfitExamples(input),target:rate===null?null:tradeProfitTarget(input,rate),
   actual:actualPrice===null?null:calculateTrade(input,quantity,actualPrice)};
+}
+
+// Explicitly grow the entered batch; prices, owned inventory and one-listing fees stay fixed.
+export function multiplyCraftBatch(d:CraftDraft,multiplier:bigint):CraftDraft|null{
+ if(multiplier<1n||!d.materials.length||d.materials.length>20)return null;
+ const output=parseTradeInteger(d.output,MAX_TRADE_QUANTITY,1n),cost=parseTradeMoney(d.cost);
+ const counts=d.materials.map(m=>parseTradeInteger(m.quantity,MAX_TRADE_QUANTITY,1n));
+ if(output===null||cost===null||output*multiplier>MAX_TRADE_QUANTITY||cost*multiplier>MAX_TRADE_MONEY||counts.some(q=>q===null||q*multiplier>MAX_TRADE_QUANTITY))return null;
+ return {...d,output:String(output*multiplier),cost:String(cost*multiplier),materials:d.materials.map((m,i)=>({...m,quantity:String(counts[i]!*multiplier)}))};
 }

@@ -47,7 +47,7 @@ console.log('PASS OCR parsing: Korean price candidates, quantity/time/percent ex
 
 // New price-first crafting guide: auxiliary materials, yield, rounding, and
 // partial input must never depend on knowing a sale price or owning materials.
-const {craftSalePrices}=await load('lib/craft-sale.ts');
+const {craftSalePrices,multiplyCraftBatch}=await load('lib/craft-sale.ts');
 const wood={...emptyCraft(),materials:[{id:'wood',name:'wood',quantity:'2',price:'5254'},{id:'paper',name:'sandpaper',quantity:'1',price:'400'}]};
 let guide=craftSalePrices(wood);
 assert.equal(guide.totalCost,10908n);assert.deepEqual(guide.lines,[10508n,400n]);assert.equal(guide.breakEven,12120n);assert.equal(guide.firstProfit,12122n);
@@ -75,3 +75,17 @@ assert.deepEqual(parseCraft(JSON.stringify(wood)),wood);assert.equal(calculateCr
 const {craftSaleCopy,craftSaleText}=await import(moduleUrl(readFileSync('lib/craft-sale-text.ts','utf8')));
 for(const [key,variants] of Object.entries(craftSaleCopy)){assert.equal(variants.length,4);const placeholders=v=>[...v.matchAll(/\{(\d+)\}/g)].map(m=>m[1]).sort();for(const [i,lang] of ['ko','en','ja','fi'].entries()){assert.ok(variants[i]);assert.deepEqual(placeholders(variants[i]),placeholders(variants[0]));assert.equal(craftSaleText(lang,key,['A','B','C','D']),variants[i].replace(/\{(\d+)\}/g,(_,n)=>['A','B','C','D'][Number(n)]));}}
 console.log('PASS material-sale guide: 10908 example, exact minimum boundaries '+checked+', yield, fees, unknown sale, invalid inputs, huge costs, legacy draft compatibility, four-language parity');
+
+// Explicit batch-volume edits must scale only production quantities/cost, preserving inventory and sale conditions.
+const batchSource={...wood,item:'kept',cost:'100',fee:'25',sell:'15000',materials:wood.materials.map(m=>({...m,owned:'7'}))};
+const batchSnapshot=JSON.stringify(batchSource),batch10=multiplyCraftBatch(batchSource,10n);
+assert.deepEqual(batch10.materials.map(m=>m.quantity),['20','10']);assert.equal(batch10.output,'10');assert.equal(batch10.cost,'1000');
+assert.equal(batch10.fee,'25');assert.equal(batch10.sell,'15000');assert.equal(batch10.item,'kept');assert.equal(batch10.tax,'10');assert.deepEqual(batch10.materials.map(m=>[m.price,m.owned]),[['5254','7'],['400','7']]);assert.equal(JSON.stringify(batchSource),batchSnapshot);
+assert.deepEqual(parseCraft(JSON.stringify(batch10)),batch10);
+const ten=craftSalePrices(multiplyCraftBatch(wood,10n));assert.equal(ten.totalCost,109080n);assert.equal(ten.quantity,10n);assert.equal(ten.target.price,13332n);assert.equal(ten.target.result.profit,10908n);
+const changed=craftSalePrices({...wood,materials:wood.materials.map((m,i)=>({...m,price:i?'500':'6000'}))});assert.equal(changed.totalCost,12500n);assert.equal(changed.target.price,15278n);
+for(const patch of [{output:''},{output:'0'},{output:'500001'},{cost:'bad'},{cost:'500000000001'},{materials:[]},{materials:[{...wood.materials[0],quantity:'1.5'}]},{materials:[{...wood.materials[0],quantity:'500001'}]}])assert.equal(multiplyCraftBatch({...wood,...patch},2n),null);
+assert.equal(multiplyCraftBatch(wood,0n),null);assert.equal(multiplyCraftBatch(wood,-1n),null);
+assert.equal(multiplyCraftBatch({...wood,output:'500000',materials:[{...wood.materials[0],quantity:'500000'}],cost:'500000000000'},2n).output,'1000000');
+assert.equal(multiplyCraftBatch({...wood,materials:[{...wood.materials[0],price:''}]},2n).materials[0].price,'');
+console.log('PASS batch-volume changes: exact totals/target, quantity/cost limits, invalid input, unchanged source/inventory/prices/fees, legacy roundtrip');
