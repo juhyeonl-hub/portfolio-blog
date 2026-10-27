@@ -891,3 +891,5 @@ Ranker switching audit2026-10-27: sticky selector, preserved guide/board, reques
 
 ## GreenOrc combined follow audit — 2026-10-27
 [Task Goal]: Verify and improve the board-first -> point-fit skills/specs -> edit/save journey, preserving explicit application and unknown-data disclosures. Confirmed tab switch resets keep-spec preference; add clear next-step cue. Scoped checks/review/release: tasks/asbc-ranker-combined-20261027.md.
+
+GreenOrc combined follow closeout: source72a39f1 reviewed by Claude with NO_FINDINGS, main pushed and production d1c6a6be deployed. PC1440/mobile390 verified board-first skills/specs apply, manual edit/save/reload, same-ranker board bonus refresh and keep-mode persistence. All original plans and previous changes restored/preserved. Detailed evidence: tasks/asbc-ranker-combined-20261027.md.
