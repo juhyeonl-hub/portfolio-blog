@@ -883,3 +883,6 @@ Ranker switching audit2026-10-27: sticky selector, preserved guide/board, reques
 ### 2026-10-27 ranker Daevanion apply: deployed
 - Scoped 93875ba + 9885316 passed Claude exact-source reviews and typecheck/tests/build; deployed to https://1bfa5ff6.asbc-4c9.pages.dev (asbc-C5VR3wl_).
 - GreenOrc production PC/mobile viewport apply/edit/save/reopen verified at 316/0 and 370/10; zero budget disabled and original plan restored exactly. Existing unrelated changes preserved. Details: tasks/asbc-ranker-apply-20261027.md.
+
+## Ranker skills and specialization follow — 2026-10-27
+[Task Goal]: GreenOrc personal point-fit skill targets and editable site-suggested specializations, explicit apply/edit/save, PC/mobile verification and reviewed scoped deployment. Observed final levels never treated as ranker base investment or known specialization choices. Scope and cases: tasks/asbc-ranker-skills-20261027.md.

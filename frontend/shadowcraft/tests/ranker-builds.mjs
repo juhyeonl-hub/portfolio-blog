@@ -149,3 +149,35 @@ for(const key of ['assassin','gladiator','templar','ranger','elementalist','sorc
  }
 }
 console.log(`Ranker budget apply: ${budgetCases} class/level/budget cases, exact guide nodes, independent currencies, connected unlocked target paths, spec pruning and preservation PASS`);
+
+// Personal skill guide: final observations are targets, never ranker base/spec claims.
+const rankerModuleUrl=moduleUrl(readFileSync('lib/ranker-builds.ts','utf8').replace("'./recommendation'",JSON.stringify(recommendationUrl)).replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl)));
+const {previewRankerSkills}=await import(moduleUrl(readFileSync('lib/ranker-skills.ts','utf8').replace("'./ranker-builds'",JSON.stringify(rankerModuleUrl)).replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
+let skillCases=0;
+for(const key of new Set(snapshot.entries.map(r=>r.classKey))){
+ const cat={...JSON.parse(readFileSync(`lib/data/catalogs/${key}.json`)),classKey:key};const rank=snapshot.entries.find(r=>r.classKey===key);
+ const live={classKey:key,region:rank.region,profile:{characterId:rank.characterId,serverId:rank.serverId,pcId:classes.classProfile(key).pcIds[0]},skills:rank.skills};
+ for(const level of [1,20,22,27,36,45])for(const ascension of [false,true])for(const [sp,stigma] of [[0,0],[1,0],[10,1],[70,5],[383,29],[9999,9999]]){
+  const plan={...planner.emptyPlan(cat),level,ascensionGrade3Confirmed:ascension,pointBudget:{sp,stigma,crystal:316,battle:0}};
+  const before=JSON.stringify(plan),out=previewRankerSkills(cat,plan,rank,live),total=planner.totals(cat,out.plan);
+  assert.equal(JSON.stringify(plan),before);assert(total.sp<=sp);assert(total.stigma<=stigma);
+  for(const field of Object.keys(plan).filter(k=>!['base','specs','stigmaSkills'].includes(k)))assert.deepEqual(out.plan[field],plan[field],field);
+  assert(out.plan.stigmaSkills.length<=[22,27,32,37].filter(x=>level>=x).length);
+  for(const id of out.plan.stigmaSkills)assert(rank.skills.some(s=>String(s.id)===id&&s.category==='Dp'&&s.equip===1));
+  for(const s of cat.skills){const base=out.plan.base[s.id],final=planner.finalLevel(cat,out.plan,s),choices=out.plan.specs[s.id];
+   assert(base<=planner.maxBase(s,level,ascension));assert(base===0||s.learning.some(l=>l.level===base&&l.requiredCharacterLevel<=level));
+   assert(choices.length<=planner.slots(s,final));assert(choices.every(id=>s.specializations.some(x=>x.id===id&&x.requiredParentLevel<=final)));
+   if(s.stigma&&!out.plan.stigmaSkills.includes(s.id))assert.equal(base,0);
+  }
+  skillCases++;
+ }
+ const plan={...planner.emptyPlan(cat),ascensionGrade3Confirmed:true,pointBudget:{sp:9999,stigma:9999,crystal:316,battle:0}};
+ const plain=previewRankerSkills(cat,plan,rank,live);
+ const active=cat.skills.find(s=>!s.stigma&&rank.skills.find(x=>String(x.id)===s.id)?.skillLevel>1);
+ const bonus={...plan,bonus:{...plan.bonus,[active.id]:30}};const withBonus=previewRankerSkills(cat,bonus,rank,live);assert(withBonus.plan.base[active.id]<plain.plan.base[active.id]);assert.equal(withBonus.plan.base[active.id],1);
+ const kept=previewRankerSkills(cat,plain.plan,rank,live,'keep');assert.deepEqual(kept.plan.specs,plain.plan.specs);
+ for(const patch of [{skills:null},{skills:[]},{skills:rank.skills.slice(1)},{skills:[...rank.skills,rank.skills[0]]},{skills:rank.skills.map((s,i)=>i? s:{...s,id:999})},{skills:rank.skills.map((s,i)=>i? s:{...s,skillLevel:999})},{region:'wrong'},{classKey:'wrong'},{profile:{...live.profile,characterId:'other'}},{profile:{...live.profile,serverId:0}},{profile:{...live.profile,pcId:0}}])assert.throws(()=>previewRankerSkills(cat,plan,rank,{...live,...patch}));
+ const beforeFull=JSON.stringify(live);previewRankerSkills(cat,plan,rank,live);assert.equal(JSON.stringify(live),beforeFull);
+ const missingSpec={...plain.plan,specs:{...plain.plan.specs,[active.id]:['unknown']}};assert.deepEqual(previewRankerSkills(cat,missingSpec,rank,live,'keep').plan.specs[active.id],[]);
+}
+console.log(`Ranker personal skill guide: ${skillCases} class/level/ascension/budget cases; slots, bonus subtraction, valid specs, missing/identity rejection, immutability PASS`);

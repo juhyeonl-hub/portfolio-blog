@@ -17,7 +17,7 @@ import MyRankerComparison from './my-ranker-comparison';
 import RankerEquipmentComparison from './ranker-equipment';
 import CharacterComparison from './character-comparison';
 import {useLocale} from './locale';
-import RankerSkillOverview from './ranker-skill-overview';
+import RankerSkillFollow from './ranker-skill-follow';
 import {rankerText} from '../lib/ranker-comparison-text';
 import './ranker-visual.css';
 
@@ -111,7 +111,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
    </div>
    <nav className="ranker-view-tabs ranker-primary-tabs" aria-label={rankerText(locale,'tabs')}>{([{key:'equipment',label:'장비'},{key:'skills',label:'스킬'},{key:'daevanion',label:'데바니온'}] as const).map(tab=><button type="button" key={tab.key} aria-pressed={view===tab.key} onClick={()=>setView(tab.key)}>{t(tab.label)}</button>)}</nav>
    {view==='equipment'&&<MyRankerComparison key={JSON.stringify([selected.characterId,plan.character?.profile,plan.character?.importedAt])} catalog={catalog} plan={plan} ranker={selected} live={live} onConnect={onConnect} onRefreshRanker={()=>inspect(selected)}/>}
-   {view==='skills'&&<RankerSkillOverview catalog={catalog} plan={plan} skills={live?live.skills:selected.skills}/>}
+   {view==='skills'&&<RankerSkillFollow key={selected.characterId+catalog.classKey} catalog={catalog} plan={plan} ranker={selected} profile={live} onApply={onApply}/>}
    {view==='daevanion'&&<>
     {result.error&&<p role="alert">{t(result.error)}</p>}
     {!candidate&&<p className="ranker-board-wait">{rankerText(locale,loading?'boardLoading':error?'boardRetry':'boardMissing')}</p>}
@@ -136,9 +136,9 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
    {live&&<details><summary>{t('능력치·스킬·노드 상세 비교')}</summary><CharacterComparison current={plan.character} saved={live} ranker/></details>}
    <details className="ranker-preparation"><summary>{t('따라하기 전 준비 항목')}</summary><ol>
     <li><b>{t('장비:')}</b> {t('위 목록에서 부위·강화·초월을 확인하세요. 보유 여부는 자동 확인하지 않으며 내 장비 계획에 복사하지 않습니다.')}</li>
-    <li><b>{t('스킬:')}</b> {t('목표 레벨에는 장비·데바니온 보너스가 포함됩니다. 기본 투자 포인트와 특화는 공개되지 않아 직접 맞춰야 합니다.')}</li>
+    <li><b>{t('스킬:')}</b> {rankerText(locale,'skillHonesty')}</li>
     <li><b>{t('데바니온:')}</b> {rankerText(locale,'boardPrep')}</li>
-    <li><b>{t('적용 확인:')}</b> {t('미리보기에서 변경을 확인한 뒤 적용하세요. 데바니온 배치만 바꾸며 잠기는 기존 특화는 해제될 수 있습니다. 적용 전으로 되돌릴 수 있습니다.')}</li>
+    <li><b>{t('적용 확인:')}</b> {rankerText(locale,'applyScope')}</li>
    </ol><p className="subtle">{t('장비 획득 비용·소요 시간과 미공개 옵션은 추정하지 않습니다.')}</p></details>
    {!loading&&!error&&<button className="button ghost" onClick={()=>inspect(selected)}>{t('공식 세팅 다시 조회')}</button>}
 
