@@ -19,3 +19,10 @@ Delta review hit the 120-second execution limit with no reply. No source change 
 
 ## Final validation and release preparation
 Focused retry review returned NO_FINDINGS with process exit0, execution status0/errornull/scope[]. Both minor findings resolved. Final typecheck, trade-workbench, localization, diff check and production build pass. Real mobile recheck confirmed one settings hint and distinct output/settings hints when both invalid. Source/test changes are limited to five files. Review execution records and screenshots are archived under D:/CodexData/Projects/ASBC/artifacts/trade-quantity-20261027. Source commit and deployment follow the current explicit user authorization.
+
+## Production closeout
+- Source commit: 190b6b9345ff953984888d218181526df74fa2bf; pushed main. Deployment: https://ef4a27da.asbc-4c9.pages.dev .
+- Live https://asbc.app/#/trade verified in browser at PC1200 and mobile390 (actual DOM1185/375), eight calculation/scale/undo/invalid-output cases passed; no horizontal overflow in those viewports or console errors. New asbc-odMfqmq0.js and trade-calculator-DCHJL1rZ.css loaded. Mobile is browser viewport verification, not a physical handset.
+- Production/local draft inputs restored exactly; owned tabs closed and viewport override reset. No saved plans created.
+- Existing 301 pending file hashes preserved plus original mixed PROJECT_BRIEF content preserved with task-only appends (302 baseline files). Evidence: D:/CodexData/Projects/ASBC/artifacts/trade-quantity-20261027/verification.json .
+- Narrow320 Finnish common footer navigation overflow is outside this calculator change; calculator controls fit and390 page fits. No unrelated footer/global styles changed.

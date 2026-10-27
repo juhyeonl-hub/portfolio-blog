@@ -915,3 +915,5 @@ GreenOrc combined follow closeout: source72a39f1 reviewed by Claude with NO_FIND
 [Task Goal]: Clarify material/output batch totals and add explicit proportional production-volume changes after live PC/mobile audit. Same price engine and storage; user requests immediate scoped deployment. Details tasks/asbc-trade-quantity-20261027.md.
 
 - Quantity follow-up verified on PC/mobile, including safe undo and cross-tab preservation. Claude core review + final NO_FINDINGS delta review completed; typecheck, calculation/store/localization tests and production build passed. Only this task is authorized for immediate production deployment.
+
+- Quantity controls deployed: source 190b6b9, https://ef4a27da.asbc-4c9.pages.dev ; live PC/mobile eight-case verification passed. Production inputs restored; existing pending work preserved. Evidence: artifacts/trade-quantity-20261027/verification.json .
