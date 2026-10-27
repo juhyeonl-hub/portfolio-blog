@@ -27,3 +27,11 @@ Plan: tab-session region/layer preference (new independent key, completion forma
 - Review evidence: D:/CodexData/Projects/ASBC/artifacts/map-usability-20261027/collaboration/runs/asbc-map-usability-review-20261027-1793137002150.
 - Production build PASS (32.03s): asbc-DJl-5nLI.js / asbc-RWGCzSyQ.css. Existing large-chunk warning only.
 - Scoped product files: terrain-panel.tsx, map-panel.css, world-map.ts, world-map.mjs. No API, account sync, game data or completion schema edits.
+
+## Deployment and production recheck
+- Product commit d1b927fdc4a3e892f41c479a7f4df6066cccdc59 integrated into main and pushed to origin; primary 313 unrelated file hashes plus the pre-existing mixed PROJECT_BRIEF body preserved.
+- Cloudflare Pages production deployed: https://d21619f8.asbc-4c9.pages.dev (1915 assets, 3 new). https://asbc.app/#/map serves asbc-DJl-5nLI.js and asbc-RWGCzSyQ.css.
+- Production PC 1440x1000 / mobile 390x844 UI: Altgard/Verteron transitions, place search and no result, clustered cube click -> zoom 8x, completion -> count1/check badge/saved message, reload restores Altgard+cube+completion. Hide checked removes marker; unhide restores it. Browser errors/warnings none.
+- Production verification-only cube IDs :15 and :0 in 1110:1160290092:1301199 were reverted, confirmed Found 0/1371; initial Verteron+teleport display restored. No other records edited.
+- Evidence: D:/CodexData/Projects/ASBC/artifacts/map-usability-20261027/production-pc.png and production-mobile.png. Mobile verification uses browser viewports, not a physical phone.
+- Complete. Region/layer resume is per browser tab; collection persistence retains the existing settings storage behavior. No current-spawn claims.
