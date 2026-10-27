@@ -88,3 +88,23 @@ export function zoomMap(view: MapView, zoom: number): MapView {
   const offset = 500 / view.zoom - 500 / next;
   return constrainMapView({x: view.x + offset, y: view.y + offset, zoom: next});
 }
+
+// Display preferences belong to this browser tab; collection records keep their existing keys.
+export const MAP_DISPLAY_KEY = 'a2bc-map-display-v1';
+export type MapDisplay = {region: string; kinds: string[]};
+export function loadMapDisplay(storage: Pick<StoragePort,'getItem'>, regions: string[], kinds: string[]): MapDisplay {
+  const fallback = {region: regions[0], kinds: kinds.includes('teleport') ? ['teleport'] : []};
+  try {
+    const raw=storage.getItem(MAP_DISPLAY_KEY);
+    if(!raw || raw.length>4096)return fallback;
+    const value=JSON.parse(raw);
+    if(!value || !regions.includes(value.region) || !Array.isArray(value.kinds) ||
+      value.kinds.length>kinds.length || value.kinds.some((kind:unknown)=>typeof kind!=='string'||!kinds.includes(kind)) ||
+      new Set(value.kinds).size!==value.kinds.length)return fallback;
+    return {region:value.region,kinds:value.kinds};
+  } catch {return fallback;}
+}
+export function saveMapDisplay(storage: StoragePort, value: MapDisplay): boolean {
+  try {storage.setItem(MAP_DISPLAY_KEY,JSON.stringify({region:value.region,kinds:value.kinds}));return true;}
+  catch {return false;}
+}

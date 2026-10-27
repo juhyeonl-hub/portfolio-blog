@@ -12,25 +12,32 @@ import reshantaMiddle from '../lib/data/terrain-reshanta-middle.json';
 import {mapName} from '../lib/map-names';
 import terrainLabels from '../lib/data/terrain-labels.json';
 import legacyProgressKeys from '../lib/data/map-progress-legacy.json';
-import {constrainMapView, zoomMap, mapProgressKey, loadMapProgressWithLegacy, saveMapProgress, type MapView} from '../lib/world-map';
+import {constrainMapView, zoomMap, mapProgressKey, loadMapProgressWithLegacy, saveMapProgress, loadMapDisplay, saveMapDisplay, type MapDisplay, type MapView} from '../lib/world-map';
 import {visibleTerrainTiles, terrainLabelNames, searchTerrainLocations, terrainLocationView} from '../lib/terrain-map';
 import {groupPreviewMarkers,gatheringCells,progressPercent,nearestTeleports, previewMatches, visiblePreview, previewKinds, previewGatherKinds, previewKindLabel, previewPage, previewProgressDataset, type SpawnPreview} from '../lib/spawn-preview';
 const terrains: Record<string, typeof verteron> = {verteron, altgard, poeta, ishalgen, 'reshanta-lower': reshantaLower, 'reshanta-middle': reshantaMiddle};
 
 export default function TerrainPanel({active=false}:{active?:boolean}) {
   const {t,locale} = useLocale();
-  const [selected, setSelected] = useState('verteron');
+  const [display,setDisplay]=useState<MapDisplay|null>(null);
+  useEffect(()=>{
+    try {setDisplay(loadMapDisplay(sessionStorage,Object.keys(terrains),Object.keys(previewKinds)));}
+    catch {setDisplay({region:'verteron',kinds:['teleport']});}
+  },[]);
+  if(!display)return null;
+  const updateDisplay=(next:MapDisplay)=>{setDisplay(next);try {saveMapDisplay(sessionStorage,next);}catch {/* Tab storage unavailable. */}};
+  const selected=display.region;
   const terrain = terrains[selected] ?? verteron;
   return <section className="terrain-panel" aria-label={t('공식 글로벌 지형 지도')}>
-    <TerrainView key={selected} terrain={terrain} active={active} regionPicker={
-      <select className="terrain-region" aria-label={t('공식 지형 지역')} value={selected} onChange={e => setSelected(e.target.value)}>
+    <TerrainView key={selected} terrain={terrain} active={active} enabledKinds={new Set(display.kinds)} setEnabledKinds={kinds=>updateDisplay({...display,kinds:[...kinds]})} regionPicker={
+      <select className="terrain-region" aria-label={t('공식 지형 지역')} value={selected} onChange={e => updateDisplay({...display,region:e.target.value})}>
         {Object.entries(terrains).map(([key, value]) => <option key={key} value={key}>{mapName(value.name,locale)}</option>)}
       </select>
     }/>
   </section>;
 }
 
-function TerrainView({terrain,active,regionPicker}: {terrain: typeof verteron; active: boolean; regionPicker: ReactNode}) {
+function TerrainView({terrain,active,regionPicker,enabledKinds,setEnabledKinds}: {terrain: typeof verteron; active: boolean; regionPicker: ReactNode; enabledKinds:Set<string>; setEnabledKinds:(kinds:Set<string>)=>void}) {
   const {t,locale} = useLocale();
   const {name: terrainName, source, gridSize, basePath} = terrain;
   const [open, setOpen] = useState(false);
@@ -46,12 +53,11 @@ function TerrainView({terrain,active,regionPicker}: {terrain: typeof verteron; a
   const [previewOn, setPreviewOn] = useState(false);
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewError, setPreviewError] = useState(false);
-  const [enabledKinds, setEnabledKinds] = useState<Set<string>>(new Set(['teleport']));
   const [excludedGatherNames, setExcludedGatherNames] = useState<Set<string>>(new Set());
   const gatherKinds = previewGatherKinds(preview);
   const [gatherArea,setGatherArea]=useState('');
   const [canvasWidth,setCanvasWidth]=useState(800);
-  const name=(value:string)=>mapName(value,locale);
+  const name=(value:string)=>value==='Hidden Cube'?t('히든큐브'):mapName(value,locale);
   const areaCells=gatherArea&&enabledKinds.has('gather')&&!excludedGatherNames.has(gatherArea)?gatheringCells(preview,gatherArea):[];
   const [previewQuery, setPreviewQuery] = useState('');
   const [previewSelection, setPreviewSelection] = useState('');
@@ -59,6 +65,7 @@ function TerrainView({terrain,active,regionPicker}: {terrain: typeof verteron; a
   const [completed, setCompleted] = useState<Set<string>>(new Set());
   const [hideCompleted, setHideCompleted] = useState(false);
   const [storageNotice, setStorageNotice] = useState('');
+  const [savedNotice,setSavedNotice]=useState(false);
   const progressKey = useRef('');
   const writable = useRef(false);
   useSettingsRefresh(progressKey.current||null,()=>{if(!preview.length)return;const progress=loadMapProgressWithLegacy(settingsStorage,progressKey.current,previewProgressDataset(terrainName,preview),(legacyProgressKeys as Record<string,string>)[terrainName]);if(progress.writable)setCompleted(new Set(progress.completed));});
@@ -97,17 +104,19 @@ function TerrainView({terrain,active,regionPicker}: {terrain: typeof verteron; a
     if(!previewOn && !previewLoading)void togglePreview(false);
   }
   function focusPreview(row: SpawnPreview, move=false) {
-    setNearbyId('');
+    setNearbyId('');setSavedNotice(false);
     setPreviewSelection(row.id);if(move)setView(terrainLocationView(row));setOpen(true);drag.current=null;
   }
   function markPreview(id: string) {
     const next=new Set(completed);if(next.has(id))next.delete(id);else next.add(id);
-    setCompleted(next);
+    setCompleted(next);setSavedNotice(false);
     if(!writable.current)return;
     let saved=false;
     try {saved=saveMapProgress(settingsStorage,progressKey.current,[...next].sort());} catch { /* Memory-only. */ }
-    if(!saved)setStorageNotice('기록을 저장하지 못했습니다. 이번 변경은 화면에서만 기억합니다.');
+    setStorageNotice(saved?'':'기록을 저장하지 못했습니다. 이번 변경은 화면에서만 기억합니다.');
+    setSavedNotice(saved);
   }
+  const saveFeedback=storageNotice?<p className="terrain-save-feedback" role="alert">{t(storageNotice)}</p>:savedNotice?<p className="terrain-save-feedback saved" role="status">✓ {t('이 기기에 저장됨')}</p>:null;
   const regionLabels = terrainLabels.maps.find(map=>map.name === terrainName);
   const labels = (regionLabels?.labels ?? []).map(label=>({...label,name:name(label.name)}));
   const labelNames = terrainLabelNames(labels, view.zoom);
@@ -198,12 +207,13 @@ function TerrainView({terrain,active,regionPicker}: {terrain: typeof verteron; a
             focusPreview(nearest.row);
           };
           return <g key={members.length===1?row.id:group.key} data-preview-marker={row.kind} data-marker-id={cluster?undefined:row.id} data-count={members.length}
-          opacity={members.every(m=>completed.has(m.id))?.4:1} role="button" tabIndex={0} aria-label={cluster?t('{0} 위치 {1}개 · 확대',[name(row.name),members.length]):t('{0} 후보 위치',[name(row.name)])} aria-pressed={selected}
+          opacity={members.every(m=>completed.has(m.id))?.65:1} role="button" tabIndex={0} aria-label={cluster?t('{0} 위치 {1}개 · 확대',[name(row.name),members.length]):t('{0} 후보 위치',[name(row.name)])+(completed.has(row.id)?' · '+t('이 위치 확인 완료'):'')} aria-pressed={selected}
           onPointerDown={e=>{e.preventDefault();e.stopPropagation();}} onClick={click}
           onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();choose();}}}>
           <title>{t('{0} · {1} · 미검증 후보 위치',[name(row.name),t(previewKindLabel(row.kind))])}</title>
           <rect className="marker-hit" x={x-markerSize/2} y={y-markerSize/2} width={markerSize} height={markerSize} rx={markerSize/2} fill={selected?'#79cced55':'transparent'} stroke={selected?'#79cced':'none'} strokeWidth={markerSize/16}/>
           <MapMarkerIcon kind={row.kind} objectId={row.objectId} completed={completed.has(row.id)} region={terrainName} x={x-markerSize/2} y={y-markerSize/2} size={markerSize}/>
+          {!cluster&&completed.has(row.id)&&<g pointerEvents="none" aria-hidden="true"><circle cx={x+markerSize*.3} cy={y+markerSize*.25} r={markerSize*.3} fill="#145c43"/><text x={x+markerSize*.3} y={y+markerSize*.25} textAnchor="middle" dominantBaseline="central" fontSize={markerSize*.4} fill="white">✓</text></g>}
           {cluster&&<><circle cx={x+markerSize*.3} cy={y-markerSize*.25} r={markerSize*.33} fill="#152433" stroke="#79cced" strokeWidth={markerSize/24}/><text x={x+markerSize*.3} y={y-markerSize*.25} textAnchor="middle" dominantBaseline="central" fontSize={markerSize*.37} fill="white">{members.length}</text></>}
         </g>})}
         {previewOn && nearbyFocus && <g aria-label={t('가까운 이동 지점: {0}',[name(nearbyFocus.name)])} pointerEvents="none"><title>{name(nearbyFocus.name)}</title><rect x={nearbyFocus.x-24/Math.sqrt(view.zoom)} y={nearbyFocus.y-24/Math.sqrt(view.zoom)} width={48/Math.sqrt(view.zoom)} height={48/Math.sqrt(view.zoom)} fill="#5eead433" stroke="#5eead4" strokeWidth={2/Math.sqrt(view.zoom)}/><MapMarkerIcon kind="teleport" region={terrainName} x={nearbyFocus.x-22/Math.sqrt(view.zoom)} y={nearbyFocus.y-22/Math.sqrt(view.zoom)} size={44/Math.sqrt(view.zoom)}/></g>}
@@ -221,6 +231,7 @@ function TerrainView({terrain,active,regionPicker}: {terrain: typeof verteron; a
         {chosenPreview.locationType==='area-center' && <p>{t('주둔지 구역 중심입니다. 입구·NPC 위치가 아니며 구역 안에서 탐험 퀘스트를 확인하세요.')}</p>}
         {chosenPreview.kind==='cube' && <p className="subtle">{t('히든큐브는 게임 원본 큐브 이미지로 표시합니다.')}</p>}
         <label className="map-check"><input type="checkbox" checked={completed.has(chosenPreview.id)} onChange={()=>markPreview(chosenPreview.id)}/>{t('이 위치 확인 완료')}</label><p role="status">{t('확인 {0}/{1}',[preview.filter(r=>r.kind===chosenPreview.kind&&completed.has(r.id)).length,preview.filter(r=>r.kind===chosenPreview.kind).length])}</p>
+        {saveFeedback}
         <button className="button ghost small" onClick={()=>{setNearbyId('');focusPreview(chosenPreview,true);}}>{t('후보 위치로 돌아가기')}</button>
         <h4>{t('가까운 순간이동 지점')}</h4>
         {nearby.length ? nearby.map((row,index)=><button key={row.id} className="button secondary small" aria-pressed={nearbyFocus?.id===row.id} onClick={()=>{setNearbyId(row.id);setView(terrainLocationView(row));drag.current=null;}}>{index+1}. {name(row.name)}</button>) : <p>{t('이 지역에 다른 이동 지점 정보가 없습니다.')}</p>}
@@ -228,6 +239,7 @@ function TerrainView({terrain,active,regionPicker}: {terrain: typeof verteron; a
         <p className="subtle">{t('지도상 직선거리 순입니다. 실제 이동 경로·해금·이용 가능 여부는 게임에서 확인하세요. 위치는 대조 중인 후보이며 출현을 보장하지 않습니다.')}</p>
       </section>}
       </div>
+      {!chosenPreview&&saveFeedback}
     </div>}
     {<details className="terrain-controls" open={controlsOpen} onToggle={e=>setControlsOpen(e.currentTarget.open)}>
       <summary>{t('위치 검색')} · {t('지도 표시 항목')}</summary><div>
@@ -253,6 +265,7 @@ function TerrainView({terrain,active,regionPicker}: {terrain: typeof verteron; a
         {previewLoading?t('위치 자료 불러오는 중'):previewOn?t('마커 숨기기'):t('마커 보기')}</button>
       {previewError && <p role="alert">{t('위치 자료를 불러오지 못했습니다. 다시 시도해 주세요.')}</p>}
       {previewOn && <>
+        {enabledKinds.has('cube')&&<p className="subtle">{t('가까운 같은 종류의 위치는 숫자로 묶습니다. 숫자를 누르면 확대됩니다.')}</p>}
         <fieldset className="map-layers" aria-label={t('지도 표시 항목')}>
           <legend>{t('표시할 항목 · 여러 개 선택 가능')}</legend>
           {Object.entries(previewKinds).map(([key])=>{
@@ -288,6 +301,8 @@ function TerrainView({terrain,active,regionPicker}: {terrain: typeof verteron; a
         </details>}
         {enabledKinds.has('gather')&&<label>{t('찾을 채집물 · 후보 구역 색칠')}<select aria-label={t('찾을 채집물 · 후보 구역 색칠')} value={gatherArea} onChange={e=>{const value=e.target.value;setGatherArea(value);if(value){setExcludedGatherNames(new Set(gatherKinds.map(x=>x.name).filter(x=>x!==value)));}else setExcludedGatherNames(new Set());setPreviewSelection('');setPage(0);}}><option value="">{t('모든 채집물')}</option>{gatherKinds.map(row=><option key={row.name} value={row.name}>{name(row.name)} ({row.count})</option>)}</select></label>}
         {enabledKinds.size===0 && <p role="status">{t('표시할 항목을 체크해 주세요.')}</p>}
+        <label className="map-check"><input type="checkbox" checked={hideCompleted} onChange={e=>{setHideCompleted(e.target.checked);setPage(0);}}/>{t('확인한 위치 숨기기')}</label>
+        <p>{t('확인 기록 {0}개 · 이 브라우저에 저장됩니다. 후보 지점별 기록이며 실제 수집 개수를 뜻하지 않습니다.',[completed.size])}</p>
         <details className="map-advanced"><summary>{t('위치 목록 검색 · 완료 기록')}</summary>
         <p>{t('봉인던전은 입구, 주둔지는 구역 중심을 표시합니다. 깃털은 Empyrean Trace의 통칭입니다. 항목 옆 숫자는 조건별 배치를 포함한 후보 지점 수이며 현재 출현·수집 가능 수가 아닙니다.')}</p>
         <label>{t('이름 검색')}<input aria-label={t('실험 위치 검색')} type="search" maxLength={100} value={previewQuery} onChange={e=>{setPreviewQuery(e.target.value);setPreviewSelection('');setPage(0);}}/></label>
@@ -300,10 +315,7 @@ function TerrainView({terrain,active,regionPicker}: {terrain: typeof verteron; a
           <span>{paged.current+1} / {paged.pages}</span>
           <button className="button ghost" disabled={paged.current+1>=paged.pages} onClick={()=>setPage(paged.current+1)}>{t('위치 다음 페이지')}</button>
         </div>
-        <label className="map-check"><input type="checkbox" checked={hideCompleted} onChange={e=>{setHideCompleted(e.target.checked);setPage(0);}}/>{t('확인한 위치 숨기기')}</label>
         {preview.length>0&&<div className="map-progress-total" role="group" aria-label={t('전체 확인 진행률')}><span>{t('확인 {0}/{1}',[completed.size,preview.length])}</span><i className="map-progress"><b style={{width:`${completed.size/preview.length*100}%`}}/></i><span>{progressPercent(completed.size,preview.length)}%</span></div>}
-        <p>{t('확인 기록 {0}개 · 이 브라우저에 저장됩니다. 후보 지점별 기록이며 실제 수집 개수를 뜻하지 않습니다.',[completed.size])}</p>
-        {storageNotice && <p role="alert">{t(storageNotice)}</p>}
         </details>
 
       </>}

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl} from './modules.mjs';
-const {parseMapDataset: parse, mapProgressKey, loadMapProgress, saveMapProgress, filterMapMarkers, constrainMapView, zoomMap} =
+const {parseMapDataset: parse, mapProgressKey, loadMapProgress, saveMapProgress, filterMapMarkers, constrainMapView, zoomMap, MAP_DISPLAY_KEY, loadMapDisplay, saveMapDisplay} =
   await import(moduleUrl(readFileSync('lib/world-map.ts', 'utf8')));
 const fixture = {schema: 'a2bc-map-v1', region: 'global', coordinates: 'normalized-top-left',
   id: 'synthetic', name: 'Test map', version: 'Test version',
@@ -50,3 +50,20 @@ assert.deepEqual(zoomMap({x: 250, y: 250, zoom: 2}, 1), {x: 0, y: 0, zoom: 1});
 assert.throws(() => constrainMapView({x: NaN, y: 0, zoom: 1}));
 assert.throws(() => zoomMap({x: 0, y: 0, zoom: 1}, NaN));
 console.log('Map: global schema, bounded coordinates, references, provenance, scoped progress, corrupt/blocked storage, search, layers and viewport limits PASS');
+
+// A tab can resume its map/layers without replacing any collection records.
+const regions=['verteron','altgard'], kinds=['teleport','cube'];
+const fallback={region:'verteron',kinds:['teleport']};
+assert.deepEqual(loadMapDisplay(storage,regions,kinds),fallback);
+const progressBefore=contents.get(key);
+assert.equal(saveMapDisplay(storage,{region:'altgard',kinds:['cube']}),true);
+assert.deepEqual(loadMapDisplay(storage,regions,kinds),{region:'altgard',kinds:['cube']});
+assert.equal(contents.get(key),progressBefore);
+assert.equal(saveMapDisplay(storage,{region:'altgard',kinds:[]}),true);
+assert.deepEqual(loadMapDisplay(storage,regions,kinds),{region:'altgard',kinds:[]},'all layers off is intentional');
+for(const raw of ['{broken','null',JSON.stringify({region:'__proto__',kinds:['cube']}),JSON.stringify({region:'altgard',kinds:['unknown']}),JSON.stringify({region:'altgard',kinds:['cube','cube']}),JSON.stringify({region:'altgard',kinds:'cube'}),' '.repeat(4097)]){
+ contents.set(MAP_DISPLAY_KEY,raw);assert.deepEqual(loadMapDisplay(storage,regions,kinds),fallback);assert.equal(contents.get(MAP_DISPLAY_KEY),raw,'invalid preferences left intact');
+}
+assert.deepEqual(loadMapDisplay(blocked,regions,kinds),fallback);
+assert.equal(saveMapDisplay(blocked,{region:'altgard',kinds:['cube']}),false);
+console.log('Map display: regional/layer resume, empty selection, invalid/blocked storage and collection isolation PASS');

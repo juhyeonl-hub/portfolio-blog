@@ -924,3 +924,8 @@ Task: tasks/asbc-map-layout-20261027.md. Codex implements, Claude final read-onl
 - ASBC map layout: Claude final delta review NO_FINDINGS; typecheck/build and PC/mobile checks passed. Scoped release ready; existing pending work preserved.
 
 - ASBC 지도 정리 운영 완료: e2c9481 / Pages 023441e2. PC·모바일 뷰포트 전체 지도, 지역 변경·검색·확대·필터 검증 통과. 공식 지형 닫기/사용자 JSON 가져오기 UI 제거; 수집 기록과 다른 변경 보존. 상세 tasks/asbc-map-layout-20261027.md.
+
+## Map usability audit — 2026-10-27
+[Task Goal]: Keep region/layer choices across refresh and region switches; expose completion status and hide-completed controls after production PC/mobile persistence audit. Completion keys and data remain unchanged. Scope tasks/asbc-map-usability-20261027.md.
+
+- 지도 실사용 개선: 지역·항목을 같은 탭 새로고침에 복원, 완료 체크·저장 피드백과 완료 숨김 개선. PC/모바일·기존 기록 보존·타입/지도/번역/빌드 검사 통과, Claude 읽기 전용 최종 리뷰 PASS. 작업 기록: tasks/asbc-map-usability-20261027.md.
