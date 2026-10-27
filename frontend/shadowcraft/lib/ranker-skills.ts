@@ -22,7 +22,6 @@ export function previewRankerSkills(c:Catalog,p:Plan,r:Ranker,profile:any,specMo
   const desired=Math.max(floor,byId.get(s.id)!.skillLevel-equipmentBonus(p,s.id)-boardBonus(c,p,s.id));
   goals.set(s.id,s.stigma&&!selected.includes(s.id)?0:Math.max(floor,...s.learning.filter(l=>l.level<=Math.min(cap,desired)).map(l=>l.level)));
  }
- const full:Plan={...next,base:{...next.base}};for(const [id,goal] of goals)full.base[id]=goal;
  for(const stigma of [false,true]){
   let remaining=stigma?caps.stigma:caps.sp;
   // Progressively fill each paid goal; larger public targets break ties. Costs come from learning data.
@@ -38,9 +37,9 @@ export function previewRankerSkills(c:Catalog,p:Plan,r:Ranker,profile:any,specMo
   }
  }
  for(const s of c.skills){const level=finalLevel(c,next,s);next.specs[s.id]=specMode==='suggest'?recommendSpecs(s,level,p.mode):[...new Set(p.specs[s.id]||[])].filter(id=>s.specializations.some(x=>x.id===id&&x.requiredParentLevel<=level)).slice(0,slots(s,level));}
- const used=totals(c,next),required=totals(c,full);
+ const used=totals(c,next);
  if(used.sp>used.spMax||used.stigma>used.stigmaMax)throw Error('skillIncomplete');
- return {plan:next,used,required,unreached:c.skills.filter(s=>(!s.stigma||byId.get(s.id)!.equip===1)&&finalLevel(c,next,s)<byId.get(s.id)!.skillLevel).length,
+ return {plan:next,used,unreached:c.skills.filter(s=>(!s.stigma||byId.get(s.id)!.equip===1)&&finalLevel(c,next,s)<byId.get(s.id)!.skillLevel).length,
   gated:c.skills.filter(s=>byId.get(s.id)!.skillLevel>0&&maxBase(s,p.level,p.ascensionGrade3Confirmed)===0).length,
   omittedStigma:observed.filter(s=>s.category==='Dp'&&s.equip===1&&!selected.includes(String(s.id))).length};
 }
