@@ -25,3 +25,10 @@ First final review timed out without stdout/stderr (status143, failureKind timeo
 Read-only retry completed status0/errornull/scope[]. One P2: viewport-dependent window access during controlsOpen render initialization (pre-existing pattern). Addressed conservatively by initialfalse + mount effect, preserving initial PC/phone behavior; remaining layout/selection/lifecycle/accessibility reviewed without findings. Final delta review includes exact two map-only page.tsx conditions.
 
 Final delta review: NO_FINDINGS; execution finished/status0/errornull/scope[]. Typecheck and production build re-passed after mount-effect fix. PC1200x800 initial controls open, mobile375x667 controls closed/map255px top395.83-bottom650.83/full viewBox/no overflow/no console errors. Main asset asbc-BGH606PC.js; CSS asbc-BJudFItI.css. Source frozen and reviewed. Release authorized by standing user request to deploy small UI improvements promptly.
+
+## Release verification
+- Source commit e2c9481a4195bd781bcaf762e2382b7d2b47be37 pushed to origin/main; Cloudflare Pages deployment https://023441e2.asbc-4c9.pages.dev succeeded.
+- Production https://asbc.app/#/map serves asbc-BGH606PC.js / asbc-BJudFItI.css. IAB responsive browser checks: PC1440x1000 map623px/bottom918.39; PC1200x800 map488px/bottom783.39; phone390x844 map315px/bottom714.63; settled phone375x667 map237px/bottom650.63. Full viewBox0 0 1000 1000 and no horizontal overflow.
+- Production region switch, zoom/reset, hidden-cube layer on/off, mobile search collapse/focus/map visibility passed; no console errors. Production collection records not changed. Local save/reload/restore already passed. Screenshots and evidence: D:/CodexData/Projects/ASBC/artifacts/map-layout-20261027. Physical phones were not used; mobile checks use responsive viewport.
+- Primary existing301 pending files remained byte-identical; mixed PROJECT_BRIEF preserved plus task append. This task changes four product files only.
+- Temporary verification tabs closed and viewport override reset.

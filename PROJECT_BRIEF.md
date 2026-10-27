@@ -922,3 +922,5 @@ GreenOrc combined follow closeout: source72a39f1 reviewed by Claude with NO_FIND
 Task: tasks/asbc-map-layout-20261027.md. Codex implements, Claude final read-only review. Narrow map UI; primary302 pending files preserved. Remove close/import controls, fit the full map and move search/filters off the top. No game-data/storage changes.
 
 - ASBC map layout: Claude final delta review NO_FINDINGS; typecheck/build and PC/mobile checks passed. Scoped release ready; existing pending work preserved.
+
+- ASBC 지도 정리 운영 완료: e2c9481 / Pages 023441e2. PC·모바일 뷰포트 전체 지도, 지역 변경·검색·확대·필터 검증 통과. 공식 지형 닫기/사용자 JSON 가져오기 UI 제거; 수집 기록과 다른 변경 보존. 상세 tasks/asbc-map-layout-20261027.md.
