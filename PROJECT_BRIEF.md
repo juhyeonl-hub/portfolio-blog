@@ -908,3 +908,5 @@ GreenOrc combined follow closeout: source72a39f1 reviewed by Claude with NO_FIND
 [Task Goal]: Reduce the first-use calculator to material prices/quantities, visible output/tax and a clear selling price. Advanced settings remain optional and saved data stays intact. Scope and verification: tasks/asbc-trade-simple-20261027.md.
 
 - 2026-10-27: Calculator simplification verified on PC/mobile browser viewports (not physical phone); same math/storage, single sale result and mobile live summary. Claude read-only retry NO_FINDINGS; task asbc-trade-simple-20261027 ready for scoped release.
+
+- Released calculator simplification: source9e4ea7c, Pages efe9a565; asbc.app new UI verified, PC/mobile deployment calculation/update tests passed. Existing unrelated edits preserved; details tasks/asbc-trade-simple-20261027.md.
