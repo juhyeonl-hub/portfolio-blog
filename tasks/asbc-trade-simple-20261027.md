@@ -1,0 +1,15 @@
+# Simplify material-cost calculator — 2026-10-27
+Owner: Codex; read-only Claude coordination/review requested.
+[Task Goal]: Make the material-price calculator understandable with prices and quantities only, compact always-visible output/tax controls and one clear price result.
+Scope: craft-sale.tsx, craft-sale.css, craft-sale-text.ts; task/brief only. Preserve formula, draft/plan/account storage and unrelated pending work.
+Base: d13eebbd0126050557312b4013b31d452ca7155c.
+Expected: wood5254x2 + paper400 ->10908 cost; output1/tax10/goal10 ->13333 sale and1091 profit; floor12120. Input changes update immediately. Default first view requires only price; material names optional. Output count and tax visible. Extra cost/fees/custom goal/rounding collapsed but non-default assumptions disclosed; invalid stored settings cannot remain hidden.
+Failure cases: lost saved values, hidden extra costs, mobile scrolling overload/overflow, price stale on invalid input, language gaps, mistaken guaranteed market price, accidental production data changes.
+Verification: typecheck, existing trade math/storage/locale checks, PC/mobile UI and build. No formula tests added for presentation-only changes.
+Status: implemented and verified; Claude read-only review passed; ready for scoped release. Unrelated primary changes hashed to task artifact baseline.
+
+Claude coordination complete/status0; Codex implements and verifies, Claude light read-only final review. Implementation uses the same math/store APIs, compact rows and adjacent single result; settings remain discoverable with non-default costs disclosed.
+
+Verification passed: types, existing trade-calculator/workbench/sync/localization checks and diff --check; production build46.41s with existing chunk/plugin warnings. PC1440 adjacent result; mobile390/320 fixed live result, jump and invalid hiding; four locales fit. Canonical10908/13333/1091/12120; output2 6667/6060; tax5 12631; goal7.5 13030; fee100 13444 with collapsed disclosure/reload; invalid advanced values auto-open; manual10000 shows1908 loss. Optional names persist. QA inputs/local language/viewport restored, own tab closed; no production data touched. Evidence: D:/CodexData/Projects/ASBC/artifacts/trade-simple-20261027. Source frozen for read-only review.
+
+Final Claude review: first CLI timed out with no output; one CLI retry with inline frozen source returned NO_FINDINGS, finished/status0/errornull/scope[] on 2026-10-27. Runner argument preflight was corrected before the retry invoked Claude. Formula/parser/store were outside this UI review; existing tests covered them. Review records archived at task artifacts/collaboration/runs/asbc-trade-simple-review-retry-20261027-1793128950586. Additional1200px desktop and positive example flow passed; optional example item name also restored via existing plan form.
