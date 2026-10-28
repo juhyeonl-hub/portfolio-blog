@@ -11393,21 +11393,21 @@
     "en": "Suggested allocation for budget",
     "ja": "予算に合わせておすすめ配分",
     "fi": "Suositeltu jako budjetin mukaan",
-    "fr": "Allocation budgétaire suggérée",
-    "de": "Empfohlene Budgetverteilung",
-    "es": "Asignación presupuestaria sugerida",
-    "pt-BR": "Alocação sugerida para o orçamento",
-    "ru": "Рекомендуемое распределение бюджета"
+    "fr": "Répartition conseillée selon vos points",
+    "de": "Empfohlene Verteilung deiner Punkte",
+    "es": "Reparto recomendado según tus puntos",
+    "pt-BR": "Distribuição sugerida para seus pontos",
+    "ru": "Рекомендуемое распределение доступных очков"
   },
   "스킬 검색": {
     "en": "Search skills",
     "ja": "スキル検索",
     "fi": "Hae taitoja",
-    "fr": "Compétences de recherche",
-    "de": "Suchkriterien",
-    "es": "Habilidades de búsqueda",
-    "pt-BR": "Habilidades de busca",
-    "ru": "Навыки поиска"
+    "fr": "Rechercher une compétence",
+    "de": "Fähigkeiten suchen",
+    "es": "Buscar habilidades",
+    "pt-BR": "Buscar habilidades",
+    "ru": "Поиск умений"
   },
   "스킬 / 역할": {
     "en": "Skill / role",
@@ -18313,7 +18313,7 @@
     "en": "Remaining character points are unavailable. Set the total to points spent plus points remaining in game.",
     "ja": "取得したキャラクターの残りポイントは提供されません。ゲームの使用済み＋残りの合計を設定してください。",
     "fi": "Hahmon jäljellä olevia pisteitä ei ole saatavilla. Aseta summaksi pelissä käytetyt ja jäljellä olevat pisteet.",
-    "fr": "Les points de personnage restants ne sont pas pris en compte. Définissez le total en additionnant les points dépensés et les points dont vous disposez actuellement dans le jeu.",
+    "fr": "Le nombre de points restants du personnage n'est pas disponible. Indiquez le total des points dépensés et des points restants affichés dans le jeu.",
     "de": "Die verbleibenden Charakterpunkte sind nicht verfügbar. Gib als Gesamtwert die Summe aus bereits ausgegebenen und aktuell im Spiel vorhandenen Punkten an.",
     "es": "Los puntos restantes del personaje no están disponibles. Establece el total sumando los puntos ya gastados y los puntos que aún tienes en el juego.",
     "pt-BR": "Os pontos restantes do personagem não estão disponíveis. Defina o total como a soma dos pontos gastos com os pontos que você ainda possui no jogo.",
