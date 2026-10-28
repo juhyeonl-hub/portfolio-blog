@@ -943,3 +943,5 @@ Map account sync production complete: product9bd790f, Pagesaa6ea3cf. Real same-a
 [Task Goal]: Verify concurrent/offline collection edits survive reconnection; scoped fixes only. See tasks/asbc-map-sync-recovery-20261028.md.
 
 Map recovery: fixed lost-acknowledgement/offline undo or re-check by persisting local per-marker pending intent until acknowledged. Six focused recovery scenarios, related suites/typecheck/build pass; Claude read-only review PASS, F1 suite registration addressed. Production PC/mobile concurrency and refresh verified; transport interruption covered by deterministic tests. Scoped release pending.
+
+Map recovery production complete: 9f121a5 / Pages29f2ca0b. Same-account Chrome/mobile-viewport concurrent checks and reload retained both locations; all own test checks restored, tabs closed. Six deterministic outage/response-loss/reload scenarios pass; physical network UI unavailable. Claude review PASS; prior314 pending changes retained, including mixed test-script changes.
