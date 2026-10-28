@@ -938,3 +938,8 @@ Task: tasks/asbc-map-layout-20261027.md. Codex implements, Claude final read-onl
 Map account sync (2026-10-28): fixed first-region concurrent completion merge and checkbox-focus polling stall; map feedback distinguishes local storage from account sync. Typecheck/account-settings/world-map/terrain-map/localization/trade-sync/build passed; Claude read-only review PASS. Scoped deployment pending final production recheck.
 
 Map account sync production complete: product9bd790f, Pagesaa6ea3cf. Real same-account Chrome/IAB check+uncheck automatically propagate even with checkbox focus; mobile390x844 refresh retained record. Test point restored unchecked on both. Four scoped product/test files only; existing314pending paths preserved. Evidence artifacts/map-account-sync-20261028.
+
+## Map sync recovery — 2026-10-28
+[Task Goal]: Verify concurrent/offline collection edits survive reconnection; scoped fixes only. See tasks/asbc-map-sync-recovery-20261028.md.
+
+Map recovery: fixed lost-acknowledgement/offline undo or re-check by persisting local per-marker pending intent until acknowledged. Six focused recovery scenarios, related suites/typecheck/build pass; Claude read-only review PASS, F1 suite registration addressed. Production PC/mobile concurrency and refresh verified; transport interruption covered by deterministic tests. Scoped release pending.

@@ -11,7 +11,8 @@ const classes=['assassin','gladiator','templar','ranger','sorcerer','elementalis
 const planFields=['classKey','level','mode','base','bonus','specs','nodes','checked','extraSP','extraStigma','extraCrystal','extraBattle','pointBudget','confirmedRemaining','confirmedRemainingContext','ascensionGrade3Confirmed','stigmaSkills','macroExtra'] as const;
 export type Entries=Record<string,string>;
 export type SettingsDocument={version:number;revision:number;entries:Entries;updatedAt?:string};
-type Cache={values:Entries;dirty:string[];revision?:number;base?:Entries;conflict?:boolean;tradeConflict?:{key:string;remote:string|null}};
+type MapEdits=Record<string,Record<string,boolean>>;
+type Cache={values:Entries;dirty:string[];mapEdits?:MapEdits;revision?:number;base?:Entries;conflict?:boolean;tradeConflict?:{key:string;remote:string|null}};
 type Port=Pick<Storage,'getItem'|'setItem'|'removeItem'|'key'|'length'>;
 export function settingKey(key:string):boolean {
  return isTradeCollection(key)||['asbc-locale','shadowcraft-selected-class','a2bc-event-timers-v1','favorites'].includes(key)
@@ -114,7 +115,15 @@ export class AccountSettingsStore {
   const k=this.canonical(key);
   if(!this.memberId||!settingKey(k)){this.storage().setItem(key,value);return;}
   if(this.cache.values[k]===value)return;
-  const old=this.cache;this.cache={...old,values:{...old.values,[k]:value},dirty:[...new Set([...old.dirty,k])]};
+  const old=this.cache;let mapEdits=old.mapEdits;
+  if(k.startsWith('a2bc-map-progress-v1:')){
+   const before=new Set<string>(old.values[k]?JSON.parse(projectSetting(k,old.values[k])).completed:[]);
+   const after=new Set<string>(JSON.parse(projectSetting(k,value)).completed);
+   // Persist explicit per-location intent until acknowledged, including an undo back to the old base.
+   const changes=Object.fromEntries([...new Set([...before,...after])].filter(id=>before.has(id)!==after.has(id)).map(id=>[id,after.has(id)]));
+   mapEdits={...mapEdits,[k]:{...mapEdits?.[k],...changes}};
+  }
+  this.cache={...old,mapEdits,values:{...old.values,[k]:value},dirty:[...new Set([...old.dirty,k])]};
   try{this.persist();}catch(e){this.cache=old;throw e;}
   this.listeners.forEach(fn=>fn());
  }
@@ -147,6 +156,13 @@ export class AccountSettingsStore {
   let conflict=this.cache.conflict||false;
   try{for(const key of this.cache.dirty)if(this.cache.values[key]!==undefined)values[key]=mergeSetting(key,this.cache.base?.[key],projectSetting(key,this.cache.values[key]),remote[key],()=>{conflict=true;});}
   catch(error){if(error instanceof TradeSyncConflict){this.cache={...this.cache,tradeConflict:{key:error.key,remote:remote[error.key]??null}};this.persist();}throw error;}
+  // A PUT may have reached the server even when its response was lost. Three-way values alone
+  // cannot distinguish a later undo from 'unchanged'; replay this device's unacknowledged edits.
+  for(const [key,edits] of Object.entries(this.cache.mapEdits||{}))if(values[key]!==undefined){
+   const completed=new Set<string>(JSON.parse(values[key]).completed);
+   for(const [id,checked] of Object.entries(edits))if(checked)completed.add(id);else completed.delete(id);
+   values[key]=JSON.stringify({schema:'a2bc-map-progress-v1',completed:[...completed].sort()});
+  }
   // Local-only fields survive synchronization on this device.
   for(const key of Object.keys(values))if(key.startsWith('shadowcraft-plan-v1')&&this.cache.values[key]){
    const local=JSON.parse(this.cache.values[key]),plan=JSON.parse(values[key]);
@@ -159,14 +175,20 @@ export class AccountSettingsStore {
   }
   if(before===JSON.stringify(values)){this.cache={...this.cache,revision,base:remote,conflict};this.persist();return false;}
   this.storage().setItem(this.cacheKey+':backup',JSON.stringify(this.cache));
-  const old=this.cache;this.cache={values,dirty:old.dirty,revision,base:remote,conflict};
+  const old=this.cache;this.cache={values,dirty:old.dirty,mapEdits:old.mapEdits,revision,base:remote,conflict};
   try{this.persist();}catch(e){this.cache=old;throw e;}
   return true;
  }
  acknowledge(sent:Entries,revision:number){
   this.reload();
   const old=this.cache;
-  this.cache={...old,base:sent,revision:Math.max(old.revision||0,revision),dirty:old.dirty.filter(k=>projectSetting(k,old.values[k])!==sent[k])};
+  const mapEdits:MapEdits={};
+  for(const [key,edits] of Object.entries(old.mapEdits||{})){
+   const completed=new Set<string>(sent[key]?JSON.parse(sent[key]).completed:[]);
+   const pending=Object.fromEntries(Object.entries(edits).filter(([id,checked])=>sent[key]===undefined||completed.has(id)!==checked));
+   if(Object.keys(pending).length)mapEdits[key]=pending;
+  }
+  this.cache={...old,mapEdits,base:sent,revision:Math.max(old.revision||0,revision),dirty:old.dirty.filter(k=>projectSetting(k,old.values[k])!==sent[k])};
   try{this.persist();}catch(e){this.cache=old;throw e;}
  }
 }
