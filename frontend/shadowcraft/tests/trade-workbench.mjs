@@ -73,8 +73,8 @@ const hugeGuide=craftSalePrices({...wood,materials:[{id:'huge',name:'',quantity:
 const zero=craftSalePrices({...wood,materials:[{id:'z',name:'',quantity:'1',price:'0'}],tax:'100'});assert.equal(zero.breakEven,0n);assert.equal(zero.firstProfit,null);
 assert.deepEqual(parseCraft(JSON.stringify(wood)),wood);assert.equal(calculateCraft(wood),null); // Legacy behavior preserved.
 const {craftSaleCopy,craftSaleText}=await import(moduleUrl(readFileSync('lib/craft-sale-text.ts','utf8')));
-for(const [key,variants] of Object.entries(craftSaleCopy)){assert.equal(variants.length,4);const placeholders=v=>[...v.matchAll(/\{(\d+)\}/g)].map(m=>m[1]).sort();for(const [i,lang] of ['ko','en','ja','fi'].entries()){assert.ok(variants[i]);assert.deepEqual(placeholders(variants[i]),placeholders(variants[0]));assert.equal(craftSaleText(lang,key,['A','B','C','D']),variants[i].replace(/\{(\d+)\}/g,(_,n)=>['A','B','C','D'][Number(n)]));}}
-console.log('PASS material-sale guide: 10908 example, exact minimum boundaries '+checked+', yield, fees, unknown sale, invalid inputs, huge costs, legacy draft compatibility, four-language parity');
+for(const [key,variants] of Object.entries(craftSaleCopy)){assert.equal(variants.length,9);const placeholders=v=>[...v.matchAll(/\{(\d+)\}/g)].map(m=>m[1]).sort();for(const [i,lang] of ['ko','en','ja','fi','fr','de','es','pt-BR','ru'].entries()){assert.ok(variants[i]);assert.deepEqual(placeholders(variants[i]),placeholders(variants[0]));assert.equal(craftSaleText(lang,key,['A','B','C','D']),variants[i].replace(/\{(\d+)\}/g,(_,n)=>['A','B','C','D'][Number(n)]));}}
+console.log('PASS material-sale guide: 10908 example, exact minimum boundaries '+checked+', yield, fees, unknown sale, invalid inputs, huge costs, legacy draft compatibility, nine-language parity');
 
 // Explicit batch-volume edits must scale only production quantities/cost, preserving inventory and sale conditions.
 const batchSource={...wood,item:'kept',cost:'100',fee:'25',sell:'15000',materials:wood.materials.map(m=>({...m,owned:'7'}))};

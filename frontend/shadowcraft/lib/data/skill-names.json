@@ -1050,5 +1050,149 @@
  "흡혈의 검": {
   "en": "Lifestealing Blade",
   "ja": "吸血の剣"
+ },
+ "칼날 화무": {
+  "en": "Blade Dance",
+  "ja": "刃の炎舞"
+ },
+ "응징의 일격": {
+  "en": "Punishing Strike",
+  "ja": "戒めの一撃"
+ },
+ "맹수의 후려치기": {
+  "en": "Savage Smash",
+  "ja": "猛獣の殴り飛ばし"
+ },
+ "냉기 파동": {
+  "en": "Cold Wave",
+  "ja": "冷気波動"
+ },
+ "열화": {
+  "en": "Pyroclasm",
+  "ja": "烈火"
+ },
+ "나락": {
+  "en": "The Depths",
+  "ja": "奈落"
+ },
+ "대지 진동": {
+  "en": "Earth Tremor",
+  "ja": "大地の震動"
+ },
+ "방전": {
+  "en": "Discharge",
+  "ja": "放電"
+ },
+ "천벌": {
+  "en": "Divine Punishment",
+  "ja": "天罰"
+ },
+ "대지의 축복": {
+  "en": "Earth's Blessing",
+  "ja": "大地の祝福"
+ },
+ "무모한 일격": {
+  "en": "Reckless Strike",
+  "ja": "無謀な一撃"
+ },
+ "올려치기": {
+  "en": "Upward Strike",
+  "ja": "叩き上げ"
+ },
+ "발목 격파": {
+  "en": "Ankle Smash",
+  "ja": "足首撃破"
+ },
+ "분노 폭발": {
+  "en": "Wrath Burst",
+  "ja": "怒り爆発"
+ },
+ "강제 낙하": {
+  "en": "Forced Fall",
+  "ja": "強制落下"
+ },
+ "파괴 돌진": {
+  "en": "Destructive Rush",
+  "ja": "破壊突進"
+ },
+ "위협의 맹타": {
+  "en": "Threatening Blow",
+  "ja": "威嚇の猛打"
+ },
+ "생포": {
+  "en": "Capture",
+  "ja": "生け捕り"
+ },
+ "암검 추적": {
+  "en": "Shadowblade Pursuit",
+  "ja": "暗器追跡"
+ },
+ "공중 살법": {
+  "en": "Aerial Slaughter",
+  "ja": "空中殺法"
+ },
+ "폭풍 베기": {
+  "en": "Storm Slice",
+  "ja": "暴風斬り"
+ },
+ "암격": {
+  "en": "Dark Strike",
+  "ja": "暗撃"
+ },
+ "질풍 화살": {
+  "en": "Tempest Arrow",
+  "ja": "疾風の矢"
+ },
+ "족쇄 화살": {
+  "en": "Shackling Arrow",
+  "ja": "足枷の矢"
+ },
+ "퇴보 베기": {
+  "en": "Guerilla Strike",
+  "ja": "退き斬り"
+ },
+ "번개 화살": {
+  "en": "Lightning Arrow",
+  "ja": "雷の矢"
+ },
+ "겨울의 환영": {
+  "en": "Winter's Illusion",
+  "ja": "冬の幻影"
+ },
+ "저주: 고목": {
+  "en": "Curse: Old Tree",
+  "ja": "呪い：枯木"
+ },
+ "재의 부름": {
+  "en": "Ashy Call",
+  "ja": "灰の呼びかけ"
+ },
+ "절망의 저주": {
+  "en": "Curse of Despair",
+  "ja": "絶望の呪い"
+ },
+ "재생의 축복": {
+  "en": "Blessing of Regeneration",
+  "ja": "再生の祝福"
+ },
+ "폭풍쇄": {
+  "en": "Storm Chain",
+  "ja": "暴風砕"
+ },
+ "파열격": {
+  "en": "Bursting Blow",
+  "ja": "破裂撃"
+ },
+ "관통쇄": {
+  "en": "Piercing Strike",
+  "ja": "貫通砕"
+ },
+ "강격쇄": {
+  "en": "Crushing Strike",
+  "ja": "強撃砕"
+ },
+ "격동쇄": {
+  "en": "Surging Strike",
+  "ja": "激動砕"
  }
 }

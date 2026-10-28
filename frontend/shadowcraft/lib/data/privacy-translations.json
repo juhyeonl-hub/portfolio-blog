@@ -1,0 +1,417 @@
+{
+  "fr": {
+    "title": "Politique de confidentialité",
+    "updated": "En vigueur",
+    "sections": [
+      {
+        "heading": "Qui gère ASBC ?",
+        "paragraphs": [
+          "ASBC (asbc.app) est un outil non officiel créé par des fans, géré par Juhyeon Lee dans le cadre du projet personnel « 추억 게임즈 » (Memory Games). Il n'est pas affilié à NCSOFT.",
+          "Questions ou demandes concernant la confidentialité : contact@asbc.app"
+        ]
+      },
+      {
+        "heading": "Paramètres locaux et synchronisation du compte",
+        "paragraphs": [
+          "Lorsque vous êtes connecté, les éléments de votre registre des échanges, vos achats, vos ventes et vos plans de fabrication enregistrés sont stockés sur le serveur et automatiquement synchronisés avec les autres appareils associés à votre compte. Les données présentes dans le navigateur avant la connexion doivent être importées manuellement ; elles ne sont pas fusionnées automatiquement. La sauvegarde et la restauration via un fichier JSON s'effectuent à l'initiative de l'utilisateur. Les captures d'écran du marché sont analysées directement dans votre navigateur ; les images elles-mêmes ne sont ni stockées ni envoyées au serveur.",
+          "Les données saisies dans les calculateurs, les brouillons de création non enregistrés et l'historique d'évolution des personnages restent stockés dans ce navigateur et ne sont pas synchronisés avec votre compte. Les brouillons de création enregistrés lorsque vous êtes connecté sont conservés séparément pour chaque compte. L'historique d'évolution conserve jusqu'à 20 instantanés de modifications par personnage ; il peut être effacé directement depuis l'interface. La suppression des données du site entraîne également la suppression de ces enregistrements locaux.",
+          "Lorsque vous n'êtes pas connecté, vos paramètres restent stockés dans ce navigateur (via `localStorage`). Une fois connecté, vos préférences (langue, favoris, répartition des points, points restants, identifiants publics des personnages, niveau, choix d'équipement et bonus, progression sur la carte, paramètres de serveur/minuteur) sont associées à votre compte et restaurées sur vos autres appareils. En revanche, les réponses des personnages, l'historique de recherche, les noms d'équipements, les notes personnelles et la bibliothèque de configurations (« builds ») ne sont pas synchronisés. Les caches locaux et les sauvegardes de récupération sont supprimés si vous effacez les données du site ; les paramètres côté serveur sont supprimés si vous supprimez votre compte.",
+          "Vos informations de connexion à la communauté sont conservées dans le stockage de session de l'onglet actuel (`sessionStorage`) et sont supprimées dès la fermeture de cet onglet."
+        ]
+      },
+      {
+        "heading": "Données stockées sur le serveur lors de l'utilisation de la communauté",
+        "paragraphs": [
+          "Compte : nom d'utilisateur, mot de passe (stocké uniquement sous forme de hachage irréversible via bcrypt), date d'inscription.",
+          "Si vous vous connectez via Steam : votre SteamID et la date de liaison du compte. Nous ne recevons ni votre mot de passe Steam, ni votre adresse e-mail, ni le contenu de votre bibliothèque de jeux.",
+          "Sessions de connexion : enregistrements de session d'une durée maximale de 24 heures.",
+          "Contenus publiés : configurations (« builds ») publiées (titre, description, répartition des points), commentaires, votes et signalements (motif et description)."
+        ]
+      },
+      {
+        "heading": "Données traitées automatiquement",
+        "paragraphs": [
+          "Adresse IP : utilisée uniquement dans la mémoire du serveur pour limiter les tentatives de connexion ; elle est supprimée dans un délai maximal de 11 minutes et n'est conservée ni dans la base de données ni dans les journaux (logs).",
+          "Recherche de personnage : le serveur et le nom de personnage que vous saisissez sont utilisés pour récupérer des informations publiques sur le site officiel d'AION 2. Les résultats sont conservés dans la mémoire du serveur pendant une durée maximale de 5 minutes."
+        ]
+      },
+      {
+        "heading": "Cookies",
+        "paragraphs": [
+          "asbc_steam : un cookie de sécurité qui vérifie qu'une connexion via Steam se termine dans le même navigateur que celui dans lequel elle a été initiée. Il est utilisé uniquement lors de la connexion et expire après 5 minutes.",
+          "Nous n'utilisons pas de cookies publicitaires, analytiques ou de suivi."
+        ]
+      },
+      {
+        "heading": "Finalités et bases juridiques",
+        "paragraphs": [
+          "Fourniture de comptes et de fonctionnalités communautaires que vous avez demandés (RGPD, art. 6, par. 1, point b).",
+          "Sécurité, prévention des abus et traitement des signalements, dans le cadre de notre intérêt légitime à protéger le service et ses utilisateurs (RGPD, art. 6, par. 1, point f).",
+          "Nous ne vendons pas de données personnelles et ne les partageons pas à des fins publicitaires."
+        ]
+      },
+      {
+        "heading": "Entreprises traitant des données pour ASBC",
+        "paragraphs": [
+          "Cloudflare : hébergement et diffusion du site, ainsi que transfert des e-mails vers contact@asbc.app. Ce service traite des données de connexion, telles que les adresses IP, lors de la transmission des requêtes.",
+          "Valve (Steam) : si vous choisissez de vous connecter via Steam, vous effectuez cette connexion sur la plateforme Steam.",
+          "Vercel : hébergement de l'ancienne adresse (juhyeonl.dev/lab/shadowcraft).",
+          "Le serveur et la base de données sont situés en Finlande. Cloudflare, Valve et Vercel étant des entreprises américaines, leur intervention peut impliquer des transferts de données vers les États-Unis."
+        ]
+      },
+      {
+        "heading": "Durée de conservation des données",
+        "paragraphs": [
+          "Votre compte et vos publications sont conservés jusqu'à ce que vous les supprimiez ou que vous supprimiez votre compte. La suppression d'un compte entraîne également la suppression de son association avec Steam, ainsi que de ses sessions, configurations, commentaires, votes et signalements.",
+          "Des sauvegardes de la base de données sont effectuées quotidiennement à des fins de restauration ; elles sont conservées pendant 30 jours, puis supprimées automatiquement. Les données supprimées ne subsistent que dans ces sauvegardes, jusqu'à ce que celles-ci soient elles-mêmes effacées."
+        ]
+      },
+      {
+        "heading": "Vos droits",
+        "paragraphs": [
+          "Vous pouvez supprimer votre compte ainsi que tout ce que vous avez publié à tout moment, via l'option « Supprimer le compte » disponible sur l'écran de gestion de votre compte.",
+          "Vous pouvez demander l'accès à vos données, leur rectification, leur suppression, la limitation de leur traitement ou leur portabilité, et vous opposer à leur traitement. Veuillez envoyer votre nom d'utilisateur ainsi que votre demande à l'adresse contact@asbc.app. Nous pourrions vous demander une confirmation supplémentaire attestant que le compte vous appartient bien.",
+          "Vous avez le droit de déposer une plainte auprès de l'autorité de protection des données de votre pays ou auprès du médiateur finlandais chargé de la protection des données (Tietosuojavaltuutetun toimisto, tietosuoja.fi)."
+        ]
+      },
+      {
+        "heading": "Modifications",
+        "paragraphs": [
+          "Si les modalités de traitement évoluent — par exemple, en cas d'ajout de publicités —, cette page ainsi que sa date d'entrée en vigueur seront mises à jour avant l'application de ces changements."
+        ]
+      }
+    ]
+  },
+  "de": {
+    "title": "Datenschutzerklärung",
+    "updated": "Gültig ab",
+    "sections": [
+      {
+        "heading": "Wer betreibt ASBC?",
+        "paragraphs": [
+          "ASBC (asbc.app) ist ein inoffizielles Fan-Tool, das von Juhyeon Lee unter dem Projektnamen „추억 게임즈“ (Memory Games) betrieben wird. Es besteht keine Verbindung zu NCSOFT.",
+          "Fragen zum Datenschutz oder Anfragen: contact@asbc.app"
+        ]
+      },
+      {
+        "heading": "Lokale Einstellungen und Kontosynchronisierung",
+        "paragraphs": [
+          "Wenn du angemeldet bist, werden Einträge in deinem Handelsbuch, Käufe, Verkäufe sowie gespeicherte Herstellungspläne auf dem Server gespeichert und automatisch mit anderen Geräten synchronisiert, die mit demselben Konto verknüpft sind. Daten, die vor der Anmeldung im Browser gespeichert wurden, müssen explizit importiert werden; sie werden nicht automatisch zusammengeführt. Die Sicherung und Wiederherstellung per JSON-Datei erfolgt manuell durch den Nutzer. Screenshots vom Marktplatz werden direkt im Browser ausgelesen; die Bilddateien selbst werden weder gespeichert noch an den Server übertragen.",
+          "Eingaben in allgemeinen Rechnern, ungespeicherte Entwürfe für die Herstellung (Crafting) sowie die Entwicklungshistorie von Charakteren verbleiben in diesem Browser und werden nicht mit deinem Konto synchronisiert. Entwürfe für die Herstellung, die bei angemeldetem Konto erstellt wurden, werden separat pro Konto gespeichert. Die Entwicklungshistorie umfasst bis zu 20 Momentaufnahmen (Snapshots) pro Charakter und kann direkt auf der jeweiligen Seite gelöscht werden. Das Löschen der Website-Daten entfernt auch diese lokalen Datensätze.",
+          "Einstellungen, die ohne Anmeldung vorgenommen wurden, verbleiben in diesem Browser (im sogenannten „localStorage“). Bei angemeldetem Konto werden Sprache, Favoriten, Klassenverteilungen, verbleibende Punkte (zusammen mit den zugehörigen öffentlichen Charakterkennungen und dem Level), Ausrüstungswahlen und Boni, der Fortschritt bei der Kartenvervollständigung sowie Server- und Timer-Einstellungen mit deinem Konto verknüpft und auf anderen Geräten wiederhergestellt. Charakterantworten, Suchverlauf, Namen von Ausrüstungsgegenständen, persönliche Notizen und die Build-Bibliothek werden nicht synchronisiert. Lokale Caches des Kontos sowie Wiederherstellungs-Backups werden gelöscht, wenn du die Website-Daten entfernst; Servereinstellungen werden gelöscht, wenn du dein Konto entfernst.",
+          "Deine Anmeldung für die Community wird im „sessionStorage“ (Sitzungsspeicher) des aktuellen Tabs gespeichert und beim Schließen des Tabs entfernt."
+        ]
+      },
+      {
+        "heading": "Daten, die bei der Nutzung der Community auf dem Server gespeichert werden",
+        "paragraphs": [
+          "Konto: Benutzername, Passwort (wird ausschließlich als irreversibler bcrypt-Hash gespeichert), Zeitpunkt der Registrierung.",
+          "Bei Anmeldung über Steam: deine SteamID sowie der Zeitpunkt der Verknüpfung. Wir erhalten weder dein Steam-Passwort noch deine E-Mail-Adresse oder Informationen zu deiner Spielebibliothek.",
+          "Anmeldesitzungen: Sitzungsdatensätze, die maximal 24 Stunden gültig sind.",
+          "Von dir erstellte Inhalte: veröffentlichte Builds (Titel, Beschreibung, Verteilung), Kommentare, Abstimmungen sowie Meldungen (inklusive Grund und Beschreibung)."
+        ]
+      },
+      {
+        "heading": "Automatisch verarbeitete Daten",
+        "paragraphs": [
+          "IP-Adresse: Wird ausschließlich im Arbeitsspeicher des Servers verwendet, um die Anzahl der Anmeldeversuche zu begrenzen, und spätestens nach 11 Minuten wieder gelöscht; sie wird weder in der Datenbank noch in Protokolldateien (Logs) gespeichert.",
+          "Charaktersuche: Der von dir eingegebene Server- und Charaktername wird verwendet, um öffentliche Informationen von der offiziellen AION 2-Website abzurufen. Die Ergebnisse werden für bis zu 5 Minuten im Arbeitsspeicher des Servers gespeichert."
+        ]
+      },
+      {
+        "heading": "Cookies",
+        "paragraphs": [
+          "asbc_steam: Ein Sicherheits-Cookie, das überprüft, ob ein Anmeldevorgang über Steam in demselben Browser abgeschlossen wird, in dem er gestartet wurde. Es wird ausschließlich während des Anmeldevorgangs verwendet und läuft nach 5 Minuten ab.",
+          "Wir verwenden keine Cookies für Werbung, Analysen oder Tracking."
+        ]
+      },
+      {
+        "heading": "Zwecke und Rechtsgrundlagen",
+        "paragraphs": [
+          "Bereitstellung von Konten und Community-Funktionen, die du angefordert hast (Art. 6 Abs. 1 lit. b DSGVO).",
+          "Sicherheit, Missbrauchsprävention und Bearbeitung von Meldungen – dies erfolgt auf der Grundlage unseres berechtigten Interesses am Schutz des Dienstes und seiner Nutzer (Art. 6 Abs. 1 lit. f DSGVO).",
+          "Wir verkaufen keine personenbezogenen Daten und geben sie nicht zu Werbezwecken an Dritte weiter."
+        ]
+      },
+      {
+        "heading": "Unternehmen, die Daten für ASBC verarbeiten",
+        "paragraphs": [
+          "Cloudflare: Hosting und Bereitstellung der Website sowie Weiterleitung von E-Mails an contact@asbc.app. Cloudflare verarbeitet bei der Weiterleitung von Anfragen Verbindungsdaten, wie etwa IP-Adressen.",
+          "Valve (Steam): Wenn du dich über Steam anmeldest, erfolgt die Anmeldung direkt bei Steam.",
+          "Vercel: Hosting der früheren Adresse (juhyeonl.dev/lab/shadowcraft).",
+          "Der Server und die Datenbank befinden sich in Finnland. Da es sich bei Cloudflare, Valve und Vercel um US-Unternehmen handelt, kann die Datenverarbeitung durch diese Anbieter eine Übermittlung von Daten in die Vereinigten Staaten beinhalten."
+        ]
+      },
+      {
+        "heading": "Speicherdauer der Daten",
+        "paragraphs": [
+          "Dein Konto und deine Beiträge werden so lange gespeichert, bis du sie selbst löschst oder dein Konto entfernst. Das Löschen eines Kontos führt auch zur Löschung der damit verknüpften Steam-Verbindung, Sitzungen, Builds, Kommentare, Abstimmungen und Meldungen.",
+          "Datenbank-Backups zur Wiederherstellung werden täglich erstellt, 30 Tage lang aufbewahrt und anschließend automatisch gelöscht. Gelöschte Daten verbleiben nur in diesen Backups, bis diese selbst gelöscht werden."
+        ]
+      },
+      {
+        "heading": "Deine Rechte",
+        "paragraphs": [
+          "Du kannst dein Konto sowie alle von dir veröffentlichten Inhalte jederzeit über die Option „Konto löschen“ in deinem Kontobereich entfernen.",
+          "Du hast das Recht, Auskunft über deine Daten zu verlangen, deren Berichtigung, Löschung oder Einschränkung der Verarbeitung zu fordern, die Übertragbarkeit deiner Daten zu verlangen sowie der Verarbeitung zu widersprechen. Sende hierfür deinen Benutzernamen und dein Anliegen an contact@asbc.app. Gegebenenfalls bitten wir um einen weiteren Nachweis darüber, dass das Konto tatsächlich dir gehört.",
+          "Du kannst Beschwerde bei der Datenschutzbehörde deines Landes oder beim finnischen Datenschutzbeauftragten (Tietosuojavaltuutetun toimisto, tietosuoja.fi) einreichen."
+        ]
+      },
+      {
+        "heading": "Änderungen",
+        "paragraphs": [
+          "Sollten sich die Bedingungen der Datenverarbeitung ändern – etwa durch die Einführung von Werbung –, werden diese Seite sowie das Datum des Inkrafttretens vorab entsprechend aktualisiert."
+        ]
+      }
+    ]
+  },
+  "es": {
+    "title": "Política de privacidad.",
+    "updated": "En vigor.",
+    "sections": [
+      {
+        "heading": "¿Quién gestiona ASBC?",
+        "paragraphs": [
+          "ASBC (asbc.app) es una herramienta no oficial creada por fans, gestionada por Juhyeon Lee bajo la marca de proyecto personal \"추억 게임즈\" (Memory Games). No tiene ninguna relación con NCSOFT.",
+          "Preguntas o solicitudes relacionadas con la privacidad: contact@asbc.app"
+        ]
+      },
+      {
+        "heading": "Configuración local y sincronización de cuenta.",
+        "paragraphs": [
+          "Al iniciar sesión, los elementos del registro de transacciones, las compras, las ventas y los planes de fabricación guardados se almacenan en el servidor de la cuenta y se sincronizan automáticamente con otros dispositivos vinculados a la misma. Los datos almacenados en el navegador antes de iniciar sesión requieren una importación manual; no se fusionan automáticamente. Las funciones de copia de seguridad y restauración mediante archivos JSON deben ser iniciadas por el usuario. Las capturas de pantalla del mercado se procesan dentro del navegador; las imágenes en sí no se almacenan ni se envían al servidor.",
+          "Los datos introducidos en la calculadora general, los borradores de creación no guardados y el historial de desarrollo del personaje permanecen en este navegador y no se sincronizan con tu cuenta. Los borradores de creación guardados mientras la sesión está iniciada se almacenan de forma independiente para cada cuenta. El historial de desarrollo conserva hasta 20 instantáneas de cambios por personaje y puede borrarse desde la propia pantalla. Eliminar los datos del sitio también borra estos registros locales.",
+          "La configuración establecida sin haber iniciado sesión permanece en este navegador (localStorage). Al iniciar sesión, el idioma, los favoritos, la distribución de clases, los puntos restantes (junto con los identificadores públicos del personaje y su nivel), el equipamiento y sus bonificaciones, el progreso de finalización de mapas y la configuración del servidor o temporizadores se almacenan en tu cuenta y se restauran en otros dispositivos. Las respuestas del personaje, el historial de búsqueda, los nombres del equipamiento, las notas personales y la biblioteca de configuraciones (builds) no se sincronizan. Las cachés locales de la cuenta y las copias de seguridad de recuperación se eliminan al borrar los datos del sitio; la configuración del servidor se elimina al borrar tu cuenta.",
+          "La información de inicio de sesión en la comunidad se almacena en el almacenamiento de sesión (sessionStorage) de esta pestaña y se elimina al cerrar dicha pestaña."
+        ]
+      },
+      {
+        "heading": "Datos almacenados en el servidor al utilizar la comunidad",
+        "paragraphs": [
+          "Cuenta: nombre de usuario, contraseña (almacenada únicamente como un hash bcrypt irreversible) y fecha de registro.",
+          "Si inicias sesión mediante Steam: tu SteamID y la fecha en que se vinculó la cuenta. No recibimos tu contraseña de Steam, tu dirección de correo electrónico ni tu biblioteca de juegos.",
+          "Sesiones de inicio de sesión: registros de sesión con una duración máxima de 24 horas.",
+          "Contenido publicado: configuraciones (builds) publicadas (título, descripción, distribución), comentarios, votos y reportes (motivo y descripción)."
+        ]
+      },
+      {
+        "heading": "Datos procesados ​​automáticamente",
+        "paragraphs": [
+          "Dirección IP: utilizada exclusivamente en la memoria del servidor para limitar los intentos de inicio de sesión; se elimina en un plazo máximo de 11 minutos y no se almacena en la base de datos ni en registros (logs).",
+          "Búsqueda de personajes: el servidor y el nombre de personaje que introduzcas se utilizan para consultar información pública en el sitio web oficial de AION 2. Los resultados se almacenan en la memoria del servidor durante un máximo de 5 minutos."
+        ]
+      },
+      {
+        "heading": "Cookies",
+        "paragraphs": [
+          "asbc_steam: una cookie de seguridad que verifica que el inicio de sesión a través de Steam finalice en el mismo navegador en el que comenzó. Se utiliza únicamente durante el proceso de inicio de sesión y caduca a los 5 minutos.",
+          "No utilizamos cookies de publicidad, análisis o seguimiento."
+        ]
+      },
+      {
+        "heading": "Finalidades y bases jurídicas",
+        "paragraphs": [
+          "Proporcionar cuentas y funciones comunitarias que solicites (RGPD, art. 6, apdo. 1, letra b).",
+          "Seguridad, prevención de abusos y gestión de informes, basándonos en el interés legítimo de proteger el servicio y a sus usuarios (RGPD, art. 6, apdo. 1, letra f).",
+          "No vendemos datos personales ni los compartimos con fines publicitarios."
+        ]
+      },
+      {
+        "heading": "Empresas que tratan datos para ASBC",
+        "paragraphs": [
+          "Cloudflare: alojamiento y distribución del sitio, además del reenvío de correos electrónicos a contact@asbc.app. Esta empresa procesa datos de conexión, como direcciones IP, al gestionar las solicitudes.",
+          "Valve (Steam): si optas por iniciar sesión mediante Steam, el proceso se realiza a través de dicha plataforma.",
+          "Vercel: alojamiento de la dirección anterior (juhyeonl.dev/lab/shadowcraft).",
+          "El servidor y la base de datos se encuentran en Finlandia. Cloudflare, Valve y Vercel son empresas estadounidenses, por lo que el tratamiento de datos a través de ellas puede implicar transferencias a los Estados Unidos."
+        ]
+      },
+      {
+        "heading": "Plazo de conservación de los datos",
+        "paragraphs": [
+          "Tu cuenta y tus publicaciones se conservan hasta que tú mismo las elimines o procedas a borrar tu cuenta. Eliminar una cuenta también conlleva la eliminación de su vinculación con Steam, así como de sus sesiones, configuraciones (builds), comentarios, votos y reportes.",
+          "Se realizan copias de seguridad de la base de datos a diario para fines de recuperación; estas se conservan durante 30 días y, posteriormente, se eliminan de forma automática. Los datos eliminados permanecen únicamente en dichas copias de seguridad hasta que estas sean borradas."
+        ]
+      },
+      {
+        "heading": "Tus derechos",
+        "paragraphs": [
+          "Puedes eliminar tu cuenta y todo el contenido que hayas publicado en cualquier momento a través de la opción «Eliminar cuenta» (Delete account), disponible en la pantalla de gestión de tu cuenta.",
+          "Puedes solicitar el acceso, la rectificación, la supresión, la limitación del tratamiento o la portabilidad de tus datos, así como oponerte a su tratamiento. Envía tu nombre de usuario y tu solicitud a contact@asbc.app. Es posible que te pidamos una confirmación adicional para verificar que la cuenta es realmente tuya.",
+          "Puedes presentar una reclamación ante la autoridad de protección de datos de tu país o ante el Defensor de la Protección de Datos de Finlandia (Tietosuojavaltuutetun toimisto, tietosuoja.fi)."
+        ]
+      },
+      {
+        "heading": "Cambios",
+        "paragraphs": [
+          "Si se producen cambios en el tratamiento de los datos —por ejemplo, si se añade publicidad—, esta página y su fecha de entrada en vigor se actualizarán antes de que dichos cambios surtan efecto."
+        ]
+      }
+    ]
+  },
+  "pt-BR": {
+    "title": "Política de privacidade",
+    "updated": "Em vigor",
+    "sections": [
+      {
+        "heading": "Quem administra o ASBC",
+        "paragraphs": [
+          "O ASBC (asbc.app) é uma ferramenta não oficial feita por fãs, administrada por Juhyeon Lee sob a marca de projeto pessoal \"추억 게임즈\" (Memory Games). Não possui vínculo com a NCSOFT.",
+          "Dúvidas e solicitações sobre privacidade: contact@asbc.app"
+        ]
+      },
+      {
+        "heading": "Configurações locais e sincronização de conta",
+        "paragraphs": [
+          "Ao fazer login, os itens do registro de negociações, compras, vendas e planos de criação salvos são armazenados no servidor da conta e sincronizados automaticamente com outros dispositivos vinculados à mesma conta. Registros do navegador anteriores ao login exigem importação manual e não são mesclados automaticamente. O backup e a restauração via JSON são iniciados pelo próprio usuário. Capturas de tela do mercado são lidas no navegador; as imagens em si não são armazenadas nem enviadas ao servidor.",
+          "Dados inseridos em calculadoras gerais, rascunhos de criação (crafting) não salvos e o histórico de evolução do personagem permanecem neste navegador e não são sincronizados com sua conta. Rascunhos de criação salvos enquanto você está logado são mantidos separadamente para cada conta. O histórico de evolução armazena até 20 instantâneos (snapshots) de alterações por personagem e pode ser limpo na própria tela. A exclusão dos dados do site também remove esses registros locais.",
+          "Configurações feitas sem estar logado permanecem neste navegador (localStorage). Ao realizar o login, preferências como idioma, itens favoritos, alocações de classe, pontos restantes, identificadores públicos de personagem, nível, equipamentos e bônus escolhidos, progresso de conclusão de mapa e configurações de servidor/temporizador são vinculados à sua conta e restaurados em outros dispositivos. Respostas de personagens, histórico de busca, nomes de equipamentos, anotações pessoais e a biblioteca de builds não são sincronizados. Caches locais da conta e backups de recuperação são removidos ao limpar os dados do site; configurações de servidor são removidas ao excluir sua conta.",
+          "Seu login na comunidade é mantido no armazenamento de sessão (sessionStorage) desta aba e é removido quando a aba é fechada."
+        ]
+      },
+      {
+        "heading": "Dados armazenados no servidor ao utilizar a comunidade",
+        "paragraphs": [
+          "Conta: nome de usuário, senha (armazenada apenas como um hash bcrypt irreversível) e data/hora do cadastro.",
+          "Se você entrar via Steam: seu SteamID e a data/hora em que a conta foi vinculada. Não recebemos sua senha da Steam, endereço de e-mail ou informações sobre sua biblioteca de jogos.",
+          "Sessões de login: registros de sessão com duração máxima de 24 horas.",
+          "Conteúdo publicado: builds (título, descrição, alocação), comentários, votos e denúncias (motivo e descrição)."
+        ]
+      },
+      {
+        "heading": "Dados processados ​​automaticamente",
+        "paragraphs": [
+          "Endereço IP: utilizado apenas na memória do servidor para limitar tentativas de login e removido em, no máximo, 11 minutos; não é armazenado no banco de dados nem em logs.",
+          "Consulta de personagem: o servidor e o nome do personagem informados por você são utilizados para buscar informações públicas no site oficial do AION 2. Os resultados permanecem na memória do servidor por até 5 minutos."
+        ]
+      },
+      {
+        "heading": "Cookies",
+        "paragraphs": [
+          "asbc_steam: um cookie de segurança que verifica se o login via Steam é concluído no mesmo navegador em que foi iniciado. Ele é utilizado apenas durante o processo de login e expira após 5 minutos.",
+          "Não utilizamos cookies de publicidade, análise ou rastreamento."
+        ]
+      },
+      {
+        "heading": "Finalidades e bases legais",
+        "paragraphs": [
+          "Disponibilização de contas e recursos comunitários solicitados por você (Art. 6, parágrafo 1, alínea 'b' do RGPD).",
+          "Segurança, prevenção contra abusos e tratamento de denúncias, com base no interesse legítimo de proteger o serviço e seus usuários (Art. 6, parágrafo 1, alínea 'f' do RGPD).",
+          "Não vendemos dados pessoais nem os compartilhamos para fins publicitários."
+        ]
+      },
+      {
+        "heading": "Empresas que processam dados para a ASBC",
+        "paragraphs": [
+          "Cloudflare: hospedagem e entrega do site, além do encaminhamento de e-mails para contact@asbc.app. A empresa processa dados de conexão, como endereços IP, ao realizar o encaminhamento das solicitações.",
+          "Valve (Steam): caso você opte pelo login via Steam, a autenticação será realizada por meio da plataforma Steam.",
+          "Vercel: hospedagem do endereço anterior (juhyeonl.dev/lab/shadowcraft).",
+          "O servidor e o banco de dados estão localizados na Finlândia. Como a Cloudflare, a Valve e a Vercel são empresas sediadas nos Estados Unidos, o processamento realizado por meio delas pode envolver a transferência de dados para os Estados Unidos."
+        ]
+      },
+      {
+        "heading": "Período de retenção de dados",
+        "paragraphs": [
+          "Sua conta e suas publicações são mantidas até que você as exclua ou remova sua conta. A exclusão de uma conta também remove sua vinculação com a Steam, sessões, builds, comentários, votos e denúncias.",
+          "Backups do banco de dados para fins de recuperação são realizados diariamente, mantidos por 30 dias e, em seguida, excluídos automaticamente. Os dados excluídos permanecem apenas nesses backups até que sejam removidos."
+        ]
+      },
+      {
+        "heading": "Seus direitos",
+        "paragraphs": [
+          "Você pode excluir sua conta e todo o conteúdo que publicou a qualquer momento, por meio da opção \"Excluir conta\" na tela da sua conta.",
+          "Você pode solicitar acesso, correção, exclusão, restrição de processamento e portabilidade dos seus dados, bem como opor-se ao processamento. Envie seu nome de usuário e sua solicitação para contact@asbc.app. Podemos solicitar uma confirmação adicional de que a conta pertence a você.",
+          "Você pode apresentar uma reclamação à autoridade de proteção de dados do seu país ou ao Protetor de Dados da Finlândia (Tietosuojavaltuutetun toimisto, tietosuoja.fi)."
+        ]
+      },
+      {
+        "heading": "Alterações",
+        "paragraphs": [
+          "Caso o processamento sofra alterações — por exemplo, com a inclusão de publicidade —, esta página e sua data de vigência serão atualizadas antes que a mudança entre em vigor."
+        ]
+      }
+    ]
+  },
+  "ru": {
+    "title": "Политика конфиденциальности",
+    "updated": "Вступает в силу",
+    "sections": [
+      {
+        "heading": "Кто управляет ASBC",
+        "paragraphs": [
+          "ASBC (asbc.app) — это неофициальный фанатский инструмент, созданный Джухён Ли (Juhyeon Lee) в рамках личного проекта под названием «추억 게임즈» (Memory Games). Проект не связан с компанией NCSOFT.",
+          "Вопросы и запросы, касающиеся конфиденциальности: contact@asbc.app"
+        ]
+      },
+      {
+        "heading": "Локальные настройки и синхронизация аккаунта",
+        "paragraphs": [
+          "После входа в систему данные о торговых операциях, покупках, продажах и сохраненные планы изготовления сохраняются на сервере и автоматически синхронизируются между всеми устройствами, привязанными к одной учетной записи. Данные, накопленные в браузере до входа в систему, требуют ручного импорта — они не объединяются автоматически. Резервное копирование и восстановление данных в формате JSON выполняются пользователем вручную. Скриншоты рынка обрабатываются непосредственно в браузере; сами изображения не сохраняются и не передаются на сервер.",
+          "Введенные в калькулятор данные, несохраненные черновики создания предметов и история развития персонажа хранятся в текущем браузере и не синхронизируются с вашей учетной записью. Черновики создания предметов, созданные после входа в систему, привязаны к конкретной учетной записи. История развития персонажа сохраняет до 20 снимков изменений; ее можно очистить непосредственно в интерфейсе. Удаление данных сайта также приводит к удалению этих локальных записей.",
+          "При использовании сайта без входа в учетную запись настройки сохраняются в браузере (в хранилище localStorage). Если вы вошли в систему, то такие параметры, как язык, избранное, распределение характеристик персонажа, доступные очки (вместе с идентификаторами персонажа и его уровнем), выбранное снаряжение и бонусы, прогресс исследования карты, а также настройки сервера и таймеров, привязываются к вашей учетной записи и будут доступны на других устройствах. Ответы персонажей, история поиска, названия предметов, личные заметки и библиотека сборок (билдов) не синхронизируются. Локальные кэши учетной записи и резервные копии для восстановления удаляются при очистке данных сайта; настройки сервера удаляются при удалении самой учетной записи.",
+          "Информация о вашем входе в систему хранится в сессионном хранилище (sessionStorage) текущей вкладки браузера и удаляется при ее закрытии."
+        ]
+      },
+      {
+        "heading": "Данные, сохраняемые на сервере при использовании функций сообщества",
+        "paragraphs": [
+          "Учетная запись: имя пользователя, пароль (хранится только в виде необратимого хеша bcrypt), время регистрации.",
+          "При входе через Steam: ваш SteamID и время привязки аккаунта. Мы не получаем доступ к вашему паролю Steam, адресу электронной почты или списку игр в вашей библиотеке Steam.",
+          "Сеансы входа: записи о сеансах, срок действия которых составляет не более 24 часов.",
+          "Публикуемые вами материалы: созданные сборки (название, описание, распределение характеристик), комментарии, оценки, а также жалобы (с указанием причины и описания)."
+        ]
+      },
+      {
+        "heading": "Данные, обрабатываемые автоматически",
+        "paragraphs": [
+          "IP-адрес: используется исключительно в оперативной памяти сервера для ограничения количества попыток входа; хранится не более 11 минут и не записывается в базу данных или лог-файлы.",
+          "Поиск персонажа: введенные вами название сервера и имя персонажа используются для получения общедоступной информации с официального сайта AION 2. Результаты сохраняются в памяти сервера в течение 5 минут."
+        ]
+      },
+      {
+        "heading": "Файлы cookie",
+        "paragraphs": [
+          "asbc_steam: файл cookie, обеспечивающий безопасность; он проверяет, завершается ли процесс входа через Steam в том же браузере, в котором он был начат. Используется только во время входа в систему и удаляется через 5 минут.",
+          "Мы не используем файлы cookie для рекламы, аналитики или отслеживания пользователей."
+        ]
+      },
+      {
+        "heading": "Цели и правовые основания",
+        "paragraphs": [
+          "Предоставление учетных записей и функций сообщества по вашему запросу (ст. 6, п. 1, подпункт «b» GDPR).",
+          "Обеспечение безопасности, предотвращение злоупотреблений и обработка жалоб — в рамках законного интереса, направленного на защиту сервиса и его пользователей (ст. 6, п. 1, подпункт «f» GDPR).",
+          "Мы не продаем персональные данные и не передаем их для рекламных целей."
+        ]
+      },
+      {
+        "heading": "Компании, обрабатывающие данные для ASBC",
+        "paragraphs": [
+          "Cloudflare: хостинг и доставка содержимого сайта, а также пересылка электронной почты на адрес contact@asbc.app. При передаче запросов компания обрабатывает данные о подключении, такие как IP-адреса.",
+          "Valve (Steam): если вы выбираете вход через Steam, авторизация происходит на платформе Steam.",
+          "Vercel: хостинг по предыдущему адресу (juhyeonl.dev/lab/shadowcraft).",
+          "Сервер и база данных находятся в Финляндии. Cloudflare, Valve и Vercel — американские компании, поэтому обработка данных с их участием может подразумевать их передачу в Соединенные Штаты."
+        ]
+      },
+      {
+        "heading": "Сроки хранения данных",
+        "paragraphs": [
+          "Ваша учетная запись и публикации хранятся до тех пор, пока вы их не удалите или не удалите свою учетную запись целиком. Удаление учетной записи также приводит к удалению привязки к Steam, сеансов, сборок (билдов), комментариев, голосов и жалоб.",
+          "Резервные копии базы данных для восстановления создаются ежедневно, хранятся в течение 30 дней, а затем автоматически удаляются. Удаленные данные сохраняются только в этих резервных копиях до момента их удаления."
+        ]
+      },
+      {
+        "heading": "Ваши права",
+        "paragraphs": [
+          "Вы можете в любой момент удалить свою учетную запись и все опубликованные вами материалы, воспользовавшись функцией «Удалить учетную запись» в настройках профиля.",
+          "Вы можете запросить доступ к своим данным, их исправление, удаление, ограничение обработки или перенос, а также возразить против их обработки. Отправьте запрос с указанием вашего имени пользователя на адрес contact@asbc.app. Мы можем попросить вас дополнительно подтвердить, что учетная запись принадлежит именно вам.",
+          "Вы можете подать жалобу в орган по защите данных вашей страны или в Управление омбудсмена по защите данных Финляндии (Tietosuojavaltuutetun toimisto, tietosuoja.fi)."
+        ]
+      },
+      {
+        "heading": "Изменения",
+        "paragraphs": [
+          "В случае изменения порядка обработки данных (например, при добавлении рекламы) эта страница и указанная на ней дата вступления изменений в силу будут обновлены до того, как такие изменения вступят в силу."
+        ]
+      }
+    ]
+  }
+}

@@ -1,8 +1,9 @@
 /**
  * ASBC privacy policy, written per language (legal text, not run through the UI dictionary).
- * Every statement must match what the site actually does; update the date and all four languages together.
+ * Every statement must match what the site actually does; update the date and all supported languages together.
  */
 import type {Locale} from '../app/locale';
+import translatedPrivacy from './data/privacy-translations.json';
 
 export const PRIVACY_CONTACT = 'contact@asbc.app';
 export const PRIVACY_UPDATED = '2026-10-25';
@@ -222,4 +223,5 @@ export const PRIVACY: Record<Locale, Policy> = {
       ]},
     ],
   },
+  ...translatedPrivacy,
 };

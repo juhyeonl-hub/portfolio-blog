@@ -3,7 +3,8 @@ import skillNames from './data/skill-names.json';
 import official from './data/official-specializations.json';
 import type {Locale} from './localization';
 const escape=(value:string)=>value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-const patterns=templates.map(row=>({row,pattern:new RegExp('^'+row.source.split(/\{\d+\}/).map(escape).join('(\\d+(?:\\.\\d+)?)')+'$')}));
+const translatedTemplates=templates as Array<{source:string;en:string}&Partial<Record<Locale,string>>>;
+const patterns=translatedTemplates.map(row=>({row,pattern:new RegExp('^'+row.source.split(/\{\d+\}/).map(escape).join('(\\d+(?:\\.\\d+)?)')+'$')}));
 const names=skillNames as Record<string,{en:string;ja?:string}>;
 const officialText=official as Record<string,{ko:string;en?:string;ja?:string}>;
 const own=(object:object,key:string)=>Object.prototype.hasOwnProperty.call(object,key);
@@ -32,7 +33,7 @@ export function localizeSpecialization(source:string,locale:Locale,id?:string):s
  if(locale==='ko')return source;
  // Official client text (metabot.gg mirror), checked against this exact Korean source. If the server catalog
  // later changes the description, the official text no longer applies and the current source is translated instead.
- if(id&&(locale==='en'||locale==='ja')&&own(officialText,id)&&officialText[id].ko===source){const text=officialText[id][locale];if(text)return text;}
- for(const {row,pattern} of patterns){const match=source.match(pattern);if(match)return localizeSkillReferences(row[locale].replace(/\{(\d+)\}/g,(_,index)=>match[Number(index)+1]),locale);}
+ if(id&&(locale==='en'||locale==='ja')&&own(officialText,id)&&officialText[id].ko===source){const text=officialText[id][locale];if(text)return localizeSkillReferences(text,locale);}
+ for(const {row,pattern} of patterns){const match=source.match(pattern);if(match)return localizeSkillReferences((row[locale]||row.en).replace(/\{(\d+)\}/g,(_,index)=>match[Number(index)+1]),locale);}
  return source;
 }

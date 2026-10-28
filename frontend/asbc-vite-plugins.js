@@ -3,11 +3,12 @@ import { readFileSync } from 'node:fs'
 import { fileURLToPath, URL } from 'node:url'
 
 const dictionaryFile = fileURLToPath(new URL('./shadowcraft/lib/data/ui-translations.json', import.meta.url))
-const LOCALES = ['en', 'ja', 'fi']
+const LOCALES = ['en', 'ja', 'fi', 'fr', 'de', 'es', 'pt-BR', 'ru']
 
 /**
- * `virtual:asbc-locale/<en|ja|fi>`: the UI dictionary for one language only ({ko: translated}), so a visitor downloads
- * the language they read instead of all four (Korean, the source language, needs no dictionary at all).
+ * `virtual:asbc-locale/<locale>` (en, ja, fi, fr, de, es, pt-BR, ru): the UI dictionary for one language only
+ * ({ko: translated}), so a visitor downloads only the language they read (Korean, the source language, needs no
+ * dictionary at all). Missing translations are rejected by the dictionary coverage tests.
  * The source file stays lib/data/ui-translations.json, which the unit tests read directly.
  */
 export function asbcLocaleBundles() {

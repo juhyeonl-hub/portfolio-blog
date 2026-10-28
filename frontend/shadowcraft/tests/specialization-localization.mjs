@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {moduleUrl} from './modules.mjs';
 const templates=JSON.parse(readFileSync('lib/data/specialization-translations.json','utf8'));
-const {localizeSpecialization:translate,localizeNodeName}=await import(moduleUrl(readFileSync('lib/specialization-localization.ts','utf8').replace("import templates from './data/specialization-translations.json';",'const templates='+JSON.stringify(templates)+';').replace("import skillNames from './data/skill-names.json';",'const skillNames='+readFileSync('lib/data/skill-names.json','utf8')+';').replace("import official from './data/official-specializations.json';",'const official='+readFileSync('lib/data/official-specializations.json','utf8')+';')));
+const {localizeSpecialization:translate,localizeNodeName,localizeSkillReferences}=await import(moduleUrl(readFileSync('lib/specialization-localization.ts','utf8').replace("import templates from './data/specialization-translations.json';",'const templates='+JSON.stringify(templates)+';').replace("import skillNames from './data/skill-names.json';",'const skillNames='+readFileSync('lib/data/skill-names.json','utf8')+';').replace("import official from './data/official-specializations.json';",'const official='+readFileSync('lib/data/official-specializations.json','utf8')+';')));
 const exact=[
  ['재시전 시간 1.5초 감소','en','-1.5s cooldown'],
  ['적중 시 확정 치명타','en','Guaranteed Critical Hit on hit'],
@@ -23,7 +23,7 @@ const exact=[
  ['생명력 50% 이하일 때 회복량 30% 증가','en','+30% amount restored when HP is 50% or less'],
  ['5초 동안 30% 확률로 속박 효과 부여','en','30% chance to inflict Root for 5s'],
  ['유지 시간 동안 [배후 강타] 효과 1.5배 증가','en','x1.5 [Rear Smite] effect for the duration'],
- ['2번 연속기 [암격] 추가','en','Adds Chain Skill 2 [암격]'],
+ ['2번 연속기 [암격] 추가','en','Adds Chain Skill 2 [Dark Strike]'],
  ['기운을 중심으로 4m내의 최대 4명의 적들의 이동 속도를 3s 동안 40% 감소','en','Reduces Move Speed of up to 4 enemies within 4m of the Aura by 40% for 3s'],
  ['PVE 피해 증폭 10%, PVP 피해 증폭 5% 추가 감소','en','+10% PvE Damage Boost reduction and +5% PvP Damage Boost reduction'],
  ['적중 시 50%의 확률로 3s 동안 기절','ja','的中時、50%の確率で3秒間気絶'],
@@ -36,17 +36,17 @@ assert.equal(translate('[침투] 사거리 10m 증가','en'),'+10m [Infiltrate] 
 for(const source of ['재시전 시간 1초 증가','재시전 시간 1초 감소 및 피해 증가','[다른 스킬] 재시전 시간 1초 감소','재시전 시간 -1초 감소','재시전 시간 1초 감소\n'])assert.equal(translate(source,'en'),source,'unknown/compound effects must remain exact source text');
 const numbers=s=>s.match(/\d+(?:\.\d+)?/g)?.sort()||[];
 for(const row of templates){const source=row.source.replace(/\{(\d+)\}/g,(_,i)=>String(12.5+Number(i)));
- for(const locale of ['en','ja','fi']){assert.deepEqual(numbers(translate(source,locale)),numbers(source));assert.ok(!/\{\d+\}/.test(translate(source,locale)));}
+ for(const locale of ['en','ja','fi','fr','de','es','pt-BR','ru']){assert.deepEqual(numbers(translate(source,locale)),numbers(source));assert.ok(!/\{\d+\}/.test(translate(source,locale)));}
  assert.equal(translate(source,'ko'),source);
 }
 let total=0,matched=0;
 for(const file of readdirSync('lib/data/catalogs').filter(f=>f.endsWith('.json'))){const catalog=JSON.parse(readFileSync('lib/data/catalogs/'+file,'utf8'));const before=JSON.stringify(catalog);
- for(const skill of catalog.skills)for(const spec of skill.specializations||[]){total++;if(translate(spec.description,'en')!==spec.description)matched++;for(const locale of ['en','ja','fi'])assert.deepEqual(numbers(translate(spec.description,locale)),numbers(spec.description));}
+ for(const skill of catalog.skills)for(const spec of skill.specializations||[]){total++;if(translate(spec.description,'en')!==spec.description)matched++;for(const locale of ['en','ja','fi','fr','de','es','pt-BR','ru'])assert.deepEqual(numbers(translate(spec.description,locale)),numbers(spec.description));}
  assert.equal(JSON.stringify(catalog),before);
 }
 assert.equal(total,896);assert.equal(matched,total,'every catalog specialization has a reviewed template');
 assert.equal(new Set(templates.map(row=>row.source)).size,templates.length,'template sources are unique');
-for(const row of templates)for(const locale of ['en','ja','fi']){const ph=s=>(s.match(/\{\d+\}/g)||[]).sort().join();assert.equal(ph(row[locale]),ph(row.source),row.source+' '+locale);assert.ok(!/[가-힣]/.test(row[locale].replace(/\[[^\]]+\]/g,'')),'untranslated Korean outside skill names: '+row[locale]);}
+for(const row of templates)for(const locale of ['en','ja','fi','fr','de','es','pt-BR','ru']){const ph=s=>(s.match(/\{\d+\}/g)||[]).sort().join();assert.equal(ph(row[locale]),ph(row.source),row.source+' '+locale);assert.ok(!/[가-힣]/.test(row[locale].replace(/\[[^\]]+\]/g,'')),'untranslated Korean outside skill names: '+row[locale]);}
 console.log(`Specialization localization: ${matched}/${total} descriptions match reviewed templates; all numeric values preserved, unknown effects untouched, source catalogs unchanged PASS`);
 
 // Official global-client skill names: every catalog skill maps by id to the en-US client name.
@@ -56,14 +56,14 @@ console.log(`Specialization localization: ${matched}/${total} descriptions match
  console.log(`Skill names: ${Object.keys(names).length} catalog/node skill names map to official global-client names PASS`);}
 // Daevanion node names: patterns, official skill names, comma-joined stats; Korean unchanged; every catalog node name resolves.
 {const messages=JSON.parse(readFileSync('lib/data/ui-translations.json','utf8'));const {localizedValue}=await import(moduleUrl(readFileSync('lib/localization.ts','utf8')));
- const tr=locale=>(key,values)=>localizedValue(key,Object.fromEntries(Object.entries(messages).map(([k,v])=>[k,v[locale]])),values);
+ const dictionaries=new Map();const tr=locale=>{if(!dictionaries.has(locale))dictionaries.set(locale,Object.fromEntries(Object.entries(messages).map(([k,v])=>[k,v[locale]])));return (key,values)=>localizedValue(key,dictionaries.get(locale),values);};
  assert.equal(localizeNodeName('스킬 레벨 상승 - 침투','en',tr('en')),'Skill Level Up - Infiltrate');
  assert.equal(localizeNodeName('네자칸 - 시작','en',tr('en')),'Nezekan - Start');
  assert.equal(localizeNodeName('PVP 치명타, PVP 치명타 저항','en',tr('en')),'PvP Critical Hit, PvP Critical Hit Resist');
  assert.equal(localizeNodeName('침투','en',tr('en')),'Infiltrate');
  assert.equal(localizeNodeName('네자칸 - 시작','ko',tr('ko')),'네자칸 - 시작');
- let nodes=0;for(const file of readdirSync('lib/data/catalogs').filter(f=>f.endsWith('.json')))for(const board of JSON.parse(readFileSync('lib/data/catalogs/'+file,'utf8')).boards)for(const node of board.nodes)for(const locale of ['en','ja','fi']){nodes++;const out=localizeNodeName(node.name,locale,tr(locale));assert.ok(!/[가-힣]/.test(out),node.name+' '+locale+' -> '+out);}
- console.log(`Daevanion nodes: ${nodes/3} node names translate in en/ja/fi with no Korean left PASS`);}
+ let nodes=0;for(const file of readdirSync('lib/data/catalogs').filter(f=>f.endsWith('.json')))for(const board of JSON.parse(readFileSync('lib/data/catalogs/'+file,'utf8')).boards)for(const node of board.nodes)for(const locale of ['en','ja','fi','fr','de','es','pt-BR','ru']){nodes++;const out=localizeNodeName(node.name,locale,tr(locale));assert.ok(!/[가-힣]/.test(out),node.name+' '+locale+' -> '+out);}
+ console.log(`Daevanion nodes: ${nodes/8} node names translate in all eight non-Korean locales with no Korean left PASS`);}
 // Official client text by specialization id (en/ja), only where numbers match the Korean catalog; Japanese skill names in ja.
 {const officialText=JSON.parse(readFileSync('lib/data/official-specializations.json','utf8'));
  assert.equal(translate('[침투] 적중 시 행동력 300 회복','ja','13360010'),'[侵入]的中時に行動力300回復');
@@ -75,5 +75,5 @@ console.log(`Specialization localization: ${matched}/${total} descriptions match
  assert.equal(translate('[침투] 적중 시 행동력 500 회복','en','13360010'),translate('[침투] 적중 시 행동력 500 회복','en'));
  assert.notEqual(translate('[침투] 적중 시 행동력 500 회복','en','13360010'),officialText['13360010'].en);
  const num=s=>(s.replace(/(?<=\d),(?=\d{3})/g,'').match(/\d+(?:\.\d+)?/g)||[]).sort();
- let used=0;for(const file of readdirSync('lib/data/catalogs').filter(f=>f.endsWith('.json')))for(const skill of JSON.parse(readFileSync('lib/data/catalogs/'+file,'utf8')).skills)for(const spec of skill.specializations)for(const locale of ['en','ja']){const out=translate(spec.description,locale,spec.id);assert.deepEqual(num(out),num(spec.description),spec.id+' '+locale);if(officialText[spec.id]?.[locale]){used++;assert.equal(officialText[spec.id].ko,spec.description);assert.equal(out,officialText[spec.id][locale]);}}
+ let used=0;for(const file of readdirSync('lib/data/catalogs').filter(f=>f.endsWith('.json')))for(const skill of JSON.parse(readFileSync('lib/data/catalogs/'+file,'utf8')).skills)for(const spec of skill.specializations)for(const locale of ['en','ja']){const out=translate(spec.description,locale,spec.id);assert.deepEqual(num(out),num(spec.description),spec.id+' '+locale);if(officialText[spec.id]?.[locale]){used++;assert.equal(officialText[spec.id].ko,spec.description);assert.equal(out,localizeSkillReferences(officialText[spec.id][locale],locale));assert.ok(!/[가-힣]/.test(out),spec.id+" untranslated official reference");}}
  console.log(`Official specialization text: ${used} en/ja entries used by id, numbers equal to the Korean catalog PASS`);}

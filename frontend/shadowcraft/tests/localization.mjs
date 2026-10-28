@@ -10,14 +10,14 @@ assert.equal(localizedValue('{0} 님',{'{0} 님':'Hello {0}'},['<script>']),'Hel
 const value={name:'사용자가 입력한 이름'};assert.equal(localizedValue(value,{'사용자가 입력한 이름':'Other'}),value);
 assert.equal(localizedValue(0,{}),0);assert.equal(localizedValue(null,{}),null);
 const messages=JSON.parse(readFileSync('lib/data/ui-translations.json','utf8'));
-for(const [source,translations] of Object.entries(messages))for(const locale of ['en','ja','fi'])assert.ok(typeof translations[locale]==='string'&&translations[locale].trim(),source+' '+locale);
-console.log('Localization: fallback, whitespace, numeric placeholders, malformed translation rejection, non-string preservation and three-language dictionary coverage PASS');
+for(const [source,translations] of Object.entries(messages))for(const locale of ['en','ja','fi','fr','de','es','pt-BR','ru'])assert.ok(typeof translations[locale]==='string'&&translations[locale].trim(),source+' '+locale);
+console.log('Localization: fallback, whitespace, numeric placeholders, malformed translation rejection, non-string preservation and eight-language dictionary coverage PASS');
 
 for(const key of ['constructor','toString','__proto__'])assert.equal(localizedValue(key,{}),key,'unknown dictionary keys must not read object prototype');
 
 // Every manual translation must preserve the exact parameter multiset.
 const parameters=text=>[...text.matchAll(/\{(\d+)\}/g)].map(m=>m[1]).sort();
-for(const [source,translations] of Object.entries(messages))for(const locale of ['en','ja','fi']){
+for(const [source,translations] of Object.entries(messages))for(const locale of ['en','ja','fi','fr','de','es','pt-BR','ru']){
  assert.deepEqual(parameters(translations[locale]),parameters(source),source+' '+locale+' parameters');
  assert.ok(!translations[locale].includes('{t('),source+' must not contain source code');
 }
@@ -29,7 +29,7 @@ const states=[bossDisplay(null,'gartua',now,false),bossDisplay(null,'gartua',now
 for(const confirmed of [true,false])for(const failed of [true,false])for(const state of ['up','dead'])for(const nextSpawn of [0,now-1,now+1]){
  states.push(bossDisplay({...feed,bosses:{gartua:{...feed.bosses.gartua,confirmed,state,nextSpawn}}},'gartua',now,failed));
 }
-for(const state of states)for(const key of [state.text,state.note])if(key)for(const locale of ['en','ja','fi']){
+for(const state of states)for(const key of [state.text,state.note])if(key)for(const locale of ['en','ja','fi','fr','de','es','pt-BR','ru']){
  assert.ok(Object.hasOwn(messages,key),key);
  assert.notEqual(messages[key][locale],key,key+' '+locale);
  if(key.includes('A2Tools'))assert.ok(messages[key][locale].includes('A2Tools'),'External observation source name must remain A2Tools');
@@ -58,3 +58,12 @@ for(const name of screens){
  visit(ast);
 }
 console.log(`Localization: all ${screens.length} screens have translated static JSX/attributes and valid literal keys PASS`);
+
+// New privacy translations retain the same sections/paragraphs and public contact.
+const {PRIVACY}=await import(moduleUrl(readFileSync('lib/privacy-policy.ts','utf8').replace("import translatedPrivacy from './data/privacy-translations.json';",'const translatedPrivacy='+readFileSync('lib/data/privacy-translations.json','utf8')+';')));
+for(const locale of ['fr','de','es','pt-BR','ru']){
+ const policy=PRIVACY[locale];assert.ok(policy.title&&policy.updated);assert.equal(policy.sections.length,PRIVACY.en.sections.length);
+ policy.sections.forEach((section,i)=>{assert.ok(section.heading);assert.equal(section.paragraphs.length,PRIVACY.en.sections[i].paragraphs.length);for(const text of section.paragraphs)assert.ok(text.trim());});
+ assert.ok(JSON.stringify(policy).includes('contact@asbc.app'));assert.ok(!/ZXQ|QQP/.test(JSON.stringify(policy)));
+}
+console.log('Privacy: five additional policies retain section structure and contact PASS');

@@ -123,4 +123,12 @@ class AccountSettingsControllerTest {
         mvc.perform(get(API).header("Authorization","Bearer "+alice)).andExpect(jsonPath("$.revision").value(1));
     }
 
+    @Test void steamLocalesRoundTripWithoutChangingOtherSettings()throws Exception{
+        long revision=0;
+        for(String language:java.util.List.of("ko","en","ja","fi","fr","de","es","pt-BR","ru")){
+            var b=body(revision++);((ObjectNode)b.get("entries")).put("asbc-locale",language).put("shadowcraft-selected-class","templar");save(alice,b,200);
+            mvc.perform(get(API).header("Authorization","Bearer "+alice)).andExpect(status().isOk()).andExpect(jsonPath("$.entries.asbc-locale").value(language)).andExpect(jsonPath("$.entries.shadowcraft-selected-class").value("templar"));
+        }
+        var invalid=body(revision);((ObjectNode)invalid.get("entries")).put("asbc-locale","pt");save(alice,invalid,400);
+    }
 }

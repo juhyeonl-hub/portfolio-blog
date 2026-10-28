@@ -9,3 +9,15 @@ for(const key of ['gladiator','templar','ranger','assassin','elementalist','sorc
 }
 for(const [id,entry] of Object.entries(descriptions)){assert.ok(ids.has(id),'description for unknown skill '+id);assert.ok(entry.en.length<2000&&!/<\/?script/i.test(entry.en),id);}
 console.log('Skill descriptions: all',ids.size,'catalog skills covered, no stray ids PASS');
+
+// Translated drafts must keep every numeric value and unresolved/reference token.
+const translatedLocales=['fr','de','es','pt-BR','ru'];
+const refs=text=>(text.match(/\[[^\]]+\]/g)||[]).sort();
+const numeric=text=>(text.replace(/\[[^\]]+\]/g,'').replace(/(?<=\d),(?=\d)/g,'.').match(/\d+(?:\.\d+)?/g)||[]).sort();
+for(const [id,entry]of Object.entries(descriptions))for(const locale of translatedLocales){
+ assert.ok(typeof entry[locale]==='string'&&entry[locale].trim(),id+' '+locale+' coverage');
+ assert.deepEqual(numeric(entry[locale]),numeric(entry.en),id+' '+locale+' numeric values');
+ assert.deepEqual(refs(entry[locale]),refs(entry.en),id+' '+locale+' unresolved values and skill references');
+ assert.ok(!/[가-힣]|ZXQ|QQP|\{SKILL_/.test(entry[locale]),id+' '+locale+' untranslated marker');
+}
+console.log('Skill descriptions: five translated locales preserve all numeric values and unresolved/reference tokens PASS');

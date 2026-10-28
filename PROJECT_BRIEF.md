@@ -952,3 +952,6 @@ Map recovery production complete: 9f121a5 / Pages29f2ca0b. Same-account Chrome/m
 Usability first pass: character-name discovery, truthful current-plan/local-library help and EN/KO craft-sale guide verified on desktop/mobile. Related checks/build and readonly Claude review PASS. User explicitly authorized scoped main commit/push/production release on2026-10-28. See tasks/asbc-usability-followup-20261028.md.
 
 Usability follow-up released2026-10-28: source73e57d9 main/origin; Cloudflare https://fff4ad99.asbc-4c9.pages.dev; production PC/mobile character search/save scope and EN/KO crafting guides verified. Existing302pendingpaths preserved. See tasks/asbc-usability-followup-20261028.md and artifacts/usability-followup-20261028.
+
+## Steam locale completion —2026-10-28
+[Task Goal]:Remove Korean leakage in English tooltips; add fr/de/es/pt-BR/ru, verify desktop/mobile and immediately release scoped changes. User explicitly authorizes deployment; unrelated edits preserved. Task:tasks/asbc-steam-locales-20261028.md.

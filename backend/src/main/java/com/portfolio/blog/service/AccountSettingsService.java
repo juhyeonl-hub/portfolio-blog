@@ -60,7 +60,7 @@ public class AccountSettingsService {
         entries.fields().forEachRemaining(e->{
             String key=e.getKey();var raw=e.getValue();require(raw.isTextual());String value=raw.textValue();
             switch(key){
-                case "asbc-locale" -> require(Set.of("ko","en","ja","fi").contains(value));
+                case "asbc-locale" -> require(Set.of("ko","en","ja","fi","fr","de","es","pt-BR","ru").contains(value));
                 case "shadowcraft-selected-class" -> require(CLASSES.contains(value));
                 case "favorites" -> {var n=parse(value);strings(n,6,32);for(var id:n)require(Set.of("quick","map","public-builds","builds","database","updates").contains(id.textValue()));}
                 case "a2bc-event-timers-v1" -> timer(parse(value));

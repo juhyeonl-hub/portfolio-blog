@@ -1,0 +1,20 @@
+/* Preserve editor state while a first language bundle loads. */
+.locale-stage:not([hidden]){display:contents}
+.locale-stage[hidden]{display:none}
+.locale-loading{position:fixed;inset:20px 16px auto;z-index:1000;max-width:620px;margin:auto;padding:20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.locale-loading p{flex-basis:100%;color:var(--text)}
+.locale-loading button{min-height:44px;padding:8px 14px;border:1px solid var(--line);border-radius:7px;background:var(--panel2)}
+/* Long translations must wrap rather than widening the mobile planner. */
+.shell main .asbc-footer nav{flex-wrap:wrap;min-width:0}
+@media(max-width:760px){
+ .shell main .build-pills{display:flex;flex-wrap:wrap;gap:8px}
+ .shell main .mobile-build-navigation{flex:1 1 100%;min-width:0}
+ .shell main .mobile-build-navigation button{max-width:42%;white-space:normal}
+ .shell main .build-pills>.planner-save-link{margin-left:auto;max-width:100%;white-space:normal;text-align:center}
+ .shell main .segmented{max-width:100%;min-width:0;flex-wrap:wrap}
+ .shell main .segmented>button{min-width:0;white-space:normal;overflow-wrap:anywhere}
+ .shell main .stats-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .shell main .stat{min-width:0;overflow-wrap:anywhere}
+ .shell main .stat>div:first-child{flex-wrap:wrap}
+ .shell main .content .button{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+}

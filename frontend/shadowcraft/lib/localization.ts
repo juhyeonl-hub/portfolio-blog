@@ -1,4 +1,4 @@
-export type Locale='ko'|'en'|'ja'|'fi';
+export type Locale='ko'|'en'|'ja'|'fi'|'fr'|'de'|'es'|'pt-BR'|'ru';
 export type Translations=Record<string,string>;
 export function localizedValue<T>(value:T,translations:Translations,parameters?:unknown[]):T{
  if(typeof value!=='string')return value;

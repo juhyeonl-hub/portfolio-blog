@@ -24,7 +24,7 @@ function planClass(key:string){return key.split(':')[1]||'assassin';}
 export function projectSetting(key:string,raw:string):string {
  if(!settingKey(key))throw Error('Unknown setting');
  if(isTradeCollection(key))return JSON.stringify(parseTradeCollection(key,raw));
- if(key==='asbc-locale'){if(!['ko','en','ja','fi'].includes(raw))throw Error('Invalid language');return raw;}
+ if(key==='asbc-locale'){if(!['ko','en','ja','fi','fr','de','es','pt-BR','ru'].includes(raw))throw Error('Invalid language');return raw;}
  if(key==='shadowcraft-selected-class'){if(!classes.includes(raw))throw Error('Invalid class');return raw;}
  if(key==='favorites')return JSON.stringify(parseFavorites(raw));
  const value=JSON.parse(raw);

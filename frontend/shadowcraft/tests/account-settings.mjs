@@ -171,3 +171,5 @@ try{
 const manualStigmas={...planner.emptyPlan(JSON.parse(readFileSync('lib/data/catalogs/templar.json'))),stigmaSkills:['14080000']};
 assert.deepEqual(JSON.parse(projectSetting('shadowcraft-plan-v1:templar',JSON.stringify(manualStigmas))).stigmaSkills,['14080000']);
 console.log('Account settings: explicit stigma selection roundtrip PASS');
+
+for(const locale of ["fr","de","es","pt-BR","ru"])assert.equal(projectSetting("asbc-locale",locale),locale);

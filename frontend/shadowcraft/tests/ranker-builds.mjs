@@ -112,8 +112,8 @@ const scopedCopy=readFileSync('lib/ranker-comparison-text.ts','utf8');
 const {rankerText}=await import(moduleUrl(scopedCopy));
 const copyKeys=[...scopedCopy.matchAll(/^ (\w+): \[/gm)].map(m=>m[1]);
 assert(copyKeys.length>15);
-for(const key of copyKeys)for(const language of ['ko','en','ja','fi']){const value=rankerText(language,key);assert(value.length>0);if(language!=='ko')assert(!/[가-힣]/.test(value),language+' '+key);}
-console.log('Ranker visual: catalog order, final observations, missing/zero/malformed/equipped distinctions and four locales PASS');
+for(const key of copyKeys)for(const language of ['ko','en','ja','fi','fr','de','es','pt-BR','ru']){const value=rankerText(language,key);assert(value.length>0);if(language!=='ko')assert(!/[가-힣]/.test(value),language+' '+key);}
+console.log('Ranker visual: catalog order, final observations, missing/zero/malformed/equipped distinctions and nine locales PASS');
 
 assert(rankerItemNeedsProfile('장비가 바뀌었거나 조회 정보가 일치하지 않습니다. 캐릭터를 다시 조회하세요.'));
 assert(rankerItemNeedsProfile('실제 장비 옵션을 확인하지 못했습니다. 캐릭터를 다시 조회하세요.'));
