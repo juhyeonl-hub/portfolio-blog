@@ -936,3 +936,5 @@ Task: tasks/asbc-map-layout-20261027.md. Codex implements, Claude final read-onl
 [Task Goal]: Verify automatic map completion sync across two signed-in browsers and mobile viewport, fix scoped defects and deploy after review. Preserve existing progress and unrelated edits. Task tasks/asbc-map-account-sync-20261028.md.
 
 Map account sync (2026-10-28): fixed first-region concurrent completion merge and checkbox-focus polling stall; map feedback distinguishes local storage from account sync. Typecheck/account-settings/world-map/terrain-map/localization/trade-sync/build passed; Claude read-only review PASS. Scoped deployment pending final production recheck.
+
+Map account sync production complete: product9bd790f, Pagesaa6ea3cf. Real same-account Chrome/IAB check+uncheck automatically propagate even with checkbox focus; mobile390x844 refresh retained record. Test point restored unchecked on both. Four scoped product/test files only; existing314pending paths preserved. Evidence artifacts/map-account-sync-20261028.
