@@ -5,9 +5,11 @@ import {totals,MODE_NAMES,type Catalog} from '../lib/planner';
 import type {Plan} from '../lib/planner';
 import CharacterComparison from './character-comparison';
 import {useLocale} from './locale';
+import {useMember} from './community';
 import {libraryKey, parseLibrary, snapshot, writeLibrary, type BuildLibrary, type SavedBuild} from '../lib/build-library';
 export default function BuildLibraryPanel({classKey, catalog, catalogVersion, plan, onApply}: {classKey: string; catalog: Catalog; catalogVersion: string; plan: Plan; onApply: (plan: Plan) => void}) {
   const {t,locale} = useLocale();
+  const member=useMember();
   const [state,setState] = useState<{raw:string|null; data:BuildLibrary}|null>(null);
   const [name,setName] = useState('');
   const [error,setError] = useState('');
@@ -37,7 +39,7 @@ export default function BuildLibraryPanel({classKey, catalog, catalogVersion, pl
     if(!state)return;
     try {
       const entry=snapshot(plan,classKey,name,catalogVersion,crypto.randomUUID());
-      if(await write({...state.data,entries:[entry,...state.data.entries]})){setName('');setMessage('현재 계획을 새 빌드로 보관했습니다.');}
+      if(await write({...state.data,entries:[entry,...state.data.entries]})){setName('');setMessage('현재 계획을 이 기기 보관함에 저장했습니다.');}
     } catch(e){setError(e instanceof Error?e.message:'빌드를 보관하지 못했습니다.');}
   }
   function download(entry:SavedBuild) {
@@ -55,8 +57,9 @@ export default function BuildLibraryPanel({classKey, catalog, catalogVersion, pl
   }
   const pendingTotals=pending?totals(catalog,pending.plan):null;
   return <section className="card build-library" aria-label={t('빌드 보관함')}><h2>{t('빌드 보관함')}</h2>
-    <p>{t('편집한 계획은 자동 저장됩니다. 이름을 붙여 보관하면 나중에 이 상태를 다시 불러올 수 있습니다.')}</p>
-    <p>{t('현재 직업의 캐릭터·장비·포인트 조합을 최대 20개 보관합니다. 이 브라우저에만 저장됩니다. 다른 기기로 옮길 때는 빌드 내보내기를 사용하세요.')}</p>
+    <p>{t(member?'현재 계획의 배분·포인트·장비 선택은 계정으로 자동 동기화됩니다.':'현재 계획은 이 브라우저에 자동 저장됩니다. 다른 기기에서도 이어 하려면 로그인하세요.')} <a href="#/account">{t(member?'동기화 상태 보기':'Steam으로 로그인')}</a></p>
+    <h3>{t('이 기기 보관함 · 자동 동기화 안 됨')}</h3>
+    <p>{t('이름을 붙여 최대 20개까지 따로 보관합니다. 다른 기기로 옮기려면 원하는 보관본 옆의 내보내기를 누르고, 그 기기에서 같은 직업을 선택해 저장한 빌드 가져오기로 여세요.')}</p>
     {error&&<p role="alert">{t(error)}</p>}{message&&<p role="status">{t(message)}</p>}
     <button className="button ghost small library-reload" onClick={reload}>{t('보관함 다시 불러오기')}</button>
     {state&&<><div className="database-filters"><label>{t('빌드 이름')}<input aria-label={t('빌드 이름')} maxLength={60} value={name} onChange={e=>setName(e.target.value)}/></label><button className="button primary" disabled={!name.trim()||state.data.entries.length>=20} onClick={save}>{t('현재 계획 보관')}</button>{!name.trim()&&<small className="subtle">{t('빌드 이름을 입력하면 보관할 수 있습니다.')}</small>}</div>

@@ -945,3 +945,8 @@ Map account sync production complete: product9bd790f, Pagesaa6ea3cf. Real same-a
 Map recovery: fixed lost-acknowledgement/offline undo or re-check by persisting local per-marker pending intent until acknowledged. Six focused recovery scenarios, related suites/typecheck/build pass; Claude read-only review PASS, F1 suite registration addressed. Production PC/mobile concurrency and refresh verified; transport interruption covered by deterministic tests. Scoped release pending.
 
 Map recovery production complete: 9f121a5 / Pages29f2ca0b. Same-account Chrome/mobile-viewport concurrent checks and reload retained both locations; all own test checks restored, tabs closed. Six deterministic outage/response-loss/reload scenarios pass; physical network UI unavailable. Claude review PASS; prior314 pending changes retained, including mixed test-script changes.
+
+## Usability follow-up — 2026-10-28
+[Task Goal]: Apply the first recommended pass to character-build discovery, current trade guides and truthful save/sync scope; audit other classes and remaining-language readiness. Preserve unrelated work. Task: tasks/asbc-usability-followup-20261028.md.
+
+Usability first pass: character-name discovery, truthful current-plan/local-library help and EN/KO craft-sale guide verified on desktop/mobile. Related checks/build and readonly Claude review PASS. User explicitly authorized scoped main commit/push/production release on2026-10-28. See tasks/asbc-usability-followup-20261028.md.

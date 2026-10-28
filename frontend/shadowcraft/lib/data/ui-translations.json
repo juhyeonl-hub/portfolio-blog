@@ -13398,5 +13398,45 @@
     "en": "No unlocked Daevanion boards were reported.",
     "ja": "照会結果に解放済みのデヴァニオンボードがありません。",
     "fi": "Haussa ei ilmoitettu avattuja Daevanion-lautoja."
+  },
+  "캐릭터 빌드 찾기": {
+    "en": "Find character builds",
+    "ja": "キャラクタービルド検索",
+    "fi": "Hae hahmon koontia"
+  },
+  "로그인하면 현재 빌드 배분·포인트와 지도 완료 기록을 같은 Steam 계정의 기기에서 이어서 사용할 수 있습니다. 이름을 붙인 보관본과 성장 기록은 이 브라우저에만 남습니다.": {
+    "en": "Sign in with the same Steam account to continue your current build allocation, points and map completion on another device. Named library copies and growth history stay in this browser.",
+    "ja": "同じSteamアカウントでログインすると、現在のビルド配分・ポイント・マップの完了記録を別の端末でも使えます。名前付きの保存ビルドと成長記録はこのブラウザにのみ残ります。",
+    "fi": "Kirjaudu samalla Steam-tilillä jatkaaksesi nykyistä pistejakoa ja kartan suorituksia toisella laitteella. Nimetyt kirjastokopiot ja kehityshistoria jäävät tähän selaimeen."
+  },
+  "현재 계획의 배분·포인트·장비 선택은 계정으로 자동 동기화됩니다.": {
+    "en": "Your current allocation, point totals and equipment choices sync automatically with your account.",
+    "ja": "現在の配分・ポイント総量・装備の選択はアカウントに自動同期されます。",
+    "fi": "Nykyinen pistejako, pistemäärät ja varustevalinnat synkronoituvat automaattisesti tilillesi."
+  },
+  "현재 계획은 이 브라우저에 자동 저장됩니다. 다른 기기에서도 이어 하려면 로그인하세요.": {
+    "en": "Your current plan saves automatically in this browser. Sign in to continue on another device.",
+    "ja": "現在の計画はこのブラウザに自動保存されます。別の端末で続けるにはログインしてください。",
+    "fi": "Nykyinen suunnitelma tallentuu automaattisesti tähän selaimeen. Kirjaudu sisään jatkaaksesi toisella laitteella."
+  },
+  "이 기기 보관함 · 자동 동기화 안 됨": {
+    "en": "Library on this device · does not sync",
+    "ja": "この端末のライブラリ · 自動同期なし",
+    "fi": "Tämän laitteen kirjasto · ei synkronointia"
+  },
+  "이름을 붙여 최대 20개까지 따로 보관합니다. 다른 기기로 옮기려면 원하는 보관본 옆의 내보내기를 누르고, 그 기기에서 같은 직업을 선택해 저장한 빌드 가져오기로 여세요.": {
+    "en": "Keep up to 20 named copies for this class. To move one to another device, use Export beside that copy. On the other device, select the same class and open Import saved build.",
+    "ja": "このクラスで名前付きコピーを最大20件保存できます。別の端末に移すには、そのコピーのエクスポートを使い、移動先で同じクラスを選んで保存ビルドのインポートを開いてください。",
+    "fi": "Säilytä enintään 20 nimettyä kopiota tälle luokalle. Siirrä kopio valitsemalla sen vierestä Vie. Valitse toisella laitteella sama luokka ja avaa Tuo tallennettu koonti."
+  },
+  "현재 계획을 이 기기 보관함에 저장했습니다.": {
+    "en": "Saved your current plan to this device’s library.",
+    "ja": "現在の計画をこの端末のライブラリに保存しました。",
+    "fi": "Nykyinen suunnitelma tallennettiin tämän laitteen kirjastoon."
+  },
+  "캐릭터 성장 기록 · 계산기 입력 · 저장하지 않은 제작 초안": {
+    "en": "Character growth history · calculator inputs · unsaved crafting drafts",
+    "ja": "キャラクター成長記録 · 計算機の入力 · 未保存の製作下書き",
+    "fi": "Hahmon kehityshistoria · laskurin syötteet · tallentamattomat valmistusluonnokset"
   }
 }

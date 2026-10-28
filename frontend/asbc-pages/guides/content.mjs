@@ -6,19 +6,244 @@ export const ui = {
  ko: {title:'아이온2 글로벌 도구와 초보자 이용 안내 | ASBC',heading:'지금 필요한 것부터, 하나씩.',intro:'내 포인트에 맞춰 빌드를 보고, 키나를 쓰기 전에 손익을 계산하세요. 지도에서 위치를 찾고 다음 콘텐츠 시간도 확인할 수 있습니다.',eyebrow:'아이온2 · STEAM 글로벌',description:'아이온2 Steam 글로벌용 빌드·데바니온·거래소 계산기·콘텐츠 타이머·수집 지도 이용 안내. 내 포인트와 가격으로 계획하세요.',open:'ASBC 열기',browse:'무엇을 하고 싶으세요?',all:'전체 안내',read:'이용 방법 보기',steps:'이 순서로 시작하세요',related:'함께 볼 안내',skip:'본문으로 건너뛰기',footer:'비공식 팬 도구 · 게임 데이터 © NCSOFT',official:'아이온2 공식 사이트',privacy:'개인정보 처리방침',languages:'안내 언어',about:'Steam 글로벌 이용자를 위한 도구',aboutText:'플래너는 8개 직업을 지원합니다. 앱은 한국어·영어·일본어·핀란드어, 이 안내는 영어·한국어로 제공됩니다. 기본 도구는 로그인 없이 사용하고, 지원하는 설정 동기화와 커뮤니티 기능에는 Steam 로그인을 이용할 수 있습니다.',scope:'게임 화면과 함께 확인하세요',scopeText:'내 레벨·포인트와 입력한 가격을 기준으로 계산합니다. 캐릭터 조회만으로 모든 잔여 포인트가 확인되지는 않습니다. 타이머는 지연될 수 있고 지도는 가능한 위치를 보여줍니다. 각 안내에 확인할 부분을 적었습니다.'}
 };
 export const topics = [
- {slug:'aion2-trade-calculator',route:'/trade',
- en:{title:'AION 2 Trade Calculator: Tax, Profit & Buy Limits | ASBC',heading:'Know what a trade leaves you.',label:'Trade calculator',description:'Calculate AION 2 Kinah profit after tax, a break-even selling price, purchase limits and partial-sale results. Compare stacks of 25, 50 or 100.',intro:'Enter a purchase price to see selling-price examples after tax. Change the quantity, tax and fees to match your own transaction.',cta:'Open trade calculator',
- steps:[['Enter the purchase cost','Choose a price per item or a total purchase cost. Set how many items you bought; do not enter a stack price as a single-item price.'],['Check the selling conditions','Confirm the current tax in your game. The calculator starts with 10% tax, zero fixed listing cost and conservative upward tax rounding. These are editable calculation defaults.'],['Choose a target or compare a price','Review break-even, 5%, 10% or 20% profit examples, or enter your own selling price. Profit percentage is measured against your purchase cost.']],
- sections:[{heading:'Example: buy at 130,000 Kinah, sell at 150,000',paragraphs:['Buy 100 items for a total of 13,000,000 Kinah. If all 100 sell at 150,000 each, with 10% sales tax and no extra fees, revenue is 15,000,000, tax is 1,500,000 and net profit is 500,000 Kinah.'],table:{caption:'Same unit selling price; all items sold; no fixed fee',head:['Selling plan','Tax','Total net profit'],rows:[['25 × 4 listings','1,500,000','500,000'],['50 × 2 listings','1,500,000','500,000'],['100 × 1 listing','1,500,000','500,000']]},after:'Splitting the same stock does not change the profit in this example. A fee for every listing, per-listing tax rounding or a different selling price can change the result.'},
- {heading:'How much can I pay?',paragraphs:['Use the purchase-limit tool when you already know a possible selling price. It works backwards from that price, tax, costs and your target profit to calculate a maximum purchase cost. A calculated limit does not mean buyers will pay your chosen selling price.']},
- {heading:'What if only some items sell?',paragraphs:['In the trade ledger, record the purchased quantity and cost, then the quantity sold and the actual amount received after settlement. The ledger separates realized profit from the cost still held in unsold inventory. Entering the actual settlement amount avoids deducting tax twice.','For crafting, compare the value of selling the materials with the proceeds and entered costs of selling the finished item. This also depends on the prices you enter.']},
- {heading:'Check before relying on a result',paragraphs:['ASBC does not fetch live exchange prices or guarantee a sale. Confirm the current tax, listing charges and rounding in the game. Relisting costs and changes in market price are not automatically included. The calculator is a planning tool; the ledger records what actually happened.']}],related:['aion2-build-planner']},
- ko:{title:'아이온2 거래소 계산기: 세금·순이익·구매 상한 | ASBC',heading:'팔고 나면 얼마나 남을까요?',label:'거래소 계산기',description:'아이온2 거래소 세후 순이익, 본전 판매가, 구매 상한과 일부 판매 손익을 계산합니다. 25개·50개·100개 묶음도 비교하세요.',intro:'구매 비용을 넣으면 세금을 뺀 판매가 예시가 나옵니다. 수량·세율·비용을 실제 거래 조건에 맞추세요.',cta:'거래소 계산기 열기',
- steps:[['구매 비용 입력','한 개 가격인지 전체 구매 비용인지 먼저 고르세요. 묶음 가격을 한 개 가격으로 넣지 않도록 산 수량도 확인합니다.'],['판매 조건 확인','게임의 현재 세율을 확인하세요. 기본값은 세율 10%, 고정 등록 비용 0키나, 묶음별 세금 올림입니다. 모두 수정할 수 있는 계산 조건입니다.'],['목표 이익 또는 판매가 비교','본전·5%·10%·20% 이익 예시를 보거나 직접 팔 가격을 넣으세요. 이익률의 기준은 구매 비용입니다.']],
- sections:[{heading:'예: 13만에 사서 15만에 팔면?',paragraphs:['100개를 개당 130,000키나에 사면 총 구매 비용은 13,000,000키나입니다. 모두 개당 150,000키나에 팔고 세율 10%, 추가 비용 0키나라면 판매 금액 15,000,000키나에서 세금 1,500,000키나를 빼고 순이익 500,000키나가 남습니다.'],table:{caption:'동일한 개당 판매가·전량 판매·고정 등록비 없음',head:['판매 방식','세금','전체 순이익'],rows:[['25개씩 4번','1,500,000','500,000'],['50개씩 2번','1,500,000','500,000'],['100개 한 번','1,500,000','500,000']]},after:'이 예에서는 나누어 팔아도 이익이 같습니다. 매번 내는 등록 비용, 묶음별 세금 소수점 처리, 판매가 차이가 있으면 결과가 달라집니다.'},
- {heading:'얼마까지 사도 될까요?',paragraphs:['팔 수 있을 것 같은 가격을 먼저 정했다면 구매 상한 도구를 쓰세요. 판매가·세율·비용·목표 이익에서 거꾸로 계산해 구매 상한을 보여줍니다. 그 가격에 실제로 팔린다는 보장은 아닙니다.']},
- {heading:'일부만 팔렸다면?',paragraphs:['거래 장부에 산 수량과 비용, 판매한 수량과 실제 정산 수령액을 기록하세요. 팔아서 확정된 이익과 남은 재고에 들어간 비용을 구분합니다. 실제 정산액을 넣으면 세금을 두 번 빼지 않습니다.','제작 비교에서는 재료를 그대로 파는 경우와 완성품을 파는 경우를 입력한 가격과 비용으로 비교할 수 있습니다.']},
- {heading:'계산 전에 확인할 점',paragraphs:['실시간 시세나 판매 가능성을 자동으로 확인하지 않습니다. 실제 세율·등록 비용·소수점 처리는 게임에서 확인하세요. 재등록 비용과 시세 변동은 자동 반영되지 않습니다. 계산기는 예상, 장부는 실제 거래 기록을 위한 도구입니다.']}],related:['aion2-build-planner']}},
+ {
+  "slug": "aion2-trade-calculator",
+  "route": "/trade",
+  "en": {
+    "title": "AION 2 Crafting Sale Price Calculator: Costs & Tax | ASBC",
+    "heading": "Turn material costs into a selling price.",
+    "label": "Trade calculator",
+    "description": "Enter material prices, quantities and crafting output to calculate an AION 2 selling price after tax. See break-even and target-profit prices.",
+    "intro": "Start with material prices and quantities. Set the finished-item quantity and current tax to see a selling price immediately. Recipes are entered by you, not inferred by ASBC.",
+    "cta": "Open trade calculator",
+    "steps": [
+      [
+        "Enter all materials for this batch",
+        "For each material, enter its price per item and the total quantity you will use. A material name is optional. Add another row for supplies such as sandpaper."
+      ],
+      [
+        "Set the finished-item quantity",
+        "Enter how many finished items the entered materials will produce. Changing only this number does not increase material quantities. Use Make a larger batch to scale materials, output and extra crafting costs together."
+      ],
+      [
+        "Check tax and choose your profit",
+        "Confirm the current tax in the game. Choose No loss or a profit percentage based on total cost. The result is a selling price per finished item, assuming every finished item sells."
+      ]
+    ],
+    "sections": [
+      {
+        "heading": "Example: wood at 5,254 plus sandpaper at 400",
+        "paragraphs": [
+          "For a calculation example, enter 2 wood at 5,254 each and 1 sandpaper at 400. Wood costs 10,508; including sandpaper, the total cost is 10,908 Kinah. Set output to 1 finished item. This is an entered example, not a verified recipe.",
+          "At 10% tax, no extra fees and upward tax rounding, 12,120 Kinah breaks even. The first price that leaves a positive profit is 12,122. A 10% profit target gives 13,333 Kinah: after 1,334 tax, you receive 11,999, leaving 1,091 Kinah profit."
+        ],
+        "table": {
+          "caption": "One finished item; total cost 10,908; tax 10%; no extra costs",
+          "head": [
+            "Goal",
+            "Price per item",
+            "Net profit"
+          ],
+          "rows": [
+            [
+              "No loss",
+              "12,120",
+              "0"
+            ],
+            [
+              "5% of cost",
+              "12,727",
+              "546"
+            ],
+            [
+              "10% of cost",
+              "13,333",
+              "1,091"
+            ],
+            [
+              "20% of cost",
+              "14,545",
+              "2,182"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Making more items",
+        "paragraphs": [
+          "To make ten times this batch, use the ×10 batch control: 20 wood, 10 sandpaper and 10 finished items. Material costs become 109,080 Kinah. Check all quantities before using the result.",
+          "If the same original materials instead produce 2 finished items, leave the material quantities unchanged and set output to 2. The break-even price becomes 6,060 per item under these conditions. Enter the actual output from your recipe."
+        ]
+      },
+      {
+        "heading": "Costs and actual sale prices",
+        "paragraphs": [
+          "Extra costs and settings contains additional crafting costs, listing fees and tax rounding. The calculation starts with 10% tax, zero extra costs and upward rounding; these are editable assumptions. Confirm the game’s actual conditions.",
+          "You can enter an actual planned selling price to see the resulting profit or loss. ASBC does not fetch live market prices or guarantee a sale. Unsold items, repeated listings and crafting failures are not automatically included."
+        ]
+      },
+      {
+        "heading": "Resale and splitting a stack",
+        "paragraphs": [
+          "The previous resale calculator is still available under Saved plans and other calculators. For example, buying 100 items at 130,000 and selling all of them at 150,000 gives revenue 15,000,000, tax 1,500,000 and net profit 500,000 at 10% tax with no fees."
+        ],
+        "table": {
+          "caption": "Same unit selling price; all items sold; no fixed fee",
+          "head": [
+            "Selling plan",
+            "Tax",
+            "Total net profit"
+          ],
+          "rows": [
+            [
+              "25 × 4 listings",
+              "1,500,000",
+              "500,000"
+            ],
+            [
+              "50 × 2 listings",
+              "1,500,000",
+              "500,000"
+            ],
+            [
+              "100 × 1 listing",
+              "1,500,000",
+              "500,000"
+            ]
+          ]
+        },
+        "after": "Fixed listing fees, tax rounding or different selling prices can change the result. The crafting sale-price result assumes one listing for all finished items."
+      },
+      {
+        "heading": "Record what actually sold",
+        "paragraphs": [
+          "Open Trade ledger to record a purchase, sold quantity and actual settlement received. Enter the amount after tax so tax is not deducted twice. The ledger separates realized profit from the cost in unsold stock.",
+          "Calculator inputs stay in this browser. The trade ledger and explicitly saved crafting plans can sync when signed in with the same Steam account. Check account sync status before continuing on another device."
+        ]
+      }
+    ],
+    "related": [
+      "aion2-build-planner"
+    ]
+  },
+  "ko": {
+    "title": "아이온2 제작 판매가 계산기: 재료비·세금·이익 | ASBC",
+    "heading": "재료비를 넣고, 얼마에 팔지 확인하세요.",
+    "label": "거래소 계산기",
+    "description": "재료 가격과 수량, 완성품 개수를 입력해 아이온2 제작 판매가를 계산하세요. 세금을 뺀 본전 가격과 목표 이익 가격을 확인할 수 있습니다.",
+    "intro": "재료 가격과 수량부터 입력하세요. 완성품 개수와 현재 세율을 맞추면 판매가가 바로 나옵니다. 레시피는 자동 추정하지 않고 직접 입력합니다.",
+    "cta": "거래소 계산기 열기",
+    "steps": [
+      [
+        "이번 제작의 전체 재료 입력",
+        "재료마다 개당 가격과 이번에 사용할 총수량을 적으세요. 이름은 선택입니다. 사포 같은 재료도 재료 추가를 눌러 별도 줄에 넣습니다."
+      ],
+      [
+        "완성품 총개수 확인",
+        "입력한 재료로 얻는 완성품 개수를 넣으세요. 이 숫자만 바꾸면 재료 수량은 그대로입니다. 더 많이 만들기를 사용하면 재료·완성품·추가 제작비를 함께 늘릴 수 있습니다."
+      ],
+      [
+        "세율과 남길 이익 선택",
+        "게임의 현재 세율을 확인하고 본전 또는 총비용 기준 이익률을 고르세요. 완성품이 모두 팔린다고 가정한 개당 판매가가 나옵니다."
+      ]
+    ],
+    "sections": [
+      {
+        "heading": "예: 나무 5,254키나와 사포 400키나",
+        "paragraphs": [
+          "계산 예시로 나무는 개당 5,254에 2개, 사포는 개당 400에 1개를 입력합니다. 나무값은 10,508이고 사포까지 합친 총비용은 10,908키나입니다. 완성품은 1개로 입력합니다. 게임 레시피를 검증한 값이 아닌 입력 예시입니다.",
+          "세율 10%, 추가 비용 없음, 세금 올림이면 본전 판매가는 12,120키나입니다. 1키나라도 이익이 생기는 첫 가격은 12,122입니다. 비용 대비 10% 이익을 고르면 13,333키나가 나오며, 세금 1,334를 뺀 수령액은 11,999, 이익은 1,091키나입니다."
+        ],
+        "table": {
+          "caption": "완성품 1개·총비용 10,908·세율 10%·추가 비용 없음",
+          "head": [
+            "목표",
+            "개당 판매가",
+            "순이익"
+          ],
+          "rows": [
+            [
+              "본전",
+              "12,120",
+              "0"
+            ],
+            [
+              "비용 대비 5%",
+              "12,727",
+              "546"
+            ],
+            [
+              "비용 대비 10%",
+              "13,333",
+              "1,091"
+            ],
+            [
+              "비용 대비 20%",
+              "14,545",
+              "2,182"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "더 많이 만들 때",
+        "paragraphs": [
+          "같은 제작을 10배 하려면 10배로를 누르세요. 나무 20개·사포 10개·완성품 10개로 함께 늘어나고 총재료비는 109,080키나입니다. 결과를 사용하기 전에 수량을 확인하세요.",
+          "반대로 원래 재료만으로 완성품이 2개 나온다면 재료 수량은 그대로 두고 완성품 개수만 2로 바꿉니다. 같은 조건에서 개당 본전 가격은 6,060키나입니다. 실제 레시피의 결과 수량을 입력하세요."
+        ]
+      },
+      {
+        "heading": "추가 비용과 실제 판매가",
+        "paragraphs": [
+          "추가 비용·세부 설정에서 추가 제작비·등록비·세금 소수점 처리를 바꿀 수 있습니다. 세율 10%·추가 비용 0·세금 올림은 수정 가능한 계산용 기본값입니다. 실제 게임 조건을 확인하세요.",
+          "직접 팔 가격을 넣으면 그 가격에서 남는 이익이나 손해도 확인할 수 있습니다. 실시간 시세나 판매를 보장하지 않으며, 미판매·재등록·제작 실패는 자동으로 반영하지 않습니다."
+        ]
+      },
+      {
+        "heading": "그대로 되팔기와 묶음 나누기",
+        "paragraphs": [
+          "저장한 계획·다른 계산기에서 이전의 되팔기 계산기도 열 수 있습니다. 예를 들어 100개를 개당 130,000에 사서 모두 150,000에 팔면 판매금액 15,000,000에서 세금 1,500,000을 빼고 순이익 500,000키나가 남습니다. 세율 10%·등록비 없음 기준입니다."
+        ],
+        "table": {
+          "caption": "같은 개당 판매가·전량 판매·고정 등록비 없음",
+          "head": [
+            "판매 방식",
+            "세금",
+            "전체 순이익"
+          ],
+          "rows": [
+            [
+              "25개씩 4번",
+              "1,500,000",
+              "500,000"
+            ],
+            [
+              "50개씩 2번",
+              "1,500,000",
+              "500,000"
+            ],
+            [
+              "100개 한 번",
+              "1,500,000",
+              "500,000"
+            ]
+          ]
+        },
+        "after": "등록 1회당 비용이나 세금 소수점 처리, 판매가가 다르면 이익도 달라질 수 있습니다. 제작 판매가 결과는 완성품 전체를 한 번에 등록하는 기준입니다."
+      },
+      {
+        "heading": "실제로 팔린 기록 남기기",
+        "paragraphs": [
+          "거래 장부에서 구매 비용, 팔린 수량, 실제 정산받은 금액을 적으세요. 정산금은 세금을 뺀 금액으로 입력해 세금을 두 번 빼지 않도록 합니다. 장부에서는 확정된 손익과 남은 재고 비용을 나눠 보여줍니다.",
+          "계산기 입력은 이 브라우저에만 남습니다. 거래 장부와 별도로 저장한 제작 계획은 같은 Steam 계정으로 로그인하면 동기화할 수 있습니다. 다른 기기에서 이어 쓰기 전 계정의 동기화 상태를 확인하세요."
+        ]
+      }
+    ],
+    "related": [
+      "aion2-build-planner"
+    ]
+  }
+},
  {slug:'aion2-build-planner',route:'/build',
  en:{title:'AION 2 Global Build Planner: Leveling, PvE & PvP | ASBC',heading:'Build around the points you have.',label:'Build planner',description:'Plan AION 2 Global skills for leveling, PvE or PvP. Set your level and point budget, connect a character and compare skills without copying a max-level budget.',intro:'Start with your class, level and available points. ASBC gives you a reference allocation you can inspect as your character grows.',cta:'Open build planner',
  steps:[['Choose your class','Open Build and select your class. You can begin without a character connection. To connect one, search by region, faction, server and exact character name.'],['Set your level and total points','Use the visible level and point fields. Choose total or remaining points to match your input, then check used / remaining / total. Total means spent plus remaining.'],['Choose Leveling, PvE or PvP','Use Leveling while progressing below level 45. The PvE option is intended for level-45 expedition planning. Inspect the highlighted skills, then switch to the Daevanion guide for nodes.']],
@@ -87,14 +312,14 @@ topics.splice(1,0,{
    ],
    [
     "Edit, save and share your copy",
-    "Edit skills, specializations or nodes in the planner. Save a named build in the library. Create a share link for the current allocation, or sign in and write a public build post."
+    "Edit skills, specializations or nodes in the planner. Your current allocation syncs when signed in with the same Steam account. Named library copies stay in this browser; use Export beside a copy to move it to another device. Create a share link for the current allocation, or sign in and write a public build post."
    ]
   ],
   "sections": [
    {
     "heading": "Find a specific person",
     "paragraphs": [
-     "Open Player builds. Character lookup shows the selected game character’s available current setup; use the correct region, server and name.",
+     "Open Find character builds. Character lookup shows the selected game character’s available current setup; use the correct region, server and name.",
      "The author tab lists a site author’s public posts. Game character names and site author names can differ; a matching name does not prove they are the same person."
     ],
     "links": [
@@ -156,7 +381,7 @@ topics.splice(1,0,{
    {
     "heading": "특정 사람의 빌드 찾기",
     "paragraphs": [
-     "사람별 빌드의 캐릭터 세팅 조회에서 지역·서버·이름을 확인하면 해당 캐릭터의 조회 가능한 현재 세팅을 볼 수 있습니다.",
+     "캐릭터 빌드 찾기의 캐릭터 세팅 조회에서 지역·서버·이름을 확인하면 해당 캐릭터의 조회 가능한 현재 세팅을 볼 수 있습니다.",
      "작성자 탭에서는 사이트 작성자가 공개한 글을 모아 봅니다. 게임 캐릭터와 사이트 작성자의 이름은 다를 수 있으며 같은 이름만으로 동일인이라고 판단하지 않습니다."
     ],
     "links": [
