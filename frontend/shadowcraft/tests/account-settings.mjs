@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {moduleUrl,planner,localModuleUrl} from './modules.mjs';
-const {AccountSettingsStore,SettingsSync,projectSetting,validateDocument,SAVE_DELAY_MS,activateSettingsStore,settingsStorage,AutomaticSettingsSync,AUTO_SYNC_INTERVAL_MS}=await import(localModuleUrl('account-settings'));
+const {AccountSettingsStore,SettingsSync,projectSetting,validateDocument,SAVE_DELAY_MS,activateSettingsStore,settingsStorage,AutomaticSettingsSync,AUTO_SYNC_INTERVAL_MS,blocksAutomaticSettingsSync}=await import(localModuleUrl('account-settings'));
 class Storage {
  data=new Map(); fail=false;
  get length(){return this.data.size;}
@@ -107,6 +107,28 @@ try{
  const mapStore=new AccountSettingsStore(()=>port,'map-merge');mapStore.apply({[mapKey]:progress(['a','b'])},1);
  mapStore.setItem(mapKey,progress(['b','local']));mapStore.apply({[mapKey]:progress(['a','b','remote'])},2);
  assert.deepEqual(JSON.parse(mapStore.getItem(mapKey)).completed,['b','local','remote']);
+ // The first two devices to record a region share an absent (empty) base.
+ const firstMapPort=new Storage(),firstMap=new AccountSettingsStore(()=>firstMapPort,'first-map');
+ firstMap.apply({'asbc-locale':'ko'},1);firstMap.setItem(mapKey,progress(['local']));
+ firstMap.apply({'asbc-locale':'ko',[mapKey]:progress(['remote'])},2);
+ assert.deepEqual(JSON.parse(firstMap.getItem(mapKey)).completed,['local','remote'],'first concurrent map records must both survive');
+ assert.equal(firstMap.conflicted(),false,'independent new markers are not a conflict');
+
+ // Two independent devices with no prior map entry collide at PUT and automatically converge.
+ const region2='a2bc-map-progress-v1:'+'b'.repeat(64),firstPortA=new Storage(),firstPortB=new Storage();
+ const deviceA=new AccountSettingsStore(()=>firstPortA,'same-map-account'),deviceB=new AccountSettingsStore(()=>firstPortB,'same-map-account');
+ let mapRemote=doc(1,{'asbc-locale':'ko',[region2]:progress(['untouched'])}),mapConflicts=0;
+ const mapRequest=async(method,input)=>{if(method==='GET')return mapRemote;if(input.revision!==mapRemote.revision){mapConflicts++;throw Object.assign(Error('conflict'),{status:409});}return mapRemote=doc(mapRemote.revision+1,input.entries);};
+ const syncA=new SettingsSync(deviceA,mapRequest,()=>{},()=>{}),syncB=new SettingsSync(deviceB,mapRequest,()=>{},()=>{});
+ await syncA.start();await syncB.start();deviceA.setItem(mapKey,progress(['device-a']));deviceB.setItem(mapKey,progress(['device-b']));
+ await tick(SAVE_DELAY_MS);await tick(SAVE_DELAY_MS);await syncA.poll();await syncB.poll();
+ assert.equal(mapConflicts,1);assert.deepEqual(JSON.parse(mapRemote.entries[mapKey]).completed,['device-a','device-b']);
+ assert.equal(deviceA.getItem(mapKey),deviceB.getItem(mapKey));assert.equal(deviceB.conflicted(),false);
+ deviceB.setItem(mapKey,progress(['device-a']));await tick(SAVE_DELAY_MS);await syncA.poll();
+ assert.deepEqual(JSON.parse(deviceA.getItem(mapKey)).completed,['device-a'],'unchecking after initial merge propagates');
+ assert.equal(mapRemote.entries[region2],progress(['untouched']),'other regions remain unchanged');
+ assert.equal(new AccountSettingsStore(()=>firstPortA,'same-map-account').getItem(mapKey),progress(['device-a']),'reloaded account keeps merged progress');
+ syncA.stop();syncB.stop();
  // A 409 automatically rebases dirty fields and retries, preserving unrelated remote changes.
  const conflictStore=new AccountSettingsStore(()=>port,'revision-conflict');let conflictRemote=doc(1,{'asbc-locale':'ko',favorites:'["map"]'}),attempts=0;
  const conflictSync=new SettingsSync(conflictStore,async(method,input)=>{
@@ -122,6 +144,18 @@ try{
  const typingSync=new SettingsSync(typingStore,async()=>{pollCount++;return pollCount===2?new Promise(resolve=>finishPoll=resolve):doc(pollCount,{'asbc-locale':pollCount===1?'ko':'en'});},()=>{},()=>{},()=>allowApply);
  await typingSync.start();const inFlight=typingSync.poll();allowApply=false;finishPoll(doc(2,{'asbc-locale':'en'}));await inFlight;
  assert.equal(typingStore.getItem('asbc-locale'),'ko');allowApply=true;await typingSync.poll();assert.equal(typingStore.getItem('asbc-locale'),'en');typingSync.stop();
+ // Clicking a completed-location checkbox is a finished edit even while it retains focus.
+ for(const type of ['checkbox','radio','button','submit'])assert.equal(blocksAutomaticSettingsSync({tagName:'INPUT',type}),false);
+ for(const type of ['text','search','number','range','date'])assert.equal(blocksAutomaticSettingsSync({tagName:'INPUT',type}),true);
+ assert.equal(blocksAutomaticSettingsSync({tagName:'INPUT'}),true);
+ assert.equal(blocksAutomaticSettingsSync({tagName:'TEXTAREA'}),true);assert.equal(blocksAutomaticSettingsSync({tagName:'SELECT'}),true);
+ assert.equal(blocksAutomaticSettingsSync({tagName:'DIV',isContentEditable:true}),true);
+ assert.equal(blocksAutomaticSettingsSync({tagName:'BUTTON'}),false);assert.equal(blocksAutomaticSettingsSync(null),false);
+ let focused={tagName:'INPUT',type:'checkbox'},focusPolls=0;
+ const focusSync=new AutomaticSettingsSync({poll:async()=>{focusPolls++;return true;}},()=>!blocksAutomaticSettingsSync(focused));
+ focusSync.start();await tick(AUTO_SYNC_INTERVAL_MS);assert.equal(focusPolls,1,'receive updates while checkbox still focused');
+ focused={tagName:'INPUT',type:'text'};await tick(AUTO_SYNC_INTERVAL_MS);assert.equal(focusPolls,1,'do not interrupt typing');
+ focused={tagName:'INPUT',type:'checkbox'};await tick(AUTO_SYNC_INTERVAL_MS);assert.equal(focusPolls,2);focusSync.stop();
  // Visible-page polling, edit/hidden pause, bounded retry backoff, and stop cleanup.
  let eligible=true,automaticReads=0,healthy=true;
  const automatic=new AutomaticSettingsSync({poll:async()=>{automaticReads++;return healthy;}},()=>eligible);

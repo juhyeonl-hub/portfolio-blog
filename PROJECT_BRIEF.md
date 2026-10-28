@@ -931,3 +931,8 @@ Task: tasks/asbc-map-layout-20261027.md. Codex implements, Claude final read-onl
 - 지도 실사용 개선: 지역·항목을 같은 탭 새로고침에 복원, 완료 체크·저장 피드백과 완료 숨김 개선. PC/모바일·기존 기록 보존·타입/지도/번역/빌드 검사 통과, Claude 읽기 전용 최종 리뷰 PASS. 작업 기록: tasks/asbc-map-usability-20261027.md.
 
 - 지도 실사용 개선 운영 배포 완료: d1b927f, Pages d21619f8. 운영 PC·모바일 크기에서 검색·확대·완료 체크·새로고침 복원·숨김 검증, 테스트 체크 원복. 이전 변경 보존 확인.
+
+## Map account sync — 2026-10-28
+[Task Goal]: Verify automatic map completion sync across two signed-in browsers and mobile viewport, fix scoped defects and deploy after review. Preserve existing progress and unrelated edits. Task tasks/asbc-map-account-sync-20261028.md.
+
+Map account sync (2026-10-28): fixed first-region concurrent completion merge and checkbox-focus polling stall; map feedback distinguishes local storage from account sync. Typecheck/account-settings/world-map/terrain-map/localization/trade-sync/build passed; Claude read-only review PASS. Scoped deployment pending final production recheck.

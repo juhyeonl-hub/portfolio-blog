@@ -76,8 +76,9 @@ function mergeSetting(key:string,base:string|undefined,local:string,remote:strin
  if(isTradeCollection(key))return mergeTradeCollection(key,base,local,remote);
  if(local===base)return remote??local;
  if(remote===base||local===remote)return local;
- if(base!==undefined&&remote!==undefined&&key.startsWith('a2bc-map-progress-v1:')){
-  const before=new Set<string>(JSON.parse(base).completed),mine=new Set<string>(JSON.parse(local).completed),theirs=new Set<string>(JSON.parse(remote).completed);
+ if(remote!==undefined&&key.startsWith('a2bc-map-progress-v1:')){
+  // A region with no base entry starts empty; concurrent first checks still merge by marker.
+  const before=new Set<string>(base===undefined?[]:JSON.parse(base).completed),mine=new Set<string>(JSON.parse(local).completed),theirs=new Set<string>(JSON.parse(remote).completed);
   // Each marker is an independent boolean, so checking different locations never drops either change.
   const completed=[...new Set([...before,...mine,...theirs])].filter(id=>mine.has(id)!==before.has(id)?mine.has(id):theirs.has(id)).sort();
   return JSON.stringify({schema:'a2bc-map-progress-v1',completed});
@@ -237,6 +238,12 @@ export const settingsStorage={
 const settingsListeners=new Set<()=>void>();
 export function subscribeSettingsChanges(listener:()=>void){settingsListeners.add(listener);return()=>{settingsListeners.delete(listener);};}
 export function publishSettingsChanges(){settingsListeners.forEach(listener=>listener());}
+
+/** Checkboxes commit on click; focus alone must not pause receiving the other device's changes. */
+export function blocksAutomaticSettingsSync(target:{tagName:string;type?:string;isContentEditable?:boolean}|null):boolean {
+ return !!target&&(target.isContentEditable===true||target.tagName==='TEXTAREA'||target.tagName==='SELECT'||
+  target.tagName==='INPUT'&&!['checkbox','radio','button','submit','reset','image','hidden'].includes(target.type||'text'));
+}
 
 export const AUTO_SYNC_INTERVAL_MS=10_000;
 export class AutomaticSettingsSync {

@@ -1,5 +1,5 @@
 import {useEffect,useState,type ReactNode} from 'react';
-import {AccountSettingsStore,SettingsSync,activateSettingsStore,AutomaticSettingsSync,publishSettingsChanges,type SyncState,type SyncMetadata} from '../lib/account-settings';
+import {AccountSettingsStore,SettingsSync,activateSettingsStore,AutomaticSettingsSync,blocksAutomaticSettingsSync,publishSettingsChanges,type SyncState,type SyncMetadata} from '../lib/account-settings';
 import {useMemberSession,settingsRequest,MemberAccount} from './community';
 import {LocaleProvider,useLocale} from './locale';
 import './account-settings.css';
@@ -16,7 +16,7 @@ function SettingsScope({children,memberId,token}:{children:ReactNode;memberId:st
  useEffect(()=>{
   let controller:SettingsSync|null=null,store:AccountSettingsStore|null=null,automatic:AutomaticSettingsSync|null=null;
   setInitializationError(false);setMounted(false);setMetadata(null);
-  const eligible=()=>!document.hidden&&navigator.onLine&&!document.activeElement?.matches('input,textarea,select,[contenteditable="true"]')&&!document.querySelector('#event-timer-settings');
+  const eligible=()=>!document.hidden&&navigator.onLine&&!blocksAutomaticSettingsSync(document.activeElement)&&!document.querySelector('#event-timer-settings');
   try{
    store=new AccountSettingsStore(()=>localStorage,memberId);activateSettingsStore(store);
    if(memberId){controller=new SettingsSync(store,(method,body)=>settingsRequest(token,method,body),publishSettingsChanges,(state,next)=>{setStatus(state);if(next)setMetadata(next);},eligible);setSync(controller);automatic=new AutomaticSettingsSync(controller,eligible);void controller.start().finally(()=>{setMounted(true);automatic?.start();});}

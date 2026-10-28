@@ -1,6 +1,7 @@
 import {useSettingsRefresh} from './use-settings-refresh';
 import {settingsStorage} from '../lib/account-settings';
-import {useEffect, useRef, useState, type CSSProperties, type ReactNode} from 'react';
+import {AccountSyncContext} from './account-sync-panel';
+import {useContext, useEffect, useRef, useState, type CSSProperties, type ReactNode} from 'react';
 import MapMarkerIcon from './map-marker-icon';
 import {useLocale} from './locale';
 import verteron from '../lib/data/terrain-catalog.json';
@@ -39,6 +40,8 @@ export default function TerrainPanel({active=false}:{active?:boolean}) {
 
 function TerrainView({terrain,active,regionPicker,enabledKinds,setEnabledKinds}: {terrain: typeof verteron; active: boolean; regionPicker: ReactNode; enabledKinds:Set<string>; setEnabledKinds:(kinds:Set<string>)=>void}) {
   const {t,locale} = useLocale();
+  const accountSync=useContext(AccountSyncContext);
+  const syncMessage=accountSync?t({saved:'계정과 동기화됨',pending:'계정에 저장 중…',loading:'다른 기기의 설정 확인 중…',offline:'동기화 실패 · 이 기기의 변경은 보관 중',full:'계정 저장 한도 1MB 초과 · 이 기기 기록 보관 중',conflict:'두 기기의 거래 기록 확인 필요'}[accountSync.status]):null;
   const {name: terrainName, source, gridSize, basePath} = terrain;
   const [open, setOpen] = useState(false);
   const [controlsOpen,setControlsOpen]=useState(false);
@@ -116,7 +119,8 @@ function TerrainView({terrain,active,regionPicker,enabledKinds,setEnabledKinds}:
     setStorageNotice(saved?'':'기록을 저장하지 못했습니다. 이번 변경은 화면에서만 기억합니다.');
     setSavedNotice(saved);
   }
-  const saveFeedback=storageNotice?<p className="terrain-save-feedback" role="alert">{t(storageNotice)}</p>:savedNotice?<p className="terrain-save-feedback saved" role="status">✓ {t('이 기기에 저장됨')}</p>:null;
+  const savedToAccount=!accountSync||accountSync.status==='saved';
+  const saveFeedback=storageNotice?<p className="terrain-save-feedback" role="alert">{t(storageNotice)}</p>:savedNotice?<p className={'terrain-save-feedback'+(savedToAccount?' saved':'')} role="status">{savedToAccount?'✓ ':''}{t('이 기기에 저장됨')}{syncMessage&&<> · {syncMessage}</>}</p>:null;
   const regionLabels = terrainLabels.maps.find(map=>map.name === terrainName);
   const labels = (regionLabels?.labels ?? []).map(label=>({...label,name:name(label.name)}));
   const labelNames = terrainLabelNames(labels, view.zoom);
@@ -303,6 +307,7 @@ function TerrainView({terrain,active,regionPicker,enabledKinds,setEnabledKinds}:
         {enabledKinds.size===0 && <p role="status">{t('표시할 항목을 체크해 주세요.')}</p>}
         <label className="map-check"><input type="checkbox" checked={hideCompleted} onChange={e=>{setHideCompleted(e.target.checked);setPage(0);}}/>{t('확인한 위치 숨기기')}</label>
         <p>{t('확인 기록 {0}개 · 이 브라우저에 저장됩니다. 후보 지점별 기록이며 실제 수집 개수를 뜻하지 않습니다.',[completed.size])}</p>
+        {accountSync&&<p className="terrain-account-sync" role="status">{syncMessage} · <a href="#/account">{t('동기화 상태 보기')}</a></p>}
         <details className="map-advanced"><summary>{t('위치 목록 검색 · 완료 기록')}</summary>
         <p>{t('봉인던전은 입구, 주둔지는 구역 중심을 표시합니다. 깃털은 Empyrean Trace의 통칭입니다. 항목 옆 숫자는 조건별 배치를 포함한 후보 지점 수이며 현재 출현·수집 가능 수가 아닙니다.')}</p>
         <label>{t('이름 검색')}<input aria-label={t('실험 위치 검색')} type="search" maxLength={100} value={previewQuery} onChange={e=>{setPreviewQuery(e.target.value);setPreviewSelection('');setPage(0);}}/></label>
