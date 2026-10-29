@@ -1005,3 +1005,6 @@ Source 484a335 / https://996992eb.asbc-4c9.pages.dev. Each skill now shows selec
 
 ## 2026-10-29: specialization editor continuation
 Show saved specialization choices on collapsed skill rows and matching numbers/state labels in the editor. Preserve handlers, game data, recommendation rules and unrelated changes. See tasks/asbc-specialization-editor-20261029.md.
+
+### Specialization editor complete — 2026-10-29
+Source 4dbcf42 / https://c735a80e.asbc-4c9.pages.dev. Collapsed skills show saved numbered effects; expanded choices show selected/recommended/locked/automatic states and full-slot guidance. Seven checks,18 local+18 production locale/viewport cases, PC/mobile edit/reload/level-refresh passed; Claude relay2 PASS.302 pending paths preserved. Canonical /assets/asbc-DgqZoANw.js. See tasks/asbc-specialization-editor-20261029.md.
