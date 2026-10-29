@@ -1,20 +1,21 @@
 # Locale copy follow-up — 2026-10-29
-Owner: Codex implementation/browser QA; Claude readonly coordination/review.
-[Task Goal]: Finish reproduced timer sentence and trade-count wording issues in the five newly supported locales; release only these changes.
-Scope: 16 exact fields in frontend/shadowcraft/lib/data/ui-translations.json; this task record and append-only PROJECT_BRIEF.md. No runtime, game mechanics, timer schedule, calculation, persistence, auth or API changes.
-Done when: Natural composed timer paragraph with one sentence boundary, neutral transaction-count headings for 0/1/2/5/21; desktop1440/mobile360 verification, focused checks and readonly peer review; scoped main push/production verification.
-Base commit: 8f79930e929b964ccafa148b8bdb919467fb89fe.
-Verification: Production baseline five timer paragraphs and five one-transaction labels captured from isolated production alias. One own QA book removed. Original canonical account untouched.
-Last verified: Baseline reproduction complete; edited implementation awaiting checks.
-Last reviewed: Claude coordination relay1 success; final review pending.
-Findings: DE/ES double period also reproduced in FR; ES has two stray ellipses plus invisible characters, DE middle fragment lacks a complete sentence, PT includes redundant English Pin content. All five one-entry headings incorrectly use plural nouns. Within the same user-approved localization task, expanded to these reproduced occurrences; final review must assess this evidence-based scope adjustment instead of earlier speculative FR/PT unchanged criterion.
-Uncommitted: This task's exact dictionary edits and docs only. Primary302 pending paths preserved against SHA256 baseline; collaboration records excluded.
-Next: Focused tests, PC/mobile UI QA, review, scoped release.
-Blocker: None for scope. Previous Chrome QA tab remains inaccessible due to extension control; no Chrome/physical-handset verification claim.
-Evidence: D:/CodexData/Projects/ASBC/artifacts/locale-copy-followup-20261029.
+Status: COMPLETE. Owner: Codex implementation/browser QA/release; Claude readonly coordination/review.
+[Task Goal]: Finish reproduced timer sentence and transaction-count wording issues in fr/de/es/pt-BR/ru; release only the scoped changes.
+Scope:16 exact fields in frontend/shadowcraft/lib/data/ui-translations.json plus task/brief documentation. No runtime, math, game-data, timer schedule, account, storage or API changes.
+Base commit:8f79930e929b964ccafa148b8bdb919467fb89fe. Source commit:e7c26c8746667bd86994782f1911efd256fa7cf8.
+Done when: Natural composed timer paragraph, correct pin labels and count-neutral transaction headings; PC/mobile checks, peer review and production release. All satisfied.
 
-Visual QA additionally exposed untranslated Pin labels in DE/ES/PT and FR Programmation (scheduling instead of pinning). Corrected the four labels in the same timer-settings form; no control behavior changes. Final timer viewport matrix must be rerun after the updated build.
+Changes: FR/DE/ES sentence double periods removed; ES ellipses/invisible spacing removed; DE fragment made a full sentence; PT redundant English Pin content removed. FR pin label no longer says scheduling; DE/ES/PT pin labels localized. All five history headings use Label: count rather than grammatically wrong singular/plural combinations. Placeholders and all other dictionary values preserved.
 
-Local final validation: all10 timer locale/viewport cases pass sentence seams, localized pin labels, toggle/cancel restoration and horizontal fit. All50 history cases (five locales x desktop/mobile x counts0/1/2/5/21) match actual expanded entries;21entries survive reload; own QA book removed. Nine check results PASS (five targeted scripts, typecheck, build, SEO, final localization rerun). Existing bundle-size/plugin timing warnings only; one wall-clock elapsed duration is negative due to clock adjustment, not used as correctness evidence. Current final entry asset asbc-bpNWtUlR.js.
+Verification: Production baseline confirmed5 composed paragraphs and5 one-record headings. Final local10 timer and50 history cases passed; after deployment the same60 cases passed. Widths1440x1000 and360x800. Timer checks include no overflow, exact translated pin labels, toggle/cancel preserving saved values. History checks compare0/1/2/5/21 displayed counts with actual expanded rows;21entries survive reload, then undo to0 and remove own QA book. No account data used: mutable QA ran signed out on the exact production deployment origin.
+Nine check results PASS: event-timers, boss-timers, trade-calculator, trade-workbench, localization, typecheck:shadowcraft, build:asbc, test:seo, final localization rerun. Existing bundle-size/plugin timing warnings only; an initial negative wall-clock duration was not used as correctness evidence.
+Last reviewed:Claude relay2 PASS (2026-10-29T14:53:31.342Z, exit0/status0/errornull/scope[]). Reviewer inspected exact16fields,3call sites and recorded evidence; did not independently run browser/tests. Evidence-based expansion from original speculative3fields explicitly accepted.
+Last verified:Production60cases plus canonical asset confirmation.
 
-Claude readonly review relay2 PASS, finished 2026-10-29T14:53:31.342Z; process exit0/status0/errornull/scope[]. Scoped release authorized by continuing user request. Chrome inventory subsequently confirms previous owned QA tab absent, viewport override reset succeeded; no Chrome journey pass claimed.
+Release: Source integrated into main, pushed normally and Cloudflare Pages deployed with Functions at https://d7ccfc16.asbc-4c9.pages.dev. Canonical https://asbc.app and the deployment both load /assets/asbc-bpNWtUlR.js. Final docs-only follow-up needs no additional frontend deployment.
+Preservation:Primary302pending paths/statuses retained;300 unrelated paths byte-identical, brief append-only and exactly16 dictionary fields semantically merged while proving all other fields unchanged. Final docs integration preserves302again. No reset/stash/clean or broad staging.
+Cleanup:Own local and production QA books removed, IAB viewport reset and owned tabs closed, local preview stopped. Previous Chrome QA tab confirmed already closed, Chrome viewport reset succeeded. No unrelated browser window touched. Original canonical account/locale untouched. 57evidence files adopted to D/ASBC and SHA256 checked; exact own HomeSphere staging removed.
+Limits:Actual browser at desktop/mobile viewports, not a physical phone and not a new Chrome journey. No claim of all-game translation completeness or independently verified game schedules.
+Uncommitted:No task source changes; unrelated primary302pending and excluded collaboration records preserved.
+Next:None required for this task. Blocker:None.
+Evidence:D:/CodexData/Projects/ASBC/artifacts/locale-copy-followup-20261029; translation-changes.json, source.diff, review-input.json, browser/production-timer.json, browser/production-history.json, production.json, cleanup.json, evidence-manifest.json.

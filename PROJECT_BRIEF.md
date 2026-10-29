@@ -987,3 +987,6 @@ Source6de80db deployed with Functions at https://0ecc1003.asbc-4c9.pages.dev; ca
 
 ## 2026-10-29: locale copy follow-up
 Finish reproduced timer sentence seams and transaction-count labels in the five new locales. Dictionary-only implementation; same desktop/mobile viewport verification and scoped release workflow, primary302 pending paths preserved. See tasks/asbc-locale-copy-followup-20261029.md.
+
+### Locale copy follow-up complete — 2026-10-29
+Sourcee7c26c8 / https://d7ccfc16.asbc-4c9.pages.dev; canonical assetasbc-bpNWtUlR.js verified.16dictionary fields only: timer sentence seams, pin labels and count-neutral ledger headings. Claude relay2PASS,9checks and60local+60production viewport cases PASS. Primary302pending preserved. Own QA data/tabs/preview cleaned; previous Chrome tab absent and viewport reset confirmed. See tasks/asbc-locale-copy-followup-20261029.md.
