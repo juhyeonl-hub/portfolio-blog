@@ -981,3 +981,6 @@ Source f70bf00 deployed with Functions at https://578c656d.asbc-4c9.pages.dev; p
 
 ## 2026-10-29: five-language ranking, timers and ledger
 Accepted next scope: PC/mobile viewport fr/de/es/pt-BR/ru ranking, content timers, trade workbook verification. Fix reproduced presentation issues only; preserve original data and302 pending paths. Claude coordination complete; final review before scoped deployment. See tasks/asbc-five-language-rank-timer-ledger-20261029.md.
+
+### Five-language ranking/timer/ledger verification complete — 2026-10-29
+Source6de80db deployed with Functions at https://0ecc1003.asbc-4c9.pages.dev; canonical asset asbc-CnMV-j_P.js confirmed. Claude readonly retry PASS;11checks,30local and30post-deploy viewport cases +5actual ranker switches PASS. Fixed mobile ranker selector/tab obstruction, localized combat-power numbers/observation dates, specialization provenance and10ledger/timer dictionary fields. Primary302pending paths and original account plans/books preserved. Own QA ledger items removed; Korean/IAB viewport restored, IAB tabs/local preview closed. Chrome extension UI prevented owned QA tab/viewport cleanup, so Chrome completion is not claimed.189UI evidence files hash-verified. Task and validation limits: tasks/asbc-five-language-rank-timer-ledger-20261029.md.
