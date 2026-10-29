@@ -13063,11 +13063,11 @@
     "en": "Use Illusive Clone and Swift Contract only when you have time to stay close and attack.",
     "ja": "密着して攻撃する時間があるときだけ幻影分身と迅速の契約を使います。",
     "fi": "Käytä taitoja Illusive Clone ja Swift Contract vain, kun ehdit hyökätä läheltä.",
-    "fr": "N'utiliser « Clone illusoire » et « Contrat rapide » que lorsque vous avez le temps de rester au contact pour attaquer.",
-    "de": "„Trugbild-Klon“ und „Schneller Vertrag“ nur dann einsetzen, wenn genügend Zeit bleibt, um in der Nähe zu bleiben und anzugreifen.",
-    "es": "Usar «Clon ilusorio» (Illusive Clone) y «Contrato veloz» (Swift Contract) solo cuando haya tiempo suficiente para permanecer cerca y atacar.",
-    "pt-BR": "Use \"Illusive Clone\" (Clone Ilusório) e \"Swift Contract\" (Contrato Veloz) apenas quando tiver tempo para permanecer próximo e atacar.",
-    "ru": "Используйте «Иллюзорного двойника» (Illusive Clone) и «Стремительный контракт» (Swift Contract) только тогда, когда есть возможность оставаться вблизи цели и атаковать."
+    "fr": "Utilisez Illusive Clone et Swift Contract uniquement si vous avez le temps de rester au contact pour attaquer.",
+    "de": "Illusive Clone und Swift Contract nur einsetzen, wenn genug Zeit bleibt, um in der Nähe zu bleiben und anzugreifen.",
+    "es": "Usa Illusive Clone y Swift Contract solo si tienes tiempo para permanecer cerca y atacar.",
+    "pt-BR": "Use Illusive Clone e Swift Contract apenas quando tiver tempo para permanecer perto do alvo e atacar.",
+    "ru": "Используйте Illusive Clone и Swift Contract, только если есть время оставаться рядом с целью и атаковать."
   },
   "문양 · 쿨타임 준비": {
     "en": "Insignias · cooldown prep",
@@ -13083,21 +13083,21 @@
     "en": "Refill Insignias with Savage Roar and Ambush, then use Triniel's Dagger after your buffs.",
     "ja": "猛獣の咆哮・奇襲で紋様を補充し、バフ使用後にトリニエルの刃を入れます。",
     "fi": "Täydennä tunnusmerkit taidoilla Savage Roar ja Ambush ja käytä Triniel's Dagger vahvistusten jälkeen.",
-    "fr": "Recharger les Insignes avec « Rugissement sauvage » et « Embuscade », puis utiliser la « Dague de Triniel » après vos buffs.",
-    "de": "Insignien mit „Wildes Gebrüll“ und „Hinterhalt“ auffüllen, dann nach den Buffs „Triniels Dolch“ einsetzen.",
-    "es": "Recargar insignias mediante «Rugido salvaje» (Savage Roar) y «Emboscada» (Ambush); a continuación, usar la «Daga de Triniel» tras activar los potenciadores.",
-    "pt-BR": "Recupere Insígnias usando \"Savage Roar\" (Rugido Selvagem) e \"Ambush\" (Emboscada); em seguida, use a Adaga de Triniel após ativar seus buffs.",
-    "ru": "Восполните запас знаков (Insignias) с помощью умений «Дикий рык» (Savage Roar) и «Засада» (Ambush), затем, после активации баффов, примените «Кинжал Триниэль» (Triniel's Dagger)."
+    "fr": "Rechargez les Insignes avec Savage Roar et Ambush, puis utilisez Triniel's Dagger après vos buffs.",
+    "de": "Insignien mit Savage Roar und Ambush auffüllen, dann nach den Buffs Triniel's Dagger einsetzen.",
+    "es": "Recarga las insignias con Savage Roar y Ambush; después de activar los potenciadores, usa Triniel's Dagger.",
+    "pt-BR": "Recupere Insígnias com Savage Roar e Ambush; depois de ativar os buffs, use Triniel's Dagger.",
+    "ru": "Восполните знаки с помощью Savage Roar и Ambush, затем после баффов используйте Triniel's Dagger."
   },
   "송곳니로 문양을 확보하고 버프 사용 후 비수를 넣습니다.": {
     "en": "Secure Insignias with Savage Fang, then use Triniel's Dagger after your buffs.",
     "ja": "猛獣の牙で紋様を確保し、バフ使用後にトリニエルの刃を入れます。",
     "fi": "Varmista tunnusmerkit taidolla Savage Fang ja käytä Triniel's Dagger vahvistusten jälkeen.",
-    "fr": "Sécuriser des Insignes avec « Croc sauvage », puis utiliser la « Dague de Triniel » après vos buffs.",
-    "de": "Insignien mit „Wilder Fangzahn“ sichern, dann nach den Buffs „Triniels Dolch“ einsetzen.",
-    "es": "Asegurar insignias mediante «Colmillo salvaje» (Savage Fang); a continuación, usar la «Daga de Triniel» tras activar los potenciadores.",
-    "pt-BR": "Garanta Insígnias usando \"Savage Fang\" (Presa Selvagem); em seguida, use a Adaga de Triniel após ativar seus buffs.",
-    "ru": "Накопите знаки (Insignias) с помощью умения «Дикий клык» (Savage Fang), затем, после активации баффов, примените «Кинжал Триниэль» (Triniel's Dagger)."
+    "fr": "Gagnez des Insignes avec Savage Fang, puis utilisez Triniel's Dagger après vos buffs.",
+    "de": "Insignien mit Savage Fang aufbauen, dann nach den Buffs Triniel's Dagger einsetzen.",
+    "es": "Obtén insignias con Savage Fang; después de activar los potenciadores, usa Triniel's Dagger.",
+    "pt-BR": "Obtenha Insígnias com Savage Fang; depois de ativar os buffs, use Triniel's Dagger.",
+    "ru": "Накопите знаки с помощью Savage Fang, затем после баффов используйте Triniel's Dagger."
   },
   "반복 공격 · 패턴 대응": {
     "en": "Repeat attacks · respond to patterns",
@@ -18193,11 +18193,11 @@
     "en": "Example in-game quickslot layout",
     "ja": "ゲーム内クイックスロットの配置例",
     "fi": "Esimerkki pelin pikapaikoista",
-    "fr": "Exemple de disposition des emplacements rapides en jeu",
-    "de": "Beispiel für ein Schnellzugriffs-Layout im Spiel",
-    "es": "Ejemplo de disposición de ranuras rápidas en el juego",
-    "pt-BR": "Exemplo de disposição na barra de acesso rápido (quickslot) no jogo",
-    "ru": "Пример расположения навыков на панели быстрого доступа в игре"
+    "fr": "Exemple de barre de compétences",
+    "de": "Beispiel für die Fertigkeitenleiste",
+    "es": "Ejemplo de barra de habilidades",
+    "pt-BR": "Exemplo de barra de habilidades",
+    "ru": "Пример панели навыков"
   },
   "반복 공격 배치": {
     "en": "Repeated attack layout",
@@ -18217,7 +18217,7 @@
     "de": "Zuerst geprüft",
     "es": "Se comprueba primero",
     "pt-BR": "Verificado primeiro",
-    "ru": "Сначала выполняется отмеченное"
+    "ru": "Проверить первым"
   },
   "그다음 {0}": {
     "en": "Then {0}",
@@ -26888,5 +26888,15 @@
     "es": "Descripción traducida (texto oficial en inglés)",
     "pt-BR": "Descrição traduzida (texto oficial em inglês)",
     "ru": "Перевод описания (по официальному английскому тексту)"
+  },
+  "비워 두는 칸": {
+    "en": "Leave empty",
+    "ja": "空けておく",
+    "fi": "Jätä tyhjäksi",
+    "fr": "Laisser vide",
+    "de": "Leer lassen",
+    "es": "Dejar vacío",
+    "pt-BR": "Deixe vazio",
+    "ru": "Оставьте пустым"
   }
 }

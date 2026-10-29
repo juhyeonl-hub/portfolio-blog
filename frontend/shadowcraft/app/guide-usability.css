@@ -1,0 +1,16 @@
+/* Keep simulator actions readable at narrow widths, including longer locale labels. */
+@media (max-width: 600px) {
+  #build-section-rotation .sim-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  #build-section-rotation .sim-buttons > button {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+}

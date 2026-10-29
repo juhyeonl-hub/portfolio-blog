@@ -990,3 +990,6 @@ Finish reproduced timer sentence seams and transaction-count labels in the five 
 
 ### Locale copy follow-up complete — 2026-10-29
 Sourcee7c26c8 / https://d7ccfc16.asbc-4c9.pages.dev; canonical assetasbc-bpNWtUlR.js verified.16dictionary fields only: timer sentence seams, pin labels and count-neutral ledger headings. Claude relay2PASS,9checks and60local+60production viewport cases PASS. Primary302pending preserved. Own QA data/tabs/preview cleaned; previous Chrome tab absent and viewport reset confirmed. See tasks/asbc-locale-copy-followup-20261029.md.
+
+## 2026-10-29 — Five-language macro/boss-guide audit
+Scoped work in progress: simulator reset mismatch, mobile action readability, empty quickslot guidance and matching skill names in fr/de/es/pt-BR/ru. See tasks/asbc-five-language-guides-20261029.md. Primary302other pending paths preserved; final review and deployment pending.
