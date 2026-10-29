@@ -8,6 +8,7 @@
 .asbc-footer nav{flex-wrap:wrap;min-width:0}
 @media(max-width:760px){
  .shell main .build-pills{position:static;display:flex;flex-wrap:wrap;gap:8px}
+.shell main .skill-table-header>span{min-width:0;overflow-wrap:anywhere;hyphens:auto}
  .shell main .mobile-build-navigation{flex:1 1 100%;min-width:0}
  .shell main .mobile-build-navigation button{max-width:42%;white-space:normal}
  .shell main .build-pills>.planner-save-link{margin-left:auto;max-width:100%;white-space:normal;text-align:center}

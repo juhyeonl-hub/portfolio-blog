@@ -959,3 +959,5 @@ Usability follow-up released2026-10-28: source73e57d9 main/origin; Cloudflare ht
 ## Five-language build journey —2026-10-29
 [Task Goal]: Verify fr/de/es/pt-BR/ru build discovery/apply/edit/save/share on PC/mobile and immediately deploy scoped usability fixes. Task:tasks/asbc-five-language-journey-20261029.md.
 Corrected 36 translated values without changing sources/numbers/placeholders; fixed standalone shared-footer wrapping and mobile sticky-navigation occlusion of skill controls. Typecheck/all 45 frontend suites/build/SEO and local five-language journeys pass. Claude read-only copy/footer and mobile delta reviews APPROVE. Main 302 pre-existing pending paths and original GreenOrc/8 named copies preserved; scoped release and final production matrix next.
+
+Five-language journey release774aba7/Pages8ceba78a: all10production PC/mobile flows passed, original GreenOrc/8copies and302pending paths preserved. Final visual pass also fixes mobile skill-header text overlap; all5locale column bounds and desktop isolation pass. See task record for review scope and evidence.

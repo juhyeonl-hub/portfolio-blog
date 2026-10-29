@@ -23,3 +23,10 @@ Base: 197abeb2cf303d7e33c9250297e849f6bcf84283.
 - Status: verified source ready for scoped main commit/push/deployment. Final production5-language x2viewport matrix pending deployment.
 - Evidence: D:/CodexData/Projects/ASBC/artifacts/five-language-journey-20261029.
 - Mobile means360x800 browser viewport emulation; no physical phone claim. Private local-library save and anonymous share covered; authenticated publishing/account synchronization is outside this task.
+
+## Production verification and final visual follow-up
+- Released774aba7 to https://8ceba78a.asbc-4c9.pages.dev and asbc.app (asbc-ChLnZKhV.js). All10 production journeys passed: five locales at1440x900 and360x800, search/filter/apply/edit/local-save/reload/reopen/copy/anonymous-share. Shared points199/0/142/0 and Vicious Strike final11 in every case. Browser clipboard equals generated URL; no new console warnings/errors.
+- Original main-domain GreenOrc restored read-only, original8namedcopies remain and no QA copies were added there; locale restoredko.
+- Final visual inspection additionally found long mobile column headings overlapping (FR base width58/scroll77, gear width36/scroll72). Added only min-width:0/overflow-wrap:anywhere/hyphens:auto to mobile skill header spans. All5locales now have scrollWidth==clientWidth in all columns;1440px desktop retains sticky navigation and normal wrapping. Build/SEO pass again.
+- This additional small text-layout rule was independently reviewed by Codex as low risk. The four-relay cap is reached; Claude approvals above cover the earlier copy/footer/navigation changes, not this subsequent wrapping rule. No persistence, game calculations, authentication or deployment configuration changed.
+- Final wrapping-rule production deployment and spot verification pending; evidence header-build.log/local-header-checks.json.
