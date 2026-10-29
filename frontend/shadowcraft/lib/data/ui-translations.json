@@ -27038,5 +27038,95 @@
     "es": "Efecto automático",
     "pt-BR": "Efeito automático",
     "ru": "Автоматический эффект"
+  },
+  "추천과 다른 특화만 보기 ({0})": {
+    "en": "Show only specialization differences ({0})",
+    "ja": "おすすめと異なる特化のみ表示（{0}）",
+    "fi": "Näytä vain poikkeavat erikoistumiset ({0})",
+    "fr": "Afficher uniquement les spécialisations différentes ({0})",
+    "de": "Nur abweichende Spezialisierungen anzeigen ({0})",
+    "es": "Mostrar solo especializaciones diferentes ({0})",
+    "pt-BR": "Mostrar apenas especializações diferentes ({0})",
+    "ru": "Показать только отличающиеся специализации ({0})"
+  },
+  "내 계획과 사이트 추천을 비교합니다. 다른 선택도 유지할 수 있습니다.": {
+    "en": "Compares your plan with this site’s recommendation. You can keep your own choices.",
+    "ja": "自分のプランとサイトのおすすめを比較します。異なる選択のままでも構いません。",
+    "fi": "Vertaa omaa suunnitelmaasi sivuston suositukseen. Voit säilyttää omat valintasi.",
+    "fr": "Compare votre plan à la recommandation du site. Vous pouvez conserver vos propres choix.",
+    "de": "Vergleicht deinen Plan mit der Empfehlung dieser Seite. Du kannst deine eigenen Auswahlen beibehalten.",
+    "es": "Compara tu plan con la recomendación del sitio. Puedes mantener tus propias elecciones.",
+    "pt-BR": "Compara seu plano com a recomendação do site. Você pode manter suas próprias escolhas.",
+    "ru": "Сравнивает ваш план с рекомендацией сайта. Вы можете оставить свой выбор."
+  },
+  "현재 검색·분류에서 추천과 다른 특화가 없습니다.": {
+    "en": "No specialization differences in this search and category.",
+    "ja": "現在の検索・分類では、おすすめと異なる特化はありません。",
+    "fi": "Tässä haussa ja ryhmässä ei ole poikkeavia erikoistumisia.",
+    "fr": "Aucune spécialisation différente dans cette recherche et cette catégorie.",
+    "de": "Keine abweichenden Spezialisierungen in dieser Suche und Kategorie.",
+    "es": "No hay especializaciones diferentes en esta búsqueda y categoría.",
+    "pt-BR": "Não há especializações diferentes nesta busca e categoria.",
+    "ru": "В текущем поиске и категории нет отличающихся специализаций."
+  },
+  "비교 필터 해제": {
+    "en": "Clear comparison filter",
+    "ja": "比較フィルターを解除",
+    "fi": "Poista vertailusuodatin",
+    "fr": "Désactiver le filtre de comparaison",
+    "de": "Vergleichsfilter aufheben",
+    "es": "Quitar filtro de comparación",
+    "pt-BR": "Remover filtro de comparação",
+    "ru": "Сбросить фильтр сравнения"
+  },
+  "추천과 다른 선택": {
+    "en": "Different from recommendation",
+    "ja": "おすすめとは異なる選択",
+    "fi": "Poikkeaa suosituksesta",
+    "fr": "Choix différent de la recommandation",
+    "de": "Abweichende Auswahl",
+    "es": "Elección diferente de la recomendación",
+    "pt-BR": "Escolha diferente da recomendação",
+    "ru": "Выбор отличается от рекомендации"
+  },
+  "내 선택 {0} → 추천 {1}": {
+    "en": "My choices: {0} → Recommended: {1}",
+    "ja": "自分の選択 {0} → おすすめ {1}",
+    "fi": "Omat valinnat: {0} → Suositus: {1}",
+    "fr": "Mes choix : {0} → Recommandation : {1}",
+    "de": "Meine Auswahl: {0} → Empfehlung: {1}",
+    "es": "Mis elecciones: {0} → Recomendación: {1}",
+    "pt-BR": "Minhas escolhas: {0} → Recomendação: {1}",
+    "ru": "Мой выбор: {0} → Рекомендация: {1}"
+  },
+  "추천을 따르려면: {0} 해제 → {1} 선택": {
+    "en": "To follow the recommendation: deselect {0} → select {1}",
+    "ja": "おすすめに合わせる場合：{0}を解除 → {1}を選択",
+    "fi": "Jos haluat noudattaa suositusta: poista {0} → valitse {1}",
+    "fr": "Pour suivre la recommandation : désélectionnez {0} → sélectionnez {1}",
+    "de": "Für die Empfehlung: {0} abwählen → {1} auswählen",
+    "es": "Para seguir la recomendación: desmarca {0} → selecciona {1}",
+    "pt-BR": "Para seguir a recomendação: desmarque {0} → selecione {1}",
+    "ru": "Чтобы следовать рекомендации: снимите {0} → выберите {1}"
+  },
+  "추천을 따르려면: {0} 선택": {
+    "en": "To follow the recommendation: select {0}",
+    "ja": "おすすめに合わせる場合：{0}を選択",
+    "fi": "Jos haluat noudattaa suositusta: valitse {0}",
+    "fr": "Pour suivre la recommandation : sélectionnez {0}",
+    "de": "Für die Empfehlung: {0} auswählen",
+    "es": "Para seguir la recomendación: selecciona {0}",
+    "pt-BR": "Para seguir a recomendação: selecione {0}",
+    "ru": "Чтобы следовать рекомендации: выберите {0}"
+  },
+  "추천을 따르려면: {0} 해제": {
+    "en": "To follow the recommendation: deselect {0}",
+    "ja": "おすすめに合わせる場合：{0}を解除",
+    "fi": "Jos haluat noudattaa suositusta: poista {0}",
+    "fr": "Pour suivre la recommandation : désélectionnez {0}",
+    "de": "Für die Empfehlung: {0} abwählen",
+    "es": "Para seguir la recomendación: desmarca {0}",
+    "pt-BR": "Para seguir a recomendação: desmarque {0}",
+    "ru": "Чтобы следовать рекомендации: снимите {0}"
   }
 }

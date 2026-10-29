@@ -18,3 +18,10 @@
 @media(max-width:700px){.skill-spec-summary{margin:0 12px 12px}.skill-spec-passive{margin:0 12px 12px}.skill-spec-heading .button{min-height:44px}.skill-editor .spec{align-items:flex-start}.skill-editor .spec-options .spec>small{white-space:nowrap}.editor-spec-effect{font-size:13px}}
 .skill-editor .spec .spec-state{margin-left:0}
 .skill-editor .spec.locked{opacity:1;color:var(--muted);background:#151821}
+.spec-difference-filter{margin:0 0 16px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+.spec-difference-filter label{display:flex;align-items:center;gap:9px;min-height:44px;cursor:pointer;font-size:13px;overflow-wrap:anywhere}
+.spec-difference-filter p{font-size:12px;line-height:1.7}
+.spec-difference-filter input:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+.skill-spec-difference{border-left:2px solid #607b8b;padding-left:10px;margin-top:10px;font-size:12px;line-height:1.7}
+.skill-spec-difference strong{color:var(--purple)}
+.skill-spec-difference p{color:var(--text);margin:4px 0 0}

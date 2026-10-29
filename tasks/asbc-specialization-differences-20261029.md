@@ -1,0 +1,16 @@
+# Specialization differences — 2026-10-29
+Status: VERIFIED FOR RELEASE. Owner: Codex implementation/QA; Claude coordination/final readonly acceptance.
+[Task Goal]: Find current-plan specializations differing from the site's recommendation and explain the optional change in numbers.
+Base:dddba7032ccfd47cadb839ffcb1a6ebeddf16f1a. Existing primary302 pending paths preserved, no page.tsx overlap.
+Scope: page.tsx, existing summary component/CSS and focused rendering test, UI translations, task/brief. No catalog, recommendation algorithm, save/apply handler, API/auth changes or new dependency.
+Input/output: saved manual1+2 vs recommendation1+4 -> optional difference filter lists that skill; show current1+2/recommended1+4, remove2 then select4. Same choice reversed order -> no difference; passive/stigma/locked/no recommendation excluded. Filter off restores all search/category matches.
+Failure cases: mutating choices on filter; treating unknown in-game data as current plan; counting automatic/locked choices; empty results blank; filter hides requested navigation target; focus lost when matching row disappears; stale counts after level/mode changes; untranslated/overflow text.
+Baseline confirmed before code: saved GreenOrc manual1+2 displayed, recommendation1+4 only discoverable by expanding and reading effects. No differences filter or numbered change instructions. Baseline restored to1+4. Evidence baseline.json/png.
+Done when: focused tests/typecheck/build, PC/mobile save/reload/filter/level checks,9locales, Claude readonly PASS, scoped main release/production QA.
+Last verified: local PC/mobile UI and18 language/viewport cases. Last reviewed: Claude coordination. Uncommitted: seven scoped files. Next: scoped release and production verification. Blocker:none.
+
+Implemented: pure comparison of eligible manual option sets. Neutral optional current/recommended numbered choices and add/remove steps; differences-only filter defaults off, scoped to existing search/category. Category/core-skill jumps reset filter. Filter-empty is explicit with clear control. Focus returns to filter when edited row disappears, including collapsed level editing. No actual-game specialization claim.
+Verification:7 checks PASS including all catalog/mode/level cases. Local GreenOrc PC manual1+2 and mobile1+3, saved/reloaded unchanged; filter exact rows, clear restores12, search intersection, category/passive/stigma exclusion, core-skill navigation, recommendation apply removes row, keyboard focus retained. Final level14->11 locks4 and restores at14. Existing level/mode editing recalculates recommended choices unchanged; comparison/filter never changes plan.9locales x1440/390 widths; no overflow or Korean in translated comparison guidance.
+Local preview was briefly unavailable while dist rebuilt; no product source fault, resumed after completed build using new owned tab. Tab69 error page cannot be closed by CUA URL policy; temporary unmarked IAB tab will close at turn end. All normal tests on tab70 completed.
+
+Claude readonly acceptance: PASS, relay2 finished 2026-10-29T20:11:39.766Z, status0/errornull/scope[]. Reviewed bounded44,547byte packet, no independent browser/test run by reviewer. Source hashes unchanged.

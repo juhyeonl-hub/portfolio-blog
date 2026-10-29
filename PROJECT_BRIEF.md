@@ -1008,3 +1008,6 @@ Show saved specialization choices on collapsed skill rows and matching numbers/s
 
 ### Specialization editor complete — 2026-10-29
 Source 4dbcf42 / https://c735a80e.asbc-4c9.pages.dev. Collapsed skills show saved numbered effects; expanded choices show selected/recommended/locked/automatic states and full-slot guidance. Seven checks,18 local+18 production locale/viewport cases, PC/mobile edit/reload/level-refresh passed; Claude relay2 PASS.302 pending paths preserved. Canonical /assets/asbc-DgqZoANw.js. See tasks/asbc-specialization-editor-20261029.md.
+
+## 2026-10-29: specialization difference guidance
+Compare saved manual selections with existing recommendations, with a differences-only filter and optional numbered change instructions. No recommendation or persistence changes. See tasks/asbc-specialization-differences-20261029.md.
