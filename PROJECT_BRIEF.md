@@ -984,3 +984,6 @@ Accepted next scope: PC/mobile viewport fr/de/es/pt-BR/ru ranking, content timer
 
 ### Five-language ranking/timer/ledger verification complete — 2026-10-29
 Source6de80db deployed with Functions at https://0ecc1003.asbc-4c9.pages.dev; canonical asset asbc-CnMV-j_P.js confirmed. Claude readonly retry PASS;11checks,30local and30post-deploy viewport cases +5actual ranker switches PASS. Fixed mobile ranker selector/tab obstruction, localized combat-power numbers/observation dates, specialization provenance and10ledger/timer dictionary fields. Primary302pending paths and original account plans/books preserved. Own QA ledger items removed; Korean/IAB viewport restored, IAB tabs/local preview closed. Chrome extension UI prevented owned QA tab/viewport cleanup, so Chrome completion is not claimed.189UI evidence files hash-verified. Task and validation limits: tasks/asbc-five-language-rank-timer-ledger-20261029.md.
+
+## 2026-10-29: locale copy follow-up
+Finish reproduced timer sentence seams and transaction-count labels in the five new locales. Dictionary-only implementation; same desktop/mobile viewport verification and scoped release workflow, primary302 pending paths preserved. See tasks/asbc-locale-copy-followup-20261029.md.

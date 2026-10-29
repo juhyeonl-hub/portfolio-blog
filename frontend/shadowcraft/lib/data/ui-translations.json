@@ -9923,10 +9923,10 @@
     "en": "Pin {0}",
     "ja": "{0} を固定",
     "fi": "Kiinnitä {0}",
-    "fr": "Programmation {0}",
-    "de": "Pin {0}",
-    "es": "Pin {0}",
-    "pt-BR": "Pin {0}",
+    "fr": "Épingler : {0}",
+    "de": "Anheften: {0}",
+    "es": "Fijar: {0}",
+    "pt-BR": "Fixar: {0}",
     "ru": "Закрепить: {0}"
   },
   "{0} 시간표": {
@@ -9995,7 +9995,7 @@
     "fi": "Shugo tasatunnein :00, Dimensional Invasion joka tunti :30 ja Rift 3 tunnin välein klo 02 alkaen ovat",
     "fr": "Shugo toutes les heures à :00, Invasion dimensionnelle toutes les heures à :30, et Faille toutes les 3 heures à partir de 02:00 ;",
     "de": "„Shugo“ findet stündlich zur vollen Stunde (:00) statt, „Dimensionsinvasion“ stündlich zur halben Stunde (:30) und „Riss“ alle 3 Stunden, beginnend ab 02:00 Uhr.",
-    "es": "Los eventos «Shugo» (cada hora a :00), «Invasión dimensional» (cada hora a :30) y «Grieta» (cada 3 horas a partir de las 02:00) son...",
+    "es": "Los eventos «Shugo» (cada hora a :00), «Invasión dimensional» (cada hora a :30) y «Grieta» (cada 3 horas a partir de las 02:00) son",
     "pt-BR": "Shugo (a cada hora, aos :00), Invasão Dimensional (a cada hora, aos :30) e Fenda (a cada 3 horas, a partir das 02:00) são",
     "ru": "Расписание для событий: «Шуго» — каждый час в :00, «Вторжение из другого измерения» — каждый час в :30, «Разлом» — каждые 3 часа, начиная с 02:00."
   },
@@ -10004,8 +10004,8 @@
     "ja": "A2Toolsのゲームデータに基づく参考スケジュール",
     "fi": "A2Toolsin pelidataan perustuvia viitteellisiä aikatauluja",
     "fr": "il s'agit de plannings de référence basés sur les données de jeu d'A2Tools.",
-    "de": "Referenzzeitpläne, die auf den Spieldaten von A2Tools basieren.",
-    "es": "...horarios de referencia basados ​​en los datos de juego de A2Tools.",
+    "de": "Dies sind Referenzzeitpläne auf Basis der Spieldaten von A2Tools.",
+    "es": "horarios de referencia basados en los datos de juego de A2Tools.",
     "pt-BR": "cronogramas de referência baseados nos dados de jogo do A2Tools",
     "ru": "Это справочное расписание, основанное на игровых данных A2Tools."
   },
@@ -17003,10 +17003,10 @@
     "en": ". Server time and daylight saving apply. Choose any boss in Pin content. Timers use A2Tools observations or reference spawn schedules; existing manual schedules take priority.",
     "ja": "です。サーバー地域の時刻と夏時間を適用します。「固定するコンテンツ」で全ボスから選択できます。A2Toolsの観測記録または定期出現の参考日程を使用し、既存の手動時刻表を優先します。",
     "fi": ". Ajat käyttävät palvelimen aikavyöhykettä ja kesäaikaa. Valitse pomot kiinnitysvalikosta. Ajastimet käyttävät A2Tools-havaintoja tai viiteaikatauluja; aiemmat käsin asetetut aikataulut ovat ensisijaisia.",
-    "fr": ". L'heure du serveur et le changement d'heure (heure d'été/hiver) s'appliquent. Sélectionnez un boss dans la section « Épinglés ». Les minuteurs utilisent les observations issues de A2Tools ou des horaires de référence ; les planifications manuelles existantes sont prioritaires.",
-    "de": ". Es gelten die Serverzeit und die Sommerzeit. Wähle einen beliebigen Boss aus, um ihn anzuheften. Die Timer basieren auf A2Tools-Beobachtungen oder Referenz-Spawn-Zeitplänen; manuell erstellte Zeitpläne haben Vorrang.",
-    "es": ". Se aplican la hora del servidor y el horario de verano. Selecciona cualquier jefe en «Contenido fijado». Los temporizadores utilizan observaciones de A2Tools o horarios de aparición de referencia; los horarios manuales existentes tienen prioridad.",
-    "pt-BR": ". Considera-se o horário do servidor e o horário de verão. Selecione um chefe em \"Conteúdo fixado\" (Pin content). Os temporizadores utilizam observações do A2Tools ou horários de referência; agendamentos manuais existentes têm prioridade.",
+    "fr": " L'heure du serveur et le changement d'heure (heure d'été/hiver) s'appliquent. Sélectionnez un boss dans la section « Épinglés ». Les minuteurs utilisent les observations issues de A2Tools ou des horaires de référence ; les planifications manuelles existantes sont prioritaires.",
+    "de": " Es gelten die Serverzeit und die Sommerzeit. Wähle einen beliebigen Boss aus, um ihn anzuheften. Die Timer basieren auf A2Tools-Beobachtungen oder Referenz-Spawn-Zeitplänen; manuell erstellte Zeitpläne haben Vorrang.",
+    "es": " Se aplican la hora del servidor y el horario de verano. Selecciona cualquier jefe en «Contenido fijado». Los temporizadores utilizan observaciones de A2Tools o horarios de aparición de referencia; los horarios manuales existentes tienen prioridad.",
+    "pt-BR": ". Considera-se o horário do servidor e o horário de verão. Selecione um chefe em \"Conteúdo fixado\". Os temporizadores utilizam observações do A2Tools ou horários de referência; agendamentos manuais existentes têm prioridade.",
     "ru": " Учитывается серверное время и переход на летнее/зимнее время. Выберите любого босса, чтобы закрепить его в списке. Таймеры основаны на данных A2Tools или справочных графиках появления; ручные графики имеют приоритет."
   },
   "내 캐릭터와 랭커 비교": {
@@ -23473,11 +23473,11 @@
     "en": "{0} transactions",
     "ja": "取引履歴 {0}件",
     "fi": "{0} kauppaa",
-    "fr": "{0} transactions",
-    "de": "{0} Transaktionen",
-    "es": "{0} transacciones",
-    "pt-BR": "{0} transações",
-    "ru": "{0} транзакций"
+    "fr": "Transactions : {0}",
+    "de": "Transaktionen: {0}",
+    "es": "Transacciones: {0}",
+    "pt-BR": "Transações: {0}",
+    "ru": "Транзакции: {0}"
   },
   "거래 목록 한 줄을 캡처하면 읽기 쉽습니다. 여러 가격이 보이면 개당 가격을 직접 선택하세요.": {
     "en": "Capture one listing row for better recognition. If several prices appear, select the unit price.",
