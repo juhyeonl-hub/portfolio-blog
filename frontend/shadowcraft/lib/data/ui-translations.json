@@ -2183,9 +2183,9 @@
     "en": "{0} entries",
     "ja": "{0}個",
     "fi": "{0} kohdetta",
-    "fr": "Entrées {0}",
-    "de": "{0} Einträge",
-    "es": "{0} entradas",
+    "fr": "{0} unités",
+    "de": "{0} Stück",
+    "es": "{0} unidades",
     "pt-BR": "{0} itens",
     "ru": "Элементов: {0}"
   },
@@ -9927,7 +9927,7 @@
     "de": "Pin {0}",
     "es": "Pin {0}",
     "pt-BR": "Pin {0}",
-    "ru": "Пин {0}"
+    "ru": "Закрепить: {0}"
   },
   "{0} 시간표": {
     "en": "{0} schedule",
@@ -17007,7 +17007,7 @@
     "de": ". Es gelten die Serverzeit und die Sommerzeit. Wähle einen beliebigen Boss aus, um ihn anzuheften. Die Timer basieren auf A2Tools-Beobachtungen oder Referenz-Spawn-Zeitplänen; manuell erstellte Zeitpläne haben Vorrang.",
     "es": ". Se aplican la hora del servidor y el horario de verano. Selecciona cualquier jefe en «Contenido fijado». Los temporizadores utilizan observaciones de A2Tools o horarios de aparición de referencia; los horarios manuales existentes tienen prioridad.",
     "pt-BR": ". Considera-se o horário do servidor e o horário de verão. Selecione um chefe em \"Conteúdo fixado\" (Pin content). Os temporizadores utilizam observações do A2Tools ou horários de referência; agendamentos manuais existentes têm prioridade.",
-    "ru": "Учитывается серверное время и переход на летнее/зимнее время. Выберите любого босса, чтобы закрепить его в списке. Таймеры основаны на данных A2Tools или справочных графиках появления; ручные графики имеют приоритет."
+    "ru": " Учитывается серверное время и переход на летнее/зимнее время. Выберите любого босса, чтобы закрепить его в списке. Таймеры основаны на данных A2Tools или справочных графиках появления; ручные графики имеют приоритет."
   },
   "내 캐릭터와 랭커 비교": {
     "en": "Compare my character with a ranker",
@@ -25353,11 +25353,11 @@
     "en": "Currently saved in this browser. Log in to use account-specific workbooks and crafting plans.",
     "ja": "現在はこのブラウザーに保存します。ログインするとアカウント別の帳簿と製作計画を利用できます。",
     "fi": "Tallennetaan nyt tähän selaimeen. Kirjaudu sisään käyttääksesi tilikohtaista kirjanpitoa ja valmistussuunnitelmia.",
-    "fr": "Actuellement sauvegardé dans ce navigateur. Connectez-vous pour utiliser des classeurs de travail et des plans de fabrication liés à votre compte. Nom de l'article",
-    "de": "Derzeit in diesem Browser gespeichert. Melde dich an, um kontospezifische Arbeitsbücher und Herstellungspläne zu nutzen. Artikelbezeichnung",
-    "es": "Actualmente guardado en este navegador. Inicia sesión para utilizar libros de trabajo y planes de fabricación vinculados a tu cuenta. Nombre del artículo",
-    "pt-BR": "Atualmente salvo neste navegador. Faça login para usar pastas de trabalho e planos de criação vinculados à sua conta. Nome do item",
-    "ru": "В данный момент сохранено в этом браузере. Войдите в систему, чтобы использовать рабочие книги и планы крафта, привязанные к вашей учетной записи. Наименование товара:"
+    "fr": "Enregistré dans ce navigateur. Connectez-vous pour utiliser les registres des échanges et les plans de fabrication de votre compte.",
+    "de": "Derzeit in diesem Browser gespeichert. Melde dich an, um das Handelsbuch und die Herstellungspläne deines Kontos zu verwenden.",
+    "es": "Guardado en este navegador. Inicia sesión para usar el registro de operaciones y los planes de fabricación de tu cuenta.",
+    "pt-BR": "Salvo neste navegador. Entre para usar os registros de negociações e os planos de fabricação da sua conta.",
+    "ru": "Данные сохранены в этом браузере. Войдите, чтобы использовать торговые журналы и планы крафта своего аккаунта."
   },
   "품목 이름": {
     "en": "Item name",

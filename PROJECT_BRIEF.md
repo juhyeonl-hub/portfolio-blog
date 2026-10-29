@@ -978,3 +978,6 @@ Accepted next scope: real Steam re-login, public author/edit/publish/share and s
 
 ### Five-language publishing production verification complete — 2026-10-29
 Source f70bf00 deployed with Functions at https://578c656d.asbc-4c9.pages.dev; production asset asbc-D8yESPKo.js confirmed in both browsers. Claude readonly review PASS;7 scoped checks,23 baseline UI cases and14 post-deploy cases PASS. FR/DE/ES/PT-BR/RU desktop/mobile viewport authoring, re-login, sharing and automatic locale synchronization verified. Original GreenOrc/private libraries (Chrome1/IAB8), two old posts and302 unrelated pending paths preserved. One labelled QA public post remains; Korean restored, own tabs/viewport overrides cleaned up. Evidence and limits: tasks/asbc-five-language-auth-20261029.md.
+
+## 2026-10-29: five-language ranking, timers and ledger
+Accepted next scope: PC/mobile viewport fr/de/es/pt-BR/ru ranking, content timers, trade workbook verification. Fix reproduced presentation issues only; preserve original data and302 pending paths. Claude coordination complete; final review before scoped deployment. See tasks/asbc-five-language-rank-timer-ledger-20261029.md.
