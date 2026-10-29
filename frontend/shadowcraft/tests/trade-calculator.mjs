@@ -19,6 +19,17 @@ assert.equal(minimumTradePrice({...input,buy:0n,taxBps:0n},25n,0n),0n);
 const large=calculateTrade({...input,buy:1_000_000_000_000n,sell:1_000_000_000_000n,quantity:1_000_000n,bundle:1_000_000n});assert.equal(large.cost,1_000_000_000_000_000_000n);assert.equal(large.profit,-100_000_000_000_000_000n);
 assert.equal(parseTradeInteger('130,000',MAX_TRADE_MONEY),130000n);
 for(const text of ['', '-1','1.5','1e6','Infinity','NaN','13만','13,00','1,','1000000000001'])assert.equal(parseTradeInteger(text,MAX_TRADE_MONEY),null,text);
+// Formatting emitted by every supported locale can be entered back as whole Kinah/counts.
+for(const locale of ['ko','en','ja','fi','fr','de','es','pt-BR','ru'])for(const value of [0n,5254n,10908n,130000n,MAX_TRADE_MONEY]){
+ const raw=value.toLocaleString(locale);assert.equal(parseTradeInteger(raw,MAX_TRADE_MONEY),value,locale+' '+raw);assert.equal(parseTradeMoney(raw),value,locale+' '+raw);
+}
+for(const raw of ['13 000','13.000','13\u00a0000','13\u202f000'])assert.equal(parseTradeMoney(raw),13000n,raw);
+for(const raw of ['13 00','1.2','1.000,000','1,000.000','1 000\u00a0000','1  000','1\t000','1\n000','1.000.000.000.001'])assert.equal(parseTradeMoney(raw),null,raw);
+for(const [raw,value] of [['7,5',750n],['0,25',25n],['100,00',10000n],[' 10,25 ',1025n]])assert.equal(parseTradeRate(raw),value,raw);
+for(const raw of ['100,01','1,000','1.2,3','1,,2','1,','1 0','1e1'])assert.equal(parseTradeRate(raw),null,raw);
+const localizedDraft=parseTradeDraft({...tradeExample,buy:'130.000',sell:'150\u202f000',quantity:'1.000',bundle:'25',tax:'7,5'});
+assert.deepEqual(localizedDraft.errors,{});assert.equal(localizedDraft.value.buy,130000n);assert.equal(localizedDraft.value.quantity,1000n);assert.equal(localizedDraft.value.taxBps,750n);
+assert.equal(calculateTrade(localizedDraft.value).profit,8_750_000n);
 assert.equal(parseTradeRate('10.25'),1025n);
 for(const text of ['','-1','100.01','1e1','10.001'])assert.equal(parseTradeRate(text),null,text);
 for(const [key,bad] of [['quantity','0'],['bundle','0'],['tax','101'],['buy','-1'],['sell',''],['target','-5'],['fee','1.2']])assert.ok(parseTradeDraft({...tradeExample,[key]:bad}).errors[key]);
@@ -54,13 +65,18 @@ assert.ok(parsePurchaseDraft({...tradeExample,quantity:''}).errors.quantity);
 console.log('PASS purchase-only examples: hidden manual fields ignored, exact ROI targets, changing cost/quantity/fees, minimum price boundaries and impossible rates');
 
 for(const [raw,expected] of [['13만',130000n],['13만 5천',135000n],['13.5만',135000n],['13만5천',135000n],['1억 5천만',150000000n],['1조',1000000000000n],['0.0001만',1n],['1천 2백 3십 4',1234n],['130,000',130000n],['0',0n],[' 13만  ',130000n]])assert.equal(parseTradeMoney(raw),expected,raw);
-for(const raw of ['', '13 000', '13만 원', '13만?', '-13만', '1.2', '1e6', '1만 2억', '1만 2만', '1백 2천', '0.00001만','1.001천 0.5','13,00','1조 1','2조','1..5만','만','13만 5 2천','1'.repeat(41)])assert.equal(parseTradeMoney(raw),null,raw);
+for(const raw of ['', '13 00', '13만 원', '13만?', '-13만', '1.2', '1e6', '1만 2억', '1만 2만', '1백 2천', '0.00001만','1.001천 0.5','13,00','1조 1','2조','1..5만','만','13만 5 2천','1'.repeat(41)])assert.equal(parseTradeMoney(raw),null,raw);
 assert.equal(parsePurchaseDraft({...tradeExample,buy:'13만 5천'}).value.buy,135000n);
 assert.equal(parseTradeDraft({...tradeExample,sell:'15만',fee:'1천',target:'50만'}).value.target,500000n);
 const oldDraft={...tradeExample,buy:'20만',quantity:'3'};delete oldDraft.purchaseMode;
 assert.deepEqual(restoreTradeDraft(oldDraft),{...oldDraft,purchaseMode:'unit'});
 assert.deepEqual(restoreTradeDraft({...oldDraft,purchaseMode:'invalid'}),tradeExample);
 assert.deepEqual(restoreTradeDraft(null),tradeExample);
+// Legacy calculator drafts retain all values; the independent craft goal survives reload.
+const legacyCraftGoal={...tradeExample,buy:'999',profitRate:'20'};delete legacyCraftGoal.craftProfitRate;
+assert.deepEqual(restoreTradeDraft(legacyCraftGoal),{...legacyCraftGoal,craftProfitRate:'10'});
+for(const craftProfitRate of ['7,5','0','100','']){const saved={...tradeExample,craftProfitRate,profitRate:'20'};assert.deepEqual(restoreTradeDraft(JSON.parse(JSON.stringify(saved))),saved);}
+
 const totalDraft=changePurchaseMode(tradeExample,'total');assert.equal(totalDraft.buy,'13000000');assert.equal(totalDraft.purchaseMode,'total');
 assert.equal(changePurchaseMode(totalDraft,'unit').buy,'130000');
 assert.equal(changePurchaseMode({...totalDraft,buy:'100',quantity:'3'},'unit').buy,'');
@@ -132,6 +148,13 @@ for(const received of [0n,20n,100n,150n])for(const taxBps of [0n,1234n,10000n])f
  if(row.remainingPrice!==null){const future={...v,totalCost:0n,quantity:row.remaining};assert.ok(calculateTrade(future,future.bundle,row.remainingPrice).net+received>=100n);if(row.remainingPrice>0n)assert.ok(calculateTrade(future,future.bundle,row.remainingPrice-1n).net+received<100n);}
 }
 assert.deepEqual(restoreTradeLedger({draft:tradeExample,sales:oneSale}),{draft:tradeExample,sales:oneSale});
+// Drafts written before craftProfitRate existed must retain their purchase and sales records.
+const {craftProfitRate:ignoredCraftGoal,...legacyLedgerDraft}={...tradeExample,buy:'777',profitRate:'20'};
+assert.deepEqual(restoreTradeLedger(JSON.parse(JSON.stringify({draft:legacyLedgerDraft,sales:oneSale}))),{draft:{...legacyLedgerDraft,craftProfitRate:'10'},sales:oneSale});
+assert.equal(restoreTradeLedger({draft:{...tradeExample,craftProfitRate:20},sales:oneSale}),null);
+assert.equal(restoreTradeLedger({draft:{...tradeExample,craftProfitRate:'x'.repeat(81)},sales:oneSale}),null);
+assert.equal(restoreTradeLedger({draft:{...tradeExample,craftProfitRate:'7,5'},sales:oneSale}).draft.craftProfitRate,'7,5');
+
 assert.equal(restoreTradeLedger({draft:tradeExample,sales:[...oneSale,...oneSale]}),null);
 assert.equal(restoreTradeLedger({draft:tradeExample,sales:[{id:'a',quantity:'no',received:'1'}]}),null);
 assert.equal(restoreTradeLedger(null),null);

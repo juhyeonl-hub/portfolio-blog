@@ -9143,11 +9143,11 @@
     "en": "Select a candidate",
     "ja": "候補を選択",
     "fi": "Valitse ehdokas",
-    "fr": "Sélectionner un élément potentiel",
+    "fr": "Choisir un emplacement possible",
     "de": "Potenzielle Fundstelle auswählen",
-    "es": "Seleccionar un candidato",
-    "pt-BR": "Selecione um candidato",
-    "ru": "Выберите вариант"
+    "es": "Seleccionar una ubicación posible",
+    "pt-BR": "Selecione um local possível",
+    "ru": "Выберите возможное место"
   },
   "검색 결과 {0}개 · 현재 화면 {1}개": {
     "en": "{0} results · {1} on screen",
@@ -9194,8 +9194,8 @@
     "ja": "確認済みの位置を隠す",
     "fi": "Piilota tarkistetut sijainnit",
     "fr": "Masquer les emplacements cochés",
-    "de": "Ausgewählte Fundorte ausblenden",
-    "es": "Ocultar ubicaciones seleccionadas",
+    "de": "Abgehakte Orte ausblenden",
+    "es": "Ocultar ubicaciones marcadas",
     "pt-BR": "Ocultar locais marcados",
     "ru": "Скрыть отмеченные места"
   },
@@ -9204,8 +9204,8 @@
     "ja": "確認記録 {0}件 · このブラウザに保存されます。候補地点ごとの記録で、実際の収集数ではありません。",
     "fi": "{0} tarkistettu · Tallennetaan tähän selaimeen. Merkinnät ovat ehdokaspisteittäisiä eivätkä kuvaa todellisia keräilymääriä.",
     "fr": "{0} cochés · Enregistrés dans ce navigateur. Les données correspondent aux emplacements potentiels et ne reflètent pas le nombre réel de collectes effectuées.",
-    "de": "{0} ausgewählt · In diesem Browser gespeichert. Die Einträge beziehen sich auf die potenziellen Fundorte und spiegeln nicht die tatsächliche Anzahl der gesammelten Ressourcen wider.",
-    "es": "{0} seleccionados · Guardado en este navegador. Los registros corresponden a cada punto candidato y no reflejan la cantidad real de elementos recolectados.",
+    "de": "{0} abgehakt · In diesem Browser gespeichert. Die Einträge beziehen sich auf die potenziellen Fundorte und spiegeln nicht die tatsächliche Anzahl der gesammelten Ressourcen wider.",
+    "es": "{0} marcados · Guardado en este navegador. Los registros corresponden a cada punto candidato y no reflejan la cantidad real de elementos recolectados.",
     "pt-BR": "{0} marcados · Salvos neste navegador. Os registros referem-se a pontos candidatos e não refletem a contagem real de coletas realizadas.",
     "ru": "Отмечено: {0} · Сохранено в этом браузере. Данные привязаны к конкретным точкам и не отражают фактическое количество собранных ресурсов."
   },
@@ -9433,11 +9433,11 @@
     "en": "Hidden cubes use the original in-game cube image.",
     "ja": "ヒドゥンキューブはゲーム原本のキューブ画像で表示します。",
     "fi": "Piilokuutiot näytetään pelin alkuperäisellä kuutiokuvalla.",
-    "fr": "Les cubes masqués utilisent l'image originale des cubes présente dans le jeu.",
-    "de": "Für versteckte Würfel wird das originale Würfelbild aus dem Spiel verwendet.",
-    "es": "Los cubos ocultos utilizan la imagen original del cubo presente en el juego.",
-    "pt-BR": "Cubos ocultos utilizam a imagem original de cubo presente no jogo.",
-    "ru": "Для скрытых кубов используется оригинальное внутриигровое изображение куба."
+    "fr": "Les cubes cachés sont représentés par leur icône dans le jeu.",
+    "de": "Versteckte Würfel werden mit ihrem Originalsymbol aus dem Spiel angezeigt.",
+    "es": "Los cubos ocultos se muestran con su icono original del juego.",
+    "pt-BR": "Os cubos ocultos são exibidos com o ícone original do jogo.",
+    "ru": "Скрытые кубы обозначены оригинальным значком из игры."
   },
   "이 위치 확인 완료": {
     "en": "Mark this location as checked",
@@ -9523,11 +9523,11 @@
     "en": "Map & collection log",
     "ja": "マップ & 収集記録",
     "fi": "Kartta ja keräilyloki",
-    "fr": "Carte et journal de collection",
+    "fr": "Carte et suivi des collectes",
     "de": "Karte & Sammlungsübersicht",
-    "es": "Mapa y registro de colección",
-    "pt-BR": "Mapa e registro de coleção",
-    "ru": "Карта и журнал коллекций"
+    "es": "Mapa y registro de recolección",
+    "pt-BR": "Mapa e progresso de coleta",
+    "ru": "Карта и прогресс сбора"
   },
   "사용자 지도 파일 가져오기": {
     "en": "Import a user map file",
@@ -15303,11 +15303,11 @@
     "en": "Found {0}/{1}",
     "ja": "確認 {0}/{1}",
     "fi": "Löydetty {0}/{1}",
-    "fr": "{0}/{1} trouvé(s)",
-    "de": "Gefunden: {0}/{1}",
-    "es": "Encontrado {0}/{1}",
-    "pt-BR": "Encontrado(s) {0}/{1}",
-    "ru": "Найдено {0}/{1}"
+    "fr": "{0}/{1} cochés",
+    "de": "{0}/{1} abgehakt",
+    "es": "{0}/{1} marcados",
+    "pt-BR": "{0}/{1} marcados",
+    "ru": "Отмечено: {0}/{1}"
   },
   "전체 확인 진행률": {
     "en": "Overall progress",

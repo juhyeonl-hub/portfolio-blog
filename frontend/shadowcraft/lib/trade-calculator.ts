@@ -3,13 +3,15 @@ export const MAX_TRADE_MONEY=1_000_000_000_000n;
 export const MAX_TRADE_QUANTITY=1_000_000n;
 export type TradeField='buy'|'sell'|'quantity'|'bundle'|'tax'|'fee'|'target'|'profitRate';
 export type PurchaseMode='unit'|'total';
-export type TradeDraft=Record<TradeField,string> & {item:string;rounding:'up'|'down';purchaseMode:PurchaseMode};
+export type TradeDraft=Record<TradeField,string> & {item:string;craftProfitRate:string;rounding:'up'|'down';purchaseMode:PurchaseMode};
 export type TradeInput={totalCost?:bigint;buy:bigint;sell:bigint;quantity:bigint;bundle:bigint;taxBps:bigint;fee:bigint;target:bigint;rounding:'up'|'down'};
-export const tradeExample:TradeDraft={profitRate:'10',purchaseMode:'unit',item:'순수한 오드',buy:'130000',sell:'150000',quantity:'100',bundle:'25',tax:'10',fee:'0',target:'500000',rounding:'up'};
+export const tradeExample:TradeDraft={craftProfitRate:'10',profitRate:'10',purchaseMode:'unit',item:'순수한 오드',buy:'130000',sell:'150000',quantity:'100',bundle:'25',tax:'10',fee:'0',target:'500000',rounding:'up'};
 export function parseTradeInteger(raw:string,max:bigint,min=0n):bigint|null{
  const text=raw.trim();
- if(text.length>24||! /^(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)$/.test(text))return null;
- const value=BigInt(text.replaceAll(',',''));return value>=min&&value<=max?value:null;
+ // Whole Kinah/count fields accept complete, consistently grouped integers only.
+ // Spaces include the French narrow NBSP and Russian NBSP used by Intl.NumberFormat.
+ if(text.length>24||!/^(?:[0-9]+|[0-9]{1,3}([,. \u00a0\u202f])[0-9]{3}(?:\1[0-9]{3})*)$/.test(text))return null;
+ const value=BigInt(text.replace(/[, .\u00a0\u202f]/g,''));return value>=min&&value<=max?value:null;
 }
 // Parse complete Korean money expressions without floating-point arithmetic.
 // Large units form descending groups; each group may contain 천/백/십.
@@ -51,7 +53,7 @@ export function parseTradeMoney(raw:string):bigint|null{
 export function restoreTradeDraft(value:unknown):TradeDraft{
  if(!value||typeof value!=='object')return {...tradeExample};
  const record=value as Record<string,unknown>;
- const candidate={...record,purchaseMode:record.purchaseMode??'unit',profitRate:record.profitRate??'10'};
+ const candidate={...record,purchaseMode:record.purchaseMode??'unit',profitRate:record.profitRate??'10',craftProfitRate:record.craftProfitRate??'10'};
  if(!Object.keys(tradeExample).every(key=>typeof candidate[key as keyof typeof candidate]==='string'&&String(candidate[key as keyof typeof candidate]).length<=80)||!['up','down'].includes(String(record.rounding))||!['unit','total'].includes(String(candidate.purchaseMode)))return {...tradeExample};
  return Object.fromEntries(Object.keys(tradeExample).map(key=>[key,candidate[key as keyof typeof candidate]])) as TradeDraft;
 }
@@ -65,7 +67,7 @@ export function changePurchaseMode(draft:TradeDraft,purchaseMode:PurchaseMode):T
 }
 export const tradePurchaseCost=(input:TradeInput)=>input.totalCost??input.buy*input.quantity;
 export function parseTradeRate(raw:string):bigint|null{
- const text=raw.trim();if(!/^[0-9]{1,3}(?:\.[0-9]{1,2})?$/.test(text))return null;
+ const text=raw.trim().replace(',','.');if(!/^[0-9]{1,3}(?:\.[0-9]{1,2})?$/.test(text))return null;
  const [whole,fraction='']=text.split('.');const value=BigInt(whole)*100n+BigInt(fraction.padEnd(2,'0'));
  return value<=10000n?value:null;
 }
@@ -131,13 +133,16 @@ export type TradeLedger={draft:TradeDraft;sales:TradeSale[]};
 export function restoreTradeLedger(raw:unknown):TradeLedger|null{
  if(!raw||typeof raw!=='object')return null;
  const value=raw as Partial<TradeLedger>;
- if(!value.draft||typeof value.draft!=='object'||!Object.keys(tradeExample).every(k=>typeof (value.draft as Record<string,unknown>)[k]==='string'&&String((value.draft as Record<string,unknown>)[k]).length<=80)||!['up','down'].includes(value.draft.rounding)||!['unit','total'].includes(value.draft.purchaseMode)||!Array.isArray(value.sales)||value.sales.length>200)return null;
+ if(!value.draft||typeof value.draft!=='object')return null;
+ // Legacy ledgers predate the independent crafting profit target.
+ const draft={...value.draft,craftProfitRate:value.draft.craftProfitRate??'10'};
+ if(!Object.keys(tradeExample).every(k=>typeof (draft as Record<string,unknown>)[k]==='string'&&String((draft as Record<string,unknown>)[k]).length<=80)||!['up','down'].includes(draft.rounding)||!['unit','total'].includes(draft.purchaseMode)||!Array.isArray(value.sales)||value.sales.length>200)return null;
  const ids=new Set<string>();
  for(const row of value.sales){
   if(!row||typeof row.id!=='string'||row.id.length>80||ids.has(row.id)||typeof row.quantity!=='string'||typeof row.received!=='string'||parseTradeInteger(row.quantity,MAX_TRADE_QUANTITY,1n)===null||parseTradeMoney(row.received)===null)return null;
   ids.add(row.id);
  }
- return {draft:restoreTradeDraft(value.draft),sales:value.sales.map(({id,quantity,received})=>({id,quantity,received}))};
+ return {draft:restoreTradeDraft(draft),sales:value.sales.map(({id,quantity,received})=>({id,quantity,received}))};
 }
 export function calculateTradeLedger(input:TradeInput,sales:TradeSale[]){
  check(input,input.bundle);

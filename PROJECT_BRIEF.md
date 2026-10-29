@@ -963,3 +963,9 @@ Corrected 36 translated values without changing sources/numbers/placeholders; fi
 Five-language journey release774aba7/Pages8ceba78a: all10production PC/mobile flows passed, original GreenOrc/8copies and302pending paths preserved. Final visual pass also fixes mobile skill-header text overlap; all5locale column bounds and desktop isolation pass. See task record for review scope and evidence.
 
 Five-language journey completed2026-10-29: final source5a4e12d/Pages7defd6a5, all10PC/mobile production find/apply/edit/save/share journeys rerun PASS; five mobile header layouts and desktop isolation verified. Original GreenOrc/8copies and302pending paths preserved; QA tabs/temporary staging cleaned. Evidence artifacts/five-language-journey-20261029.
+
+## 2026-10-29 — five-language trade/map verification
+- Task: tasks/asbc-five-language-trade-map-20261029.md. fr/de/es/pt-BR/ru, PC1440/mobile360 browser checks.
+- Scoped fixes: localized grouped integer/decimal-comma input; crafting target retention in existing local draft; clear quantity/net-profit and checked-map-location wording. No game-data, map persistence, account/API or auth changes.
+- Production baseline20 + revised local20 calculator/map cases, exact10908/12120 fixture, map reload/undo passed. Typecheck,45-script suite, focused persistence rerun, build and SEO passed. Evidence: D:/CodexData/Projects/ASBC/artifacts/five-language-trade-map-20261029.
+- Claude final review PASS after fixing a legacy-ledger restore regression and adding a failing-then-passing old-record fixture. Full45 tests/typecheck/build/SEO rerun PASS; final map10cases PASS. User authorized scoped release; primary302unrelated pending paths must be preserved.

@@ -18,7 +18,7 @@ function initialDraft():TradeDraft{
 export default function TradeCalculator(){
  const {t,locale}=useLocale();const [draft,setDraft]=useState(initialDraft),[manual,setManual]=useState(false),[conversionNotice,setConversionNotice]=useState(false);
  const [tool,setTool]=useState<'sale'|'ledger'|'craft'|'craft-sale'>('craft-sale');
- const [craftGoal,setCraftGoal]=useState('10');
+ const craftGoal=draft.craftProfitRate,setCraftGoal=(value:string)=>setDraft(old=>({...old,craftProfitRate:value}));
  const cs=(key:Parameters<typeof craftSaleText>[1])=>craftSaleText(locale,key);
  const [purchase,setPurchase]=useState<PurchaseSeed|null>(null);
  const startPurchase=(seed:Omit<PurchaseSeed,'id'>)=>{setPurchase({...seed,id:crypto.randomUUID()});setTool('ledger');};
