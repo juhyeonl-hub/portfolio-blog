@@ -1,0 +1,16 @@
+# Specialization editor visibility — 2026-10-29
+Status: VERIFIED FOR RELEASE. Owner: Codex; Claude readonly coordination/final review.
+[Task Goal]: Continue per-skill specialization guidance into the actual skill editor, so current choices and recommendation numbers are easy to match.
+Base:98d4c9d50d67a61b7b429e143a8ba0a97e6fe5c0. Primary302 pending paths preserved; page.tsx has no primary overlap.
+Scope: page.tsx, presentational summary/option label component and CSS, necessary8locale fields, focused render test, task/brief. Existing selection/recommendation/catalog/persistence code unchanged.
+Input/output: saved choices -> same numbered effects visible while collapsed; expanded option rows identify selected/recommended/locked/automatic states. Selecting/deselecting and full-slot guard retain existing behavior. Locked/empty/passive/stigma states stay distinct. No new numerical or optimal-build claims.
+Failures: hidden/manual choices overwritten, wrong option numbering, locked options recommended, overflow/mobile focus loss, stale count after editing, reload mismatch.
+Baseline reproduced before code: collapsed GreenOrc first skill shows only name/base/final; opening shows current2 choices but no catalog numbers/status badges. Baseline screenshot/DOM in artifacts. Coordinator relay1 PASS.
+Done when: focused tests/typecheck/build/local PC/mobile and9locale QA, Claude readonly acceptance, scoped release and production verification.
+Last verified: local GreenOrc PC/mobile interaction and18 language/viewport cases. Last reviewed: Claude relay2 PASS. Uncommitted: seven scoped files. Next: scoped release and production verification. Blocker:none.
+
+Implemented: saved choices shown collapsed (catalog number+localized effect); expanded labels distinguish recommended/selected/locked/automatic. Passive explanation and capacity-full guidance. Automatic stigma CTA correctly says automatic effect. Existing handlers byte-identical.32 new locale fields; existing recommendation key reused unchanged.
+Checks: render regression, previous recommendation display, specialization/localization, typecheck, build, SEO all pass. Unit test manual2+3 vs recommended1+4 avoids substitution; empty7/8/12/16/20 and stigma1/5/10/15/20 boundaries.
+Local UI: GreenOrc already loaded on owned local origin; original1+4, PC manual1+2, mobile1+3, reload persistence, full-slot guard, keyboard activation, apply recommendation, level14->11->14 slot2->1->2 and locked selection removal. Stigma0 locked auto-heading and passive no-selection explanation checked.18 locale/viewport cases (1440x1000,390x844), no Korean state labels outside ko/no horizontal overflow. No canonical account changes. Actual browser viewport simulation, not a physical handset.
+
+Claude readonly acceptance: PASS, relay2 finished 2026-10-29T19:47:46.119Z, status0/errornull/scope[]. Reviewed bounded35,544byte packet, no independent browser/test run by reviewer. Source hashes unchanged.

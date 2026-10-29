@@ -1002,3 +1002,6 @@ Show candidate specialization selections and effects on each skill row, includin
 
 ### Skill specialization guide complete — 2026-10-29
 Source 484a335 / https://996992eb.asbc-4c9.pages.dev. Each skill now shows selected effects and separate locked/future/automatic states. Nine checks,18 local and18 production locale/viewport cases, live GreenOrc apply/persistence and daevanion-slot refresh passed; Claude relay3 PASS after one timeout retry. Canonical asset /assets/asbc-CwkwBOdz.js.302 pending paths preserved; QA resources cleaned. See tasks/asbc-skill-specialization-guide-20261029.md.
+
+## 2026-10-29: specialization editor continuation
+Show saved specialization choices on collapsed skill rows and matching numbers/state labels in the editor. Preserve handlers, game data, recommendation rules and unrelated changes. See tasks/asbc-specialization-editor-20261029.md.

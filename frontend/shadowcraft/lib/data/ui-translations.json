@@ -26998,5 +26998,45 @@
     "es": "Especialización {0}",
     "pt-BR": "Especialização {0}",
     "ru": "Специализация {0}"
+  },
+  "내 계획의 특화 ({0}/{1}칸)": {
+    "en": "My specializations ({0}/{1} slots)",
+    "ja": "現在の特化（{0}/{1}枠）",
+    "fi": "Omat erikoistumiset ({0}/{1} paikkaa)",
+    "fr": "Mes spécialisations ({0}/{1} emplacements)",
+    "de": "Meine Spezialisierungen ({0}/{1} Plätze)",
+    "es": "Mis especializaciones ({0}/{1} espacios)",
+    "pt-BR": "Minhas especializações ({0}/{1} espaços)",
+    "ru": "Мои специализации ({0}/{1} ячеек)"
+  },
+  "{0} 특화 선택·변경": {
+    "en": "Choose or change specializations for {0}",
+    "ja": "{0}の特化を選択・変更",
+    "fi": "Valitse tai vaihda taidon {0} erikoistumiset",
+    "fr": "Choisir ou modifier les spécialisations de {0}",
+    "de": "Spezialisierungen für {0} wählen oder ändern",
+    "es": "Elegir o cambiar especializaciones de {0}",
+    "pt-BR": "Escolher ou alterar especializações de {0}",
+    "ru": "Выбрать или изменить специализации: {0}"
+  },
+  "잠긴 특화": {
+    "en": "Locked specialization",
+    "ja": "未解放の特化",
+    "fi": "Lukittu erikoistuminen",
+    "fr": "Spécialisation verrouillée",
+    "de": "Gesperrte Spezialisierung",
+    "es": "Especialización bloqueada",
+    "pt-BR": "Especialização bloqueada",
+    "ru": "Заблокированная специализация"
+  },
+  "자동 적용 효과": {
+    "en": "Automatic effect",
+    "ja": "自動適用効果",
+    "fi": "Automaattinen vaikutus",
+    "fr": "Effet automatique",
+    "de": "Automatischer Effekt",
+    "es": "Efecto automático",
+    "pt-BR": "Efeito automático",
+    "ru": "Автоматический эффект"
   }
 }
