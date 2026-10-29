@@ -971,3 +971,7 @@ Five-language journey completed2026-10-29: final source5a4e12d/Pages7defd6a5, al
 - Claude final review PASS after fixing a legacy-ledger restore regression and adding a failing-then-passing old-record fixture. Full45 tests/typecheck/build/SEO rerun PASS; final map10cases PASS. User authorized scoped release; primary302unrelated pending paths must be preserved.
 
 Five-language trade/map completed2026-10-29: source46b3b83/Pages85dac904; all20production PC/mobile flows PASS, asbc.app asset CQXHhL-6 verified. Claude final review PASS; legacy ledger fixture preserved;302unrelated pending paths retained. See task/evidence for browser viewport and data-restoration scope.
+
+
+## 2026-10-29: five-language authenticated publishing and sync
+Accepted next scope: real Steam re-login, public author/edit/publish/share and same-account automatic settings synchronization in fr/de/es/pt-BR/ru, desktop/mobile viewport. Codex UI/implementation; Claude readonly coordination complete and final review reserved. Original user data and primary302 pending paths preserved. See tasks/asbc-five-language-auth-20261029.md.

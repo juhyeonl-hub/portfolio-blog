@@ -25563,11 +25563,11 @@
     "en": "Edit the allocation and write your guide here. Your post and personal planner stay unchanged until you save.",
     "ja": "ここで配分と説明を編集できます。保存するまでは投稿と自分のプランナーは変更されません。",
     "fi": "Muokkaa jakoa ja kirjoita ohjeet tässä. Julkaisu ja oma suunnitelmasi eivät muutu ennen tallennusta.",
-    "fr": "Modifiez l'attribution et rédigez votre guide ici. Votre publication et votre planificateur personnel resteront inchangés tant que vous n'aurez pas enregistré.",
-    "de": "Passe die Verteilung an und verfasse hier deinen Guide. Dein Beitrag und dein persönlicher Planer bleiben unverändert, bis du speicherst.",
-    "es": "Edita la asignación y redacta tu guía aquí. Tu publicación y tu planificador personal no sufrirán cambios hasta que guardes.",
-    "pt-BR": "Edite a alocação e escreva seu guia aqui. Sua postagem e seu planejador pessoal permanecem inalterados até que você salve.",
-    "ru": "Измените распределение очков и составьте здесь свое руководство. Ваша публикация и личный планировщик останутся без изменений до тех пор, пока вы не сохраните данные."
+    "fr": "Modifiez cette copie et rédigez vos explications. Votre planificateur personnel reste inchangé. La publication n’est modifiée qu’après l’enregistrement.",
+    "de": "Bearbeite diese Kopie und ergänze deine Erklärungen. Dein persönlicher Planer bleibt unverändert. Der Beitrag wird erst beim Speichern aktualisiert.",
+    "es": "Edita esta copia y añade tus explicaciones. Tu planificador personal no cambia. La publicación solo se actualiza cuando guardas.",
+    "pt-BR": "Edite esta cópia e acrescente suas explicações. Seu planejador pessoal não muda. A publicação só é atualizada quando você salva.",
+    "ru": "Редактируйте эту копию и добавляйте пояснения. Ваш личный планировщик не изменится. Публикация обновится только после сохранения."
   },
   "사용 {0} · 남음 {1}": {
     "en": "Used {0} · Remaining {1}",
@@ -26013,11 +26013,11 @@
     "en": "Your draft is kept in this tab for 24 hours. Sign in again to continue. It is not synced to other devices.",
     "ja": "下書きはこのタブに24時間一時保存されます。再ログイン後に続けられます。他の端末には同期されません。",
     "fi": "Luonnos säilytetään tässä välilehdessä 24 tuntia. Voit jatkaa kirjautumisen jälkeen. Sitä ei synkronoida muihin laitteisiin.",
-    "fr": "Votre brouillon est conservé dans cet onglet pendant 24 heures. Connectez-vous à nouveau pour continuer. Il n'est pas synchronisé avec d'autres appareils.",
-    "de": "Dein Entwurf bleibt für 24 Stunden in diesem Tab gespeichert. Melde dich erneut an, um fortzufahren. Er wird nicht mit anderen Geräten synchronisiert.",
-    "es": "El borrador permanecerá en esta pestaña durante 24 horas. Inicia sesión de nuevo para continuar. No se sincroniza con otros dispositivos.",
-    "pt-BR": "Seu rascunho permanece nesta aba por 24 horas. Faça login novamente para continuar. Ele não é sincronizado com outros dispositivos.",
-    "ru": "Ваш черновик хранится в этой вкладке в течение 24 часов. Войдите в систему снова, чтобы продолжить работу. Данные не синхронизируются с другими устройствами."
+    "fr": "Votre brouillon est conservé dans cet onglet pendant 24 heures. Si vous devez vous reconnecter, vous pourrez le reprendre ici. Il n’est pas synchronisé avec les autres appareils.",
+    "de": "Dein Entwurf wird 24 Stunden in diesem Tab aufbewahrt. Falls du dich erneut anmelden musst, kannst du ihn hier fortsetzen. Er wird nicht mit anderen Geräten synchronisiert.",
+    "es": "El borrador se conserva en esta pestaña durante 24 horas. Si necesitas volver a iniciar sesión, podrás continuarlo aquí. No se sincroniza con otros dispositivos.",
+    "pt-BR": "Seu rascunho fica nesta aba por 24 horas. Se precisar entrar novamente, você poderá continuar por aqui. Ele não é sincronizado com outros dispositivos.",
+    "ru": "Черновик хранится в этой вкладке 24 часа. Если потребуется войти снова, вы сможете продолжить здесь. Черновик не синхронизируется с другими устройствами."
   },
   "입력한 포인트는 총량입니다. 기본 투자에 장비·데바니온 보너스를 더한 값이 최종 레벨입니다.": {
     "en": "Enter total points. Final skill level adds gear and Daevanion bonuses to your base investment.",
@@ -26027,7 +26027,7 @@
     "de": "Gib die Gesamtpunktzahl ein. Die endgültige Fertigkeitsstufe ergibt sich aus der Basisinvestition zuzüglich der Boni durch Ausrüstung und Daevanion.",
     "es": "Introduce el total de puntos. El nivel final de la habilidad suma las bonificaciones del equipo y de Daevanion a tu inversión base.",
     "pt-BR": "Insira o total de pontos. O nível final da habilidade soma os bônus de equipamentos e de Daevanion ao seu investimento base.",
-    "ru": "Введите общее количество очков. Итоговый уровень навыка складывается из базового значения и бонусов от экипировки и снаряжения Даэваниона."
+    "ru": "Введите общее количество очков. Итоговый уровень навыка — это базовый уровень плюс бонусы от экипировки и Даэваниона."
   },
   "게시 제목을 입력하세요.": {
     "en": "Enter a post title.",
