@@ -26898,5 +26898,105 @@
     "es": "Dejar vacío",
     "pt-BR": "Deixe vazio",
     "ru": "Оставьте пустым"
+  },
+  "아래 특화도 전체 계획에 함께 적용됩니다. 번호는 사이트 특화 목록 순서이며, 게임에서는 효과 설명을 확인하세요.": {
+    "en": "These specializations are included when you apply the whole plan. Numbers follow this site’s list; check the effect descriptions in the game.",
+    "ja": "以下の特化もプラン全体と一緒に適用されます。番号は当サイトの一覧順です。ゲームでは効果の説明を確認してください。",
+    "fi": "Nämä erikoistumiset sisältyvät koko suunnitelman käyttöönottoon. Numerot vastaavat sivuston luetteloa; tarkista vaikutusten kuvaukset pelissä.",
+    "fr": "Ces spécialisations sont incluses lorsque vous appliquez le plan complet. Les numéros suivent la liste du site ; vérifiez les descriptions des effets en jeu.",
+    "de": "Diese Spezialisierungen werden mit dem gesamten Plan übernommen. Die Nummern entsprechen der Liste auf dieser Website; prüfe die Effektbeschreibungen im Spiel.",
+    "es": "Estas especializaciones se incluyen al aplicar el plan completo. Los números siguen la lista del sitio; comprueba las descripciones de los efectos en el juego.",
+    "pt-BR": "Estas especializações são incluídas ao aplicar o plano completo. Os números seguem a lista do site; confira as descrições dos efeitos no jogo.",
+    "ru": "Эти специализации применяются вместе со всем планом. Номера соответствуют списку на сайте; сверяйте описания эффектов в игре."
+  },
+  "지금 선택할 특화 ({0}/{1}칸)": {
+    "en": "Choose now ({0}/{1} slots)",
+    "ja": "今選ぶ特化（{0}/{1}枠）",
+    "fi": "Valitse nyt ({0}/{1} paikkaa)",
+    "fr": "À choisir maintenant ({0}/{1} emplacements)",
+    "de": "Jetzt auswählen ({0}/{1} Plätze)",
+    "es": "Elegir ahora ({0}/{1} espacios)",
+    "pt-BR": "Escolher agora ({0}/{1} espaços)",
+    "ru": "Выбрать сейчас ({0}/{1} ячеек)"
+  },
+  "아직 자동 적용 효과가 없습니다.": {
+    "en": "No automatic effects are unlocked yet.",
+    "ja": "自動適用される効果はまだ解放されていません。",
+    "fi": "Automaattisia vaikutuksia ei ole vielä avattu.",
+    "fr": "Aucun effet automatique n’est encore débloqué.",
+    "de": "Noch keine automatischen Effekte freigeschaltet.",
+    "es": "Aún no hay efectos automáticos desbloqueados.",
+    "pt-BR": "Ainda não há efeitos automáticos desbloqueados.",
+    "ru": "Автоматические эффекты ещё не открыты."
+  },
+  "아직 특화 선택 칸이 열리지 않았습니다.": {
+    "en": "No specialization slots are unlocked yet.",
+    "ja": "特化の選択枠はまだ解放されていません。",
+    "fi": "Erikoistumispaikkoja ei ole vielä avattu.",
+    "fr": "Aucun emplacement de spécialisation n’est encore débloqué.",
+    "de": "Noch keine Spezialisierungsplätze freigeschaltet.",
+    "es": "Aún no hay espacios de especialización desbloqueados.",
+    "pt-BR": "Ainda não há espaços de especialização desbloqueados.",
+    "ru": "Ячейки специализации ещё не открыты."
+  },
+  "이 추천에는 선택된 특화가 없습니다.": {
+    "en": "No specialization is selected in this recommendation.",
+    "ja": "このおすすめでは特化が選択されていません。",
+    "fi": "Tässä suosituksessa ei ole valittua erikoistumista.",
+    "fr": "Aucune spécialisation n’est sélectionnée dans cette recommandation.",
+    "de": "In dieser Empfehlung ist keine Spezialisierung ausgewählt.",
+    "es": "Esta recomendación no tiene ninguna especialización seleccionada.",
+    "pt-BR": "Esta recomendação não tem nenhuma especialização selecionada.",
+    "ru": "В этой рекомендации специализации не выбраны."
+  },
+  "다음 특화 칸: 최종 Lv.{0}": {
+    "en": "Next specialization slot: final Lv.{0}",
+    "ja": "次の特化枠：最終 Lv.{0}",
+    "fi": "Seuraava erikoistumispaikka: lopullinen taso {0}",
+    "fr": "Prochain emplacement : niveau final {0}",
+    "de": "Nächster Spezialisierungsplatz: endgültige Stufe {0}",
+    "es": "Siguiente espacio: nivel final {0}",
+    "pt-BR": "Próximo espaço: nível final {0}",
+    "ru": "Следующая ячейка: итоговый ур. {0}"
+  },
+  "최종 Lv.{0}에 자동 적용": {
+    "en": "Automatic at final Lv.{0}",
+    "ja": "最終 Lv.{0}で自動適用",
+    "fi": "Automaattinen lopullisella tasolla {0}",
+    "fr": "Automatique au niveau final {0}",
+    "de": "Automatisch auf endgültiger Stufe {0}",
+    "es": "Automático en el nivel final {0}",
+    "pt-BR": "Automático no nível final {0}",
+    "ru": "Автоматически на итоговом ур. {0}"
+  },
+  "나중에 확인 · 최종 Lv.{0}에 새 효과 개방": {
+    "en": "Check later · new effects at final Lv.{0}",
+    "ja": "後で確認 · 最終 Lv.{0}で新しい効果を解放",
+    "fi": "Tarkista myöhemmin · uusia vaikutuksia lopullisella tasolla {0}",
+    "fr": "À vérifier plus tard · nouveaux effets au niveau final {0}",
+    "de": "Später prüfen · neue Effekte auf endgültiger Stufe {0}",
+    "es": "Revisar después · nuevos efectos en el nivel final {0}",
+    "pt-BR": "Conferir depois · novos efeitos no nível final {0}",
+    "ru": "Проверить позже · новые эффекты на итоговом ур. {0}"
+  },
+  "장비 +{0} · 데바니온 +{1}": {
+    "en": "Gear +{0} · Daevanion +{1}",
+    "ja": "装備 +{0} · ディーヴァニオン +{1}",
+    "fi": "Varusteet +{0} · Daevanion +{1}",
+    "fr": "Équipement +{0} · Daevanion +{1}",
+    "de": "Ausrüstung +{0} · Daevanion +{1}",
+    "es": "Equipo +{0} · Daevanion +{1}",
+    "pt-BR": "Equipamento +{0} · Daevanion +{1}",
+    "ru": "Снаряжение +{0} · Дэва-нион +{1}"
+  },
+  "특화 {0}": {
+    "en": "Specialization {0}",
+    "ja": "特化 {0}",
+    "fi": "Erikoistuminen {0}",
+    "fr": "Spécialisation {0}",
+    "de": "Spezialisierung {0}",
+    "es": "Especialización {0}",
+    "pt-BR": "Especialização {0}",
+    "ru": "Специализация {0}"
   }
 }

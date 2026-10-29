@@ -1,11 +1,12 @@
 'use client';
 import {useEffect,useState} from 'react';
 import {Swords,Zap,Waypoints,Shield,RefreshCw,Check,Undo2,Calculator} from 'lucide-react';
-import {isEndgamePointLevel,pointBudgetSourceLabel,hasCustomPointBudget,type Catalog,type Plan,type PointBudget,pointLimits,totals,finalLevel,equipped,unmetAscensionSkills,MODE_NAMES} from '@/lib/planner';
+import {isEndgamePointLevel,pointBudgetSourceLabel,hasCustomPointBudget,type Catalog,type Plan,type PointBudget,pointLimits,totals,unmetAscensionSkills,MODE_NAMES} from '@/lib/planner';
 import {classProfile} from '@/lib/classes';
 import {recommendBuild} from '@/lib/recommendation';
 import {useLocale} from './locale';
 import CharacterPoints from './character-points';
+import AllocationSpecializations from './allocation-specializations';
 
 const fields=[{key:'sp',label:'스킬 포인트',icon:Swords},{key:'stigma',label:'스티그마 포인트',icon:Zap},{key:'crystal',label:'데바니온 포인트',icon:Waypoints}] as const;
 const count=(value:string)=>Math.min(9999,Math.max(0,Math.floor(Number(value)||0)));
@@ -33,7 +34,7 @@ export default function PointBudgetPanel({catalog,plan,onEdit,onApply}:{catalog:
   {!hasCustomPointBudget(plan)&&!isEndgamePointLevel(plan)&&<p className="subtle">{t('레벨별 공개 자료의 기본량을 최소 기준으로 사용합니다. 실제 보유량이 더 많으면 직접 수정할 수 있습니다.')}</p>}
   {error&&<div className="notice amber-notice">{error}</div>}
   {candidate&&result&&<div className="recommend-preview"><div className="section-title"><h3>{t('추천 결과 미리보기')}</h3><span className="tiny-tag">{t(MODE_NAMES[candidate.mode]||'공격형')} · Lv.{candidate.level}</span></div><div className="allocation-table-wrap"><table className="allocation-table"><thead><tr><th>{t('포인트')}</th><th>{t('총량')}</th><th>{t('추천 사용')}</th><th>{t('남음')}</th></tr></thead><tbody>{[{name:'스킬',used:result.sp,max:result.spMax},{name:'스티그마',used:result.stigma,max:result.stigmaMax},{name:'데바니온',used:result.crystal,max:result.crystalMax},...(limits.battle?[{name:'아스펠',used:result.battle,max:result.battleMax}]:[])].map(r=><tr key={r.name}><td>{t(r.name)}</td><td>{r.max}</td><td>{r.used}</td><td>{r.max-r.used}</td></tr>)}</tbody></table></div>
-  <details className="recommend-details" open><summary>{t('스킬·스티그마 추천 투자')}</summary><div className="allocation-skills">{catalog.skills.filter(s=>(candidate.base[s.id]||0)>0&&(!s.stigma||equipped(candidate).includes(s.id))).map(s=><div key={s.id}><img src={'/shadowcraft/game'+s.iconPath} alt=""/><span>{localSkill(s.name)}<small>{t(s.stigma?'스티그마':s.kind==='passive'?'패시브':'액티브')}</small></span><b>{t('기본 {0}',[candidate.base[s.id]])}<small>{t('최종 {0}',[finalLevel(catalog,candidate,s)])}</small></b></div>)}</div></details>
+  <details className="recommend-details" open><summary>{t('스킬·스티그마 추천 투자')}</summary><AllocationSpecializations catalog={catalog} plan={candidate}/></details>
   <details className="recommend-details" open><summary>{t('데바니온 보드별 추천')}</summary><div className="board-allocation">{catalog.boards.map(b=>{const selected=b.nodes.filter(n=>candidate.nodes.includes(n.id)&&!n.autoLearn);return <div key={b.id}><b>{t(b.name)}</b><span>{b.requiredLevel>plan.level?t('Lv.{0}에 개방',[b.requiredLevel]):t('{0}개 노드',[selected.length])}</span><strong>{selected.reduce((sum,n)=>sum+n.pointCost,0)} P</strong></div>})}</div></details>
   <p className="subtle">{t('현재 계획의 스킬·특화·데바니온을 새 배분으로 바꿉니다. 장비 보너스와 조회한 캐릭터 정보는 유지합니다. 레벨 제한·노드 비용 때문에 포인트가 남을 수 있습니다. 이 추천은 우선순위 규칙에 따른 제안이며 최고 DPS를 보장하지 않습니다.')}</p><button className="button primary full" onClick={()=>{setPrevious(plan);onApply(candidate);setCandidate(null)}}><Check size={16}/>{t('이 추천을 전체 계획에 적용')}</button></div>}
   {previous&&!candidate&&<button className="button ghost small undo-allocation" onClick={()=>{onApply(previous);setPrevious(null)}}><Undo2 size={14}/>{t('추천 적용 전으로 되돌리기')}</button>}

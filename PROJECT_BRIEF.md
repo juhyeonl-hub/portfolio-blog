@@ -996,3 +996,6 @@ Scoped work in progress: simulator reset mismatch, mobile action readability, em
 
 ### Five-language guide audit complete — 2026-10-29
 Source3c06d85 / https://6d9d827d.asbc-4c9.pages.dev; canonical asset /assets/asbc-DqAHHqsk.js verified. Simulator reset/ARIA, readable mobile actions, empty quickslots and29translation fields. Claude relay3PASS;9checks,10matrix+5extra cases both local and production. Primary302pending preserved with dictionary/brief overlap proofs. Own QA preferences/tabs/preview restored and staging cleaned. See tasks/asbc-five-language-guides-20261029.md.
+
+## 2026-10-29: skill-by-skill specialization guidance
+Show candidate specialization selections and effects on each skill row, including locked/automatic cases and catalog-based unlock levels. Preserve recommendation rules and unrelated changes. See tasks/asbc-skill-specialization-guide-20261029.md.
