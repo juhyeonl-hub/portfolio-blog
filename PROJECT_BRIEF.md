@@ -975,3 +975,6 @@ Five-language trade/map completed2026-10-29: source46b3b83/Pages85dac904; all20p
 
 ## 2026-10-29: five-language authenticated publishing and sync
 Accepted next scope: real Steam re-login, public author/edit/publish/share and same-account automatic settings synchronization in fr/de/es/pt-BR/ru, desktop/mobile viewport. Codex UI/implementation; Claude readonly coordination complete and final review reserved. Original user data and primary302 pending paths preserved. See tasks/asbc-five-language-auth-20261029.md.
+
+### Five-language publishing production verification complete — 2026-10-29
+Source f70bf00 deployed with Functions at https://578c656d.asbc-4c9.pages.dev; production asset asbc-D8yESPKo.js confirmed in both browsers. Claude readonly review PASS;7 scoped checks,23 baseline UI cases and14 post-deploy cases PASS. FR/DE/ES/PT-BR/RU desktop/mobile viewport authoring, re-login, sharing and automatic locale synchronization verified. Original GreenOrc/private libraries (Chrome1/IAB8), two old posts and302 unrelated pending paths preserved. One labelled QA public post remains; Korean restored, own tabs/viewport overrides cleaned up. Evidence and limits: tasks/asbc-five-language-auth-20261029.md.

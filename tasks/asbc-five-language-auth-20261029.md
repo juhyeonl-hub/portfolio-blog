@@ -1,9 +1,9 @@
 # Five-language authenticated publishing and account sync — 2026-10-29
 
-Status: IN PROGRESS. Base edbc54758db14ff78f12e2744ee1b6b11978ea93.
+Status: COMPLETE. Base edbc54758db14ff78f12e2744ee1b6b11978ea93.
 
 ## Accepted scope
-User accepted the next recommendation: verify real Steam login/re-login, public build authoring/editing/publishing/sharing, and same-account synchronization for fr/de/es/pt-BR/ru on desktop and mobile viewport. Fix only reproduced copy/layout/client-state issues; auth/security policy is excluded. Existing original plans, eight saved copies, old posts and the primary checkout's 302 pending paths must be preserved.
+User accepted the next recommendation: verify real Steam login/re-login, public build authoring/editing/publishing/sharing, and same-account synchronization for fr/de/es/pt-BR/ru on desktop and mobile viewport. Fix only reproduced copy/layout/client-state issues; auth/security policy is excluded. Existing original plans, Chrome1 and IAB8 saved copies, old posts and the primary checkout's 302 pending paths must be preserved.
 
 ## Coordination
 Claude readonly allocation relay1/max4 finished 2026-10-29T12:35:35Z; runner exit0, execution status0/errornull/scope[]. Codex owns UI/implementation; Claude final review. Allocation suggestion about synced authored drafts is corrected: unpublished author drafts are same-tab/24h only, not cloud settings. Public posts are fetched from the server. No visibility toggle exists in current UI. Use one clearly labelled QA post and leave it rather than permanently deleting it. Existing admin Steam account is available in Chrome and IAB; ordinary reauthentication succeeded without credentials or token extraction. Only the locale is temporarily changed for automatic settings sync, then restored to Korean.
@@ -37,3 +37,13 @@ Typecheck; build-editor (8 classes); public-builds; account-settings; localizati
 Claude final readonly relay2/max4 PASS, execution finished 2026-10-29T12:51:10Z, runner exit0/status0/errornull/scope[]. Reviewed exact two-source-file delta and all11 locale fields; confirmed logout notice resets only on successful response. No auth/backend/security policy change. Nonblocking follow-ups retained out of scope: equivalent older-language wording and hypothetical account-deletion transient notice.
 All23 production baseline cases passed, including RU automatic locale sync, all5 dirty-draft language switches preserving skill8 and text, own unsaved QA-draft discard preserving published note, and copied URL opening anonymously without owner-edit controls. UI evidence adopted and hashes checked.
 Release contains only two source files, this task record and an append-only PROJECT_BRIEF note. Source build ready; final new-source production checks pending deployment.
+
+## Completed deployment and final production verification
+- Source commit f70bf00acd30b96ad3b10526a03f3fcb2fcac6ad was integrated into main and pushed normally. The primary checkout retained all302 pending paths/statuses:300 byte-identical, PROJECT_BRIEF append-only, and the UI dictionary preserved all unrelated fields while merging exactly11 task fields.
+- Cloudflare Pages deployment succeeded, including Functions bundle: https://578c656d.asbc-4c9.pages.dev. Both real production browser DOMs loaded /assets/asbc-D8yESPKo.js from asbc.app.
+- All23 baseline cases and all14 post-deployment cases passed. New-source checks covered all5 locales at1440/360 widths; all corrected editor/draft notices matched, including the Russian point explanation, with no document overflow.
+- Regression precondition verified: a fresh ordinary Steam re-login displayed the success notice. Subsequent successful logout removed that notice and displayed the guest login link. Re-login restored the same account and locale. Restoring Korean in IAB automatically updated Chrome without a manual import/reload.
+- Private GreenOrc settings were read-only throughout. Original named copies remain Chrome1/IAB8; the eight IAB names exactly match baseline. The two old public posts remain. Only one clearly labelled QA post was created and edited: https://asbc.app/#published=21db2f99-e426-4849-a550-4483d6b3da01. Its text states interface testing, not gameplay advice. No permanent deletion was performed.
+- Both locales restored to Korean, both viewport overrides reset, and only the task's own Chrome/IAB/anonymous tabs closed. All57 UI evidence files adopted to the ASBC artifact directory with SHA256 verification; the exact owned HomeSphere staging folder was removed.
+- Validation boundary: actual Chrome and IAB with desktop/mobile viewports, not physical Android/iOS devices. No claim of failure injection or whole-account/draft cloud sync: unpublished drafts remain same-tab24h; named library copies remain device-local.
+- Remaining follow-ups are outside this task: the older-language equivalent wording noted by Claude, broader timer/ranker/ledger locale QA, and physical-device checks. This final documentation-only commit requires no second frontend deployment.
