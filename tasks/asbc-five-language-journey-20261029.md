@@ -30,3 +30,10 @@ Base: 197abeb2cf303d7e33c9250297e849f6bcf84283.
 - Final visual inspection additionally found long mobile column headings overlapping (FR base width58/scroll77, gear width36/scroll72). Added only min-width:0/overflow-wrap:anywhere/hyphens:auto to mobile skill header spans. All5locales now have scrollWidth==clientWidth in all columns;1440px desktop retains sticky navigation and normal wrapping. Build/SEO pass again.
 - This additional small text-layout rule was independently reviewed by Codex as low risk. The four-relay cap is reached; Claude approvals above cover the earlier copy/footer/navigation changes, not this subsequent wrapping rule. No persistence, game calculations, authentication or deployment configuration changed.
 - Final wrapping-rule production deployment and spot verification pending; evidence header-build.log/local-header-checks.json.
+
+## Completed
+- Final source5a4e12d is on main/origin; Pages https://7defd6a5.asbc-4c9.pages.dev serves asbc-CjmOW5Bn.js. All10 complete journeys rerun on this final deployment origin, with generated links opened anonymously at asbc.app, PASS. Final5-language mobile header bounds PASS; desktop still sticky/normal-wrap. No new browser console warnings/errors during the matrix.
+- Existing main-domain library text exactly matches the pre-final baseline:8copies, no QA copies; GreenOrc and Korean locale confirmed. Main302pending paths preserved through both code integrations. QA browser tabs closed, viewport restored;23 browser evidence files adopted into ASBC artifacts and own HomeSphere temporary evidence folder removed after hash verification.
+- Verification: complete for requested browser workflows (1440x900 PC,360x800 mobile emulation). Evidence production-journeys-final.json, production-header-checks.json, preservation-final.json, final screenshots, integration.json and followup/integration.json.
+- Last reviewed: Claude approvals for copy/footer and navigation; final low-risk header wrapping independently checked by Codex, as documented above.
+- Uncommitted product changes: none. Next: none in this scope. Blocker: none.
