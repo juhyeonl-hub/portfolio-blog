@@ -1,20 +1,19 @@
 # Skill-by-skill specialization guide — 2026-10-29
-Status: VERIFIED FOR RELEASE. Owner: Codex; Claude readonly coordination and final review.
-[Task Goal]: Show which specialization effects to choose for every skill in the point-budget recommendation, one skill per row.
-Base: c113037d8b5a0b53b0e2f685285a7076238ecd1a.
-Scope: point-budget.tsx, a presentational allocation component/CSS, UI translations, a focused rendering test, task/brief. Existing recommendation rules, catalogs, save/apply code remain unchanged.
-Expected: displayed selected IDs equal candidate.specs in catalog order; final levels include gear/daevanion; passive, automatic stigma, locked slots and empty choices are distinct; next effect/slot levels come from the catalog. Entire list readable without nested scrolling at PC/mobile widths. Existing apply carries the displayed choices; point changes clear stale preview.
-Failures to cover: zero slots/points, level thresholds, automatic effects, missing choices, translated labels/overflow, stale preview, apply/persistence mismatch.
-Done when: local PC/mobile Korean/English plus all locale smoke, focused tests/build, Claude review and scoped deployment with production verification.
-Coordination: relay1 PASS finished 2026-10-29T16:08:04.162Z, status0/errornull/scope[].
-Baseline: production recommendation contains 22 skill rows and no specialization text. Screenshot and DOM evidence retained. Baseline QA class restored.
-Last verified: nine CLI checks and18 local browser locale/viewport cases. Last reviewed: Claude relay3 PASS.
-Uncommitted: scoped implementation complete. Primary302 pending paths preserved; overlap only dictionary/brief.
-Next: scoped release and production verification. Blocker: none.
-
-First localization check caught two missing scaffolding keys (gear/daevanion bonus and numbered specialization). Added all8 locales; repeat checks/build required. No product calculation failure.
-
-Local verification: live GreenOrc EU/Ludra Lv45 imported through public character UI on isolated localhost. Nine active skill selections exactly match preview after mobile apply and desktop reload. Desktop apply also matches. Point edit clears stale preview; Lv10 zero-budget case shows no selectable specs. Ascension-confirmed QA case shows five automatic stigma effects. Korean/English/Japanese/Finnish/French/German/Spanish/Portuguese/Russian at1440x1000 and360x800:18 PASS, no horizontal overflow, nested scrolling, Korean leakage outside Korean, unresolved placeholders or console errors. Ascension QA flag restored.
-Checks: rendering regression, localization, specialization localization, budget, all classes, navigation, TypeScript, production build and SEO PASS. Current asset /assets/asbc-CwkwBOdz.js. Existing chunk-size warning only. Local public armory POST initially blocked by development proxy/CORS; corrected only development proxy and successfully imported GreenOrc. Production security/source untouched.
-
-Claude final acceptance: relay2 timed out240s (status143, stdout/stderr empty). One allowed retry used bounded44,945-byte packet; relay3 PASS finished 2026-10-29T16:29:56.238Z; process exit0/status0/errornull/scope[]. Reviewer inspected code/test evidence; did not independently run browser/CLI checks. Source hashes remained unchanged after review. Non-blocking followup confirmed both reused passive/automatic-effect strings have all8 locale values; evidence review-followup.json.
+Status: COMPLETE. Owner: Codex implementation/browser QA/release; Claude coordination and readonly acceptance.
+[Task Goal]: Show each recommended skill and the specialization effects to select, one readable row per skill.
+Scope: point-budget.tsx, new presentational component/CSS,80 new UI translation fields (10keys x8locales), focused render regression, task and brief. No recommendation algorithm, catalog, game numbers, account, save/apply API or persistence changes.
+Base:c113037d8b5a0b53b0e2f685285a7076238ecd1a. Source:484a335411323039b0b5080bad71b9edebe615da.
+Baseline: production22 compact skill rows only showed base/final levels; no specialization explanations.
+Changes: active/passive/stigma groups preserve catalog order. Selected effects exactly follow candidate.specs; numbered descriptions, current/final levels, gear/daevanion bonuses, locked/empty states, next selection slot and newly unlocked effects are distinct. Passive needs no separate selection; stigma effects are automatic. Numbering is explicitly site catalog order, not a claimed game UI index. Natural page scrolling replaces nested scrolling for this list. Existing whole-plan apply carries these same choices.
+Validation: nine checks PASS — actual React rendering regression, localization, specialization localization, budget, all classes, navigation, TypeScript, production build, SEO. Initial missing two literal translation keys were repaired and all checks repeated. Existing chunk-size warning retained.
+Local browser: live GreenOrc EU/Ludra Lv45 via public lookup. All9 active selections matched mobile apply and desktop reload, desktop apply matched. Point changes cleared stale previews. Lv10 with zero budget showed no selectable effects. QA ascension flag showed5 automatic stigma effects and was restored. Daevanion316/0 changed first skill final14/10 and two/one specialization slots correctly at both widths. Additional960px desktop checked. All18 locale/viewport cases passed, no horizontal overflow/nested guide scroll, Korean leakage outside Korean or unresolved values.
+Production browser: GreenOrc snapshot exported through the local UI and imported through the production UI,18 locale/viewport cases (Korean, English, Japanese, Finnish, French, German, Spanish, Brazilian Portuguese, Russian;1440x1000/360x800). Deployment-alias character lookup was unavailable; this limitation was not misreported as a successful live lookup or bypassed by changing security settings. Preview/apply/reload consistency and point/daevanion refresh confirmed; details in production-flow.json. No console errors.
+Last reviewed: Claude relay3 PASS 2026-10-29T16:29:56.238Z, exit0/status0/errornull/scope[]. Relay2 hit240second timeout (empty stdout/stderr); one permitted retry used bounded44,945byte packet. Review inspected code/evidence, did not independently rerun tests/browser.
+Last verified: production deployment and canonical https://asbc.app both serve /assets/asbc-CwkwBOdz.js.
+Release: https://996992eb.asbc-4c9.pages.dev, source pushed normally to main. Documentation-only completion commit needs no new frontend deployment.
+Preservation: primary302 pending paths/statuses retained;300 unrelated files byte-identical. Brief append-only; dictionary80 additions merged with reverse proof preserving unrelated entries. No reset/stash/clean/broad stage.
+Cleanup: own local/deployment QA tabs closed, viewport reset, local preview stopped; canonical account/preferences untouched. Screenshots, browser/CLI/review proofs and own helper scripts adopted into D/ASBC with SHA256 verification before exact owned HomeSphere staging removal.
+Limits: actual browser at desktop/mobile viewport sizes, not physical handset or a new Chrome run. Existing priority-rule recommendation shown faithfully; no claim of optimal DPS or independently verified game mechanics. Public character information is a snapshot.
+Uncommitted: no task source changes;302 pre-existing pending paths and excluded collaboration records preserved.
+Next: none required. Blocker: none.
+Evidence:D:/CodexData/Projects/ASBC/artifacts/skill-specialization-guide-20261029.

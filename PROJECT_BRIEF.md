@@ -999,3 +999,6 @@ Source3c06d85 / https://6d9d827d.asbc-4c9.pages.dev; canonical asset /assets/asb
 
 ## 2026-10-29: skill-by-skill specialization guidance
 Show candidate specialization selections and effects on each skill row, including locked/automatic cases and catalog-based unlock levels. Preserve recommendation rules and unrelated changes. See tasks/asbc-skill-specialization-guide-20261029.md.
+
+### Skill specialization guide complete — 2026-10-29
+Source 484a335 / https://996992eb.asbc-4c9.pages.dev. Each skill now shows selected effects and separate locked/future/automatic states. Nine checks,18 local and18 production locale/viewport cases, live GreenOrc apply/persistence and daevanion-slot refresh passed; Claude relay3 PASS after one timeout retry. Canonical asset /assets/asbc-CwkwBOdz.js.302 pending paths preserved; QA resources cleaned. See tasks/asbc-skill-specialization-guide-20261029.md.
