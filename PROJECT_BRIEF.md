@@ -993,3 +993,6 @@ Sourcee7c26c8 / https://d7ccfc16.asbc-4c9.pages.dev; canonical assetasbc-bpNWtUl
 
 ## 2026-10-29 — Five-language macro/boss-guide audit
 Scoped work in progress: simulator reset mismatch, mobile action readability, empty quickslot guidance and matching skill names in fr/de/es/pt-BR/ru. See tasks/asbc-five-language-guides-20261029.md. Primary302other pending paths preserved; final review and deployment pending.
+
+### Five-language guide audit complete — 2026-10-29
+Source3c06d85 / https://6d9d827d.asbc-4c9.pages.dev; canonical asset /assets/asbc-DqAHHqsk.js verified. Simulator reset/ARIA, readable mobile actions, empty quickslots and29translation fields. Claude relay3PASS;9checks,10matrix+5extra cases both local and production. Primary302pending preserved with dictionary/brief overlap proofs. Own QA preferences/tabs/preview restored and staging cleaned. See tasks/asbc-five-language-guides-20261029.md.
