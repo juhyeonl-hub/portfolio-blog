@@ -19,10 +19,17 @@ Base: 23f99ac8d0813e63575d0b68295cb3dea225085f. Primary main has 302 unrelated p
 - All mutable browser tests used isolated production alias or localhost. Main-origin user's calculator/map/account data untouched. Test checks were restored.
 
 ## Release status
-Claude final read-only review PASS (run1793252044205, process exit0, execution finished/status0/errornull/scope[]). Commit/push/deploy next. User has explicitly authorized immediate scoped deployment; no further permission question needed.
+Claude final read-only review PASS (run1793252044205, process exit0, execution finished/status0/errornull/scope[]). Source46b3b83 committed/pushed to main; Pages85dac904 deployed and production20cases PASS. User has explicitly authorized immediate scoped deployment; no further permission question needed.
 Planned files: trade-calculator.ts, tests/trade-calculator.mjs, app/trade-calculator.tsx, craft-sale-text.ts, ui-translations.json, this task, PROJECT_BRIEF.md. Primary overlap only PROJECT_BRIEF.md and ui-translations.json; integrate task append and exact locale fields, preserve other edits.
 
 ## Review follow-up
 Claude review run1793251363434 completed status0/errornull/scope[] with one blocking finding: new draft field made pre-existing ledger records unreadable. Added a legacy fixture missing craftProfitRate; reproduced null before fix. Ledger validation now supplies only this new field default before validation, retaining purchases/sales and strict checks. Also clarified DE/ES checked-vs-selected map controls/progress, and replaced ambiguous candidate selector copy with possible-location wording in FR/ES/PT/RU. Follow-up typecheck, full45 test scripts, build:asbc and SEO all PASS (review-fix-validation.log). Scope audit confirms 22 map fields only in requested5 locales, 62 crafting copy keys preserve other4 locales and every placeholder. Final narrow review PASS.
 
 Final local map10cases passed after copy follow-up (local-map-final.json); DE mobile calculator repeated after final build. Open preview initially retained an old language after assets were rebuilt; reloading the fresh build resolved it before these checks. No production conclusion based on the stale preview.
+
+## Completed release
+- Source commit46b3b830eb9f4e65141415a64ea74948cd5c0b6f pushed to origin/main. Pages https://85dac904.asbc-4c9.pages.dev deployed; https://asbc.app/#/trade read-only check confirms exact asset asbc-CQXHhL-6.js.
+- Production after: all20cases (5locales × PC1440/mobile360 × calculator/map) PASS. Decimal commas/grouped values, independent arithmetic, batch/undo, invalid input and reload goal retention; map region/search/zoom/check/hide/reload/cleanup; no horizontal overflow or clipped primary controls. Screenshots/JSON: artifacts/five-language-trade-map-20261029. Mobile is viewport emulation, not a physical handset.
+- Every mutable production check used isolated signed-out deployment alias. Main-origin check only read rendered version/headings; no calculator input or collection checkbox actions there. QA collection checks restored to zero.
+- Integration preserved all302pre-existing pending paths and statuses:300byte-identical; PROJECT_BRIEF append and22locale fields merged while preserving every unrelated dictionary value. No game data, account/API/auth or map persistence implementation changed.
+- Claude final PASS followed full45scripts/typecheck/build/SEO; scoped source files match reviewed/tested code. Deployment CLI dirty warning reflects workspace metadata/Windows modes, not extra bundled source; runtime source contents are verified against the release commit.
