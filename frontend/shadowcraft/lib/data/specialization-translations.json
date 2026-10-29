@@ -4338,11 +4338,11 @@
     "en": "Removes MP Cost and restores {0} MP on hit",
     "ja": "MP消耗を削除し、的中時にMPを{0}回復",
     "fi": "Poistaa MP-kulutuksen ja palauttaa osumalla {0} MP:tä",
-    "fr": "Supprime le coût en PM et restaure {0} PM lors de À l'impact",
-    "de": "Entfernt die MP-Kosten und stellt {0} MP wieder her bei Bei Treffer",
-    "es": "Elimina el coste de PM y restaura {0} PM al al golpear",
-    "pt-BR": "Remove o custo de PM e restaura {0} de PM ao ao acertar",
-    "ru": "Убирает затраты MP и восстанавливает {0} MP при при попадании"
+    "fr": "Supprime le coût en PM et restaure {0} PM à chaque coup au but",
+    "de": "Entfernt die MP-Kosten und stellt bei einem Treffer {0} MP wieder her",
+    "es": "Elimina el coste de PM y restaura {0} PM al golpear",
+    "pt-BR": "Remove o custo de PM e restaura {0} PM ao acertar",
+    "ru": "Убирает затраты MP и восстанавливает {0} MP при попадании"
   },
   {
     "source": "적중 시 {0}% 확률로 [쇠약의 맹타] 활성화",
@@ -5339,10 +5339,10 @@
     "en": "Inflicts Stun for {0}s on hit",
     "ja": "的中時、{0}秒間気絶",
     "fi": "Osuma tainnuttaa {0} sekunniksi",
-    "fr": "Inflige un Étourdissement pendant {0} s coup",
-    "de": "Verursacht für {0} s einen Betäubungseffekt. Treffer",
-    "es": "Provoca Aturdimiento durante {0} s al al golpear",
-    "pt-BR": "Aplica Atordoamento por {0}s ao ao atingir",
+    "fr": "Étourdit pendant {0} s en cas de coup au but",
+    "de": "Betäubt bei einem Treffer für {0} s",
+    "es": "Aturde durante {0} s al golpear",
+    "pt-BR": "Aplica atordoamento por {0} s ao acertar",
     "ru": "Накладывает эффект оглушения (Stun) на {0} с при попадании"
   },
   {

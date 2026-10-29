@@ -1534,10 +1534,10 @@
     "ja": "公開ビルド一覧",
     "fi": "Julkiset hahmonkehitykset",
     "fr": "Liste des configurations publiques",
-    "de": "Liste öffentlicher Zusammenstellungen",
+    "de": "Öffentliche Builds",
     "es": "Lista de configuraciones públicas",
     "pt-BR": "Lista de configurações públicas",
-    "ru": "Список общедоступных вариантов"
+    "ru": "Список открытых сборок"
   },
   "회원과 관리자가 공개한 배분입니다. 게임 내 최적 빌드나 공식 추천을 의미하지 않습니다.": {
     "en": "Allocations published by members and administrators. These are not necessarily optimal builds or official recommendations.",
@@ -1574,20 +1574,20 @@
     "ja": "ビルドのタイトル",
     "fi": "Hahmonkehityksen otsikko",
     "fr": "Titre de la configuration",
-    "de": "Titel der Zusammenstellung",
+    "de": "Build-Titel",
     "es": "Título de la configuración",
     "pt-BR": "Título da configuração",
-    "ru": "Название варианта"
+    "ru": "Название сборки"
   },
   "빌드 정렬": {
     "en": "Sort builds",
     "ja": "ビルドの並び順",
     "fi": "Järjestä hahmonkehitykset",
     "fr": "Trier les configurations",
-    "de": "Zusammenstellungen sortieren",
+    "de": "Builds sortieren",
     "es": "Ordenar configuraciones",
     "pt-BR": "Ordenar configurações",
-    "ru": "Сортировка вариантов"
+    "ru": "Сортировка сборок"
   },
   "최근 수정순": {
     "en": "Recently updated",
@@ -1624,10 +1624,10 @@
     "ja": "公開ビルドを検索",
     "fi": "Hae julkisia hahmonkehityksiä",
     "fr": "Rechercher des configurations publiques",
-    "de": "Öffentliche Zusammenstellungen durchsuchen",
+    "de": "Builds suchen",
     "es": "Buscar configuraciones públicas",
     "pt-BR": "Pesquisar configurações públicas",
-    "ru": "Поиск среди общедоступных вариантов"
+    "ru": "Найти открытые сборки"
   },
   "공개 빌드 다시 불러오기": {
     "en": "Reload public builds",
@@ -2123,7 +2123,7 @@
     "en": "Download shared build JSON",
     "ja": "共有ビルドのJSONをダウンロード",
     "fi": "Lataa jaetun hahmonkehityksen JSON",
-    "fr": "Télécharger le fichier JSON de la configuration partagée",
+    "fr": "Télécharger la configuration (JSON)",
     "de": "Geteilte Build-JSON herunterladen",
     "es": "Descargar JSON de la configuración compartida",
     "pt-BR": "Baixar JSON da configuração compartilhada",
@@ -10964,7 +10964,7 @@
     "ja": "ビルドを書き出す",
     "fi": "Vie hahmonkehitys",
     "fr": "Exporter le build",
-    "de": "Zusammenstellung exportieren",
+    "de": "Build exportieren",
     "es": "Exportar configuración",
     "pt-BR": "Exportar configuração",
     "ru": "Экспорт сборки"
@@ -14763,11 +14763,11 @@
     "en": "Applying replaces this class's current plan with the shared build. You can undo right after applying, or save your plan to the library first.",
     "ja": "適用すると、この職業の現在の計画が共有ビルドに置き換わります。適用直後に元に戻せます。先に保管庫へ保存しておくこともできます。",
     "fi": "Käyttäminen korvaa tämän luokan nykyisen suunnitelman jaetulla rakenteella. Voit perua heti käytön jälkeen tai tallentaa suunnitelmasi ensin kirjastoon.",
-    "fr": "L'application de cette configuration remplacera le plan actuel pour ce cours. Vous pouvez annuler l'opération immédiatement après, ou enregistrer votre plan dans la bibliothèque au préalable.",
-    "de": "Durch das Anwenden wird der aktuelle Plan für diesen Kurs durch die freigegebene Konfiguration ersetzt. Sie können den Vorgang direkt nach dem Anwenden rückgängig machen oder Ihren Plan zuvor in der Bibliothek speichern.",
-    "es": "Al aplicar, el plan actual de esta clase se sustituye por la configuración compartida. Puedes deshacer la acción inmediatamente después de aplicarla, o bien guardar primero tu plan en la biblioteca.",
-    "pt-BR": "Ao aplicar, o planejamento atual desta turma é substituído pela configuração compartilhada. Você pode desfazer a ação logo após aplicá-la ou, antes disso, salvar seu planejamento na biblioteca.",
-    "ru": "Применение этой настройки заменит текущий план для данного класса на общую конфигурацию. Вы можете отменить действие сразу после применения или предварительно сохранить свой план в библиотеку."
+    "fr": "Cette configuration remplacera votre plan actuel pour cette classe. Vous pourrez annuler l’application. Pour conserver votre plan actuel, enregistrez d’abord une copie dans la bibliothèque.",
+    "de": "Dieser Build ersetzt deinen aktuellen Plan für diese Klasse. Du kannst das Anwenden rückgängig machen. Wenn du deinen bisherigen Plan behalten möchtest, speichere vorher eine Kopie in der Bibliothek.",
+    "es": "Esta configuración sustituirá tu plan actual para esta clase. Podrás deshacer la aplicación. Para conservar tu plan actual, guarda antes una copia en la biblioteca.",
+    "pt-BR": "Esta configuração substituirá seu plano atual para esta classe. Você poderá desfazer a aplicação. Para guardar seu plano atual, salve antes uma cópia na biblioteca.",
+    "ru": "Эта сборка заменит текущий план для выбранного класса. Применение можно отменить. Чтобы сохранить текущий план, сначала создайте его копию в библиотеке."
   },
   "이 브라우저에 임시 저장하지 못했습니다. JSON을 받아 플래너에서 불러오세요.": {
     "en": "Could not store it temporarily in this browser. Download the JSON and import it in the planner.",
@@ -16553,11 +16553,11 @@
     "en": "Browse classes",
     "ja": "クラス一覧",
     "fi": "Selaa luokkia",
-    "fr": "Parcourir les catégories",
-    "de": "Kurse durchsuchen",
+    "fr": "Parcourir les classes",
+    "de": "Klassen ansehen",
     "es": "Explorar clases",
-    "pt-BR": "Explorar aulas",
-    "ru": "Просмотр категорий"
+    "pt-BR": "Explorar classes",
+    "ru": "Обзор классов"
   },
   "{0} 선택됨": {
     "en": "{0} selected",
@@ -18323,11 +18323,11 @@
     "en": "Importing a character does not verify total skill, stigma or Daevanion points.",
     "ja": "キャラクターを読み込んでもスキル・スティグマ・デバニオンの総保有量は自動確認されません。",
     "fi": "Hahmon tuonti ei varmista taito-, stigma- tai Daevanion-pisteiden kokonaismäärää.",
-    "fr": "L'importation d'un personnage ne prend pas en compte le total des compétences, des stigmates ou des points Daevanion.",
-    "de": "Beim Importieren eines Charakters werden die Gesamt-Fertigkeitspunkte, Stigmen oder Daevanion-Punkte nicht überprüft.",
-    "es": "La importación de un personaje no verifica el total de puntos de habilidad, estigma o Daevanion.",
-    "pt-BR": "A importação de um personagem não verifica o total de pontos de habilidade, estigma ou Daevanion.",
-    "ru": "При импорте персонажа общее количество очков навыков, стигм или очков Даэваниона не учитывается."
+    "fr": "L’importation d’un personnage ne permet pas de vérifier automatiquement votre total de points de compétence, de Stigma ou de Daevanion.",
+    "de": "Beim Import eines Charakters lässt sich dein Gesamtbestand an Fertigkeits-, Stigma- und Daevanion-Punkten nicht automatisch prüfen.",
+    "es": "Importar un personaje no permite comprobar automáticamente tu total de puntos de habilidad, de estigma ni de Daevanion.",
+    "pt-BR": "Importar um personagem não permite verificar automaticamente seu total de pontos de habilidade, estigma ou Daevanion.",
+    "ru": "При импорте персонажа общее количество очков навыков, стигм и Даэваниона нельзя проверить автоматически."
   },
   "계정": {
     "en": "Account",
@@ -26133,7 +26133,7 @@
     "en": "Save a named copy",
     "ja": "名前を付けて保存",
     "fi": "Tallenna nimetty kopio",
-    "fr": "Enregistrer une copie sous un nom spécifique",
+    "fr": "Enregistrer une copie nommée",
     "de": "Als benannte Kopie speichern",
     "es": "Guardar una copia con nombre",
     "pt-BR": "Salvar uma cópia com nome",
@@ -26184,10 +26184,10 @@
     "ja": "ログインせずにビルドを閲覧し、コピーを自分のプランナーで編集できます。",
     "fi": "Selaa buildeja ja muokkaa kopiota suunnittelijassasi. Kirjautumista ei tarvita.",
     "fr": "Parcourez les configurations et modifiez-en une copie dans votre outil de planification. Aucune connexion requise.",
-    "de": "Durchstöbere Entwürfe und bearbeite eine Kopie in deinem Planer. Keine Anmeldung erforderlich.",
+    "de": "Sieh dir Builds an und bearbeite eine Kopie in deinem Planer. Du musst dich dafür nicht anmelden.",
     "es": "Explora configuraciones y edita una copia en tu planificador. No es necesario iniciar sesión.",
     "pt-BR": "Explore configurações e edite uma cópia no seu planejador. Não é necessário fazer login.",
-    "ru": "Просматривайте варианты развития персонажа и редактируйте их копии в своем планировщике. Вход в систему не требуется."
+    "ru": "Просматривайте сборки и редактируйте их копии в своём планировщике. Вход в аккаунт не требуется."
   },
   "제목은 작성한 언어 그대로 검색합니다. 게시물은 자동 번역되지 않습니다.": {
     "en": "Search titles in the language they were written. Posts are not automatically translated.",

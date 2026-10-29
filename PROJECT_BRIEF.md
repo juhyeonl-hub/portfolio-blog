@@ -955,3 +955,7 @@ Usability follow-up released2026-10-28: source73e57d9 main/origin; Cloudflare ht
 
 ## Steam locale completion —2026-10-28
 [Task Goal]:Remove Korean leakage in English tooltips; add fr/de/es/pt-BR/ru, verify desktop/mobile and immediately release scoped changes. User explicitly authorizes deployment; unrelated edits preserved. Task:tasks/asbc-steam-locales-20261028.md.
+
+## Five-language build journey —2026-10-29
+[Task Goal]: Verify fr/de/es/pt-BR/ru build discovery/apply/edit/save/share on PC/mobile and immediately deploy scoped usability fixes. Task:tasks/asbc-five-language-journey-20261029.md.
+Corrected 36 translated values without changing sources/numbers/placeholders; fixed standalone shared-footer wrapping and mobile sticky-navigation occlusion of skill controls. Typecheck/all 45 frontend suites/build/SEO and local five-language journeys pass. Claude read-only copy/footer and mobile delta reviews APPROVE. Main 302 pre-existing pending paths and original GreenOrc/8 named copies preserved; scoped release and final production matrix next.
