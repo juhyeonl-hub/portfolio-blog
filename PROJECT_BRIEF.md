@@ -1011,3 +1011,6 @@ Source 4dbcf42 / https://c735a80e.asbc-4c9.pages.dev. Collapsed skills show save
 
 ## 2026-10-29: specialization difference guidance
 Compare saved manual selections with existing recommendations, with a differences-only filter and optional numbered change instructions. No recommendation or persistence changes. See tasks/asbc-specialization-differences-20261029.md.
+
+### Specialization comparison complete — 2026-10-29
+Source e02ad16 / https://31d2b2b9.asbc-4c9.pages.dev. Optional difference filter shows current and recommended numbers plus add/remove steps; filter/search/navigation/focus verified. Seven checks,18 local+18 production locale/viewport cases, PC/mobile edit/reload/level-refresh passed; Claude relay2 PASS.302 pending paths preserved. Canonical /assets/asbc-CcoBrknK.js. See tasks/asbc-specialization-differences-20261029.md.
