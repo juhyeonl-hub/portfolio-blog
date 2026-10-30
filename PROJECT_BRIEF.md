@@ -1023,3 +1023,5 @@ Source 2630d03 / https://4b1da3ca.asbc-4c9.pages.dev. One setup, one skills/spec
 
 ### 2026-10-30 follow-up: Daevanion first
 User requests point setup -> Daevanion -> skills/specializations -> save/share. Move the real section order and matching anchor links only. Continue the same Claude-coordinated scroll build task; no calculation or saved data changes.
+
+Daevanion-first follow-up complete: source 165adec, https://e2c19913.asbc-4c9.pages.dev. Actual section and shortcut order changed; PC/mobile local and canonical checks PASS, Claude readonly PASS.302 pending paths preserved. Canonical /assets/asbc-FK5IfJIT.js.
