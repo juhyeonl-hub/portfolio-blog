@@ -5,7 +5,7 @@ const races: Record<string, string> = {All: '공통', Light: '천족', Dark: '�
 function Rewards({rewards}: {rewards: QuestRewards | null | undefined}) {
  const {t}=useLocale();
   if (rewards === undefined) return <p>{t("이 데이터 버전에는 퀘스트 보상 정보가 없습니다.")}</p>;
-  if (rewards === null) return <p>{t("연결된 보상 레코드가 없습니다. 보상이 없다는 뜻은 아닙니다.")}</p>;
+  if (rewards === null) return <p>{t("이 퀘스트의 보상 정보를 찾지 못했습니다. 보상이 없다는 뜻은 아닙니다.")}</p>;
   return <section aria-label={t("퀘스트 보상")}><h4>{t("클라이언트에 등록된 보상")}</h4>
     <p>{t('경험치 {0}',[rewards.experience.toLocaleString()])}</p>
     <RewardLists rewards={rewards}/>
@@ -66,7 +66,7 @@ export default function JournalDatabase({active}: {active: boolean}) {
           <div className="database-pages"><button className="button ghost" disabled={page === 0} onClick={() => setPage(v => v - 1)}>{t("목록 이전")}</button><span>{page + 1} / {Math.max(1, Math.ceil(matches.length / 30))}</span><button className="button ghost" disabled={(page + 1) * 30 >= matches.length} onClick={() => setPage(v => v + 1)}>{t("목록 다음")}</button></div></div>
           <div className="database-detail" aria-label={t("퀘스트·던전·펫 상세")}>
             {!selected && <p>{t("목록에서 항목을 선택하세요.")}</p>}
-            {quest && <><h4>{quest.name ?? t('이름 미확인')}</h4><p>ID {quest.id} · {quest.kind} · {t(races[quest.race])}</p><p>{quest.summary ?? t('설명 미확인')}</p><p>{t('원본 단계 레코드 {0}개',[quest.stepCount])}</p>{quest.acquireNpc && <p>{t('시작 NPC: {0} · {1}',[quest.acquireNpc.name ?? t('이름 미확인'),quest.acquireNpc.id])}</p>}{quest.completeNpc && <p>{t('완료 NPC: {0} · {1}',[quest.completeNpc.name ?? t('이름 미확인'),quest.completeNpc.id])}</p>}{next ? <button className="button ghost" onClick={() => {setQuery(next.id); setKind(''); setPage(0); setSelected(next.id);}}>{t('다음 퀘스트: {0}',[next.name ?? next.id])}</button> : <p>{t("등록된 다음 퀘스트 없음")}</p>}</>}
+            {quest && <><h4>{quest.name ?? t('이름 미확인')}</h4><p>ID {quest.id} · {quest.kind} · {t(races[quest.race])}</p><p>{quest.summary ?? t('설명 미확인')}</p><p>{t('원본에 등록된 퀘스트 단계 {0}개',[quest.stepCount])}</p>{quest.acquireNpc && <p>{t('시작 NPC: {0} · {1}',[quest.acquireNpc.name ?? t('이름 미확인'),quest.acquireNpc.id])}</p>}{quest.completeNpc && <p>{t('완료 NPC: {0} · {1}',[quest.completeNpc.name ?? t('이름 미확인'),quest.completeNpc.id])}</p>}{next ? <button className="button ghost" onClick={() => {setQuery(next.id); setKind(''); setPage(0); setSelected(next.id);}}>{t('다음 퀘스트: {0}',[next.name ?? next.id])}</button> : <p>{t("등록된 다음 퀘스트 없음")}</p>}</>}
             {quest?.levels && <div aria-label={t("퀘스트 레벨 조건")}><p>{t('시작 레벨 {0} · 권장 레벨 {1}',[quest.levels.unlock || t('미지정'),quest.levels.recommended || t('미지정')])}</p>{quest.levels.additionalConditions > 0 && <p>{t('추가 시작 조건 {0}개가 있습니다. 레벨만으로 시작 가능 여부를 판단할 수 없습니다.',[quest.levels.additionalConditions])}</p>}</div>}
             {quest && <Rewards rewards={quest.rewards}/>}
             {pet && <><h4>{pet.name ?? t('이름 미확인')}</h4><p>ID {pet.id} · {pet.kind}</p><p>{t("공식 펫 목록의 원본 분류입니다. 획득 경로·능력치·성장 확률은 검증되지 않았습니다.")}</p></>}

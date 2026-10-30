@@ -11,7 +11,7 @@ const tips:Record<string,string>={
 export default function PageHelp({screen}:{screen:string}){
  const {t}=useLocale();
  return <>{tips[screen]&&<p className="page-direction">{t(tips[screen])}</p>}<details className="page-help"><summary>{t('사용 방법과 용어')}</summary><div>
- <p>{t('빌드를 열면 스킬과 데바니온 배분이 바로 보입니다. 직업·레벨·포인트를 바꾸면 배분도 갱신됩니다. 장비는 랭커와 비교에서 확인하세요.')}</p>
+ <p>{t('빌드를 열면 데바니온과 스킬 배분이 보입니다. 레벨·포인트를 바꾸면 추천이 다시 계산됩니다. 내 배분을 바꾸려면 ‘추천 배분 적용’을 누르세요. 장비는 ‘랭커와 비교’에서 확인할 수 있습니다.')}</p>
  <p>{t('빌드는 스킬과 장비의 조합입니다. 여기서 바꾼 내용은 게임에 자동 적용되지 않습니다.')}</p>
  <p>{t('PvE는 몬스터와의 전투, PvP는 다른 플레이어와의 전투입니다.')}</p>
  <p>{t('포인트는 스킬이나 능력에 나누어 쓰는 점수입니다. 총량은 이미 쓴 점수와 남은 점수를 합친 값입니다.')}</p>

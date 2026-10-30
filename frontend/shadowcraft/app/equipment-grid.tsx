@@ -48,7 +48,7 @@ export default function EquipmentGrid({items,onInspect,selectedSlot,inspectOnHov
      <ul className="eq-stats eq-candidates">{pool.slice(0,SHOWN_CANDIDATES).map(([stat,low,high])=><li key={stat}><span>{statName(stat)}</span><b>{low===high?low.toLocaleString(locale):low.toLocaleString(locale)+'–'+high.toLocaleString(locale)}</b></li>)}</ul>
      {pool.length>SHOWN_CANDIDATES&&<span className="subtle">{t('외 {0}개',[pool.length-SHOWN_CANDIDATES])}</span>}</>}
     {summary&&(summary.detail.ms||summary.detail.gs)?<span className="subtle">{[summary.detail.ms?t('마석 홈 {0}',[summary.detail.ms]):null,summary.detail.gs?t('신석 홈 {0}',[summary.detail.gs]):null].filter(Boolean).join(' · ')}</span>:null}
-    <span className="subtle">ID {item.id}{summary?' · '+t('클라이언트 표 원값 기준'):''}</span>
+    <span className="subtle">ID {item.id}{summary?' · '+t('게임 원본 데이터 수치'):''}</span>
     {index&&!summary&&<span className="subtle">{t('이 아이템의 상세 정보가 클라이언트 표에 없습니다.')}</span>}
    </div>}
   </div>;

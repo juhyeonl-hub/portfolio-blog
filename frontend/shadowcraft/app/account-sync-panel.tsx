@@ -13,14 +13,14 @@ export function AccountSyncPanel(){
   <h3>{t('기기 간 설정 동기화')}</h3>
   <p>{t('PC와 모바일에서 같은 Steam 계정으로 로그인하면 아래 설정을 이어서 사용할 수 있습니다.')}</p>
   <div className="account-sync-summary" role="status">
-   <strong>{t(status==='full'?'계정 저장 한도 1MB 초과 · 이 기기 기록 보관 중':status==='conflict'?'두 기기의 거래 기록 확인 필요':status==='offline'?'동기화 실패 · 이 기기의 변경은 보관 중':status==='loading'?'다른 기기의 설정 확인 중…':status==='pending'?'계정에 저장 중…':'계정과 동기화됨')}</strong>
+   <strong>{t(status==='full'?'계정 저장 한도 1MB 초과 · 이 기기 기록 보관 중':status==='conflict'?'거래 기록 확인이 필요합니다. 거래 장부에서 두 기기의 기록을 비교해 주세요.':status==='offline'?'동기화 실패 · 이 기기의 변경은 보관 중':status==='loading'?'다른 기기의 설정 확인 중…':status==='pending'?'계정에 저장 중…':'계정과 동기화됨')}</strong>
    <dl><div><dt>{t('마지막 계정 저장')}</dt><dd>{metadata?.savedAt?<time dateTime={metadata.savedAt}>{format(metadata.savedAt)}</time>:t('아직 저장 시각을 확인하지 못했습니다.')}</dd></div>
     <div><dt>{t('이 기기의 마지막 확인')}</dt><dd>{metadata?.checkedAt?<time dateTime={new Date(metadata.checkedAt).toISOString()}>{format(metadata.checkedAt)}</time>:t('확인 전')}</dd></div></dl>
   </div>
   <TradeConflictPanel/>
   {status==='offline'&&<button type="button" className="button secondary" onClick={refresh}>{t('설정 동기화 다시 시도')}</button>}
   <p className="muted">{t('변경한 설정은 자동 저장됩니다. 화면으로 돌아오거나 사용 중일 때 약 10초마다 다른 기기의 변경을 확인합니다. 입력을 마치면 새 설정을 반영합니다.')}</p>
-  {metadata?.conflict&&<p role="status" className="muted">{t('두 기기에서 같은 항목을 수정해 이 기기의 변경을 유지했습니다. 현재 설정을 확인해 주세요.')}</p>}
+  {metadata?.conflict&&<p role="status" className="muted">{t('두 기기에서 같은 설정을 바꿨습니다. 이 기기의 값을 유지했으니, 현재 표시된 값이 원하는 설정인지 확인해 주세요.')}</p>}
   <div className="account-sync-columns"><div><h4>{t('계정에 저장되는 항목')}</h4><ul>
    <li>{t('직업별 빌드 배분 · 레벨 · 포인트 총량과 확인한 남은 포인트')}</li>
    <li>{t('품목별 거래 장부 · 저장한 제작 계획')}</li>

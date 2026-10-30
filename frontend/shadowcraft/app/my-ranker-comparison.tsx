@@ -11,7 +11,7 @@ import {queryArmory} from '../lib/armory-client';
 import {equipmentAdvice,optionReason,parseEquippedDetail,skillFit,statFit,type EquippedDetail,type Investment} from '../lib/equipment-advice';
 
 type Identity={id:string;server:string;region:string};
-const ADVICE={progress:'다음 던전 준비용 장비입니다. 필요한 강화·옵션 개선부터 검토하고, 반복 조율·영혼각인은 교체 예상 시기와 비용을 비교하세요.',unknown:'장비 레벨 또는 실제 옵션 정보가 부족해 투자 판단을 보류합니다.',replace:'교체 예정 장비입니다. 조율·영혼각인보다 교체 자원을 우선 확보하세요.',low:'70레벨 미만 장비는 교체 시기를 먼저 확인하세요. 다음 던전 준비에 필요하다면 성장용 사용을 선택해 필요한 만큼 투자를 검토할 수 있습니다.',budget:'먼저 사용할 수 있는 재료와 비용을 확인하세요. 지금은 목표 옵션을 살펴보고, 재료를 쓰는 결정은 나중에 해도 됩니다.',plan:'다음 장비를 얻기 전까지 사용할지, 오래 사용할지 선택하면 목적에 맞게 안내합니다.',unsupported:'이 장비의 무작위 옵션 변경 가능 여부를 확인할 수 없습니다. 게임에서 지원 여부를 확인하세요.',tune:'직접 고른 변경 후보가 있습니다. 게임에서 조율 가능 옵션·비용·유지할 옵션을 확인한 뒤 조율을 검토하세요. 작업 순서는 확인하지 못했으므로 게임의 설명을 먼저 확인하세요.',review:'옵션별 용도를 확인하세요. 판단하지 못한 옵션을 나쁜 옵션으로 간주하지 않습니다.',engrave:'장기 사용을 선택하고 옵션 확인에 체크했습니다. 이것만으로 추가 투자가 꼭 필요한 것은 아닙니다. 게임에서 영혼각인 대상·상승 여지·비용을 확인하고, 개선 여지가 있을 때만 진행하세요.'};
+const ADVICE={progress:'다음 던전 준비용 장비입니다. 필요한 강화·옵션 개선부터 검토하고, 반복 조율·영혼각인은 교체 예상 시기와 비용을 비교하세요.',unknown:'장비 레벨 또는 실제 옵션 정보가 부족해 투자 판단을 보류합니다.',replace:'교체 예정 장비입니다. 조율·영혼각인보다 교체 자원을 우선 확보하세요.',low:'70레벨 미만 장비는 교체 시기를 먼저 확인하세요. 다음 던전 준비용이라면 ‘다음 던전 장비를 얻을 때까지’를 선택하세요.',budget:'먼저 사용할 수 있는 재료와 비용을 확인하세요. 지금은 목표 옵션을 살펴보고, 재료를 쓰는 결정은 나중에 해도 됩니다.',plan:'다음 장비를 얻기 전까지 사용할지, 오래 사용할지 선택하면 목적에 맞게 안내합니다.',unsupported:'이 장비의 무작위 옵션 변경 가능 여부를 확인할 수 없습니다. 게임에서 지원 여부를 확인하세요.',tune:'직접 고른 변경 후보가 있습니다. 게임에서 조율 가능 옵션·비용·유지할 옵션을 확인한 뒤 조율을 검토하세요. 작업 순서는 확인하지 못했으므로 게임의 설명을 먼저 확인하세요.',review:'옵션별 용도를 확인하세요. 판단하지 못한 옵션을 나쁜 옵션으로 간주하지 않습니다.',engrave:'장기 사용을 선택하고 옵션 확인에 체크했습니다. 이것만으로 추가 투자가 꼭 필요한 것은 아닙니다. 게임에서 영혼각인 대상·상승 여지·비용을 확인하고, 개선 여지가 있을 때만 진행하세요.'};
 const FIT={mismatch:'사용 목적 확인',priority:'유지 후보',review:'판단 정보 부족'};
 function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index,onReload}:{onReload?:()=>void;identity:Identity|null;item:RankerEquipment|undefined;mine:boolean;catalog:Catalog;plan:Plan;referenceLevel:number|null;index:ItemIndex|null}){
  const {t,locale,skill:skillName}=useLocale();
@@ -57,7 +57,7 @@ function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index,onR
     <p>{t('랭커 장비 레벨 {0}은 참고 정보입니다. 레벨이 낮거나 옵션이 다르다는 이유만으로 교체·조율을 권하지 않습니다.',[referenceLevel??t('미확인')])}</p>
     <label>{t('이 장비를 언제까지 쓸 예정인가요?')}<select value={investment} onChange={e=>setInvestment(e.target.value as Investment)}><option value="unknown">{t('아직 미정')}</option><option value="replace">{t('곧 교체')}</option><option value="progress">{t('다음 던전 장비를 얻을 때까지')}</option><option value="keep">{t('장기 사용')}</option></select></label>
     <label><input type="checkbox" checked={budget} onChange={e=>setBudget(e.target.checked)}/>{t('이 장비의 성장에 쓸 재료와 비용을 확인했어요')}</label>
-    <label><input type="checkbox" checked={reviewed} onChange={e=>setReviewed(e.target.checked)}/>{t('모든 옵션이 내 운용에 필요한지 확인했어요')}</label>
+    <label><input type="checkbox" checked={reviewed} onChange={e=>setReviewed(e.target.checked)}/>{t('각 옵션이 내 플레이에 필요한지 확인했어요')}</label>
     <h5>{t('1. 지금 확인할 것')}</h5>
     <p className={'advice-result advice-'+advice} role="status">{t(ADVICE[advice])}</p>
     <h5>{t('2. 바꾸기 전에 볼 것')}</h5>

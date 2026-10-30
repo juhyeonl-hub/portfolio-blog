@@ -15,7 +15,7 @@ export function readPeopleRoute(hash:string){
 export type BuildAuthor={id:string;name:string;builds:number};
 export type AuthorListing={items:BuildAuthor[];page:number;totalElements:number;totalPages:number};
 export function parseAuthors(v:any):AuthorListing{
- if(!v||!Array.isArray(v.items)||v.items.length>20||!Number.isSafeInteger(v.page)||v.page<0||!Number.isSafeInteger(v.totalElements)||v.totalElements<0||v.totalPages!==Math.ceil(v.totalElements/20)||v.items.some((a:any)=>!a||!personId(a.id)||typeof a.name!=='string'||!a.name.trim()||a.name.length>32||!Number.isSafeInteger(a.builds)||a.builds<1)||new Set(v.items.map((a:any)=>a.id)).size!==v.items.length)throw Error('검색 응답의 형식을 확인하지 못했습니다.');
+ if(!v||!Array.isArray(v.items)||v.items.length>20||!Number.isSafeInteger(v.page)||v.page<0||!Number.isSafeInteger(v.totalElements)||v.totalElements<0||v.totalPages!==Math.ceil(v.totalElements/20)||v.items.some((a:any)=>!a||!personId(a.id)||typeof a.name!=='string'||!a.name.trim()||a.name.length>32||!Number.isSafeInteger(a.builds)||a.builds<1)||new Set(v.items.map((a:any)=>a.id)).size!==v.items.length)throw Error('검색 결과를 불러오지 못했습니다. 다시 검색해 주세요.');
  return v;
 }
 export function checkedCharacter(v:any,target:CharacterTarget){

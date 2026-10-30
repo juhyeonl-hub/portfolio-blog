@@ -59,7 +59,9 @@ public class PublicBuildService {
     @Transactional
     public ObjectNode save(String id,JsonNode request) throws Exception {
         only(request,Set.of("title","description","published","revision","shared"));
-        if(!request.path("title").isTextual()||request.path("title").asText().trim().isEmpty()||request.path("title").asText().length()>80||!request.path("description").isTextual()||request.path("description").asText().length()>2000||!request.path("published").isBoolean())bad("제목·설명·공개 여부를 확인하세요.");
+        if(!request.path("title").isTextual()||request.path("title").asText().trim().isEmpty()||request.path("title").asText().length()>80)bad("제목은 1~80자로 입력해 주세요.");
+        if(!request.path("description").isTextual()||request.path("description").asText().length()>2000)bad("설명은 2,000자 이하로 입력해 주세요.");
+        if(!request.path("published").isBoolean())bad("게시물의 공개 설정을 확인하지 못했습니다. 작성 내용을 따로 보관한 뒤 페이지를 새로고침해 주세요.");
         // New or edited titles and descriptions must not contain offensive, extremist or political terms.
         if(ContentPolicy.blocked(request.path("title").asText())||ContentPolicy.blocked(request.path("description").asText()))bad("부적절한 표현이 포함되어 있습니다. 수정한 뒤 다시 시도하세요.");
         JsonNode shared=request.path("shared");validate(shared);
@@ -71,7 +73,7 @@ public class PublicBuildService {
         if(id==null){id=UUID.randomUUID().toString();jdbc.update("INSERT INTO shadowcraft_public_builds(id,title,description,class_key,catalog_version,payload,published,revision,updated_at) VALUES (?,?,?,?,?,?,?,0,?)",id,title,description,key,version,payload,published,now);}
         else {
             validId(id);get(id,true);
-            if(!request.path("revision").isIntegralNumber()||!request.path("revision").canConvertToLong()||request.path("revision").asLong()<0)bad("수정 버전을 확인하세요.");
+            if(!request.path("revision").isIntegralNumber()||!request.path("revision").canConvertToLong()||request.path("revision").asLong()<0)bad("게시물의 저장 상태를 확인하지 못했습니다. 수정 중인 내용이 있다면 따로 보관한 뒤 최신 게시물을 다시 불러오세요.");
             int changed=jdbc.update("UPDATE shadowcraft_public_builds SET title=?,description=?,class_key=?,catalog_version=?,payload=?,published=?,revision=revision+1,updated_at=? WHERE id=? AND revision=?",title,description,key,version,payload,published,now,id,request.path("revision").asLong());
             if(changed!=1)throw new ResponseStatusException(HttpStatus.CONFLICT,"다른 창에서 수정됐습니다. 최신 내용을 다시 불러오세요.");
         }
@@ -80,7 +82,7 @@ public class PublicBuildService {
     @Transactional
     public void delete(String id,long revision) {
         validId(id);get(id,true);
-        if(revision<0)bad("수정 버전을 확인하세요.");
+        if(revision<0)bad("게시물의 저장 상태를 확인하지 못했습니다. 수정 중인 내용이 있다면 따로 보관한 뒤 최신 게시물을 다시 불러오세요.");
         if(jdbc.update("DELETE FROM shadowcraft_public_builds WHERE id=? AND revision=?",id,revision)!=1)throw new ResponseStatusException(HttpStatus.CONFLICT,"다른 창에서 수정됐습니다. 최신 내용을 다시 불러오세요.");
     }
     private void validate(JsonNode shared) throws Exception {
@@ -89,7 +91,8 @@ public class PublicBuildService {
         if(!shared.path("schema").asText().equals("a2bc-share-v1")||!shared.path("catalogVersion").isTextual()||shared.path("catalogVersion").asText().isEmpty()||shared.path("catalogVersion").asText().length()>100)bad("공유 형식을 확인하세요.");
         JsonNode p=shared.path("plan");only(p,Set.of("classKey","level","mode","extraSP","extraStigma","extraCrystal","extraBattle","base","bonus","specs","nodes","checked","character","pointBudget","ascensionGrade3Confirmed","stigmaSkills"));
         String key=p.path("classKey").asText();catalogs.profile(key);
-        if(!number(p.path("level"),1,45)||!Set.of("safe","damage","pvp").contains(p.path("mode").asText())||!p.path("character").isNull()||!p.path("checked").isArray()||!p.path("checked").isEmpty())bad("개인정보를 제외한 공유 배분이 필요합니다.");
+        if(!number(p.path("level"),1,45)||!Set.of("safe","damage","pvp").contains(p.path("mode").asText()))bad("공개할 빌드의 레벨과 플레이 목적을 확인해 주세요.");
+        if(!p.path("character").isNull()||!p.path("checked").isArray()||!p.path("checked").isEmpty())bad("공개 빌드에는 연결한 캐릭터와 개인 완료 기록을 포함할 수 없습니다. 빌드 편집 화면에서 다시 저장해 주세요.");
         for(String field:List.of("extraSP","extraStigma","extraCrystal","extraBattle"))if(!number(p.path(field),0,9999))bad("포인트를 확인하세요.");
         if(p.has("ascensionGrade3Confirmed")&&!p.path("ascensionGrade3Confirmed").isBoolean())bad("승급 확인값을 확인하세요.");
         if(p.has("pointBudget")){only(p.path("pointBudget"),Set.of("sp","stigma","crystal","battle"));for(String field:List.of("sp","stigma","crystal","battle"))if(!number(p.path("pointBudget").path(field),0,9999))bad("포인트 예산을 확인하세요.");}
@@ -116,7 +119,7 @@ public class PublicBuildService {
         for(JsonNode value:values)if(!value.isTextual()||!allowed.contains(value.asText())||!seen.add(value.asText()))bad("알 수 없거나 중복된 노드·특화입니다.");
     }
     private static boolean number(JsonNode value,int min,int max){return value.isIntegralNumber()&&value.canConvertToInt()&&value.asInt()>=min&&value.asInt()<=max;}
-    private static void only(JsonNode value,Set<String> keys){if(value==null||!value.isObject())bad("JSON 객체가 필요합니다.");value.fieldNames().forEachRemaining(k->{if(!keys.contains(k))bad("허용되지 않는 필드입니다: "+k);});}
+    private static void only(JsonNode value,Set<String> keys){if(value==null||!value.isObject())bad("빌드 데이터를 읽을 수 없습니다. 작성 내용을 남겨 두고 빌드를 다시 불러오세요.");value.fieldNames().forEachRemaining(k->{if(!keys.contains(k))bad("빌드에 읽을 수 없는 항목이 있습니다. 빌드 편집 화면에서 다시 저장해 주세요.");});}
     private static void validId(String id){if(!id.matches("[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"))bad("빌드 ID를 확인하세요.");}
     private static void bad(String message){throw new ResponseStatusException(HttpStatus.BAD_REQUEST,message);}
 }

@@ -22,7 +22,7 @@ export function bossDisplay(feed:BossFeed|null,id:string,now:number,failed:boole
  if(!b)return {text:failed||feed.refreshFailed?'조회 실패':'관측 기록 없음',note:'A2Tools · 다음 출현 미확인',target:0};
  const stale=failed||feed.refreshFailed||now-b.reportedAt>600000||now-feed.fetchedAt>120000;
  const note=`A2Tools · ${stale?'갱신 지연 · ':''}${b.confirmed?'확인된 기록':'미확인 기록'}`;
- if(b.state==='up')return {text:stale?'생존 기록 · 확인 필요':'생존 관측',note,target:0};
+ if(b.state==='up')return {text:stale?'생존 기록 · 확인 필요':'마지막 기록: 출현 중',note,target:0};
  if(!b.nextSpawn)return {text:'출현 시각 미확인',note,target:0};
  if(b.nextSpawn<=now)return {text:'출현 예정 시각 경과',note,target:0};
  return {text:'',note,target:b.nextSpawn};

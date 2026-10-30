@@ -69,6 +69,21 @@ class PublicBuildControllerTest {
   mvc.perform(get(PUBLIC).param("page","-1")).andExpect(status().isBadRequest());
   assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_public_builds",Integer.class)).isZero();
  }
+ @Test @WithMockUser(roles="ADMIN") void validationMessagesIdentifyTheInputWithoutChangingAcceptance()throws Exception {
+  var input=payload("assassin").put("title","");
+  mvc.perform(post(ADMIN).contentType("application/json").content(input.toString())).andExpect(status().isBadRequest()).andExpect(jsonPath("$.error").value("제목은 1~80자로 입력해 주세요."));
+  input=payload("assassin").put("description","x".repeat(2001));
+  mvc.perform(post(ADMIN).contentType("application/json").content(input.toString())).andExpect(status().isBadRequest()).andExpect(jsonPath("$.error").value("설명은 2,000자 이하로 입력해 주세요."));
+  input=payload("assassin").put("published","yes");
+  mvc.perform(post(ADMIN).contentType("application/json").content(input.toString())).andExpect(status().isBadRequest()).andExpect(jsonPath("$.error").value("게시물의 공개 설정을 확인하지 못했습니다. 작성 내용을 따로 보관한 뒤 페이지를 새로고침해 주세요."));
+  input=payload("assassin");((ObjectNode)input.path("shared").path("plan")).put("level",46);
+  mvc.perform(post(ADMIN).contentType("application/json").content(input.toString())).andExpect(status().isBadRequest()).andExpect(jsonPath("$.error").value("공개할 빌드의 레벨과 플레이 목적을 확인해 주세요."));
+  input=payload("assassin");((ObjectNode)input.path("shared").path("plan")).putObject("character");
+  mvc.perform(post(ADMIN).contentType("application/json").content(input.toString())).andExpect(status().isBadRequest()).andExpect(jsonPath("$.error").value("공개 빌드에는 연결한 캐릭터와 개인 완료 기록을 포함할 수 없습니다. 빌드 편집 화면에서 다시 저장해 주세요."));
+  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_public_builds",Integer.class)).isZero();
+  create(payload("assassin").put("title","x".repeat(80)).put("description","x".repeat(2000)));
+  assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM shadowcraft_public_builds",Integer.class)).isEqualTo(1);
+ }
  @Test @WithMockUser(roles="ADMIN") void eightClassesAndStablePagination()throws Exception {
   for(String key:new String[]{"assassin","gladiator","templar","ranger","sorcerer","elementalist","cleric","chanter"}){var input=payload(key);input.put("published",true);create(input);}
   for(int i=0;i<13;i++){var input=payload("assassin");input.put("published",true);create(input);}

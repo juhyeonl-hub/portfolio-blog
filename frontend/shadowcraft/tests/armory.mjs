@@ -13,9 +13,9 @@ globalThis.fetch=async (url,options)=>{called={url,options};return Response.json
 assert.equal((await client.queryArmory({action:'servers',region:'eu'})).servers.length,46);
 assert.equal(called.url,'/api/public/shadowcraft/armory');assert.equal(called.options.method,'POST');assert.equal(JSON.parse(called.options.body).region,'eu');
 globalThis.fetch=async()=>new Response('<html>login</html>',{headers:{'Content-Type':'text/html'}});
-await assert.rejects(client.queryArmory({action:'search'}),/로그인/);
+await assert.rejects(client.queryArmory({action:'search'}),/페이지를 새로고침/);
 globalThis.fetch=async()=>Response.json({error:'공개 전투정보실 응답 502'},{status:502});
 await assert.rejects(client.queryArmory({action:'search'}),/502/);
 globalThis.fetch=async()=>{throw new TypeError('Failed to fetch')};
-await assert.rejects(client.queryArmory({action:'search'}),/연결이 차단/);
+await assert.rejects(client.queryArmory({action:'search'}),/인터넷 연결을 확인/);
 console.log('PASS: selectable regions and lookup client failure handling');

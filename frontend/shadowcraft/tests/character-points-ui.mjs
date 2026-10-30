@@ -52,7 +52,7 @@ test('synced confirmations are read-only until the actual character is loaded',(
 });
 test('editing total preserves confirmed balance and explains a mismatch',()=>{
  const plan=render(initial,{}).change('남은 스킬 포인트','30');const next=render(plan,{}).change('스킬 포인트','200');
- assert.equal(next.confirmedRemaining.sp,30);assert.ok(render(next,{}).els.includes('총량과 게임에서 입력한 남은 양이 다릅니다. 추천에는 총량을 사용합니다.'));
+ assert.equal(next.confirmedRemaining.sp,30);assert.ok(render(next,{}).els.includes('계산한 남은 포인트와 직접 입력한 값이 다릅니다. 추천은 입력한 총량으로 계산합니다.'));
 });
 test('number draft stays blank while editing, restores on blur and supports Enter',()=>{
  let calls=[];const el=PointNumber({label:'test',value:370,onValue:n=>calls.push(n)});

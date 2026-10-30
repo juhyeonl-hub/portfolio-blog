@@ -41,7 +41,7 @@ export default function TerrainPanel({active=false}:{active?:boolean}) {
 function TerrainView({terrain,active,regionPicker,enabledKinds,setEnabledKinds}: {terrain: typeof verteron; active: boolean; regionPicker: ReactNode; enabledKinds:Set<string>; setEnabledKinds:(kinds:Set<string>)=>void}) {
   const {t,locale} = useLocale();
   const accountSync=useContext(AccountSyncContext);
-  const syncMessage=accountSync?t({saved:'계정과 동기화됨',pending:'계정에 저장 중…',loading:'다른 기기의 설정 확인 중…',offline:'동기화 실패 · 이 기기의 변경은 보관 중',full:'계정 저장 한도 1MB 초과 · 이 기기 기록 보관 중',conflict:'두 기기의 거래 기록 확인 필요'}[accountSync.status]):null;
+  const syncMessage=accountSync?t({saved:'계정과 동기화됨',pending:'계정에 저장 중…',loading:'다른 기기의 설정 확인 중…',offline:'동기화 실패 · 이 기기의 변경은 보관 중',full:'계정 저장 한도 1MB 초과 · 이 기기 기록 보관 중',conflict:'거래 기록 확인이 필요합니다. 거래 장부에서 두 기기의 기록을 비교해 주세요.'}[accountSync.status]):null;
   const {name: terrainName, source, gridSize, basePath} = terrain;
   const [open, setOpen] = useState(false);
   const [controlsOpen,setControlsOpen]=useState(false);
@@ -95,7 +95,7 @@ function TerrainView({terrain,active,regionPicker,enabledKinds,setEnabledKinds}:
       try {progress=loadMapProgressWithLegacy(settingsStorage,key,dataset,(legacyProgressKeys as Record<string,string>)[terrainName]);} catch { /* Storage unavailable. */ }
       progressKey.current=key;writable.current=progress.writable;
       setCompleted(new Set(progress.completed));
-      setStorageNotice(progress.writable?'':'저장된 기록을 읽지 못했습니다. 기존 기록은 유지하고 이번 변경은 화면에서만 기억합니다.');
+      setStorageNotice(progress.writable?'':'저장된 기록을 불러오지 못했습니다. 기존 기록은 그대로 두었습니다. 지금 변경하는 내용은 새로고침하면 사라질 수 있습니다.');
       setPreview(map.markers);setPreviewOn(true);if(openMap)setOpen(true);
     } catch {setPreviewError(true);} finally {setPreviewLoading(false);}
   }
@@ -116,7 +116,7 @@ function TerrainView({terrain,active,regionPicker,enabledKinds,setEnabledKinds}:
     if(!writable.current)return;
     let saved=false;
     try {saved=saveMapProgress(settingsStorage,progressKey.current,[...next].sort());} catch { /* Memory-only. */ }
-    setStorageNotice(saved?'':'기록을 저장하지 못했습니다. 이번 변경은 화면에서만 기억합니다.');
+    setStorageNotice(saved?'':'기록을 저장하지 못했습니다. 지금 화면에만 반영되어 새로고침하면 사라질 수 있습니다.');
     setSavedNotice(saved);
   }
   const savedToAccount=!accountSync||accountSync.status==='saved';
@@ -214,7 +214,7 @@ function TerrainView({terrain,active,regionPicker,enabledKinds,setEnabledKinds}:
           opacity={members.every(m=>completed.has(m.id))?.65:1} role="button" tabIndex={0} aria-label={cluster?t('{0} 위치 {1}개 · 확대',[name(row.name),members.length]):t('{0} 후보 위치',[name(row.name)])+(completed.has(row.id)?' · '+t('이 위치 확인 완료'):'')} aria-pressed={selected}
           onPointerDown={e=>{e.preventDefault();e.stopPropagation();}} onClick={click}
           onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();choose();}}}>
-          <title>{t('{0} · {1} · 미검증 후보 위치',[name(row.name),t(previewKindLabel(row.kind))])}</title>
+          <title>{t('{0} · {1} · 게임에서 위치·출현 여부 확인 필요',[name(row.name),t(previewKindLabel(row.kind))])}</title>
           <rect className="marker-hit" x={x-markerSize/2} y={y-markerSize/2} width={markerSize} height={markerSize} rx={markerSize/2} fill={selected?'#79cced55':'transparent'} stroke={selected?'#79cced':'none'} strokeWidth={markerSize/16}/>
           <MapMarkerIcon kind={row.kind} objectId={row.objectId} completed={completed.has(row.id)} region={terrainName} x={x-markerSize/2} y={y-markerSize/2} size={markerSize}/>
           {!cluster&&completed.has(row.id)&&<g pointerEvents="none" aria-hidden="true"><circle cx={x+markerSize*.3} cy={y+markerSize*.25} r={markerSize*.3} fill="#145c43"/><text x={x+markerSize*.3} y={y+markerSize*.25} textAnchor="middle" dominantBaseline="central" fontSize={markerSize*.4} fill="white">✓</text></g>}
@@ -306,13 +306,14 @@ function TerrainView({terrain,active,regionPicker,enabledKinds,setEnabledKinds}:
         {enabledKinds.has('gather')&&<label>{t('찾을 채집물 · 후보 구역 색칠')}<select aria-label={t('찾을 채집물 · 후보 구역 색칠')} value={gatherArea} onChange={e=>{const value=e.target.value;setGatherArea(value);if(value){setExcludedGatherNames(new Set(gatherKinds.map(x=>x.name).filter(x=>x!==value)));}else setExcludedGatherNames(new Set());setPreviewSelection('');setPage(0);}}><option value="">{t('모든 채집물')}</option>{gatherKinds.map(row=><option key={row.name} value={row.name}>{name(row.name)} ({row.count})</option>)}</select></label>}
         {enabledKinds.size===0 && <p role="status">{t('표시할 항목을 체크해 주세요.')}</p>}
         <label className="map-check"><input type="checkbox" checked={hideCompleted} onChange={e=>{setHideCompleted(e.target.checked);setPage(0);}}/>{t('확인한 위치 숨기기')}</label>
-        <p>{t('확인 기록 {0}개 · 이 브라우저에 저장됩니다. 후보 지점별 기록이며 실제 수집 개수를 뜻하지 않습니다.',[completed.size])}</p>
+        <p>{t(accountSync?'확인 기록 {0}개 · 계정 동기화 상태는 아래에서 확인하세요.':'확인 기록 {0}개 · 이 브라우저에 저장됩니다.',[completed.size])}</p>
+        <p className="subtle">{t('후보 위치를 확인한 기록이며 실제 수집 개수는 아닙니다.')}</p>
         {accountSync&&<p className="terrain-account-sync" role="status">{syncMessage} · <a href="#/account">{t('동기화 상태 보기')}</a></p>}
         <details className="map-advanced"><summary>{t('위치 목록 검색 · 완료 기록')}</summary>
         <p>{t('봉인던전은 입구, 주둔지는 구역 중심을 표시합니다. 깃털은 Empyrean Trace의 통칭입니다. 항목 옆 숫자는 조건별 배치를 포함한 후보 지점 수이며 현재 출현·수집 가능 수가 아닙니다.')}</p>
-        <label>{t('이름 검색')}<input aria-label={t('실험 위치 검색')} type="search" maxLength={100} value={previewQuery} onChange={e=>{setPreviewQuery(e.target.value);setPreviewSelection('');setPage(0);}}/></label>
-        <label>{t('후보 위치')}<select aria-label={t('실험 위치 선택')} value={chosenPreview?.id ?? ''} onChange={e=>{const row=previewResults.find(item=>item.id===e.target.value);if(!row)return;focusPreview(row,true);}}>
-          <option value="">{t('후보 선택')}</option>{paged.rows.map((row,i)=><option key={row.id} value={row.id}>{name(row.name)} · {i+1}</option>)}
+        <label>{t('이름 검색')}<input aria-label={t('위치 이름 검색')} type="search" maxLength={100} value={previewQuery} onChange={e=>{setPreviewQuery(e.target.value);setPreviewSelection('');setPage(0);}}/></label>
+        <label>{t('후보 위치')}<select aria-label={t('후보 위치 선택')} value={chosenPreview?.id ?? ''} onChange={e=>{const row=previewResults.find(item=>item.id===e.target.value);if(!row)return;focusPreview(row,true);}}>
+          <option value="">{t('후보 위치 선택')}</option>{paged.rows.map((row,i)=><option key={row.id} value={row.id}>{name(row.name)} · {i+1}</option>)}
         </select></label>
         <p role="status">{t('검색 결과 {0}개 · 현재 화면 {1}개',[previewResults.length,previewVisible.length])}{' '+t('가까운 같은 종류의 위치는 숫자로 묶습니다. 숫자를 누르면 확대됩니다.')}</p>
         <div className="map-toolbar">
@@ -327,7 +328,7 @@ function TerrainView({terrain,active,regionPicker,enabledKinds,setEnabledKinds}:
       <details className="terrain-source"><summary>{t('지도 출처와 데이터 안내')}</summary>
         <p>{t('공식 글로벌 지형 지도')} · Steam · {source.buildId}</p>
         <p>{t('게임 클라이언트 자료로 표시한 위치입니다. 일부는 실제 게임과 다를 수 있습니다.')}</p>
-        <p>{t('지역명과 자원명은 글로벌 원문의 표시용 번역입니다. 게임 내 명칭과 다를 수 있습니다.')}</p>
+        <p>{t('지역명과 자원명은 글로벌 원문을 번역해 표시합니다. 게임 안의 이름과 다를 수 있습니다.')}</p>
       {labels.length > 0 && <p>{t('공식 지도에 배치된 지역명 {0}개입니다. 겹치는 이름은 확대하면 나타납니다.',[labels.length])}{!!regionLabels?.unresolvedLabels.length && ' '+t('이름을 확인하지 못한 {0}개는 표시하지 않습니다.',[regionLabels.unresolvedLabels.length])}</p>}
       <p className="map-help">{t('＋/− 버튼으로 확대·축소 · 지도를 손가락이나 마우스로 끌어 이동 · 표시를 눌러 상세 보기')}</p>
       </details>

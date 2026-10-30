@@ -29,7 +29,7 @@ public class PublicBuildController {
     public ResponseEntity<?> update(@PathVariable String id,HttpServletRequest request)throws Exception{return response(service.save(id,body(request)));}
     @DeleteMapping("/api/admin/shadowcraft/builds/{id}")
     public ResponseEntity<?> delete(@PathVariable String id,@RequestParam long revision){service.delete(id,revision);return ResponseEntity.noContent().build();}
-    private JsonNode body(HttpServletRequest request)throws Exception{byte[] bytes=request.getInputStream().readNBytes(32001);if(bytes.length>32000)throw new ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE,"입력이 너무 큽니다.");try{return mapper.readTree(bytes);}catch(com.fasterxml.jackson.core.JsonProcessingException e){throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"JSON 형식을 확인하세요.");}}
+    private JsonNode body(HttpServletRequest request)throws Exception{byte[] bytes=request.getInputStream().readNBytes(32001);if(bytes.length>32000)throw new ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE,"입력이 너무 큽니다.");try{return mapper.readTree(bytes);}catch(com.fasterxml.jackson.core.JsonProcessingException e){throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"빌드 데이터를 읽을 수 없습니다. 작성 내용을 따로 보관한 뒤 다시 시도해 주세요.");}}
     private ResponseEntity<?> response(Object value){return ResponseEntity.ok().cacheControl(CacheControl.noStore()).body(value);}
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<?> failure(ResponseStatusException e){return ResponseEntity.status(e.getStatusCode()).body(Map.of("error",e.getReason()==null?"요청 실패":e.getReason()));}

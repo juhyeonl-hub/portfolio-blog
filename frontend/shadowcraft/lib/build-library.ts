@@ -19,7 +19,7 @@ export function parseLibrary(raw: string | null, classKey: string): BuildLibrary
     if (!entry || typeof entry.id !== 'string' || !entry.id || typeof entry.name !== 'string' || !entry.name.trim() || entry.name.length > 60 || typeof entry.catalogVersion !== 'string' || !entry.catalogVersion || entry.catalogVersion.length > 100 || typeof entry.savedAt !== 'string' || !Number.isFinite(Date.parse(entry.savedAt)) || !validStoredPlan(entry.plan,classKey) || new TextEncoder().encode(JSON.stringify({schema:'shadowcraft-v1',catalogVersion:entry.catalogVersion,plan:entry.plan})).length > 150000) throw Error('손상된 빌드가 있습니다. 기존 보관함을 유지합니다.');
   }
   for (const entry of data.entries) {
-    if (ids.has(entry.id)) throw Error('중복 빌드 ID입니다.');
+    if (ids.has(entry.id)) throw Error('보관함에 중복된 기록이 있어 저장할 수 없습니다. ‘보관함 다시 불러오기’를 눌러 주세요.');
     ids.add(entry.id);
   }
   return data;

@@ -1039,3 +1039,11 @@ Max-level confirmation complete: source 81e824b, https://f387c7e0.asbc-4c9.pages
 2026-10-30 follow-up: natural leveling confirmation copy. Replace literal Yes/No references with action labels; preserve modal, target/budget effects and undo. Same existing Claude purpose-selection allocation.
 
 Natural leveling copy complete: source c1e7c38, https://2b6f98fa.asbc-4c9.pages.dev, /assets/asbc-lvf4uQ6h.js. Three strings plus8translations only; behavior retained. Typecheck/localization/build, PC/mobile checks, Claude PASS.302 pending preserved.
+
+
+## 2026-10-30: natural and accurate user messages
+[Task Goal]: Resolve all 96 copy-audit findings. Scope: Korean UI/help/errors, companion labels, eight locale translations, and message-only conditional branches. Expected: apply/save notices describe the actual target, anonymous vs account storage stays distinct, missing data is not reported as zero, and recovery instructions name available controls. Preserve computation, persistence and all unrelated changes. Claude allocated implementation to Codex and readonly review to Claude. See tasks/asbc-message-copy-fix-20261030.md.
+
+Natural user messages implemented and verified: all96 audit findings,117 companion dictionary keys and8 translated locales.45 frontend scripts,80 backend tests (per-class JVM isolation), final typecheck/build and72 local responsive-language copy checks pass. Claude readonly follow-up PASS;302 unrelated primary pending paths preserved. Source remains uncommitted; no deployment performed. See tasks/asbc-message-copy-fix-20261030.md.
+
+User subsequently authorized the reviewed message-only main commit/push/production release ("아니야 그냥 반영해"). Release scope excludes all302 unrelated pending changes.

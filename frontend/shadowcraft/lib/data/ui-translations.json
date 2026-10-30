@@ -27368,5 +27368,1165 @@
     "es": "Ver configuración para subir de nivel",
     "pt-BR": "Ver build para subir de nível",
     "ru": "Показать сборку для прокачки"
+  },
+  "빌드를 열면 데바니온과 스킬 배분이 보입니다. 레벨·포인트를 바꾸면 추천이 다시 계산됩니다. 내 배분을 바꾸려면 ‘추천 배분 적용’을 누르세요. 장비는 ‘랭커와 비교’에서 확인할 수 있습니다.": {
+    "en": "Opening a build shows its Daevanion and skill allocation. Changing your level or points recalculates the recommendation. Choose “Apply recommendation” to change your allocation. You can check equipment under “Compare with a ranked character”.",
+    "ja": "ビルドを開くと、ディーヴァニオン とスキルの割り当てが表示されます。レベルやポイントを変更すると、推奨値が再計算されます。割り当てを変更するには、“おすすめ配分を適用” を選択します。 “ランカーと比較”で装備を確認できます。",
+    "fi": "Kokoonpanossa näkyvät Daevanion- ja taitopisteiden jaot. Tason tai pisteiden muuttaminen laskee suosituksen uudelleen. Muuta omaa jakoasi valitsemalla “Käytä suositusta”. Varusteet näet kohdasta “Vertaa sijoitettuun hahmoon”.",
+    "fr": "L'ouverture d'une build montre son Daevanion et son allocation de compétences. Changer votre niveau ou vos points recalcule la recommandation. Choisissez “Appliquer la recommandation” pour modifier votre allocation. Vous pouvez vérifier l'équipement sous “Comparer avec un personnage classé.”.",
+    "de": "Beim Öffnen eines Builds werden dessen Daevanion und die Skill-Zuordnung angezeigt. Wenn Sie Ihr Level oder Ihre Punkte ändern, wird die Empfehlung neu berechnet. Wählen Sie “Empfehlung anwenden”, um Ihre Zuordnung zu ändern. Sie können die Ausrüstung unter “Mit einem Charakter aus der Rangliste vergleichen.” überprüfen.",
+    "es": "Al abrir una build se muestra su Daevanion y su asignación de habilidades. Al cambiar su nivel o puntos se vuelve a calcular la recomendación. Elija “Aplicar recomendación” para cambiar su asignación. Puede comprobar el equipo en “Comparar con un personaje clasificado.”.",
+    "pt-BR": "Abrir uma build mostra seu Daevanion e alocação de habilidades. Alterar seu nível ou pontos recalcula a recomendação. Escolha “Aplicar recomendação” para alterar sua alocação. Você pode verificar o equipamento em “Comparar com um personagem ranqueado.”.",
+    "ru": "В сборке показано распределение очков Даэваниона и навыков. При изменении уровня или очков рекомендация пересчитывается. Чтобы изменить своё распределение, выберите «Применить рекомендацию». Снаряжение можно посмотреть в разделе «Сравнить с персонажем из рейтинга.»."
+  },
+  "레벨과 포인트를 입력한 뒤, 아래에서 데바니온 → 스킬·특화 순서로 수정하세요.": {
+    "en": "Enter your level and points, then edit Daevanion first, followed by skills and specializations.",
+    "ja": "レベルとポイントを入力したら、下でディーヴァニオン → スキル・特化の順に編集してください。",
+    "fi": "Anna tasosi ja pisteesi. Muokkaa sitten ensin Daevanion-jakoa ja sen jälkeen taitoja ja erikoistumisia.",
+    "fr": "Entrez votre niveau et vos points, puis modifiez d'abord Daevanion, suivi des compétences et spécialisations.",
+    "de": "Geben Sie Ihr Level und Ihre Punkte ein und bearbeiten Sie dann zuerst Daevanion, gefolgt von Fertigkeiten und Spezialisierungen.",
+    "es": "Ingresa tu nivel y puntos, luego edita primero Daevanion, seguido de habilidades y especializaciones.",
+    "pt-BR": "Insira seu nível e pontos e edite primeiro Daevanion, seguido de habilidades e especializações.",
+    "ru": "Введите свой уровень и очки, затем сначала отредактируйте Даэванион, а затем навыки и специализации."
+  },
+  "입력한 레벨을 기준으로 계획을 세우는 중입니다. ‘현재 캐릭터 배치’와 실제 스킬 레벨은 마지막 조회 정보를 보여줍니다.": {
+    "en": "You are planning for the level you entered. The current character layout and actual skill levels show the last retrieved information.",
+    "ja": "入力したレベルに合わせて計画を立てています。現在のキャラクター レイアウトと実際のスキル レベルは、最後に取得された情報を示しています。",
+    "fi": "Suunnitelma lasketaan antamallesi tasolle. Hahmon nykyinen jako ja todelliset taitotasot perustuvat viimeksi haettuihin tietoihin.",
+    "fr": "Vous planifiez le niveau auquel vous êtes entré. La disposition actuelle des personnages et les niveaux de compétence réels affichent les dernières informations récupérées.",
+    "de": "Sie planen für das von Ihnen eingegebene Level. Das aktuelle Charakterlayout und die tatsächlichen Fähigkeitsstufen zeigen die zuletzt abgerufenen Informationen an.",
+    "es": "Estás planificando el nivel al que ingresaste. El diseño actual del personaje y los niveles de habilidad reales muestran la última información recuperada.",
+    "pt-BR": "Você está planejando o nível em que entrou. O layout atual do personagem e os níveis reais de habilidade mostram as últimas informações recuperadas.",
+    "ru": "Вы планируете уровень, который вы ввели. Текущее расположение персонажей и фактические уровни навыков показывают последнюю полученную информацию."
+  },
+  "포인트를 기본 내실 완료 기준으로 맞추기": {
+    "en": "Set points for completed basic progression",
+    "ja": "基本コンテンツ完了時のポイントに合わせる",
+    "fi": "Aseta pisteet perussisällön suorittamisen mukaan",
+    "fr": "Régler les points sur la progression de base terminée",
+    "de": "Punkte für abgeschlossenen Grundfortschritt einstellen",
+    "es": "Ajustar puntos al progreso básico completado",
+    "pt-BR": "Definir pontos para a progressão básica concluída",
+    "ru": "Установить очки для завершённого базового прогресса"
+  },
+  "포인트를 레벨 기본값으로 맞추기": {
+    "en": "Use the default points for this level",
+    "ja": "このレベルの初期ポイントに合わせる",
+    "fi": "Käytä tämän tason oletuspisteitä",
+    "fr": "Utiliser les points par défaut pour ce niveau",
+    "de": "Verwenden Sie die Standardpunkte für dieses Level",
+    "es": "Utilice los puntos predeterminados para este nivel.",
+    "pt-BR": "Use os pontos padrão para este nível",
+    "ru": "Используйте баллы по умолчанию для этого уровня"
+  },
+  "현재 목표는 45레벨입니다. ‘레벨링’을 누르면 44레벨 빌드로 바꿔 볼 수 있습니다.": {
+    "en": "Your current target is level 45. Choose “Levelling” to view a level 44 build.",
+    "ja": "現在のターゲットはレベル 45 です。レベル 44 のビルドを表示するには、“レベリング” を選択してください。",
+    "fi": "Nykyinen tavoitteesi on taso 45. Valitse “Tasonnosto” nähdäksesi tason 44 kokoonpanon.",
+    "fr": "Votre objectif actuel est le niveau 45. Choisissez “Progression (montée en niveau)” pour afficher une version de niveau 44.",
+    "de": "Ihr aktuelles Ziel ist Level 45. Wählen Sie “Levelaufstieg”, um einen Build für Level 44 anzuzeigen.",
+    "es": "Tu objetivo actual es el nivel 45. Elige “Subida de nivel” para ver una construcción de nivel 44.",
+    "pt-BR": "Seu alvo atual é o nível 45. Escolha “Evolução de nível” para visualizar uma build de nível 44.",
+    "ru": "Ваша текущая цель — 45-й уровень. Выберите “Прокачка”, чтобы просмотреть сборку 44-го уровня."
+  },
+  "추천 배분 사용량: 스킬 {0} · 스티그마 {1} · 데바니온 {2}": {
+    "en": "Points used by recommendation: Skills {0} · Stigma {1} · Daevanion {2}",
+    "ja": "推奨で使用するポイント：スキル {0}・スティグマ {1}・ディーヴァニオン {2}",
+    "fi": "Suosituksen käyttämät pisteet: Taidot {0} · Stigma {1} · Daevanion {2}",
+    "fr": "Points utilisés par recommandation : Compétences {0} · Stigmates {1} · Daevanion {2}",
+    "de": "Durch Empfehlung verwendete Punkte: Fähigkeiten {0} · Stigma {1} · Daevanion {2}",
+    "es": "Puntos utilizados por recomendación: Habilidades {0} · Estigma {1} · Daevanion {2}",
+    "pt-BR": "Pontos usados ​​por recomendação: Habilidades {0} · Estigma {1} · Daevanion {2}",
+    "ru": "Баллы, использованные по рекомендации: Навыки {0} · Стигмы {1} · Даэванион {2}"
+  },
+  "직접 입력해 둔 남은 포인트입니다. 같은 캐릭터를 같은 레벨로 다시 조회하면 이 값을 이어서 사용합니다.": {
+    "en": "These are the remaining points you entered. They will be used again when you look up the same character at the same level.",
+    "ja": "これらが入力した残りのポイントです。同じレベルの同じキャラクターを検索するときに再度使用されます。",
+    "fi": "Nämä ovat itse syöttämäsi jäljellä olevat pisteet. Arvot säilyvät, kun haet saman hahmon tiedot samalla tasolla uudelleen.",
+    "fr": "Ce sont les points restants que vous avez entrés. Ils seront réutilisés lorsque vous rechercherez le même personnage au même niveau.",
+    "de": "Dies sind die restlichen Punkte, die Sie eingegeben haben. Sie werden erneut verwendet, wenn Sie denselben Charakter auf derselben Ebene nachschlagen.",
+    "es": "Estos son los puntos restantes que ingresaste. Se utilizarán nuevamente cuando busques el mismo personaje en el mismo nivel.",
+    "pt-BR": "Estes são os pontos restantes que você inseriu. Eles serão usados ​​novamente quando você procurar o mesmo personagem no mesmo nível.",
+    "ru": "Это оставшиеся баллы, которые вы ввели. Они будут использоваться снова, когда вы будете искать того же персонажа на том же уровне."
+  },
+  "계산한 남은 포인트와 직접 입력한 값이 다릅니다. 추천은 입력한 총량으로 계산합니다.": {
+    "en": "The calculated remaining points differ from the value you entered. Recommendations use your entered total.",
+    "ja": "計算された残りポイントが入力した値と異なります。推奨事項では、入力した合計が使用されます。",
+    "fi": "Laskettu jäljellä oleva pistemäärä poikkeaa syöttämästäsi arvosta. Suositus lasketaan syöttämäsi kokonaismäärän mukaan.",
+    "fr": "Les points restants calculés diffèrent de la valeur que vous avez saisie. Les recommandations utilisent le total saisi.",
+    "de": "Die berechneten Restpunkte weichen von dem von Ihnen eingegebenen Wert ab. Für Empfehlungen wird die von Ihnen eingegebene Gesamtsumme verwendet.",
+    "es": "Los puntos restantes calculados difieren del valor que ingresó. Las recomendaciones utilizan el total ingresado.",
+    "pt-BR": "Os pontos restantes calculados diferem do valor inserido. As recomendações usam o total inserido.",
+    "ru": "Рассчитанные оставшиеся баллы отличаются от введенного вами значения. В рекомендациях используется введенная вами сумма."
+  },
+  "‘남음’은 게임에서 확인해 직접 입력한 값입니다. 다시 조회하거나 총량을 바꿔도 이 입력값은 유지합니다. 조회 정보로 계산한 수치는 게임과 다를 수 있습니다.": {
+    "en": "“Remaining” is the value you checked in the game and entered yourself. Looking up your character again or changing the total does not replace this value. Calculated values may differ from the game.",
+    "ja": "「残り」はゲーム内で確認し、自分で入力した値です。再検索や総量の変更では、この入力値は変わりません。取得した情報からの計算値はゲーム内の値と異なる場合があります。",
+    "fi": "“Jäljellä” on pelistä tarkistamasi ja itse syöttämäsi arvo. Hahmon tietojen päivittäminen tai kokonaismäärän muuttaminen ei korvaa sitä. Haetuista tiedoista lasketut arvot voivat poiketa pelistä.",
+    "fr": "« Restant » est la valeur vérifiée dans le jeu et saisie manuellement. Une nouvelle recherche du personnage ou un changement du total ne remplace pas cette valeur. Les valeurs calculées peuvent différer de celles du jeu.",
+    "de": "„Verbleibend“ ist der im Spiel geprüfte und selbst eingegebene Wert. Eine erneute Charakterabfrage oder Änderung der Gesamtpunkte überschreibt diesen Eingabewert nicht. Berechnete Werte können vom Spiel abweichen.",
+    "es": "«Restante» es el valor que comprobaste en el juego e introdujiste manualmente. Volver a consultar el personaje o cambiar el total no sustituye ese valor. Los valores calculados pueden diferir de los del juego.",
+    "pt-BR": "“Restante” é o valor conferido no jogo e informado por você. Consultar o personagem novamente ou alterar o total não substitui esse valor. Os valores calculados podem ser diferentes dos do jogo.",
+    "ru": "«Остаток» — значение, которое вы проверили в игре и ввели сами. Повторный запрос персонажа или изменение общей суммы не заменяет это введённое значение. Расчётные значения могут отличаться от игровых."
+  },
+  "공유 빌드를 적용하지 못했습니다. ‘빌드 파일 다운로드’로 파일을 받은 뒤 불러오세요.": {
+    "en": "Could not apply the shared build. Use “Download build file” to save the file, then import it.",
+    "ja": "共有ビルドを適用できませんでした。“ビルドファイルをダウンロード”でファイルを保存し、読み込んでください。",
+    "fi": "Jaettua kokoonpanoa ei voitu ottaa käyttöön. Tallenna tiedosto valitsemalla “Lataa kokoonpanotiedosto” ja tuo se sitten suunnittelijaan.",
+    "fr": "Impossible d’appliquer le build partagé. Utilisez “Télécharger le fichier du build”, puis importez le fichier.",
+    "de": "Der geteilte Build konnte nicht angewendet werden. Wähle “Build-Datei herunterladen” und importiere anschließend die Datei.",
+    "es": "No se pudo aplicar la build compartida. Usa “Descargar archivo de la build” y después importa el archivo.",
+    "pt-BR": "Não foi possível aplicar a build compartilhada. Use “Baixar arquivo da build” e depois importe o arquivo.",
+    "ru": "Не удалось применить общую сборку. Нажмите “Скачать файл сборки”, затем импортируйте файл."
+  },
+  "사이트에 저장된 게임 데이터를 확인했습니다. 게임 데이터 갱신은 운영자가 진행합니다.": {
+    "en": "Checked the game data stored on this site. Site administrators handle game data updates.",
+    "ja": "当サイトに保存されているゲームデータを確認しました。ゲームデータの更新はサイト管理者が行います。",
+    "fi": "Sivustolle tallennetut pelitiedot on tarkistettu. Ylläpito päivittää pelidatan.",
+    "fr": "Les données de jeu enregistrées sur ce site ont été vérifiées. Leur mise à jour est effectuée par les administrateurs du site.",
+    "de": "Die auf dieser Website gespeicherten Spieldaten wurden geprüft. Aktualisierungen nimmt das Website-Team vor.",
+    "es": "Se han comprobado los datos del juego guardados en este sitio. El equipo del sitio se encarga de actualizarlos.",
+    "pt-BR": "Os dados do jogo salvos neste site foram verificados. A equipe do site é responsável por atualizá-los.",
+    "ru": "Игровые данные, сохранённые на сайте, проверены. Их обновляют администраторы сайта."
+  },
+  "캐릭터 정보를 불러왔습니다. 직접 정한 배분은 유지합니다. 캐릭터나 레벨이 바뀌었다면 포인트 총량을 확인하세요.": {
+    "en": "Character information loaded. Your chosen allocation is unchanged. Check your total points if the character or level has changed.",
+    "ja": "キャラクター情報を読み込みました。選択した割り当ては変更されません。キャラクターやレベルが変更された場合は、合計ポイントを確認してください。",
+    "fi": "Hahmon tiedot ladattu. Valitsemasi jako on ennallaan. Tarkista kokonaispisteesi, jos hahmo tai taso on muuttunut.",
+    "fr": "Informations sur le personnage chargées. L'allocation que vous avez choisie reste inchangée. Vérifiez votre total de points si le personnage ou le niveau a changé.",
+    "de": "Charakterinformationen geladen. Ihre gewählte Zuteilung bleibt unverändert. Überprüfen Sie Ihre Gesamtpunktzahl, wenn sich der Charakter oder das Level geändert hat.",
+    "es": "Información del personaje cargada. La asignación elegida no se modifica. Comprueba tus puntos totales si el personaje o el nivel ha cambiado.",
+    "pt-BR": "Informações do personagem carregadas. A alocação escolhida permanece inalterada. Verifique seu total de pontos se o personagem ou nível mudou.",
+    "ru": "Информация о персонаже загружена. Выбранное вами распределение не изменится. Проверьте общее количество очков, если изменился персонаж или уровень."
+  },
+  "캐릭터 정보를 불러왔지만 스킬 정보는 확인하지 못했습니다. 직접 정한 배분은 유지합니다.": {
+    "en": "Character information loaded, but skill information is unavailable. Your chosen allocation is unchanged.",
+    "ja": "キャラクター情報は読み込まれていますが、スキル情報は取得できません。選択した割り当ては変更されません。",
+    "fi": "Hahmotiedot ladattu, mutta taitotietoja ei ole saatavilla. Valitsemasi jako on ennallaan.",
+    "fr": "Les informations sur le personnage sont chargées, mais les informations sur les compétences ne sont pas disponibles. L'allocation que vous avez choisie reste inchangée.",
+    "de": "Charakterinformationen wurden geladen, aber Fertigkeitsinformationen sind nicht verfügbar. Ihre gewählte Zuteilung bleibt unverändert.",
+    "es": "Se cargó la información del personaje, pero la información de las habilidades no está disponible. La asignación elegida no se modifica.",
+    "pt-BR": "As informações do personagem foram carregadas, mas as informações das habilidades não estão disponíveis. A alocação escolhida permanece inalterada.",
+    "ru": "Информация о персонаже загружена, но информация о навыках недоступна. Выбранное вами распределение не изменится."
+  },
+  "이 노드를 해제하면서 연결이 끊긴 노드도 함께 해제했습니다.": {
+    "en": "Removing this node also removed nodes that were no longer connected.",
+    "ja": "このノードの解除により接続が切れたノードも、まとめて解除しました。",
+    "fi": "Tämän solmun poistaminen poisti myös solmut, jotka eivät enää olleet yhteydessä.",
+    "fr": "La suppression de ce nœud a également supprimé les nœuds qui n'étaient plus connectés.",
+    "de": "Durch das Entfernen dieses Knotens wurden auch Knoten entfernt, die nicht mehr verbunden waren.",
+    "es": "Al eliminar este nodo, también se eliminaron los nodos que ya no estaban conectados.",
+    "pt-BR": "A remoção deste nó também removeu nós que não estavam mais conectados.",
+    "ru": "При удалении этого узла также были удалены узлы, которые больше не были подключены."
+  },
+  "현재 배분에 쓴 포인트가 입력한 총량보다 많습니다. 총량을 확인하거나 배분을 줄이세요. 추천 배분을 다시 적용할 수도 있습니다.": {
+    "en": "Your allocation uses more points than the total you entered. Check the total or reduce your allocation. You can also apply the recommendation again.",
+    "ja": "現在の配分で使用しているポイントが入力した総量を超えています。総量を確認するか、配分を減らしてください。おすすめ配分を適用し直すこともできます。",
+    "fi": "Pistejaossa on käytetty enemmän pisteitä kuin antamasi kokonaismäärä. Tarkista kokonaismäärä tai vähennä jaettuja pisteitä. Voit myös ottaa suosituksen uudelleen käyttöön.",
+    "fr": "Votre allocation utilise plus de points que le total que vous avez entré. Vérifiez le total ou réduisez votre allocation. Vous pouvez également appliquer à nouveau la recommandation.",
+    "de": "Ihre Zuweisung verbraucht mehr Punkte als die von Ihnen eingegebene Gesamtpunktzahl. Überprüfen Sie die Gesamtsumme oder reduzieren Sie Ihre Zuteilung. Sie können die Empfehlung auch erneut anwenden.",
+    "es": "Su asignación utiliza más puntos que el total que ingresó. Consulta el total o reduce tu asignación. También puedes volver a aplicar la recomendación.",
+    "pt-BR": "Sua alocação usa mais pontos do que o total inserido. Verifique o total ou reduza sua alocação. Você também pode aplicar a recomendação novamente.",
+    "ru": "В распределении использовано больше очков, чем указано в общей сумме. Проверьте общее количество или уменьшите вложения. Можно также повторно применить рекомендацию."
+  },
+  "보관한 빌드를 적용했습니다. 이전 계획으로 돌아가려면 ‘복원 직전 계획 보기’를 누르세요.": {
+    "en": "Saved build applied. Choose “View plan from before restore” to return to your previous plan.",
+    "ja": "保存したビルドを適用しました。以前の計画に戻すには「復元直前の計画を見る」を押してください。",
+    "fi": "Tallennettu kokoonpano otettiin käyttöön. Palaa edelliseen suunnitelmaan valitsemalla “Näytä palautusta edeltänyt suunnitelma”.",
+    "fr": "Le build enregistré a été appliqué. Sélectionnez « Voir la configuration précédente (avant restauration) » pour revenir à votre plan précédent.",
+    "de": "Gespeicherter Build angewendet. Wählen Sie “Plan vor der Wiederherstellung anzeigen”, um zu Ihrem vorherigen Plan zurückzukehren.",
+    "es": "Se aplicó la build guardada. Elija “Ver configuración anterior a la restauración” para volver a su plan anterior.",
+    "pt-BR": "Build salva aplicada. Escolha “Ver plano anterior à restauração” para retornar ao seu plano anterior.",
+    "ru": "Сохраненная сборка применена. Выберите “Просмотреть конфигурацию до восстановления”, чтобы вернуться к предыдущему плану."
+  },
+  "다음에 찍을 수 있는 노드": {
+    "en": "Nodes you can unlock next",
+    "ja": "次にロックを解除できるノード",
+    "fi": "Solmut, jotka voit avata seuraavaksi",
+    "fr": "Nœuds que vous pourrez débloquer ensuite",
+    "de": "Knoten, die Sie als Nächstes freischalten können",
+    "es": "Nodos que puedes desbloquear a continuación",
+    "pt-BR": "Nós que você pode desbloquear a seguir",
+    "ru": "Узлы, которые вы можете разблокировать дальше"
+  },
+  "이 노드까지 연결하는 데 필요한 포인트": {
+    "en": "Points needed to connect to this node",
+    "ja": "このノードに接続するために必要なポイント",
+    "fi": "Pisteet, jotka tarvitaan polun avaamiseen tähän solmuun",
+    "fr": "Points nécessaires pour se connecter à ce nœud",
+    "de": "Punkte, die für die Verbindung zu diesem Knoten benötigt werden",
+    "es": "Puntos necesarios para conectarse a este nodo",
+    "pt-BR": "Pontos necessários para se conectar a este nó",
+    "ru": "Очки, необходимые для подключения к этому узлу"
+  },
+  "아직 확인 기록이 없습니다. ‘최신 데이터 다시 확인’을 눌러 주세요.": {
+    "en": "No check has been recorded yet. Choose “Check for new data”.",
+    "ja": "まだ確認記録がありません。“最新データを再確認”を押してください。",
+    "fi": "Tietoja ei ole vielä tarkistettu. Valitse “Tarkista uudet tiedot”.",
+    "fr": "Aucune vérification n’a encore été enregistrée. Sélectionnez “Rechercher de nouvelles données”.",
+    "de": "Es liegt noch keine Abfrage vor. Wähle “Auf neue Daten prüfen”.",
+    "es": "Aún no hay ninguna consulta registrada. Selecciona “Buscar nuevos datos”.",
+    "pt-BR": "Ainda não há nenhuma consulta registrada. Selecione “Verificar se há novos dados”.",
+    "ru": "Проверок ещё не было. Нажмите “Проверить наличие новых данных”."
+  },
+  "목록에서 캐릭터를 누르면 연결 캐릭터가 바뀝니다. 캐릭터나 레벨이 달라지면 포인트는 해당 레벨의 기본값으로 바뀝니다.": {
+    "en": "Choose a character in the list to connect it. If the character or level changes, points reset to that level’s default values.",
+    "ja": "一覧からキャラクターを選ぶと、連携するキャラクターが切り替わります。キャラクターやレベルが変わると、ポイントはそのレベルの初期値に変わります。",
+    "fi": "Valitse hahmo luettelosta yhdistääksesi sen. Jos hahmo tai taso muuttuu, pisteiksi asetetaan kyseisen tason oletusarvot.",
+    "fr": "Choisissez un personnage dans la liste pour le connecter. Si le personnage ou le niveau change, les points sont réinitialisés aux valeurs par défaut de ce niveau.",
+    "de": "Wähle einen Charakter aus der Liste, um ihn zu verbinden. Ändert sich der Charakter oder seine Stufe, werden die Punkte auf die Standardwerte dieser Stufe gesetzt.",
+    "es": "Elige un personaje de la lista para conectarlo. Si el personaje o el nivel cambia, los puntos se restablecen a los valores predeterminados de ese nivel.",
+    "pt-BR": "Escolha um personagem na lista para conectá-lo. Se o personagem ou nível mudar, os pontos serão redefinidos para os valores padrão daquele nível.",
+    "ru": "Выберите персонажа в списке, чтобы подключить его. Если персонаж или уровень изменится, очки будут установлены на значения по умолчанию для этого уровня."
+  },
+  "공개 최종 레벨에서 내 장비·데바니온 보너스를 빼고, 배울 수 있는 기본 레벨까지만 목표로 삼습니다. 목표 투자 비용 대비 달성 비율이 낮은 스킬부터 나눠 배분하며, 동률이면 공개 레벨이 높은 스킬을 우선합니다. 성능 최적화 결과는 아닙니다.": {
+    "en": "Targets subtract your equipment and Daevanion bonuses from the published final levels, up to the base levels you can learn. Points go first to the skill with the lowest funded share of its target cost. Ties favour the higher published level. This is a reference allocation, not a performance optimization.",
+    "ja": "公開されている最終レベルから自分の装備・ディーヴァニオンのボーナスを引き、習得可能な基本レベルを上限に目標を設定します。目標に必要なポイントに対する割り当て済みポイントの割合が低いスキルから配分します。同率なら公開レベルが高いスキルを優先します。最適な性能を保証する配分ではありません。",
+    "fi": "Tavoitteista vähennetään omien varusteiden ja Daevanionin tasobonukset. Tavoite ei ylitä opittavissa olevaa perustasoa. Pisteet jaetaan ensin taitoihin, joissa on käytetty pienin osuus tavoitteen vaatimista pisteistä. Tasatilanteessa korkeampi julkaistu taitotaso saa etusijan. Tämä on jakoehdotus, ei vahvistettu paras kokoonpano.",
+    "fr": "Les objectifs sont calculés en retirant vos bonus de niveaux d’équipement et de Daevanion des niveaux finaux publiés, sans dépasser les niveaux de base accessibles. Les points vont d’abord aux compétences ayant reçu la plus faible proportion des points nécessaires à leur objectif. En cas d’égalité, le niveau publié le plus élevé est prioritaire. Cette répartition ne garantit pas des performances optimales.",
+    "de": "Von den veröffentlichten Endstufen werden deine Stufenboni durch Ausrüstung und Daevanion abgezogen. Die Ziele sind auf erlernbare Basisstufen begrenzt. Zuerst erhält die Fertigkeit Punkte, bei der der Anteil der bereits investierten Punkte an den Zielkosten am niedrigsten ist. Bei Gleichstand hat die höhere veröffentlichte Stufe Vorrang. Dies ist ein Verteilungsvorschlag, keine bestätigte optimale Verteilung.",
+    "es": "Los objetivos se calculan restando tus bonificaciones de nivel de equipo y Daevanion de los niveles finales publicados, sin superar los niveles base que puedes aprender. Reciben puntos primero las habilidades con menor proporción de puntos asignados respecto al coste de su objetivo. En caso de empate, se prioriza el nivel publicado más alto. Esta distribución no garantiza un rendimiento óptimo.",
+    "pt-BR": "Os objetivos descontam os bônus de nível de equipamento e Daevanion dos níveis finais publicados, respeitando os níveis básicos que você pode aprender. Os pontos vão primeiro para as habilidades com a menor proporção de pontos investidos em relação ao custo do objetivo. Em caso de empate, o nível publicado mais alto tem prioridade. Esta distribuição não garante o melhor desempenho.",
+    "ru": "Из опубликованных конечных уровней вычитаются ваши бонусы уровней от снаряжения и Даэваниона. Цели ограничены доступными базовыми уровнями. Очки сначала получает навык с наименьшей долей вложенных очков относительно стоимости его цели. При равенстве приоритет у более высокого опубликованного уровня. Это пример распределения, а не гарантия максимальной эффективности."
+  },
+  "목표 최종 레벨에 못 미치는 스킬이 있습니다. 포인트·레벨·승급·장비·데바니온 보너스 또는 장착 슬롯의 차이를 확인하세요.": {
+    "en": "Some skills fall short of their target final levels. Check differences in points, level, ascension, equipment and Daevanion bonuses, and equipped slots.",
+    "ja": "目標の最終レベルに届かないスキルがあります。ポイント・レベル・昇級・装備やディーヴァニオンのボーナス・装着枠の違いを確認してください。",
+    "fi": "Osa taidoista jää tavoitetason alle. Tarkista pisteet, hahmon taso, yleneminen, varuste- ja Daevanion-bonukset sekä käytettävissä olevat paikat.",
+    "fr": "Certaines compétences ne parviennent pas à atteindre leurs niveaux finaux cibles. Vérifiez les différences de points, de niveau, d'ascension, d'équipement et de bonus Daevanion, ainsi que les emplacements équipés.",
+    "de": "Einige Fertigkeiten erreichen nicht ihr angestrebtes Endniveau. Überprüfen Sie die Unterschiede bei Punkten, Level, Aufstieg, Ausrüstung und Daevanion-Boni sowie ausgestatteten Slots.",
+    "es": "Algunas habilidades no alcanzan los niveles finales previstos. Consulta diferencias en puntos, nivel, ascensión, equipamiento y bonificaciones Daevanion, y slots equipados.",
+    "pt-BR": "Algumas habilidades ficam aquém dos níveis finais desejados. Confira diferenças de pontos, nível, ascensão, equipamentos e bônus Daevanion, e slots equipados.",
+    "ru": "Некоторые навыки не достигают целевого конечного уровня. Проверьте разницу в очках, уровне, восхождении, экипировке и бонусах Даэванион, а также оборудованных слотах."
+  },
+  "현재 조건에서는 포인트를 써서 더 올릴 스킬이 없습니다. 포인트·레벨·승급 설정을 확인하세요.": {
+    "en": "No further skill levels can be allocated with points under these conditions. Check your points, level and ascension settings.",
+    "ja": "現在の条件では、ポイントを使ってさらに上げられるスキルがありません。ポイント・レベル・昇級の設定を確認してください。",
+    "fi": "Näillä asetuksilla taitoja ei voi korottaa enempää pisteillä. Tarkista pisteet, taso ja ylenemisen asetukset.",
+    "fr": "Aucun autre niveau de compétence ne peut être attribué avec des points dans ces conditions. Vérifiez vos paramètres de points, de niveau et d'ascension.",
+    "de": "Unter diesen Voraussetzungen können keine weiteren Fähigkeitsstufen mit Punkten zugeordnet werden. Überprüfen Sie Ihre Punkte-, Level- und Aufstiegseinstellungen.",
+    "es": "En estas condiciones no se pueden asignar puntos a más niveles de habilidad. Consulta tus puntos, niveles y configuración de ascensión.",
+    "pt-BR": "Nenhum outro nível de habilidade pode ser atribuído com pontos sob estas condições. Verifique suas configurações de pontos, nível e ascensão.",
+    "ru": "В этих условиях никакие дополнительные уровни навыков не могут быть присвоены очками. Проверьте свои очки, уровень и настройки восхождения."
+  },
+  "장비·데바니온 보너스": {
+    "en": "Equipment and Daevanion bonuses",
+    "ja": "装備・ディーヴァニオンのボーナス",
+    "fi": "Varuste- ja Daevanion-bonukset",
+    "fr": "Bonus d’équipement et de Daevanion",
+    "de": "Boni durch Ausrüstung und Daevanion",
+    "es": "Bonificaciones de equipo y Daevanion",
+    "pt-BR": "Bônus de equipamento e Daevanion",
+    "ru": "Бонусы от снаряжения и Даэваниона"
+  },
+  "목표 레벨까지 추가 포인트·조건 필요": {
+    "en": "More points or requirements needed for target level",
+    "ja": "目標レベルに必要な追加ポイントまたは要件",
+    "fi": "Tavoitetasoon tarvitaan lisää pisteitä tai muita ehtoja",
+    "fr": "Plus de points ou d'exigences nécessaires pour le niveau cible",
+    "de": "Für das Zielniveau sind mehr Punkte oder Anforderungen erforderlich",
+    "es": "Se necesitan más puntos o requisitos para el nivel objetivo.",
+    "pt-BR": "Mais pontos ou requisitos necessários para o nível alvo",
+    "ru": "Для целевого уровня необходимо больше баллов или требований"
+  },
+  "데바니온 배치를 불러오지 못했습니다. 포인트를 사용하지 않았다는 뜻은 아닙니다. 다시 조회해 주세요.": {
+    "en": "Could not load the Daevanion allocation. This does not mean no points were spent. Try looking it up again.",
+    "ja": "ディーヴァニオンの配分を読み込めませんでした。ポイントを使っていないという意味ではありません。もう一度検索してください。",
+    "fi": "Daevanion-jakoa ei voitu ladata. Tämä ei tarkoita, ettei pisteitä olisi käytetty. Hae tiedot uudelleen.",
+    "fr": "Impossible de charger l'allocation Daevanion. Cela ne veut pas dire qu’aucun point n’a été dépensé. Essayez de le rechercher à nouveau.",
+    "de": "Die Daevanion-Zuordnung konnte nicht geladen werden. Dies bedeutet nicht, dass keine Punkte ausgegeben wurden. Versuchen Sie es noch einmal.",
+    "es": "No se pudo cargar la asignación Daevanion. Esto no significa que no se hayan gastado puntos. Intente buscarlo nuevamente.",
+    "pt-BR": "Não foi possível carregar a alocação Daevanion. Isso não significa que nenhum ponto foi gasto. Tente pesquisar novamente.",
+    "ru": "Не удалось загрузить распределение Даэваниона. Это не означает, что очки не были потрачены. Повторите запрос."
+  },
+  "공개 정보에서 확인한 장착 스킬 조합으로 묶었습니다. 특화·실제 사용 방식은 공개되지 않아 성능이나 적합성을 단정할 수 없습니다.": {
+    "en": "Grouped by the equipped skill combinations visible in public data. Specializations and actual use are not public, so this does not establish performance or suitability.",
+    "ja": "公開情報で確認できる装着スキルの組み合わせで分類しています。特化や実際の使い方は公開されていないため、性能や適性は断定できません。",
+    "fi": "Ryhmät perustuvat julkisissa tiedoissa näkyviin käytössä olevien taitojen yhdistelmiin. Erikoistumiset ja todellinen käyttötapa eivät ole julkisia, joten niiden tehokkuutta tai sopivuutta ei voida vahvistaa.",
+    "fr": "Regroupés par combinaisons de compétences équipées visibles dans les données publiques. Les spécialisations et l'utilisation réelle ne sont pas publiques, cela n'établit donc pas les performances ou l'adéquation.",
+    "de": "Gruppiert nach den ausgerüsteten Fertigkeitskombinationen, die in öffentlichen Daten sichtbar sind. Spezialisierungen und tatsächliche Nutzung sind nicht öffentlich, sodass hierdurch weder Leistung noch Eignung festgestellt werden.",
+    "es": "Agrupados por las combinaciones de habilidades equipadas visibles en los datos públicos. Las especializaciones y el uso real no son públicos, por lo que esto no establece el rendimiento o la idoneidad.",
+    "pt-BR": "Agrupados pelas combinações de habilidades equipadas visíveis nos dados públicos. As especializações e o uso real não são públicos, portanto isso não estabelece desempenho ou adequação.",
+    "ru": "Сгруппированы по имеющимся комбинациям навыков, видимым в общедоступных данных. Специализации и фактическое использование не разглашаются, поэтому это не определяет производительность или пригодность."
+  },
+  "70레벨 미만 장비는 교체 시기를 먼저 확인하세요. 다음 던전 준비용이라면 ‘다음 던전 장비를 얻을 때까지’를 선택하세요.": {
+    "en": "For equipment below level 70, consider when you will replace it. If you need it for your next dungeon, choose “Until I get my next dungeon gear”.",
+    "ja": "70レベル未満の装備は、まず交換時期を確認してください。次のダンジョンに向けた準備用なら「次のダンジョン装備を入手するまで」を選んでください。",
+    "fi": "Mieti ensin, milloin aiot vaihtaa alle 70-tason varusteen. Jos tarvitset sitä seuraavaan luolastoon, valitse “Seuraavan luolaston varusteisiin asti”.",
+    "fr": "Pour les équipements inférieurs au niveau 70, réfléchissez au moment où vous les remplacerez. Si vous en avez besoin pour votre prochain donjon, choisissez “En attendant d'obtenir mon prochain équipement de donjon”.",
+    "de": "Überlege bei Ausrüstung unter Stufe 70 zuerst, wann du sie ersetzen möchtest. Für die Vorbereitung auf den nächsten Dungeon wähle „Bis ich meine nächste Dungeon-Ausrüstung erhalte“.",
+    "es": "Para equipos por debajo del nivel 70, considere cuándo los reemplazará. Si lo necesitas para tu próxima mazmorra, elige “Hasta que consiga mi próximo equipo de mazmorra”.",
+    "pt-BR": "Para equipamentos abaixo do nível 70, considere quando você irá substituí-los. Se precisar dele para sua próxima masmorra, escolha “Até eu conseguir meu próximo equipamento de masmorra”.",
+    "ru": "Для снаряжения ниже 70 уровня подумайте, когда вы его замените. Если он понадобится вам для следующего подземелья, выберите “Пока не получу следующее снаряжение из подземелий”."
+  },
+  "각 옵션이 내 플레이에 필요한지 확인했어요": {
+    "en": "I checked that each option is useful for how I play",
+    "ja": "各オプションが自分のプレイに役立つことを確認しました",
+    "fi": "Tarkistin, että varusteen jokaisesta ominaisuudesta on hyötyä pelitavalleni",
+    "fr": "J'ai vérifié que chaque option est utile pour ma façon de jouer",
+    "de": "Ich habe überprüft, ob jede Option für mein Spiel nützlich ist",
+    "es": "Verifiqué que cada opción es útil para mi forma de jugar.",
+    "pt-BR": "Verifiquei se cada opção é útil para a forma como jogo",
+    "ru": "Я проверил, что каждая опция полезна для моей игры."
+  },
+  "사용할 수 없게 되는 특화": {
+    "en": "Specializations that become unavailable",
+    "ja": "使えなくなる特化",
+    "fi": "Erikoistumiset, jotka poistuvat käytöstä",
+    "fr": "Spécialisations devenues indisponibles",
+    "de": "Spezialisierungen, die nicht mehr verfügbar sind",
+    "es": "Especializaciones que dejan de estar disponibles",
+    "pt-BR": "Especializações que ficam indisponíveis",
+    "ru": "Специализации, которые становятся недоступными"
+  },
+  "사용 불가: {0}": {
+    "en": "Unavailable: {0}",
+    "ja": "利用不可: {0}",
+    "fi": "Ei saatavilla: {0}",
+    "fr": "Indisponible : {0}",
+    "de": "Nicht verfügbar: {0}",
+    "es": "No disponible: {0}",
+    "pt-BR": "Indisponível: {0}",
+    "ru": "Недоступно: {0}"
+  },
+  "입력한 스킬 보너스로 최종 레벨과 특화 변화를 비교합니다. 공격력·치명타·세트 효과·비용이나 획득 장소까지 계산한 장비 추천은 아닙니다.": {
+    "en": "Compares final levels and specialization changes using the skill bonuses you enter. This does not recommend equipment based on attack, critical hits, set effects, cost or where to obtain it.",
+    "ja": "入力したスキルボーナスを使用して、最終レベルと特化の変更を比較します。これは、攻撃、クリティカルヒット、セット効果、コスト、または入手場所に基づいて装備を推奨するものではありません。",
+    "fi": "Vertailu näyttää syöttämiesi taitobonusten vaikutuksen lopullisiin tasoihin ja erikoistumisiin. Se ei suosittele varusteita hyökkäysvoiman, kriittisten osumien, settibonusten, hinnan tai hankintapaikan perusteella.",
+    "fr": "Compare les niveaux finaux et les changements de spécialisation en utilisant les bonus de compétences que vous saisissez. Cela ne recommande pas d'équipement en fonction de l'attaque, des coups critiques, des effets de set, du coût ou de l'endroit où l'obtenir.",
+    "de": "Vergleicht die endgültigen Stufen und Spezialisierungsänderungen anhand der von Ihnen eingegebenen Fertigkeitsboni. Hier wird keine Ausrüstung empfohlen, die auf Angriff, kritischen Treffern, Seteffekten, Kosten oder dem Ort, an dem sie erhältlich ist, basiert.",
+    "es": "Compara los niveles finales y los cambios de especialización utilizando las bonificaciones de habilidades que ingresas. Esto no recomienda equipo basado en ataque, golpes críticos, efectos de configuración, costo o dónde obtenerlo.",
+    "pt-BR": "Compara os níveis finais e as mudanças de especialização usando os bônus de habilidade inseridos. Isso não recomenda equipamentos com base em ataque, acertos críticos, efeitos definidos, custo ou onde obtê-los.",
+    "ru": "Сравнивает окончательные уровни и изменения специализации с использованием введенных вами бонусов навыков. Здесь не рекомендуется использовать снаряжение, основанное на атаке, критических ударах, эффектах набора, стоимости или месте его получения."
+  },
+  "게임 원본 데이터 수치": {
+    "en": "Values from the original game data",
+    "ja": "元のゲームデータの値",
+    "fi": "Arvot alkuperäisistä pelitiedoista",
+    "fr": "Valeurs des données de jeu originales",
+    "de": "Werte aus den ursprünglichen Spieldaten",
+    "es": "Valores de los datos del juego original.",
+    "pt-BR": "Valores dos dados originais do jogo",
+    "ru": "Значения из исходных игровых данных"
+  },
+  "데바니온 개방 노드": {
+    "en": "Unlocked Daevanion nodes",
+    "ja": "開放済みのディーヴァニオンノード",
+    "fi": "Avatut Daevanion-solmut",
+    "fr": "Nœuds Daevanion débloqués",
+    "de": "Freigeschaltete Daevanion-Knoten",
+    "es": "Nodos Daevanion desbloqueados",
+    "pt-BR": "Nós Daevanion desbloqueados",
+    "ru": "Разблокированы узлы Даэванион"
+  },
+  "데바니온 일부를 불러오지 못했습니다. 표시되지 않은 노드도 찍혀 있을 수 있으니 다시 조회해 주세요.": {
+    "en": "Part of the Daevanion allocation could not be loaded. Missing nodes may still be allocated in the game. Try looking it up again.",
+    "ja": "ディーヴァニオンの一部を読み込めませんでした。表示されないノードもゲーム内では取得済みの場合があります。再度検索してください。",
+    "fi": "Osaa Daevanion-jaosta ei voitu ladata. Puuttuvat solmut voivat olla jo avattuina pelissä. Hae tiedot uudelleen.",
+    "fr": "Une partie de la répartition Daevanion n’a pas pu être chargée. Les nœuds absents de l’affichage peuvent déjà être activés dans le jeu. Relancez la recherche.",
+    "de": "Ein Teil der Daevanion-Verteilung konnte nicht geladen werden. Nicht angezeigte Knoten können im Spiel bereits freigeschaltet sein. Frage die Daten erneut ab.",
+    "es": "No se pudo cargar parte de la distribución de Daevanion. Los nodos que no aparecen pueden estar ya activados en el juego. Vuelve a consultar los datos.",
+    "pt-BR": "Não foi possível carregar parte da distribuição de Daevanion. Os nós que não aparecem podem já estar ativados no jogo. Consulte os dados novamente.",
+    "ru": "Не удалось загрузить часть распределения Даэваниона. Неотображённые узлы могут быть уже открыты в игре. Повторите запрос."
+  },
+  "이 직업의 내 플래너 배분이 아직 없습니다. 빌드 화면에서 해당 직업의 배분을 만든 뒤 다시 불러오세요.": {
+    "en": "There is no planner allocation for this class yet. Create one on the build page, then load it here.",
+    "ja": "このクラスのプランナー配分はまだありません。ビルド画面で配分を作成してから、ここで読み込んでください。",
+    "fi": "Tälle hahmoluokalle ei ole vielä omaa pistejakoa. Luo se kokoonpanosivulla ja lataa sitten tähän.",
+    "fr": "Aucune répartition n’est encore enregistrée dans votre planificateur pour cette classe. Créez-en une sur la page de build, puis chargez-la ici.",
+    "de": "Für diese Klasse gibt es noch keine Punkteverteilung in deinem Planer. Erstelle sie auf der Build-Seite und lade sie anschließend hier.",
+    "es": "Todavía no hay una distribución en tu planificador para esta clase. Créala en la página de build y después cárgala aquí.",
+    "pt-BR": "Ainda não há uma distribuição no seu planejador para esta classe. Crie uma na página de build e depois carregue aqui.",
+    "ru": "В вашем планировщике ещё нет распределения для этого класса. Создайте его на странице сборки, затем загрузите здесь."
+  },
+  "여기서는 공개할 빌드를 편집합니다. 게시물은 저장할 때 반영되며, 내 플래너는 바뀌지 않습니다.": {
+    "en": "You are editing the build to publish. Saving updates the post; it does not change your planner.",
+    "ja": "公開するビルドを編集しています。保存すると投稿が更新されます。プランナーが変わるわけではありません。",
+    "fi": "Muokkaat julkaistavaa kokoonpanoa. Julkaisu päivittyy tallennettaessa, eikä oma suunnittelijasi muutu.",
+    "fr": "Vous modifiez la build à publier. L'enregistrement met à jour la publication ; cela ne change pas votre agenda.",
+    "de": "Sie bearbeiten den zu veröffentlichenden Build. Beim Speichern wird der Beitrag aktualisiert. Es ändert nichts an Ihrem Planer.",
+    "es": "Estás editando la build para publicarla. Guardar actualiza la publicación; no cambia tu agenda.",
+    "pt-BR": "Você está editando a build para publicar. Salvar atualiza a postagem; isso não muda seu planejador.",
+    "ru": "Вы редактируете сборку для публикации. Сохранение обновляет публикацию; это не меняет ваш планировщик."
+  },
+  "작성 내용은 현재 탭에서 최대 24시간 임시 보관됩니다. 탭을 닫으면 초안이 사라질 수 있습니다. 같은 탭에서 다시 로그인하면 이어 쓸 수 있으며, 다른 기기에는 동기화되지 않습니다.": {
+    "en": "Your draft is kept in this tab for up to 24 hours. Closing the tab may lose it. Sign in again in the same tab to continue. Drafts do not sync to other devices.",
+    "ja": "下書きは現在のタブで最大24時間一時保存されます。タブを閉じると下書きが失われる場合があります。同じタブで再ログインすると続きを編集できます。他の端末には同期されません。",
+    "fi": "Luonnosta säilytetään tällä välilehdellä enintään 24 tuntia. Se voi kadota, jos suljet välilehden. Voit jatkaa kirjautumalla uudelleen samalla välilehdellä. Luonnos ei synkronoidu muihin laitteisiin.",
+    "fr": "Votre brouillon est conservé dans cet onglet pendant 24 heures au maximum. Il peut être perdu si vous fermez l’onglet. Reconnectez-vous dans le même onglet pour reprendre. Le brouillon n’est pas synchronisé avec les autres appareils.",
+    "de": "Dein Entwurf wird in diesem Tab bis zu 24 Stunden zwischengespeichert. Beim Schließen des Tabs kann der Entwurf verloren gehen. Melde dich im selben Tab erneut an, um weiterzumachen. Der Entwurf wird nicht mit anderen Geräten synchronisiert.",
+    "es": "El borrador se conserva en esta pestaña durante un máximo de 24 horas. Puede perderse si cierras la pestaña. Vuelve a iniciar sesión en la misma pestaña para continuar. El borrador no se sincroniza con otros dispositivos.",
+    "pt-BR": "Seu rascunho fica nesta aba por até 24 horas. Ele pode ser perdido se você fechar a aba. Entre novamente na mesma aba para continuar. O rascunho não é sincronizado com outros dispositivos.",
+    "ru": "Черновик временно хранится в текущей вкладке до 24 часов. При закрытии вкладки черновик может исчезнуть. Войдите снова в той же вкладке, чтобы продолжить. На другие устройства черновик не синхронизируется."
+  },
+  "내 플래너의 현재 배분 불러오기": {
+    "en": "Load my planner’s current allocation",
+    "ja": "プランナーの現在の配分を読み込む",
+    "fi": "Lataa suunnittelijan nykyinen pistejako",
+    "fr": "Charger la répartition actuelle de mon planificateur",
+    "de": "Aktuelle Verteilung aus meinem Planer laden",
+    "es": "Cargar la distribución actual de mi planificador",
+    "pt-BR": "Carregar a distribuição atual do meu planejador",
+    "ru": "Загрузить текущее распределение из моего планировщика"
+  },
+  "이 브라우저에서는 보관함에 저장할 수 없습니다. ‘빌드 내보내기’로 파일을 저장해 주세요.": {
+    "en": "This browser cannot save to the library. Use “Export build” to save a file.",
+    "ja": "このブラウザではライブラリに保存できません。ファイルを保存するには、“ビルドを書き出す” を使用します。",
+    "fi": "Tämä selain ei voi tallentaa kirjastoon. Käytä “Vie hahmonkehitys” tallentaaksesi tiedoston.",
+    "fr": "Ce navigateur ne peut pas enregistrer dans la bibliothèque. Utilisez “Exporter le build” pour enregistrer un fichier.",
+    "de": "Dieser Browser kann nicht in der Bibliothek speichern. Verwenden Sie “Build exportieren”, um eine Datei zu speichern.",
+    "es": "Este navegador no puede guardar en la biblioteca. Utilice “Exportar configuración” para guardar un archivo.",
+    "pt-BR": "Este navegador não pode salvar na biblioteca. Use “Exportar configuração” para salvar um arquivo.",
+    "ru": "Этот браузер не может сохранять в библиотеку. Используйте “Экспорт сборки”, чтобы сохранить файл."
+  },
+  "이 브라우저에 이름을 붙여 최대 20개를 보관할 수 있습니다. 다른 기기로 옮기려면 보관본의 ‘내보내기’를 누르세요. 다른 기기에서 같은 직업을 고른 뒤 ‘저장한 빌드 가져오기’로 파일을 불러오세요.": {
+    "en": "Keep up to 20 named builds in this browser. To move one to another device, choose its “Export” button. On the other device, select the same class and use “Import saved build”.",
+    "ja": "このブラウザには名前を付けたビルドを最大20件保存できます。別の端末へ移すには、保存したビルドの「書き出し」を押してください。移動先で同じクラスを選び、「保存したビルドを読み込む」でファイルを開いてください。",
+    "fi": "Voit säilyttää tässä selaimessa enintään 20 nimettyä kokoonpanoa. Siirrä kokoonpano toiseen laitteeseen sen “Vie”-painikkeella. Valitse toisessa laitteessa sama hahmoluokka ja käytä toimintoa “Tuo tallennettu hahmonkehitys”.",
+    "fr": "Conservez jusqu'à 20 builds nommés dans ce navigateur. Pour en déplacer un vers un autre appareil, choisissez son bouton “Exporter”. Sur l'autre appareil, sélectionnez la même classe et utilisez “Importer une configuration enregistrée”.",
+    "de": "Behalten Sie bis zu 20 benannte Builds in diesem Browser. Um eines auf ein anderes Gerät zu verschieben, wählen Sie dessen Schaltfläche “Exportieren”. Wählen Sie auf dem anderen Gerät dieselbe Klasse aus und verwenden Sie “Gespeicherten Build importieren”.",
+    "es": "Mantenga hasta 20 builds con nombre en este navegador. Para mover uno a otro dispositivo, elija su botón “Exportar”. En el otro dispositivo, seleccione la misma clase y use “Importar configuración guardada”.",
+    "pt-BR": "Mantenha até 20 builds nomeadas neste navegador. Para mover um para outro dispositivo, escolha o botão “Exportar”. No outro dispositivo, selecione a mesma classe e use “Importar configuração salva”.",
+    "ru": "В этом браузере можно хранить до 20 именованных сборок. Чтобы переместить его на другое устройство, нажмите кнопку “Экспорт”. На другом устройстве выберите тот же класс и используйте “Импорт сохраненного варианта развития”."
+  },
+  "보관 당시 게임 데이터 버전: {0}": {
+    "en": "Game data version when saved: {0}",
+    "ja": "保存時のゲームデータバージョン：{0}",
+    "fi": "Pelidatan versio tallennushetkellä: {0}",
+    "fr": "Version des données du jeu lors de l'enregistrement : {0}",
+    "de": "Spieldatenversion beim Speichern: {0}",
+    "es": "Versión de datos del juego cuando se guardan: {0}",
+    "pt-BR": "Versão dos dados do jogo quando salvos: {0}",
+    "ru": "Версия игровых данных при сохранении: {0}."
+  },
+  "링크를 만든 시점의 배분입니다. 수정한 내용을 공유하려면 새 링크를 만드세요. 링크를 가진 사람은 내용을 볼 수 있습니다.": {
+    "en": "This allocation reflects when the link was created. Create a new link to share later edits. Anyone with the link can view it.",
+    "ja": "この割り当ては、リンクが作成されたときを反映します。新しいリンクを作成して、後で編集した内容を共有します。リンクを知っている人は誰でも閲覧できます。",
+    "fi": "Tämä on jako linkin luomishetkeltä. Jos haluat jakaa myöhemmät muutokset, luo uusi linkki. Jokainen linkin saanut voi nähdä sisällön.",
+    "fr": "Cette allocation reflète le moment où le lien a été créé. Créez un nouveau lien pour partager les modifications ultérieures. Toute personne disposant du lien peut le consulter.",
+    "de": "Diese Zuordnung spiegelt wider, wann der Link erstellt wurde. Erstellen Sie einen neuen Link, um spätere Änderungen zu teilen. Jeder mit dem Link kann es sehen.",
+    "es": "Esta asignación refleja cuándo se creó el vínculo. Cree un nuevo enlace para compartir ediciones posteriores. Cualquiera que tenga el enlace puede verlo.",
+    "pt-BR": "Esta alocação reflete quando o link foi criado. Crie um novo link para compartilhar edições posteriores. Qualquer pessoa com o link pode visualizá-lo.",
+    "ru": "Это распределение отражает время создания ссылки. Создайте новую ссылку, чтобы поделиться последующими изменениями. Посмотреть его сможет любой, у кого есть ссылка."
+  },
+  "공유 당시 게임 데이터 버전 {0} · 현재 버전 {1}": {
+    "en": "Shared game data version {0} · Current version {1}",
+    "ja": "共有ゲームデータのバージョン {0} · 現在のバージョン {1}",
+    "fi": "Pelidatan versio jakohetkellä {0} · Nykyinen versio {1}",
+    "fr": "Version des données de jeu partagées {0} · Version actuelle {1}",
+    "de": "Gemeinsame Spieldatenversion {0} · Aktuelle Version {1}",
+    "es": "Versión de datos de juego compartidos {0} · Versión actual {1}",
+    "pt-BR": "Versão de dados de jogo compartilhados {0} · Versão atual {1}",
+    "ru": "Версия общих игровых данных {0} · Текущая версия {1}"
+  },
+  "캐릭터·장비 목록은 포함하지 않으며, 장비는 스킬 보너스 합계로 반영됩니다. 실제 게임에서 사용할 수 있는 배분인지, 내 상황에 가장 좋은지는 별도로 확인해 주세요.": {
+    "en": "Character and equipment lists are not included; equipment is represented by total skill bonuses. Check separately whether the allocation is usable in the game and suits your needs.",
+    "ja": "キャラクターと装備のリストは含まれていません。装備は合計スキルボーナスで表されます。割り当てがゲームで使用可能かどうか、ニーズに合っているかどうかを別途確認してください。",
+    "fi": "Hahmo- ja varusteluetteloita ei sisällytetä. Varusteiden vaikutus näkyy taitobonusten summana. Tarkista erikseen, voiko jakoa käyttää pelissä ja sopiiko se omaan tilanteeseesi.",
+    "fr": "Les listes de personnages et d'équipement ne sont pas incluses ; l'équipement est représenté par le total des bonus de compétences. Vérifiez séparément si l'allocation est utilisable dans le jeu et convient à vos besoins.",
+    "de": "Charakter- und Ausrüstungslisten sind nicht enthalten; Ausrüstung wird durch den gesamten Fertigkeitsbonus repräsentiert. Prüfen Sie separat, ob die Belegung im Spiel nutzbar ist und Ihren Bedürfnissen entspricht.",
+    "es": "Las listas de personajes y equipos no están incluidas; El equipo está representado por las bonificaciones totales de habilidad. Comprueba por separado si la asignación es utilizable en el juego y se adapta a tus necesidades.",
+    "pt-BR": "As listas de personagens e equipamentos não estão incluídas; o equipamento é representado pelo total de bônus de habilidade. Verifique separadamente se a alocação é utilizável no jogo e atende às suas necessidades.",
+    "ru": "Списки персонажей и снаряжения не включены; оборудование представлено общими бонусами навыков. Отдельно проверьте, можно ли использовать распределение в игре и соответствует ли оно вашим потребностям."
+  },
+  "이 브라우저에 임시 저장하지 못했습니다. ‘빌드 파일 다운로드’로 파일을 받은 뒤 플래너에서 불러오세요.": {
+    "en": "Could not save temporarily in this browser. Use “Download build file”, then import the file into your planner.",
+    "ja": "このブラウザに一時保存できませんでした。“ビルドファイルをダウンロード”で保存したファイルをプランナーに読み込んでください。",
+    "fi": "Väliaikainen tallennus tähän selaimeen epäonnistui. Valitse “Lataa kokoonpanotiedosto” ja tuo tiedosto sitten suunnittelijaasi.",
+    "fr": "Impossible d’enregistrer temporairement dans ce navigateur. Utilisez “Télécharger le fichier du build”, puis importez le fichier dans votre planificateur.",
+    "de": "Die Zwischenspeicherung in diesem Browser ist fehlgeschlagen. Wähle “Build-Datei herunterladen” und importiere die Datei in deinen Planer.",
+    "es": "No se pudo guardar temporalmente en este navegador. Usa “Descargar archivo de la build” e importa el archivo en tu planificador.",
+    "pt-BR": "Não foi possível salvar temporariamente neste navegador. Use “Baixar arquivo da build” e importe o arquivo no seu planejador.",
+    "ru": "Не удалось временно сохранить данные в этом браузере. Нажмите “Скачать файл сборки”, затем импортируйте файл в планировщик."
+  },
+  "빌드 파일 다운로드": {
+    "en": "Download build file",
+    "ja": "ビルドファイルをダウンロード",
+    "fi": "Lataa kokoonpanotiedosto",
+    "fr": "Télécharger le fichier du build",
+    "de": "Build-Datei herunterladen",
+    "es": "Descargar archivo de la build",
+    "pt-BR": "Baixar arquivo da build",
+    "ru": "Скачать файл сборки"
+  },
+  "빌드 목록을 불러오지 못했습니다. ‘공개 빌드 다시 불러오기’를 눌러 주세요.": {
+    "en": "Could not load the build list. Choose “Reload public builds”.",
+    "ja": "ビルドリストをロードできませんでした。 “公開ビルドを再読み込み” を選択します。",
+    "fi": "Julkisia kokoonpanoja ei voitu ladata. Valitse “Lataa julkiset hahmonkehitykset uudelleen”.",
+    "fr": "Impossible de charger la liste de build. Choisissez “Recharger les configurations publiques”.",
+    "de": "Die Build-Liste konnte nicht geladen werden. Wählen Sie “Öffentliche Zusammenstellungen neu laden”.",
+    "es": "No se pudo cargar la lista de build. Elija “Recargar configuraciones públicas”.",
+    "pt-BR": "Não foi possível carregar a lista de build. Escolha “Recarregar configurações públicas”.",
+    "ru": "Не удалось загрузить список сборок. Выберите “Обновить список общедоступных вариантов”."
+  },
+  "마지막 수정": {
+    "en": "Last updated",
+    "ja": "最終更新日",
+    "fi": "Viimeksi päivitetty",
+    "fr": "Dernière mise à jour",
+    "de": "Zuletzt aktualisiert",
+    "es": "Última actualización",
+    "pt-BR": "Última atualização",
+    "ru": "Последнее обновление"
+  },
+  "로그아웃": {
+    "en": "Sign out",
+    "ja": "サインアウト",
+    "fi": "Kirjaudu ulos",
+    "fr": "Se déconnecter",
+    "de": "Abmelden",
+    "es": "Cerrar sesión",
+    "pt-BR": "Sair",
+    "ru": "Выйти"
+  },
+  "공개 작성자 아이디": {
+    "en": "Public username",
+    "ja": "公開ユーザー名",
+    "fi": "Julkinen käyttäjätunnus",
+    "fr": "Nom d'utilisateur public",
+    "de": "Öffentlicher Benutzername",
+    "es": "Nombre de usuario público",
+    "pt-BR": "Nome de usuário público",
+    "ru": "Общедоступное имя пользователя"
+  },
+  "영문·숫자·밑줄(_)로 3~32자": {
+    "en": "3–32 characters: A–Z, a–z, 0–9, _",
+    "ja": "3～32文字：A–Z、a–z、0–9、_",
+    "fi": "3–32 merkkiä: A–Z, a–z, 0–9, _",
+    "fr": "3 à 32 caractères : A–Z, a–z, 0–9, _",
+    "de": "3–32 Zeichen: A–Z, a–z, 0–9, _",
+    "es": "3–32 caracteres: A–Z, a–z, 0–9, _",
+    "pt-BR": "3–32 caracteres: A–Z, a–z, 0–9, _",
+    "ru": "3–32 символа: A–Z, a–z, 0–9, _"
+  },
+  "좋아요 반영 여부를 확인하지 못했습니다. ‘다시 불러오기’로 현재 상태를 확인해 주세요.": {
+    "en": "Could not confirm the likes. Choose “Reload” to check their current state.",
+    "ja": "いいねは確認できませんでした。 “再読み込み” を選択して、現在の状態を確認します。",
+    "fi": "Tykkäyksiä ei voitu vahvistaa. Valitse “Lataa uudelleen” tarkistaaksesi niiden nykyisen tilan.",
+    "fr": "Impossible de confirmer les likes. Choisissez “Recharger” pour vérifier leur état actuel.",
+    "de": "Konnte die Likes nicht bestätigen. Wählen Sie “Neu laden”, um den aktuellen Status zu überprüfen.",
+    "es": "No se pudieron confirmar los me gusta. Elija “Recargar” para verificar su estado actual.",
+    "pt-BR": "Não foi possível confirmar as curtidas. Escolha “Recarregar” para verificar seu estado atual.",
+    "ru": "Не смог подтвердить лайки. Выберите “Перезагрузить”, чтобы проверить их текущее состояние."
+  },
+  "이 공개 빌드를 삭제할까요? 게시물과 좋아요가 삭제되며 사이트에서 되돌릴 수 없습니다.": {
+    "en": "Delete this public build? Its post and likes will be deleted. You cannot undo this on the site.",
+    "ja": "この公開ビルドを削除しますか?その投稿といいねは削除されます。このサイトではこれを元に戻すことはできません。",
+    "fi": "Poistetaanko tämä julkinen kokoonpano? Julkaisu ja sen tykkäykset poistetaan. Poistoa ei voi perua sivustolla.",
+    "fr": "Supprimer ce build public ? Le billet et ses mentions J’aime seront supprimés. Cette suppression ne peut pas être annulée sur le site.",
+    "de": "Diesen öffentlichen Build löschen? Sein Beitrag und seine Likes werden gelöscht. Sie können dies auf der Website nicht rückgängig machen.",
+    "es": "¿Eliminar esta build pública? Su publicación y sus me gusta serán eliminados. No puedes deshacer esto en el sitio.",
+    "pt-BR": "Excluir esta build pública? Sua postagem e curtidas serão excluídas. Você não pode desfazer isso no site.",
+    "ru": "Удалить эту общедоступную сборку? Его пост и лайки будут удалены. Вы не можете отменить это на сайте."
+  },
+  "게시물 삭제": {
+    "en": "Delete post",
+    "ja": "投稿を削除する",
+    "fi": "Poista viesti",
+    "fr": "Supprimer le message",
+    "de": "Beitrag löschen",
+    "es": "Eliminar publicación",
+    "pt-BR": "Excluir postagem",
+    "ru": "Удалить сообщение"
+  },
+  "계정 저장 공간(1MB)이 가득 찼습니다. 이 기기의 기록은 유지됩니다. 기록을 백업한 뒤 불필요한 항목을 정리해 주세요.": {
+    "en": "Your account storage (1MB) is full. Records on this device are kept. Back up your records, then remove entries you no longer need.",
+    "ja": "アカウントの保存容量（1MB）がいっぱいです。この端末の記録は保持されています。記録をバックアップしてから、不要な項目を整理してください。",
+    "fi": "Tilin tallennustila (1 Mt) on täynnä. Tämän laitteen tiedot säilyvät. Varmuuskopioi tiedot ja poista sitten tarpeettomat merkinnät.",
+    "fr": "L’espace de stockage de votre compte (1 Mo) est plein. Les enregistrements sur cet appareil sont conservés. Sauvegardez vos enregistrements, puis supprimez les entrées dont vous n'avez plus besoin.",
+    "de": "Der Kontospeicher (1 MB) ist voll. Die Daten auf diesem Gerät bleiben erhalten. Sichere deine Daten und entferne dann nicht benötigte Einträge.",
+    "es": "El almacenamiento de su cuenta (1 MB) está lleno. Se mantienen registros en este dispositivo. Haga una copia de seguridad de sus registros y luego elimine las entradas que ya no necesite.",
+    "pt-BR": "O armazenamento da sua conta (1 MB) está cheio. Os registros neste dispositivo são mantidos. Faça backup de seus registros e remova as entradas desnecessárias.",
+    "ru": "Память вашего аккаунта (1 МБ) заполнена. Записи на этом устройстве сохраняются. Создайте резервную копию своих записей, а затем удалите записи, которые вам больше не нужны."
+  },
+  "계정 설정을 불러오지 못했습니다. 이 기기의 기존 데이터는 그대로 두었습니다. ‘설정 동기화 다시 시도’를 눌러 주세요.": {
+    "en": "Could not load account settings. Existing data on this device was left unchanged. Choose “Retry settings sync”.",
+    "ja": "アカウント設定を読み込めませんでした。このデバイス上の既存のデータは変更されずに残されました。 “設定の同期を再試行” を選択します。",
+    "fi": "Tiliasetuksia ei voitu ladata. Tämän laitteen nykyiset tiedot jätettiin ennalleen. Valitse “Yritä asetusten synkronointia uudelleen”.",
+    "fr": "Impossible de charger les paramètres du compte. Les données existantes sur cet appareil sont restées inchangées. Choisissez “Réessayer la synchronisation des paramètres”.",
+    "de": "Kontoeinstellungen konnten nicht geladen werden. Vorhandene Daten auf diesem Gerät wurden unverändert gelassen. Wählen Sie “Synchronisierung der Einstellungen erneut versuchen”.",
+    "es": "No se pudo cargar la configuración de la cuenta. Los datos existentes en este dispositivo no se modificaron. Elija “Reintentar sincronización de la configuración”.",
+    "pt-BR": "Não foi possível carregar as configurações da conta. Os dados existentes neste dispositivo permaneceram inalterados. Escolha “Tentar sincronizar configurações novamente”.",
+    "ru": "Не удалось загрузить настройки аккаунта. Существующие данные об этом устройстве остались без изменений. Выберите “Повторить синхронизацию настроек”."
+  },
+  "거래 기록 확인이 필요합니다. 거래 장부에서 두 기기의 기록을 비교해 주세요.": {
+    "en": "Trade records need attention. Compare the records from both devices in the trade ledger.",
+    "ja": "取引記録には注意が必要です。取引台帳内の両方のデバイスの記録を比較します。",
+    "fi": "Kaupankäynnin kirjaukset on tarkistettava. Vertaa molempien laitteiden kirjauksia kauppakirjanpidossa.",
+    "fr": "L’historique des transactions doit être vérifié. Comparez les données des deux appareils dans le journal des transactions.",
+    "de": "Die Handelseinträge müssen geprüft werden. Vergleichen Sie die Einträge beider Geräte im Handelsbuch.",
+    "es": "Hay que revisar el historial de operaciones. Compara los registros de ambos dispositivos en el libro de operaciones.",
+    "pt-BR": "É preciso conferir o histórico de transações. Compare os registros dos dois dispositivos no livro de transações.",
+    "ru": "Торговые записи требуют внимания. Сравните записи с обоих устройств в торговой книге."
+  },
+  "두 기기에서 같은 설정을 바꿨습니다. 이 기기의 값을 유지했으니, 현재 표시된 값이 원하는 설정인지 확인해 주세요.": {
+    "en": "The same setting changed on two devices. This device’s value was kept. Check that the displayed value is the one you want.",
+    "ja": "2 台のデバイスで同じ設定が変更されました。このデバイスの値は保持されました。表示された値が希望する値であることを確認してください。",
+    "fi": "Sama asetus muuttui kahdessa laitteessa. Tämän laitteen arvo säilytettiin. Tarkista, että näytetty arvo on haluamasi.",
+    "fr": "Le même paramètre a changé sur deux appareils. La valeur de cet appareil a été conservée. Vérifiez que la valeur affichée est celle souhaitée.",
+    "de": "Die gleiche Einstellung wurde auf zwei Geräten geändert. Der Wert dieses Geräts blieb erhalten. Überprüfen Sie, ob der angezeigte Wert der gewünschte ist.",
+    "es": "La misma configuración cambió en dos dispositivos. El valor de este dispositivo se mantuvo. Compruebe que el valor mostrado sea el que desea.",
+    "pt-BR": "A mesma configuração foi alterada em dois dispositivos. O valor deste dispositivo foi mantido. Verifique se o valor exibido é o desejado.",
+    "ru": "Одна и та же настройка была изменена на двух устройствах. Значение с этого устройства сохранено. Проверьте, что показано нужное вам значение."
+  },
+  "이 브라우저에 저장한 빌드를 불러오지 못했습니다. 백업 파일이 있다면 ‘저장한 빌드 가져오기’로 불러오세요.": {
+    "en": "Could not load the build saved in this browser. If you have a backup file, use “Import saved build”.",
+    "ja": "このブラウザに保存されたビルドをロードできませんでした。バックアップ ファイルがある場合は、“保存したビルドを読み込む” を使用します。",
+    "fi": "Tähän selaimeen tallennettua kokoonpanoa ei voitu ladata. Jos sinulla on varmuuskopio, valitse “Tuo tallennettu hahmonkehitys”.",
+    "fr": "Impossible de charger la version enregistrée dans ce navigateur. Si vous disposez d'un fichier de sauvegarde, utilisez “Importer une configuration enregistrée”.",
+    "de": "Der in diesem Browser gespeicherte Build konnte nicht geladen werden. Wenn Sie eine Sicherungsdatei haben, verwenden Sie “Gespeicherten Build importieren”.",
+    "es": "No se pudo cargar la build guardada en este navegador. Si tiene un archivo de respaldo, use “Importar configuración guardada”.",
+    "pt-BR": "Não foi possível carregar a build salva neste navegador. Se você tiver um arquivo de backup, use “Importar configuração salva”.",
+    "ru": "Не удалось загрузить сборку, сохраненную в этом браузере. Если у вас есть файл резервной копии, используйте “Импорт сохраненного варианта развития”."
+  },
+  "목표 이익률 · 총비용 대비 %": {
+    "en": "Target profit · % of total cost",
+    "ja": "目標利益率 · 総費用に対する割合（%）",
+    "fi": "Tavoitevoitto · % kokonaiskustannuksista",
+    "fr": "Bénéfice cible · % du coût total",
+    "de": "Zielgewinn · % der Gesamtkosten",
+    "es": "Beneficio objetivo · % del costo total",
+    "pt-BR": "Lucro alvo · % do custo total",
+    "ru": "Целевая прибыль · % от общих затрат"
+  },
+  "입력한 조건으로는 목표 이익을 낼 수 없습니다.": {
+    "en": "The target profit is not achievable with these inputs.",
+    "ja": "入力した条件では目標の利益を出せません。",
+    "fi": "Tavoiteltua voittoa ei voi saavuttaa annetuilla arvoilla.",
+    "fr": "Le bénéfice visé est impossible avec les valeurs saisies.",
+    "de": "Mit den eingegebenen Werten ist der Zielgewinn nicht erreichbar.",
+    "es": "No se puede alcanzar el beneficio objetivo con los valores introducidos.",
+    "pt-BR": "Não é possível atingir o lucro desejado com os valores informados.",
+    "ru": "При введённых значениях целевая прибыль недостижима."
+  },
+  "계산 예시입니다. 나무 2개와 사포 1개로 완성품 1개를 만든다고 가정했습니다. 실제 재료·완성품 수량은 게임에서 확인해 입력하세요.": {
+    "en": "Calculation example: assumes two pieces of wood and one sheet of sandpaper make one finished item. Check the actual material and output quantities in the game and enter them here.",
+    "ja": "計算例: 2 つの木材と 1 枚のサンドペーパーで 1 つの完成品を作ると仮定します。実際の素材と出力数量をゲーム内で確認し、ここに入力します。",
+    "fi": "Laskuesimerkki: oletetaan, että kaksi puupalaa ja yksi hiekkapaperiarkki tekevät yhden valmiin tuotteen. Tarkista pelin todelliset materiaalit ja tuotantomäärät ja syötä ne tähän.",
+    "fr": "Exemple de calcul : suppose que deux morceaux de bois et une feuille de papier de verre constituent un article fini. Vérifiez les quantités réelles de matériel et de production dans le jeu et saisissez-les ici.",
+    "de": "Berechnungsbeispiel: Es wird davon ausgegangen, dass zwei Holzstücke und ein Blatt Sandpapier ein fertiges Produkt ergeben. Überprüfen Sie die tatsächlichen Material- und Leistungsmengen im Spiel und geben Sie diese hier ein.",
+    "es": "Ejemplo de cálculo: se supone que dos piezas de madera y una hoja de papel de lija forman un artículo terminado. Verifique el material real y las cantidades de salida en el juego e ingréselos aquí.",
+    "pt-BR": "Exemplo de cálculo: assume que dois pedaços de madeira e uma folha de lixa formam um item acabado. Verifique as quantidades reais de material e produção no jogo e insira-as aqui.",
+    "ru": "Пример расчета: предполагается, что два куска дерева и один лист наждачной бумаги составляют одно готовое изделие. Проверьте фактическое количество материала и производительности в игре и введите их здесь."
+  },
+  "입력 중인 내용은 이 브라우저에 보관됩니다. ‘계획 저장’을 누르면 비교 목록에 추가됩니다. 로그인한 경우 계정에도 동기화됩니다.": {
+    "en": "Your current inputs are kept in this browser. “Save plan” adds them to the comparison list. If you are signed in, the plan also syncs to your account.",
+    "ja": "現在の入力はこのブラウザに保存されます。 “計画を保存” はそれらを比較リストに追加します。サインインしている場合、プランはアカウントにも同期されます。",
+    "fi": "Syöttämäsi tiedot säilytetään tässä selaimessa. “Tallenna suunnitelma” lisää ne vertailuluetteloon. Jos olet kirjautunut sisään, suunnitelma synkronoituu myös tilillesi.",
+    "fr": "Vos entrées actuelles sont conservées dans ce navigateur. “Enregistrer le plan” les ajoute à la liste de comparaison. Si vous êtes connecté, le forfait se synchronise également avec votre compte.",
+    "de": "Ihre aktuellen Eingaben bleiben in diesem Browser erhalten. “Plan speichern” fügt sie der Vergleichsliste hinzu. Wenn Sie angemeldet sind, wird der Plan auch mit Ihrem Konto synchronisiert.",
+    "es": "Sus entradas actuales se guardan en este navegador. “Guardar plan” los agrega a la lista de comparación. Si ha iniciado sesión, el plan también se sincroniza con su cuenta.",
+    "pt-BR": "Suas entradas atuais são mantidas neste navegador. “Salvar plano” os adiciona à lista de comparação. Se você estiver conectado, o plano também será sincronizado com sua conta.",
+    "ru": "Ваши текущие вводимые данные сохраняются в этом браузере. “Сохранить план” добавляет их в список сравнения. Если вы вошли в систему, план также синхронизируется с вашей учетной записью."
+  },
+  "이 계획을 불러오면 현재 입력한 재료·수량·비용이 바뀝니다. 지금 입력을 남기려면 먼저 계획으로 저장하세요.": {
+    "en": "Loading this plan replaces the materials, quantities and costs currently entered. Save your current inputs as a plan first if you want to keep them.",
+    "ja": "この計画をロードすると、現在入力されている材料、数量、コストが置き換えられます。現在の入力を保持したい場合は、まず計画として保存します。",
+    "fi": "Tämän suunnitelman lataaminen korvaa tällä hetkellä syötetyt materiaalit, määrät ja kustannukset. Tallenna nykyiset syötteet ensin suunnitelmaksi, jos haluat säilyttää ne.",
+    "fr": "Le chargement de ce plan remplace les matières, quantités et coûts actuellement saisis. Enregistrez d'abord vos entrées actuelles sous forme de plan si vous souhaitez les conserver.",
+    "de": "Durch das Laden dieses Plans werden die aktuell eingegebenen Materialien, Mengen und Kosten ersetzt. Speichern Sie Ihre aktuellen Eingaben zunächst als Plan, wenn Sie diese behalten möchten.",
+    "es": "La carga de este plan reemplaza los materiales, cantidades y costos ingresados ​​actualmente. Guarde primero sus entradas actuales como un plan si desea conservarlas.",
+    "pt-BR": "Carregar este plano substitui os materiais, quantidades e custos inseridos atualmente. Salve suas entradas atuais como um plano primeiro se quiser mantê-las.",
+    "ru": "Загрузка этого плана заменяет введенные в настоящее время материалы, количества и затраты. Если вы хотите сохранить текущие входные данные, сначала сохраните их в виде плана."
+  },
+  "세금 올림 · 예상 이익을 적게 계산": {
+    "en": "Round tax up · estimate a lower profit",
+    "ja": "税金を切り上げる · 利益を低く見積もる",
+    "fi": "Pyöristä vero ylöspäin · arvioi voitto varovaisemmin",
+    "fr": "Arrondir la taxe au supérieur · estimer un bénéfice plus faible",
+    "de": "Steuern aufrunden · einen geringeren Gewinn schätzen",
+    "es": "Redondear impuestos hacia arriba · estimar una ganancia menor",
+    "pt-BR": "Arredondar impostos para cima · estimar um lucro menor",
+    "ru": "Округлить налог в большую сторону · оценить меньшую прибыль"
+  },
+  "모든 품목의 판매 순이익": {
+    "en": "Net profit on sales across all items",
+    "ja": "全品目の販売純利益",
+    "fi": "Kaikkien tuotteiden myyntien nettovoitto",
+    "fr": "Bénéfice net sur ventes tous postes confondus",
+    "de": "Nettogewinn aus Verkäufen aller Artikel",
+    "es": "Beneficio neto sobre las ventas de todos los artículos",
+    "pt-BR": "Lucro líquido sobre vendas em todos os itens",
+    "ru": "Чистая прибыль от продаж по всем позициям"
+  },
+  "이 품목에 더 기록할 수 없습니다. ‘품목 추가’로 새 기록을 만들어 이어서 기록하세요.": {
+    "en": "This item cannot hold any more records. Choose “Add item” to start a new entry and continue.",
+    "ja": "このアイテムにはこれ以上レコードを保持できません。新しいエントリを開始して続行するには、“品目を追加” を選択します。",
+    "fi": "Tämä kohde ei voi sisältää enempää tietueita. Aloita uusi merkintä ja jatka valitsemalla “Lisää tuote”.",
+    "fr": "Cet élément ne peut plus contenir d'enregistrements. Choisissez “Ajouter l'article” pour démarrer une nouvelle entrée et continuer.",
+    "de": "Dieses Element kann keine weiteren Datensätze enthalten. Wählen Sie “Element hinzufügen”, um einen neuen Eintrag zu beginnen und fortzufahren.",
+    "es": "Este elemento no puede contener más registros. Elija “Añadir artículo” para iniciar una nueva entrada y continuar.",
+    "pt-BR": "Este item não pode conter mais registros. Escolha “Adicionar item” para iniciar uma nova entrada e continuar.",
+    "ru": "Этот элемент не может содержать больше записей. Выберите “Добавить предмет”, чтобы начать новую запись и продолжить."
+  },
+  "입력한 세율·비용으로는 남은 물건을 팔아도 전체 구매 비용을 돌려받을 수 없습니다.": {
+    "en": "With this tax rate and these costs, selling the remaining items cannot recover the full purchase cost.",
+    "ja": "この税率とこれらの費用では、残りの商品を販売しても購入費用の全額を回収することはできません。",
+    "fi": "Näillä vero- ja kustannusarvoilla koko ostokustannusta ei voi saada takaisin myymällä loput tuotteet.",
+    "fr": "Avec ce taux d’imposition et ces coûts, la vente des articles restants ne permet pas de récupérer la totalité du coût d’achat.",
+    "de": "Bei diesem Steuersatz und diesen Kosten kann der Verkauf der restlichen Artikel nicht den vollen Kaufpreis decken.",
+    "es": "Con esta tasa impositiva y estos costos, vender los artículos restantes no puede recuperar el costo total de compra.",
+    "pt-BR": "Com esta taxa de imposto e estes custos, a venda dos restantes itens não pode recuperar o custo total da compra.",
+    "ru": "При такой ставке налога и этих затратах продажа оставшихся предметов не может возместить полную стоимость покупки."
+  },
+  "마지막 거래 기록 삭제": {
+    "en": "Delete last transaction record",
+    "ja": "最後の取引記録を削除する",
+    "fi": "Poista viimeisin tapahtumatietue",
+    "fr": "Supprimer le dernier enregistrement de transaction",
+    "de": "Letzten Transaktionsdatensatz löschen",
+    "es": "Eliminar el último registro de transacción",
+    "pt-BR": "Excluir último registro de transação",
+    "ru": "Удалить запись последней транзакции"
+  },
+  "남은 수량 {0}개 · 판매 순이익 {1}": {
+    "en": "Remaining quantity {0} · Net profit on sales {1}",
+    "ja": "残数量 {0} · 売上純利益 {1}",
+    "fi": "Jäljellä {0} kpl · Myyntien nettovoitto {1}",
+    "fr": "Quantité restante {0} · Bénéfice net sur ventes {1}",
+    "de": "Restmenge {0} · Nettogewinn aus Verkäufen {1}",
+    "es": "Cantidad restante {0} · Beneficio neto sobre ventas {1}",
+    "pt-BR": "Quantidade restante {0} · Lucro líquido sobre vendas {1}",
+    "ru": "Оставшееся количество {0} · Чистая прибыль от продаж {1}"
+  },
+  "복원을 완료하지 못했습니다. 현재 장부를 확인하세요. 복원 전 백업이 남아 있다면 ‘복원 전 기록 내려받기’로 확인할 수 있습니다.": {
+    "en": "Could not finish restoring. Check your current ledger. If a backup from before the restore is available, use “Download records from before restore” to view it.",
+    "ja": "復元を完了できませんでした。現在の帳簿を確認してください。復元前のバックアップが利用可能な場合は、“復元前の記録をダウンロード” を使用して表示します。",
+    "fi": "Palautus ei valmistunut. Tarkista nykyinen kirjanpitosi. Jos palautusta edeltävä varmuuskopio on saatavilla, voit tarkistaa sen toiminnolla “Lataa palautusta edeltävät tiedot”.",
+    "fr": "Impossible de terminer la restauration. Vérifiez votre grand livre actuel. Si une sauvegarde antérieure à la restauration est disponible, utilisez “Télécharger les enregistrements antérieurs à la restauration” pour la visualiser.",
+    "de": "Die Wiederherstellung konnte nicht abgeschlossen werden. Überprüfen Sie Ihr aktuelles Hauptbuch. Wenn eine Sicherung von vor der Wiederherstellung verfügbar ist, verwenden Sie “Aufzeichnungen von vor der Wiederherstellung herunterladen”, um sie anzuzeigen.",
+    "es": "No se pudo terminar de restaurar. Consulte su libro de contabilidad actual. Si hay disponible una copia de seguridad anterior a la restauración, utilice “Descargar registros anteriores a la restauración” para verla.",
+    "pt-BR": "Não foi possível concluir a restauração. Verifique seu livro-razão atual. Se um backup anterior à restauração estiver disponível, use “Baixar registros anteriores à restauração” para visualizá-lo.",
+    "ru": "Не удалось завершить восстановление. Проверьте свою текущую бухгалтерскую книгу. Если доступна резервная копия, созданная до восстановления, используйте “Скачать записи, существовавшие до восстановления” для ее просмотра."
+  },
+  "계정에 자동 저장되며, 같은 Steam 계정으로 로그인한 다른 기기에서도 이어서 볼 수 있습니다. 다른 기기의 변경은 입력을 마친 뒤 반영합니다.": {
+    "en": "Records save to your account automatically so you can continue on other devices signed into the same Steam account. Changes from another device are applied after you finish editing.",
+    "ja": "記録はアカウントに自動的に保存されるため、同じ Steam アカウントにサインインしている他のデバイスで続行できます。別のデバイスからの変更は、編集が終了した後に適用されます。",
+    "fi": "Tietueet tallentuvat tilillesi automaattisesti, jotta voit jatkaa muilla laitteilla, jotka ovat kirjautuneena samalle Steam-tilille. Toisesta laitteesta tehdyt muutokset otetaan käyttöön, kun olet lopettanut muokkauksen.",
+    "fr": "Les enregistrements sont automatiquement enregistrés sur votre compte afin que vous puissiez continuer sur d'autres appareils connectés au même compte Steam. Les modifications d’un autre appareil sont appliquées une fois la modification terminée.",
+    "de": "Datensätze werden automatisch in Ihrem Konto gespeichert, sodass Sie auf anderen Geräten fortfahren können, die bei demselben Steam-Konto angemeldet sind. Änderungen von einem anderen Gerät werden übernommen, nachdem Sie die Bearbeitung abgeschlossen haben.",
+    "es": "Los registros se guardan en su cuenta automáticamente para que pueda continuar en otros dispositivos que hayan iniciado sesión en la misma cuenta de Steam. Los cambios de otro dispositivo se aplican después de terminar de editar.",
+    "pt-BR": "Os registros são salvos na sua conta automaticamente para que você possa continuar em outros dispositivos conectados à mesma conta Steam. As alterações de outro dispositivo serão aplicadas após a conclusão da edição.",
+    "ru": "Записи автоматически сохраняются в вашей учетной записи, поэтому вы можете продолжить работу на других устройствах, войдя в ту же учетную запись Steam. Изменения с другого устройства применяются после завершения редактирования."
+  },
+  "선택한 기준으로 가격을 환산할 수 없어 입력칸을 비웠습니다. ‘개당 구매 가격’ 또는 ‘전체 구매 비용’을 다시 입력해 주세요.": {
+    "en": "Could not convert the price to the selected basis, so the field was cleared. Enter the per-item purchase price or total purchase cost again.",
+    "ja": "価格を選択した基準に変換できなかったため、フィールドはクリアされました。アイテムごとの購入価格または合計購入コストを再度入力します。",
+    "fi": "Hintaa ei voitu muuntaa valituksi perusteeksi, joten kenttä tyhjennettiin. Anna tuotekohtainen ostohinta tai kokonaisostohinta uudelleen.",
+    "fr": "Impossible de convertir le prix selon la base sélectionnée. Le champ a donc été vidé. Saisissez à nouveau le prix d'achat par article ou le coût total d'achat.",
+    "de": "Der Preis konnte nicht auf die ausgewählte Basis umgerechnet werden, daher wurde das Feld geleert. Geben Sie den Kaufpreis pro Artikel oder die Gesamtkaufkosten erneut ein.",
+    "es": "No se pudo convertir el precio a la base seleccionada, por lo que se borró el campo. Ingrese nuevamente el precio de compra por artículo o el costo total de compra.",
+    "pt-BR": "Não foi possível converter o preço para a base selecionada, portanto o campo foi desmarcado. Insira novamente o preço de compra por item ou o custo total de compra.",
+    "ru": "Не удалось преобразовать цену в выбранную основу, поэтому поле было очищено. Введите цену покупки за единицу товара или общую стоимость покупки еще раз."
+  },
+  "원하는 이익에 맞춘 판매 가격": {
+    "en": "Selling price for your target profit",
+    "ja": "目標利益に応じた販売価格",
+    "fi": "Myyntihinta tavoitevoitolle",
+    "fr": "Prix ​​de vente pour votre bénéfice cible",
+    "de": "Verkaufspreis für Ihren Zielgewinn",
+    "es": "Precio de venta para su beneficio objetivo",
+    "pt-BR": "Preço de venda para seu lucro alvo",
+    "ru": "Цена продажи для вашей целевой прибыли"
+  },
+  "저장된 기록을 불러오지 못했습니다. 기존 기록은 그대로 두었습니다. 지금 변경하는 내용은 새로고침하면 사라질 수 있습니다.": {
+    "en": "Could not load saved records. Existing records were left unchanged. Changes you make now may be lost when you reload.",
+    "ja": "保存済みの記録を読み込めませんでした。既存の記録は変更していません。今変更した内容は、ページを再読み込みすると失われる場合があります。",
+    "fi": "Ei voitu ladata tallennettuja tietueita. Nykyiset tietueet jätettiin ennalleen. Nyt tekemäsi muutokset voivat kadota, kun lataat uudelleen.",
+    "fr": "Impossible de charger les données enregistrées. Les données existantes n’ont pas été modifiées. Vos changements actuels peuvent être perdus si vous rechargez la page.",
+    "de": "Gespeicherte Datensätze konnten nicht geladen werden. Vorhandene Datensätze wurden unverändert gelassen. Änderungen, die Sie jetzt vornehmen, können beim erneuten Laden verloren gehen.",
+    "es": "No se pudieron cargar los registros guardados. Los registros existentes se mantuvieron sin cambios. Los cambios que hagas ahora pueden perderse cuando recargues.",
+    "pt-BR": "Não foi possível carregar os registros salvos. Os registros existentes foram deixados inalterados. As alterações feitas agora podem ser perdidas quando você recarregar.",
+    "ru": "Не удалось загрузить сохраненные записи. Существующие записи остались без изменений. Изменения, внесенные вами сейчас, могут быть потеряны при перезагрузке."
+  },
+  "기록을 저장하지 못했습니다. 지금 화면에만 반영되어 새로고침하면 사라질 수 있습니다.": {
+    "en": "Could not save the record. The change is only shown on this screen and may be lost when you reload.",
+    "ja": "記録を保存できませんでした。現在の画面にだけ反映されているため、再読み込みすると失われる場合があります。",
+    "fi": "Tietuetta ei voitu tallentaa. Muutos näkyy vain tässä näytössä ja saattaa kadota, kun lataat uudelleen.",
+    "fr": "Impossible de sauvegarder l'enregistrement. La modification n'est affichée que sur cet écran et peut être perdue lorsque vous rechargez.",
+    "de": "Der Datensatz konnte nicht gespeichert werden. Die Änderung wird nur auf diesem Bildschirm angezeigt und kann beim erneuten Laden verloren gehen.",
+    "es": "No se pudo guardar el registro. El cambio solo se muestra en esta pantalla y puede perderse al recargar.",
+    "pt-BR": "Não foi possível salvar o registro. A alteração só é mostrada nesta tela e pode ser perdida ao recarregar.",
+    "ru": "Не удалось сохранить запись. Изменение отображается только на этом экране и может быть потеряно при перезагрузке."
+  },
+  "{0} · {1} · 게임에서 위치·출현 여부 확인 필요": {
+    "en": "{0} · {1} · Check the location and spawn in the game",
+    "ja": "{0} · {1} · 位置と出現状況はゲーム内で確認してください",
+    "fi": "{0} · {1} · Tarkista sijainti ja onko kohde paikalla pelissä",
+    "fr": "{0} · {1} · Vérifiez l’emplacement et la présence dans le jeu",
+    "de": "{0} · {1} · Ort und tatsächliches Erscheinen im Spiel prüfen",
+    "es": "{0} · {1} · Comprueba la ubicación y si ha aparecido en el juego",
+    "pt-BR": "{0} · {1} · Confira a localização e se o alvo está presente no jogo",
+    "ru": "{0} · {1} · Проверьте расположение и наличие в игре"
+  },
+  "확인 기록 {0}개 · 계정 동기화 상태는 아래에서 확인하세요.": {
+    "en": "Locations checked: {0} · See account sync status below.",
+    "ja": "確認した場所：{0} · アカウント同期の状態は下で確認してください。",
+    "fi": "Tarkistetut sijainnit: {0} · Katso tilin synkronoinnin tila alta.",
+    "fr": "Emplacements vérifiés : {0} · Voir l'état de synchronisation du compte ci-dessous.",
+    "de": "Überprüfte Standorte: {0} · Siehe Kontosynchronisierungsstatus unten.",
+    "es": "Ubicaciones marcadas: {0} · Consulta el estado de sincronización de la cuenta a continuación.",
+    "pt-BR": "Locais verificados: {0} · Veja o status de sincronização da conta abaixo.",
+    "ru": "Проверенные местоположения: {0} · Статус синхронизации учетной записи см. ниже."
+  },
+  "확인 기록 {0}개 · 이 브라우저에 저장됩니다.": {
+    "en": "Locations checked: {0} · Stored in this browser.",
+    "ja": "確認した場所：{0} · このブラウザに保存されます。",
+    "fi": "Tarkistetut paikat: {0} · Tallennettu tähän selaimeen.",
+    "fr": "Emplacements vérifiés : {0} · Stocké dans ce navigateur.",
+    "de": "Überprüfte Standorte: {0} · In diesem Browser gespeichert.",
+    "es": "Ubicaciones marcadas: {0} · Almacenadas en este navegador.",
+    "pt-BR": "Locais verificados: {0} · Armazenado neste navegador.",
+    "ru": "Проверенные местоположения: {0} · Сохранено в этом браузере."
+  },
+  "후보 위치를 확인한 기록이며 실제 수집 개수는 아닙니다.": {
+    "en": "These are candidate locations you have checked, not the number of items collected.",
+    "ja": "これらはあなたが調べた候補地であり、収集したアイテムの数ではありません。",
+    "fi": "Luku kertoo tarkistettujen mahdollisten sijaintien määrän, ei kerättyjen esineiden määrää.",
+    "fr": "Il s'agit des emplacements candidats que vous avez vérifiés, et non du nombre d'éléments collectés.",
+    "de": "Hierbei handelt es sich um Kandidatenstandorte, die Sie überprüft haben, nicht um die Anzahl der gesammelten Artikel.",
+    "es": "Estas son las ubicaciones candidatas que has verificado, no la cantidad de artículos recolectados.",
+    "pt-BR": "Estes são os locais candidatos que você verificou, não o número de itens coletados.",
+    "ru": "Вы проверили места-кандидаты, а не количество собранных предметов."
+  },
+  "위치 이름 검색": {
+    "en": "Search location names",
+    "ja": "地名を検索する",
+    "fi": "Hae sijaintien nimiä",
+    "fr": "Rechercher des noms de lieux",
+    "de": "Suchen Sie nach Ortsnamen",
+    "es": "Buscar nombres de ubicaciones",
+    "pt-BR": "Pesquisar nomes de locais",
+    "ru": "Поиск названий мест"
+  },
+  "후보 위치 선택": {
+    "en": "Select a candidate location",
+    "ja": "候補地を選択してください",
+    "fi": "Valitse mahdollinen sijainti",
+    "fr": "Sélectionnez un emplacement candidat",
+    "de": "Wählen Sie einen Kandidatenstandort aus",
+    "es": "Seleccione una ubicación candidata",
+    "pt-BR": "Selecione um local candidato",
+    "ru": "Выберите место кандидата"
+  },
+  "지역명과 자원명은 글로벌 원문을 번역해 표시합니다. 게임 안의 이름과 다를 수 있습니다.": {
+    "en": "Region and resource names are translated from the global source data. They may differ from the names in the game.",
+    "ja": "地域名と資源名はグローバル版の原文を翻訳して表示します。ゲーム内の名称と異なる場合があります。",
+    "fi": "Alueiden ja resurssien nimet käännetään globaaleista lähdetiedoista. Ne voivat poiketa pelin nimistä.",
+    "fr": "Les noms de régions et de ressources sont traduits à partir des données sources globales. Ils peuvent différer des noms du jeu.",
+    "de": "Regions- und Ressourcennamen werden aus den globalen Quelldaten übersetzt. Sie können von den Namen im Spiel abweichen.",
+    "es": "Los nombres de regiones y recursos se traducen a partir de los datos de origen globales. Pueden diferir de los nombres del juego.",
+    "pt-BR": "Os nomes de regiões e recursos são traduzidos dos dados de origem globais. Eles podem ser diferentes dos nomes do jogo.",
+    "ru": "Названия регионов и ресурсов переводятся из глобальных исходных данных. Они могут отличаться от названий в игре."
+  },
+  "저장한 시간대 사용 중": {
+    "en": "Using the saved time zone",
+    "ja": "保存済みのタイムゾーンを使用中",
+    "fi": "Tallennettu aikavyöhyke käytössä",
+    "fr": "Utilisation du fuseau horaire enregistré",
+    "de": "Verwendung der gespeicherten Zeitzone",
+    "es": "Usando la zona horaria guardada",
+    "pt-BR": "Usando o fuso horário salvo",
+    "ru": "Использование сохраненного часового пояса"
+  },
+  "출현 시간을 한눈에 확인하세요. 각 타이머의 고정 버튼을 누르면 페이지 맨 위 타이머 줄에 추가하거나 뺄 수 있습니다.": {
+    "en": "See spawn times at a glance. Use each timer’s pin button to add it to or remove it from the timer strip at the top of the page.",
+    "ja": "スポーン時間が一目でわかります。各タイマーのピン ボタンを使用して、ページ上部のタイマー ストリップにタイマーを追加したり、タイマー ストリップからタイマーを削除したりできます。",
+    "fi": "Näe ilmestymisajat yhdellä silmäyksellä. Kunkin ajastimen kiinnityspainike lisää tai poistaa sen sivun yläreunan ajastinriviltä.",
+    "fr": "Consultez les heures d’apparition en un coup d’œil. Utilisez le bouton d’épingle de chaque minuterie pour l’ajouter ou le supprimer de la bande de minuterie en haut de la page.",
+    "de": "Sehen Sie die Spawn-Zeiten auf einen Blick. Verwenden Sie die Pin-Schaltfläche jedes Timers, um ihn zur Timerleiste oben auf der Seite hinzuzufügen oder daraus zu entfernen.",
+    "es": "Vea los tiempos de generación de un vistazo. Utilice el botón de fijación de cada temporizador para agregarlo o eliminarlo de la franja del temporizador en la parte superior de la página.",
+    "pt-BR": "Veja rapidamente os tempos de spawn. Use o botão de fixação de cada cronômetro para adicioná-lo ou removê-lo da faixa do cronômetro na parte superior da página.",
+    "ru": "Посмотрите время появления с первого взгляда. Используйте кнопку закрепления каждого таймера, чтобы добавить его на полосу таймера в верхней части страницы или удалить с нее."
+  },
+  "고정한 콘텐츠는 서버를 바꿔도 모든 페이지 상단에 표시됩니다. 로그인하면 같은 계정의 다른 기기에도 동기화됩니다.": {
+    "en": "Pinned content stays at the top of every page when you change servers. When signed in, your selection also syncs to other devices using the same account.",
+    "ja": "サーバーを変更しても、ピン留めされたコンテンツはすべてのページの上部に表示されます。サインインすると、選択内容は同じアカウントを使用する他のデバイスにも同期されます。",
+    "fi": "Kiinnitetty sisältö pysyy jokaisen sivun yläosassa, kun vaihdat palvelimia. Kun olet kirjautunut sisään, valintasi synkronoidaan myös muihin samaa tiliä käyttäviin laitteisiin.",
+    "fr": "Le contenu épinglé reste en haut de chaque page lorsque vous changez de serveur. Une fois connecté, votre sélection se synchronise également avec d'autres appareils utilisant le même compte.",
+    "de": "Angepinnte Inhalte bleiben oben auf jeder Seite, wenn Sie den Server wechseln. Wenn Sie angemeldet sind, wird Ihre Auswahl auch mit anderen Geräten synchronisiert, die dasselbe Konto verwenden.",
+    "es": "El contenido fijado permanece en la parte superior de cada página cuando cambia de servidor. Cuando inicia sesión, su selección también se sincroniza con otros dispositivos que usan la misma cuenta.",
+    "pt-BR": "O conteúdo fixado permanece no topo de cada página quando você muda de servidor. Quando conectado, sua seleção também será sincronizada com outros dispositivos que usam a mesma conta.",
+    "ru": "Закрепленный контент остается вверху каждой страницы при смене серверов. После входа в систему ваш выбор также синхронизируется с другими устройствами, использующими ту же учетную запись."
+  },
+  "보스에 따라 해당 서버의 관측 기록 또는 정해진 참고 시간표를 표시합니다. 실제 출현 여부와 다를 수 있습니다.": {
+    "en": "Depending on the boss, times come from that server’s observations or a reference schedule. Actual spawns may differ.",
+    "ja": "ボスによって、そのサーバーの観測記録または参考時刻表を表示します。実際の出現状況と異なる場合があります。",
+    "fi": "Ajat perustuvat pomosta riippuen palvelimen havaintoihin tai viiteaikatauluun. Ne eivät vahvista, että pomo on juuri nyt paikalla.",
+    "fr": "Selon le boss, les horaires proviennent des observations de ce serveur ou d’un calendrier de référence. Ils ne confirment pas la présence actuelle du boss.",
+    "de": "Je nach Boss werden Beobachtungen auf diesem Server oder feste Referenzzeiten angezeigt. Sie bestätigen nicht, ob der Boss gerade erschienen ist.",
+    "es": "Según el jefe, se muestran observaciones de ese servidor o un horario de referencia. No confirman que el jefe esté presente en este momento.",
+    "pt-BR": "Dependendo do chefe, são exibidas observações desse servidor ou horários de referência. Eles não confirmam que o chefe esteja presente agora.",
+    "ru": "В зависимости от босса показаны наблюдения на этом сервере или справочное расписание. Они не подтверждают, что босс сейчас присутствует."
+  },
+  "{0} 상단에 고정": {
+    "en": "Pin {0} to the top",
+    "ja": "{0} を一番上にピン留めする",
+    "fi": "Kiinnitä {0} yläosaan",
+    "fr": "Épinglez {0} en haut",
+    "de": "Stecken Sie {0} oben fest",
+    "es": "Fija {0} en la parte superior",
+    "pt-BR": "Fixe {0} no topo",
+    "ru": "Закрепите {0} вверху."
+  },
+  "상단에 고정": {
+    "en": "Pin to the top",
+    "ja": "上部にピン留めする",
+    "fi": "Kiinnitä yläreunaan",
+    "fr": "Épingler en haut",
+    "de": "Oben feststecken",
+    "es": "Fijar en la parte superior",
+    "pt-BR": "Fixar no topo",
+    "ru": "Закрепить вверху"
+  },
+  "고정한 콘텐츠가 없습니다. 전체 콘텐츠에서 상단에 고정할 항목을 선택하세요.": {
+    "en": "No content is pinned. Choose content to pin from the full list.",
+    "ja": "コンテンツは固定されていません。完全なリストからピン留めするコンテンツを選択します。",
+    "fi": "Sisältöä ei ole kiinnitetty. Valitse kiinnitettävä sisältö koko luettelosta.",
+    "fr": "Aucun contenu n'est épinglé. Choisissez le contenu à épingler dans la liste complète.",
+    "de": "Es sind keine Inhalte angepinnt. Wählen Sie aus der vollständigen Liste den Inhalt aus, den Sie anpinnen möchten.",
+    "es": "No se fija ningún contenido. Elija el contenido para fijar de la lista completa.",
+    "pt-BR": "Nenhum conteúdo é fixado. Escolha o conteúdo para fixar na lista completa.",
+    "ru": "Ни один контент не закреплен. Выберите контент для закрепления из полного списка."
+  },
+  "자동 조회 / 직접 입력 예: 09:00, 21:00": {
+    "en": "Automatic lookup / example manual times: 09:00, 21:00",
+    "ja": "自動検索 / 手動時刻の例: 09:00、21:00",
+    "fi": "Automaattinen haku / omat ajat esim. 09:00, 21:00",
+    "fr": "Recherche automatique / exemple d'heures manuelles : 09h00, 21h00",
+    "de": "Automatische Suche / Beispiele für manuelle Zeiten: 09:00, 21:00",
+    "es": "Búsqueda automática/ejemplo de horarios manuales: 09:00, 21:00",
+    "pt-BR": "Consulta automática/exemplo de horários manuais: 09:00, 21:00",
+    "ru": "Автоматический поиск / пример ручного времени: 09:00, 21:00."
+  },
+  "마지막 기록: 출현 중": {
+    "en": "Last reported: spawned",
+    "ja": "最終記録：出現中",
+    "fi": "Viimeisin havainto: paikalla",
+    "fr": "Dernière observation : présent",
+    "de": "Letzte Meldung: erschienen",
+    "es": "Último registro: presente",
+    "pt-BR": "Último registro: presente",
+    "ru": "Последняя запись: появился"
+  },
+  "최신 접속자 수를 확인하지 못해 마지막 확인한 수를 표시합니다.": {
+    "en": "Could not retrieve the latest player count. Showing the last known count.",
+    "ja": "最新の接続者数を取得できないため、最後に確認した数を表示しています。",
+    "fi": "Viimeisintä pelaajamäärää ei voitu hakea. Näytetään viimeinen tunnettu määrä.",
+    "fr": "Impossible de récupérer le dernier nombre de joueurs. Affichage du dernier décompte connu.",
+    "de": "Die aktuelle Spielerzahl konnte nicht abgerufen werden. Zeigt die letzte bekannte Zählung an.",
+    "es": "No se pudo recuperar el último recuento de jugadores. Mostrando el último recuento conocido.",
+    "pt-BR": "Não foi possível recuperar a última contagem de jogadores. Mostrando a última contagem conhecida.",
+    "ru": "Не удалось получить последнее количество игроков. Показаны последние известные значения."
+  },
+  "화면을 보는 동안 1분마다 확인합니다. 최대 1분 전의 접속자 수가 표시될 수 있습니다.": {
+    "en": "Checked every minute while you view the page. The player count may be up to 1 minute old.",
+    "ja": "ページを表示している間、1 分ごとにチェックされます。プレイヤー数は最大 1 分前のものである可能性があります。",
+    "fi": "Tarkistetaan joka minuutti, kun katselet sivua. Pelaajamäärä voi olla enintään 1 minuutin ikäinen.",
+    "fr": "Vérifié chaque minute pendant que vous consultez la page. Le décompte des joueurs peut aller jusqu'à 1 minute.",
+    "de": "Wird jede Minute überprüft, während Sie die Seite betrachten. Die Spieleranzahl kann bis zu 1 Minute alt sein.",
+    "es": "Comprobado cada minuto mientras ves la página. El conteo de jugadores puede tener hasta 1 minuto de antigüedad.",
+    "pt-BR": "Verificado a cada minuto enquanto você visualiza a página. A contagem de jogadores pode ter até 1 minuto.",
+    "ru": "Проверяется каждую минуту, пока вы просматриваете страницу. Количество игроков может составлять до 1 минуты."
+  },
+  "캐릭터 또는 작성자 페이지 주소가 올바르지 않습니다. ‘캐릭터 세팅 조회’나 ‘작성자 공개 빌드’를 선택해 다시 찾아보세요.": {
+    "en": "This character or author page address is invalid. Choose “Character lookup” or “Author’s builds” to search again.",
+    "ja": "このキャラクターまたは作者ページのアドレスは無効です。 “キャラクター検索” または “投稿者の公開ビルド” を選択して再検索します。",
+    "fi": "Hahmon tai tekijän sivun osoite on virheellinen. Hae uudelleen valitsemalla “Hahmohaku” tai “Tekijän buildit”.",
+    "fr": "L'adresse de cette page de personnage ou d'auteur n'est pas valide. Choisissez “Recherche de personnage” ou “Configurations d'un auteur” pour effectuer une nouvelle recherche.",
+    "de": "Die Adresse dieser Charakter- oder Autorenseite ist ungültig. Wählen Sie “Charaktersuche” oder “Builds eines Autors”, um erneut zu suchen.",
+    "es": "La dirección de la página de este personaje o autor no es válida. Elija “Búsqueda de personaje” o “Configuraciones del autor” para buscar nuevamente.",
+    "pt-BR": "Este personagem ou endereço de página do autor é inválido. Escolha “Consulta de personagem” ou “Builds do autor” para pesquisar novamente.",
+    "ru": "Адрес страницы этого персонажа или автора недействителен. Выберите “Поиск персонажа” или “Сборки автора” для повторного поиска."
+  },
+  "검색 결과를 불러오지 못했습니다. 다시 검색해 주세요.": {
+    "en": "Could not load search results. Please search again.",
+    "ja": "検索結果を読み込めませんでした。もう一度検索してください。",
+    "fi": "Hakutuloksia ei voitu ladata. Etsi uudelleen.",
+    "fr": "Impossible de charger les résultats de la recherche. Veuillez effectuer une nouvelle recherche.",
+    "de": "Suchergebnisse konnten nicht geladen werden. Bitte suchen Sie erneut.",
+    "es": "No se pudieron cargar los resultados de la búsqueda. Por favor busque nuevamente.",
+    "pt-BR": "Não foi possível carregar os resultados da pesquisa. Por favor, pesquise novamente.",
+    "ru": "Не удалось загрузить результаты поиска. Пожалуйста, выполните поиск еще раз."
+  },
+  "검색한 이름으로 공개 빌드를 찾지 못했습니다. 작성자 이름을 바꿔 검색해 보세요.": {
+    "en": "No public builds were found for that name. Try another author name.",
+    "ja": "その名前のパブリック ビルドは見つかりませんでした。別の著者名を試してください。",
+    "fi": "Tällä nimellä ei löytynyt julkisia kokoonpanoja. Kokeile toista tekijän nimeä.",
+    "fr": "Aucune build public n'a été trouvée pour ce nom. Essayez un autre nom d'auteur.",
+    "de": "Zu diesem Namen wurden keine öffentlichen Builds gefunden. Suche nach einem anderen Autorennamen.",
+    "es": "No se encontraron builds públicas para ese nombre. Pruebe con otro nombre de autor.",
+    "pt-BR": "Nenhuma build pública foi encontrada para esse nome. Tente outro nome de autor.",
+    "ru": "Публичные сборки с таким именем не найдены. Попробуйте другое имя автора."
+  },
+  "공식 {0} 랭킹의 공개를 확인했습니다. 확인일: {1}": {
+    "en": "The official {0} ranking was confirmed as published. Checked on: {1}",
+    "ja": "公式の{0}ランキングが公開されていることを確認しました。確認日：{1}",
+    "fi": "Virallisen {0}-rankinglistan saatavuus on tarkistettu. Tarkistuspäivä: {1}",
+    "fr": "La disponibilité du classement officiel {0} a été vérifiée le {1}.",
+    "de": "Die Veröffentlichung der offiziellen {0}-Rangliste wurde am {1} bestätigt.",
+    "es": "Se confirmó que el ranking oficial {0} está publicado. Fecha de comprobación: {1}",
+    "pt-BR": "Foi confirmado que o ranking oficial {0} está publicado. Data da verificação: {1}",
+    "ru": "Подтверждено, что официальный рейтинг {0} опубликован. Дата проверки: {1}"
+  },
+  "Steam 게임 버전 {0}의 원본 자료 · 영문 이름": {
+    "en": "Original data from Steam game version {0} · English names",
+    "ja": "Steamゲーム版{0}のオリジナルデータ・英語名",
+    "fi": "Alkuperäiset tiedot Steam-peliversiosta {0} · Englanninkieliset nimet",
+    "fr": "Données originales de la version du jeu Steam {0} · Noms anglais",
+    "de": "Originaldaten der Steam-Spielversion {0} · Englische Namen",
+    "es": "Datos originales de la versión del juego Steam {0} · Nombres en inglés",
+    "pt-BR": "Dados originais da versão do jogo Steam {0} · Nomes em inglês",
+    "ru": "Оригинальные данные из Steam версии игры {0} · Английские названия"
+  },
+  "이 퀘스트의 보상 정보를 찾지 못했습니다. 보상이 없다는 뜻은 아닙니다.": {
+    "en": "Could not find reward information for this quest. This does not mean it has no rewards.",
+    "ja": "このクエストの報酬情報が見つかりませんでした。報酬がないという意味ではありません。",
+    "fi": "Tämän tehtävän palkintotietoja ei löytynyt. Tämä ei tarkoita, että sillä ei olisi palkintoja.",
+    "fr": "Impossible de trouver des informations sur les récompenses pour cette quête. Cela ne veut pas dire qu’il n’y a aucune récompense.",
+    "de": "Für diese Quest konnten keine Belohnungsinformationen gefunden werden. Das bedeutet nicht, dass es keine Belohnungen gibt.",
+    "es": "No se pudo encontrar información de recompensa para esta misión. Esto no significa que no tenga recompensas.",
+    "pt-BR": "Não foi possível encontrar informações sobre recompensas para esta missão. Isso não significa que não tenha recompensas.",
+    "ru": "Не удалось найти информацию о наградах за этот квест. Это не значит, что у него нет наград."
+  },
+  "원본에 등록된 퀘스트 단계 {0}개": {
+    "en": "Quest steps listed in the source data: {0}",
+    "ja": "ソース データにリストされているクエスト ステップ: {0}",
+    "fi": "Lähdetietojen tehtävävaiheita: {0}",
+    "fr": "Étapes de quête répertoriées dans les données sources : {0}",
+    "de": "In den Quelldaten aufgeführte Questschritte: {0}",
+    "es": "Pasos de la misión enumerados en los datos de origen: {0}",
+    "pt-BR": "Etapas da missão listadas nos dados de origem: {0}",
+    "ru": "Этапы квеста указаны в исходных данных: {0}"
+  },
+  "보관함에 중복된 기록이 있어 저장할 수 없습니다. ‘보관함 다시 불러오기’를 눌러 주세요.": {
+    "en": "The library contains duplicate records and cannot be saved. Choose “Reload saved builds”.",
+    "ja": "ライブラリには重複したレコードが含まれているため、保存できません。 “保管庫を再読み込み” を選択します。",
+    "fi": "Kirjasto sisältää päällekkäisiä tietueita, eikä sitä voi tallentaa. Valitse “Lataa tallennetut uudelleen”.",
+    "fr": "La bibliothèque contient des enregistrements en double et ne peut pas être sauvegardée. Choisissez “Charger les configurations enregistrées”.",
+    "de": "Die Bibliothek enthält doppelte Datensätze und kann nicht gespeichert werden. Wählen Sie “Gespeicherte Builds laden”.",
+    "es": "La biblioteca contiene registros duplicados y no se puede guardar. Elija “Cargar configuraciones guardadas”.",
+    "pt-BR": "A biblioteca contém registros duplicados e não pode ser salva. Escolha “Carregar configurações salvas”.",
+    "ru": "Библиотека содержит повторяющиеся записи и не может быть сохранена. Выберите “Загрузить сохраненные конфигурации”."
+  },
+  "공유 빌드의 포인트 정보를 읽을 수 없습니다. 보낸 사람에게 새 공유 링크를 요청하세요.": {
+    "en": "Could not read the shared build’s point information. Ask the sender for a new share link.",
+    "ja": "共有ビルドのポイント情報を読み取れませんでした。送信者に新しい共有リンクを依頼します。",
+    "fi": "Jaetun kokoonpanon pistetietoja ei voitu lukea. Pyydä lähettäjältä uusi jakolinkki.",
+    "fr": "Impossible de lire les informations sur les points de la version partagée. Demandez à l'expéditeur un nouveau lien de partage.",
+    "de": "Die Punktinformationen des freigegebenen Builds konnten nicht gelesen werden. Bitten Sie den Absender um einen neuen Freigabelink.",
+    "es": "No se pudo leer la información de puntos de la build compartida. Solicite al remitente un nuevo enlace para compartir.",
+    "pt-BR": "Não foi possível ler as informações do ponto da build compartilhada. Peça ao remetente um novo link de compartilhamento.",
+    "ru": "Не удалось прочитать информацию о точках общей сборки. Попросите отправителя предоставить новую ссылку для обмена."
+  },
+  "제목은 1~80자로 입력해 주세요.": {
+    "en": "Enter a title of 1–80 characters.",
+    "ja": "タイトルは1～80文字で入力してください。",
+    "fi": "Kirjoita 1–80 merkin pituinen otsikko.",
+    "fr": "Saisissez un titre de 1 à 80 caractères.",
+    "de": "Geben Sie einen Titel mit 1–80 Zeichen ein.",
+    "es": "Introduzca un título de 1 a 80 caracteres.",
+    "pt-BR": "Insira um título de 1 a 80 caracteres.",
+    "ru": "Введите заголовок длиной от 1 до 80 символов."
+  },
+  "설명은 2,000자 이하로 입력해 주세요.": {
+    "en": "Keep the description to 2,000 characters or fewer.",
+    "ja": "説明は 2,000 文字以内にしてください。",
+    "fi": "Pidä kuvauksessa enintään 2 000 merkkiä.",
+    "fr": "Limitez la description à 2 000 caractères ou moins.",
+    "de": "Beschränken Sie die Beschreibung auf maximal 2.000 Zeichen.",
+    "es": "Mantenga la descripción en 2000 caracteres o menos.",
+    "pt-BR": "Mantenha a descrição com 2.000 caracteres ou menos.",
+    "ru": "Длина описания не должна превышать 2000 символов."
+  },
+  "게시물의 공개 설정을 확인하지 못했습니다. 작성 내용을 따로 보관한 뒤 페이지를 새로고침해 주세요.": {
+    "en": "Could not read the post’s publication setting. Keep a separate copy of your draft, then reload the page.",
+    "ja": "投稿の公開設定を読み取れませんでした。下書きのコピーを別に保存してから、ページをリロードしてください。",
+    "fi": "Viestin julkaisuasetusta ei voitu lukea. Säilytä luonnoksestasi erillinen kopio ja lataa sivu uudelleen.",
+    "fr": "Impossible de lire les paramètres de publication du message. Conservez une copie séparée de votre brouillon, puis rechargez la page.",
+    "de": "Die Veröffentlichungseinstellung des Beitrags konnte nicht gelesen werden. Behalten Sie eine separate Kopie Ihres Entwurfs und laden Sie die Seite dann neu.",
+    "es": "No se pudo leer la configuración de publicación de la publicación. Guarde una copia separada de su borrador y luego vuelva a cargar la página.",
+    "pt-BR": "Não foi possível ler a configuração de publicação da postagem. Mantenha uma cópia separada do seu rascunho e recarregue a página.",
+    "ru": "Не удалось прочитать настройки публикации поста. Сохраните отдельную копию черновика, а затем перезагрузите страницу."
+  },
+  "게시물의 저장 상태를 확인하지 못했습니다. 수정 중인 내용이 있다면 따로 보관한 뒤 최신 게시물을 다시 불러오세요.": {
+    "en": "Could not check the post’s saved state. Keep a separate copy of any edits, then reload the latest post.",
+    "ja": "投稿の保存状態を確認できませんでした。編集内容を別のコピーとして保存し、最新の投稿をリロードしてください。",
+    "fi": "Viestin tallennettua tilaa ei voitu tarkistaa. Säilytä erillinen kopio kaikista muokkauksista ja lataa sitten uusin viesti uudelleen.",
+    "fr": "Impossible de vérifier l'état enregistré de la publication. Conservez une copie séparée de toutes les modifications, puis rechargez le dernier message.",
+    "de": "Der Speicherstatus des Beitrags konnte nicht überprüft werden. Bewahren Sie eine separate Kopie aller Änderungen auf und laden Sie dann den neuesten Beitrag erneut.",
+    "es": "No se pudo verificar el estado guardado de la publicación. Guarde una copia separada de cualquier edición y luego vuelva a cargar la última publicación.",
+    "pt-BR": "Não foi possível verificar o estado salvo da postagem. Mantenha uma cópia separada de todas as edições e recarregue a postagem mais recente.",
+    "ru": "Не удалось проверить сохраненное состояние публикации. Сохраните отдельные копии всех изменений, а затем перезагрузите последнюю публикацию."
+  },
+  "공개할 빌드의 레벨과 플레이 목적을 확인해 주세요.": {
+    "en": "Check the level and play purpose of the build you want to publish.",
+    "ja": "公開したいビルドのレベルとプレイ目的を確認してください。",
+    "fi": "Tarkista julkaistavan kokoonpanon taso ja pelitavoite.",
+    "fr": "Vérifiez le niveau et l’objectif de jeu du build à publier.",
+    "de": "Überprüfen Sie das Level und den Spielzweck des Builds, den Sie veröffentlichen möchten.",
+    "es": "Comprueba el nivel y el propósito de juego de la configuración que deseas publicar.",
+    "pt-BR": "Confira o nível e o objetivo de jogo da build que deseja publicar.",
+    "ru": "Проверьте уровень и игровую цель сборки, которую вы хотите опубликовать."
+  },
+  "공개 빌드에는 연결한 캐릭터와 개인 완료 기록을 포함할 수 없습니다. 빌드 편집 화면에서 다시 저장해 주세요.": {
+    "en": "Public builds cannot include linked characters or personal completion records. Save again from the build editor.",
+    "ja": "公開ビルドには、リンクされたキャラクターや個人の完了記録を含めることはできません。ビルドエディターから再度保存します。",
+    "fi": "Julkiseen kokoonpanoon ei voi sisällyttää yhdistettyä hahmoa tai omia suoritusmerkintöjä. Tallenna uudelleen kokoonpanoeditorissa.",
+    "fr": "Les builds publics ne peuvent pas inclure de personnages liés ou de dossiers d'achèvement personnels. Enregistrez à nouveau depuis l'éditeur de build.",
+    "de": "Öffentliche Builds dürfen keine verknüpften Charaktere oder persönlichen Abschlussdatensätze enthalten. Speichern Sie erneut im Build-Editor.",
+    "es": "Las builds públicas no pueden incluir personajes vinculados ni registros de finalización personales. Guarde nuevamente desde el editor de build.",
+    "pt-BR": "As builds públicas não podem incluir personagens vinculados ou registros de conclusão pessoal. Salve novamente no editor de build.",
+    "ru": "Публичные сборки не могут включать связанных персонажей или записи о личных достижениях. Сохраните еще раз из редактора сборки."
+  },
+  "빌드 데이터를 읽을 수 없습니다. 작성 내용을 남겨 두고 빌드를 다시 불러오세요.": {
+    "en": "Could not read the build data. Keep a copy of your draft, then reload the build.",
+    "ja": "ビルドデータを読み取れませんでした。下書きのコピーを保存してから、ビルドをリロードします。",
+    "fi": "Kokoonpanon tietoja ei voitu lukea. Säilytä kopio luonnoksesta ja lataa kokoonpano uudelleen.",
+    "fr": "Impossible de lire les données du build. Conservez une copie de votre brouillon, puis rechargez le build.",
+    "de": "Die Build-Daten konnten nicht gelesen werden. Behalten Sie eine Kopie Ihres Entwurfs und laden Sie den Build dann erneut.",
+    "es": "No se pudieron leer los datos de build. Guarde una copia de su borrador y luego vuelva a cargar la build.",
+    "pt-BR": "Não foi possível ler os dados de build. Mantenha uma cópia do seu rascunho e recarregue a build.",
+    "ru": "Не удалось прочитать данные сборки. Сохраните копию черновика, а затем перезагрузите сборку."
+  },
+  "빌드에 읽을 수 없는 항목이 있습니다. 빌드 편집 화면에서 다시 저장해 주세요.": {
+    "en": "The build contains an unreadable field. Save again from the build editor.",
+    "ja": "ビルドには読み取り不可能なフィールドが含まれています。ビルドエディターから再度保存します。",
+    "fi": "Kokoonpanossa on kenttä, jota ei voitu lukea. Tallenna uudelleen kokoonpanoeditorissa.",
+    "fr": "Le build contient un champ illisible. Enregistrez-le à nouveau depuis l’éditeur de build.",
+    "de": "Der Build enthält ein nicht lesbares Feld. Speichern Sie erneut im Build-Editor.",
+    "es": "La build contiene un campo ilegible. Guarde nuevamente desde el editor de build.",
+    "pt-BR": "A build contém um campo ilegível. Salve novamente no editor de build.",
+    "ru": "Сборка содержит нечитаемое поле. Сохраните еще раз из редактора сборки."
+  },
+  "캐릭터 정보를 불러오지 못했습니다. 페이지를 새로고침한 뒤 다시 검색해 주세요.": {
+    "en": "Could not load character information. Reload the page, then search again.",
+    "ja": "キャラクター情報を読み込めませんでした。ページをリロードして、再度検索してください。",
+    "fi": "Hahmon tietoja ei voitu ladata. Lataa sivu uudelleen ja tee uusi haku.",
+    "fr": "Impossible de charger les informations sur les personnages. Rechargez la page, puis effectuez une nouvelle recherche.",
+    "de": "Die Charakterinformationen konnten nicht geladen werden. Lade die Seite neu und suche erneut.",
+    "es": "No se pudo cargar la información del personaje. Vuelva a cargar la página y luego busque nuevamente.",
+    "pt-BR": "Não foi possível carregar as informações do personagem. Recarregue a página e pesquise novamente.",
+    "ru": "Не удалось загрузить информацию о персонаже. Перезагрузите страницу и повторите поиск."
+  },
+  "캐릭터 조회 서버에 연결하지 못했습니다. 인터넷 연결을 확인하고 잠시 후 다시 조회해 주세요.": {
+    "en": "Could not connect to the character lookup server. Check your internet connection and try again shortly.",
+    "ja": "キャラクター検索サーバーに接続できませんでした。インターネット接続を確認し、しばらくしてから再度検索してください。",
+    "fi": "Hahmohakupalvelimeen ei saatu yhteyttä. Tarkista internetyhteys ja yritä hetken kuluttua uudelleen.",
+    "fr": "Impossible de se connecter au serveur de recherche de personnages. Vérifiez votre connexion Internet et réessayez sous peu.",
+    "de": "Der Server für die Charaktersuche ist nicht erreichbar. Prüfe deine Internetverbindung und versuche es später erneut.",
+    "es": "No se pudo conectar al servidor de búsqueda de personajes. Verifique su conexión a Internet y vuelva a intentarlo en breve.",
+    "pt-BR": "Não foi possível conectar ao servidor de busca de personagens. Confira sua conexão com a internet e tente novamente em instantes.",
+    "ru": "Не удалось подключиться к серверу поиска персонажей. Проверьте подключение к Интернету и повторите попытку в ближайшее время."
+  },
+  "빌드 데이터를 읽을 수 없습니다. 작성 내용을 따로 보관한 뒤 다시 시도해 주세요.": {
+    "en": "Could not read the build data. Keep a separate copy of your draft, then try again.",
+    "ja": "ビルドデータを読み取れませんでした。下書きのコピーを別に保存してから、もう一度試してください。",
+    "fi": "Kokoonpanon tietoja ei voitu lukea. Säilytä erillinen kopio luonnoksesta ja yritä uudelleen.",
+    "fr": "Impossible de lire les données de build. Conservez une copie séparée de votre brouillon, puis réessayez.",
+    "de": "Die Build-Daten konnten nicht gelesen werden. Bewahren Sie eine separate Kopie Ihres Entwurfs auf und versuchen Sie es dann erneut.",
+    "es": "No se pudieron leer los datos de build. Guarde una copia separada de su borrador y vuelva a intentarlo.",
+    "pt-BR": "Não foi possível ler os dados de build. Mantenha uma cópia separada do seu rascunho e tente novamente.",
+    "ru": "Не удалось прочитать данные сборки. Сохраните отдельную копию черновика и повторите попытку."
   }
 }
