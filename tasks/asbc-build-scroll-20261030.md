@@ -26,3 +26,18 @@ Production: https://4b1da3ca.asbc-4c9.pages.dev, reviewed source 2630d03338bdbd4
 Release: scoped11file source commit;302 pending primary paths/statuses preserved.300 unrelated files byte-identical; PROJECT_BRIEF appended and80 UI fields merged with reverse proof. No catalog, calculation algorithm, authentication, storage or backend changes.
 Cleanup: owned normal QA tabs closed, viewport reset, preview stopped, screenshots/helpers adopted into D/ASBC with SHA256 checks. Canonical account and existing Chrome tabs untouched.
 Limits: mobile browser viewport simulation, not physical handset. Existing recommendations retained, not a new best-build claim. Reviewer read code and supplied evidence without independently running UI/tests. Documentation-only completion commit does not change deployable assets.
+
+## Daevanion-first follow-up — 2026-10-30
+[Task Goal]: Place Daevanion before skills/specializations in the unified build flow per explicit user preference.
+Owner: Codex under prior Claude coordination for this same scroll-build task.
+Scope: page.tsx section DOM order and anchor ordering only; documentation.
+Done when: setup, Daevanion, skills, gear, save order on PC/mobile; legacy URLs reach the same section and saved values remain.
+Base commit: 8c34ecdcd6caf093356f44f45751e5975ecbeeee
+Failure cases: duplicated/missing section, CSS-only order differs from keyboard order, anchor mismatch, plan reset.
+Verification: pending typecheck, navigation, build, local UI, final readonly review, scoped release.
+Last reviewed: prior parent-task coordination retained; this follow-up review pending.
+Uncommitted: scoped3files; primary302other pending paths preserved.
+Next: verify and release under standing scoped deployment authorization.
+Blocker: none.
+
+Daevanion-first local verification complete: typecheck/navigation/build and PC/mobile scroll order, anchor focus, node inspection and existing skill preservation PASS. Claude readonly PASS (asbc-daev-first-review-20261030-1793372947512); execution finished/status0/errornull/scope[]. Production verification pending.

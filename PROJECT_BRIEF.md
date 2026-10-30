@@ -1020,3 +1020,6 @@ Remove build subpage switching and repeated skill/daevanion views; one setup and
 
 ### Single scroll build complete — 2026-10-30
 Source 2630d03 / https://4b1da3ca.asbc-4c9.pages.dev. One setup, one skills/specialization editor, one Daevanion board editor; optional heavy tools unfold inline, save/share below. Legacy hashes and back/forward preserved. Existing45script suite plus focused tests/typecheck/build/SEO and18 local+18 production locale/viewport cases passed; Claude final PASS.302 pending paths preserved. Canonical /assets/asbc-D_5Ms9Oz.js. See tasks/asbc-build-scroll-20261030.md.
+
+### 2026-10-30 follow-up: Daevanion first
+User requests point setup -> Daevanion -> skills/specializations -> save/share. Move the real section order and matching anchor links only. Continue the same Claude-coordinated scroll build task; no calculation or saved data changes.
