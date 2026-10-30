@@ -25,3 +25,13 @@
 .direct-build .growth-purpose-note{line-height:1.6;color:#c9e5ef;font-size:13px}
 @media(max-width:520px){.direct-build .growth-purpose{align-items:stretch}.direct-build .growth-purpose>span{flex-basis:100%}.direct-build .growth-purpose .button{flex:1 1 85px;padding:10px 6px;font-size:12px;white-space:normal;min-height:44px}}
 .direct-build .completion-basis{border-left:3px solid #79cced;padding:10px 12px;background:#111b25;line-height:1.65;font-size:13px}.completion-basis small{color:var(--muted)}
+
+.direct-build .growth-purpose .requires-confirm{border-style:dashed;color:var(--muted)}
+.direct-build .leveling-availability{font-size:13px;line-height:1.6;color:#c9e5ef}
+.leveling-confirm-dialog{width:min(520px,calc(100vw - 32px));max-height:calc(100dvh - 32px);box-sizing:border-box;margin:auto;padding:24px;border:1px solid #79cced;border-radius:14px;background:#171b25;color:#e8edf5;overflow:auto;box-shadow:0 16px 56px #0009}
+.leveling-confirm-dialog::backdrop{background:#0009}
+.leveling-confirm-dialog h2{margin:0 0 14px;font-size:20px;line-height:1.4}
+.leveling-confirm-dialog p{line-height:1.65;font-size:14px;overflow-wrap:anywhere}
+.leveling-confirm-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.leveling-confirm-actions .button{flex:1 1 180px;min-height:44px;white-space:normal}
+@media(max-width:520px){.leveling-confirm-dialog{padding:20px}.leveling-confirm-actions .button{flex-basis:100%}}

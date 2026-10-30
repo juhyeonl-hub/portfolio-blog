@@ -27278,5 +27278,65 @@
     "es": "Deshacer cambio de objetivo",
     "pt-BR": "Desfazer mudança de objetivo",
     "ru": "Отменить смену цели"
+  },
+  "현재 목표가 만렙(45레벨)이므로 레벨링은 기본 선택이 아닙니다. 그래도 보고 싶다면 레벨링을 눌러 확인하세요.": {
+    "en": "Your target is the maximum level (45), so Leveling is not the default. Select Leveling to confirm that you want to view it.",
+    "ja": "現在の目標は最大レベル（45）のため、レベリングは既定の選択ではありません。表示する場合は、レベリングを押して確認してください。",
+    "fi": "Tavoitteesi on enimmäistaso (45), joten tasonnosto ei ole oletusvalinta. Jos haluat nähdä sen, valitse tasonnosto ja vahvista.",
+    "fr": "Votre objectif est le niveau maximal (45) : la progression en niveaux n’est donc pas le choix par défaut. Sélectionnez-la pour confirmer que vous souhaitez la consulter.",
+    "de": "Dein Ziel ist die Höchststufe (45), daher ist Leveln nicht die Standardauswahl. Wähle Leveln und bestätige, wenn du den Build ansehen möchtest.",
+    "es": "Tu objetivo es el nivel máximo (45), por lo que subir de nivel no es la opción predeterminada. Selecciónala para confirmar que quieres verla.",
+    "pt-BR": "Seu objetivo é o nível máximo (45), então subir de nível não é a opção padrão. Selecione essa opção para confirmar que deseja vê-la.",
+    "ru": "Целевой уровень — максимальный (45), поэтому прокачка не выбрана по умолчанию. Выберите её и подтвердите, если хотите посмотреть сборку."
+  },
+  "레벨링 빌드를 볼까요?": {
+    "en": "View the leveling build?",
+    "ja": "レベリング用ビルドを表示しますか？",
+    "fi": "Näytetäänkö tasonnostoon tarkoitettu kokoonpano?",
+    "fr": "Voir le build de progression en niveaux ?",
+    "de": "Build zum Leveln ansehen?",
+    "es": "¿Ver la configuración para subir de nivel?",
+    "pt-BR": "Ver a build para subir de nível?",
+    "ru": "Посмотреть сборку для прокачки?"
+  },
+  "예를 선택하면 목표를 44레벨로 바꾸고 포인트를 해당 레벨의 기본값으로 맞춥니다.": {
+    "en": "Choosing Yes changes the target to level 44 and resets point totals to the defaults for that level.",
+    "ja": "「はい」を選ぶと目標がレベル44に変わり、ポイント合計がそのレベルの既定値になります。",
+    "fi": "Kyllä vaihtaa tavoitteen tasolle 44 ja palauttaa pisteiden kokonaismäärät sen tason oletusarvoihin.",
+    "fr": "Choisir Oui passe l’objectif au niveau 44 et rétablit les totaux de points par défaut pour ce niveau.",
+    "de": "Mit Ja wird das Ziel auf Stufe 44 geändert und die Gesamtpunktzahl auf die Standardwerte dieser Stufe zurückgesetzt.",
+    "es": "Al elegir Sí, el objetivo pasa al nivel 44 y los puntos totales vuelven a los valores predeterminados de ese nivel.",
+    "pt-BR": "Ao escolher Sim, o objetivo muda para o nível 44 e os totais de pontos voltam aos valores padrão desse nível.",
+    "ru": "При выборе «Да» целевой уровень изменится на 44, а общее количество очков — на стандартное для этого уровня."
+  },
+  "현재 스킬·특화·데바니온 배분은 유지합니다. 전환 후에는 이전 설정으로 되돌릴 수 있습니다.": {
+    "en": "Your current skill, specialization and Daevanion allocations stay unchanged. You can undo the switch to restore the previous settings.",
+    "ja": "現在のスキル・特化・デヴァニオンの配分は維持されます。切り替え後に元の設定へ戻せます。",
+    "fi": "Nykyiset taito-, erikoistumis- ja Daevanion-valinnat säilyvät. Voit kumota vaihdon ja palauttaa aiemmat asetukset.",
+    "fr": "Vos répartitions actuelles de compétences, spécialisations et Daevanion sont conservées. Vous pourrez annuler le changement pour restaurer les réglages précédents.",
+    "de": "Deine aktuelle Verteilung von Fertigkeiten, Spezialisierungen und Daevanion bleibt erhalten. Du kannst den Wechsel rückgängig machen und die vorherigen Einstellungen wiederherstellen.",
+    "es": "Se conservan tus asignaciones actuales de habilidades, especializaciones y Daevanion. Puedes deshacer el cambio para restaurar los ajustes anteriores.",
+    "pt-BR": "Suas distribuições atuais de habilidades, especializações e Daevanion são mantidas. Você pode desfazer a mudança para restaurar as configurações anteriores.",
+    "ru": "Текущее распределение навыков, специализаций и Даэваниона сохранится. Переход можно отменить, чтобы вернуть прежние настройки."
+  },
+  "아니오, 현재 빌드 유지": {
+    "en": "No, keep current build",
+    "ja": "いいえ、現在のビルドを維持",
+    "fi": "Ei, säilytä nykyinen",
+    "fr": "Non, garder le build actuel",
+    "de": "Nein, aktuellen Build behalten",
+    "es": "No, mantener configuración",
+    "pt-BR": "Não, manter build atual",
+    "ru": "Нет, оставить текущую сборку"
+  },
+  "예, 레벨링 보기": {
+    "en": "Yes, view leveling",
+    "ja": "はい、レベリングを表示",
+    "fi": "Kyllä, näytä tasonnosto",
+    "fr": "Oui, voir la progression",
+    "de": "Ja, Leveln ansehen",
+    "es": "Sí, ver subida de nivel",
+    "pt-BR": "Sim, ver subida de nível",
+    "ru": "Да, показать прокачку"
   }
 }

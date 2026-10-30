@@ -1,4 +1,4 @@
-import {useEffect,useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
 import {useLocale} from './locale';
 import {isEndgamePointLevel,pointBudgetSourceLabel,type Catalog,type Plan,pointLimits,totals,MODE_NAMES} from '@/lib/planner';
 import {BUILD_PURPOSES,PURPOSE_NAMES,type BuildPurpose,buildPurpose,recommendPurposeBuild} from '@/lib/build-purpose';
@@ -11,6 +11,14 @@ import PointNumber from './point-number';
 export default function QuickBuild({catalog,plan,onApply,onChange,onPurposeChange,onStyleApply}:{catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void;onChange:(patch:Partial<Plan>)=>void;onPurposeChange:(purpose:BuildPurpose)=>void;onStyleApply:(mode:Plan['mode'])=>void}){
  const {t}=useLocale();
  const [result,setResult]=useState<{source:Plan;catalog:Catalog;next:Plan}|null>(null),[error,setError]=useState('');
+ const [purposeRequest,setPurposeRequest]=useState<{plan:Plan;catalog:Catalog}|null>(null);
+ const purposeDialog=useRef<HTMLDialogElement>(null),levelingButton=useRef<HTMLButtonElement>(null);
+ useEffect(()=>{
+  const element=purposeDialog.current;if(!purposeRequest||!element)return;
+  if(purposeRequest.plan!==plan||purposeRequest.catalog!==catalog){setPurposeRequest(null);return}
+  element.showModal();return()=>{element.close();if(levelingButton.current?.isConnected)levelingButton.current.focus()};
+ },[purposeRequest,plan,catalog]);
+ const selectPurpose=(value:BuildPurpose)=>{if(value==='leveling'&&isEndgamePointLevel(plan))setPurposeRequest({plan,catalog});else onPurposeChange(value)};
  const purpose=buildPurpose(plan),points=pointLimits(catalog,plan),candidate=result?.source===plan&&result.catalog===catalog?result.next:null;
  useEffect(()=>{setError('');const timer=setTimeout(()=>{try{setResult({source:plan,catalog,next:recommendPurposeBuild(catalog,plan)})}catch{setResult(null);setError(t('추천 계산에 실패했습니다. 레벨과 포인트를 확인하세요.'))}},150);return()=>clearTimeout(timer)},[catalog,plan,t]);
  const actualLevel=plan.character?.profile?.characterLevel,resultPoints=candidate?totals(catalog,candidate):null;
@@ -31,8 +39,15 @@ export default function QuickBuild({catalog,plan,onApply,onChange,onPurposeChang
   <CharacterPoints catalog={catalog} plan={plan} points={points} onChange={onChange}/>
   <div className="direct-build-options">
   {!isEndgamePointLevel(plan)&&<label className="ascension-confirm"><input type="checkbox" checked={plan.ascensionGrade3Confirmed===true} onChange={e=>onChange({ascensionGrade3Confirmed:e.target.checked})}/>{t('게임에서 3차 승급을 완료했습니다')}</label>}
-  <div className="growth-purpose" role="group" aria-label={t('플레이 목적')}><span>{t('플레이 목적')}</span>{BUILD_PURPOSES.map(value=><button type="button" className={'button secondary '+(purpose===value?'selected':'')} aria-pressed={purpose===value} key={value} onClick={()=>onPurposeChange(value)}>{t(PURPOSE_NAMES[value])}</button>)}</div>
+  <div className="growth-purpose" role="group" aria-label={t('플레이 목적')}><span>{t('플레이 목적')}</span>{BUILD_PURPOSES.map(value=><button ref={value==='leveling'?levelingButton:undefined} type="button" className={'button secondary '+(purpose===value?'selected':'')+(value==='leveling'&&isEndgamePointLevel(plan)?' requires-confirm':'')} aria-pressed={purpose===value} aria-describedby={value==='leveling'&&isEndgamePointLevel(plan)?'leveling-availability':undefined} aria-haspopup={value==='leveling'&&isEndgamePointLevel(plan)?'dialog':undefined} key={value} onClick={()=>selectPurpose(value)}>{t(PURPOSE_NAMES[value])}</button>)}</div>
   </div>
+  {isEndgamePointLevel(plan)&&<p id="leveling-availability" className="leveling-availability">{t('현재 목표가 만렙(45레벨)이므로 레벨링은 기본 선택이 아닙니다. 그래도 보고 싶다면 레벨링을 눌러 확인하세요.')}</p>}
+  {purposeRequest&&<dialog ref={purposeDialog} className="leveling-confirm-dialog" aria-labelledby="leveling-confirm-title" aria-describedby="leveling-confirm-effect" onCancel={e=>{e.preventDefault();setPurposeRequest(null)}} onClose={()=>setPurposeRequest(null)} onClick={e=>{if(e.target===e.currentTarget)setPurposeRequest(null)}}>
+   <h2 id="leveling-confirm-title">{t('레벨링 빌드를 볼까요?')}</h2>
+   <p id="leveling-confirm-effect">{t('예를 선택하면 목표를 44레벨로 바꾸고 포인트를 해당 레벨의 기본값으로 맞춥니다.')}</p>
+   <p>{t('현재 스킬·특화·데바니온 배분은 유지합니다. 전환 후에는 이전 설정으로 되돌릴 수 있습니다.')}</p>
+   <div className="leveling-confirm-actions"><button autoFocus type="button" className="button secondary" onClick={()=>setPurposeRequest(null)}>{t('아니오, 현재 빌드 유지')}</button><button type="button" className="button primary" onClick={()=>{const current=purposeRequest.plan===plan&&purposeRequest.catalog===catalog;setPurposeRequest(null);if(current)onPurposeChange('leveling')}}>{t('예, 레벨링 보기')}</button></div>
+  </dialog>}
   <p className="growth-purpose-note" role="status"><b>{t('계산할 목표: Lv.{0}',[plan.level])}</b><br/>{t(purpose==='leveling'?'레벨링: 현재 레벨에서 열리는 스킬과 데바니온으로 공격 위주 배분을 안내합니다.':purpose==='pve'?'PvE: 45레벨 원정을 위한 직업별 보스·파티 가이드에 생존을 고려해 배분합니다.':'PvP: 유저와의 전투용 능력치와 데바니온을 우선합니다. 스킬은 기존 직업 가이드를 참고합니다.')}</p>
   <p className="subtle">{t('레벨링은 최대 44레벨, PvE는 45레벨 목표로 전환합니다. 레벨이 바뀌면 포인트는 해당 레벨의 기본값으로 바뀝니다.')} {t('현재 포인트 안에서 계산한 참고 배분이며, 콘텐츠별 최적 세팅을 검증한 결과는 아닙니다.')}</p>
 

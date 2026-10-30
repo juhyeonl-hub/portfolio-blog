@@ -16,3 +16,18 @@ Canonical existing GreenOrc: PC/mobile completion copy, all purpose buttons enab
 Source release preserved302 unrelated primary pending paths:300 byte-identical; brief append and40 new translation fields merged with unrelated fields intact. Final documentation-only integration also verifies pending hashes/statuses.
 One review-purpose helper invocation was automatically rejected because the file also contained a release branch. Review was prepared separately without Git mutations. The later explicit release-purpose request, citing standing user deployment authorization, was approved. An initial release preflight stopped before changes on PowerShell/Python file-sort order; identical file set was verified and metadata order normalized.
 Owned tabs closed, viewport reset, owned preview stopped; evidence adopted with hashes. No remaining feature work.
+
+## Max-level confirmation follow-up
+[Task Goal]: Explain why leveling is not the default at45 and ask Yes/No before switching.
+Owner: Codex, under preceding Claude coordination asbc-purpose-completion-coordinate-20261030-1793375008793; same purpose-selection task.
+Scope: QuickBuild UI, scoped CSS, six messages in eight languages and task documentation. No calculator, recommendation, persistence or game-data changes.
+Base commit: 4179e6cc0fffee3d9fb71cc4309fab71a318ceab.
+Expected:45 click opens explanation; no mutation until Yes; No/Escape/backdrop dismiss; Yes uses existing44-level transition and undo; below45 andPvE/PvP unchanged. Dialog cancels if its source plan/catalog changes.
+Failures: accidental activation, stale confirmation, inaccessible focus, mobile overflow, missing translation, unrelated pending edits.
+Verification: typecheck, focused purpose/ascension/navigation/localization tests, build; PC/mobile direct use.
+Last reviewed: previous source PASS; confirmation follow-up pending readonly review.
+Uncommitted: scoped5files only; primary302other pending preserved.
+Next: implement, test, review, release under standing scoped deployment authorization.
+Blocker: none.
+
+Confirmation follow-up local verification PASS: typecheck, purpose/ascension/navigation/localization tests, build; GreenOrc QA desktop/mobile opening/No/Enter/Escape/backdrop/Yes/undo/custom370/reload, lower-level direct selection, all8languages x2widths. No test-edit loss or console error. Native modal and No initial focus. Source review asbc-leveling-confirm-review-20261030-1793376851397: PASS, finished/status0/errornull/scope[]. Mobile is viewport simulation. Production verification pending.
