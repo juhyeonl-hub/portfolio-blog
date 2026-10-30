@@ -1014,3 +1014,6 @@ Compare saved manual selections with existing recommendations, with a difference
 
 ### Specialization comparison complete — 2026-10-29
 Source e02ad16 / https://31d2b2b9.asbc-4c9.pages.dev. Optional difference filter shows current and recommended numbers plus add/remove steps; filter/search/navigation/focus verified. Seven checks,18 local+18 production locale/viewport cases, PC/mobile edit/reload/level-refresh passed; Claude relay2 PASS.302 pending paths preserved. Canonical /assets/asbc-CcoBrknK.js. See tasks/asbc-specialization-differences-20261029.md.
+
+## 2026-10-30: unified scrollable build
+Remove build subpage switching and repeated skill/daevanion views; one setup and one editable plan, preserving old section links and saved data. See tasks/asbc-build-scroll-20261030.md.

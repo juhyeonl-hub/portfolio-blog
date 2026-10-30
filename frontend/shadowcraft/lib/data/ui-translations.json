@@ -27128,5 +27128,105 @@
     "es": "Para seguir la recomendación: desmarca {0}",
     "pt-BR": "Para seguir a recomendação: desmarque {0}",
     "ru": "Чтобы следовать рекомендации: снимите {0}"
+  },
+  "내 빌드": {
+    "en": "My build",
+    "ja": "マイビルド",
+    "fi": "Oma kokoonpano",
+    "fr": "Mon build",
+    "de": "Mein Build",
+    "es": "Mi build",
+    "pt-BR": "Minha build",
+    "ru": "Мой билд"
+  },
+  "위에서 포인트를 정하고, 아래에서 스킬과 데바니온을 바로 수정하세요.": {
+    "en": "Set your points here, then edit skills and Daevanion below.",
+    "ja": "ここでポイントを設定し、下でスキルとデバニオンを直接編集できます。",
+    "fi": "Määritä pisteet tässä ja muokkaa taitoja sekä Daevanionia alempana.",
+    "fr": "Définissez vos points ici, puis modifiez les compétences et le Daevanion ci-dessous.",
+    "de": "Lege hier deine Punkte fest und bearbeite darunter Fertigkeiten und Daevanion.",
+    "es": "Configura aquí tus puntos y edita las habilidades y el Daevanion más abajo.",
+    "pt-BR": "Defina seus pontos aqui e edite as habilidades e o Daevanion abaixo.",
+    "ru": "Укажите очки здесь, а затем настройте навыки и Даэванион ниже."
+  },
+  "추천 포인트: 스킬 {0} · 스티그마 {1} · 데바니온 {2}": {
+    "en": "Suggested points: Skills {0} · Stigma {1} · Daevanion {2}",
+    "ja": "推奨ポイント：スキル {0} · スティグマ {1} · デバニオン {2}",
+    "fi": "Ehdotetut pisteet: Taidot {0} · Stigma {1} · Daevanion {2}",
+    "fr": "Points suggérés : compétences {0} · Stigma {1} · Daevanion {2}",
+    "de": "Vorgeschlagene Punkte: Fertigkeiten {0} · Stigma {1} · Daevanion {2}",
+    "es": "Puntos sugeridos: habilidades {0} · Estigma {1} · Daevanion {2}",
+    "pt-BR": "Pontos sugeridos: habilidades {0} · Estigma {1} · Daevanion {2}",
+    "ru": "Предлагаемые очки: навыки {0} · стигмы {1} · Даэванион {2}"
+  },
+  "추천을 적용하면 아래 스킬·특화·데바니온 계획이 바뀝니다. 직접 수정한 내용도 바뀌며 되돌릴 수 있습니다.": {
+    "en": "Applying the suggestion replaces the skill, specialization and Daevanion plan below, including manual edits. You can undo it.",
+    "ja": "おすすめを適用すると、下のスキル・特化・デバニオン計画が置き換わります。手動の編集内容も変わりますが、元に戻せます。",
+    "fi": "Ehdotuksen käyttäminen korvaa alla olevan taito-, erikoistumis- ja Daevanion-suunnitelman sekä käsin tehdyt muutokset. Voit perua toiminnon.",
+    "fr": "Appliquer la suggestion remplace le plan de compétences, spécialisations et Daevanion ci-dessous, y compris vos modifications manuelles. Vous pouvez annuler cette action.",
+    "de": "Der Vorschlag ersetzt den folgenden Plan für Fertigkeiten, Spezialisierungen und Daevanion, einschließlich manueller Änderungen. Du kannst dies rückgängig machen.",
+    "es": "Aplicar la sugerencia reemplaza el plan de habilidades, especializaciones y Daevanion de abajo, incluidos los cambios manuales. Puedes deshacerlo.",
+    "pt-BR": "Aplicar a sugestão substitui o plano de habilidades, especializações e Daevanion abaixo, incluindo alterações manuais. Você pode desfazer a ação.",
+    "ru": "Применение рекомендации заменит план навыков, специализаций и Даэваниона ниже, включая ручные изменения. Действие можно отменить."
+  },
+  "다른 추천 방식": {
+    "en": "Other suggestions",
+    "ja": "その他のおすすめ",
+    "fi": "Muut ehdotukset",
+    "fr": "Autres suggestions",
+    "de": "Weitere Vorschläge",
+    "es": "Otras sugerencias",
+    "pt-BR": "Outras sugestões",
+    "ru": "Другие рекомендации"
+  },
+  "{0} 추천 적용": {
+    "en": "Apply {0} suggestion",
+    "ja": "{0}のおすすめを適用",
+    "fi": "Käytä ehdotusta: {0}",
+    "fr": "Appliquer la suggestion : {0}",
+    "de": "Vorschlag anwenden: {0}",
+    "es": "Aplicar sugerencia: {0}",
+    "pt-BR": "Aplicar sugestão: {0}",
+    "ru": "Применить рекомендацию: {0}"
+  },
+  "이 페이지 위쪽에서 3차 승급 완료 여부를 확인하세요.": {
+    "en": "Confirm completion of the third ascension at the top of this page.",
+    "ja": "このページの上部で3次転職の完了を確認してください。",
+    "fi": "Vahvista kolmannen ylenemisen suorittaminen tämän sivun yläosassa.",
+    "fr": "Confirmez la troisième ascension en haut de cette page.",
+    "de": "Bestätige oben auf dieser Seite den Abschluss des dritten Aufstiegs.",
+    "es": "Confirma la tercera ascensión al principio de esta página.",
+    "pt-BR": "Confirme a conclusão da terceira ascensão no início desta página.",
+    "ru": "Подтвердите завершение третьего возвышения вверху этой страницы."
+  },
+  "현재 캐릭터 배치에서 계획으로 이어지는 후보입니다.": {
+    "en": "These are possible next connections from your fetched character layout toward this plan.",
+    "ja": "取得したキャラクターの配置から、この計画へつながる次の候補です。",
+    "fi": "Nämä ovat mahdollisia seuraavia yhteyksiä haetusta hahmon asettelusta kohti tätä suunnitelmaa.",
+    "fr": "Voici les prochaines connexions possibles entre la disposition récupérée du personnage et ce plan.",
+    "de": "Dies sind mögliche nächste Verbindungen von der abgerufenen Charakterbelegung zu diesem Plan.",
+    "es": "Estas son posibles conexiones desde la distribución consultada del personaje hacia este plan.",
+    "pt-BR": "Estas são possíveis conexões a partir da distribuição consultada do personagem até este plano.",
+    "ru": "Это возможные следующие соединения от полученной схемы персонажа к этому плану."
+  },
+  "장비 보너스로 최종 레벨이 바뀌면 해당 스킬의 추천 특화를 갱신합니다. 전체 배분은 페이지 위쪽의 추천 배분 적용으로 바꿀 수 있습니다.": {
+    "en": "When equipment bonuses change a skill’s final level, its suggested specializations update. To replace the full allocation, use Apply suggested allocation at the top of this page.",
+    "ja": "装備ボーナスで最終レベルが変わると、そのスキルのおすすめ特化が更新されます。全体の配分はページ上部の推奨配分の適用で変更できます。",
+    "fi": "Kun varustebonus muuttaa taidon lopullista tasoa, sen ehdotetut erikoistumiset päivittyvät. Koko jaon voi korvata sivun yläosan ehdotuspainikkeella.",
+    "fr": "Si les bonus d’équipement modifient le niveau final d’une compétence, ses spécialisations suggérées sont actualisées. Pour remplacer toute la répartition, utilisez le bouton d’application en haut de cette page.",
+    "de": "Ändern Ausrüstungsboni die Endstufe einer Fertigkeit, werden ihre vorgeschlagenen Spezialisierungen aktualisiert. Die gesamte Verteilung kannst du oben auf dieser Seite durch den Vorschlag ersetzen.",
+    "es": "Si las bonificaciones de equipo cambian el nivel final de una habilidad, se actualizan sus especializaciones sugeridas. Para reemplazar toda la distribución, aplica la sugerencia al principio de esta página.",
+    "pt-BR": "Quando bônus de equipamento alteram o nível final de uma habilidade, suas especializações sugeridas são atualizadas. Para substituir toda a distribuição, aplique a sugestão no início desta página.",
+    "ru": "Если бонусы снаряжения меняют итоговый уровень навыка, его рекомендуемые специализации обновляются. Для замены всего распределения примените рекомендацию вверху этой страницы."
+  },
+  "현재 편집 중인 계획입니다. 주황 테두리는 조회된 실제 레벨보다 높은 목표입니다.": {
+    "en": "This is your editable plan. Orange borders mark targets above the fetched character levels.",
+    "ja": "編集できる計画です。オレンジの枠は、取得した実際のレベルより高い目標を示します。",
+    "fi": "Tämä on muokattava suunnitelmasi. Oranssi reunus merkitsee haettua hahmotasoa korkeampaa tavoitetta.",
+    "fr": "Voici votre plan modifiable. Les bordures orange indiquent des objectifs supérieurs aux niveaux récupérés du personnage.",
+    "de": "Dies ist dein bearbeitbarer Plan. Orange Ränder markieren Ziele über den abgerufenen Stufen deines Charakters.",
+    "es": "Este es tu plan editable. Los bordes naranjas indican objetivos superiores a los niveles consultados del personaje.",
+    "pt-BR": "Este é seu plano editável. Bordas laranja indicam metas acima dos níveis consultados do personagem.",
+    "ru": "Это ваш редактируемый план. Оранжевая рамка отмечает цели выше полученных уровней персонажа."
   }
 }
