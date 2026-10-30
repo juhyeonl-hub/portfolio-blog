@@ -11,7 +11,7 @@ function check(key,input,run){
  const before=JSON.stringify(input),start=performance.now(),output=run(),ms=performance.now()-start;
  assert.equal(JSON.stringify(input),before,key+' input unchanged');
  actual[key]=createHash('sha256').update(JSON.stringify(output)).digest('hex');
- assert.equal(actual[key],expected.outputs[key],key+' matches pre-optimization output');
+ assert.equal(actual[key],expected.outputs[key],key+' matches approved output baseline');
  measurements.push({key,ms:Math.round(ms*10)/10});return output;
 }
 for(const profile of classes.CLASSES){

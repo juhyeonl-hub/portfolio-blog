@@ -27228,5 +27228,55 @@
     "es": "Este es tu plan editable. Los bordes naranjas indican objetivos superiores a los niveles consultados del personaje.",
     "pt-BR": "Este é seu plano editável. Bordas laranja indicam metas acima dos níveis consultados do personagem.",
     "ru": "Это ваш редактируемый план. Оранжевая рамка отмечает цели выше полученных уровней персонажа."
+  },
+  "45레벨은 3차 승급·봉인던전·주둔지·서브 퀘스트 등 기본 내실을 완료한 상태를 기준으로 계획합니다.": {
+    "en": "At level 45, plans assume basic progression is complete, including third ascension, sealed dungeons, garrisons and side quests.",
+    "ja": "レベル45では、3次昇級・封印ダンジョン・駐屯地・サブクエストなど、基本的な育成を完了した前提で計画します。",
+    "fi": "Tason 45 suunnitelmissa oletetaan peruskehityksen olevan valmis: kolmas luokkaylennys, sinetöidyt luolastot, varuskunnat ja sivutehtävät.",
+    "fr": "Au niveau 45, les plans supposent la progression de base terminée : troisième ascension, donjons scellés, garnisons et quêtes secondaires.",
+    "de": "Pläne für Stufe 45 setzen den Abschluss des grundlegenden Fortschritts voraus: dritter Aufstieg, versiegelte Dungeons, Garnisonen und Nebenquests.",
+    "es": "Los planes de nivel 45 suponen que has completado la progresión básica: tercer ascenso, mazmorras selladas, guarniciones y misiones secundarias.",
+    "pt-BR": "Os planos de nível 45 consideram a progressão básica concluída: terceira ascensão, masmorras seladas, guarnições e missões secundárias.",
+    "ru": "Планы для 45-го уровня предполагают завершение основного развития: третьего возвышения, запечатанных подземелий, гарнизонов и побочных заданий."
+  },
+  "실제 완료 여부를 조회한 값은 아닙니다. 총 포인트가 다르면 위의 총량을 수정하세요.": {
+    "en": "This is an assumption, not verified character progress. If your point totals differ, edit the totals above.",
+    "ja": "実際の達成状況を確認したものではありません。所持ポイントが異なる場合は、上の合計を変更してください。",
+    "fi": "Tämä on oletus, ei hahmon vahvistettu edistyminen. Jos pisteiden kokonaismääräsi eroaa, muokkaa yllä olevia kokonaismääriä.",
+    "fr": "Il s’agit d’une hypothèse, pas d’une progression vérifiée. Si vos totaux de points diffèrent, modifiez-les ci-dessus.",
+    "de": "Dies ist eine Annahme, kein überprüfter Charakterfortschritt. Falls deine Gesamtpunkte abweichen, passe die Werte oben an.",
+    "es": "Es una suposición, no un progreso verificado. Si tus puntos totales son distintos, cambia los totales de arriba.",
+    "pt-BR": "Isso é uma suposição, não um progresso verificado. Se seus pontos totais forem diferentes, ajuste os totais acima.",
+    "ru": "Это допущение, а не проверенные данные о прогрессе персонажа. Если общее число очков отличается, измените значения выше."
+  },
+  "레벨링은 최대 44레벨, PvE는 45레벨 목표로 전환합니다. 레벨이 바뀌면 포인트는 해당 레벨의 기본값으로 바뀝니다.": {
+    "en": "Leveling sets the target to level 44 or below; PvE sets it to 45. Changing the level resets points to that level’s defaults.",
+    "ja": "レベリングは目標を最大44、PvEは45に切り替えます。レベルが変わると、ポイントはそのレベルの初期値に戻ります。",
+    "fi": "Tasonnosto asettaa tavoitteeksi enintään tason 44 ja PvE tason 45. Tason vaihto palauttaa pisteet kyseisen tason oletusarvoihin.",
+    "fr": "La montée en niveau fixe l’objectif à 44 maximum, et le PvE à 45. Changer de niveau réinitialise les points aux valeurs par défaut de ce niveau.",
+    "de": "Leveln setzt das Ziel auf höchstens Stufe 44, PvE auf Stufe 45. Ein Stufenwechsel setzt die Punkte auf die Standardwerte dieser Stufe zurück.",
+    "es": "Subir de nivel fija el objetivo en 44 como máximo; PvE lo fija en 45. Al cambiar de nivel, los puntos vuelven a los valores predeterminados de ese nivel.",
+    "pt-BR": "Evolução define a meta até o nível 44; PvE define 45. Ao mudar de nível, os pontos voltam aos valores padrão desse nível.",
+    "ru": "Прокачка задаёт цель не выше 44-го уровня, PvE — 45-й. При смене уровня очки сбрасываются до стандартных значений для этого уровня."
+  },
+  "플레이 목적을 변경했습니다.": {
+    "en": "Play goal changed.",
+    "ja": "プレイ目的を変更しました。",
+    "fi": "Pelitavoite vaihdettu.",
+    "fr": "Objectif de jeu modifié.",
+    "de": "Spielziel geändert.",
+    "es": "Objetivo de juego cambiado.",
+    "pt-BR": "Objetivo de jogo alterado.",
+    "ru": "Цель игры изменена."
+  },
+  "목적 변경 전으로 되돌리기": {
+    "en": "Undo goal change",
+    "ja": "目的の変更を元に戻す",
+    "fi": "Kumoa tavoitteen vaihto",
+    "fr": "Annuler le changement d’objectif",
+    "de": "Zieländerung rückgängig machen",
+    "es": "Deshacer cambio de objetivo",
+    "pt-BR": "Desfazer mudança de objetivo",
+    "ru": "Отменить смену цели"
   }
 }

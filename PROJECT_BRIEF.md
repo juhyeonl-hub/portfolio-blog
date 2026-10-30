@@ -1025,3 +1025,6 @@ Source 2630d03 / https://4b1da3ca.asbc-4c9.pages.dev. One setup, one skills/spec
 User requests point setup -> Daevanion -> skills/specializations -> save/share. Move the real section order and matching anchor links only. Continue the same Claude-coordinated scroll build task; no calculation or saved data changes.
 
 Daevanion-first follow-up complete: source 165adec, https://e2c19913.asbc-4c9.pages.dev. Actual section and shortcut order changed; PC/mobile local and canonical checks PASS, Claude readonly PASS.302 pending paths preserved. Canonical /assets/asbc-FK5IfJIT.js.
+
+### 2026-10-30: Purpose selection and progression basis
+User requested working Leveling selection and a completed-basic-progression explanation for45-level plans. Scope includes reversible purpose/target switching and a planning-only ascension assumption, not queried completion. No new point rewards or character changes. Claude coordination/review and PC/mobile verification recorded in tasks/asbc-purpose-completion-20261030.md.

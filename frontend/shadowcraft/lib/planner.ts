@@ -15,11 +15,13 @@ export const ORDER=['13350000','13130000','13010000','13100000','13060000','1307
 export const ROLES:Record<string,string>={'13350000':'주력 연속 공격','13130000':'문양 소모 · 핵심 피해','13010000':'정신력 회복 · 문폭 쿨 감소','13100000':'문양 보충','13060000':'후방 공격 · 수동','13070000':'뒤편으로 이동','13360000':'뒤편으로 이동','13050000':'반대편으로 이동','13220000':'대상에게 이동','13260000':'상태 이상 해제','13340000':'그로기 구간용','13210000':'보조 공격','13310000':'폭딜 버프','13390000':'전투 속도 버프','13300000':'버프 사용 후 쿨 감소','13080000':'타이밍을 맞추는 생존기','13270000':'문양 5중첩 생성'};
 export function skillCost(s:Skill,lv:number){return s.learning.filter(l=>l.level<=lv).reduce((n,l)=>n+(s.stigma?l.stigmaPoints:l.skillPoints),0)}
 export function ascensionGate(s:Skill){return (ascensionRules.requiredFromLevel as Record<string,number>)[s.id]}
+// Level 45 plans assume completed basic progression; this does not confirm the actual character.
+export function hasAscensionAccess(p:Pick<Plan,'level'|'ascensionGrade3Confirmed'>){return isEndgamePointLevel(p)||p.ascensionGrade3Confirmed===true}
 export function maxBase(s:Skill,lv:number,ascensionGrade3Confirmed=false){
- const gate=ascensionGate(s);const limit=gate&&!ascensionGrade3Confirmed?gate-1:Infinity;
+ const gate=ascensionGate(s);const limit=gate&&!hasAscensionAccess({level:lv,ascensionGrade3Confirmed})?gate-1:Infinity;
  return Math.max(0,...s.learning.filter(l=>l.requiredCharacterLevel<=lv&&l.level<=limit).map(l=>l.level));
 }
-export function unmetAscensionSkills(c:Catalog,p:Plan){return p.ascensionGrade3Confirmed?[]:c.skills.filter(s=>ascensionGate(s)&&(p.base[s.id]??(s.stigma?0:1))>=ascensionGate(s));}
+export function unmetAscensionSkills(c:Catalog,p:Plan){return hasAscensionAccess(p)?[]:c.skills.filter(s=>ascensionGate(s)&&(p.base[s.id]??(s.stigma?0:1))>=ascensionGate(s));}
 export function boardBonus(c:Catalog,p:Plan,id:string){
  // Most board nodes do not affect this skill; avoid allocating/scanning a selected-node list for them.
  let bonus=0;
@@ -51,7 +53,7 @@ export function updatePlan(c:Catalog,p:Plan,patch:Partial<Plan>):Plan {
  if(!patch.specs){next.specs={...p.specs};for(const s of c.skills)if(finalLevel(c,p,s)!==finalLevel(c,next,s)||p.mode!==next.mode)next.specs[s.id]=recommendSpecs(s,finalLevel(c,next,s),next.mode);}
  return next;
 }
-export function finalLevel(c:Catalog,p:Plan,s:Skill){if(ascensionGate(s)&&!p.ascensionGrade3Confirmed&&p.base[s.id]===0)return 0;return Math.min(s.maxLevel,(p.base[s.id]??(s.stigma?0:1))+equipmentBonus(p,s.id)+boardBonus(c,p,s.id))}
+export function finalLevel(c:Catalog,p:Plan,s:Skill){if(ascensionGate(s)&&!hasAscensionAccess(p)&&p.base[s.id]===0)return 0;return Math.min(s.maxLevel,(p.base[s.id]??(s.stigma?0:1))+equipmentBonus(p,s.id)+boardBonus(c,p,s.id))}
 export function slots(s:Skill,level:number){return s.specializationSlots.filter(x=>x.editable&&x.requiredSkillLevel<=level).length}
 // Korean labels of the recommendation modes; screens translate them.
 export const MODE_NAMES:Record<Plan['mode'],string>={safe:'안정형',damage:'공격형',pvp:'PvP형'};
@@ -63,7 +65,7 @@ export function hasCustomPointBudget(p:Plan):boolean {
 }
 // Global 2.0.7.0 level cap. Do not extend this reward bundle to future caps.
 export const ENDGAME_POINTS={level:45,regionalQuests:58,sealedDungeons:61,pointsPerDungeon:2} as const;
-export function isEndgamePointLevel(p:Plan){return p.level===ENDGAME_POINTS.level}
+export function isEndgamePointLevel(p:Pick<Plan,'level'>){return p.level===ENDGAME_POINTS.level}
 export function pointBudgetSourceLabel(p:Plan){return hasCustomPointBudget(p)?'총량: 직접 입력한 값':isEndgamePointLevel(p)?'총량: 45레벨 콘텐츠 완료 기준':'총량: 레벨별 최소 기준'}
 export function pointLimits(c:Catalog,p:Plan):PointBudget {
  const level=c.characterLevels.filter(l=>Number.isFinite(l.level)&&l.level<=p.level).sort((a,b)=>b.level-a.level)[0]||{skillPoints:0,stigmaPoints:0,daevanionPoints:[]};

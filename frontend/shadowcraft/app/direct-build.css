@@ -24,3 +24,4 @@
 .direct-build .growth-purpose .button:disabled{opacity:.45;cursor:not-allowed}
 .direct-build .growth-purpose-note{line-height:1.6;color:#c9e5ef;font-size:13px}
 @media(max-width:520px){.direct-build .growth-purpose{align-items:stretch}.direct-build .growth-purpose>span{flex-basis:100%}.direct-build .growth-purpose .button{flex:1 1 85px;padding:10px 6px;font-size:12px;white-space:normal;min-height:44px}}
+.direct-build .completion-basis{border-left:3px solid #79cced;padding:10px 12px;background:#111b25;line-height:1.65;font-size:13px}.completion-basis small{color:var(--muted)}

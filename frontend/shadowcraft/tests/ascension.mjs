@@ -8,13 +8,21 @@ assert.deepEqual(rules.requiredFromLevel,expected);
 assert.equal(Object.keys(expected).length,104);
 for(const profile of classes.CLASSES){
  const c=JSON.parse(readFileSync(`lib/data/catalogs/${profile.key}.json`));
- const p={...planner.emptyPlan(c),pointBudget:{sp:9999,stigma:9999,crystal:0,battle:0}};
+ const p={...planner.emptyPlan(c),level:44,pointBudget:{sp:9999,stigma:9999,crystal:0,battle:0}};
  const gated=c.skills.filter(s=>expected[s.id]);assert.equal(gated.length,13);
  for(const s of gated){
-  assert.equal(planner.maxBase(s,45),0,'first-level condition must gate every later level');
+  assert.equal(planner.maxBase(s,44),0,'first-level condition must gate every later level');
   assert.equal(planner.maxBase(s,45,true),Math.max(...s.learning.map(r=>r.level)));
   assert.equal(planner.finalLevel(c,{...p,base:{...p.base,[s.id]:0},bonus:{[s.id]:30}},s),0,'equipment cannot bypass acquisition');
  }
+ const assumed={...p,level:45,ascensionGrade3Confirmed:false};
+ const assumedBefore=JSON.stringify(assumed),complete=recommendBuild(c,assumed),confirmed=recommendBuild(c,{...assumed,ascensionGrade3Confirmed:true});
+ assert.equal(JSON.stringify(assumed),assumedBefore);
+ assert.equal(complete.ascensionGrade3Confirmed,false,'assumption must never be stored as actual verification');
+ for(const key of ['base','specs','nodes'])assert.deepEqual(complete[key],confirmed[key],key+' matches the existing completed-ascension rule');
+ assert(planner.totals(c,complete).stigma>0,'45 recommendation must actually spend eligible stigma points');
+ assert.deepEqual(planner.unmetAscensionSkills(c,complete),[]);
+ for(const s of gated){assert.equal(planner.maxBase(s,45),planner.maxBase(s,45,true));assert.equal(planner.maxBase(s,46),0,'do not extend the assumption to unknown future caps');}
  const before=JSON.stringify(p),locked=recommendBuild(c,p),open=recommendBuild(c,{...p,ascensionGrade3Confirmed:true});
  assert.equal(JSON.stringify(p),before);
  for(const s of gated)assert.equal(locked.base[s.id],0);
