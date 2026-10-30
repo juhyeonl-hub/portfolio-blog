@@ -44,9 +44,9 @@ export default function QuickBuild({catalog,plan,onApply,onChange,onPurposeChang
   {isEndgamePointLevel(plan)&&<p id="leveling-availability" className="leveling-availability">{t('현재 목표가 만렙(45레벨)이므로 레벨링은 기본 선택이 아닙니다. 그래도 보고 싶다면 레벨링을 눌러 확인하세요.')}</p>}
   {purposeRequest&&<dialog ref={purposeDialog} className="leveling-confirm-dialog" aria-labelledby="leveling-confirm-title" aria-describedby="leveling-confirm-effect" onCancel={e=>{e.preventDefault();setPurposeRequest(null)}} onClose={()=>setPurposeRequest(null)} onClick={e=>{if(e.target===e.currentTarget)setPurposeRequest(null)}}>
    <h2 id="leveling-confirm-title">{t('레벨링 빌드를 볼까요?')}</h2>
-   <p id="leveling-confirm-effect">{t('예를 선택하면 목표를 44레벨로 바꾸고 포인트를 해당 레벨의 기본값으로 맞춥니다.')}</p>
+   <p id="leveling-confirm-effect">{t('레벨링 빌드를 보면 목표 레벨은 44로, 포인트는 해당 레벨의 기본값으로 바뀝니다.')}</p>
    <p>{t('현재 스킬·특화·데바니온 배분은 유지합니다. 전환 후에는 이전 설정으로 되돌릴 수 있습니다.')}</p>
-   <div className="leveling-confirm-actions"><button autoFocus type="button" className="button secondary" onClick={()=>setPurposeRequest(null)}>{t('아니오, 현재 빌드 유지')}</button><button type="button" className="button primary" onClick={()=>{const current=purposeRequest.plan===plan&&purposeRequest.catalog===catalog;setPurposeRequest(null);if(current)onPurposeChange('leveling')}}>{t('예, 레벨링 보기')}</button></div>
+   <div className="leveling-confirm-actions"><button autoFocus type="button" className="button secondary" onClick={()=>setPurposeRequest(null)}>{t('현재 빌드 유지')}</button><button type="button" className="button primary" onClick={()=>{const current=purposeRequest.plan===plan&&purposeRequest.catalog===catalog;setPurposeRequest(null);if(current)onPurposeChange('leveling')}}>{t('레벨링 보기')}</button></div>
   </dialog>}
   <p className="growth-purpose-note" role="status"><b>{t('계산할 목표: Lv.{0}',[plan.level])}</b><br/>{t(purpose==='leveling'?'레벨링: 현재 레벨에서 열리는 스킬과 데바니온으로 공격 위주 배분을 안내합니다.':purpose==='pve'?'PvE: 45레벨 원정을 위한 직업별 보스·파티 가이드에 생존을 고려해 배분합니다.':'PvP: 유저와의 전투용 능력치와 데바니온을 우선합니다. 스킬은 기존 직업 가이드를 참고합니다.')}</p>
   <p className="subtle">{t('레벨링은 최대 44레벨, PvE는 45레벨 목표로 전환합니다. 레벨이 바뀌면 포인트는 해당 레벨의 기본값으로 바뀝니다.')} {t('현재 포인트 안에서 계산한 참고 배분이며, 콘텐츠별 최적 세팅을 검증한 결과는 아닙니다.')}</p>

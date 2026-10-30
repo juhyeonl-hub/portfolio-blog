@@ -1035,3 +1035,5 @@ Leveling/completion follow-up complete: source ca309b4, https://a22af109.asbc-4c
 Follow-up to purpose selection: show why leveling is not the default at45, then require Yes/No confirmation before changing target/budgets. No/escape/backdrop preserve the plan. Same prior Claude allocation: Codex implements/verifies, Claude final readonly review.
 
 Max-level confirmation complete: source 81e824b, https://f387c7e0.asbc-4c9.pages.dev, canonical /assets/asbc-BXWmqFMZ.js. Visible reason + native Yes/No; no switch until Yes, cancel keeps plan, existing undo retained. Six focused checks,8language local PC/mobile and production verification, Claude PASS.302 unrelated pending preserved.
+
+2026-10-30 follow-up: natural leveling confirmation copy. Replace literal Yes/No references with action labels; preserve modal, target/budget effects and undo. Same existing Claude purpose-selection allocation.

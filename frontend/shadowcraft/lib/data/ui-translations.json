@@ -27338,5 +27338,35 @@
     "es": "Sí, ver subida de nivel",
     "pt-BR": "Sim, ver subida de nível",
     "ru": "Да, показать прокачку"
+  },
+  "레벨링 빌드를 보면 목표 레벨은 44로, 포인트는 해당 레벨의 기본값으로 바뀝니다.": {
+    "en": "Opening a leveling build changes the target level to 44 and resets point totals to the defaults for that level.",
+    "ja": "レベリング用のビルドを開くと、目標レベルが44に変わり、ポイント合計がそのレベルの既定値になります。",
+    "fi": "Kun avaat tasonnostoon tarkoitetun koonnin, tavoitetaso vaihtuu tasolle 44 ja pisteiden kokonaismäärät palautuvat sen tason oletusarvoihin.",
+    "fr": "Ouvrir un build de progression passe l’objectif au niveau 44 et rétablit les totaux de points par défaut pour ce niveau.",
+    "de": "Wenn du einen Build zum Leveln öffnest, wird das Ziel auf Stufe 44 geändert und die Gesamtpunktzahl auf die Standardwerte dieser Stufe zurückgesetzt.",
+    "es": "Al abrir una configuración para subir de nivel, el objetivo pasa al nivel 44 y los puntos totales vuelven a los valores predeterminados de ese nivel.",
+    "pt-BR": "Ao abrir uma build para subir de nível, o objetivo muda para o nível 44 e os totais de pontos voltam aos valores padrão desse nível.",
+    "ru": "При открытии сборки для прокачки целевой уровень изменится на 44, а общее количество очков — на стандартное для этого уровня."
+  },
+  "현재 빌드 유지": {
+    "en": "Keep current build",
+    "ja": "現在のビルドを維持",
+    "fi": "Säilytä nykyinen koonti",
+    "fr": "Garder le build actuel",
+    "de": "Aktuellen Build behalten",
+    "es": "Mantener configuración actual",
+    "pt-BR": "Manter build atual",
+    "ru": "Оставить текущую сборку"
+  },
+  "레벨링 보기": {
+    "en": "View leveling build",
+    "ja": "レベリングを表示",
+    "fi": "Näytä tasonnoston koonti",
+    "fr": "Voir le build de progression",
+    "de": "Build zum Leveln ansehen",
+    "es": "Ver configuración para subir de nivel",
+    "pt-BR": "Ver build para subir de nível",
+    "ru": "Показать сборку для прокачки"
   }
 }
