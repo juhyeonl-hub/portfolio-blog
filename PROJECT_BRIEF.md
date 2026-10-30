@@ -1017,3 +1017,6 @@ Source e02ad16 / https://31d2b2b9.asbc-4c9.pages.dev. Optional difference filter
 
 ## 2026-10-30: unified scrollable build
 Remove build subpage switching and repeated skill/daevanion views; one setup and one editable plan, preserving old section links and saved data. See tasks/asbc-build-scroll-20261030.md.
+
+### Single scroll build complete — 2026-10-30
+Source 2630d03 / https://4b1da3ca.asbc-4c9.pages.dev. One setup, one skills/specialization editor, one Daevanion board editor; optional heavy tools unfold inline, save/share below. Legacy hashes and back/forward preserved. Existing45script suite plus focused tests/typecheck/build/SEO and18 local+18 production locale/viewport cases passed; Claude final PASS.302 pending paths preserved. Canonical /assets/asbc-D_5Ms9Oz.js. See tasks/asbc-build-scroll-20261030.md.

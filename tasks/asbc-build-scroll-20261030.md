@@ -1,6 +1,6 @@
 # Build scroll consolidation
 Owner: Codex, Claude coordination/review.
-Status: VERIFIED FOR RELEASE.
+Status: COMPLETE.
 [Task Goal]: Replace confusing build subpage tabs and duplicate skill/daevanion presentations with one scrollable plan.
 Scope: Workshop composition/navigation, unified setup presentation, scoped layout/copy translations, relevant UI/regression tests. Preserve recommendation algorithms, game data, saved plans/account sync, and unrelated primary changes.
 Done when: one visible skill editor and one daevanion editor; level/point setup visible once; existing section links reach sections; manual edits/reload/save work on PC/mobile; reviewed scoped release under standing authorization.
@@ -11,8 +11,8 @@ Verification: existing45script suite, focused specializations, new lazy disclosu
 Last verified: GreenOrc saved snapshot, PC1440/mobile390 editing, point input no implicit apply, apply/undo, save/reload/share/apply, six legacy URLs/back-forward, lazy compare, assassin boss section;18 locale/width cases.
 Last reviewed: Claude final readonly review PASS.
 Findings: QuickBuild, PointBudgetPanel, plan editor and context each repeat settings/recommendations.
-Uncommitted: scoped work only; primary 302 pending paths preserved.
-Next: scoped release and production verification.
+Uncommitted: no task source changes; primary302 pending paths preserved.
+Next: none required.
 Blocker: none.
 
 Coordination Claude PASS (run1793358139946). Primary purpose recommendation is already authorized by user's explicit earlier request to use leveling/PvE/PvP instead of hunting/survival labels. Preserved the existing safe/damage engine as optional explicit actions; no new approval needed. Codex owns implementation/UI, final readonly review before release.
@@ -21,3 +21,8 @@ Implementation: one setup and one skills/specializations editor plus one board e
 QA observations: existing node/level edits refresh recommended specializations via unchanged updatePlan behavior; navigation and point budget changes preserve manual choices. Shared over-budget plan reports the actual excess. Incomplete source board counts suppress next connections (reuses characterPoints). No browser console errors. File chooser operation took352s but completed correctly; no user intervention or security changes. Mobile testing is browser viewport simulation, not physical handset.
 
 Claude readonly acceptance: PASS, relay2 finished 2026-10-30T11:36:08.386Z, status0/errornull/scope[]. Reviewed supplied code and evidence; did not independently run browser/tests.
+
+Production: https://4b1da3ca.asbc-4c9.pages.dev, reviewed source 2630d03338bdbd402ebc6a41a97243cfd5ab125b, canonical https://asbc.app serves /assets/asbc-D_5Ms9Oz.js. PC/mobile editing, navigation, apply/undo, save/reload and18 locale/viewport cases passed after deployment. Production isolated alias used UI-generated GreenOrc plan share (character data excluded); canonical page read-only. Local saved full GreenOrc snapshot tested separately; no new character API accuracy claim.
+Release: scoped11file source commit;302 pending primary paths/statuses preserved.300 unrelated files byte-identical; PROJECT_BRIEF appended and80 UI fields merged with reverse proof. No catalog, calculation algorithm, authentication, storage or backend changes.
+Cleanup: owned normal QA tabs closed, viewport reset, preview stopped, screenshots/helpers adopted into D/ASBC with SHA256 checks. Canonical account and existing Chrome tabs untouched.
+Limits: mobile browser viewport simulation, not physical handset. Existing recommendations retained, not a new best-build claim. Reviewer read code and supplied evidence without independently running UI/tests. Documentation-only completion commit does not change deployable assets.
