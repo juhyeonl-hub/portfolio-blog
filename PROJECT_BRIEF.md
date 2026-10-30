@@ -1037,3 +1037,5 @@ Follow-up to purpose selection: show why leveling is not the default at45, then 
 Max-level confirmation complete: source 81e824b, https://f387c7e0.asbc-4c9.pages.dev, canonical /assets/asbc-BXWmqFMZ.js. Visible reason + native Yes/No; no switch until Yes, cancel keeps plan, existing undo retained. Six focused checks,8language local PC/mobile and production verification, Claude PASS.302 unrelated pending preserved.
 
 2026-10-30 follow-up: natural leveling confirmation copy. Replace literal Yes/No references with action labels; preserve modal, target/budget effects and undo. Same existing Claude purpose-selection allocation.
+
+Natural leveling copy complete: source c1e7c38, https://2b6f98fa.asbc-4c9.pages.dev, /assets/asbc-lvf4uQ6h.js. Three strings plus8translations only; behavior retained. Typecheck/localization/build, PC/mobile checks, Claude PASS.302 pending preserved.
