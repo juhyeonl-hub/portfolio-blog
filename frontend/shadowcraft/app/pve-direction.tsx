@@ -1,6 +1,6 @@
 import {classProfile,type PvePreset} from '@/lib/classes';
 import type {Catalog,Plan} from '@/lib/planner';
-import {pveText} from '@/lib/pve-direction-text';
+import {pveText,pveActivityGuides} from '@/lib/pve-direction-text';
 import {useLocale} from './locale';
 import './pve-direction.css';
 const choices:readonly PvePreset[]=['group','single','farm'];
@@ -16,7 +16,8 @@ export default function PveDirection({plan,onChange}:{plan:Plan;onChange:(patch:
 export function PveActivityGuide({catalog,plan}:{catalog:Catalog;plan:Plan}){
  const {locale,skill}=useLocale(),profile=classProfile(plan.classKey);
  if(plan.level<45||plan.mode==='pvp'||!profile.pvePresets||!plan.pvePreset||plan.pvePreset==='group')return null;
- const key=profile.key==='templar'?(plan.pvePreset==='farm'?'templarFarm':'templarSingle'):(plan.pvePreset==='farm'?'rangerFarm':'rangerSingle');
- const ids=key==='templarFarm'?['12040000','12350000']:key==='templarSingle'?['12240000','12090000']:key==='rangerFarm'?['14170000','14020000']:['14090000','14010000'];
+ const guide=pveActivityGuides[profile.key]?.[plan.pvePreset];
+ if(!guide)return null;
+ const {key,ids}=guide;
  return <section className="pve-activity-guide panel"><h3>{pveText(locale,'guide')} · {pveText(locale,plan.pvePreset)}</h3><p>{pveText(locale,key,ids.map(id=>skill(catalog.skills.find(s=>s.id===id)?.name||id)))}</p><p className="subtle">{pveText(locale,'shared')}</p></section>;
 }

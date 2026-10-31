@@ -78,7 +78,7 @@ export function pointLimits(c:Catalog,p:Plan):PointBudget {
  return Object.fromEntries((['sp','stigma','crystal','battle','ariel'] as const).map(k=>[k,cleanPoints(p.pointBudget?.[k]??fallback[k])])) as PointBudget;
 }
 export function totals(c:Catalog,p:Plan){const cap=pointLimits(c,p);const cost=(currency:string)=>c.boards.filter(b=>b.pointKind.code===currency).flatMap(b=>b.nodes).filter(n=>p.nodes.includes(n.id)).reduce((sum,n)=>sum+n.pointCost,0);return {sp:c.skills.filter(s=>!s.stigma).reduce((a,s)=>a+skillCost(s,p.base[s.id]??1),0),spMax:cap.sp,stigma:c.skills.filter(s=>s.stigma&&equipped(p).includes(s.id)).reduce((a,s)=>a+skillCost(s,p.base[s.id]??0),0),stigmaMax:cap.stigma,crystal:cost('daevanioncrystal'),crystalMax:cap.crystal,battle:cost('battlecrystal'),battleMax:cap.battle,ariel:cost('conquestcrystal'),arielMax:cap.ariel??0}}
-export function recommendSpecs(s:Skill,lv:number,mode:string,profile?:ClassProfile){const n=slots(s,lv);let order:number[]=[];if(s.id==='13350000')order=lv>=16?[4,3,mode==='safe'?0:2]:[3,mode==='safe'?0:2,1];else if(s.id==='13130000')order=[lv>=16?4:2,2,1];else if(s.id==='13010000')order=[4,3,2,0];else if(s.id==='13100000')order=[1,3,2];else if(s.id==='13060000')order=[4,0,1];else if(s.id==='13070000')order=[1];else if(s.id==='13360000')order=[0,1];else if(s.id==='13050000')order=[1,3];else if(s.id==='13260000')order=[4,2,3];else if(s.id==='13340000')order=[4,3,1];else order=profile?.specPriority[s.id]||CLASSES.map(p=>p.specPriority[s.id]).find(Boolean)||[0,1,2,3,4];return [...new Set(order)].map(i=>s.specializations[i]).filter(x=>x&&x.requiredParentLevel<=lv).slice(0,n).map(x=>x.id)}
+export function recommendSpecs(s:Skill,lv:number,mode:string,profile?:ClassProfile){const n=slots(s,lv);let order:number[]=[];if(profile?.specPriority[s.id])order=profile.specPriority[s.id];else if(s.id==='13350000')order=lv>=16?[4,3,mode==='safe'?0:2]:[3,mode==='safe'?0:2,1];else if(s.id==='13130000')order=[lv>=16?4:2,2,1];else if(s.id==='13010000')order=[4,3,2,0];else if(s.id==='13100000')order=[1,3,2];else if(s.id==='13060000')order=[4,0,1];else if(s.id==='13070000')order=[1];else if(s.id==='13360000')order=[0,1];else if(s.id==='13050000')order=[1,3];else if(s.id==='13260000')order=[4,2,3];else if(s.id==='13340000')order=[4,3,1];else order=profile?.specPriority[s.id]||CLASSES.map(p=>p.specPriority[s.id]).find(Boolean)||[0,1,2,3,4];return [...new Set(order)].map(i=>s.specializations[i]).filter(x=>x&&x.requiredParentLevel<=lv).slice(0,n).map(x=>x.id)}
 // A transparent priority recommendation, not a combat/DPS simulation.
 export function applyRecommended(c:Catalog,p:Plan){
  const next={...p,base:{...p.base},specs:{...p.specs}};
@@ -93,7 +93,7 @@ export function applyRecommended(c:Catalog,p:Plan){
    next.base[id]=lv;if(s.stigma)stigma+=cost;else sp+=cost;
   }
  }
- if(profile.key==='assassin'){
+ if(profile.key==='assassin'&&!profile.skillSteps){
   for(const id of profile.core)raise(id,8);
   for(const id of profile.core)raise(id,10);
   for(const id of ['13740000','13720000','13750000','13100000'])raise(id,8);
@@ -104,7 +104,7 @@ export function applyRecommended(c:Catalog,p:Plan){
  const rest=[...profile.passivePriority,...profile.activePriority,...c.skills.filter(s=>!s.stigma).map(s=>s.id)];
  for(const id of [...new Set(rest)])raise(id,10);
  for(const id of equipped(p))raise(id,1);
- if(profile.key==='assassin'){
+ if(profile.key==='assassin'&&!profile.stigmaSteps){
   if(p.mode==='safe')raise('13080000',5);
   for(const goal of [5,10,15,20])for(const id of equipped(p))raise(id,goal);
  }else for(const step of profile.stigmaSteps||[])raise(step.skill,step.level);
