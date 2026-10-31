@@ -104,7 +104,7 @@ public class ShadowcraftService {
         for (String field : List.of("skills","boards","characterLevels","version")) changed |= !previous.path(field).equals(fresh.path(field));
         ObjectNode next = fresh.deepCopy();
         next.put("baselineVersion", previous.path("baselineVersion").asText(previous.path("version").asText()));
-        next.put("reviewRequired", previous.path("reviewRequired").asBoolean() || changed);
+        next.put("reviewRequired", previous.path("reviewRequired").asBoolean() || fresh.path("reviewRequired").asBoolean() || changed);
         next.put("origin", "live"); next.put("checkedAt", Instant.now().toString());
         if (changed) next.put("changedAt", Instant.now().toString());
         else if (previous.has("changedAt")) next.set("changedAt", previous.get("changedAt"));

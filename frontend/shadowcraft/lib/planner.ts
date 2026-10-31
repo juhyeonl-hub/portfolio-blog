@@ -1,13 +1,13 @@
-import {CLASSES,classProfile} from './classes';
+import {CLASSES,classProfile,recommendationProfile,type ClassProfile,type PvePreset} from './classes';
 import ascensionRules from './data/ascension-rules.json';
 export type Skill = {id:string;name:string;iconPath:string;kind:string;stigma:boolean;maxLevel:number;learning:any[];specializationSlots:any[];specializations:any[]};
 export type Node = {id:string;row:number;column:number;kind:string;name:string;grade?:string;iconPath:string;autoLearn:boolean;requiredLevel:number;pointCost:number;skill?:{id:string;name:string;iconPath:string};skillLevels?:number;stat?:{name:string;value:number;format:string};stats?:{name:string;value:number;format:string}[];};
 export type Board={id:string;name:string;requiredLevel:number;rows:number;columns:number;pointKind:{code:string;name:string};nodes:Node[]};
-export type Catalog={reviewRequired?:boolean;baselineVersion?:string;origin?:string;classKey?:string;className?:string;version:string|null;checkedAt:string;source:string;skills:Skill[];boards:Board[];characterLevels:any[]};
+export type Catalog={skillDataCheck?:{checkedAt:string;needsReview:boolean;renamed:number;changedRules:number;added:number;removed:number};reviewRequired?:boolean;baselineVersion?:string;origin?:string;classKey?:string;className?:string;version:string|null;checkedAt:string;source:string;skills:Skill[];boards:Board[];characterLevels:any[]};
 export type PointBudget={sp:number;stigma:number;crystal:number;battle:number;ariel?:number};
 export type GearItem={id:string;name:string;slot:string;owned:boolean;current:boolean;target:boolean;bonuses:Record<string,number>;note:string};
 export type Gear={mode:"manual"|"current"|"target";items:GearItem[]};
-export type Plan={stigmaSkills?:string[];confirmedRemainingContext?:{region:string;serverId:string;characterId:string;level:number};ascensionGrade3Confirmed?:boolean;searchPrefs?:{region:string;server:string;name:string};recentCharacters?:import('./plan-memory').RecentCharacter[];macroExtra?:boolean;gear?:Gear;classKey?:string;pointBudget?:PointBudget;confirmedRemaining?:Partial<PointBudget>;level:number;extraSP:number;extraStigma:number;extraCrystal:number;extraBattle:number;mode:'safe'|'damage'|'pvp';base:Record<string,number>;bonus:Record<string,number>;specs:Record<string,string[]>;nodes:string[];checked:string[];character:any|null;};
+export type Plan={pvePreset?:PvePreset;stigmaSkills?:string[];confirmedRemainingContext?:{region:string;serverId:string;characterId:string;level:number};ascensionGrade3Confirmed?:boolean;searchPrefs?:{region:string;server:string;name:string};recentCharacters?:import('./plan-memory').RecentCharacter[];macroExtra?:boolean;gear?:Gear;classKey?:string;pointBudget?:PointBudget;confirmedRemaining?:Partial<PointBudget>;level:number;extraSP:number;extraStigma:number;extraCrystal:number;extraBattle:number;mode:'safe'|'damage'|'pvp';base:Record<string,number>;bonus:Record<string,number>;specs:Record<string,string[]>;nodes:string[];checked:string[];character:any|null;};
 export const CORE=['13350000','13130000','13010000'];
 export const MOVEMENT=['13070000','13360000','13050000','13220000','13280000','13700000','13140000'];
 export const MANUAL=['13070000','13360000','13050000','13220000','13260000','13340000'];
@@ -50,14 +50,14 @@ export function updatePlan(c:Catalog,p:Plan,patch:Partial<Plan>):Plan {
   for(const key of ['extraSP','extraStigma','extraCrystal','extraBattle'] as const)if(patch[key]===undefined)next[key]=0;
  }
  // Recompute only when the effective level or recommendation mode changes.
- if(!patch.specs){next.specs={...p.specs};for(const s of c.skills)if(finalLevel(c,p,s)!==finalLevel(c,next,s)||p.mode!==next.mode)next.specs[s.id]=recommendSpecs(s,finalLevel(c,next,s),next.mode);}
+ if(!patch.specs){next.specs={...p.specs};for(const s of c.skills)if(finalLevel(c,p,s)!==finalLevel(c,next,s)||p.mode!==next.mode)next.specs[s.id]=recommendSpecs(s,finalLevel(c,next,s),next.mode,recommendationProfile(next.classKey,next));}
  return next;
 }
 export function finalLevel(c:Catalog,p:Plan,s:Skill){if(ascensionGate(s)&&!hasAscensionAccess(p)&&p.base[s.id]===0)return 0;return Math.min(s.maxLevel,(p.base[s.id]??(s.stigma?0:1))+equipmentBonus(p,s.id)+boardBonus(c,p,s.id))}
 export function slots(s:Skill,level:number){return s.specializationSlots.filter(x=>x.editable&&x.requiredSkillLevel<=level).length}
 // Korean labels of the recommendation modes; screens translate them.
 export const MODE_NAMES:Record<Plan['mode'],string>={safe:'안정형',damage:'공격형',pvp:'PvP형'};
-export function equipped(p:Plan){if(p.stigmaSkills)return p.stigmaSkills.slice(0,[22,27,32,37].filter(l=>p.level>=l).length);const profile=classProfile(p.classKey);return (p.mode==='safe'?profile.safeStigmas:profile.damageStigmas).slice(0,[22,27,32,37].filter(l=>p.level>=l).length)}
+export function equipped(p:Plan){if(p.stigmaSkills)return p.stigmaSkills.slice(0,[22,27,32,37].filter(l=>p.level>=l).length);const profile=recommendationProfile(p.classKey,p);return (p.mode==='safe'?profile.safeStigmas:profile.damageStigmas).slice(0,[22,27,32,37].filter(l=>p.level>=l).length)}
 const cleanPoints=(n:number)=>Number.isFinite(n)?Math.max(0,Math.min(9999,Math.floor(n))):0;
 // Legacy extras are user-entered additions to level rewards; preserve that meaning.
 export function hasCustomPointBudget(p:Plan):boolean {
@@ -78,12 +78,12 @@ export function pointLimits(c:Catalog,p:Plan):PointBudget {
  return Object.fromEntries((['sp','stigma','crystal','battle','ariel'] as const).map(k=>[k,cleanPoints(p.pointBudget?.[k]??fallback[k])])) as PointBudget;
 }
 export function totals(c:Catalog,p:Plan){const cap=pointLimits(c,p);const cost=(currency:string)=>c.boards.filter(b=>b.pointKind.code===currency).flatMap(b=>b.nodes).filter(n=>p.nodes.includes(n.id)).reduce((sum,n)=>sum+n.pointCost,0);return {sp:c.skills.filter(s=>!s.stigma).reduce((a,s)=>a+skillCost(s,p.base[s.id]??1),0),spMax:cap.sp,stigma:c.skills.filter(s=>s.stigma&&equipped(p).includes(s.id)).reduce((a,s)=>a+skillCost(s,p.base[s.id]??0),0),stigmaMax:cap.stigma,crystal:cost('daevanioncrystal'),crystalMax:cap.crystal,battle:cost('battlecrystal'),battleMax:cap.battle,ariel:cost('conquestcrystal'),arielMax:cap.ariel??0}}
-export function recommendSpecs(s:Skill,lv:number,mode:string){const n=slots(s,lv);let order:number[]=[];if(s.id==='13350000')order=lv>=16?[4,3,mode==='safe'?0:2]:[3,mode==='safe'?0:2,1];else if(s.id==='13130000')order=[lv>=16?4:2,2,1];else if(s.id==='13010000')order=[4,3,2,0];else if(s.id==='13100000')order=[1,3,2];else if(s.id==='13060000')order=[4,0,1];else if(s.id==='13070000')order=[1];else if(s.id==='13360000')order=[0,1];else if(s.id==='13050000')order=[1,3];else if(s.id==='13260000')order=[4,2,3];else if(s.id==='13340000')order=[4,3,1];else order=CLASSES.map(p=>p.specPriority[s.id]).find(Boolean)||[0,1,2,3,4];return [...new Set(order)].map(i=>s.specializations[i]).filter(x=>x&&x.requiredParentLevel<=lv).slice(0,n).map(x=>x.id)}
+export function recommendSpecs(s:Skill,lv:number,mode:string,profile?:ClassProfile){const n=slots(s,lv);let order:number[]=[];if(s.id==='13350000')order=lv>=16?[4,3,mode==='safe'?0:2]:[3,mode==='safe'?0:2,1];else if(s.id==='13130000')order=[lv>=16?4:2,2,1];else if(s.id==='13010000')order=[4,3,2,0];else if(s.id==='13100000')order=[1,3,2];else if(s.id==='13060000')order=[4,0,1];else if(s.id==='13070000')order=[1];else if(s.id==='13360000')order=[0,1];else if(s.id==='13050000')order=[1,3];else if(s.id==='13260000')order=[4,2,3];else if(s.id==='13340000')order=[4,3,1];else order=profile?.specPriority[s.id]||CLASSES.map(p=>p.specPriority[s.id]).find(Boolean)||[0,1,2,3,4];return [...new Set(order)].map(i=>s.specializations[i]).filter(x=>x&&x.requiredParentLevel<=lv).slice(0,n).map(x=>x.id)}
 // A transparent priority recommendation, not a combat/DPS simulation.
 export function applyRecommended(c:Catalog,p:Plan){
  const next={...p,base:{...p.base},specs:{...p.specs}};
  c.skills.forEach(s=>next.base[s.id]=s.stigma?0:(maxBase(s,p.level,p.ascensionGrade3Confirmed)>0?1:0));
- const profile=classProfile(c.classKey||p.classKey);const caps=pointLimits(c,p);let sp=0,stigma=0;
+ const profile=recommendationProfile(c.classKey||p.classKey,p);const caps=pointLimits(c,p);let sp=0,stigma=0;
  function raise(id:string,goal:number){
   const s=c.skills.find(s=>s.id===id);if(!s||s.stigma&&!equipped(p).includes(id))return;
   const max=Math.min(goal,maxBase(s,p.level,p.ascensionGrade3Confirmed),Math.max(0,s.maxLevel-equipmentBonus(p,id)-boardBonus(c,p,id)));
@@ -108,7 +108,7 @@ export function applyRecommended(c:Catalog,p:Plan){
   if(p.mode==='safe')raise('13080000',5);
   for(const goal of [5,10,15,20])for(const id of equipped(p))raise(id,goal);
  }else for(const step of profile.stigmaSteps||[])raise(step.skill,step.level);
- c.skills.forEach(s=>next.specs[s.id]=recommendSpecs(s,finalLevel(c,next,s),p.mode));
+ c.skills.forEach(s=>next.specs[s.id]=recommendSpecs(s,finalLevel(c,next,s),p.mode,profile));
  return next;
 }
 export function emptyPlan(c:Catalog):Plan{return applyRecommended(c,{classKey:c.classKey||'assassin',level:45,extraSP:0,extraStigma:0,extraCrystal:0,extraBattle:0,mode:'safe',base:{},bonus:{},specs:{},nodes:c.boards.flatMap(b=>b.nodes.filter(n=>n.autoLearn).map(n=>n.id)),checked:[],character:null})}

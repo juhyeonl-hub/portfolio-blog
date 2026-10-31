@@ -1,3 +1,5 @@
+import {useEntityNames,EntityName} from './entity-names';
+import {entityText} from '../lib/entity-text';
 import {ClientItemName} from './client-names';
 import {useLocale} from './locale';
 import {useEffect, useState} from 'react';
@@ -44,35 +46,37 @@ export default function JournalDatabase({active}: {active: boolean}) {
     }).catch(() => {if (live) setError(true);});
     return () => {live = false; controller.abort();};
   }, [active, open, data, retry]);
+  const names=useEntityNames(active&&open,data?.source.buildId);
   const rows = data?.[section] ?? [];
-  const matches = rows.filter(row => (!kind || row.kind === kind) && `${row.name ?? ''} ${row.id}`.toLowerCase().includes(query.trim().toLowerCase()));
+  const matches = rows.filter(row => (!kind || row.kind === kind) && names.matches(section,row.id,row.name??'',query));
   const quest = section === 'quests' ? data?.quests.find(q => q.id === selected) : undefined;
   const dungeon = section === 'dungeons' ? data?.dungeons.find(d => d.id === selected) : undefined;
   const pet = section === 'pets' ? data?.pets.find(p => p.id === selected) : undefined;
   const next = quest?.nextId ? data?.quests.find(q => q.id === quest.nextId) : undefined;
   return <section aria-label={t("공식 퀘스트·던전·펫 목록")}>
     <h3>{t("공식 퀘스트·던전·펫 목록")}</h3>
-    <p>{t("글로벌 클라이언트의 영문 이름·설명과 등록된 퀘스트 보상입니다. 테스트용·비활성 항목이 포함될 수 있으며 실제 서버의 지급 여부와 추가 조건은 확인되지 않았습니다.")}</p>
+    <p>{entityText(names.locale,'journal')}</p>
     <button className="button ghost" aria-expanded={open} onClick={() => setOpen(v => !v)}>{t(open ? '퀘스트·던전·펫 닫기' : '퀘스트·던전·펫 열기')}</button>
     {open && <>
       {!data && !error && <p role="status">{t("퀘스트·던전·펫을 불러오는 중…")}</p>}
       {error && <p role="alert">{t("퀘스트·던전·펫을 불러오지 못했습니다.")} <button className="button ghost" onClick={() => setRetry(v => v + 1)}>{t("퀘스트·던전·펫 다시 불러오기")}</button></p>}
       {data && <>
+        {names.missing&&<p role="status">{names.fallbackLabel}</p>}
         <p>{t('Steam 빌드 {0} · 퀘스트 {1}개 · 던전 {2}개 · 펫 {3}개',[data.source.buildId,data.quests.length.toLocaleString(),data.dungeons.length.toLocaleString(),data.pets.length.toLocaleString()])}</p>
         <div className="database-tabs">{(['quests', 'dungeons', 'pets'] as const).map(key => <button className="button ghost" key={key} aria-pressed={section === key} onClick={() => {setSection(key); setQuery(''); setKind(''); setPage(0); setSelected('');}}>{t(key === 'quests' ? '퀘스트' : key === 'dungeons' ? '던전' : '펫')}</button>)}</div>
-        <div className="database-filters"><label>{t("퀘스트·던전·펫 검색")}<input aria-label={t("퀘스트·던전·펫 검색")} type="search" placeholder={t("영문 이름 또는 ID")} value={query} onChange={e => {setQuery(e.target.value); setPage(0); setSelected('');}}/></label><label>{t("원본 분류")}<select aria-label={t("퀘스트·던전·펫 분류")} value={kind} onChange={e => {setKind(e.target.value); setPage(0); setSelected('');}}><option value="">{t("전체")}</option>{[...new Set(rows.map(r => r.kind))].sort().map(k => <option key={k}>{k}</option>)}</select></label></div>
+        <div className="database-filters"><label>{t("퀘스트·던전·펫 검색")}<input aria-label={t("퀘스트·던전·펫 검색")} type="search" placeholder={entityText(names.locale,'search')} value={query} onChange={e => {setQuery(e.target.value); setPage(0); setSelected('');}}/></label><label>{t("원본 분류")}<select aria-label={t("퀘스트·던전·펫 분류")} value={kind} onChange={e => {setKind(e.target.value); setPage(0); setSelected('');}}><option value="">{t("전체")}</option>{[...new Set(rows.map(r => r.kind))].sort().map(k => <option key={k}>{k}</option>)}</select></label></div>
         <p>{t('퀘스트·던전·펫 검색 결과 {0}개',[matches.length.toLocaleString()])}</p>
-        <div className="database-layout"><div><div className="database-list">{matches.slice(page * 30, page * 30 + 30).map(row => <button key={row.id} aria-pressed={selected === row.id} onClick={() => setSelected(row.id)}><strong>{row.name ?? t('이름 미확인')}</strong><small>{row.kind} · {row.id}</small></button>)}</div>
+        <div className="database-layout"><div><div className="database-list">{matches.slice(page * 30, page * 30 + 30).map(row => <button key={row.id} aria-pressed={selected === row.id} onClick={() => setSelected(row.id)}><strong><EntityName names={names} kind={section} id={row.id} name={row.name??t('이름 미확인')}/></strong><small>{row.kind} · {row.id}</small></button>)}</div>
           {!matches.length && <p role="status">{t("퀘스트·던전·펫 검색 결과가 없습니다.")}</p>}
           <div className="database-pages"><button className="button ghost" disabled={page === 0} onClick={() => setPage(v => v - 1)}>{t("목록 이전")}</button><span>{page + 1} / {Math.max(1, Math.ceil(matches.length / 30))}</span><button className="button ghost" disabled={(page + 1) * 30 >= matches.length} onClick={() => setPage(v => v + 1)}>{t("목록 다음")}</button></div></div>
           <div className="database-detail" aria-label={t("퀘스트·던전·펫 상세")}>
             {!selected && <p>{t("목록에서 항목을 선택하세요.")}</p>}
-            {quest && <><h4>{quest.name ?? t('이름 미확인')}</h4><p>ID {quest.id} · {quest.kind} · {t(races[quest.race])}</p><p>{quest.summary ?? t('설명 미확인')}</p><p>{t('원본에 등록된 퀘스트 단계 {0}개',[quest.stepCount])}</p>{quest.acquireNpc && <p>{t('시작 NPC: {0} · {1}',[quest.acquireNpc.name ?? t('이름 미확인'),quest.acquireNpc.id])}</p>}{quest.completeNpc && <p>{t('완료 NPC: {0} · {1}',[quest.completeNpc.name ?? t('이름 미확인'),quest.completeNpc.id])}</p>}{next ? <button className="button ghost" onClick={() => {setQuery(next.id); setKind(''); setPage(0); setSelected(next.id);}}>{t('다음 퀘스트: {0}',[next.name ?? next.id])}</button> : <p>{t("등록된 다음 퀘스트 없음")}</p>}</>}
+            {quest && <><h4><EntityName names={names} kind={'quests'} id={quest.id} name={quest.name??t('이름 미확인')}/></h4><p>ID {quest.id} · {quest.kind} · {t(races[quest.race])}</p><p>{names.resolve('quests',quest.id,'').summary??quest.summary??t('설명 미확인')}{!names.resolve('quests',quest.id,'').summary&&quest.summary&&names.locale!=='en'&&<small title={names.fallbackLabel}> · EN</small>}</p><p>{t('원본에 등록된 퀘스트 단계 {0}개',[quest.stepCount])}</p>{quest.acquireNpc && <p>{t('시작 NPC: {0} · {1}',[names.text('npcs',quest.acquireNpc.id,quest.acquireNpc.name??t('이름 미확인')),quest.acquireNpc.id])}</p>}{quest.completeNpc && <p>{t('완료 NPC: {0} · {1}',[names.text('npcs',quest.completeNpc.id,quest.completeNpc.name??t('이름 미확인')),quest.completeNpc.id])}</p>}{next ? <button className="button ghost" onClick={() => {setQuery(next.id); setKind(''); setPage(0); setSelected(next.id);}}>{t('다음 퀘스트: {0}',[names.text('quests',next.id,next.name??next.id)])}</button> : <p>{t("등록된 다음 퀘스트 없음")}</p>}</>}
             {quest?.levels && <div aria-label={t("퀘스트 레벨 조건")}><p>{t('시작 레벨 {0} · 권장 레벨 {1}',[quest.levels.unlock || t('미지정'),quest.levels.recommended || t('미지정')])}</p>{quest.levels.additionalConditions > 0 && <p>{t('추가 시작 조건 {0}개가 있습니다. 레벨만으로 시작 가능 여부를 판단할 수 없습니다.',[quest.levels.additionalConditions])}</p>}</div>}
             {quest && <Rewards rewards={quest.rewards}/>}
-            {pet && <><h4>{pet.name ?? t('이름 미확인')}</h4><p>ID {pet.id} · {pet.kind}</p><p>{t("공식 펫 목록의 원본 분류입니다. 획득 경로·능력치·성장 확률은 검증되지 않았습니다.")}</p></>}
+            {pet && <><h4><EntityName names={names} kind={'pets'} id={pet.id} name={pet.name??t('이름 미확인')}/></h4><p>ID {pet.id} · {pet.kind}</p><p>{t("공식 펫 목록의 원본 분류입니다. 획득 경로·능력치·성장 확률은 검증되지 않았습니다.")}</p></>}
             {dungeon?.recommendation && <div aria-label={t("던전 권장 정보")}><p>{t('권장 레벨 {0} · 난이도 {1}',[dungeon.recommendation.level || t('미지정'),dungeon.recommendation.difficulty === 'None' ? t('미지정') : dungeon.recommendation.difficulty])}</p><p>{dungeon.recommendation.maxMembers > 0 ? t('권장 인원 {0}–{1}명',[dungeon.recommendation.minMembers,dungeon.recommendation.maxMembers]) : t('권장 인원 미지정')}</p><p>{t("권장 정보이며 입장 가능 여부나 입장 제한을 뜻하지 않습니다.")}</p></div>}
-            {dungeon && <><h4>{dungeon.name ?? t('이름 미확인')}</h4><p>ID {dungeon.id} · {dungeon.kind}</p><p>{t('연결 맵: {0} · {1}',[dungeon.mapName ?? t('이름 미확인'),dungeon.mapId])}</p></>}
+            {dungeon && <><h4><EntityName names={names} kind={'dungeons'} id={dungeon.id} name={dungeon.name??t('이름 미확인')}/></h4><p>ID {dungeon.id} · {dungeon.kind}</p><p>{t('연결 맵: {0} · {1}',[names.text('maps',dungeon.mapId,dungeon.mapName??t('이름 미확인')),dungeon.mapId])}</p></>}
           </div></div>
       </>}
     </>}

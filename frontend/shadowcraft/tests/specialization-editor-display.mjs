@@ -5,10 +5,11 @@ import {pathToFileURL} from 'node:url';
 import ts from 'typescript';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {createElement} from 'react';
-import {planner,plannerUrl} from './modules.mjs';
+import {planner,plannerUrl,classesUrl} from './modules.mjs';
 const require=createRequire(import.meta.url),c=JSON.parse(readFileSync('lib/data/catalogs/templar.json'));
 let source=readFileSync('app/skill-specialization-summary.tsx','utf8')
  .replace("'@/lib/planner'",JSON.stringify(plannerUrl))
+ .replace("'@/lib/classes'",JSON.stringify(classesUrl))
  .replace("import {useLocale} from './locale';", "const useLocale=()=>({t:(key,values=[])=>key.replace(/\\{(\\d+)\\}/g,(_,i)=>String(values[Number(i)]??'')),skill:name=>name,specialization:source=>source});")
  .replace("import './skill-specialization-summary.css';",'');
 source=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText

@@ -42,4 +42,46 @@ class ShadowcraftBoardUpdaterTest {
   assertThat(response.statusCode()).isEqualTo(200);
   assertThat(ShadowcraftBoardUpdater.extractBoards(new String(response.body(),java.nio.charset.StandardCharsets.UTF_8),"templar").size()).isEqualTo(6);
  }
+ @Test void knownNameRefreshKeepsManualRulesAndReportsNewOrChangedSkills()throws Exception{
+  var mapper=new ObjectMapper();var service=new ShadowcraftService(mapper,mock(JdbcTemplate.class));
+  var current=(com.fasterxml.jackson.databind.node.ObjectNode)service.catalog("templar").path("catalog");
+  var source=current.deepCopy();((com.fasterxml.jackson.databind.node.ObjectNode)source.path("skills").get(0)).put("name","확인한 새 이름");
+  var next=ShadowcraftBoardUpdater.mergeKnownSkillNames(current,source);
+  assertThat(next.path("skills").get(0).path("name").asText()).isEqualTo("확인한 새 이름");
+  assertThat(next.path("skillDataCheck").path("renamed").asInt()).isEqualTo(1);
+  assertThat(current.path("skills").get(0).path("name").asText()).isNotEqualTo("확인한 새 이름");
+  ((com.fasterxml.jackson.databind.node.ObjectNode)source.path("skills").get(1).path("learning").get(1)).put("skillPoints",999);
+  var addition=source.path("skills").get(2).deepCopy();((com.fasterxml.jackson.databind.node.ObjectNode)addition).put("id","99999999");
+  ((com.fasterxml.jackson.databind.node.ArrayNode)source.path("skills")).add(addition);
+  next=ShadowcraftBoardUpdater.mergeKnownSkillNames(current,source);
+  assertThat(next.path("skills").get(1)).isEqualTo(current.path("skills").get(1));
+  assertThat(next.path("skills").size()).isEqualTo(35);
+  assertThat(next.path("skillDataCheck").path("changedRules").asInt()).isEqualTo(1);
+  assertThat(next.path("skillDataCheck").path("added").asInt()).isEqualTo(1);
+  assertThat(next.path("reviewRequired").asBoolean()).isTrue();
+  ((com.fasterxml.jackson.databind.node.ArrayNode)source.path("skills")).remove(2);
+  assertThat(ShadowcraftBoardUpdater.mergeKnownSkillNames(current,source).path("skillDataCheck").path("removed").asInt()).isEqualTo(1);
+ }
+ @Test void unsafeOrDuplicateSourceSkillsCannotReplaceGoodData()throws Exception{
+  var service=new ShadowcraftService(new ObjectMapper(),mock(JdbcTemplate.class));
+  var current=(com.fasterxml.jackson.databind.node.ObjectNode)service.catalog("templar").path("catalog");var source=current.deepCopy();
+  ((com.fasterxml.jackson.databind.node.ArrayNode)source.path("skills")).add(source.path("skills").get(0).deepCopy());
+  assertThatThrownBy(()->ShadowcraftBoardUpdater.mergeKnownSkillNames(current,source)).hasMessage("skill-identity");
+  source.set("skills",current.path("skills").deepCopy());((com.fasterxml.jackson.databind.node.ObjectNode)source.path("skills").get(0)).put("name","<script>oops</script>");
+  assertThatThrownBy(()->ShadowcraftBoardUpdater.mergeKnownSkillNames(current,source)).hasMessage("skill-identity");
+ }
+
+ @Test void observedSkillSourcesAreParsedWithoutExecutingScripts()throws Exception{
+  var root=System.getProperty("skillFixtures");if(root==null)return;
+  var service=new ShadowcraftService(new ObjectMapper(),mock(JdbcTemplate.class));
+  for(String key:List.of("templar","ranger")){
+   var source=ShadowcraftBoardUpdater.extractCatalog(Files.readString(Path.of(root,key+"-source.html")),key);
+   var current=(com.fasterxml.jackson.databind.node.ObjectNode)service.catalog(key).path("catalog");
+   var next=ShadowcraftBoardUpdater.mergeKnownSkillNames(current,source);
+   Files.writeString(Path.of(root,key+"-verified-presets.json"),source.path("characters").toPrettyString());
+   assertThat(next.path("skills").size()).isEqualTo(35);
+   System.out.println("Verified skill snapshot "+key+": "+next.path("skillDataCheck"));
+  }
+ }
+
 }

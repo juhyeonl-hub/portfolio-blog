@@ -1,4 +1,5 @@
 import {type Skill,type Plan,slots,recommendSpecs} from '@/lib/planner';
+import {recommendationProfile} from '@/lib/classes';
 import {useLocale} from './locale';
 import './skill-specialization-summary.css';
 
@@ -6,7 +7,7 @@ import './skill-specialization-summary.css';
 export function specializationDifference(skill:Skill,plan:Plan,level:number){
  const empty={current:[] as number[],recommended:[] as number[],remove:[] as number[],add:[] as number[],different:false};
  if(skill.stigma||skill.kind==='passive'||slots(skill,level)===0)return empty;
- const recommendedIds=new Set(recommendSpecs(skill,level,plan.mode));
+ const recommendedIds=new Set(recommendSpecs(skill,level,plan.mode,recommendationProfile(plan.classKey,plan)));
  if(!recommendedIds.size)return empty;
  const currentIds=new Set(plan.specs[skill.id]||[]);
  const options=skill.specializations.map((sp,index)=>({...sp,number:index+1})).filter(sp=>sp.requiredParentLevel<=level);

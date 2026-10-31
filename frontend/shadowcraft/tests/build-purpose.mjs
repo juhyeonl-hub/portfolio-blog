@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {classes,classesUrl,planner,plannerUrl,moduleUrl} from './modules.mjs';
 const recommendationUrl=moduleUrl(readFileSync('lib/recommendation.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./classes'",JSON.stringify(classesUrl)));
-const purpose=await import(moduleUrl(readFileSync('lib/build-purpose.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./recommendation'",JSON.stringify(recommendationUrl))));
+const purpose=await import(moduleUrl(readFileSync('lib/build-purpose.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)).replace("'./recommendation'",JSON.stringify(recommendationUrl)).replace("'./classes'",JSON.stringify(classesUrl))));
 for(const profile of classes.CLASSES){
  const c=JSON.parse(readFileSync(`lib/data/catalogs/${profile.key}.json`));
  const empty=planner.emptyPlan(c);
@@ -44,3 +44,21 @@ for(const profile of classes.CLASSES){
  }
 }
 console.log('Build purposes: eight classes, level 44/45 boundary, legacy modes, PvP persistence, budgets, connected paths, and PvE stat filtering PASS');
+
+for(const key of ['templar','ranger']){
+ const c=JSON.parse(readFileSync(`lib/data/catalogs/${key}.json`)),p=planner.emptyPlan(c),outputs={};
+ for(const choice of ['group','single','farm']){
+  const input={...p,pvePreset:choice,pointBudget:{sp:90,stigma:10,crystal:104,battle:0,ariel:0}};
+  const snapshot=JSON.stringify(input),out=purpose.recommendPurposeBuild(c,input);outputs[choice]=out;
+  assert.equal(JSON.stringify(input),snapshot);
+  assert.equal(out.pvePreset,choice);
+  const sum=planner.totals(c,out);for(const currency of ['sp','stigma','crystal','battle','ariel'])assert.ok(sum[currency]<=sum[currency+'Max']);
+  for(const skill of c.skills){const level=planner.finalLevel(c,out,skill);assert.ok(out.specs[skill.id].length<=planner.slots(skill,level));for(const id of out.specs[skill.id])assert.ok(skill.specializations.some(x=>x.id===id&&x.requiredParentLevel<=level));}
+  const changed=planner.updatePlan(c,out,{pvePreset:choice==='farm'?'group':'farm',specs:out.specs});
+  for(const field of ['nodes','base','specs'])assert.deepEqual(changed[field],out[field],'selection keeps manual allocation');
+ }
+ assert.notDeepEqual(outputs.farm.base,outputs.group.base,key+' field investment actually differs under a limited budget');
+ if(key==='templar'){assert.ok(planner.equipped(outputs.farm).includes('12070000'));assert.ok(!planner.equipped(outputs.farm).includes('12110000'));}
+ for(const context of [{level:44,mode:'safe'},{level:45,mode:'pvp'}])assert.equal(classes.recommendationProfile(key,{...context,pvePreset:'farm'}),classes.classProfile(key),'endgame field data cannot leak into leveling/PvP');
+}
+console.log('PvE branches: distinct allocations, all currencies, legal specialties, Templar solo stigma, manual preservation, and purpose gating PASS');

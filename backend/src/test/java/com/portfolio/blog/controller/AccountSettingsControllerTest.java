@@ -66,7 +66,7 @@ class AccountSettingsControllerTest {
         var plan=mapper.createObjectNode().put("classKey","templar").put("level",39).put("mode","safe").putNull("character");
         plan.putObject("base").put("100",5);plan.putObject("bonus");plan.putObject("specs");plan.putArray("nodes");plan.putArray("checked");plan.putObject("confirmedRemaining").put("sp",17);
         plan.putObject("confirmedRemainingContext").put("region","eu").put("serverId","1001").put("characterId","char-1").put("level",39);
-        plan.putArray("stigmaSkills").add("100").add("101");
+        plan.putArray("stigmaSkills").add("100").add("101");plan.put("pvePreset","farm");
         entries.put("shadowcraft-plan-v1:templar",plan.toString());
         entries.put("favorites","[\"map\",\"quick\"]");
         entries.put("a2bc-event-timers-v1","{\"version\":2,\"region\":\"eu\",\"server\":\"1001\",\"pinned\":[\"rift\"],\"profiles\":{\"eu:1001\":{\"offset\":null,\"timeZone\":\"Europe/Helsinki\",\"hidden\":[],\"times\":{\"rift\":\"09:00, 21:00\"}}}}");
@@ -74,6 +74,7 @@ class AccountSettingsControllerTest {
         save(alice,b,200);
         var response=mapper.readTree(mvc.perform(get(API).header("Authorization","Bearer "+alice)).andReturn().getResponse().getContentAsString());
         assertThat(response.path("entries")).isEqualTo(entries);
+        b.put("revision",1);plan.put("pvePreset","unknown");entries.put("shadowcraft-plan-v1:templar",plan.toString());save(alice,b,400);plan.put("pvePreset","farm");
         b.put("revision",1);plan.putObject("searchPrefs").put("name","private");entries.put("shadowcraft-plan-v1:templar",plan.toString());save(alice,b,400);
         plan.remove("searchPrefs");plan.putObject("character").put("name","private");entries.put("shadowcraft-plan-v1:templar",plan.toString());save(alice,b,400);
         plan.putNull("character");plan.putObject("confirmedRemaining").put("sp",-1);entries.put("shadowcraft-plan-v1:templar",plan.toString());save(alice,b,400);

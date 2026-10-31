@@ -11,12 +11,15 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest @AutoConfigureMockMvc @ActiveProfiles("test")
+// Each migration fixture owns its database; other controller suites must not leave foreign keys here.
+@TestPropertySource(properties="spring.datasource.url=jdbc:h2:mem:publicbuilds")
 class PublicBuildControllerTest {
  @Autowired MockMvc mvc;@Autowired ObjectMapper mapper;@Autowired JdbcTemplate jdbc;
  private static final String ADMIN="/api/admin/shadowcraft/builds",PUBLIC="/api/public/shadowcraft/builds";
@@ -33,6 +36,11 @@ class PublicBuildControllerTest {
   p.putObject("base");p.putObject("bonus");p.putObject("specs");p.putArray("nodes");p.putArray("checked");return request;
  }
  private ObjectNode create(ObjectNode input)throws Exception{return (ObjectNode)mapper.readTree(mvc.perform(post(ADMIN).contentType("application/json").content(input.toString())).andExpect(status().isCreated()).andReturn().getResponse().getContentAsString());}
+ @Test @WithMockUser(roles="ADMIN") void purposePresetRoundTripsAndRejectsUnknownValue()throws Exception {
+  var input=payload("templar");var plan=(ObjectNode)input.path("shared").path("plan");plan.put("pvePreset","farm");
+  assertThat(create(input).path("shared").path("plan").path("pvePreset").asText()).isEqualTo("farm");
+  plan.put("pvePreset","unknown");mvc.perform(post(ADMIN).contentType("application/json").content(input.toString())).andExpect(status().isBadRequest());
+ }
  @Test void anonymousCannotPublishAndSpoofedHeadersDoNotAuthenticate()throws Exception {
   mvc.perform(post(ADMIN).header("oai-authenticated-user-id","owner").contentType("application/json").content(payload("assassin").toString())).andExpect(status().isForbidden());
   mvc.perform(get(ADMIN)).andExpect(status().isForbidden());

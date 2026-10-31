@@ -1,4 +1,4 @@
-import {classProfile} from './classes';
+import {classProfile,recommendationProfile} from './classes';
 import {type Catalog,type Plan,type Board,type Node,equipped,pointLimits,applyRecommended,finalLevel,recommendSpecs} from './planner';
 
 function nodeValue(c:Catalog,p:Plan,n:Node,battle:boolean,levels:Map<string,number>):number {
@@ -81,7 +81,7 @@ export function recommendBuild(c:Catalog,p:Plan):Plan {
  }
  // Board levels can hit the cap; reallocate any redundant basic investment.
  next=applyRecommended(c,next);
- next.specs=Object.fromEntries(c.skills.map(s=>[s.id,recommendSpecs(s,finalLevel(c,next,s),next.mode)]));
+ next.specs=Object.fromEntries(c.skills.map(s=>[s.id,recommendSpecs(s,finalLevel(c,next,s),next.mode,recommendationProfile(next.classKey,next))]));
  return next;
 }
 

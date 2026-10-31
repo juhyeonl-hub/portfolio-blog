@@ -3,7 +3,7 @@ Usage: build-client-locales.py CLIENT_INDEX TABLE_DIR EFFECT_DIR STRINGS_DIR OUT
 STRINGS_DIR contains CULTURE.json exports of the installed client's L10NString.dat.
 Existing index source hashes and English names must agree before publishing.
 """
-import hashlib, importlib.util, json, re, sys
+import hashlib, importlib.util, json, re, sys, tempfile, os
 from pathlib import Path
 CULTURES={'ko':'ko-KR','en':'en-US','ja':'ja-JP','fr':'fr-FR','de':'de-DE','es':'es-ES','pt-BR':'pt-BR','ru':'ru-RU'}
 spec=importlib.util.spec_from_file_location('base',Path(__file__).with_name('build-client-index.py'))
@@ -32,7 +32,7 @@ def build(index_path,tables,effects_dir,strings_dir,output_dir,original_english,
         for row in index[kind]:
             key=keys[kind][row['id']]+('_skill_name' if kind=='skills' else '')
             if name(english.get(key))!=row['name']: raise ValueError('English ID/name mismatch: '+row['id'])
-    output.mkdir(parents=True,exist_ok=True); report={}
+    report={};bundles={}
     for locale,culture in CULTURES.items():
         path=Path(strings_dir)/(culture+'.json'); entries=read(path)['Entries']
         items={i:name(entries.get(k)) for i,k in keys['items'].items()}
@@ -55,7 +55,11 @@ def build(index_path,tables,effects_dir,strings_dir,output_dir,original_english,
         data={'schema':'asbc-client-locale-v1','locale':locale,'culture':culture,'buildId':index['source']['buildId'],
               'textBuildId':text_build_id,'source':{'kind':'installed-steam-client','inputSha256':sources,'stringsSha256':digest(path)},'items':items,'skills':skills,'stats':stats}
         raw=json.dumps(data,ensure_ascii=False,sort_keys=True,separators=(',',':'))+'\n'
-        (output/(locale+'.json')).write_text(raw,encoding='utf-8')
+        bundles[locale+'.json']=raw
         report[locale]={'culture':culture,'items':len(items),'skills':len(skills),'bytes':len(raw.encode()),'sha256':hashlib.sha256(raw.encode()).hexdigest()}
+    output.mkdir(parents=True,exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="client-locales-",dir=output.parent) as stage:
+        for filename,raw in bundles.items():(Path(stage)/filename).write_text(raw,encoding="utf-8")
+        for filename in bundles:os.replace(Path(stage)/filename,output/filename)
     return report
 if __name__=='__main__': print(json.dumps(build(*sys.argv[1:]),indent=2))

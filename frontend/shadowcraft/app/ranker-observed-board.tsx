@@ -12,7 +12,7 @@ export default function RankerObservedBoard({catalog,target,boardId,onBoardChang
  const selectedNode=board.nodes.find(n=>n.id===selected);
  const label=(n:Node)=>rankerText(locale,n.autoLearn?'automatic':goal.has(n.id)?'selected':'unselected');
  const minRow=Math.min(...board.nodes.map(n=>n.row)),minCol=Math.min(...board.nodes.map(n=>n.column)),maxCol=Math.max(...board.nodes.map(n=>n.column));
- return <section className="ranker-observed-board" aria-label={rankerText(locale,'raw')}><h3>{rankerText(locale,'raw')}</h3><p>{rankerText(locale,'rawHelp')}</p><p><b>{t('결정 {0} · 아스펠 {1}',[cost.crystal,cost.battle])}</b></p>
+ return <section className="ranker-observed-board" aria-label={rankerText(locale,'raw')}><h3>{rankerText(locale,'raw')}</h3><p>{rankerText(locale,'rawHelp')}</p><p><b>{t('결정 {0} · 아스펠 {1} · 아리엘 {2}',[cost.crystal,cost.battle,cost.ariel])}</b></p>
   <nav className="preview-tabs" aria-label={t('데바니온 보드 선택')}>{catalog.boards.map(b=><button type="button" key={b.id} aria-pressed={board.id===b.id} onClick={()=>{setLocalBoard(b.id);onBoardChange?.(b.id);setSelected('')}}>{t(b.name)}</button>)}</nav>
   <div className="raw-board-summary"><b>{t(board.name)} · Lv.{board.requiredLevel}</b><span>{rankerText(locale,'selected')}: {chosen.length} · {chosen.reduce((sum,n)=>sum+n.pointCost,0)} P</span></div>
   <p className="guide-node-feedback" role="status">{selectedNode?nodeName(selectedNode.name)+' · '+label(selectedNode)+' · '+selectedNode.pointCost+' P':t('확인할 노드를 누르세요.')}</p>

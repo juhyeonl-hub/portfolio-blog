@@ -89,7 +89,7 @@ public class PublicBuildService {
         only(shared,Set.of("schema","catalogVersion","plan","guide"));
         if(shared.has("guide"))validateGuide(shared.path("guide"));
         if(!shared.path("schema").asText().equals("a2bc-share-v1")||!shared.path("catalogVersion").isTextual()||shared.path("catalogVersion").asText().isEmpty()||shared.path("catalogVersion").asText().length()>100)bad("공유 형식을 확인하세요.");
-        JsonNode p=shared.path("plan");only(p,Set.of("classKey","level","mode","extraSP","extraStigma","extraCrystal","extraBattle","base","bonus","specs","nodes","checked","character","pointBudget","ascensionGrade3Confirmed","stigmaSkills"));
+        JsonNode p=shared.path("plan");only(p,Set.of("classKey","level","mode","extraSP","extraStigma","extraCrystal","extraBattle","base","bonus","specs","nodes","checked","character","pointBudget","ascensionGrade3Confirmed","stigmaSkills","pvePreset"));
         String key=p.path("classKey").asText();catalogs.profile(key);
         if(!number(p.path("level"),1,45)||!Set.of("safe","damage","pvp").contains(p.path("mode").asText()))bad("공개할 빌드의 레벨과 플레이 목적을 확인해 주세요.");
         if(!p.path("character").isNull()||!p.path("checked").isArray()||!p.path("checked").isEmpty())bad("공개 빌드에는 연결한 캐릭터와 개인 완료 기록을 포함할 수 없습니다. 빌드 편집 화면에서 다시 저장해 주세요.");
@@ -105,6 +105,7 @@ public class PublicBuildService {
             var entries=values.fields();while(entries.hasNext()){var entry=entries.next();if(!skills.containsKey(entry.getKey()))bad("알 수 없는 스킬입니다.");if(field.equals("specs"))ids(entry.getValue(),skills.get(entry.getKey()));else if(!number(entry.getValue(),0,9999))bad("스킬 레벨을 확인하세요.");}
         }
         ids(p.path("nodes"),nodes);
+        if(p.has("pvePreset")&&(!p.get("pvePreset").isTextual()||!Set.of("group","single","farm").contains(p.get("pvePreset").asText())))bad("공개할 빌드의 레벨과 플레이 목적을 확인해 주세요.");
         if(p.has("stigmaSkills")){Set<String> stigma=new HashSet<>();for(JsonNode skill:catalog.path("skills"))if(skill.path("stigma").asBoolean())stigma.add(skill.path("id").asText());ids(p.path("stigmaSkills"),stigma);if(p.path("stigmaSkills").size()>4)bad("스티그마 선택을 확인하세요.");}
     }
     private void validateGuide(JsonNode guide){

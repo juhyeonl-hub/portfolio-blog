@@ -4,6 +4,7 @@ import {isEndgamePointLevel,pointBudgetSourceLabel,type Catalog,type Plan,pointL
 import {BUILD_PURPOSES,PURPOSE_NAMES,type BuildPurpose,buildPurpose,recommendPurposeBuild} from '@/lib/build-purpose';
 import './leveling-guide.css';
 import './direct-build.css';
+import PveDirection from './pve-direction';
 import CharacterPoints from './character-points';
 import PointNumber from './point-number';
 
@@ -48,11 +49,11 @@ export default function QuickBuild({catalog,plan,onApply,onChange,onPurposeChang
    <p>{t('찍어 둔 배분은 그대로 두며, 원래 설정으로 되돌릴 수 있습니다.')}</p>
    <div className="leveling-confirm-actions"><button autoFocus type="button" className="button secondary" onClick={()=>setPurposeRequest(null)}>{t('현재 빌드 유지')}</button><button type="button" className="button primary" onClick={()=>{const current=purposeRequest.plan===plan&&purposeRequest.catalog===catalog;setPurposeRequest(null);if(current)onPurposeChange('leveling')}}>{t('레벨링 보기')}</button></div>
   </dialog>}
-  <p className="growth-purpose-note" role="status"><b>{t('계산할 목표: Lv.{0}',[plan.level])}</b><br/>{t(purpose==='leveling'?'레벨링: 현재 레벨에서 열리는 스킬과 데바니온으로 공격 위주 배분을 안내합니다.':purpose==='pve'?'PvE: 45레벨 원정 기준입니다. 아래에서 생존과 공격 중 추천 방향을 고르세요.':'PvP: 유저와의 전투용 능력치와 데바니온을 우선합니다. 스킬은 기존 직업 가이드를 참고합니다.')}</p>
+  <p className="growth-purpose-note" role="status"><b>{t('계산할 목표: Lv.{0}',[plan.level])}</b><br/>{t(purpose==='leveling'?'레벨링: 현재 레벨에서 열리는 스킬과 데바니온으로 공격 위주 배분을 안내합니다.':purpose==='pve'?'PvE (45부터 원정)':'PvP: 유저와의 전투용 능력치와 데바니온을 우선합니다. 스킬은 기존 직업 가이드를 참고합니다.')}</p>
   <p className="subtle">{t('레벨링은 최대 44레벨, PvE는 45레벨 목표로 전환합니다. 레벨이 바뀌면 포인트는 해당 레벨의 기본값으로 바뀝니다.')} {t('현재 포인트 안에서 계산한 참고 배분이며, 콘텐츠별 최적 세팅을 검증한 결과는 아닙니다.')}</p>
 
  {isEndgamePointLevel(plan)&&<p className="completion-basis">{t('45레벨은 3차 승급·봉인던전·주둔지·서브 퀘스트 등 기본 내실을 완료한 상태를 기준으로 계획합니다.')}<br/><small>{t('실제 완료 여부를 조회한 값은 아닙니다. 총 포인트가 다르면 위의 총량을 수정하세요.')}</small></p>}
- {purpose==='pve'&&<div className="build-direction" role="group" aria-label={t('추천 방향')}><b>{t('추천 방향')}</b>{(['safe','damage'] as const).map(mode=><button type="button" key={mode} aria-pressed={plan.mode===mode} onClick={()=>onChange({mode,specs:plan.specs})}><strong>{t(mode==='safe'?'생존에 여유':'공격 우선')}</strong><small>{t(mode==='safe'?'파티·보스전 기준으로 생존도 고려':'필드·사명에서도 참고할 공격 중심 배분')}</small></button>)}</div>}
+ {purpose==='pve'&&<PveDirection plan={plan} onChange={onChange}/>}
  <div className="recommendation-apply-box"><h3>{t('이 설정으로 새 배분 만들기')}</h3><p>{t('레벨·포인트·플레이 목적을 바꿨다면 아래 버튼으로 데바니온과 스킬·특화를 함께 다시 배분하세요. 직접 찍어 둔 배분도 바뀝니다.')}</p> <div className="build-recommend-action"><button type="button" className="button primary" disabled={!candidate} onClick={()=>candidate&&onApply(candidate)}>{t(candidate?'데바니온·스킬 추천 배분 적용':'현재 레벨·포인트로 계산 중…')}</button>
  {resultPoints&&<span>{t('추천 배분 사용량: 스킬 {0} · 스티그마 {1} · 데바니온 {2}',[resultPoints.sp,resultPoints.stigma,resultPoints.crystal])}{resultPoints.battle>0&&<> · {t('아스펠 결정')} {resultPoints.battle}</>}{(resultPoints.ariel??0)>0&&<> · {t('아리엘 결정')} {resultPoints.ariel}</>}</span>}</div>
  <p className="subtle">{t('입력만 바꾸면 현재 배분은 유지됩니다. 적용한 뒤에도 직전 배분으로 되돌릴 수 있습니다.')}</p></div>

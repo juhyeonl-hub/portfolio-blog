@@ -21,7 +21,7 @@ import java.time.*;
 import java.util.*;
 import java.util.regex.Pattern;
 
-/** Public board data only. No script evaluation, credentials, character queries or asset writes. */
+/** Public board and known-skill name data only. No script evaluation, credentials, character queries or asset writes. */
 @Component
 @EnableScheduling
 @ConditionalOnProperty(name="app.shadowcraft.board-refresh-enabled",havingValue="true",matchIfMissing=true)
@@ -49,9 +49,11 @@ public class ShadowcraftBoardUpdater {
                 if(response.statusCode()!=200||!response.headers().firstValue("Content-Type").orElse("").contains("text/html"))throw new IllegalArgumentException("source-unavailable");
                 byte[] body=response.body();
                 ObjectNode current=(ObjectNode)service.catalog(key).path("catalog");
-                JsonNode boards=extractBoards(new String(body,StandardCharsets.UTF_8),entry.getValue());
+                JsonNode payload=extractCatalog(new String(body,StandardCharsets.UTF_8),entry.getValue());
+                JsonNode boards=payload.path("boards");
                 assertCompatible(current,boards);
-                ObjectNode next=current.deepCopy();next.set("boards",boards);
+                ObjectNode next=mergeKnownSkillNames(current,payload);next.set("boards",boards);
+                next.put("sourceSnapshotSha256",java.util.HexFormat.of().formatHex(java.security.MessageDigest.getInstance("SHA-256").digest(body)));
                 next.put("boardDataCheckedAt",Instant.now().toString());next.put("boardDataSource",request.uri().toString());
                 service.update(key,next);service.boardRefreshResult(key,true);
             }catch(InterruptedException e){Thread.currentThread().interrupt();service.boardRefreshResult(key,false);return;}
@@ -73,7 +75,9 @@ public class ShadowcraftBoardUpdater {
         public void onComplete(){done.complete(bytes.toByteArray());}
     }
 
-    static JsonNode extractBoards(String html,String slug)throws Exception{
+    static JsonNode extractBoards(String html,String slug)throws Exception{return extractCatalog(html,slug).path("boards");}
+
+    static JsonNode extractCatalog(String html,String slug)throws Exception{
         if(!SOURCES.containsValue(slug)||html.length()>LIMIT)throw new IllegalArgumentException("source");
         slug=slug.equals("spiritmaster")?"elementalist":slug;
         var match=Pattern.compile("\\{\\s*classKey\\s*:\\s*\""+Pattern.quote(slug)+"\"\\s*,").matcher(html);
@@ -89,7 +93,35 @@ public class ShadowcraftBoardUpdater {
         if(end<0)throw new IllegalArgumentException("incomplete-payload");
         JsonNode payload=STATIC_JSON.readTree(html.substring(start,end));
         if(!slug.equals(payload.path("classKey").asText())||!payload.path("boards").isArray())throw new IllegalArgumentException("board-shape");
-        return payload.path("boards");
+        return payload;
+    }
+
+    /** Names can refresh for known IDs. Costs, unlocks, effects and new skills require review. */
+    static ObjectNode mergeKnownSkillNames(ObjectNode current,JsonNode payload){
+        JsonNode sourceSkills=payload.path("planner").path("skills");
+        if(sourceSkills.isMissingNode())sourceSkills=payload.path("skills");
+        if(!sourceSkills.isArray()||sourceSkills.isEmpty()||sourceSkills.size()>100)throw new IllegalArgumentException("skill-shape");
+        Map<String,JsonNode> source=new HashMap<>();
+        for(JsonNode skill:sourceSkills){
+            String id=skill.path("id").asText();
+            if(!id.matches("[1-9][0-9]{0,14}")||source.put(id,skill)!=null||!skill.path("name").isTextual()||skill.path("name").asText().isBlank()
+                    ||skill.path("name").asText().length()>200||skill.path("name").asText().matches("(?s).*[<>\\p{Cntrl}].*"))throw new IllegalArgumentException("skill-identity");
+        }
+        ObjectNode next=current.deepCopy();int changedRules=0,removed=0,renamed=0;
+        Set<String> known=new HashSet<>();
+        for(JsonNode skill:next.path("skills")){
+            String id=skill.path("id").asText();known.add(id);JsonNode incoming=source.get(id);
+            if(incoming==null){removed++;continue;}
+            ObjectNode oldRules=((ObjectNode)skill).deepCopy(),newRules=((ObjectNode)incoming).deepCopy();
+            oldRules.remove("name");newRules.remove("name");
+            if(!oldRules.equals(newRules)){changedRules++;continue;}
+            if(!skill.path("name").equals(incoming.path("name"))){((ObjectNode)skill).set("name",incoming.path("name"));renamed++;}
+        }
+        int added=(int)source.keySet().stream().filter(id->!known.contains(id)).count();
+        boolean needsReview=changedRules+removed+added>0;
+        var status=next.putObject("skillDataCheck");status.put("checkedAt",Instant.now().toString()).put("renamed",renamed).put("changedRules",changedRules).put("added",added).put("removed",removed).put("needsReview",needsReview);
+        if(needsReview)next.put("reviewRequired",true);
+        return next;
     }
 
     static void assertCompatible(JsonNode current,JsonNode boards){

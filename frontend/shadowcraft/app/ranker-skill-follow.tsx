@@ -22,7 +22,7 @@ export default function RankerSkillFollow({catalog,plan,ranker,profile,onApply,s
    <details><summary>{copy('skillMethod')}</summary><p>{copy('skillMethodHelp')}</p><p>{copy('skillBonusHelp')} {t('장비')}: {t(!plan.gear||plan.gear.mode==='manual'?'기존 보너스 직접 입력':plan.gear.mode==='current'?'현재 장비로 계산':'목표 장비로 계산')}</p><p>{copy('skillOrderHelp')}</p></details>
    {result.error&&<p role="status">{copy(result.error)}</p>}
    {guide&&<>
-    <p className="ranker-skill-board-context"><strong>{copy('skillBoardContext').replace('{0}',String(guide.used.crystal)).replace('{1}',String(guide.used.battle))}</strong><span>{copy('skillBoardHelp')}</span></p>
+    <p className="ranker-skill-board-context"><strong>{copy('skillBoardContext').replace('{0}',String(guide.used.crystal)).replace('{1}',String(guide.used.battle)).replace('{2}',String(guide.used.ariel??0))}</strong><span>{copy('skillBoardHelp')}</span></p>
     <div className="ranker-skill-budget" aria-live="polite">{([{name:'스킬 포인트',used:guide.used.sp,max:guide.used.spMax},{name:'스티그마 포인트',used:guide.used.stigma,max:guide.used.stigmaMax}]).map(row=><div key={row.name}><strong>{t(row.name)}</strong><span>{copy('skillSpend')}: {row.used} · {copy('skillRemaining')}: {row.max-row.used} · {copy('skillTotal')}: {row.max}</span></div>)}</div>
     <label className="ranker-spec-choice"><span>{copy('skillSpecChoice')}</span><select value={specMode} onChange={e=>{onSpecModeChange(e.target.value as 'suggest'|'keep');setApplied('');}}><option value="suggest">{copy('skillSpecSuggest')}</option><option value="keep">{copy('skillSpecKeep')}</option></select></label>
     {!!guide.unreached&&<p>{copy('skillUnreached')} ({guide.unreached})</p>}
