@@ -33,7 +33,9 @@ public class ApiKeyAuthenticationFilter extends OncePerRequestFilter {
         }
 
         String apiKey = request.getHeader("X-API-Key");
-        if (apiKey != null && apiKey.equals(appProperties.getApiKey())) {
+        String configured = appProperties.getApiKey();
+        if (apiKey != null && configured != null && !configured.isBlank()
+                && java.security.MessageDigest.isEqual(apiKey.getBytes(java.nio.charset.StandardCharsets.UTF_8), configured.getBytes(java.nio.charset.StandardCharsets.UTF_8))) {
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                     "api-key-user", null, List.of(new SimpleGrantedAuthority("ROLE_ADMIN"))
             );

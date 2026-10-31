@@ -5,11 +5,14 @@ import jakarta.validation.constraints.NotBlank;
 public class LoginRequest {
 
     @NotBlank
+    @jakarta.validation.constraints.Size(max=64)
     private String username;
 
     @NotBlank
+    @jakarta.validation.constraints.Size(max=72)
     private String password;
 
+    @jakarta.validation.constraints.Pattern(regexp="(?:[0-9]{6})?")
     private String totpCode;
 
     public String getUsername() { return username; }

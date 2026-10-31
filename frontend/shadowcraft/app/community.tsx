@@ -3,7 +3,7 @@ import BuildComposer from './build-composer';
 import {AccountSyncPanel} from './account-sync-panel';
 import {classProfile} from '../lib/classes';
 import {useLocale} from './locale';
-import {createContext,useContext,useEffect,useState,type ReactNode} from 'react';
+import {createContext,useContext,useEffect,useState,useRef,type ReactNode} from 'react';
 import {publicBuild,type SharedBuild} from '../lib/build-share';
 import type {Catalog,Plan} from '../lib/planner';
 import type {PublicBuildDetail} from '../lib/public-builds';
@@ -14,25 +14,44 @@ const STEAM_ERRORS:Record<string,string>={expired:'Steam 로그인이 만료되�
 /** Reads the one-time Steam hand-back once and removes it from the address bar immediately. */
 function readSteamHash():{kind:string;value:string}|null{const m=location.hash.match(/^#steam-(code|new|linked|error)=([A-Za-z0-9_-]{1,64})$/);if(!m)return null;try{history.replaceState(null,'',location.pathname+location.search+'#/account');}catch{}return {kind:m[1],value:m[2]};}
 export const steamReturn=()=>/^#steam-(code|new|linked|error)=/.test(location.hash);
-type Session={token:string;member:Member};
-const STORAGE='a2bc-member-session-v1';
+type Session={csrfToken:string;member:Member};
+const LEGACY_STORAGE='a2bc-member-session-v1',STORAGE='a2bc-member-session-v2';
+const REFRESH_AUTH='asbc-refresh-auth';
 const Context=createContext<{session:Session|null;ready:boolean;setSession:(value:Session|null)=>void;request:(path:string,method?:string,body?:unknown)=>Promise<any>;steam:SteamState;setSteam:(value:SteamState)=>void}>(null!);
-async function call(path:string,token:string,method='GET',body?:unknown){
+async function call(path:string,csrf:string,method='GET',body?:unknown,legacyToken?:string){
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),15000);
- try{const r=await fetch(path,{method,headers:{...(token?{Authorization:'Bearer '+token}:{}),...(body!==undefined?{'Content-Type':'application/json'}:{})},body:body===undefined?undefined:JSON.stringify(body),signal:controller.signal});
+ try{const r=await fetch(path,{method,credentials:'same-origin',headers:{...(legacyToken?{Authorization:'Bearer '+legacyToken}:{}),...(csrf?{'X-ASBC-CSRF':csrf}:{}),...(body!==undefined?{'Content-Type':'application/json'}:{})},body:body===undefined?undefined:JSON.stringify(body),signal:controller.signal});
  const data=await r.text();let json:any=null;try{json=data?JSON.parse(data):null;}catch{}
  if(!r.ok)throw Object.assign(Error(json?.error||(r.status===401||r.status===403?'로그인이 필요하거나 세션이 만료되었습니다. 다시 로그인하세요.':'요청을 처리하지 못했습니다.')),{status:r.status});
  return json;
  }catch(e){if(e instanceof Error&&e.name==='AbortError')throw Error('응답 시간이 초과되었습니다. 저장 여부를 확인한 뒤 다시 시도하세요.');throw e;}finally{clearTimeout(timeout);}
 }
+const isAuthFailure=(e:unknown)=>[401,403].includes((e as {status:number})?.status);
+function cacheSession():Session|null{try{const raw=sessionStorage.getItem(STORAGE)||sessionStorage.getItem(LEGACY_STORAGE),saved=raw?JSON.parse(raw):null;return typeof saved?.member?.id==='string'?{member:saved.member,csrfToken:typeof saved.csrfToken==='string'?saved.csrfToken:''}:null;}catch{return null;}}
 export function MemberProvider({children}:{children:ReactNode}){
- const [session,setValue]=useState<Session|null>(null),[ready,setReady]=useState(false),[steam,setSteam]=useState<SteamState>({pending:'',notice:'',error:''});
- function setSession(value:Session|null){setValue(value);try{if(value)sessionStorage.setItem(STORAGE,JSON.stringify(value));else sessionStorage.removeItem(STORAGE);}catch{}}
- useEffect(()=>{let live=true;const returned=readSteamHash();async function restore(){if(returned?.kind==='code'){try{const result=await call('/api/community/auth/steam/exchange','','POST',{code:returned.value});if(live){setSession(result);setSteam({pending:'',notice:'Steam으로 로그인했습니다.',error:''});}}catch(e){if(live)setSteam({pending:'',notice:'',error:(e as Error).message});}finally{if(live)setReady(true);}return;}if(returned?.kind==='new'&&live)setSteam({pending:returned.value,notice:'',error:''});if(returned?.kind==='error'&&live)setSteam({pending:'',notice:'',error:STEAM_ERRORS[returned.value]||STEAM_ERRORS.failed});if(returned?.kind==='linked'&&live)setSteam({pending:'',notice:'Steam 계정을 연결했습니다.',error:''});try{const raw=sessionStorage.getItem(STORAGE);if(raw){const saved=JSON.parse(raw);if(typeof saved.token==='string'){try{const member=await call('/api/community/me',saved.token);if(live)setValue({token:saved.token,member});}catch(e){if((e as {status?:number}).status===401||(e as {status?:number}).status===403)throw e;if(live&&typeof saved.member?.id==='string')setValue(saved);}}}}catch{try{sessionStorage.removeItem(STORAGE);}catch{}}finally{if(live)setReady(true);}}void restore();return()=>{live=false;};},[]);
- return <Context.Provider value={{session,ready,setSession,steam,setSteam,request:async(path,method,body)=>{try{return await call(path,session?.token||'',method,body);}catch(e){if((e as any).status===401||(e as any).status===403){if(path.startsWith('/api/community/builds'))setSteam({pending:'',notice:'',error:'로그인이 만료되었습니다. 다시 로그인한 뒤 작성 중인 빌드를 확인하세요.'});setSession(null);}throw e;}}}}>{children}</Context.Provider>;
+ const [session,setValue]=useState<Session|null>(cacheSession),[ready,setReady]=useState(false),[steam,setSteam]=useState<SteamState>({pending:'',notice:'',error:''});
+ const epoch=useRef(0),channel=useRef<BroadcastChannel|null>(null);
+ // Only non-authenticating member metadata/CSRF proof is cached. Login tokens remain HttpOnly.
+ function setSession(value:Session|null,announce=true){epoch.current++;setValue(value);try{sessionStorage.removeItem(LEGACY_STORAGE);if(value)sessionStorage.setItem(STORAGE,JSON.stringify({member:value.member,csrfToken:value.csrfToken}));else sessionStorage.removeItem(STORAGE);}catch{}if(announce)channel.current?.postMessage('changed');}
+ useEffect(()=>{
+  let live=true,pending=false;const returned=readSteamHash();
+  async function refresh(){if(pending)return;pending=true;const current=++epoch.current;try{const {csrfToken,...member}=await call('/api/community/me','');if(live&&current===epoch.current)setSession({member,csrfToken},false);}catch(e){if(live&&current===epoch.current&&isAuthFailure(e))setSession(null,false);}finally{pending=false;if(live)setReady(true);}}
+  async function restore(){pending=true;
+   if(returned?.kind==='code'){const current=++epoch.current;try{const result=await call('/api/community/auth/steam/exchange','','POST',{code:returned.value});if(live&&current===epoch.current){setSession(result);setSteam({pending:'',notice:'Steam으로 로그인했습니다.',error:''});}}catch(e){if(live)setSteam({pending:'',notice:'',error:(e as Error).message});}finally{pending=false;if(live)setReady(true);}return;}
+   if(returned?.kind==='new')setSteam({pending:returned.value,notice:'',error:''});if(returned?.kind==='error')setSteam({pending:'',notice:'',error:STEAM_ERRORS[returned.value]||STEAM_ERRORS.failed});if(returned?.kind==='linked')setSteam({pending:'',notice:'Steam 계정을 연결했습니다.',error:''});
+   let token='';try{const saved=JSON.parse(sessionStorage.getItem(LEGACY_STORAGE)||'null');if(typeof saved?.token==='string'&&/^a2bc_[A-Za-z0-9_-]{43}$/.test(saved.token))token=saved.token;}catch{}
+   if(token){const current=++epoch.current;try{const result=await call('/api/community/session','','POST',undefined,token);if(live&&current===epoch.current){setSession(result);setReady(true);}return;}catch(e){if(!isAuthFailure(e)&&(e as {status?:number}).status!==409){if(live)setReady(true);return;}}finally{pending=false;}}
+   pending=false;await refresh();
+  }
+  const wake=()=>{if(!document.hidden&&navigator.onLine)void refresh();};
+  if(typeof BroadcastChannel!=='undefined'){channel.current=new BroadcastChannel('asbc-member-session');channel.current.onmessage=wake;}
+  window.addEventListener('focus',wake);window.addEventListener('online',wake);window.addEventListener(REFRESH_AUTH,wake);document.addEventListener('visibilitychange',wake);void restore();
+  return()=>{live=false;epoch.current++;channel.current?.close();channel.current=null;window.removeEventListener('focus',wake);window.removeEventListener('online',wake);window.removeEventListener(REFRESH_AUTH,wake);document.removeEventListener('visibilitychange',wake);};
+ },[]);
+ return <Context.Provider value={{session,ready,setSession,steam,setSteam,request:async(path,method,body)=>{try{return await call(path,session?.csrfToken||'',method,body);}catch(e){if(isAuthFailure(e)){window.dispatchEvent(new Event(REFRESH_AUTH));if(path.startsWith('/api/community/builds'))setSteam({pending:'',notice:'',error:'로그인이 만료되었습니다. 다시 로그인한 뒤 작성 중인 빌드를 확인하세요.'});}throw e;}}}}>{children}</Context.Provider>;
 }
 export function useMemberSession(){const {session,ready}=useContext(Context);return {session,ready};}
-export const settingsRequest=(token:string,method:string,body?:unknown)=>call('/api/community/settings',token,method,body);
+export const settingsRequest=async(csrf:string,method:string,body?:unknown)=>{try{return await call('/api/community/settings',csrf,method,body);}catch(e){if(isAuthFailure(e))window.dispatchEvent(new Event(REFRESH_AUTH));throw e;}};
 export function useMemberReady(){return useContext(Context).ready;}
 export function useMember(){return useContext(Context).session?.member||null;}
 export function MemberAccount(){
@@ -85,7 +104,7 @@ export function BuildDiscussion({build,onUpdated,onEditingChange}:{build:PublicB
  const {session,request,steam}=useContext(Context),[data,setData]=useState<Social|null>(null),[revision,setRevision]=useState(0),[error,setError]=useState(''),[busy,setBusy]=useState(false);
  const [editing,setEditing]=useState(false),[deleting,setDeleting]=useState(false);
  const changeEditing=(value:boolean)=>{setEditing(value);onEditingChange?.(value)};
- useEffect(()=>{let live=true;setData(null);setError('');request('/api/public/shadowcraft/builds/'+build.id+'/community').then(d=>{if(!d||!Number.isSafeInteger(d.votes)||d.votes<0||typeof d.voted!=='boolean')throw Error('좋아요 반영 여부를 확인하지 못했습니다. ‘다시 불러오기’로 현재 상태를 확인해 주세요.');if(live)setData(d);}).catch(e=>{if(live)setError(e.message);});return()=>{live=false;};},[build.id,revision,session?.token]);
+ useEffect(()=>{let live=true;setData(null);setError('');request('/api/public/shadowcraft/builds/'+build.id+'/community').then(d=>{if(!d||!Number.isSafeInteger(d.votes)||d.votes<0||typeof d.voted!=='boolean')throw Error('좋아요 반영 여부를 확인하지 못했습니다. ‘다시 불러오기’로 현재 상태를 확인해 주세요.');if(live)setData(d);}).catch(e=>{if(live)setError(e.message);});return()=>{live=false;};},[build.id,revision,session?.csrfToken]);
  async function run(action:()=>Promise<unknown>){setBusy(true);setError('');try{await action();setRevision(v=>v+1);}catch(e){setError((e as Error).message);}finally{setBusy(false);}}
  const path='/api/community/builds/'+build.id;
  return <section className="community-discussion" aria-label={t("빌드 좋아요")}>{!session&&steam.error&&<p role="alert">{t(steam.error)} <a href="#/account">{t("Steam으로 로그인")}</a></p>}{error&&<p role="alert">{t(error)} <button className="button ghost" onClick={()=>setRevision(v=>v+1)}>{t("다시 불러오기")}</button></p>}

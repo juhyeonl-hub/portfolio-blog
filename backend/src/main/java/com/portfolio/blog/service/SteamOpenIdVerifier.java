@@ -28,8 +28,8 @@ public class SteamOpenIdVerifier {
                     .collect(Collectors.joining("&"));
             HttpRequest request = HttpRequest.newBuilder(URI.create(endpoint)).timeout(Duration.ofSeconds(10))
                     .header("Content-Type", "application/x-www-form-urlencoded").POST(HttpRequest.BodyPublishers.ofString(form)).build();
-            HttpResponse<String> response = http.send(request, HttpResponse.BodyHandlers.ofString());
-            return response.statusCode() == 200 && response.body().lines().anyMatch(line -> line.trim().equals("is_valid:true"));
+            HttpResponse<byte[]> response = com.portfolio.blog.security.BoundedHttp.send(http, request, 16_384);
+            return response.statusCode() == 200 && new String(response.body(), StandardCharsets.UTF_8).lines().anyMatch(line -> line.trim().equals("is_valid:true"));
         } catch (java.io.IOException e) {
             return false;
         } catch (InterruptedException e) {

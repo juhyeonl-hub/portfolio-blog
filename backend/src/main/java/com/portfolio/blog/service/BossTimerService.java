@@ -51,10 +51,10 @@ public class BossTimerService {
         return server -> {
             var req = HttpRequest.newBuilder(URI.create("https://cdn.a2tools.app/feeds/boss-timers/" + server + ".json"))
                 .timeout(Duration.ofSeconds(8)).header("User-Agent", "a2bc-boss-timers/1.0 (+https://juhyeonl.dev/lab/shadowcraft/)").GET().build();
-            var response = client.send(req, HttpResponse.BodyHandlers.ofInputStream());
-            try (var body = response.body()) {
+            var response = com.portfolio.blog.security.BoundedHttp.send(client,req,256_000);
+            {
                 if (response.statusCode() != 200) throw new IllegalStateException("feed unavailable");
-                byte[] bytes = body.readNBytes(256_001);
+                byte[] bytes = response.body();
                 if (bytes.length > 256_000) throw new IllegalStateException("feed too large");
                 return mapper.readTree(bytes);
             }

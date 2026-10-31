@@ -16,7 +16,7 @@
           "Lorsque vous êtes connecté, les éléments de votre registre des échanges, vos achats, vos ventes et vos plans de fabrication enregistrés sont stockés sur le serveur et automatiquement synchronisés avec les autres appareils associés à votre compte. Les données présentes dans le navigateur avant la connexion doivent être importées manuellement ; elles ne sont pas fusionnées automatiquement. La sauvegarde et la restauration via un fichier JSON s'effectuent à l'initiative de l'utilisateur. Les captures d'écran du marché sont analysées directement dans votre navigateur ; les images elles-mêmes ne sont ni stockées ni envoyées au serveur.",
           "Les données saisies dans les calculateurs, les brouillons de création non enregistrés et l'historique d'évolution des personnages restent stockés dans ce navigateur et ne sont pas synchronisés avec votre compte. Les brouillons de création enregistrés lorsque vous êtes connecté sont conservés séparément pour chaque compte. L'historique d'évolution conserve jusqu'à 20 instantanés de modifications par personnage ; il peut être effacé directement depuis l'interface. La suppression des données du site entraîne également la suppression de ces enregistrements locaux.",
           "Lorsque vous n'êtes pas connecté, vos paramètres restent stockés dans ce navigateur (via `localStorage`). Une fois connecté, vos préférences (langue, favoris, répartition des points, points restants, identifiants publics des personnages, niveau, choix d'équipement et bonus, progression sur la carte, paramètres de serveur/minuteur) sont associées à votre compte et restaurées sur vos autres appareils. En revanche, les réponses des personnages, l'historique de recherche, les noms d'équipements, les notes personnelles et la bibliothèque de configurations (« builds ») ne sont pas synchronisés. Les caches locaux et les sauvegardes de récupération sont supprimés si vous effacez les données du site ; les paramètres côté serveur sont supprimés si vous supprimez votre compte.",
-          "Vos informations de connexion à la communauté sont conservées dans le stockage de session de l'onglet actuel (`sessionStorage`) et sont supprimées dès la fermeture de cet onglet."
+          "La connexion est conservée dans un cookie HttpOnly (__Host-asbc_session), inaccessible à JavaScript. Il est transmis uniquement via HTTPS et reste valide pendant 24 heures au maximum. Fermer un onglet ne vous déconnecte pas nécessairement ; la déconnexion révoque la session. Le sessionStorage de l’onglet contient uniquement les informations d’affichage du compte et une valeur de protection CSRF, sans jeton de connexion."
         ]
       },
       {
@@ -31,7 +31,7 @@
       {
         "heading": "Données traitées automatiquement",
         "paragraphs": [
-          "Adresse IP : utilisée uniquement dans la mémoire du serveur pour limiter les tentatives de connexion ; elle est supprimée dans un délai maximal de 11 minutes et n'est conservée ni dans la base de données ni dans les journaux (logs).",
+          "Adresse IP : utilisée en mémoire sur le serveur pendant 10 minutes au maximum pour limiter les tentatives de connexion et les requêtes excessives, puis supprimée dans un délai maximal de 11 minutes. Elle n’est enregistrée ni dans la base de données ni dans les journaux de l’application.",
           "Recherche de personnage : le serveur et le nom de personnage que vous saisissez sont utilisés pour récupérer des informations publiques sur le site officiel d'AION 2. Les résultats sont conservés dans la mémoire du serveur pendant une durée maximale de 5 minutes."
         ]
       },
@@ -99,7 +99,7 @@
           "Wenn du angemeldet bist, werden Einträge in deinem Handelsbuch, Käufe, Verkäufe sowie gespeicherte Herstellungspläne auf dem Server gespeichert und automatisch mit anderen Geräten synchronisiert, die mit demselben Konto verknüpft sind. Daten, die vor der Anmeldung im Browser gespeichert wurden, müssen explizit importiert werden; sie werden nicht automatisch zusammengeführt. Die Sicherung und Wiederherstellung per JSON-Datei erfolgt manuell durch den Nutzer. Screenshots vom Marktplatz werden direkt im Browser ausgelesen; die Bilddateien selbst werden weder gespeichert noch an den Server übertragen.",
           "Eingaben in allgemeinen Rechnern, ungespeicherte Entwürfe für die Herstellung (Crafting) sowie die Entwicklungshistorie von Charakteren verbleiben in diesem Browser und werden nicht mit deinem Konto synchronisiert. Entwürfe für die Herstellung, die bei angemeldetem Konto erstellt wurden, werden separat pro Konto gespeichert. Die Entwicklungshistorie umfasst bis zu 20 Momentaufnahmen (Snapshots) pro Charakter und kann direkt auf der jeweiligen Seite gelöscht werden. Das Löschen der Website-Daten entfernt auch diese lokalen Datensätze.",
           "Einstellungen, die ohne Anmeldung vorgenommen wurden, verbleiben in diesem Browser (im sogenannten „localStorage“). Bei angemeldetem Konto werden Sprache, Favoriten, Klassenverteilungen, verbleibende Punkte (zusammen mit den zugehörigen öffentlichen Charakterkennungen und dem Level), Ausrüstungswahlen und Boni, der Fortschritt bei der Kartenvervollständigung sowie Server- und Timer-Einstellungen mit deinem Konto verknüpft und auf anderen Geräten wiederhergestellt. Charakterantworten, Suchverlauf, Namen von Ausrüstungsgegenständen, persönliche Notizen und die Build-Bibliothek werden nicht synchronisiert. Lokale Caches des Kontos sowie Wiederherstellungs-Backups werden gelöscht, wenn du die Website-Daten entfernst; Servereinstellungen werden gelöscht, wenn du dein Konto entfernst.",
-          "Deine Anmeldung für die Community wird im „sessionStorage“ (Sitzungsspeicher) des aktuellen Tabs gespeichert und beim Schließen des Tabs entfernt."
+          "Die Anmeldung wird in einem HttpOnly-Cookie (__Host-asbc_session) gespeichert, das JavaScript nicht lesen kann. Es wird nur über HTTPS übertragen und ist höchstens 24 Stunden gültig. Beim Schließen eines Tabs kannst du angemeldet bleiben; beim Abmelden wird die Sitzung ungültig. Im sessionStorage des Tabs liegen nur die Anzeigedaten des Kontos und ein CSRF-Schutzwert, kein Anmeldetoken."
         ]
       },
       {
@@ -114,7 +114,7 @@
       {
         "heading": "Automatisch verarbeitete Daten",
         "paragraphs": [
-          "IP-Adresse: Wird ausschließlich im Arbeitsspeicher des Servers verwendet, um die Anzahl der Anmeldeversuche zu begrenzen, und spätestens nach 11 Minuten wieder gelöscht; sie wird weder in der Datenbank noch in Protokolldateien (Logs) gespeichert.",
+          "Die IP-Adresse wird höchstens 10 Minuten im Arbeitsspeicher des Servers genutzt, um Anmeldeversuche und übermäßige Anfragen zu begrenzen, und spätestens nach 11 Minuten gelöscht. Sie wird weder in der Datenbank noch in Anwendungsprotokollen gespeichert.",
           "Charaktersuche: Der von dir eingegebene Server- und Charaktername wird verwendet, um öffentliche Informationen von der offiziellen AION 2-Website abzurufen. Die Ergebnisse werden für bis zu 5 Minuten im Arbeitsspeicher des Servers gespeichert."
         ]
       },
@@ -182,7 +182,7 @@
           "Al iniciar sesión, los elementos del registro de transacciones, las compras, las ventas y los planes de fabricación guardados se almacenan en el servidor de la cuenta y se sincronizan automáticamente con otros dispositivos vinculados a la misma. Los datos almacenados en el navegador antes de iniciar sesión requieren una importación manual; no se fusionan automáticamente. Las funciones de copia de seguridad y restauración mediante archivos JSON deben ser iniciadas por el usuario. Las capturas de pantalla del mercado se procesan dentro del navegador; las imágenes en sí no se almacenan ni se envían al servidor.",
           "Los datos introducidos en la calculadora general, los borradores de creación no guardados y el historial de desarrollo del personaje permanecen en este navegador y no se sincronizan con tu cuenta. Los borradores de creación guardados mientras la sesión está iniciada se almacenan de forma independiente para cada cuenta. El historial de desarrollo conserva hasta 20 instantáneas de cambios por personaje y puede borrarse desde la propia pantalla. Eliminar los datos del sitio también borra estos registros locales.",
           "La configuración establecida sin haber iniciado sesión permanece en este navegador (localStorage). Al iniciar sesión, el idioma, los favoritos, la distribución de clases, los puntos restantes (junto con los identificadores públicos del personaje y su nivel), el equipamiento y sus bonificaciones, el progreso de finalización de mapas y la configuración del servidor o temporizadores se almacenan en tu cuenta y se restauran en otros dispositivos. Las respuestas del personaje, el historial de búsqueda, los nombres del equipamiento, las notas personales y la biblioteca de configuraciones (builds) no se sincronizan. Las cachés locales de la cuenta y las copias de seguridad de recuperación se eliminan al borrar los datos del sitio; la configuración del servidor se elimina al borrar tu cuenta.",
-          "La información de inicio de sesión en la comunidad se almacena en el almacenamiento de sesión (sessionStorage) de esta pestaña y se elimina al cerrar dicha pestaña."
+          "El inicio de sesión se guarda en una cookie HttpOnly (__Host-asbc_session) que JavaScript no puede leer. Solo se envía por HTTPS y dura un máximo de 24 horas. Cerrar una pestaña puede dejar la sesión abierta; cerrar sesión la revoca. El sessionStorage de la pestaña solo contiene información visible de la cuenta y un valor de protección CSRF, no un token de inicio de sesión."
         ]
       },
       {
@@ -197,7 +197,7 @@
       {
         "heading": "Datos procesados ​​automáticamente",
         "paragraphs": [
-          "Dirección IP: utilizada exclusivamente en la memoria del servidor para limitar los intentos de inicio de sesión; se elimina en un plazo máximo de 11 minutos y no se almacena en la base de datos ni en registros (logs).",
+          "La dirección IP se utiliza en la memoria del servidor durante un máximo de 10 minutos para limitar los intentos de inicio de sesión y las solicitudes excesivas, y se elimina en un plazo máximo de 11 minutos. No se guarda en la base de datos ni en los registros de la aplicación.",
           "Búsqueda de personajes: el servidor y el nombre de personaje que introduzcas se utilizan para consultar información pública en el sitio web oficial de AION 2. Los resultados se almacenan en la memoria del servidor durante un máximo de 5 minutos."
         ]
       },
@@ -265,7 +265,7 @@
           "Ao fazer login, os itens do registro de negociações, compras, vendas e planos de criação salvos são armazenados no servidor da conta e sincronizados automaticamente com outros dispositivos vinculados à mesma conta. Registros do navegador anteriores ao login exigem importação manual e não são mesclados automaticamente. O backup e a restauração via JSON são iniciados pelo próprio usuário. Capturas de tela do mercado são lidas no navegador; as imagens em si não são armazenadas nem enviadas ao servidor.",
           "Dados inseridos em calculadoras gerais, rascunhos de criação (crafting) não salvos e o histórico de evolução do personagem permanecem neste navegador e não são sincronizados com sua conta. Rascunhos de criação salvos enquanto você está logado são mantidos separadamente para cada conta. O histórico de evolução armazena até 20 instantâneos (snapshots) de alterações por personagem e pode ser limpo na própria tela. A exclusão dos dados do site também remove esses registros locais.",
           "Configurações feitas sem estar logado permanecem neste navegador (localStorage). Ao realizar o login, preferências como idioma, itens favoritos, alocações de classe, pontos restantes, identificadores públicos de personagem, nível, equipamentos e bônus escolhidos, progresso de conclusão de mapa e configurações de servidor/temporizador são vinculados à sua conta e restaurados em outros dispositivos. Respostas de personagens, histórico de busca, nomes de equipamentos, anotações pessoais e a biblioteca de builds não são sincronizados. Caches locais da conta e backups de recuperação são removidos ao limpar os dados do site; configurações de servidor são removidas ao excluir sua conta.",
-          "Seu login na comunidade é mantido no armazenamento de sessão (sessionStorage) desta aba e é removido quando a aba é fechada."
+          "O login é armazenado em um cookie HttpOnly (__Host-asbc_session), que o JavaScript não pode ler. Ele é enviado apenas por HTTPS e dura até 24 horas. Fechar uma aba pode manter o login ativo; sair da conta revoga a sessão. O sessionStorage da aba contém apenas informações de exibição da conta e um valor de proteção CSRF, não um token de login."
         ]
       },
       {
@@ -280,7 +280,7 @@
       {
         "heading": "Dados processados ​​automaticamente",
         "paragraphs": [
-          "Endereço IP: utilizado apenas na memória do servidor para limitar tentativas de login e removido em, no máximo, 11 minutos; não é armazenado no banco de dados nem em logs.",
+          "O endereço IP é usado na memória do servidor por até 10 minutos para limitar tentativas de login e solicitações excessivas, sendo removido em, no máximo, 11 minutos. Ele não é armazenado no banco de dados nem nos logs da aplicação.",
           "Consulta de personagem: o servidor e o nome do personagem informados por você são utilizados para buscar informações públicas no site oficial do AION 2. Os resultados permanecem na memória do servidor por até 5 minutos."
         ]
       },
@@ -348,7 +348,7 @@
           "После входа в систему данные о торговых операциях, покупках, продажах и сохраненные планы изготовления сохраняются на сервере и автоматически синхронизируются между всеми устройствами, привязанными к одной учетной записи. Данные, накопленные в браузере до входа в систему, требуют ручного импорта — они не объединяются автоматически. Резервное копирование и восстановление данных в формате JSON выполняются пользователем вручную. Скриншоты рынка обрабатываются непосредственно в браузере; сами изображения не сохраняются и не передаются на сервер.",
           "Введенные в калькулятор данные, несохраненные черновики создания предметов и история развития персонажа хранятся в текущем браузере и не синхронизируются с вашей учетной записью. Черновики создания предметов, созданные после входа в систему, привязаны к конкретной учетной записи. История развития персонажа сохраняет до 20 снимков изменений; ее можно очистить непосредственно в интерфейсе. Удаление данных сайта также приводит к удалению этих локальных записей.",
           "При использовании сайта без входа в учетную запись настройки сохраняются в браузере (в хранилище localStorage). Если вы вошли в систему, то такие параметры, как язык, избранное, распределение характеристик персонажа, доступные очки (вместе с идентификаторами персонажа и его уровнем), выбранное снаряжение и бонусы, прогресс исследования карты, а также настройки сервера и таймеров, привязываются к вашей учетной записи и будут доступны на других устройствах. Ответы персонажей, история поиска, названия предметов, личные заметки и библиотека сборок (билдов) не синхронизируются. Локальные кэши учетной записи и резервные копии для восстановления удаляются при очистке данных сайта; настройки сервера удаляются при удалении самой учетной записи.",
-          "Информация о вашем входе в систему хранится в сессионном хранилище (sessionStorage) текущей вкладки браузера и удаляется при ее закрытии."
+          "Данные входа хранятся в файле cookie HttpOnly (__Host-asbc_session), недоступном для JavaScript. Он передаётся только по HTTPS и действует не более 24 часов. Закрытие вкладки не всегда завершает сеанс; выход из аккаунта аннулирует его. В sessionStorage вкладки сохраняются только отображаемые данные аккаунта и значение защиты от CSRF, но не токен входа."
         ]
       },
       {
@@ -363,7 +363,7 @@
       {
         "heading": "Данные, обрабатываемые автоматически",
         "paragraphs": [
-          "IP-адрес: используется исключительно в оперативной памяти сервера для ограничения количества попыток входа; хранится не более 11 минут и не записывается в базу данных или лог-файлы.",
+          "IP-адрес используется в оперативной памяти сервера не более 10 минут для ограничения попыток входа и чрезмерных запросов, а затем удаляется не позднее чем через 11 минут. Он не сохраняется в базе данных или журналах приложения.",
           "Поиск персонажа: введенные вами название сервера и имя персонажа используются для получения общедоступной информации с официального сайта AION 2. Результаты сохраняются в памяти сервера в течение 5 минут."
         ]
       },

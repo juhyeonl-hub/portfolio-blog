@@ -178,11 +178,11 @@ public class ShadowcraftController {
         long ttl=url.contains("/api/character/")?15_000:300_000;
         synchronized(cache) { Cached hit=cache.get(url); if(hit!=null && System.currentTimeMillis()-hit.at<ttl) return hit.data; }
         HttpRequest request=HttpRequest.newBuilder(URI.create(url)).timeout(LOOKUP_TIMEOUT).header("Accept","application/json").build();
-        HttpResponse<InputStream> response=client.send(request,HttpResponse.BodyHandlers.ofInputStream());
+        HttpResponse<byte[]> response=com.portfolio.blog.security.BoundedHttp.send(client,request,3_000_000);
         JsonNode data;
-        try(InputStream stream=response.body()) {
+        {
             if(response.statusCode()!=200) throw new IllegalStateException("Upstream failure");
-            byte[] bytes=stream.readNBytes(3_000_001);
+            byte[] bytes=response.body();
             if(bytes.length>3_000_000) throw new IllegalStateException("Response too large");
             data=mapper.readTree(bytes); if(data==null || !data.isObject()) throw new IllegalStateException("Invalid response");
         }

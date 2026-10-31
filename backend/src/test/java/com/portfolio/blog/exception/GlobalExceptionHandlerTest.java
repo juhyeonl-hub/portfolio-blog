@@ -22,4 +22,10 @@ class GlobalExceptionHandlerTest {
         assertThat(handler.handleRuntimeException(new RuntimeException("Invalid credentials")).getStatusCode().value()).isEqualTo(401);
         assertThat(handler.handleRuntimeException(new RuntimeException("Post not found")).getBody().get("error")).isEqualTo("Post not found");
     }
+    @Test void unexpectedExceptionAndNullMessagesNeverLeakOrCrash(){
+        for(String message:new String[]{null,"secret-sentinel; SQL query; java.lang.InternalError"}){
+            var response=handler.handleRuntimeException(new IllegalStateException(message));
+            assertThat(response.getStatusCode().value()).isEqualTo(500);assertThat(response.getBody().get("error")).doesNotContain("secret-sentinel","SQL","java.lang");
+        }
+    }
 }

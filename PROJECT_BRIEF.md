@@ -1059,3 +1059,9 @@ Expected: home action groups and common navigation are clear at1440/1024/390/360
 ## 2026-10-31 portal feedback
 [Task Goal]: Apply the user’s comprehensive hands-on feedback to the unpublished Metaroad layout and build workflow; audit Steam/account security and game-data freshness without unverified game claims.
 See tasks/asbc-portal-refinement-20261031.md. Expected responsive, readable sequential build setup, truthful automatic data freshness and evidence-based security review. Preserve unrelated changes.
+
+
+### 2026-10-31 ASBC security hardening
+User requested investigation and resolution of security issues while reviewing the UI. Audit authentication/session and ownership boundaries, hostile input/proxy fetching, dependencies and production operations; preserve other changes and user data. Track evidence and negative regression tests in tasks/asbc-security-hardening-20261031.md; use readonly Claude review for security changes.
+
+User approved the reviewed44-file security-only main commit/push and backend/web release on2026-10-31 (“이번 보안 변경만 운영에 배포”). Authentication hardening, compatible dependency patches and privacy disclosures only; unrelated302paths preserved.

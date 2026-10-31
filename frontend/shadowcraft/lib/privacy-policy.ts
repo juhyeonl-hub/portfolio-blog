@@ -6,7 +6,7 @@ import type {Locale} from '../app/locale';
 import translatedPrivacy from './data/privacy-translations.json';
 
 export const PRIVACY_CONTACT = 'contact@asbc.app';
-export const PRIVACY_UPDATED = '2026-10-25';
+export const PRIVACY_UPDATED = '2026-10-31';
 
 type Policy = {title: string; updated: string; sections: {heading: string; paragraphs: string[]}[]};
 
@@ -23,7 +23,7 @@ export const PRIVACY: Record<Locale, Policy> = {
         '로그인한 계정의 거래 장부 품목·매입·판매 기록과 저장한 제작 계획은 계정 서버에 저장되어 같은 계정의 다른 기기와 자동 동기화됩니다. 로그인 전 브라우저 기록은 확인 후 가져올 수 있으며 자동으로 계정에 합치지 않습니다. JSON 백업·복원은 사용자가 직접 실행합니다. 거래소 스크린샷은 브라우저 안에서만 읽으며 이미지 자체를 서버로 보내거나 저장하지 않습니다.',
         "일반 계산기 입력과 저장하지 않은 제작 초안, 캐릭터 성장 기록은 이 브라우저에만 보관하며 계정으로 동기화하지 않습니다. 로그인 중 제작 초안은 계정별로 분리합니다. 성장 기록은 캐릭터별 최근 변화 20개까지 보관하며 화면에서 비울 수 있습니다. 사이트 데이터를 삭제하면 이러한 로컬 기록도 삭제됩니다.",
         '로그아웃 상태의 설정은 이 브라우저(localStorage)에만 저장됩니다. 로그인하면 언어, 즐겨찾기, 직업별 배분·잔여 포인트와 해당 공개 캐릭터의 식별 정보·레벨, 장비 선택·보너스, 지도 완료 기록과 서버·타이머 설정을 계정에 저장하여 다른 기기에서도 복원합니다. 캐릭터 조회 응답·검색 기록, 장비 이름·개인 메모와 빌드 보관함은 동기화하지 않습니다. 로컬 계정 캐시와 복구용 백업은 사이트 데이터를 지울 때 삭제되며, 서버 설정은 계정 삭제 시 삭제됩니다.',
-        '커뮤니티 로그인 상태는 이 탭의 세션 저장소(sessionStorage)에 저장되며 탭을 닫으면 지워집니다.',
+        "로그인은 자바스크립트로 읽을 수 없는 HttpOnly 쿠키(__Host-asbc_session)에 보관됩니다. HTTPS에서만 전송되며 최대 24시간 유지됩니다. 탭을 닫아도 로그인은 유지될 수 있고, 로그아웃하면 세션이 폐기됩니다. 탭의 sessionStorage에는 계정 표시 정보와 요청 위조 방지 값만 저장하며 로그인 토큰은 저장하지 않습니다.",
       ]},
       {heading: '커뮤니티를 이용할 때 서버에 저장하는 정보', paragraphs: [
         '계정: 아이디, 비밀번호(되돌릴 수 없는 bcrypt 해시로만 저장), 가입 시각.',
@@ -32,7 +32,7 @@ export const PRIVACY: Record<Locale, Policy> = {
         '직접 올린 내용: 공개한 빌드(제목, 설명, 배분), 댓글, 추천, 신고(사유와 설명).',
       ]},
       {heading: '자동으로 처리되는 정보', paragraphs: [
-        'IP 주소: 로그인 시도 횟수 제한을 위해 서버 메모리에서 10분 동안 사용하고 늦어도 11분 안에 지우며 데이터베이스나 로그에 저장하지 않습니다.',
+        "IP 주소: 로그인 시도와 과도한 요청을 제한하기 위해 서버 메모리에서 최대 10분 동안 사용하고 늦어도 11분 안에 지웁니다. 데이터베이스나 애플리케이션 로그에 저장하지 않습니다.",
         '캐릭터 조회: 입력한 서버와 캐릭터 이름으로 아이온2 공식 사이트의 공개 정보를 조회합니다. 조회 결과는 서버 메모리에 최대 5분 동안 임시로 보관합니다.',
       ]},
       {heading: '쿠키', paragraphs: [
@@ -76,7 +76,7 @@ export const PRIVACY: Record<Locale, Policy> = {
         "When signed in, trade workbook items, purchases, sales and saved crafting plans are stored on the account server and automatically synced to other devices on the same account. Pre-login browser records require explicit import and are not merged automatically. JSON backup and restore are user-initiated. Market screenshots are read in the browser; the images themselves are neither stored nor sent to the server.",
         "General calculator inputs, unsaved crafting drafts and character growth history stay in this browser and are not synced to your account. Signed-in crafting drafts are kept separately per account. Growth history keeps up to 20 changed snapshots per character and can be cleared on screen. Clearing site data also deletes these local records.",
         'Signed-out settings stay in this browser (localStorage). When signed in, language, favorites, class allocations and remaining points with the associated public character identifiers and level, equipment choices and bonuses, map completion and server/timer settings are stored with your account and restored on other devices. Character responses, search history, equipment names, personal notes and the build library are not synced. Local account caches and recovery backups are removed when you clear site data; server settings are removed when you delete your account.',
-        'Your community sign-in is kept in this tab\'s session storage (sessionStorage) and is removed when the tab is closed.',
+        "Sign-in is stored in an HttpOnly cookie (__Host-asbc_session) that JavaScript cannot read. It is sent only over HTTPS and lasts up to 24 hours. Closing a tab may leave you signed in; signing out revokes the session. The tab’s sessionStorage contains only account display information and a CSRF protection value, not a sign-in token.",
       ]},
       {heading: 'Data stored on the server when you use the community', paragraphs: [
         'Account: username, password (stored only as an irreversible bcrypt hash), sign-up time.',
@@ -85,7 +85,7 @@ export const PRIVACY: Record<Locale, Policy> = {
         'What you post: published builds (title, description, allocation), comments, votes and reports (reason and description).',
       ]},
       {heading: 'Data processed automatically', paragraphs: [
-        'IP address: used only in server memory to limit sign-in attempts and removed within 11 minutes at most; it is not stored in the database or in logs.',
+        "IP address: used in server memory for up to 10 minutes to limit sign-in attempts and excessive requests, and removed within 11 minutes at most. It is not stored in the database or application logs.",
         'Character lookup: the server and character name you enter are used to look up public information on the official AION 2 website. Results are kept in server memory for up to 5 minutes.',
       ]},
       {heading: 'Cookies', paragraphs: [
@@ -129,7 +129,7 @@ export const PRIVACY: Record<Locale, Policy> = {
         "ログイン中の取引帳簿の品目・購入・販売記録と保存した製作計画はアカウントのサーバーに保存され、同じアカウントの他端末と自動同期します。ログイン前の記録は確認して取り込む必要があり、自動では統合しません。JSONのバックアップと復元は利用者が実行します。取引所画像はブラウザー内で読み取り、画像自体を保存したりサーバーへ送ったりしません。",
         "通常の計算入力、未保存の製作下書きとキャラクター成長記録はこのブラウザーのみに保管し、アカウントに同期しません。ログイン中の製作下書きはアカウント別に分けます。成長記録はキャラクターごとに最新20件の変化を保管し、画面から消去できます。サイトデータを削除するとこれらの記録も削除されます。",
         'ログアウト中の設定はブラウザ(localStorage)にのみ保存されます。ログインすると、言語、お気に入り、職業別の配分と残りポイントおよび対応する公開キャラクターの識別情報・レベル、装備選択とボーナス、マップ完了記録、サーバー・タイマー設定をアカウントに保存し、他の端末で復元します。キャラクター応答、検索履歴、装備名、個人メモ、ビルド保管庫は同期しません。ローカルキャッシュと復旧用バックアップはサイトデータの削除時に、サーバー設定はアカウント削除時に削除されます。',
-        'コミュニティのログイン状態は、このタブのセッションストレージ(sessionStorage)に保存され、タブを閉じると消えます。',
+        "ログイン情報はJavaScriptで読み取れないHttpOnly Cookie（__Host-asbc_session）に保存されます。HTTPSでのみ送信され、有効期間は最長24時間です。タブを閉じてもログイン状態が続く場合があります。ログアウトするとセッションは無効になります。タブのsessionStorageにはアカウントの表示情報とCSRF対策用の値だけを保存し、ログイントークンは保存しません。",
       ]},
       {heading: 'コミュニティ利用時にサーバーに保存する情報', paragraphs: [
         'アカウント: ID、パスワード(元に戻せないbcryptハッシュとしてのみ保存)、登録日時。',
@@ -138,7 +138,7 @@ export const PRIVACY: Record<Locale, Policy> = {
         '投稿した内容: 公開したビルド(タイトル、説明、配分)、コメント、推薦、通報(理由と説明)。',
       ]},
       {heading: '自動的に処理される情報', paragraphs: [
-        'IPアドレス: ログイン試行回数の制限のため、サーバーのメモリ上で10分間使用し、遅くとも11分以内に削除します。また、データベースやログには保存しません。',
+        "IPアドレスはログイン試行や過剰なリクエストを制限するため、サーバーのメモリ上で最長10分間使用し、遅くとも11分以内に削除します。データベースやアプリケーションログには保存しません。",
         'キャラクター照会: 入力したサーバーとキャラクター名で、アイオン2公式サイトの公開情報を照会します。照会結果はサーバーのメモリに最長5分間一時保存します。',
       ]},
       {heading: 'Cookie', paragraphs: [
@@ -182,7 +182,7 @@ export const PRIVACY: Record<Locale, Policy> = {
         "Kirjautuneena kauppakirjanpidon tuotteet, ostot, myynnit ja tallennetut valmistussuunnitelmat tallennetaan tilin palvelimelle ja synkronoidaan automaattisesti saman tilin laitteille. Ennen kirjautumista luodut tiedot tuodaan vain käyttäjän vahvistuksella. Käyttäjä käynnistää JSON-varmuuskopioinnin ja palautuksen. Kauppapaikan kuvat luetaan selaimessa; itse kuvia ei tallenneta eikä lähetetä palvelimelle.",
         "Laskurin tavalliset syötteet, tallentamattomat valmistusluonnokset ja hahmon kehityshistoria säilyvät vain tässä selaimessa eikä niitä synkronoida tilille. Kirjautuneen käyttäjän valmistusluonnokset pidetään tilikohtaisina. Historia säilyttää enintään 20 muuttunutta tilannekuvaa hahmoa kohden ja sen voi tyhjentää näkymästä. Sivustotietojen tyhjentäminen poistaa myös nämä paikalliset tiedot.",
         'Ilman kirjautumista asetukset säilyvät vain selaimessa (localStorage). Kirjautuneena kieli, suosikit, luokkakohtaiset pistejaot ja jäljellä olevat pisteet sekä niihin liittyvän julkisen hahmon tunnisteet ja taso, varustevalinnat ja bonukset, kartan suoritusmerkinnät sekä palvelin- ja ajastinasetukset tallennetaan tilille ja palautetaan muilla laitteilla. Hahmovastauksia, hakuhistoriaa, varusteiden nimiä, henkilökohtaisia muistiinpanoja ja rakennekirjastoa ei synkronoida. Paikalliset välimuistit ja palautusvarmuuskopiot poistuvat sivuston tietojen mukana; palvelimen asetukset poistuvat tilin poistamisen yhteydessä.',
-        'Yhteisöön kirjautuminen säilyy tämän välilehden istuntomuistissa (sessionStorage) ja poistuu, kun välilehti suljetaan.',
+        "Kirjautuminen tallennetaan HttpOnly-evästeeseen (__Host-asbc_session), jota JavaScript ei voi lukea. Eväste lähetetään vain HTTPS-yhteydellä, ja se on voimassa enintään 24 tuntia. Välilehden sulkeminen ei välttämättä kirjaa sinua ulos. Uloskirjautuminen mitätöi istunnon. Välilehden sessionStorage sisältää vain tilin näyttötiedot ja CSRF-suojausarvon, ei kirjautumistunnistetta.",
       ]},
       {heading: 'Palvelimelle tallennettavat tiedot yhteisöä käytettäessä', paragraphs: [
         'Tili: käyttäjätunnus, salasana (tallennetaan vain palautumattomana bcrypt-tiivisteenä), rekisteröitymisaika.',
@@ -191,7 +191,7 @@ export const PRIVACY: Record<Locale, Policy> = {
         'Julkaisemasi sisältö: julkaistut rakenteet (otsikko, kuvaus, jako), kommentit, äänet ja ilmoitukset (syy ja kuvaus).',
       ]},
       {heading: 'Automaattisesti käsiteltävät tiedot', paragraphs: [
-        'IP-osoite: käytetään vain palvelimen muistissa kirjautumisyritysten rajoittamiseen ja poistetaan viimeistään 11 minuutin kuluttua; sitä ei tallenneta tietokantaan eikä lokeihin.',
+        "IP-osoitetta käytetään palvelimen muistissa enintään 10 minuuttia kirjautumisyritysten ja liiallisten pyyntöjen rajoittamiseen. Se poistetaan viimeistään 11 minuutissa eikä sitä tallenneta tietokantaan tai sovelluslokeihin.",
         'Hahmohaku: syöttämäsi palvelin ja hahmon nimi käytetään julkisten tietojen hakemiseen AION 2:n virallisesta verkkopalvelusta. Tulokset säilytetään palvelimen muistissa enintään 5 minuuttia.',
       ]},
       {heading: 'Evästeet', paragraphs: [

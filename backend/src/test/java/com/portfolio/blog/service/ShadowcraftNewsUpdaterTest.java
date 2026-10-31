@@ -16,7 +16,7 @@ class ShadowcraftNewsUpdaterTest {
         HttpResponse<byte[]> response=mock(HttpResponse.class);
         when(response.statusCode()).thenReturn(200);
         when(response.body()).thenReturn("{\"contentList\":[{\"id\":1,\"title\":\"Official update\"}]}".getBytes());
-        when(client.send(any(HttpRequest.class),org.mockito.ArgumentMatchers.<HttpResponse.BodyHandler<byte[]>>any())).thenReturn(response);
+        when(client.sendAsync(any(HttpRequest.class),org.mockito.ArgumentMatchers.<HttpResponse.BodyHandler<byte[]>>any())).thenReturn(java.util.concurrent.CompletableFuture.completedFuture(response));
         new ShadowcraftNewsUpdater(service,new ObjectMapper(),client).refresh();
         verify(service).updateNews(argThat(n->n.path("contentList").isArray()));
         verify(service,never()).update(anyString(),any());
@@ -26,7 +26,7 @@ class ShadowcraftNewsUpdaterTest {
         var service=mock(ShadowcraftService.class);
         var client=mock(HttpClient.class);
         HttpResponse<byte[]> response=mock(HttpResponse.class);
-        when(client.send(any(HttpRequest.class),org.mockito.ArgumentMatchers.<HttpResponse.BodyHandler<byte[]>>any())).thenReturn(response);
+        when(client.sendAsync(any(HttpRequest.class),org.mockito.ArgumentMatchers.<HttpResponse.BodyHandler<byte[]>>any())).thenReturn(java.util.concurrent.CompletableFuture.completedFuture(response));
         when(response.statusCode()).thenReturn(403);
         var updater=new ShadowcraftNewsUpdater(service,new ObjectMapper(),client);
         updater.refresh();

@@ -17,6 +17,8 @@ public class AuthService {
     private final TotpService totpService;
     private final AppProperties appProperties;
 
+    private final String dummyHash;
+
     public AuthService(AdminUserRepository adminUserRepository,
                        PasswordEncoder passwordEncoder,
                        JwtService jwtService,
@@ -27,13 +29,13 @@ public class AuthService {
         this.jwtService = jwtService;
         this.totpService = totpService;
         this.appProperties = appProperties;
+        this.dummyHash = passwordEncoder.encode(java.util.UUID.randomUUID().toString());
     }
 
     public LoginResponse login(LoginRequest request) {
-        AdminUser admin = adminUserRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
-
-        if (!passwordEncoder.matches(request.getPassword(), admin.getPasswordHash())) {
+        AdminUser admin = adminUserRepository.findByUsername(request.getUsername()).orElse(null);
+        boolean matches = passwordEncoder.matches(request.getPassword(), admin == null ? dummyHash : admin.getPasswordHash());
+        if (!matches || admin == null) {
             throw new RuntimeException("Invalid credentials");
         }
 
@@ -54,6 +56,7 @@ public class AuthService {
         AdminUser admin = adminUserRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("Admin not found"));
 
+        if (admin.isTotpEnabled()) throw new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.CONFLICT, "TOTP is already enabled");
         String secret = totpService.generateSecret();
         String qrCode = totpService.generateQrCodeDataUri(secret, username);
 

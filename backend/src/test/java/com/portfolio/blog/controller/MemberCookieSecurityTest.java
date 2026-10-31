@@ -1,0 +1,35 @@
+package com.portfolio.blog.controller;
+import com.fasterxml.jackson.databind.*;
+import com.portfolio.blog.service.*;
+import jakarta.servlet.http.Cookie;
+import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.*;
+import org.springframework.test.web.servlet.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.assertj.core.api.Assertions.*;
+
+@SpringBootTest @AutoConfigureMockMvc @ActiveProfiles("test")
+@TestPropertySource(properties="app.community.password-auth-enabled=true")
+class MemberCookieSecurityTest {
+ @Autowired MockMvc mvc;@Autowired JdbcTemplate jdbc;@Autowired ObjectMapper mapper;@Autowired MemberSessionService sessions;
+ @BeforeEach void schema(){jdbc.execute("CREATE TABLE IF NOT EXISTS shadowcraft_members(id VARCHAR(36) PRIMARY KEY,username VARCHAR(32) NOT NULL UNIQUE,password_hash VARCHAR(255) NOT NULL,created_at TIMESTAMP WITH TIME ZONE NOT NULL)");jdbc.execute("CREATE TABLE IF NOT EXISTS shadowcraft_member_sessions(token_hash VARCHAR(64) PRIMARY KEY,member_id VARCHAR(36) NOT NULL REFERENCES shadowcraft_members(id) ON DELETE CASCADE,expires_at TIMESTAMP WITH TIME ZONE NOT NULL)");jdbc.execute("CREATE TABLE IF NOT EXISTS shadowcraft_member_steam(steam_id VARCHAR(20) PRIMARY KEY,member_id VARCHAR(36) NOT NULL UNIQUE REFERENCES shadowcraft_members(id) ON DELETE CASCADE,linked_at TIMESTAMP WITH TIME ZONE NOT NULL)");}
+ record Login(Cookie cookie,String csrf,String id){}
+ Login login()throws Exception{var res=mvc.perform(post("/api/community/auth/register").contentType("application/json").content(mapper.writeValueAsString(java.util.Map.of("username","u_"+System.nanoTime(),"password","notARealPassword123!")))).andExpect(status().isOk()).andExpect(jsonPath("$.token").doesNotExist()).andExpect(jsonPath("$.csrfToken").isString()).andReturn().getResponse();var cookie=res.getCookie("__Host-asbc_session");assertThat(cookie).isNotNull();assertThat(cookie.isHttpOnly()).isTrue();assertThat(cookie.getSecure()).isTrue();assertThat(cookie.getPath()).isEqualTo("/");assertThat(cookie.getMaxAge()).isEqualTo(86400);assertThat(res.getHeader("Set-Cookie")).contains("SameSite=Strict").doesNotContain("Domain=");var json=mapper.readTree(res.getContentAsString());assertThat(json.toString()).doesNotContain(cookie.getValue());return new Login(cookie,json.path("csrfToken").asText(),json.path("member").path("id").asText());}
+ @Test void cookieReadAndCsrfBoundWrites()throws Exception{var a=login();mvc.perform(get("/api/community/me").cookie(a.cookie)).andExpect(status().isOk()).andExpect(jsonPath("$.id").value(a.id)).andExpect(jsonPath("$.csrfToken").value(a.csrf));mvc.perform(post("/api/community/logout").cookie(a.cookie)).andExpect(status().isForbidden());mvc.perform(post("/api/community/logout").cookie(a.cookie).header("X-ASBC-CSRF","0".repeat(64))).andExpect(status().isForbidden());mvc.perform(post("/api/community/logout").cookie(a.cookie).header("X-ASBC-CSRF",a.csrf)).andExpect(status().isNoContent()).andExpect(header().string("Set-Cookie",org.hamcrest.Matchers.containsString("Max-Age=0")));mvc.perform(get("/api/community/me").cookie(a.cookie)).andExpect(status().isForbidden());}
+ @Test void otherTabCannotWriteOldAccountStateIntoNewAccount()throws Exception{var a=login();var b=login();mvc.perform(put("/api/community/settings").cookie(b.cookie).header("X-ASBC-CSRF",a.csrf).contentType("application/json").content("{}" )).andExpect(status().isForbidden());mvc.perform(get("/api/community/settings").cookie(b.cookie).header("X-ASBC-CSRF",a.csrf)).andExpect(status().isForbidden());mvc.perform(get("/api/community/settings").cookie(b.cookie)).andExpect(status().isForbidden());mvc.perform(get("/api/community/me").cookie(b.cookie)).andExpect(jsonPath("$.id").value(b.id));}
+ @Test void crossSiteFormsAndOriginsRejected()throws Exception{var a=login();mvc.perform(post("/api/community/auth/register").contentType("text/plain").content("{}" )).andExpect(status().isForbidden());mvc.perform(post("/api/community/logout").cookie(a.cookie).header("X-ASBC-CSRF",a.csrf).header("Origin","https://attacker.invalid")).andExpect(status().isForbidden());mvc.perform(post("/api/community/logout").cookie(a.cookie).header("X-ASBC-CSRF",a.csrf).header("Sec-Fetch-Site","cross-site")).andExpect(status().isForbidden());assertThat(sessions.member(a.cookie.getValue())).isEqualTo(a.id);}
+ @Test void legacySessionRotatesAndCannotOverrideAnotherAccount()throws Exception{var a=login();String old=a.cookie.getValue();var res=mvc.perform(post("/api/community/session").header("Authorization","Bearer "+old)).andExpect(status().isOk()).andExpect(jsonPath("$.token").doesNotExist()).andReturn().getResponse();assertThat(sessions.member(old)).isNull();var replacement=res.getCookie("__Host-asbc_session");assertThat(sessions.member(replacement.getValue())).isEqualTo(a.id);mvc.perform(post("/api/community/session").header("Authorization","Bearer "+old)).andExpect(status().isForbidden());var b=login();mvc.perform(post("/api/community/session").header("Authorization","Bearer "+replacement.getValue()).cookie(b.cookie)).andExpect(status().isConflict());assertThat(sessions.member(b.cookie.getValue())).isEqualTo(b.id);}
+ @Test void memberCookieCannotAccessAdmin()throws Exception{var a=login();mvc.perform(get("/api/auth/me").cookie(a.cookie)).andExpect(status().isForbidden());mvc.perform(post("/api/auth/totp/setup").cookie(a.cookie)).andExpect(status().isForbidden());}
+ @Test void signingInAgainRevokesOnlyTheReplacedBrowserSession()throws Exception{
+  var a=login();String otherDevice=sessions.create(a.id);String username=jdbc.queryForObject("SELECT username FROM shadowcraft_members WHERE id=?",String.class,a.id);
+  var result=mvc.perform(post("/api/community/auth/login").cookie(a.cookie).contentType("application/json").content(mapper.writeValueAsString(java.util.Map.of("username",username,"password","notARealPassword123!")))).andExpect(status().isOk()).andReturn().getResponse();
+  var next=result.getCookie("__Host-asbc_session");assertThat(next).isNotNull();assertThat(sessions.member(a.cookie.getValue())).isNull();assertThat(sessions.member(next.getValue())).isEqualTo(a.id);assertThat(sessions.member(otherDevice)).isEqualTo(a.id);
+  var switched=mvc.perform(post("/api/community/auth/register").cookie(next).contentType("application/json").content(mapper.writeValueAsString(java.util.Map.of("username","u_"+System.nanoTime(),"password","notARealPassword123!")))).andExpect(status().isOk()).andReturn().getResponse();
+  assertThat(sessions.member(next.getValue())).isNull();assertThat(sessions.member(switched.getCookie("__Host-asbc_session").getValue())).isNotEqualTo(a.id);assertThat(sessions.member(otherDevice)).isEqualTo(a.id);
+ }
+}

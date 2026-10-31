@@ -19,7 +19,7 @@ class OfficialRankingProbeTest {
         when(response.statusCode()).thenReturn(status);
         var stub = when(response.body());
         for (byte[] body : bodies) stub = stub.thenReturn(body);
-        when(client.send(any(HttpRequest.class), org.mockito.ArgumentMatchers.<HttpResponse.BodyHandler<byte[]>>any())).thenReturn(response);
+        when(client.sendAsync(any(HttpRequest.class), org.mockito.ArgumentMatchers.<HttpResponse.BodyHandler<byte[]>>any())).thenReturn(java.util.concurrent.CompletableFuture.completedFuture(response));
         return client;
     }
 

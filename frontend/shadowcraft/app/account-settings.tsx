@@ -8,7 +8,7 @@ import {AccountSyncContext} from './account-sync-panel';
 export function AccountSettings({children}:{children:ReactNode}){
  const {session,ready}=useMemberSession();
  if(!ready)return <p role="status">ASBC…</p>;
- return <SettingsScope key={session?.member.id||'guest'} memberId={session?.member.id||null} token={session?.token||''}>{children}</SettingsScope>;
+ return <SettingsScope key={session?.member.id||'guest'} memberId={session?.member.id||null} token={session?.csrfToken||''}>{children}</SettingsScope>;
 }
 function SettingsScope({children,memberId,token}:{children:ReactNode;memberId:string|null;token:string}){
  const [initializationError,setInitializationError]=useState(false),[attempt,setAttempt]=useState(0);

@@ -30,7 +30,13 @@ public class MemberSessionService {
                 String.class, hash(token), Timestamp.from(Instant.now()));
         return rows.isEmpty() ? null : rows.getFirst();
     }
-    public void revoke(String token) { jdbc.update("DELETE FROM shadowcraft_member_sessions WHERE token_hash=?", hash(token)); }
+    @org.springframework.transaction.annotation.Transactional
+    public String rotate(String token) {
+        if(token==null||!token.matches("a2bc_[A-Za-z0-9_-]{43}"))return null;
+        var owners=jdbc.queryForList("SELECT member_id FROM shadowcraft_member_sessions WHERE token_hash=? AND expires_at>? FOR UPDATE",String.class,hash(token),Timestamp.from(Instant.now()));
+        if(owners.isEmpty())return null;String replacement=create(owners.getFirst());revoke(token);return replacement;
+    }
+    public void revoke(String token) { if(token==null)return; jdbc.update("DELETE FROM shadowcraft_member_sessions WHERE token_hash=?", hash(token)); }
     private String hash(String token) {
         try { return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(token.getBytes(StandardCharsets.UTF_8))); }
         catch (java.security.NoSuchAlgorithmException e) { throw new IllegalStateException(e); }

@@ -36,10 +36,10 @@ public class SteamActivityService {
             nextAttempt=now+60_000;
             try {
                 var request=HttpRequest.newBuilder(URI.create(SOURCE)).timeout(Duration.ofSeconds(5)).header("Accept","application/json").GET().build();
-                var response=client.send(request,HttpResponse.BodyHandlers.ofInputStream());
-                try(InputStream body=response.body()) {
+                var response=com.portfolio.blog.security.BoundedHttp.send(client,request,65_536);
+                {
                     if(response.statusCode()!=200)throw new IllegalStateException("Steam unavailable");
-                    byte[] bytes=body.readNBytes(65_537);
+                    byte[] bytes=response.body();
                     if(bytes.length>65_536)throw new IllegalStateException("Response too large");
                     var data=mapper.readTree(bytes);
                     if(data==null)throw new IllegalStateException("Empty response");

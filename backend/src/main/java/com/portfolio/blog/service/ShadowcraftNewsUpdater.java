@@ -43,7 +43,7 @@ public class ShadowcraftNewsUpdater {
         try {
             var request = HttpRequest.newBuilder(SOURCE).timeout(Duration.ofSeconds(15))
                     .header("Accept", "application/json").header("User-Agent", "a2bc/1.0").build();
-            var response = client.send(request, HttpResponse.BodyHandlers.ofByteArray());
+            var response = com.portfolio.blog.security.BoundedHttp.send(client, request, 1_000_000);
             if (response.statusCode() != 200 || response.body().length > 1_000_000)
                 throw new IllegalStateException("Official news response rejected");
             service.updateNews(mapper.readTree(response.body()));

@@ -35,14 +35,15 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, com.portfolio.blog.service.ClientAddress addresses, com.portfolio.blog.service.RequestRateLimit limits, com.portfolio.blog.service.MemberCookies cookies) throws Exception {
         http
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/auth/login").permitAll()
+                .requestMatchers("/api/auth/**").hasRole("ADMIN")
                 .requestMatchers("/api/community/auth/register", "/api/community/auth/login", "/api/community/auth/steam/start", "/api/community/auth/steam/callback", "/api/community/auth/steam/exchange", "/api/community/auth/steam/register").permitAll()
                 .requestMatchers("/api/community/**").hasRole("MEMBER")
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
@@ -52,7 +53,9 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-            .addFilterBefore(apiKeyFilter, JwtAuthenticationFilter.class);
+            .addFilterBefore(apiKeyFilter, JwtAuthenticationFilter.class)
+            .addFilterAfter(new MemberCsrfFilter(cookies), JwtAuthenticationFilter.class)
+            .addFilterAfter(new ApiRequestGuard(addresses,limits), org.springframework.security.web.access.intercept.AuthorizationFilter.class);
 
         return http.build();
     }

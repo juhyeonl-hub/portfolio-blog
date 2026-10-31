@@ -20,9 +20,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final com.portfolio.blog.service.MemberSessionService memberSessions;
 
-    public JwtAuthenticationFilter(JwtService jwtService, com.portfolio.blog.service.MemberSessionService memberSessions) {
+    private final com.portfolio.blog.service.MemberCookies cookies;
+
+    public JwtAuthenticationFilter(JwtService jwtService, com.portfolio.blog.service.MemberSessionService memberSessions, com.portfolio.blog.service.MemberCookies cookies) {
         this.jwtService = jwtService;
-        this.memberSessions = memberSessions;
+        this.memberSessions = memberSessions;this.cookies=cookies;
     }
 
     @Override
@@ -46,6 +48,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         }
 
+        if(authHeader==null && SecurityContextHolder.getContext().getAuthentication()==null) {
+            String token=cookies.read(request),memberId=memberSessions.member(token);
+            if(memberId!=null){request.setAttribute(com.portfolio.blog.service.MemberCookies.AUTH_ATTRIBUTE,true);SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(memberId,null,List.of(new SimpleGrantedAuthority("ROLE_MEMBER"))));}
+        }
         filterChain.doFilter(request, response);
     }
 }

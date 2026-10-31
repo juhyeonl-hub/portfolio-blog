@@ -93,7 +93,7 @@ public class OfficialRankingProbe {
                     + contentsType + "&rankingType=0&serverId=" + serverId);
             var request = HttpRequest.newBuilder(uri).timeout(Duration.ofSeconds(15))
                     .header("Accept", "application/json").header("User-Agent", "a2bc/1.0").GET().build();
-            var response = client.send(request, HttpResponse.BodyHandlers.ofByteArray());
+            var response = com.portfolio.blog.security.BoundedHttp.send(client, request, 1_000_000);
             if (response.statusCode() != 200 || response.body().length > 1_000_000) return -1;
             JsonNode body = mapper.readTree(response.body());
             JsonNode list = body.path("rankingList");
