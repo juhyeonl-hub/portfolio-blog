@@ -117,7 +117,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
     {error&&<div role="alert"><details><summary>{t('조회 오류 자세히 보기')}</summary><p>{t(error)}</p></details><button className="button secondary" onClick={()=>inspect(selected)}>{t('공식 세팅 다시 조회')}</button></div>}
    </div>
    <nav className="ranker-view-tabs ranker-primary-tabs" aria-label={rankerText(locale,'tabs')}>{([{key:'equipment',label:'장비'},{key:'skills',label:'스킬'},{key:'daevanion',label:'데바니온'}] as const).map(tab=><button type="button" key={tab.key} aria-pressed={view===tab.key} onClick={()=>{setFocusSkillGuide(false);setView(tab.key)}}>{t(tab.label)}</button>)}</nav>
-   {view==='equipment'&&<MyRankerComparison key={JSON.stringify([selected.characterId,plan.character?.profile,plan.character?.importedAt])} catalog={catalog} plan={plan} ranker={selected} live={live} onConnect={onConnect} onRefreshRanker={()=>inspect(selected)}/>}
+   {view==='equipment'&&<MyRankerComparison key={catalog.classKey} catalog={catalog} plan={plan} ranker={selected} live={live} onConnect={onConnect} onRefreshRanker={()=>inspect(selected)}/>}
    {view==='skills'&&<RankerSkillFollow key={selected.characterId+catalog.classKey} catalog={catalog} plan={plan} ranker={selected} profile={live} onApply={onApply} specMode={skillSpecMode} onSpecModeChange={setSkillSpecMode} focusOnOpen={focusSkillGuide}/>}
    {view==='daevanion'&&<>
     {result.error&&<p role="alert">{t(result.error)}</p>}

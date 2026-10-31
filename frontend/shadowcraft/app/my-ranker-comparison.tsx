@@ -1,6 +1,5 @@
 import './equipment-guidance.css';
 import {useEffect,useRef,useState} from 'react';
-import {createPortal} from 'react-dom';
 import {rankerText} from '../lib/ranker-comparison-text';
 import './ranker-visual.css';
 import {useLocale} from './locale';
@@ -72,37 +71,51 @@ function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index,onR
 }
 export default function MyRankerComparison({catalog,plan,ranker,live,onConnect,onRefreshRanker}:{onRefreshRanker?:()=>void;catalog:Catalog;plan:Plan;ranker:Ranker;live:any;onConnect?:()=>void}){
  const {t,locale}=useLocale();
- const dialog=useRef<HTMLDialogElement>(null);
- const [hoverSlot,setHoverSlot]=useState<number|null>(null);const hoverTimer=useRef<ReturnType<typeof setTimeout>|null>(null);
- function keepHover(){if(hoverTimer.current){clearTimeout(hoverTimer.current);hoverTimer.current=null}}
- function leaveHover(){keepHover();hoverTimer.current=setTimeout(()=>setHoverSlot(null),160)}
- function showHover(value:number){if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;keepHover();setHoverSlot(value)}
- useEffect(()=>{setHoverSlot(null);keepHover();return keepHover},[ranker.characterId,ranker.serverId,ranker.region]);
- useEffect(()=>{const key=(e:KeyboardEvent)=>{if(e.key==='Escape')setHoverSlot(null)};window.addEventListener('keydown',key);return()=>window.removeEventListener('keydown',key)},[]);
+ const detailPanel=useRef<HTMLElement>(null),equipmentPanel=useRef<HTMLDivElement>(null);
+ const hoverTimer=useRef<ReturnType<typeof setTimeout>|null>(null);
  const [index,setIndex]=useState<ItemIndex|null>(null),[slot,setSlot]=useState<number|null>(null);
+ function cancelHover(){if(hoverTimer.current!==null){clearTimeout(hoverTimer.current);hoverTimer.current=null;}}
+ function showHover(value:number){
+  if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  cancelHover();hoverTimer.current=setTimeout(()=>{setSlot(value);hoverTimer.current=null;},140);
+ }
+ function showDetails(){
+  requestAnimationFrame(()=>{detailPanel.current?.scrollIntoView({block:'start',behavior:'auto'});detailPanel.current?.focus({preventScroll:true});});
+ }
+ function inspect(value:number){
+  cancelHover();setSlot(value);
+  if(window.matchMedia('(max-width:999px)').matches)showDetails();
+ }
+ useEffect(()=>{cancelHover();return cancelHover;},[ranker.characterId,ranker.serverId,ranker.region,plan.character?.profile?.characterId]);
  useEffect(()=>{let active=true;loadItemIndex().then(x=>{if(active)setIndex(x)});return()=>{active=false};},[]);
  const mine=plan.character,comparison=compareRankerEquipment(mine?.equipment,live?live.equipment:ranker.equipment);
- const row=comparison.rows.find(r=>r.slot===slot),hoverRow=comparison.rows.find(r=>r.slot===hoverSlot);
- useEffect(()=>{const element=dialog.current;if(slot===null||!element)return;const opener=document.activeElement; element.showModal();return()=>{element.close();if(opener instanceof HTMLElement&&opener.isConnected)opener.focus();};},[slot]);
  const identity:Identity|null=mine?.classKey===catalog.classKey&&mine?.profile?.characterId&&mine?.profile?.serverId&&mine?.region?{id:mine.profile.characterId,server:String(mine.profile.serverId),region:mine.region}:null;
  const other:Identity={id:ranker.characterId,server:String(ranker.serverId),region:ranker.region};
+ const rows=comparison.rows.filter(r=>r.right||(identity&&r.left));
+ // Keep the chosen body slot across rankers; start with the main weapon when available.
+ const row=rows.find(r=>r.slot===slot)||rows.find(r=>(r.right||r.left)?.slotPosName==='MainHand')||rows[0];
+ const selectedSlot=row?.slot??null;
  return <section className="my-ranker-comparison" aria-label={t('내 캐릭터와 랭커 비교')}>
   <h3>{t('내 캐릭터와 랭커 비교')}</h3>
-  <p>{t('PC에서는 장비에 마우스를 올려 상세 옵션을 보세요. 클릭하거나 모바일에서 누르면 창을 고정해서 볼 수 있습니다.')}</p>
+  <p>{rankerText(locale,'inlineGearHint')}</p>
   <p className="subtle">{t('판단 기준: {0} · {1}. 레벨 비교는 글로벌 아이템 자료 기준이며 랭커의 옵션을 정답으로 취급하지 않습니다.',[t(catalog.className||catalog.classKey||''),t(MODE_NAMES[plan.mode])])}</p>
   {!identity&&(onConnect?<button className="button primary" onClick={onConnect}>{t('내 캐릭터 연결하고 비교')}</button>:<p role="status">{t('빌드 화면에서 내 캐릭터를 먼저 연결하세요.')}</p>)}
-  <div className={"equipment-pair headings "+(!identity?"ranker-only":"")}>{identity&&<div><strong>{t('내 캐릭터')}</strong><b>{mine?.profile?.characterName||t('연결되지 않음')}</b><small>{mine?.importedAt?new Date(mine.importedAt).toLocaleString():''}</small></div>}<div><strong>{t('비교할 랭커')}</strong><b>{ranker.name}</b><small>{t(live?'이번 공식 응답':'저장된 장비 목록')}</small></div></div>
-  <div className="comparison-workbench"><div className={"visual-equipment-windows "+(!identity?"ranker-only":"")}>{identity&&<section aria-label={t('내 캐릭터 장비창')}><EquipmentGrid items={comparison.rows.flatMap(r=>r.left?[r.left]:[])} selectedSlot={slot} onInspect={value=>{keepHover();setHoverSlot(null);setSlot(value)}} inspectOnHover={false} onHover={showHover} onLeave={leaveHover}/></section>}<section aria-label={t('랭커 장비창')}><EquipmentGrid items={comparison.rows.flatMap(r=>r.right?[r.right]:[])} selectedSlot={slot} onInspect={value=>{keepHover();setHoverSlot(null);setSlot(value)}} inspectOnHover={false} onHover={showHover} onLeave={leaveHover}/></section></div>
-  </div>
-  {row&&<dialog ref={dialog} className="equipment-option-dialog" aria-labelledby="equipment-option-title" onCancel={()=>setSlot(null)} onClose={()=>setSlot(null)} onClick={e=>{if(e.target===e.currentTarget)setSlot(null)}}>
-   <header><div><small>{rankerText(locale,'gearDialog')} · {identity?mine?.profile?.characterName+' ↔ ':''}{ranker.name}</small><h3 id="equipment-option-title">{slotLabel(row.left?.slotPosName||row.right?.slotPosName||String(row.slot),t)}</h3></div><button autoFocus type="button" className="button secondary" onClick={()=>setSlot(null)}>{t('닫기')}</button></header>
-   <div className={"equipment-pair option-pair "+(!identity?"ranker-only":"")} key={JSON.stringify([identity,other,row.left,row.right,plan.mode,plan.base,live?.importedAt])}>
-    {identity&&<ActualOptions identity={identity} item={row.left} mine catalog={catalog} plan={plan} referenceLevel={row.right?index?.items[row.right.id]?.lv??null:null} index={index} onReload={onConnect?()=>{setSlot(null);onConnect()}:undefined}/>}
-    <ActualOptions identity={other} item={row.right} mine={false} catalog={catalog} plan={plan} referenceLevel={null} index={index} onReload={onRefreshRanker?()=>{setSlot(null);onRefreshRanker()}:undefined}/>
+  <div className="comparison-workbench">
+   <section ref={detailPanel} className="inline-equipment-details" tabIndex={-1} aria-label={rankerText(locale,'gearDialog')}>
+    <header><div><small>{rankerText(locale,'gearDialog')} · {identity?mine?.profile?.characterName+' ↔ ':''}{ranker.name}</small><h3 aria-live="polite">{row?slotLabel(row.left?.slotPosName||row.right?.slotPosName||String(row.slot),t):rankerText(locale,'gearDialog')}</h3></div><button type="button" className="button ghost small equipment-mobile-action" onClick={()=>{equipmentPanel.current?.scrollIntoView({block:'start'});equipmentPanel.current?.focus({preventScroll:true});}}>{rankerText(locale,'backToEquipment')}</button></header>
+    {row?<div className={'equipment-pair option-pair '+(!identity?'ranker-only':'')} key={JSON.stringify([identity,other,row.left,row.right,plan.mode,plan.base,live?.importedAt])}>
+     {identity&&<ActualOptions identity={identity} item={row.left} mine catalog={catalog} plan={plan} referenceLevel={row.right?index?.items[row.right.id]?.lv??null:null} index={index} onReload={onConnect}/>}
+     <ActualOptions identity={other} item={row.right} mine={false} catalog={catalog} plan={plan} referenceLevel={null} index={index} onReload={onRefreshRanker}/>
+    </div>:<p>{t('캐릭터 또는 해당 부위의 조회 정보가 없습니다.')}</p>}
+   </section>
+   <div ref={equipmentPanel} className="equipment-selectors" tabIndex={-1} aria-label={t('장비')}>
+    <div className={'visual-equipment-windows '+(!identity?'ranker-only':'')}>
+     {identity&&<section aria-label={t('내 캐릭터 장비창')}><header><strong>{t('내 캐릭터')}</strong><b>{mine?.profile?.characterName||t('연결되지 않음')}</b></header><EquipmentGrid items={rows.flatMap(r=>r.left?[r.left]:[])} selectedSlot={selectedSlot} onInspect={inspect} inspectOnHover={false} onHover={showHover} onLeave={cancelHover}/></section>}
+     <section aria-label={t('랭커 장비창')}><header><strong>{t('비교할 랭커')}</strong><b>{ranker.name}</b></header><EquipmentGrid items={rows.flatMap(r=>r.right?[r.right]:[])} selectedSlot={selectedSlot} onInspect={inspect} inspectOnHover={false} onHover={showHover} onLeave={cancelHover}/></section>
+    </div>
+    <p className="subtle equipment-sources">{identity&&<span>{t('내 캐릭터')} · {mine?.importedAt?new Date(mine.importedAt).toLocaleString():t('미확인')}</span>}<span>{t('비교할 랭커')} · {t(live?'이번 공식 응답':'저장된 장비 목록')}</span></p>
+    {row&&<button type="button" className="button secondary equipment-mobile-action" onClick={showDetails}>{rankerText(locale,'viewEquipmentDetails')}</button>}
    </div>
-  </dialog>}
-
-  {hoverRow&&slot===null&&createPortal(<aside className={'equipment-hover-preview '+(!identity?'ranker-only':'')} role="region" aria-label={t('장비 상세 미리보기')} onMouseEnter={keepHover} onMouseLeave={leaveHover}><header><strong>{slotLabel(hoverRow.left?.slotPosName||hoverRow.right?.slotPosName||String(hoverRow.slot),t)}</strong><button className="button ghost small" onClick={()=>{keepHover();setHoverSlot(null)}}>{t('닫기')}</button></header><div className={'equipment-pair '+(!identity?'ranker-only':'')} key={JSON.stringify([identity,other,hoverRow])}>{identity&&<ActualOptions compact identity={identity} item={hoverRow.left} mine catalog={catalog} plan={plan} referenceLevel={null} index={index}/>}<ActualOptions compact identity={other} item={hoverRow.right} mine={false} catalog={catalog} plan={plan} referenceLevel={null} index={index}/></div><button className="button secondary" onClick={()=>{setSlot(hoverSlot);setHoverSlot(null)}}>{t('상세 창 고정해서 보기')}</button></aside>,document.body)}
-
+  </div>
  </section>;
 }

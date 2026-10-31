@@ -1,5 +1,3 @@
-.my-ranker-comparison .comparison-workbench{grid-template-columns:minmax(0,1fr)}
-.my-ranker-comparison .paired-option-inspector{position:static;max-height:none;overflow:visible}
 .my-ranker-comparison .investment-advice{margin-top:18px}
 .my-ranker-comparison .investment-advice h5{font-size:14px;margin:18px 0 6px;color:#bde7f7}
 .my-ranker-comparison .rolled-options small{font-size:12px;line-height:1.7}
@@ -15,3 +13,46 @@
 
 /* Ranker detail lists normally scroll; actual equipment options must stay readable. */
 .my-ranker-comparison .actual-options .rolled-options{max-height:none;overflow:visible}
+
+/* A stable reading panel, with both character equipment windows grouped beside it. */
+.my-ranker-comparison .comparison-workbench{display:grid;grid-template-columns:minmax(0,1fr) 344px;gap:16px;align-items:start;margin-top:16px}
+.my-ranker-comparison .inline-equipment-details,.my-ranker-comparison .equipment-selectors{min-width:0;scroll-margin-top:calc(var(--asbc-chrome-height,64px) + 100px)}
+.my-ranker-comparison .inline-equipment-details{position:sticky;top:calc(var(--asbc-chrome-height,64px) + 96px);max-height:calc(100dvh - var(--asbc-chrome-height,64px) - 112px);overflow:auto;scrollbar-width:thin;overscroll-behavior:contain;border:1px solid #3a4b61;border-radius:10px;background:#111925}
+.my-ranker-comparison .inline-equipment-details>header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #3a4b61}
+.my-ranker-comparison .inline-equipment-details>header small{font-size:12px;color:#a9c4d6;overflow-wrap:anywhere}
+.my-ranker-comparison .inline-equipment-details h3{margin:5px 0 0;font-size:20px}
+.my-ranker-comparison .inline-equipment-details>.option-pair{padding:12px;margin:0;align-items:start;gap:10px}
+.my-ranker-comparison .option-pair>div{min-width:0;padding:12px;overflow-wrap:anywhere}
+.my-ranker-comparison .actual-options h4{font-size:14px;line-height:1.5;margin:0 0 12px;color:#bde7f7}
+.my-ranker-comparison .actual-options>b{font-size:16px;line-height:1.5}
+.my-ranker-comparison .actual-options p,.my-ranker-comparison .actual-options label{font-size:13px;line-height:1.65;word-break:keep-all;overflow-wrap:anywhere}
+.my-ranker-comparison .actual-options .rolled-options{font-size:14px;line-height:1.65}
+.my-ranker-comparison .actual-options button{min-height:40px;white-space:normal}
+.my-ranker-comparison .equipment-selectors{padding:10px;border:1px solid #344155;border-radius:10px;background:#171e2a}
+.my-ranker-comparison .visual-equipment-windows{gap:10px}
+.my-ranker-comparison .visual-equipment-windows>section{min-width:0}
+.my-ranker-comparison .visual-equipment-windows>section>header{display:flex;flex-direction:column;gap:5px;min-height:58px;text-align:center;overflow-wrap:anywhere;line-height:1.5}
+.my-ranker-comparison .visual-equipment-windows strong{font-size:12px;color:#8ed5eb}
+.my-ranker-comparison .visual-equipment-windows b{font-size:15px}
+.my-ranker-comparison .visual-equipment-windows .equipment-grid{grid-template-columns:44px 44px 44px;gap:6px;margin:10px auto;width:max-content}
+.my-ranker-comparison .visual-equipment-windows .eq-row{grid-template-columns:repeat(3,44px);gap:6px}
+.my-ranker-comparison .visual-equipment-windows .eq-label{font-size:10px}
+.my-ranker-comparison .equipment-sources{display:flex;flex-direction:column;gap:4px;padding-top:10px;border-top:1px solid #344155;font-size:11px;line-height:1.6;overflow-wrap:anywhere}
+.my-ranker-comparison .equipment-mobile-action{display:none}
+@media(max-width:999px){
+ .my-ranker-comparison .comparison-workbench{grid-template-columns:minmax(0,1fr)}
+ .my-ranker-comparison .equipment-selectors{grid-row:1}
+ .my-ranker-comparison .inline-equipment-details{position:static;max-height:none;overflow:visible}
+ .my-ranker-comparison .equipment-mobile-action{display:inline-flex;min-height:44px;white-space:normal}
+ .my-ranker-comparison .equipment-selectors>.equipment-mobile-action{display:flex;width:100%;justify-content:center;margin-top:10px}
+}
+@media(max-width:600px){
+ .my-ranker-comparison .equipment-selectors{padding:8px 4px}
+ .my-ranker-comparison .visual-equipment-windows{gap:6px}
+ .my-ranker-comparison .visual-equipment-windows .equipment-grid{grid-template-columns:40px 40px 40px;gap:4px}
+ .my-ranker-comparison .visual-equipment-windows .eq-slot{width:40px;height:44px}
+ .my-ranker-comparison .visual-equipment-windows .eq-row{grid-template-columns:repeat(3,40px);gap:4px}
+ .my-ranker-comparison .inline-equipment-details>header{padding:12px;align-items:flex-start}
+ .my-ranker-comparison .inline-equipment-details>.option-pair{padding:8px;grid-template-columns:minmax(0,1fr)}
+ .my-ranker-comparison .equipment-sources{margin-inline:8px}
+}
