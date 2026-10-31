@@ -15,6 +15,7 @@ const SNAPSHOTS=[snapshot,abyssSnapshot,solitudeSnapshot,cooperationSnapshot].ma
 import skillGuides from '../lib/data/ranker-skill-guides.json';
 import RankerBoards from './ranker-boards';
 import MyRankerComparison from './my-ranker-comparison';
+import {useEquipmentSnapshot} from './equipment-snapshot';
 import RankerEquipmentComparison from './ranker-equipment';
 import CharacterComparison from './character-comparison';
 import {useLocale} from './locale';
@@ -89,10 +90,12 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
    {ids.some(id=>!notes.some(n=>n.id===id))&&<p className="subtle">{t('추가 분석 전: {0}. 설명이 없는 기술의 효과나 우열은 추정하지 않았습니다.',[ids.filter(id=>!notes.some(n=>n.id===id)).map(skillName).join(' · ')])}</p>}
   </details>;
  };
+ const equipmentSnapshot=useEquipmentSnapshot(catalog,plan,selected,live);
  async function inspect(row:Ranker){
   const token=++request.current;profileController.current?.abort();const controller=new AbortController();profileController.current=controller;
   setFocusSkillGuide(false);setSelectedId(row.characterId);setPreview(false);setAppliedNodes(null);setLive(null);setError('');setLoading(true);
-  try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId},controller.signal);if(request.current===token&&!controller.signal.aborted)setLive(result)}
+  const lookupSnapshot=crypto.randomUUID();
+  try{const result=await queryArmory({action:'profile',class:row.classKey,region:row.region,server:String(row.serverId),id:row.characterId,snapshot:lookupSnapshot},controller.signal);if(request.current===token&&!controller.signal.aborted)setLive({...result,lookupSnapshot})}
   catch(e){if(request.current===token&&!controller.signal.aborted)setError(e instanceof Error?e.message:'공식 조회 실패')}
   finally{if(request.current===token)setLoading(false)}
  }
@@ -118,7 +121,7 @@ export default function RankerBuilds({catalog,plan,onApply,onConnect,rankingOnly
     {error&&<div role="alert"><details><summary>{t('조회 오류 자세히 보기')}</summary><p>{t(error)}</p></details><button className="button secondary" onClick={()=>inspect(selected)}>{t('공식 세팅 다시 조회')}</button></div>}
    </div>
    <nav className="ranker-view-tabs ranker-primary-tabs" aria-label={rankerText(locale,'tabs')}>{([{key:'equipment',label:'장비'},{key:'skills',label:'스킬'},{key:'daevanion',label:'데바니온'}] as const).map(tab=><button type="button" key={tab.key} aria-pressed={view===tab.key} onClick={()=>{setFocusSkillGuide(false);setView(tab.key)}}>{t(tab.label)}</button>)}</nav>
-   {view==='equipment'&&<MyRankerComparison key={catalog.classKey} catalog={catalog} plan={plan} ranker={selected} live={live} onConnect={onConnect} onRefreshRanker={()=>inspect(selected)}/>}
+   {view==='equipment'&&<MyRankerComparison key={catalog.classKey} catalog={catalog} plan={plan} ranker={selected} live={live} store={equipmentSnapshot} onConnect={onConnect} onRefreshRanker={()=>inspect(selected)}/>}
    {view==='skills'&&<RankerSkillFollow key={selected.characterId+catalog.classKey} catalog={catalog} plan={plan} ranker={selected} profile={live} onApply={onApply} specMode={skillSpecMode} onSpecModeChange={setSkillSpecMode} focusOnOpen={focusSkillGuide}/>}
    {view==='daevanion'&&<>
     {result.error&&<p role="alert">{t(result.error)}</p>}

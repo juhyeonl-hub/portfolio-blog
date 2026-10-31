@@ -29,7 +29,8 @@ public class ShadowcraftController {
     private final ObjectMapper mapper;
     private final HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
     private final Semaphore lookups = new Semaphore(8);
-    private final Map<String,Cached> cache = new LinkedHashMap<>();
+    private final Map<String,Cached> cache = new LinkedHashMap<>(128,0.75f,true);
+    private final Map<String,java.util.concurrent.CompletableFuture<JsonNode>> inFlight = new HashMap<>();
     private long windowStart=System.currentTimeMillis();
     private int windowRequests;
     private synchronized boolean allowLookup() {
@@ -73,8 +74,10 @@ public class ShadowcraftController {
             if(body.length>2000) return bad("조회 입력이 너무 깁니다.");
             JsonNode p=mapper.readTree(body);
             if(p==null || !p.isObject()) return bad("조회 입력을 확인하세요.");
-            for(String field:List.of("action","region","class","server","name","id","itemId","slot","enchant")) if(p.has(field) && !p.get(field).isTextual()) return bad("조회 입력을 확인하세요.");
+            for(String field:List.of("action","region","class","server","name","id","itemId","slot","enchant","snapshot")) if(p.has(field) && !p.get(field).isTextual()) return bad("조회 입력을 확인하세요.");
             String region=p.path("region").asText("eu"),action=p.path("action").asText(),key=p.path("class").asText("assassin");
+            String snapshot=p.path("snapshot").asText("");
+            if(!snapshot.isEmpty() && !snapshot.matches("[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}")) return bad("조회 입력을 확인하세요.");
             JsonNode selected=service.profile(key);
             if(!List.of("eu","nae","naw","la","as").contains(region)) return bad("글로벌 지역을 선택하세요.");
             if(action.equals("servers")) return ResponseEntity.ok(Map.of("servers",get("https://aion2.plaync.com/en-us/api/gameinfo/servers?region="+region+"&lang=en-US").path("serverList")));
@@ -102,12 +105,12 @@ public class ShadowcraftController {
                 if(id.length()<5 || id.length()>200 || !server.matches("\\d{1,6}") || !itemId.matches("[1-9]\\d{0,9}") || !slot.matches("[1-9]\\d?") || !enchant.matches("\\d{1,2}")) return bad("장비 선택 정보를 확인하세요.");
                 String q="?region="+region+"&lang=en-US&serverId="+server+"&characterId="+enc(id);
                 // Verify the selected slot against current equipped items before querying its actual rolls.
-                JsonNode equipment=get("https://aion2.plaync.com/api/character/equipment"+q);
+                JsonNode equipment=get("https://aion2.plaync.com/api/character/equipment"+q,snapshot);
                 boolean matches=false;
                 for(JsonNode item:equipment.path("equipment").path("equipmentList"))
                     if(item.path("id").asText().equals(itemId) && item.path("slotPos").asInt()==Integer.parseInt(slot) && item.path("enchantLevel").asInt(-1)==Integer.parseInt(enchant)) matches=true;
                 if(!matches) return bad("장비가 바뀌었거나 조회 정보가 일치하지 않습니다. 캐릭터를 다시 조회하세요.");
-                JsonNode detail=get("https://aion2.plaync.com/api/character/equipment/item"+q+"&id="+itemId+"&slotPos="+slot+"&enchantLevel="+enchant);
+                JsonNode detail=get("https://aion2.plaync.com/api/character/equipment/item"+q+"&id="+itemId+"&slotPos="+slot+"&enchantLevel="+enchant,snapshot);
                 if(!detail.path("id").asText().equals(itemId) || detail.path("enchantLevel").asInt(-1)!=Integer.parseInt(enchant)) throw new IllegalStateException("Item identity mismatch");
                 ObjectNode out=mapper.createObjectNode();
                 out.set("item",detail);out.put("characterId",id);out.put("serverId",server);out.put("region",region);out.put("slotPos",Integer.parseInt(slot));out.put("importedAt",java.time.Instant.now().toString());
@@ -117,7 +120,7 @@ public class ShadowcraftController {
                 String id=p.path("id").asText();
                 if(id.length()<5 || id.length()>200 || !server.matches("\\d{1,6}")) return bad("캐릭터 선택 정보를 확인하세요.");
                 String q="?region="+region+"&lang=en-US&serverId="+server+"&characterId="+enc(id);
-                JsonNode info=get("https://aion2.plaync.com/api/character/info"+q),equipment=get("https://aion2.plaync.com/api/character/equipment"+q);
+                JsonNode info=get("https://aion2.plaync.com/api/character/info"+q,snapshot),equipment=get("https://aion2.plaync.com/api/character/equipment"+q,snapshot);
                 boolean matches=false; for(JsonNode pc:selected.path("pcIds")) if(pc.asInt()==info.path("profile").path("pcId").asInt()) matches=true;
                 if(!matches) return bad("선택한 직업의 캐릭터가 아닙니다. 직업을 먼저 바꾸세요.");
                 Set<Integer> boardIds=new HashSet<>(); selected.path("boardIds").forEach(b->boardIds.add(b.asInt()));
@@ -130,7 +133,7 @@ public class ShadowcraftController {
                     int boardId = board.path("id").asInt();
                     if (!board.path("open").asBoolean() || !boardIds.contains(boardId) || !requested.add(boardId)) continue;
                     jobs.add(java.util.concurrent.CompletableFuture.supplyAsync(() -> {
-                        try { return new BoardResult(String.valueOf(boardId), get("https://aion2.plaync.com/api/character/daevanion/detail" + q + "&boardId=" + boardId)); }
+                        try { return new BoardResult(String.valueOf(boardId), get("https://aion2.plaync.com/api/character/daevanion/detail" + q + "&boardId=" + boardId,snapshot)); }
                         catch (Exception e) { return new BoardResult(String.valueOf(boardId), null); }
                     }));
                 }
@@ -172,11 +175,23 @@ public class ShadowcraftController {
     }
     private static ResponseEntity<?> bad(String message) { return ResponseEntity.badRequest().body(Map.of("error",message)); }
     private static String enc(String s) { return URLEncoder.encode(s,StandardCharsets.UTF_8); }
-    private JsonNode get(String url) throws Exception {
+    private JsonNode get(String url) throws Exception { return get(url, ""); }
+    private JsonNode get(String url,String snapshot) throws Exception {
         // Character profile/equipment must reflect the game quickly (a fresh lookup after levelling); only bursts are absorbed.
         // Server lists and search results change rarely and keep the five-minute cache.
         long ttl=url.contains("/api/character/")?15_000:300_000;
-        synchronized(cache) { Cached hit=cache.get(url); if(hit!=null && System.currentTimeMillis()-hit.at<ttl) return hit.data; }
+        // A new comparison gets a new namespace; another visitor/refresh cannot hit old rolls.
+        // Legacy callers keep their short shared cache. Limits above are unchanged.
+        String cacheKey=snapshot+"|"+url;
+        java.util.concurrent.CompletableFuture<JsonNode> pending;
+        boolean owner;
+        synchronized(cache) {
+            Cached hit=cache.get(cacheKey); if(hit!=null && System.currentTimeMillis()-hit.at<ttl) return hit.data;
+            pending=inFlight.get(cacheKey);owner=pending==null;
+            if(owner){pending=new java.util.concurrent.CompletableFuture<>();inFlight.put(cacheKey,pending);}
+        }
+        if(!owner){try{return pending.get(10,java.util.concurrent.TimeUnit.SECONDS);}catch(java.util.concurrent.ExecutionException e){if(e.getCause() instanceof Exception cause)throw cause;throw e;}}
+        try {
         HttpRequest request=HttpRequest.newBuilder(URI.create(url)).timeout(LOOKUP_TIMEOUT).header("Accept","application/json").build();
         HttpResponse<byte[]> response=com.portfolio.blog.security.BoundedHttp.send(client,request,3_000_000);
         JsonNode data;
@@ -186,7 +201,9 @@ public class ShadowcraftController {
             if(bytes.length>3_000_000) throw new IllegalStateException("Response too large");
             data=mapper.readTree(bytes); if(data==null || !data.isObject()) throw new IllegalStateException("Invalid response");
         }
-        synchronized(cache) { if(cache.size()>=100) cache.clear(); cache.put(url,new Cached(System.currentTimeMillis(),data)); }
-        return data;
+        synchronized(cache) { if(cache.size()>=100) cache.remove(cache.keySet().iterator().next()); cache.put(cacheKey,new Cached(System.currentTimeMillis(),data)); }
+        pending.complete(data);return data;
+        } catch(Exception e){pending.completeExceptionally(e);throw e;}
+        finally{synchronized(cache){inFlight.remove(cacheKey);}}
     }
 }

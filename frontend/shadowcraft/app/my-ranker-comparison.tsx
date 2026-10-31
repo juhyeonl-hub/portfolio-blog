@@ -1,5 +1,5 @@
 import './equipment-guidance.css';
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useRef,useState,useSyncExternalStore} from 'react';
 import {rankerText} from '../lib/ranker-comparison-text';
 import './ranker-visual.css';
 import {ClientItemName,useClientNames} from './client-names';
@@ -8,39 +8,28 @@ import EquipmentGrid,{slotLabel} from './equipment-grid';
 import {loadItemIndex,type ItemIndex} from '../lib/item-index';
 import {compareRankerEquipment,rankerItemNeedsProfile,type Ranker,type RankerEquipment} from '../lib/ranker-builds';
 import {equipped,MODE_NAMES,type Catalog,type Plan} from '../lib/planner';
-import {queryArmory} from '../lib/armory-client';
-import {equipmentAdvice,optionReason,parseEquippedDetail,skillFit,statFit,type EquippedDetail,type Investment} from '../lib/equipment-advice';
+import {equipmentKey,type EquipmentOptions,type EquipmentIdentity as Identity} from '../lib/equipment-options';
+const noSubscription=()=>()=>{};const zeroVersion=()=>0;
+import {equipmentAdvice,optionReason,skillFit,statFit,type Investment} from '../lib/equipment-advice';
 
-type Identity={id:string;server:string;region:string};
 const ADVICE={progress:'다음 던전 준비용 장비입니다. 필요한 강화·옵션 개선부터 검토하고, 반복 조율·영혼각인은 교체 예상 시기와 비용을 비교하세요.',unknown:'장비 레벨 또는 실제 옵션 정보가 부족해 투자 판단을 보류합니다.',replace:'교체 예정 장비입니다. 조율·영혼각인보다 교체 자원을 우선 확보하세요.',low:'70레벨 미만 장비는 교체 시기를 먼저 확인하세요. 다음 던전 준비용이라면 ‘다음 던전 장비를 얻을 때까지’를 선택하세요.',budget:'먼저 사용할 수 있는 재료와 비용을 확인하세요. 지금은 목표 옵션을 살펴보고, 재료를 쓰는 결정은 나중에 해도 됩니다.',plan:'다음 장비를 얻기 전까지 사용할지, 오래 사용할지 선택하면 목적에 맞게 안내합니다.',unsupported:'이 장비의 무작위 옵션 변경 가능 여부를 확인할 수 없습니다. 게임에서 지원 여부를 확인하세요.',tune:'직접 고른 변경 후보가 있습니다. 게임에서 조율 가능 옵션·비용·유지할 옵션을 확인한 뒤 조율을 검토하세요. 작업 순서는 확인하지 못했으므로 게임의 설명을 먼저 확인하세요.',review:'옵션별 용도를 확인하세요. 판단하지 못한 옵션을 나쁜 옵션으로 간주하지 않습니다.',engrave:'장기 사용을 선택하고 옵션 확인에 체크했습니다. 이것만으로 추가 투자가 꼭 필요한 것은 아닙니다. 게임에서 영혼각인 대상·상승 여지·비용을 확인하고, 개선 여지가 있을 때만 진행하세요.'};
 const FIT={mismatch:'사용 목적 확인',priority:'유지 후보',review:'판단 정보 부족'};
-function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index,onReload,compact=false}:{compact?:boolean;onReload?:()=>void;identity:Identity|null;item:RankerEquipment|undefined;mine:boolean;catalog:Catalog;plan:Plan;referenceLevel:number|null;index:ItemIndex|null}){
+function ActualOptions({store,identity,item,mine,catalog,plan,referenceLevel,index,onReload,compact=false}:{store:EquipmentOptions|null;compact?:boolean;onReload?:()=>void;identity:Identity|null;item:RankerEquipment|undefined;mine:boolean;catalog:Catalog;plan:Plan;referenceLevel:number|null;index:ItemIndex|null}){
  const {t,locale,skill:skillName}=useLocale(); const names=useClientNames();
- const [detail,setDetail]=useState<EquippedDetail|null>(null),[error,setError]=useState(''),[loading,setLoading]=useState(true),[retry,setRetry]=useState(0);
+ useSyncExternalStore(store?.subscribe||noSubscription,store?.getVersion||zeroVersion);
+ const key=equipmentKey(identity,item),entry=store?.entries.get(key),detail=entry?.detail??null,error=entry?.error||'',loading=!entry||entry.status==='queued'||entry.status==='loading';
  const [investment,setInvestment]=useState<Investment>('unknown'),[budget,setBudget]=useState(false),[reviewed,setReviewed]=useState(false),[unwanted,setUnwanted]=useState<string[]>([]);
  const [purpose,setPurpose]=useState('build');
  const [showAdvice,setShowAdvice]=useState(false);
  const adviceMode=purpose==='build'?plan.mode:purpose==='pvp'?'pvp':purpose==='attack'?'damage':'safe';
- const id=identity?.id,server=identity?.server,region=identity?.region,itemId=item?.id,slot=item?.slotPos,enchant=item?.enchantLevel;
- useEffect(()=>{
-  const controller=new AbortController();let active=true;
-  setDetail(null);setError('');setLoading(true);setReviewed(false);setUnwanted([]);
-  if(!id||!server||!region||!itemId||slot===undefined||enchant===undefined){setLoading(false);return()=>controller.abort();}
-  queryArmory({action:'item',class:catalog.classKey||'',id,server,region,itemId:String(itemId),slot:String(slot),enchant:String(enchant)},controller.signal).then(result=>{
-   if(!active)return;
-   const parsed=parseEquippedDetail(result,{id,server,region,itemId,slot,enchant});
-   if(!parsed)throw Error('실제 장비 옵션을 확인하지 못했습니다. 캐릭터를 다시 조회하세요.');
-   setDetail(parsed);
-  }).catch(e=>{if(active)setError(e instanceof Error?e.message:'공식 조회 실패');}).finally(()=>{if(active)setLoading(false);});
-  return()=>{active=false;controller.abort();};
- },[id,server,region,itemId,slot,enchant,catalog.classKey,retry]);
  const known=catalog.skills.map(s=>s.id),used=catalog.skills.filter(s=>s.stigma?equipped(plan).includes(s.id):(plan.base[s.id]??1)>0).map(s=>s.id),inactive=catalog.skills.filter(s=>s.stigma&&!equipped(plan).includes(s.id)).map(s=>s.id);
  const options=detail?[...detail.subStats.map(s=>({key:'stat:'+s.id,name:names.stat(s.id,locale==='ko'?(index?.stats[s.id]?.ko||s.name):s.name),value:s.value,fit:statFit(s.id,adviceMode)})),...detail.subSkills.map(s=>({key:'skill:'+s.id,name:names.skill(s.id,skillName(catalog.skills.find(x=>x.id===String(s.id))?.name||s.name)).name,value:'+'+s.level,fit:skillFit(String(s.id),known,used,inactive)}))]:[];
  const advice=equipmentAdvice({detail,referenceLevel,investment,budget,unwanted:unwanted.length,reviewed});
  const needsProfile=rankerItemNeedsProfile(error);
  return <div className="actual-options">
   <h4>{t(mine?'내 장비의 실제 옵션':'랭커 장비의 실제 옵션')}</h4>
-  {!item||!identity?<p>{t('캐릭터 또는 해당 부위의 조회 정보가 없습니다.')}</p>:loading?<p role="status">{t('실제 장착 옵션 조회 중…')}</p>:error?<><p role="alert">{rankerText(locale,needsProfile?'gearChanged':mine?'ownGearError':'rankerGearError')}</p><details><summary>{t('조회 오류 자세히 보기')}</summary><p>{t(error)}</p></details>{needsProfile&&onReload?<button className="button secondary" onClick={onReload}>{rankerText(locale,mine?'reloadMine':'reloadRanker')}</button>:<button className="button ghost" onClick={()=>setRetry(n=>n+1)}>{t('다시 조회')}</button>}</>:detail&&<>
+  {!item||!identity?<p>{t('캐릭터 또는 해당 부위의 조회 정보가 없습니다.')}</p>:loading?<p role="status">{t('실제 장착 옵션 조회 중…')}</p>:error?<><p role="alert">{rankerText(locale,needsProfile?'gearChanged':mine?'ownGearError':'rankerGearError')}</p><details><summary>{t('조회 오류 자세히 보기')}</summary><p>{t(error)}</p></details>{needsProfile&&onReload?<button className="button secondary" onClick={onReload}>{rankerText(locale,mine?'reloadMine':'reloadRanker')}</button>:<button className="button ghost" onClick={()=>store?.retry(key)}>{t('다시 조회')}</button>}</>:detail&&<>
+   <small>{rankerText(locale,'optionsChecked')} · {new Date(entry!.checkedAt!).toLocaleString(locale)}</small><br/>
    <b><ClientItemName id={detail.id} name={detail.name}/></b><p>{t('아이템 레벨 {0}',[detail.level])} · {t('강화 +{0} · 초월 +{1}',[detail.enchantLevel,item.exceedLevel])}</p>
    <p className="subtle">{t('아래는 이번 공식 응답의 실제 무작위 옵션과 스킬입니다. 기본 능력치·마석·신석은 투자 판단에서 제외합니다.')}</p>
    {mine&&!compact&&<button className="button ghost" aria-expanded={showAdvice} onClick={()=>setShowAdvice(v=>!v)}>{rankerText(locale,'advice')}</button>}
@@ -70,8 +59,9 @@ function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index,onR
   </>}
  </div>;
 }
-export default function MyRankerComparison({catalog,plan,ranker,live,onConnect,onRefreshRanker}:{onRefreshRanker?:()=>void;catalog:Catalog;plan:Plan;ranker:Ranker;live:any;onConnect?:()=>void}){
+export default function MyRankerComparison({catalog,plan,ranker,live,store,onConnect,onRefreshRanker}:{store:EquipmentOptions|null;onRefreshRanker?:()=>void;catalog:Catalog;plan:Plan;ranker:Ranker;live:any;onConnect?:()=>void}){
  const {t,locale}=useLocale();
+ useSyncExternalStore(store?.subscribe||noSubscription,store?.getVersion||zeroVersion);
  const detailPanel=useRef<HTMLElement>(null),equipmentPanel=useRef<HTMLDivElement>(null);
  const hoverTimer=useRef<ReturnType<typeof setTimeout>|null>(null);
  const [index,setIndex]=useState<ItemIndex|null>(null),[slot,setSlot]=useState<number|null>(null);
@@ -96,18 +86,22 @@ export default function MyRankerComparison({catalog,plan,ranker,live,onConnect,o
  // Keep the chosen body slot across rankers; start with the main weapon when available.
  const row=rows.find(r=>r.slot===slot)||rows.find(r=>(r.right||r.left)?.slotPosName==='MainHand')||rows[0];
  const selectedSlot=row?.slot??null;
+ useEffect(()=>{if(row)store?.prioritize([equipmentKey(identity,row.left),equipmentKey(other,row.right)]);},[store,selectedSlot]);
+ const complete=store?[...store.entries.values()].filter(e=>e.status==='ready').length:0;
+ const pending=store?[...store.entries.values()].filter(e=>e.status==='queued'||e.status==='loading').length:0;
  return <section className="my-ranker-comparison" aria-label={t('내 캐릭터와 랭커 비교')}>
   <h3>{t('내 캐릭터와 랭커 비교')}</h3>
   <p>{rankerText(locale,'inlineGearHint')}</p>
   <p className="subtle">{t('판단 기준: {0} · {1}. 레벨 비교는 글로벌 아이템 자료 기준이며 랭커의 옵션을 정답으로 취급하지 않습니다.',[t(catalog.className||catalog.classKey||''),t(MODE_NAMES[plan.mode])])}</p>
   {!identity&&(onConnect?<button className="button primary" onClick={onConnect}>{t('내 캐릭터 연결하고 비교')}</button>:<p role="status">{t('빌드 화면에서 내 캐릭터를 먼저 연결하세요.')}</p>)}
+  {store&&<p className="subtle equipment-snapshot-status" role="status">{rankerText(locale,pending?'optionsPreparing':'optionsReady')} · {complete} / {store.entries.size}<br/>{rankerText(locale,'optionsSnapshot')}</p>}
   <div className="comparison-workbench">
    <section ref={detailPanel} className="inline-equipment-details" tabIndex={-1} aria-label={rankerText(locale,'gearDialog')}>
     <header><div><small>{rankerText(locale,'gearDialog')} · {identity?mine?.profile?.characterName+' ↔ ':''}{ranker.name}</small><h3 aria-live="polite">{row?slotLabel(row.left?.slotPosName||row.right?.slotPosName||String(row.slot),t):rankerText(locale,'gearDialog')}</h3></div><button type="button" className="button ghost small equipment-mobile-action" onClick={()=>{equipmentPanel.current?.scrollIntoView({block:'start'});equipmentPanel.current?.focus({preventScroll:true});}}>{rankerText(locale,'backToEquipment')}</button></header>
-    {row?<div className={'equipment-pair option-pair '+(!identity?'ranker-only':'')} key={JSON.stringify([identity,other,row.left,row.right,plan.mode,plan.base,live?.importedAt])}>
-     {identity&&<ActualOptions identity={identity} item={row.left} mine catalog={catalog} plan={plan} referenceLevel={row.right?index?.items[row.right.id]?.lv??null:null} index={index} onReload={onConnect}/>}
-     <ActualOptions identity={other} item={row.right} mine={false} catalog={catalog} plan={plan} referenceLevel={null} index={index} onReload={onRefreshRanker}/>
-    </div>:<p>{t('캐릭터 또는 해당 부위의 조회 정보가 없습니다.')}</p>}
+    {row&&store?<div className={'equipment-pair option-pair '+(!identity?'ranker-only':'')} key={JSON.stringify([identity,other,row.left,row.right,plan.mode,plan.base,live?.importedAt])}>
+     {identity&&<ActualOptions store={store} identity={identity} item={row.left} mine catalog={catalog} plan={plan} referenceLevel={row.right?index?.items[row.right.id]?.lv??null:null} index={index} onReload={onConnect}/>}
+     <ActualOptions store={store} identity={other} item={row.right} mine={false} catalog={catalog} plan={plan} referenceLevel={null} index={index} onReload={onRefreshRanker}/>
+    </div>:<p>{rankerText(locale,'optionsWaiting')}</p>}
    </section>
    <div ref={equipmentPanel} className="equipment-selectors" tabIndex={-1} aria-label={t('장비')}>
     <div className={'visual-equipment-windows '+(!identity?'ranker-only':'')}>
