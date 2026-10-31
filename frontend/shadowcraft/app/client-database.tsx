@@ -1,3 +1,4 @@
+import {useClientNames} from './client-names';
 import {useLocale} from './locale';
 import {useEffect, useMemo, useState} from 'react';
 
@@ -12,7 +13,7 @@ import {itemIconUrl,itemSummary,loadItemIndex,type ItemIndex} from '../lib/item-
 const ITEM_KINDS: Record<string, string> = {Usable: '사용 아이템', Equip: '장비', Misc: '기타', Currency: '재화'};
 
 export default function ClientDatabase({active, initialSkillId = ''}: {active: boolean; initialSkillId?: string}) {
- const {t,locale}=useLocale();
+ const {t,locale}=useLocale(); const names=useClientNames();
   const categoryLabel = (c: string) => ITEM_KINDS[c] ? t(ITEM_KINDS[c]) : /^[a-z]+$/.test(c) ? t(classProfile(c).name) : c;
   const [data, setData] = useState<ClientIndex | null>(null);
   const [error, setError] = useState('');
@@ -39,14 +40,16 @@ export default function ClientDatabase({active, initialSkillId = ''}: {active: b
   const items = useMemo(() => new Map(data?.items.map(i => [i.id, i])), [data]);
   const rows = useMemo(() => {
     if (!data) return [];
-    if (section === 'items') return data.items.map(i => ({id: i.id, name: locale==='ko'&&i.koName?i.koName:i.name, searchNames:`${i.name} ${i.koName||''}`, category: i.kind, subtitle: `${GRADE_NAMES[i.grade] ? t(GRADE_NAMES[i.grade]) : i.grade} · Lv.${i.level}`}));
-    return data.skills.map(s => ({id: s.id, name: locale==='ko'&&s.koName?s.koName:s.name, searchNames:`${s.name} ${s.koName||''}`, category: s.classKey, subtitle: s.classKey}));
+    if (section === 'items') return data.items.map(i => ({id: i.id, name: names.item(i.id,i.name).name, searchNames:`${names.item(i.id,i.name).name} ${i.name} ${i.koName||''}`, category: i.kind, subtitle: `${GRADE_NAMES[i.grade] ? t(GRADE_NAMES[i.grade]) : i.grade} · Lv.${i.level}`}));
+    return data.skills.map(s => ({id: s.id, name: names.skill(s.id,s.name).name, searchNames:`${names.skill(s.id,s.name).name} ${s.name} ${s.koName||''}`, category: s.classKey, subtitle: s.classKey}));
 
-  }, [data, section, t, locale]);
+  }, [data, section, t, locale,names.bundle,names.english]);
   const categories = useMemo(() => [...new Set(rows.map(r => r.category))].sort(), [rows]);
   const matches = rows.filter(r => (!filter || r.category === filter) && `${r.searchNames} ${r.id}`.toLowerCase().includes(query.trim().toLowerCase()));
   const item = section === 'items' ? items.get(selected) : undefined;
   const skill = section === 'skills' ? data?.skills.find(s => s.id === selected) : undefined;
+  const localizedSkill=skill?(names.bundle?.skills[skill.id]||names.english?.skills[skill.id]||skill):undefined;
+  const skillDescription=localizedSkill?.description,skillTraits=localizedSkill?.traits;
   // Equipment icons and stats come from the item index (equipment rows only); loaded once the item list is shown.
   const [index, setIndex] = useState<ItemIndex | null>(null);
   useEffect(() => {if (!active || section !== 'items' || index) return; let live = true; loadItemIndex().then(value => {if (live) setIndex(value);}); return () => {live = false;};}, [active, section, index]);
@@ -57,9 +60,11 @@ export default function ClientDatabase({active, initialSkillId = ''}: {active: b
     {loading && <p role="status">{t("클라이언트 데이터를 불러오는 중…")}</p>}
     {error && <div role="alert">{t(error)} <button className="button ghost" onClick={() => setRetry(v => v + 1)}>{t("다시 불러오기")}</button></div>}
     {data && <>
-      <p className="subtle">{t('Steam 게임 버전 {0}의 원본 자료 · 한국어·영문 이름 검색',[data.source.buildId])} · {t("서버 내 이용 가능 여부와 장비·레벨에 따른 최종 전투 수치를 검증한 것은 아닙니다.")}</p>
+      {names.bundle&&<p className="subtle">{t('명칭·설명: Steam {0} · 기본 수치: Steam {1}',[names.bundle.textBuildId,data.source.buildId])}</p>}
+      {!names.loading&&!names.bundle&&locale!=='en'&&<p role="status" className="subtle">{names.fallbackLabel}</p>}
+      <p className="subtle">{t('Steam 게임 버전 {0}의 원본 자료 · 선택한 언어·한국어·영문 이름 검색',[data.source.buildId])} · {t("서버 내 이용 가능 여부와 장비·레벨에 따른 최종 전투 수치를 검증한 것은 아닙니다.")}</p>
       <div className="database-tabs">{(['items', 'skills'] as const).map((kind, i) => <button className="button ghost" key={kind} aria-pressed={section === kind} onClick={() => {setSection(kind); setFilter(''); setPage(0); setSelected(''); setQuery('');}}>{t(['아이템', '플레이어 스킬'][i])} ({data[kind].length})</button>)}</div>
-      <div className="database-filters"><label>{t("데이터 검색")}<input type="search" value={query} onChange={e => {setQuery(e.target.value); setPage(0);}} placeholder={t("한국어·영문 이름 또는 ID")}/></label>
+      <div className="database-filters"><label>{t("데이터 검색")}<input type="search" value={query} onChange={e => {setQuery(e.target.value); setPage(0);}} placeholder={t("아이템·스킬 이름 또는 ID")}/></label>
         <label>{t("분류")}<select value={filter} onChange={e => {setFilter(e.target.value); setPage(0);}}><option value="">{t("전체")}</option>{categories.map(c => <option key={c} value={c}>{categoryLabel(c)}</option>)}</select></label></div>
       <p>{t('검색 결과 {0}개',[matches.length.toLocaleString()])}</p>
       <div className="database-layout"><div><div className="database-list">{matches.slice(page * 30, page * 30 + 30).map(row => <button key={row.id} aria-pressed={selected === row.id} onClick={() => {setSelected(row.id);}}>{section === 'items' && icon(row.id) && <img className="db-icon" src={icon(row.id)!} alt="" loading="lazy" decoding="async"/>}<strong>{row.name}</strong><small>{row.subtitle} · {row.id}</small></button>)}</div>
@@ -67,13 +72,13 @@ export default function ClientDatabase({active, initialSkillId = ''}: {active: b
         <div className="database-pages"><button className="button ghost" disabled={page === 0} onClick={() => setPage(v => v - 1)}>{t("이전")}</button><span>{page + 1} / {Math.max(1, Math.ceil(matches.length / 30))}</span><button className="button ghost" disabled={(page + 1) * 30 >= matches.length} onClick={() => setPage(v => v + 1)}>{t("다음")}</button></div></div>
         <div className="database-detail" aria-label={t("데이터 상세")}>
           {!selected && <p>{t("목록에서 항목을 선택하세요.")}</p>}
-          {item && <>{icon(item.id) && <img className="db-icon db-icon-large" src={icon(item.id)!} alt="" decoding="async"/>}<h3>{locale==='ko'&&item.koName?item.koName:item.name}</h3>{item.koName&&<p>{locale==='ko'?item.name:item.koName}</p>}<p>{t('ID {0} · {1} · {2} · 아이템 레벨 {3}',[item.id,categoryLabel(item.kind),GRADE_NAMES[item.grade]?t(GRADE_NAMES[item.grade]):item.grade,item.level])}</p>{(() => {const summary = itemSummary(index, Number(item.id)); if (!summary || !summary.main.length) return null; return <ul className="eq-stats db-stats" aria-label={t('주요 능력치')}>{summary.main.map(([stat, value]) => <li key={stat}><span>{index && (locale === 'en' ? index.stats[stat].en : t(index.stats[stat].ko))}</span><b>{value.toLocaleString(locale)}</b></li>)}</ul>;})()}<p>{t("현재 서버의 획득 가능 여부는 확인되지 않았습니다.")}</p></>}
-          {skill && <><h3>{locale==='ko'&&skill.koName?skill.koName:skill.name}</h3>{skill.koName&&<p>{locale==='ko'?skill.name:skill.koName}</p>}<p>ID {skill.id} · {skill.classKey}</p>
+          {item && <>{icon(item.id) && <img className="db-icon db-icon-large" src={icon(item.id)!} alt="" decoding="async"/>}<h3>{names.item(item.id,item.name).name}</h3>{names.item(item.id,item.name).fallback&&!names.loading&&<p className="subtle">{names.fallbackLabel}</p>}{names.item(item.id,item.name).name!==item.name&&<p lang="en">{item.name}</p>}<p>{t('ID {0} · {1} · {2} · 아이템 레벨 {3}',[item.id,categoryLabel(item.kind),GRADE_NAMES[item.grade]?t(GRADE_NAMES[item.grade]):item.grade,item.level])}</p>{(() => {const summary = itemSummary(index, Number(item.id)); if (!summary || !summary.main.length) return null; return <ul className="eq-stats db-stats" aria-label={t('주요 능력치')}>{summary.main.map(([stat, value]) => <li key={stat}><span>{index && names.stat(stat,locale === 'en' ? index.stats[stat].en : t(index.stats[stat].ko))}</span><b>{value.toLocaleString(locale)}</b></li>)}</ul>;})()}<p>{t("현재 서버의 획득 가능 여부는 확인되지 않았습니다.")}</p></>}
+          {skill && <><h3>{names.skill(skill.id,skill.name).name}</h3>{names.skill(skill.id,skill.name).fallback&&!names.loading&&<p className="subtle">{names.fallbackLabel}</p>}{names.skill(skill.id,skill.name).name!==skill.name&&<p lang="en">{skill.name}</p>}<p>ID {skill.id} · {skill.classKey}</p>
             <div aria-label={t("공식 글로벌 스킬 설명")}><h4>{t("공식 글로벌 스킬 설명")}</h4>
-              {skill.description?.valueScope === 'base-client-values' && <p className="subtle">{t("클라이언트 기본값 기준 · 레벨 성장·장비·특화 효과 미적용")}</p>}
-              {skill.description ? <p style={{whiteSpace: 'pre-line'}}>{skill.description.text}</p> : <p>{t("이 데이터에는 영문 설명이 없습니다.")}</p>}
-              {skill.traits && <p>{skill.traits.text}</p>}
-              {!!((skill.description?.unresolvedValues ?? 0) + (skill.traits?.unresolvedValues ?? 0)) && <p className="subtle">{t("[unresolved value]는 아직 계산하지 않은 효과 수치입니다. 장비·레벨·특화에 따른 최종 수치는 반영하지 않습니다.")}</p>}
+              {skillDescription?.valueScope && <p className="subtle">{t("클라이언트 기본값 기준 · 레벨 성장·장비·특화 효과 미적용")}</p>}
+              {skillDescription ? <p style={{whiteSpace: 'pre-line'}}>{skillDescription.text}</p> : <p>{t("이 데이터에는 스킬 설명이 없습니다.")}</p>}
+              {skillTraits && <p>{skillTraits.text}</p>}
+              {!!((skillDescription?.unresolvedValues ?? 0) + (skillTraits?.unresolvedValues ?? 0)) && <p className="subtle">{t("[unresolved value]는 아직 계산하지 않은 효과 수치입니다. 장비·레벨·특화에 따른 최종 수치는 반영하지 않습니다.")}</p>}
             </div>
             <h4>{t("레벨별 습득 조건")}</h4><p>{t("포인트는 해당 레벨을 배울 때 드는 비용입니다. 승급 조건은 클라이언트 원본 코드로 표시합니다.")}</p>
             {skill.learning ? <ol className="skill-learning-list">{skill.learning.map(row => <li key={row.level}>

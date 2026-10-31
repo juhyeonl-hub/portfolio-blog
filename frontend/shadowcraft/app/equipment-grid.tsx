@@ -1,4 +1,5 @@
 import {useEffect,useState} from 'react';
+import {ClientItemName,useClientNames} from './client-names';
 import {useLocale} from './locale';
 import {GRADE_NAMES,SLOT_BASE_NAMES} from '../lib/game-terms';
 import {itemIconUrl,itemSummary,loadItemIndex,type ItemIndex} from '../lib/item-index';
@@ -22,11 +23,11 @@ export function slotLabel(key:string,t:(s:string)=>string):string{
 
 /** Equipment laid out like the in-game character window. Hover or focus a slot for its icon, grade and options. */
 export default function EquipmentGrid({items,onInspect,selectedSlot,inspectOnHover=true,onHover,onLeave}:{items:EquipmentItem[];onInspect?:(slot:number)=>void;selectedSlot?:number|null;inspectOnHover?:boolean;onHover?:(slot:number)=>void;onLeave?:()=>void}){
- const {t,locale}=useLocale();
+ const {t,locale}=useLocale(); const names=useClientNames();
  const [index,setIndex]=useState<ItemIndex|null>(null);
  useEffect(()=>{let live=true;loadItemIndex().then(value=>{if(live)setIndex(value);});return()=>{live=false;};},[]);
  const bySlot=new Map(items.map(item=>[item.slotPosName,item]));
- const statName=(key:string)=>{const names=index?.stats[key];return names?(locale==='en'?names.en:t(names.ko)):key;};
+ const statName=(key:string)=>{const stat=index?.stats[key];return names.stat(key,stat?(locale==='en'?stat.en:t(stat.ko)):key);};
  const slot=(key:string)=>{
   const item=bySlot.get(key); const glyph=GLYPH[key]||GLYPH[key.replace(/\d+$/,'')]||'·';
   const label=slotLabel(key,t);
@@ -35,12 +36,12 @@ export default function EquipmentGrid({items,onInspect,selectedSlot,inspectOnHov
   const grade=summary?GRADE_NAMES[summary.detail.g]:undefined;
   const pool=summary?.pool||[];
   const granted=summary?Math.max(summary.detail.sc?.[1]||0,summary.detail.rs||0):0;
-  return <div key={key} className={'eq-slot'+(item?' filled':' empty')+(summary?' grade-'+summary.detail.g.toLowerCase():'')} role={onInspect&&item?'button':undefined} data-selected={item&&selectedSlot===item.slotPos||undefined} onMouseEnter={()=>{if(item){onHover?.(item.slotPos);if(inspectOnHover)onInspect?.(item.slotPos)}}} onMouseLeave={onLeave} onFocus={()=>{if(item&&inspectOnHover)onInspect?.(item.slotPos)}} onClick={()=>{if(item)onInspect?.(item.slotPos)}} onKeyDown={e=>{if(item&&onInspect&&(e.key==='Enter'||e.key===' ')){e.preventDefault();onInspect(item.slotPos)}}} tabIndex={item?0:-1} aria-label={item?`${label}: ${item.name}`:label}>
+  return <div key={key} className={'eq-slot'+(item?' filled':' empty')+(summary?' grade-'+summary.detail.g.toLowerCase():'')} role={onInspect&&item?'button':undefined} data-selected={item&&selectedSlot===item.slotPos||undefined} onMouseEnter={()=>{if(item){onHover?.(item.slotPos);if(inspectOnHover)onInspect?.(item.slotPos)}}} onMouseLeave={onLeave} onFocus={()=>{if(item&&inspectOnHover)onInspect?.(item.slotPos)}} onClick={()=>{if(item)onInspect?.(item.slotPos)}} onKeyDown={e=>{if(item&&onInspect&&(e.key==='Enter'||e.key===' ')){e.preventDefault();onInspect(item.slotPos)}}} tabIndex={item?0:-1} aria-label={item?`${label}: ${names.item(item.id,item.name).name}`:label}>
    {icon?<img className="eq-icon" src={icon} alt="" loading="lazy" decoding="async"/>:<span className="eq-glyph" aria-hidden="true">{glyph}</span>}
    {item&&item.enchantLevel>0&&<small className="eq-enchant">+{item.enchantLevel}</small>}
    <small className="eq-label">{label}</small>
    {item&&!onInspect&&<div className="eq-tip" role="tooltip">
-    <b>{item.name}</b>
+    <b><ClientItemName id={item.id} name={item.name}/></b>
     <span>{[grade?t(grade):null,summary?t('아이템 레벨 {0}',[summary.detail.lv]):null,label].filter(Boolean).join(' · ')}</span>
     <span>{t('강화 +{0} · 초월 +{1}',[item.enchantLevel,item.exceedLevel])}</span>
     {summary&&summary.main.length>0&&<ul className="eq-stats" aria-label={t('주요 능력치')}>{summary.main.map(([stat,value])=><li key={stat}><span>{statName(stat)}</span><b>{value.toLocaleString(locale)}</b></li>)}</ul>}

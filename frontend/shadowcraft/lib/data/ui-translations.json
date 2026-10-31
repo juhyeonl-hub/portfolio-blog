@@ -29458,5 +29458,55 @@
     "es": "① Arrastra para recortar la descripción del objeto. Comprueba el nombre y las opciones en la vista previa.",
     "pt-BR": "① Arraste para recortar a descrição do item. Confira o nome e as opções na prévia.",
     "ru": "① Выделите описание предмета перетаскиванием. Проверьте название и параметры в предпросмотре."
+  },
+  "이 항목의 번역을 확인할 수 없어 원문으로 표시합니다.": {
+    "en": "The translation for this entry is unavailable. The original is shown.",
+    "ja": "この項目の翻訳を確認できないため、原文を表示しています。",
+    "fi": "Tämän kohteen käännöstä ei ole saatavilla. Näytämme alkuperäisen tekstin.",
+    "fr": "La traduction de cette entrée est indisponible. Le texte original est affiché.",
+    "de": "Die Übersetzung dieses Eintrags ist nicht verfügbar. Angezeigt wird das Original.",
+    "es": "La traducción de esta entrada no está disponible. Se muestra el original.",
+    "pt-BR": "A tradução deste registro não está disponível. O original é exibido.",
+    "ru": "Перевод этой записи недоступен. Показан оригинал."
+  },
+  "Steam 게임 버전 {0}의 원본 자료 · 선택한 언어·한국어·영문 이름 검색": {
+    "en": "Steam build {0} · Search names in the selected language, Korean or English",
+    "ja": "Steamビルド {0} · 選択中の言語・韓国語・英語の名前で検索",
+    "fi": "Steam-versio {0} · Hae nimellä valitulla kielellä, koreaksi tai englanniksi",
+    "fr": "Version Steam {0} · Recherche par nom dans la langue choisie, en coréen ou en anglais",
+    "de": "Steam-Build {0} · Namenssuche in der gewählten Sprache, Koreanisch oder Englisch",
+    "es": "Versión de Steam {0} · Busca nombres en el idioma seleccionado, coreano o inglés",
+    "pt-BR": "Versão Steam {0} · Busque nomes no idioma selecionado, em coreano ou inglês",
+    "ru": "Версия Steam {0} · Поиск названий на выбранном языке, корейском или английском"
+  },
+  "아이템·스킬 이름 또는 ID": {
+    "en": "Item or skill name or ID",
+    "ja": "アイテム・スキル名またはID",
+    "fi": "Esineen tai taidon nimi tai ID",
+    "fr": "Nom ou ID d’objet ou de compétence",
+    "de": "Gegenstands-/Fertigkeitsname oder ID",
+    "es": "Nombre o ID del objeto o habilidad",
+    "pt-BR": "Nome ou ID do item ou habilidade",
+    "ru": "Название или ID предмета или умения"
+  },
+  "이 데이터에는 스킬 설명이 없습니다.": {
+    "en": "No skill description is available in this data.",
+    "ja": "このデータにはスキル説明がありません。",
+    "fi": "Näissä tiedoissa ei ole taidon kuvausta.",
+    "fr": "Aucune description de compétence dans ces données.",
+    "de": "Diese Daten enthalten keine Fertigkeitsbeschreibung.",
+    "es": "Estos datos no incluyen una descripción de la habilidad.",
+    "pt-BR": "Estes dados não incluem uma descrição da habilidade.",
+    "ru": "В этих данных нет описания умения."
+  },
+  "명칭·설명: Steam {0} · 기본 수치: Steam {1}": {
+    "en": "Names and descriptions: Steam {0} · Base values: Steam {1}",
+    "ja": "名前・説明: Steam {0} · 基本値: Steam {1}",
+    "fi": "Nimet ja kuvaukset: Steam {0} · Perusarvot: Steam {1}",
+    "fr": "Noms et descriptions : Steam {0} · Valeurs de base : Steam {1}",
+    "de": "Namen und Beschreibungen: Steam {0} · Grundwerte: Steam {1}",
+    "es": "Nombres y descripciones: Steam {0} · Valores base: Steam {1}",
+    "pt-BR": "Nomes e descrições: Steam {0} · Valores base: Steam {1}",
+    "ru": "Названия и описания: Steam {0} · Базовые значения: Steam {1}"
   }
 }

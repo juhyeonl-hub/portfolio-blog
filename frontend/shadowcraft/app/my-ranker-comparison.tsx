@@ -2,6 +2,7 @@ import './equipment-guidance.css';
 import {useEffect,useRef,useState} from 'react';
 import {rankerText} from '../lib/ranker-comparison-text';
 import './ranker-visual.css';
+import {ClientItemName,useClientNames} from './client-names';
 import {useLocale} from './locale';
 import EquipmentGrid,{slotLabel} from './equipment-grid';
 import {loadItemIndex,type ItemIndex} from '../lib/item-index';
@@ -14,7 +15,7 @@ type Identity={id:string;server:string;region:string};
 const ADVICE={progress:'다음 던전 준비용 장비입니다. 필요한 강화·옵션 개선부터 검토하고, 반복 조율·영혼각인은 교체 예상 시기와 비용을 비교하세요.',unknown:'장비 레벨 또는 실제 옵션 정보가 부족해 투자 판단을 보류합니다.',replace:'교체 예정 장비입니다. 조율·영혼각인보다 교체 자원을 우선 확보하세요.',low:'70레벨 미만 장비는 교체 시기를 먼저 확인하세요. 다음 던전 준비용이라면 ‘다음 던전 장비를 얻을 때까지’를 선택하세요.',budget:'먼저 사용할 수 있는 재료와 비용을 확인하세요. 지금은 목표 옵션을 살펴보고, 재료를 쓰는 결정은 나중에 해도 됩니다.',plan:'다음 장비를 얻기 전까지 사용할지, 오래 사용할지 선택하면 목적에 맞게 안내합니다.',unsupported:'이 장비의 무작위 옵션 변경 가능 여부를 확인할 수 없습니다. 게임에서 지원 여부를 확인하세요.',tune:'직접 고른 변경 후보가 있습니다. 게임에서 조율 가능 옵션·비용·유지할 옵션을 확인한 뒤 조율을 검토하세요. 작업 순서는 확인하지 못했으므로 게임의 설명을 먼저 확인하세요.',review:'옵션별 용도를 확인하세요. 판단하지 못한 옵션을 나쁜 옵션으로 간주하지 않습니다.',engrave:'장기 사용을 선택하고 옵션 확인에 체크했습니다. 이것만으로 추가 투자가 꼭 필요한 것은 아닙니다. 게임에서 영혼각인 대상·상승 여지·비용을 확인하고, 개선 여지가 있을 때만 진행하세요.'};
 const FIT={mismatch:'사용 목적 확인',priority:'유지 후보',review:'판단 정보 부족'};
 function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index,onReload,compact=false}:{compact?:boolean;onReload?:()=>void;identity:Identity|null;item:RankerEquipment|undefined;mine:boolean;catalog:Catalog;plan:Plan;referenceLevel:number|null;index:ItemIndex|null}){
- const {t,locale,skill:skillName}=useLocale();
+ const {t,locale,skill:skillName}=useLocale(); const names=useClientNames();
  const [detail,setDetail]=useState<EquippedDetail|null>(null),[error,setError]=useState(''),[loading,setLoading]=useState(true),[retry,setRetry]=useState(0);
  const [investment,setInvestment]=useState<Investment>('unknown'),[budget,setBudget]=useState(false),[reviewed,setReviewed]=useState(false),[unwanted,setUnwanted]=useState<string[]>([]);
  const [purpose,setPurpose]=useState('build');
@@ -34,13 +35,13 @@ function ActualOptions({identity,item,mine,catalog,plan,referenceLevel,index,onR
   return()=>{active=false;controller.abort();};
  },[id,server,region,itemId,slot,enchant,catalog.classKey,retry]);
  const known=catalog.skills.map(s=>s.id),used=catalog.skills.filter(s=>s.stigma?equipped(plan).includes(s.id):(plan.base[s.id]??1)>0).map(s=>s.id),inactive=catalog.skills.filter(s=>s.stigma&&!equipped(plan).includes(s.id)).map(s=>s.id);
- const options=detail?[...detail.subStats.map(s=>({key:'stat:'+s.id,name:locale==='ko'?(index?.stats[s.id]?.ko||s.name):s.name,value:s.value,fit:statFit(s.id,adviceMode)})),...detail.subSkills.map(s=>({key:'skill:'+s.id,name:skillName(catalog.skills.find(x=>x.id===String(s.id))?.name||s.name),value:'+'+s.level,fit:skillFit(String(s.id),known,used,inactive)}))]:[];
+ const options=detail?[...detail.subStats.map(s=>({key:'stat:'+s.id,name:names.stat(s.id,locale==='ko'?(index?.stats[s.id]?.ko||s.name):s.name),value:s.value,fit:statFit(s.id,adviceMode)})),...detail.subSkills.map(s=>({key:'skill:'+s.id,name:names.skill(s.id,skillName(catalog.skills.find(x=>x.id===String(s.id))?.name||s.name)).name,value:'+'+s.level,fit:skillFit(String(s.id),known,used,inactive)}))]:[];
  const advice=equipmentAdvice({detail,referenceLevel,investment,budget,unwanted:unwanted.length,reviewed});
  const needsProfile=rankerItemNeedsProfile(error);
  return <div className="actual-options">
   <h4>{t(mine?'내 장비의 실제 옵션':'랭커 장비의 실제 옵션')}</h4>
   {!item||!identity?<p>{t('캐릭터 또는 해당 부위의 조회 정보가 없습니다.')}</p>:loading?<p role="status">{t('실제 장착 옵션 조회 중…')}</p>:error?<><p role="alert">{rankerText(locale,needsProfile?'gearChanged':mine?'ownGearError':'rankerGearError')}</p><details><summary>{t('조회 오류 자세히 보기')}</summary><p>{t(error)}</p></details>{needsProfile&&onReload?<button className="button secondary" onClick={onReload}>{rankerText(locale,mine?'reloadMine':'reloadRanker')}</button>:<button className="button ghost" onClick={()=>setRetry(n=>n+1)}>{t('다시 조회')}</button>}</>:detail&&<>
-   <b>{detail.name}</b><p>{t('아이템 레벨 {0}',[detail.level])} · {t('강화 +{0} · 초월 +{1}',[detail.enchantLevel,item.exceedLevel])}</p>
+   <b><ClientItemName id={detail.id} name={detail.name}/></b><p>{t('아이템 레벨 {0}',[detail.level])} · {t('강화 +{0} · 초월 +{1}',[detail.enchantLevel,item.exceedLevel])}</p>
    <p className="subtle">{t('아래는 이번 공식 응답의 실제 무작위 옵션과 스킬입니다. 기본 능력치·마석·신석은 투자 판단에서 제외합니다.')}</p>
    {mine&&!compact&&<button className="button ghost" aria-expanded={showAdvice} onClick={()=>setShowAdvice(v=>!v)}>{rankerText(locale,'advice')}</button>}
    {!options.length&&<p>{t('공개된 무작위 옵션이 없습니다.')}</p>}

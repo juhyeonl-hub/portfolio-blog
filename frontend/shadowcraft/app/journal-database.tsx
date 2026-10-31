@@ -1,3 +1,4 @@
+import {ClientItemName} from './client-names';
 import {useLocale} from './locale';
 import {useEffect, useState} from 'react';
 import {parseJournalIndex, type JournalIndex, type QuestRewards, type RewardContent} from '../lib/journal-index';
@@ -16,7 +17,7 @@ const classNames: Record<string, string> = {gladiator: '검성', templar: '수�
 function RewardLists({rewards}: {rewards: RewardContent}) {
  const {t}=useLocale();
   return <>
-    {([{label: '기본 보상', items: rewards.items}, {label: '일반 아이템 보상', items: rewards.normalItems}, {label: '선택 보상 후보', items: rewards.selectionItems}]).map(group => <div key={group.label}><h5>{t(group.label)}</h5>{group.items.length ? <ul>{group.items.map((item, index) => <li key={`${item.id}:${index}`}>{item.name ?? t('아이템 {0}',[item.id])} × {item.count.toLocaleString()}{item.enchantLevel > 0 ? ' · '+t('강화 +{0}',[item.enchantLevel]) : ''}</li>)}</ul> : <p>{t("등록된 항목 없음")}</p>}</div>)}
+    {([{label: '기본 보상', items: rewards.items}, {label: '일반 아이템 보상', items: rewards.normalItems}, {label: '선택 보상 후보', items: rewards.selectionItems}]).map(group => <div key={group.label}><h5>{t(group.label)}</h5>{group.items.length ? <ul>{group.items.map((item, index) => <li key={`${item.id}:${index}`}><ClientItemName id={item.id} name={item.name ?? t('아이템 {0}',[item.id])}/> × {item.count.toLocaleString()}{item.enchantLevel > 0 ? ' · '+t('강화 +{0}',[item.enchantLevel]) : ''}</li>)}</ul> : <p>{t("등록된 항목 없음")}</p>}</div>)}
     {!!rewards.selectionItems.length && <p>{t("선택 후보 목록이며 모든 아이템을 함께 받는다는 뜻은 아닙니다.")}</p>}
     {rewards.randomGroup && <p>{t("무작위 보상 그룹이 추가로 연결돼 있습니다. 구성과 확률은 아직 확인되지 않았습니다.")}</p>}
   </>;

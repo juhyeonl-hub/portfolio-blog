@@ -1,4 +1,4 @@
-export type ComparisonRow={label:string;current:string;saved:string;changed:boolean};
+export type ComparisonRow={label:string;current:string;saved:string;changed:boolean;currentItemId?:number;savedItemId?:number;skillId?:string};
 export type ComparisonSection={name:string;rows:ComparisonRow[];unavailable:boolean};
 type Entry={label:string;value:string;identity?:number};
 const object=(x:unknown):x is Record<string,unknown>=>!!x&&typeof x==='object'&&!Array.isArray(x);
@@ -26,7 +26,7 @@ function skills(x:unknown):Map<string,Entry>|null{
 function section(name:string,current:Map<string,Entry>|null,saved:Map<string,Entry>|null):ComparisonSection{
  if(!current||!saved)return {name,rows:[],unavailable:true};
  const keys=[...new Set([...current.keys(),...saved.keys()])];
- return {name,unavailable:false,rows:keys.map(key=>{const a=current.get(key),b=saved.get(key);return {label:a?.label||b!.label,current:a?.value??'조회 정보 없음',saved:b?.value??'조회 정보 없음',changed:a?.value!==b?.value||a?.identity!==b?.identity}})};
+ return {name,unavailable:false,rows:keys.map(key=>{const a=current.get(key),b=saved.get(key);return {currentItemId:name==='장비'?a?.identity:undefined,savedItemId:name==='장비'?b?.identity:undefined,skillId:name==='스킬'?key:undefined,label:a?.label||b!.label,current:a?.value??'조회 정보 없음',saved:b?.value??'조회 정보 없음',changed:a?.value!==b?.value||a?.identity!==b?.identity}})};
 }
 function nodes(x:Record<string,unknown>|null):Set<string>|null{
  if(!x||!Array.isArray(x.nodes)||x.nodes.length>2000||!x.nodes.every(n=>typeof n==='string')||!Array.isArray(x.failedBoards)||x.failedBoards.length)return null;

@@ -1,3 +1,4 @@
+import {ClientItemName} from './client-names';
 import {useLocale} from './locale';
 import EquipmentGrid from './equipment-grid';
 type Item={id:number;name:string;slotPos:number;slotPosName:string;enchantLevel:number;exceedLevel:number};
@@ -14,7 +15,7 @@ export default function CharacterEquipment({equipment}:{equipment:unknown}){
  return <details className="panel character-equipment" open>
   <summary>{t('조회한 캐릭터 장비')} {available?'('+t('{0}개',[items.length])+')':''}</summary>
   <p className="subtle">{t("공식 캐릭터 조회에 포함된 장비입니다. 누락되거나 접속 중 변경된 장비가 있을 수 있습니다. 내 장비 계획에는 자동 적용하지 않습니다.")}</p>
-  {!available?<p>{t("장비 조회 정보가 없습니다. 캐릭터를 새로 조회해 주세요.")}</p>:!items.length?<p>{t("표시할 장비 정보가 없습니다.")}</p>:<><EquipmentGrid items={items}/><details className="more-info"><summary>{t('목록으로 보기')}</summary><ul>{items.map((item,index)=><li key={`${item.slotPos}:${item.id}:${index}`}><strong>{item.name}</strong><span>{t('{0} · 강화 +{1} · 초월 +{2}',[item.slotPosName,item.enchantLevel,item.exceedLevel])}</span></li>)}</ul></details></>}
+  {!available?<p>{t("장비 조회 정보가 없습니다. 캐릭터를 새로 조회해 주세요.")}</p>:!items.length?<p>{t("표시할 장비 정보가 없습니다.")}</p>:<><EquipmentGrid items={items}/><details className="more-info"><summary>{t('목록으로 보기')}</summary><ul>{items.map((item,index)=><li key={`${item.slotPos}:${item.id}:${index}`}><strong><ClientItemName id={item.id} name={item.name}/></strong><span>{t('{0} · 강화 +{1} · 초월 +{2}',[item.slotPosName,item.enchantLevel,item.exceedLevel])}</span></li>)}</ul></details></>}
   {invalid&&<p role="status">{t("일부 장비 정보의 형식을 확인할 수 없어 표시하지 않았습니다.")}</p>}
  </details>;
 }

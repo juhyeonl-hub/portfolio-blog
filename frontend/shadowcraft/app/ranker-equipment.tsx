@@ -1,4 +1,5 @@
 import {SLOT_BASE_NAMES} from '../lib/game-terms';
+import {ClientItemName} from './client-names';
 import {useLocale} from './locale';
 import {useState} from 'react';
 import {compareRankerEquipment,rankerObservationTime,type Ranker,type RankerEquipment} from '../lib/ranker-builds';
@@ -6,7 +7,7 @@ import {compareRankerEquipment,rankerObservationTime,type Ranker,type RankerEqui
 const identity=(row:Ranker)=>`${row.region}:${row.serverId}:${row.characterId}`;
 function Equipment({item}:{item:RankerEquipment|undefined}){
  const {t}=useLocale();
- return item?<><strong>{item.name}</strong><small>{t('강화 +{0} · 초월 +{1}',[item.enchantLevel,item.exceedLevel])}</small></>:<span>{t("정보 미확인")}</span>;
+ return item?<><strong><ClientItemName id={item.id} name={item.name}/></strong><small>{t('강화 +{0} · 초월 +{1}',[item.enchantLevel,item.exceedLevel])}</small></>:<span>{t("정보 미확인")}</span>;
 }
 // Client slot keys shown with the gear screen's names; Cape, Rune, Amulet and Arcana use the names in lib/game-terms.ts ("아르카나 1").
 const SLOT_NAMES:Record<string,string>={MainHand:'주무기',SubHand:'보조무기',Helmet:'투구',Torso:'상의',Pants:'하의',Shoulder:'어깨',Gloves:'장갑',Boots:'신발',Belt:'허리띠',Necklace:'목걸이',Earring1:'귀걸이 1',Earring2:'귀걸이 2',Ring1:'반지 1',Ring2:'반지 2',Bracelet1:'팔찌 1',Bracelet2:'팔찌 2'};

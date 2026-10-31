@@ -15,3 +15,7 @@ assert(compareCharacters({...a,skills:[{id:1,name:{},skillLevel:10,equip:1}]},b)
 const other=structuredClone(a);other.equipment[0].slotPos=2;
 result=compareCharacters(a,other);assert.equal(result.sections[0].rows[0].saved,'조회 정보 없음');
 console.log('Character comparison: stable identities, unknowns, malformed/duplicates, incomplete boards and nonmutation PASS');
+
+const gearRow=compareCharacters(a,b).sections[0].rows[0];
+assert.equal(gearRow.currentItemId,a.equipment[0].id);assert.equal(gearRow.savedItemId,b.equipment[0].id);
+assert.equal(compareCharacters(a,b).sections[1].rows[0].skillId,String(a.skills[0].id));
