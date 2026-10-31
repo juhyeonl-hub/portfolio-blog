@@ -7,9 +7,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class SteamLoginControllerTest {
  static final String API="/api/community/auth/steam", ENDPOINT="https://steamcommunity.com/openid/login", STEAM="76561191234567890";
  @Autowired MockMvc mvc; @Autowired ObjectMapper mapper; @Autowired JdbcTemplate jdbc; @Autowired org.springframework.security.crypto.password.PasswordEncoder passwords;
- @MockBean SteamOpenIdVerifier verifier;
+ @MockitoBean SteamOpenIdVerifier verifier;
  String address;
  @BeforeEach void setup(){
   address=UUID.randomUUID().toString();

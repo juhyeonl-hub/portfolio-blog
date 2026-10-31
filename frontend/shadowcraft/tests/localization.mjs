@@ -42,14 +42,23 @@ const {default:ts}=await import('typescript');
 const {readdirSync}=await import('node:fs');
 const screens=readdirSync('app').filter(f=>f.endsWith('.tsx')).map(f=>f.slice(0,-4));
 assert.ok(screens.length>=27 /* app/*.tsx screens after the crafting/live-DPS removal (2026-10-20) */);
+// Inspect static alternatives too: t(condition ? 'a' : 'b') and t(['a', 'b'][index]).
+// Dynamic user/API values intentionally have no dictionary-key assertion.
+function staticTranslationKeys(node){
+ if(!node)return [];
+ if(ts.isStringLiteralLike(node))return [node.text];
+ if(ts.isParenthesizedExpression(node))return staticTranslationKeys(node.expression);
+ if(ts.isConditionalExpression(node))return [...staticTranslationKeys(node.whenTrue),...staticTranslationKeys(node.whenFalse)];
+ if(ts.isElementAccessExpression(node)&&ts.isArrayLiteralExpression(node.expression))return node.expression.elements.flatMap(staticTranslationKeys);
+ return [];
+}
 for(const name of screens){
  const source=readFileSync('app/'+name+'.tsx','utf8');
  const ast=ts.createSourceFile(name+'.tsx',source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);
  function visit(node){
   if(ts.isJsxText(node))assert.ok(!/[가-힣]/.test(node.text),name+' untranslated JSX: '+node.text);
   if(ts.isJsxAttribute(node)&&node.initializer&&ts.isStringLiteral(node.initializer))assert.ok(!/[가-힣]/.test(node.initializer.text),name+' untranslated attribute: '+node.initializer.text);
-  if(ts.isCallExpression(node)&&ts.isIdentifier(node.expression)&&node.expression.text==='t'&&node.arguments[0]&&ts.isStringLiteral(node.arguments[0])){
-   const key=node.arguments[0].text;
+  if(ts.isCallExpression(node)&&ts.isIdentifier(node.expression)&&node.expression.text==='t')for(const key of staticTranslationKeys(node.arguments[0])){
    assert.ok(!key.includes('{t('),name+' translation key contains code');
    if(/[가-힣]/.test(key))assert.ok(Object.hasOwn(messages,key),name+' missing manual translation: '+key);
   }

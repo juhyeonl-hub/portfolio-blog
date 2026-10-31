@@ -1,4 +1,11 @@
 spring:
+  # Keep JsonNode request/response and stored settings compatible during the platform upgrade.
+  http:
+    converters:
+      preferred-json-mapper: jackson2
+  websocket:
+    messaging:
+      preferred-json-mapper: jackson2
   application:
     name: portfolio-blog
 

@@ -29091,13 +29091,13 @@
   },
   "입력만 바꾸면 현재 배분은 유지됩니다. 적용한 뒤에도 직전 배분으로 되돌릴 수 있습니다.": {
     "en": "Changing the inputs keeps your current allocation. After applying, you can restore the previous one.",
-    "ja": "入力を変更すると、現在の割り当てが維持されます。適用後、以前のものに戻すことができます。",
-    "fi": "Tulojen muuttaminen säilyttää nykyisen varauksen. Hakemuksen jälkeen voit palauttaa edellisen.",
-    "fr": "La modification des entrées conserve votre allocation actuelle. Après avoir postulé, vous pouvez restaurer le précédent.",
-    "de": "Durch Ändern der Eingaben bleibt Ihre aktuelle Zuordnung erhalten. Nach der Bewerbung können Sie die vorherige wiederherstellen.",
-    "es": "Cambiar las entradas mantiene su asignación actual. Después de aplicar, puede restaurar el anterior.",
-    "pt-BR": "Alterar as entradas mantém sua alocação atual. Após a aplicação, você pode restaurar o anterior.",
-    "ru": "Изменение входных данных сохраняет ваше текущее распределение. После подачи заявки вы сможете восстановить предыдущую."
+    "ja": "数値を変えただけでは、現在の配分は変わりません。適用後も直前の配分に戻せます。",
+    "fi": "Kenttien muuttaminen ei muuta nykyistä pistejakoa. Kun otat suosituksen käyttöön, voit silti palauttaa edellisen jaon.",
+    "fr": "Modifier les valeurs ne change pas votre répartition actuelle. Après avoir appliqué la recommandation, vous pouvez revenir à la répartition précédente.",
+    "de": "Wenn Sie die Werte ändern, bleibt Ihre aktuelle Punkteverteilung erhalten. Nach dem Anwenden der Empfehlung können Sie die vorherige Verteilung wiederherstellen.",
+    "es": "Los cambios en los valores no modifican tu distribución actual. Después de aplicar la recomendación, puedes recuperar la distribución anterior.",
+    "pt-BR": "Alterar os valores não muda sua distribuição atual. Depois de aplicar a recomendação, você pode restaurar a distribuição anterior.",
+    "ru": "Изменение значений не меняет текущее распределение очков. После применения рекомендации можно вернуться к предыдущему распределению."
   },
   "결정 {0} · 아스펠 {1} · 아리엘 {2}": {
     "en": "Crystals {0} · Asphel {1} · Ariel {2}",
@@ -29508,5 +29508,45 @@
     "es": "Nombres y descripciones: Steam {0} · Valores base: Steam {1}",
     "pt-BR": "Nomes e descrições: Steam {0} · Valores base: Steam {1}",
     "ru": "Названия и описания: Steam {0} · Базовые значения: Steam {1}"
+  },
+  "데바니온·스킬 추천 배분 적용": {
+    "en": "Apply recommended Daevanion and skills",
+    "ja": "ディーヴァニオン・スキルのおすすめ配分を適用",
+    "fi": "Käytä suositeltua Daevanion- ja taitojakoa",
+    "fr": "Appliquer la répartition conseillée de Daevanion et des compétences",
+    "de": "Empfohlene Daevanion- und Fertigkeitsverteilung anwenden",
+    "es": "Aplicar la distribución recomendada de Daevanion y habilidades",
+    "pt-BR": "Aplicar a distribuição recomendada de Daevanion e habilidades",
+    "ru": "Применить рекомендуемое распределение Даэваниона и навыков"
+  },
+  "남은 아리엘 결정": {
+    "en": "Remaining Ariel crystals",
+    "ja": "残りアリエルクリスタル",
+    "fi": "Jäljellä olevat Ariel-kristallit",
+    "fr": "Cristaux d’Ariel restants",
+    "de": "Verbleibende Ariel-Kristalle",
+    "es": "Cristales de Ariel restantes",
+    "pt-BR": "Cristais de Ariel restantes",
+    "ru": "Оставшиеся кристаллы Ариэль"
+  },
+  "저장 중…": {
+    "en": "Saving…",
+    "ja": "保存中…",
+    "fi": "Tallennetaan…",
+    "fr": "Enregistrement…",
+    "de": "Wird gespeichert…",
+    "es": "Guardando…",
+    "pt-BR": "Salvando…",
+    "ru": "Сохранение…"
+  },
+  "해제": {
+    "en": "Removed",
+    "ja": "解除",
+    "fi": "Poistettu",
+    "fr": "Retiré",
+    "de": "Entfernt",
+    "es": "Eliminado",
+    "pt-BR": "Removido",
+    "ru": "Удалено"
   }
 }
