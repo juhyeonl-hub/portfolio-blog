@@ -4,7 +4,7 @@ import {classes,planner,recommendBuild,moduleUrl} from './modules.mjs';
 assert.equal(classes.CLASSES.length,8);
 for(const profile of classes.CLASSES){
  const c=JSON.parse(readFileSync(`lib/data/catalogs/${profile.key}.json`));
- assert.equal(c.classKey,profile.key);assert.equal(c.skills.length,35);assert.equal(c.boards.length,5);
+ assert.equal(c.classKey,profile.key);assert.equal(c.skills.length,35);assert.equal(c.boards.length,6);
  assert.deepEqual(c.boards.map(b=>Number(b.id)),profile.boardIds);
  const byId=new Map(c.skills.map(s=>[s.id,s]));
  for(const id of [...profile.core,...profile.activePriority,...profile.passivePriority,...profile.manual,...profile.movement])assert(byId.has(id),`${profile.key}: missing ${id}`);

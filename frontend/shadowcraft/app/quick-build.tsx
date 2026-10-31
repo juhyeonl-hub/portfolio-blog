@@ -1,6 +1,6 @@
 import {useEffect,useRef,useState} from 'react';
 import {useLocale} from './locale';
-import {isEndgamePointLevel,pointBudgetSourceLabel,type Catalog,type Plan,pointLimits,totals,MODE_NAMES} from '@/lib/planner';
+import {isEndgamePointLevel,pointBudgetSourceLabel,type Catalog,type Plan,pointLimits,totals} from '@/lib/planner';
 import {BUILD_PURPOSES,PURPOSE_NAMES,type BuildPurpose,buildPurpose,recommendPurposeBuild} from '@/lib/build-purpose';
 import './leveling-guide.css';
 import './direct-build.css';
@@ -8,7 +8,7 @@ import CharacterPoints from './character-points';
 import PointNumber from './point-number';
 
 // One setup for the editable plan below. A recommendation never applies on navigation or input.
-export default function QuickBuild({catalog,plan,onApply,onChange,onPurposeChange,onStyleApply}:{catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void;onChange:(patch:Partial<Plan>)=>void;onPurposeChange:(purpose:BuildPurpose)=>void;onStyleApply:(mode:Plan['mode'])=>void}){
+export default function QuickBuild({catalog,plan,onApply,onChange,onPurposeChange,onCompare}:{catalog:Catalog;plan:Plan;onApply:(next:Plan)=>void;onChange:(patch:Partial<Plan>)=>void;onPurposeChange:(purpose:BuildPurpose)=>void;onCompare:()=>void}){
  const {t}=useLocale();
  const [result,setResult]=useState<{source:Plan;catalog:Catalog;next:Plan}|null>(null),[error,setError]=useState('');
  const [purposeRequest,setPurposeRequest]=useState<{plan:Plan;catalog:Catalog}|null>(null);
@@ -23,7 +23,7 @@ export default function QuickBuild({catalog,plan,onApply,onChange,onPurposeChang
  useEffect(()=>{setError('');const timer=setTimeout(()=>{try{setResult({source:plan,catalog,next:recommendPurposeBuild(catalog,plan)})}catch{setResult(null);setError(t('추천 계산에 실패했습니다. 레벨과 포인트를 확인하세요.'))}},150);return()=>clearTimeout(timer)},[catalog,plan,t]);
  const actualLevel=plan.character?.profile?.characterLevel,resultPoints=candidate?totals(catalog,candidate):null;
  return <section id="point-budget" className="panel growth-guide direct-build build-setup" aria-label={t('빌드 설정')} tabIndex={-1}>
- <h1>{t('내 빌드')}</h1><p>{t('레벨과 포인트를 입력한 뒤, 아래에서 데바니온 → 스킬·특화 순서로 수정하세요.')}</p>
+ <h1>{t('내 빌드')}</h1><p className="recommendation-origin">{t('사이트 추천은 직업별 우선순위와 입력한 포인트로 계산합니다. 랭커의 평균 배분은 아닙니다.')} <button type="button" className="text-button" onClick={onCompare}>{t('랭커 세팅을 참고해서 만들기')}</button></p><p>{t('레벨과 포인트를 입력한 뒤, 아래에서 데바니온 → 스킬·특화 순서로 수정하세요.')}</p>
   {typeof actualLevel==='number'&&<div className="growth-basis"><b>{t('조회한 캐릭터: {0} · Lv.{1}',[plan.character.profile.characterName,actualLevel])}</b><span>{t('계산할 목표: Lv.{0}',[plan.level])}</span>{actualLevel!==plan.level&&<p>{t('입력한 레벨을 기준으로 계획을 세우는 중입니다. ‘현재 캐릭터 배치’와 실제 스킬 레벨은 마지막 조회 정보를 보여줍니다.')}</p>}</div>}
   <div className="growth-inputs">
    <label>{t('캐릭터 레벨')}<PointNumber label={t('캐릭터 레벨')} min={1} max={45} value={plan.level} onValue={level=>onChange({level})}/></label>
@@ -44,18 +44,19 @@ export default function QuickBuild({catalog,plan,onApply,onChange,onPurposeChang
   {isEndgamePointLevel(plan)&&<p id="leveling-availability" className="leveling-availability">{t('현재 목표는 45레벨입니다. ‘레벨링’을 누르면 44레벨 빌드로 바꿔 볼 수 있습니다.')}</p>}
   {purposeRequest&&<dialog ref={purposeDialog} className="leveling-confirm-dialog" aria-labelledby="leveling-confirm-title" aria-describedby="leveling-confirm-effect" onCancel={e=>{e.preventDefault();setPurposeRequest(null)}} onClose={()=>setPurposeRequest(null)} onClick={e=>{if(e.target===e.currentTarget)setPurposeRequest(null)}}>
    <h2 id="leveling-confirm-title">{t('레벨링 빌드를 볼까요?')}</h2>
-   <p id="leveling-confirm-effect">{t('레벨링 빌드를 보면 목표 레벨은 44로, 포인트는 해당 레벨의 기본값으로 바뀝니다.')}</p>
-   <p>{t('현재 스킬·특화·데바니온 배분은 유지합니다. 전환 후에는 이전 설정으로 되돌릴 수 있습니다.')}</p>
+   <p id="leveling-confirm-effect">{t('목표를 44레벨과 해당 레벨의 기본 포인트로 맞춥니다.')}</p>
+   <p>{t('찍어 둔 배분은 그대로 두며, 원래 설정으로 되돌릴 수 있습니다.')}</p>
    <div className="leveling-confirm-actions"><button autoFocus type="button" className="button secondary" onClick={()=>setPurposeRequest(null)}>{t('현재 빌드 유지')}</button><button type="button" className="button primary" onClick={()=>{const current=purposeRequest.plan===plan&&purposeRequest.catalog===catalog;setPurposeRequest(null);if(current)onPurposeChange('leveling')}}>{t('레벨링 보기')}</button></div>
   </dialog>}
-  <p className="growth-purpose-note" role="status"><b>{t('계산할 목표: Lv.{0}',[plan.level])}</b><br/>{t(purpose==='leveling'?'레벨링: 현재 레벨에서 열리는 스킬과 데바니온으로 공격 위주 배분을 안내합니다.':purpose==='pve'?'PvE: 45레벨 원정을 위한 직업별 보스·파티 가이드에 생존을 고려해 배분합니다.':'PvP: 유저와의 전투용 능력치와 데바니온을 우선합니다. 스킬은 기존 직업 가이드를 참고합니다.')}</p>
+  <p className="growth-purpose-note" role="status"><b>{t('계산할 목표: Lv.{0}',[plan.level])}</b><br/>{t(purpose==='leveling'?'레벨링: 현재 레벨에서 열리는 스킬과 데바니온으로 공격 위주 배분을 안내합니다.':purpose==='pve'?'PvE: 45레벨 원정 기준입니다. 아래에서 생존과 공격 중 추천 방향을 고르세요.':'PvP: 유저와의 전투용 능력치와 데바니온을 우선합니다. 스킬은 기존 직업 가이드를 참고합니다.')}</p>
   <p className="subtle">{t('레벨링은 최대 44레벨, PvE는 45레벨 목표로 전환합니다. 레벨이 바뀌면 포인트는 해당 레벨의 기본값으로 바뀝니다.')} {t('현재 포인트 안에서 계산한 참고 배분이며, 콘텐츠별 최적 세팅을 검증한 결과는 아닙니다.')}</p>
 
  {isEndgamePointLevel(plan)&&<p className="completion-basis">{t('45레벨은 3차 승급·봉인던전·주둔지·서브 퀘스트 등 기본 내실을 완료한 상태를 기준으로 계획합니다.')}<br/><small>{t('실제 완료 여부를 조회한 값은 아닙니다. 총 포인트가 다르면 위의 총량을 수정하세요.')}</small></p>}
- <div className="build-recommend-action"><button type="button" className="button primary" disabled={!candidate} onClick={()=>candidate&&onApply(candidate)}>{t(candidate?'추천 배분 적용':'현재 레벨·포인트로 계산 중…')}</button>
- {resultPoints&&<span>{t('추천 배분 사용량: 스킬 {0} · 스티그마 {1} · 데바니온 {2}',[resultPoints.sp,resultPoints.stigma,resultPoints.crystal])}</span>}</div>
- <p className="subtle">{t('추천을 적용하면 아래 스킬·특화·데바니온 계획이 바뀝니다. 직접 수정한 내용도 바뀌며 되돌릴 수 있습니다.')}</p>
- <details className="build-style-options"><summary>{t('다른 추천 방식')}</summary><div className="beginner-next">{(['safe','damage'] as const).map(mode=><button key={mode} type="button" className="button secondary" onClick={()=>onStyleApply(mode)}>{t('{0} 추천 적용',[t(MODE_NAMES[mode])])}</button>)}</div></details>
+ {purpose==='pve'&&<div className="build-direction" role="group" aria-label={t('추천 방향')}><b>{t('추천 방향')}</b>{(['safe','damage'] as const).map(mode=><button type="button" key={mode} aria-pressed={plan.mode===mode} onClick={()=>onChange({mode,specs:plan.specs})}><strong>{t(mode==='safe'?'생존에 여유':'공격 우선')}</strong><small>{t(mode==='safe'?'파티·보스전 기준으로 생존도 고려':'필드·사명에서도 참고할 공격 중심 배분')}</small></button>)}</div>}
+ <div className="recommendation-apply-box"><h3>{t('이 설정으로 새 배분 만들기')}</h3><p>{t('레벨·포인트·플레이 목적을 바꿨다면 아래 버튼으로 데바니온과 스킬·특화를 함께 다시 배분하세요. 직접 찍어 둔 배분도 바뀝니다.')}</p> <div className="build-recommend-action"><button type="button" className="button primary" disabled={!candidate} onClick={()=>candidate&&onApply(candidate)}>{t(candidate?'데바니온·스킬 추천 배분 적용':'현재 레벨·포인트로 계산 중…')}</button>
+ {resultPoints&&<span>{t('추천 배분 사용량: 스킬 {0} · 스티그마 {1} · 데바니온 {2}',[resultPoints.sp,resultPoints.stigma,resultPoints.crystal])}{resultPoints.battle>0&&<> · {t('아스펠 결정')} {resultPoints.battle}</>}{(resultPoints.ariel??0)>0&&<> · {t('아리엘 결정')} {resultPoints.ariel}</>}</span>}</div>
+ <p className="subtle">{t('입력만 바꾸면 현재 배분은 유지됩니다. 적용한 뒤에도 직전 배분으로 되돌릴 수 있습니다.')}</p></div>
+
  {error&&<p role="alert">{error}</p>}
  </section>;
 }

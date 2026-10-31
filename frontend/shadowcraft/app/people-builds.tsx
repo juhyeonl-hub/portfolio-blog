@@ -15,7 +15,7 @@ async function readJson(url:string,signal:AbortSignal){const r=await fetch(url,{
 function useHash(){const [hash,setHash]=useState(location.hash);useEffect(()=>{const f=()=>setHash(location.hash);window.addEventListener('hashchange',f);return()=>window.removeEventListener('hashchange',f)},[]);return hash;}
 export default function PeopleBuilds(){
  const {t}=useLocale();const hash=useHash(),route=readPeopleRoute(hash);
- return <section className="panel people-page" aria-label={t('캐릭터 빌드 찾기')}><h1>{t('캐릭터 빌드 찾기')}</h1><p>{t('캐릭터의 현재 세팅을 조회하거나, 작성자가 공개한 빌드를 찾아보세요.')}</p>
+ return <section className="panel people-page" aria-label={t('캐릭터 찾기')}><h1>{t('캐릭터 찾기')}</h1><p>{t('캐릭터의 현재 세팅을 조회하거나, 작성자가 공개한 빌드를 찾아보세요.')}</p>
  <nav className="preview-tabs" aria-label={t('사람 검색 종류')}><a className={'button '+(route.kind==='character'?'primary':'secondary')} aria-current={route.kind==='character'?'page':undefined} href="#/people">{t('캐릭터 세팅 조회')}</a><a className={'button '+(route.kind==='author'?'primary':'secondary')} aria-current={route.kind==='author'?'page':undefined} href="#/people?kind=author">{t('작성자 공개 빌드')}</a></nav>
  <p className="subtle">{t('게임 캐릭터 이름과 사이트 작성자 이름은 서로 다를 수 있습니다.')}</p>
  {route.invalid?<p role="alert">{t('캐릭터 또는 작성자 페이지 주소가 올바르지 않습니다. ‘캐릭터 세팅 조회’나 ‘작성자 공개 빌드’를 선택해 다시 찾아보세요.')}</p>:route.kind==='author'?<AuthorBuilds key={route.author} author={route.author}/>:<CharacterSearch target={route.target}/>}

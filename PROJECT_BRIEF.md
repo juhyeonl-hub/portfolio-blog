@@ -1049,3 +1049,13 @@ Natural user messages implemented and verified: all96 audit findings,117 compani
 User subsequently authorized the reviewed message-only main commit/push/production release ("아니야 그냥 반영해"). Release scope excludes all302 unrelated pending changes.
 
 Natural user-message release complete: source f8a57f1, https://59db9745.asbc-4c9.pages.dev, canonical /assets/asbc-D6DlEzHv.js. Main committed/pushed; backend JAR differs from previous runtime only in2 message classes, backed up and restarted healthy.18 production locale/viewport checks plus canonical PC/mobile storage guidance pass; product source unchanged since Claude PASS.302 pending paths preserved, including reversible merges for3 overlaps. Backend CI retains the shared-H2 DROP TABLE dependency failure, confirmed identical on previous2026-10-28 run; isolated local80 tests PASS. No CI/test isolation changes included. Evidence: artifacts/message-copy-fix-20261030/production.json, ci-baseline-comparison.json.
+
+
+## 2026-10-30: Metaroad-informed ASBC hub layout
+[Task Goal]: Reorganize ASBC home and common page navigation/layout, informed by the user-selected Metaroad Aion2 hub. Codex will use existing ASBC content and assets, route to existing tools, preserve calculator/build/map/account behavior, and verify responsive navigation plus all9locale layouts. Main repository302 pending changes excluded. Reference https://metaroad.gg/aion2 observed2026-10-30: common top navigation, compact timer strip, prominent tool entries, grouped class content and useful side column.
+Expected: home action groups and common navigation are clear at1440/1024/390/360 widths; every navigation destination remains reachable, legacy hashes/back/forward and saved plans remain intact. Failures to check: hidden links, overflow in long locales, sticky header occlusion, mobile focus trap, shared-reader navigation inconsistency. See tasks/asbc-metaroad-layout-20261030.md.
+
+
+## 2026-10-31 portal feedback
+[Task Goal]: Apply the user’s comprehensive hands-on feedback to the unpublished Metaroad layout and build workflow; audit Steam/account security and game-data freshness without unverified game claims.
+See tasks/asbc-portal-refinement-20261031.md. Expected responsive, readable sequential build setup, truthful automatic data freshness and evidence-based security review. Preserve unrelated changes.

@@ -95,7 +95,8 @@ public class PublicBuildService {
         if(!p.path("character").isNull()||!p.path("checked").isArray()||!p.path("checked").isEmpty())bad("공개 빌드에는 연결한 캐릭터와 개인 완료 기록을 포함할 수 없습니다. 빌드 편집 화면에서 다시 저장해 주세요.");
         for(String field:List.of("extraSP","extraStigma","extraCrystal","extraBattle"))if(!number(p.path(field),0,9999))bad("포인트를 확인하세요.");
         if(p.has("ascensionGrade3Confirmed")&&!p.path("ascensionGrade3Confirmed").isBoolean())bad("승급 확인값을 확인하세요.");
-        if(p.has("pointBudget")){only(p.path("pointBudget"),Set.of("sp","stigma","crystal","battle"));for(String field:List.of("sp","stigma","crystal","battle"))if(!number(p.path("pointBudget").path(field),0,9999))bad("포인트 예산을 확인하세요.");}
+        if(p.path("pointBudget").has("ariel")&&!number(p.path("pointBudget").path("ariel"),0,9999))bad("아리엘 포인트를 확인하세요.");
+        if(p.has("pointBudget")){only(p.path("pointBudget"),Set.of("sp","stigma","crystal","battle","ariel"));for(String field:List.of("sp","stigma","crystal","battle"))if(!number(p.path("pointBudget").path(field),0,9999))bad("포인트 예산을 확인하세요.");}
         JsonNode catalog=catalogs.catalog(key).path("catalog");Map<String,Set<String>> skills=new HashMap<>();Set<String> nodes=new HashSet<>();
         for(JsonNode skill:catalog.path("skills")){Set<String> specs=new HashSet<>();skill.path("specializations").forEach(s->specs.add(s.path("id").asText()));skills.put(skill.path("id").asText(),specs);}
         for(JsonNode board:catalog.path("boards"))board.path("nodes").forEach(n->nodes.add(n.path("id").asText()));

@@ -11,7 +11,7 @@ for(const key of Object.keys(overlay.source.catalogSha256)){
  for(const board of c.boards)for(const node of board.nodes){
   const stats=nodeStats(node,c.version);
   if(overlay.rules[node.id]){assert.equal(stats.length,2);supplemented++;}
-  else assert.equal(stats.length,node.stat?1:0);
+  else assert.equal(stats.length,node.stats?.length??(node.stat?1:0));
  }
  assert.equal(JSON.stringify(c),before);
 }

@@ -6,7 +6,7 @@ export function parseCatalog(text, key) {
   const catalog = input?.catalog ?? input;
   if (!catalog || catalog.classKey !== key || typeof catalog.version !== 'string' || !catalog.version
       || !Array.isArray(catalog.skills) || catalog.skills.length !== 35
-      || !Array.isArray(catalog.boards) || catalog.boards.length !== 5) throw Error('Catalog class or schema mismatch');
+      || !Array.isArray(catalog.boards) || (catalog.boards.length < 5 || catalog.boards.length > 8)) throw Error('Catalog class or schema mismatch');
   return catalog;
 }
 

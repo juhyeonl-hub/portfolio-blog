@@ -28528,5 +28528,935 @@
     "es": "No se pudieron leer los datos de build. Guarde una copia separada de su borrador y vuelva a intentarlo.",
     "pt-BR": "Não foi possível ler os dados de build. Mantenha uma cópia separada do seu rascunho e tente novamente.",
     "ru": "Не удалось прочитать данные сборки. Сохраните отдельную копию черновика и повторите попытку."
+  },
+  "AION 2 플레이 도구": {
+    "en": "Your AION 2 toolkit",
+    "ja": "AION 2 お役立ちツール",
+    "fi": "AION 2 -työkalusi",
+    "fr": "Vos outils AION 2",
+    "de": "Deine AION-2-Werkzeuge",
+    "es": "Tus herramientas de AION 2",
+    "pt-BR": "Suas ferramentas de AION 2",
+    "ru": "Ваши инструменты AION 2"
+  },
+  "빌드·지도·타이머·거래소를 한곳에서 이용하세요.": {
+    "en": "Builds, maps, timers and trading tools, all in one place.",
+    "ja": "ビルド・マップ・タイマー・取引計算をひとつの場所で。",
+    "fi": "Buildit, kartat, ajastimet ja kaupankäynnin työkalut samassa paikassa.",
+    "fr": "Builds, cartes, minuteurs et calculs de vente, au même endroit.",
+    "de": "Builds, Karten, Timer und Handelsrechner an einem Ort.",
+    "es": "Builds, mapas, temporizadores y herramientas de comercio en un solo lugar.",
+    "pt-BR": "Builds, mapas, temporizadores e ferramentas de comércio em um só lugar.",
+    "ru": "Билды, карты, таймеры и торговые инструменты в одном месте."
+  },
+  "선택한 직업": {
+    "en": "Selected class",
+    "ja": "選択中のクラス",
+    "fi": "Valittu luokka",
+    "fr": "Classe sélectionnée",
+    "de": "Gewählte Klasse",
+    "es": "Clase seleccionada",
+    "pt-BR": "Classe selecionada",
+    "ru": "Выбранный класс"
+  },
+  "빌드 찾기": {
+    "en": "Find builds",
+    "ja": "ビルドを探す",
+    "fi": "Etsi buildeja",
+    "fr": "Trouver un build",
+    "de": "Builds finden",
+    "es": "Buscar builds",
+    "pt-BR": "Encontrar builds",
+    "ru": "Поиск билдов"
+  },
+  "직업별 빌드": {
+    "en": "Choose your class",
+    "ja": "クラスから選ぶ",
+    "fi": "Valitse luokkasi",
+    "fr": "Choisissez votre classe",
+    "de": "Wähle deine Klasse",
+    "es": "Elige tu clase",
+    "pt-BR": "Escolha sua classe",
+    "ru": "Выберите класс"
+  },
+  "직업을 선택하면 해당 직업의 플래너가 열립니다.": {
+    "en": "Select a class to open its build planner.",
+    "ja": "クラスを選ぶと、そのクラスのビルドプランナーが開きます。",
+    "fi": "Avaa luokan buildisuunnittelija valitsemalla luokka.",
+    "fr": "Sélectionnez une classe pour ouvrir son planificateur.",
+    "de": "Wähle eine Klasse, um ihren Build-Planer zu öffnen.",
+    "es": "Selecciona una clase para abrir su planificador de builds.",
+    "pt-BR": "Selecione uma classe para abrir seu planejador de builds.",
+    "ru": "Выберите класс, чтобы открыть его планировщик билда."
+  },
+  "이름으로 캐릭터를 찾아 세팅을 살펴보세요.": {
+    "en": "Find a character by name and explore their setup.",
+    "ja": "キャラクター名で検索して、設定を確認しましょう。",
+    "fi": "Etsi hahmo nimellä ja tutustu sen varusteisiin ja taitoihin.",
+    "fr": "Recherchez un personnage par son nom pour consulter sa configuration.",
+    "de": "Suche einen Charakter nach Namen und sieh dir seine Einstellungen an.",
+    "es": "Busca un personaje por su nombre y consulta su configuración.",
+    "pt-BR": "Busque um personagem pelo nome e confira sua configuração.",
+    "ru": "Найдите персонажа по имени и посмотрите его настройки."
+  },
+  "다른 유저의 빌드를 내 플래너에서 수정해 보세요.": {
+    "en": "Explore community builds and adapt them in your planner.",
+    "ja": "ほかのユーザーのビルドを自分のプランナーで編集できます。",
+    "fi": "Tutustu muiden pelaajien buildeihin ja muokkaa niitä suunnittelijassasi.",
+    "fr": "Découvrez les builds de la communauté et adaptez-les dans votre planificateur.",
+    "de": "Entdecke Community-Builds und passe sie in deinem Planer an.",
+    "es": "Explora builds de la comunidad y adáptalas en tu planificador.",
+    "pt-BR": "Explore builds da comunidade e adapte-as no seu planejador.",
+    "ru": "Изучайте билды сообщества и меняйте их в своём планировщике."
+  },
+  "게임 도구": {
+    "en": "Game tools",
+    "ja": "ゲームツール",
+    "fi": "Pelityökalut",
+    "fr": "Outils de jeu",
+    "de": "Spielwerkzeuge",
+    "es": "Herramientas de juego",
+    "pt-BR": "Ferramentas do jogo",
+    "ru": "Игровые инструменты"
+  },
+  "필요한 콘텐츠의 시간을 한눈에 확인하세요.": {
+    "en": "Keep track of the events you want to join.",
+    "ja": "参加したいコンテンツの時間をまとめて確認できます。",
+    "fi": "Seuraa niiden tapahtumien aikoja, joihin haluat osallistua.",
+    "fr": "Suivez les horaires des événements qui vous intéressent.",
+    "de": "Behalte die Zeiten deiner gewünschten Aktivitäten im Blick.",
+    "es": "Consulta los horarios de las actividades que te interesan.",
+    "pt-BR": "Acompanhe os horários das atividades que interessam a você.",
+    "ru": "Следите за временем интересующих вас событий."
+  },
+  "재료비와 세율을 넣고 판매가를 계산하세요.": {
+    "en": "Enter material costs and tax to calculate a sale price.",
+    "ja": "材料費と税率を入力して販売価格を計算できます。",
+    "fi": "Laske myyntihinta materiaalikulujen ja veroprosentin perusteella.",
+    "fr": "Saisissez les coûts des matériaux et la taxe pour calculer un prix de vente.",
+    "de": "Gib Materialkosten und Steuersatz ein, um einen Verkaufspreis zu berechnen.",
+    "es": "Introduce los costes de materiales y el impuesto para calcular un precio de venta.",
+    "pt-BR": "Informe o custo dos materiais e a taxa para calcular um preço de venda.",
+    "ru": "Укажите стоимость материалов и налог, чтобы рассчитать цену продажи."
+  },
+  "빠른 이동": {
+    "en": "Quick access",
+    "ja": "クイックアクセス",
+    "fi": "Pikalinkit",
+    "fr": "Accès rapide",
+    "de": "Schnellzugriff",
+    "es": "Acceso rápido",
+    "pt-BR": "Acesso rápido",
+    "ru": "Быстрый доступ"
+  },
+  "캐릭터 찾기": {
+    "en": "Character search",
+    "ja": "キャラクター検索",
+    "fi": "Hahmohaku",
+    "fr": "Rechercher un personnage",
+    "de": "Charaktersuche",
+    "es": "Buscar personaje",
+    "pt-BR": "Buscar personagem",
+    "ru": "Поиск персонажа"
+  },
+  "접속 현황": {
+    "en": "Player activity",
+    "ja": "接続状況",
+    "fi": "Pelaajatilastot",
+    "fr": "Activité des joueurs",
+    "de": "Spieleraktivität",
+    "es": "Actividad de jugadores",
+    "pt-BR": "Atividade dos jogadores",
+    "ru": "Активность игроков"
+  },
+  "Steam 접속자와 서버별 직업 분포를 확인하세요.": {
+    "en": "Check Steam player counts and class distribution by server.",
+    "ja": "Steam接続者数とサーバー別の職業分布を確認できます。",
+    "fi": "Katso Steamin pelaajamäärä ja palvelinten luokkajakauma.",
+    "fr": "Consultez le nombre de joueurs sur Steam et les classes par serveur.",
+    "de": "Steam-Spielerzahlen und Klassenverteilung nach Server ansehen.",
+    "es": "Consulta los jugadores de Steam y las clases por servidor.",
+    "pt-BR": "Veja os jogadores no Steam e as classes por servidor.",
+    "ru": "Число игроков в Steam и распределение классов по серверам."
+  },
+  "로그인은 화면 위쪽에서 할 수 있습니다.": {
+    "en": "Use the login button at the top of the page.",
+    "ja": "画面上部のログインボタンをご利用ください。",
+    "fi": "Kirjaudu sisään sivun yläreunasta.",
+    "fr": "Connectez-vous en haut de la page.",
+    "de": "Die Anmeldung befindet sich oben auf der Seite.",
+    "es": "Inicia sesión en la parte superior de la página.",
+    "pt-BR": "Entre pelo botão no topo da página.",
+    "ru": "Кнопка входа находится вверху страницы."
+  },
+  "사이트 알려주기": {
+    "en": "Share this site",
+    "fr": "Partager ce site",
+    "fi": "Jaa tämä sivusto",
+    "ja": "このサイトを共有する",
+    "es": "Comparte este sitio",
+    "de": "Teilen Sie diese Seite",
+    "ru": "Поделиться этим сайтом",
+    "pt-BR": "Compartilhe este site"
+  },
+  "도구를 소개할 때는 사이트 주소만 보내면 됩니다.": {
+    "en": "To introduce the tools, just send the site address.",
+    "fi": "Esitelläksesi työkalut, lähetä sivuston osoite.",
+    "ja": "ツールを導入するには、サイトのアドレスを送信するだけです。",
+    "fr": "Pour présenter les outils, envoyez simplement l'adresse du site.",
+    "es": "Para presentar las herramientas, simplemente envíe la dirección del sitio.",
+    "pt-BR": "Para apresentar as ferramentas basta enviar o endereço do site.",
+    "de": "Um die Tools vorzustellen, senden Sie einfach die Site-Adresse.",
+    "ru": "Чтобы познакомиться с инструментами, просто отправьте адрес сайта."
+  },
+  "사이트 주소 복사": {
+    "en": "Copy site address",
+    "ja": "サイトアドレスをコピーする",
+    "fr": "Copier l'adresse du site",
+    "fi": "Kopioi sivuston osoite",
+    "de": "Site-Adresse kopieren",
+    "es": "Copiar la dirección del sitio",
+    "pt-BR": "Copiar endereço do site",
+    "ru": "Скопировать адрес сайта"
+  },
+  "사이트 주소를 복사했습니다.": {
+    "en": "Site address copied.",
+    "fi": "Sivuston osoite kopioitu.",
+    "ja": "サイトアドレスをコピーしました。",
+    "es": "Dirección del sitio copiada.",
+    "fr": "Adresse du site copiée.",
+    "pt-BR": "Endereço do site copiado.",
+    "de": "Site-Adresse kopiert.",
+    "ru": "Адрес сайта скопирован."
+  },
+  "직접 수정한 배분을 공유하려면": {
+    "en": "Share a build you have edited",
+    "ja": "編集したビルドを共有する",
+    "fi": "Jaa muokkaamasi rakennelma",
+    "es": "Comparte una compilación que hayas editado",
+    "fr": "Partagez une version que vous avez modifiée",
+    "pt-BR": "Compartilhe uma compilação que você editou",
+    "ru": "Поделитесь сборкой, которую вы отредактировали",
+    "de": "Teilen Sie einen von Ihnen bearbeiteten Build"
+  },
+  "Steam 게임 버전 {0}의 원본 자료 · 한국어·영문 이름 검색": {
+    "en": "Original data from Steam build {0} · Search Korean or English names",
+    "ja": "Steam ビルド {0} のオリジナルデータ · 韓国名または英語名を検索",
+    "fi": "Alkuperäiset tiedot Steam buildista {0} · Hae korealaisia ​​tai englanninkielisiä nimiä",
+    "fr": "Données originales de la version Steam {0} · Rechercher des noms coréens ou anglais",
+    "de": "Originaldaten vom Steam-Build {0} · Suchen Sie nach koreanischen oder englischen Namen",
+    "es": "Datos originales de Steam build {0} · Buscar nombres coreanos o ingleses",
+    "pt-BR": "Dados originais da versão Steam {0} · Pesquise nomes em coreano ou inglês",
+    "ru": "Исходные данные из сборки Steam {0} · Поиск корейских или английских имен"
+  },
+  "한국어·영문 이름 또는 ID": {
+    "en": "Korean or English name, or ID",
+    "ja": "韓国語または英語の名前、またはID",
+    "fi": "Korean tai englanninkielinen nimi tai henkilöllisyystodistus",
+    "fr": "Nom ou pièce d'identité coréen ou anglais",
+    "de": "Koreanischer oder englischer Name oder Ausweis",
+    "es": "Nombre o identificación coreano o inglés",
+    "pt-BR": "Nome ou ID em coreano ou inglês",
+    "ru": "Корейское или английское имя или идентификатор"
+  },
+  "‘지역 정보 없는 관측 기록’은 수집된 보스 기록에 진영·지역 정보가 연결되지 않은 경우입니다. 새로운 진영이나 보스 종류를 뜻하지 않습니다.": {
+    "en": "“Sightings without area details” are boss records that have not been matched to a faction or area. This is not a new faction or boss type.",
+    "ja": "「エリア詳細のない目撃情報」は、陣営やエリアに対応していないボスレコードです。これは新しい派閥やボスのタイプではありません。",
+    "fi": "\"Havainnot ilman aluetietoja\" ovat pomotietueita, joita ei ole yhdistetty ryhmään tai alueeseen. Tämä ei ole uusi ryhmä tai pomotyyppi.",
+    "de": "„Sichtungen ohne Gebietsdetails“ sind Boss-Datensätze, die keiner Fraktion oder einem Gebiet zugeordnet wurden. Dies ist keine neue Fraktion oder ein neuer Bosstyp.",
+    "es": "Los “avistamientos sin detalles del área” son registros de jefes que no han sido relacionados con una facción o área. Esta no es una nueva facción o tipo de jefe.",
+    "fr": "Les « observations sans détails de zone » sont des enregistrements de boss qui n'ont pas été associés à une faction ou à une zone. Il ne s’agit pas d’une nouvelle faction ou d’un nouveau type de boss.",
+    "pt-BR": "“Avistamentos sem detalhes de área” são registros de chefes que não foram comparados a uma facção ou área. Esta não é uma nova facção ou tipo de chefe.",
+    "ru": "«Наблюдения без подробностей о местности» — это записи босса, которые не были сопоставлены с фракцией или областью. Это не новая фракция или тип босса."
+  },
+  "장비 설명창만 잘라낸 뒤 글자를 읽어 보세요.": {
+    "en": "Crop the item tooltip before reading its text.",
+    "ja": "テキストを読む前に、アイテムのツールチップをトリミングします。",
+    "de": "Schneiden Sie den Tooltip des Elements zu, bevor Sie seinen Text lesen.",
+    "fr": "Recadrez l'info-bulle de l'élément avant de lire son texte.",
+    "fi": "Rajaa kohteen työkaluvinkki ennen sen tekstin lukemista.",
+    "pt-BR": "Corte a dica do item antes de ler seu texto.",
+    "es": "Recorta la información sobre herramientas del elemento antes de leer su texto.",
+    "ru": "Обрезайте всплывающую подсказку элемента перед чтением его текста."
+  },
+  "이미지 선택 → 자르기 → 글자 읽기 → 확인": {
+    "en": "Choose image → Crop → Read text → Check",
+    "ja": "画像を選択 → 切り抜き → テキストを読み込む → チェック",
+    "fi": "Valitse kuva → Rajaa → Lue teksti → Tarkista",
+    "fr": "Choisissez l'image → Recadrer → Lire le texte → Vérifier",
+    "de": "Wählen Sie Bild → Zuschneiden → Text lesen → Prüfen",
+    "es": "Elija imagen → Recortar → Leer texto → Verificar",
+    "pt-BR": "Escolha imagem → Cortar → Ler texto → Verificar",
+    "ru": "Выбрать изображение → Обрезать → Прочитать текст → Проверить."
+  },
+  "1. 장비 설명창 자르기": {
+    "en": "1. Crop the item tooltip",
+    "ja": "1. アイテムのツールチップをトリミングします。",
+    "fi": "1. Rajaa kohteen työkaluvihje",
+    "fr": "1. Recadrez l'info-bulle de l'élément",
+    "de": "1. Schneiden Sie den Artikel-Tooltip zu",
+    "es": "1. Recortar la información sobre herramientas del elemento",
+    "pt-BR": "1. Corte a dica do item",
+    "ru": "1. Обрезать всплывающую подсказку элемента"
+  },
+  "읽을 영역 미리보기": {
+    "en": "Selected area preview",
+    "ja": "選択範囲のプレビュー",
+    "fi": "Valitun alueen esikatselu",
+    "fr": "Aperçu de la zone sélectionnée",
+    "de": "Vorschau des ausgewählten Bereichs",
+    "es": "Vista previa del área seleccionada",
+    "ru": "Предварительный просмотр выбранной области",
+    "pt-BR": "Visualização da área selecionada"
+  },
+  "① 장비 설명창을 드래그해 자르세요. 오른쪽 미리보기에서 이름과 옵션이 모두 들어갔는지 확인하세요.": {
+    "en": "① Drag over the item tooltip. Check that the preview includes the name and all options.",
+    "ja": "① 項目のツールチップ上をドラッグします。プレビューに名前とすべてのオプションが含まれていることを確認します。",
+    "fi": "① Vedä kohteen työkaluvihjeen yli. Tarkista, että esikatselu sisältää nimen ja kaikki vaihtoehdot.",
+    "fr": "① Faites glisser sur l'info-bulle de l'élément. Vérifiez que l'aperçu inclut le nom et toutes les options.",
+    "de": "① Ziehen Sie über den Artikel-Tooltip. Überprüfen Sie, ob die Vorschau den Namen und alle Optionen enthält.",
+    "pt-BR": "① Arraste sobre a dica de ferramenta do item. Verifique se a visualização inclui o nome e todas as opções.",
+    "es": "① Arrastre sobre la información sobre herramientas del elemento. Compruebe que la vista previa incluya el nombre y todas las opciones.",
+    "ru": "① Перетащите курсор на всплывающую подсказку элемента. Убедитесь, что предварительный просмотр включает имя и все параметры."
+  },
+  "2. 이 영역의 글자 읽기": {
+    "en": "2. Read text in this area",
+    "ja": "2. この領域のテキストを読みます",
+    "fi": "2. Lue tämän alueen tekstiä",
+    "fr": "2. Lisez le texte dans cette zone",
+    "de": "2. Lesen Sie den Text in diesem Bereich",
+    "es": "2. Lea el texto en esta área",
+    "pt-BR": "2. Leia o texto nesta área",
+    "ru": "2. Прочитайте текст в этой области."
+  },
+  "3. 읽은 내용 확인": {
+    "en": "3. Check the recognized text",
+    "ja": "3. 認識されたテキストを確認する",
+    "fi": "3. Tarkista tunnistettu teksti",
+    "fr": "3. Vérifiez le texte reconnu",
+    "de": "3. Überprüfen Sie den erkannten Text",
+    "es": "3. Verifique el texto reconocido",
+    "pt-BR": "3. Verifique o texto reconhecido",
+    "ru": "3. Проверьте распознанный текст"
+  },
+  "{0} · {1}행 {2}번 칸": {
+    "en": "{0} · Row {1}, slot {2}",
+    "ja": "{0} · 行 {1}、スロット {2}",
+    "fi": "{0} · Rivi {1}, paikka {2}",
+    "fr": "{0} · Ligne {1}, emplacement {2}",
+    "de": "{0} · Zeile {1}, Slot {2}",
+    "es": "{0} · Fila {1}, ranura {2}",
+    "pt-BR": "{0} · Linha {1}, slot {2}",
+    "ru": "{0} · Строка {1}, слот {2}"
+  },
+  "퀵슬롯": {
+    "en": "Quickslots",
+    "ja": "クイックスロット",
+    "fi": "Quickslots",
+    "fr": "Emplacements rapides",
+    "de": "Quickslots",
+    "es": "Ranuras rápidas",
+    "pt-BR": "Slots rápidos",
+    "ru": "Быстрые слоты"
+  },
+  "반복 공격": {
+    "en": "Repeat attack",
+    "ja": "繰り返し攻撃",
+    "fi": "Toista hyökkäys",
+    "fr": "Répéter l'attaque",
+    "de": "Angriff wiederholen",
+    "es": "Repetir ataque",
+    "pt-BR": "Repetir ataque",
+    "ru": "Повторить атаку"
+  },
+  "직접 사용": {
+    "en": "Manual use",
+    "ja": "手動使用",
+    "fi": "Manuaalinen käyttö",
+    "fr": "Utilisation manuelle",
+    "de": "Manuelle Verwendung",
+    "es": "uso manual",
+    "pt-BR": "Uso manual",
+    "ru": "Ручное использование"
+  },
+  "아이콘을 누르면 스킬과 사용 상황을 확인할 수 있습니다. 위쪽 행에 둔 수동 기술은 게임에서 개별 키를 지정하세요.": {
+    "en": "Select an icon to see the skill and when to use it. Assign individual keys in the game to manual skills in the upper rows.",
+    "fi": "Valitse kuvake nähdäksesi taidon ja milloin sitä tulee käyttää. Määritä pelin yksittäiset avaimet manuaalisiin taitoihin ylemmillä riveillä.",
+    "ja": "アイコンを選択すると、スキルとそれをいつ使用するかが表示されます。ゲーム内の個々のキーを上の行の手動スキルに割り当てます。",
+    "fr": "Sélectionnez une icône pour voir la compétence et quand l'utiliser. Attribuez des clés individuelles du jeu aux compétences manuelles dans les rangées supérieures.",
+    "de": "Wählen Sie ein Symbol aus, um die Fertigkeit anzuzeigen und zu erfahren, wann sie verwendet werden soll. Weisen Sie den manuellen Fertigkeiten in den oberen Reihen einzelne Tasten im Spiel zu.",
+    "es": "Seleccione un ícono para ver la habilidad y cuándo usarla. Asigna claves individuales del juego a habilidades manuales en las filas superiores.",
+    "pt-BR": "Selecione um ícone para ver a habilidade e quando usá-la. Atribua chaves individuais no jogo às habilidades manuais nas linhas superiores.",
+    "ru": "Выберите значок, чтобы увидеть навык и время его использования. Назначьте отдельные клавиши в игре для ручных навыков в верхних рядах."
+  },
+  "스킬 매크로": {
+    "en": "Skill macro",
+    "ja": "スキルマクロ",
+    "fi": "Taito makro",
+    "fr": "Macro-compétence",
+    "de": "Fertigkeitsmakro",
+    "es": "Macro de habilidad",
+    "ru": "Макрос навыков",
+    "pt-BR": "Macro de habilidade"
+  },
+  "{0}번 키 세로줄": {
+    "en": "Key {0} column",
+    "ja": "キー {0} 列",
+    "fr": "Clé colonne {0}",
+    "fi": "Avain {0}-sarake",
+    "de": "Schlüsselspalte {0}",
+    "es": "Columna clave {0}",
+    "pt-BR": "Coluna chave {0}",
+    "ru": "Ключевой столбец {0}"
+  },
+  "PC에서는 장비에 마우스를 올려 상세 옵션을 보세요. 클릭하거나 모바일에서 누르면 창을 고정해서 볼 수 있습니다.": {
+    "en": "On PC, hover over equipment to see its options. Click, or tap on mobile, to keep the details open.",
+    "ja": "PC では、機器の上にカーソルを置くと、そのオプションが表示されます。詳細を開いたままにするには、クリックまたはモバイルでタップします。",
+    "fi": "Vie hiiri PC:llä laitteen päälle nähdäksesi sen vaihtoehdot. Napsauta tai napauta mobiililaitteella, jotta tiedot pysyvät auki.",
+    "fr": "Sur PC, survolez l'équipement pour voir ses options. Cliquez ou appuyez sur mobile pour garder les détails ouverts.",
+    "de": "Bewegen Sie den Mauszeiger auf dem PC über das Gerät, um dessen Optionen anzuzeigen. Klicken oder tippen Sie auf Mobilgeräten, um die Details geöffnet zu lassen.",
+    "es": "En PC, pasa el cursor sobre el equipo para ver sus opciones. Haga clic o toque en el dispositivo móvil para mantener abiertos los detalles.",
+    "pt-BR": "No PC, passe o mouse sobre o equipamento para ver suas opções. Clique ou toque no celular para manter os detalhes abertos.",
+    "ru": "На ПК наведите указатель мыши на оборудование, чтобы просмотреть его возможности. Нажмите или коснитесь на мобильном телефоне, чтобы сохранить подробную информацию."
+  },
+  "장비 상세 미리보기": {
+    "en": "Equipment preview",
+    "ja": "設備プレビュー",
+    "fi": "Laitteen esikatselu",
+    "fr": "Aperçu de l'équipement",
+    "de": "Ausrüstungsvorschau",
+    "es": "Vista previa del equipo",
+    "pt-BR": "Visualização do equipamento",
+    "ru": "Предварительный просмотр оборудования"
+  },
+  "상세 창 고정해서 보기": {
+    "en": "Keep details open",
+    "ja": "詳細をオープンにしておきます",
+    "fi": "Pidä tiedot auki",
+    "fr": "Gardez les détails ouverts",
+    "de": "Details offen halten",
+    "es": "Mantenga los detalles abiertos",
+    "pt-BR": "Mantenha os detalhes abertos",
+    "ru": "Держите детали открытыми"
+  },
+  "사이트의 최신 저장 데이터를 불러왔습니다.": {
+    "en": "Loaded the latest data saved on the site.",
+    "ja": "サイト上に保存されている最新データを読み込みました。",
+    "fi": "Ladattiin uusimmat sivustolle tallennetut tiedot.",
+    "fr": "Chargé les dernières données enregistrées sur le site.",
+    "de": "Die neuesten auf der Website gespeicherten Daten wurden geladen.",
+    "es": "Cargó los últimos datos guardados en el sitio.",
+    "pt-BR": "Carregou os últimos dados salvos no site.",
+    "ru": "Загружены последние данные, сохраненные на сайте."
+  },
+  "최근 자동 확인에 실패했습니다. 현재는 마지막 정상 데이터를 보여줍니다.": {
+    "en": "The latest automatic check failed. Showing the last valid data.",
+    "ja": "最新の自動チェックが失敗しました。最後の有効なデータを表示します。",
+    "fi": "Viimeisin automaattinen tarkistus epäonnistui. Näytetään viimeiset kelvolliset tiedot.",
+    "fr": "La dernière vérification automatique a échoué. Affichage des dernières données valides.",
+    "de": "Die letzte automatische Prüfung ist fehlgeschlagen. Zeigt die letzten gültigen Daten an.",
+    "es": "La última verificación automática falló. Mostrando los últimos datos válidos.",
+    "pt-BR": "A última verificação automática falhou. Mostrando os últimos dados válidos.",
+    "ru": "Последняя автоматическая проверка не удалась. Показаны последние действительные данные."
+  },
+  "데바니온 효과 검색": {
+    "en": "Search Daevanion effects",
+    "ja": "ディーヴァニオン エフェクトを検索",
+    "fi": "Hae Daevanion-efektejä",
+    "fr": "Rechercher des effets Daevanion",
+    "de": "Suchen Sie nach Daevanion-Effekten",
+    "es": "Buscar efectos Daevanion",
+    "pt-BR": "Pesquisar efeitos Daevanion",
+    "ru": "Поиск эффектов Даэванион"
+  },
+  "효과 검색 · 예: 공격력": {
+    "en": "Search effects, e.g. Attack",
+    "ja": "検索効果、例:攻撃",
+    "fi": "Hakutehosteet, esim. Hyökkäys",
+    "fr": "Effets de recherche, par ex. Attaque",
+    "de": "Sucheffekte, z.B. Angriff",
+    "es": "Efectos de búsqueda, p. Ataque",
+    "pt-BR": "Efeitos de pesquisa, por ex. Ataque",
+    "ru": "Эффекты поиска, например. Атака"
+  },
+  "검색 일치 {0}개": {
+    "en": "{0} matching nodes",
+    "ja": "{0} 一致するノード",
+    "fi": "{0} vastaavat solmut",
+    "fr": "Nœuds correspondants {0}",
+    "de": "{0} passende Knoten",
+    "es": "{0} nodos coincidentes",
+    "pt-BR": "Nós correspondentes {0}",
+    "ru": "{0} соответствующие узлы"
+  },
+  "PvE · 별도 결정": {
+    "en": "PvE · Separate crystals",
+    "ja": "PvE・個別のクリスタル",
+    "fi": "PvE · Erottele kiteitä",
+    "fr": "PvE · Cristaux séparés",
+    "de": "PvE · Separate Kristalle",
+    "es": "PvE · Cristales separados",
+    "pt-BR": "PvE · Cristais separados",
+    "ru": "PvE · Отдельные кристаллы"
+  },
+  "아리엘 결정": {
+    "en": "Ariel crystals",
+    "ja": "アリエルクリスタル",
+    "fi": "Ariel kristalleja",
+    "fr": "Cristaux d'Ariel",
+    "de": "Ariel-Kristalle",
+    "es": "Cristales de Ariel",
+    "pt-BR": "Cristais Ariel",
+    "ru": "Кристаллы Ариэль"
+  },
+  "운영법": {
+    "en": "How to play",
+    "ja": "遊び方",
+    "fi": "Kuinka pelata",
+    "fr": "Comment jouer",
+    "de": "Wie man spielt",
+    "es": "Cómo jugar",
+    "pt-BR": "Como jogar",
+    "ru": "Как играть"
+  },
+  "사이트 추천은 직업별 우선순위와 입력한 포인트로 계산합니다. 랭커의 평균 배분은 아닙니다.": {
+    "en": "Site recommendations use class priorities and the points you enter. They are not an average of ranked players' builds.",
+    "ja": "サイトの推奨事項では、クラスの優先順位と入力したポイントが使用されます。これらはランク付けされたプレイヤーのビルドの平均ではありません。",
+    "fi": "Sivustosuositukset käyttävät luokan prioriteetteja ja syöttämiäsi pisteitä. Ne eivät ole sijoittuneiden pelaajien rakenteiden keskiarvoja.",
+    "fr": "Les recommandations de sites utilisent les priorités de classe et les points que vous saisissez. Il ne s’agit pas d’une moyenne des builds des joueurs classés.",
+    "de": "Website-Empfehlungen verwenden Klassenprioritäten und die von Ihnen eingegebenen Punkte. Sie stellen keinen Durchschnitt der Builds der Ranglistenspieler dar.",
+    "es": "Las recomendaciones del sitio utilizan las prioridades de clase y los puntos que ingresas. No son un promedio de las configuraciones de los jugadores clasificados.",
+    "pt-BR": "As recomendações de locais usam as prioridades das turmas e os pontos inseridos. Eles não são uma média das construções dos jogadores classificados.",
+    "ru": "В рекомендациях сайтов используются приоритеты классов и введенные вами баллы. Они не являются средними показателями сборок рейтинговых игроков."
+  },
+  "랭커 세팅을 참고해서 만들기": {
+    "en": "Start from a ranked player's setup",
+    "ja": "ランク付けされたプレイヤーのセットアップから開始",
+    "fi": "Aloita sijoittuneen pelaajan asetuksista",
+    "fr": "Commencer à partir de la configuration d'un joueur classé",
+    "de": "Beginnen Sie mit der Aufstellung eines Ranglistenspielers",
+    "pt-BR": "Comece com a configuração de um jogador classificado",
+    "es": "Comienza desde la configuración de un jugador clasificado",
+    "ru": "Начните с настройки рейтингового игрока"
+  },
+  "목표를 44레벨과 해당 레벨의 기본 포인트로 맞춥니다.": {
+    "en": "Set the target to level 44 and its baseline points.",
+    "ja": "ターゲットをレベル 44 とそのベースライン ポイントに設定します。",
+    "fi": "Aseta tavoite tasolle 44 ja sen peruspisteisiin.",
+    "fr": "Fixez la cible au niveau 44 et à ses points de référence.",
+    "de": "Stellen Sie das Ziel auf Level 44 und seine Basispunkte ein.",
+    "es": "Establece el objetivo en el nivel 44 y sus puntos de referencia.",
+    "pt-BR": "Defina a meta para o nível 44 e seus pontos de base.",
+    "ru": "Установите цель на уровень 44 и ее базовые точки."
+  },
+  "찍어 둔 배분은 그대로 두며, 원래 설정으로 되돌릴 수 있습니다.": {
+    "en": "Your allocations stay as they are. You can restore the previous settings.",
+    "ja": "割り当てはそのまま残ります。以前の設定を復元できます。",
+    "fi": "Varauksesi pysyvät ennallaan. Voit palauttaa aiemmat asetukset.",
+    "fr": "Vos allocations restent telles quelles. Vous pouvez restaurer les paramètres précédents.",
+    "de": "Ihre Zuweisungen bleiben unverändert. Sie können die vorherigen Einstellungen wiederherstellen.",
+    "es": "Sus asignaciones permanecen como están. Puede restaurar la configuración anterior.",
+    "pt-BR": "Suas alocações permanecem como estão. Você pode restaurar as configurações anteriores.",
+    "ru": "Ваши распределения останутся прежними. Вы можете восстановить предыдущие настройки."
+  },
+  "추천 방향": {
+    "en": "Build focus",
+    "ja": "ビルドフォーカス",
+    "fi": "Rakenna tarkennusta",
+    "de": "Konzentrieren Sie sich",
+    "fr": "Construire la concentration",
+    "es": "Construir enfoque",
+    "ru": "Построить фокус",
+    "pt-BR": "Construir foco"
+  },
+  "이 설정으로 새 배분 만들기": {
+    "en": "Create a new allocation with these settings",
+    "ja": "これらの設定を使用して新しい割り当てを作成します",
+    "fr": "Créez une nouvelle allocation avec ces paramètres",
+    "fi": "Luo uusi varaus näillä asetuksilla",
+    "de": "Erstellen Sie mit diesen Einstellungen eine neue Zuordnung",
+    "es": "Cree una nueva asignación con esta configuración",
+    "pt-BR": "Crie uma nova alocação com estas configurações",
+    "ru": "Создайте новое распределение с этими настройками."
+  },
+  "레벨·포인트·플레이 목적을 바꿨다면 아래 버튼으로 데바니온과 스킬·특화를 함께 다시 배분하세요. 직접 찍어 둔 배분도 바뀝니다.": {
+    "en": "After changing your level, points or play mode, use this button to reallocate Daevanion, skills and specializations together. This also replaces manual allocations.",
+    "ja": "レベル、ポイント、またはプレイモードを変更した後、このボタンを使用して、ディーヴァニオン、スキル、および専門分野を一緒に再割り当てします。これは手動割り当ても置き換えます。",
+    "fi": "Kun olet vaihtanut tasoa, pisteitä tai pelitilaa, käytä tätä painiketta Daevanion:n, taitojen ja erikoisalojen uudelleen jakamiseen yhdessä. Tämä korvaa myös manuaaliset allokoinnit.",
+    "fr": "Après avoir modifié votre niveau, vos points ou votre mode de jeu, utilisez ce bouton pour réattribuer ensemble Daevanion, compétences et spécialisations. Cela remplace également les allocations manuelles.",
+    "de": "Nachdem Sie Ihr Level, Ihre Punkte oder Ihren Spielmodus geändert haben, verwenden Sie diese Schaltfläche, um Daevanion, Fertigkeiten und Spezialisierungen neu zuzuordnen. Dies ersetzt auch manuelle Zuordnungen.",
+    "es": "Después de cambiar tu nivel, puntos o modo de juego, usa este botón para reasignar Daevanion, habilidades y especializaciones juntas. Esto también reemplaza las asignaciones manuales.",
+    "pt-BR": "Depois de alterar seu nível, pontos ou modo de jogo, use este botão para realocar Daevanion, habilidades e especializações. Isso também substitui as alocações manuais.",
+    "ru": "После изменения уровня, очков или режима игры используйте эту кнопку, чтобы перераспределить Даэванион, навыки и специализации вместе. Это также заменяет распределение вручную."
+  },
+  "입력만 바꾸면 현재 배분은 유지됩니다. 적용한 뒤에도 직전 배분으로 되돌릴 수 있습니다.": {
+    "en": "Changing the inputs keeps your current allocation. After applying, you can restore the previous one.",
+    "ja": "入力を変更すると、現在の割り当てが維持されます。適用後、以前のものに戻すことができます。",
+    "fi": "Tulojen muuttaminen säilyttää nykyisen varauksen. Hakemuksen jälkeen voit palauttaa edellisen.",
+    "fr": "La modification des entrées conserve votre allocation actuelle. Après avoir postulé, vous pouvez restaurer le précédent.",
+    "de": "Durch Ändern der Eingaben bleibt Ihre aktuelle Zuordnung erhalten. Nach der Bewerbung können Sie die vorherige wiederherstellen.",
+    "es": "Cambiar las entradas mantiene su asignación actual. Después de aplicar, puede restaurar el anterior.",
+    "pt-BR": "Alterar as entradas mantém sua alocação atual. Após a aplicação, você pode restaurar o anterior.",
+    "ru": "Изменение входных данных сохраняет ваше текущее распределение. После подачи заявки вы сможете восстановить предыдущую."
+  },
+  "결정 {0} · 아스펠 {1} · 아리엘 {2}": {
+    "en": "Crystals {0} · Asphel {1} · Ariel {2}",
+    "ja": "クリスタル {0} · アスフェル {1} · アリエル {2}",
+    "fi": "Kiteet {0} · Azphel {1} · Ariel {2}",
+    "fr": "Cristaux {0} · Azphel {1} · Ariel {2}",
+    "de": "Kristalle {0} · Azphel {1} · Ariel {2}",
+    "es": "Cristales {0} · Azphel {1} · Ariel {2}",
+    "pt-BR": "Cristais {0} · Azphel {1} · Ariel {2}",
+    "ru": "Кристаллы {0} · Азфель {1} · Ариэль {2}"
+  },
+  "랭커 전체 배치까지 더 필요한 포인트: 결정 {0} · 아스펠 {1} · 아리엘 {2}": {
+    "en": "Extra points to match the full ranked setup: Crystals {0} · Asphel {1} · Ariel {2}",
+    "ja": "フルランク設定に一致する追加ポイント: クリスタル {0} · アスフェル {1} · アリエル {2}",
+    "fi": "Lisäpisteet, jotka vastaavat täydellistä järjestystä: Crystals {0} · Azphel {1} · Ariel {2}",
+    "fr": "Points supplémentaires pour correspondre à la configuration classée complète : Cristaux {0} · Azphel {1} · Ariel {2}",
+    "de": "Zusätzliche Punkte passend zum vollständigen Ranglisten-Setup: Crystals {0} · Azphel {1} · Ariel {2}",
+    "es": "Puntos extra para igualar la configuración clasificatoria completa: Cristales {0} · Azphel {1} · Ariel {2}",
+    "pt-BR": "Pontos extras para corresponder à configuração completa da classificação: Cristais {0} · Azphel {1} · Ariel {2}",
+    "ru": "Дополнительные очки, соответствующие полной рейтинговой схеме: Кристаллы {0} · Азфель {1} · Ариэль {2}"
+  },
+  "아리엘은 별도 결정을 사용합니다. 게임에서 확인한 아리엘 총량을 입력하세요. 일반 결정이나 아스펠 결정으로 대신 찍을 수 없습니다.": {
+    "en": "Ariel uses a separate crystal budget. Enter the Ariel total shown in your game. Regular and Asphel crystals cannot be used in its place.",
+    "ja": "アリエルは別のクリスタル予算を使用します。ゲームに表示されるアリエルの合計を入力します。通常のクリスタルと アスフェル クリスタルを代わりに使用することはできません。",
+    "fi": "Ariel käyttää erillistä kristallibudjettia. Syötä pelissäsi näkyvä Ariel-summa. Tavallisia ja Azphel-kiteitä ei voi käyttää sen tilalle.",
+    "de": "Ariel verwendet ein separates Kristallbudget. Geben Sie die in Ihrem Spiel angezeigte Ariel-Gesamtsumme ein. Normale und Azphel-Kristalle können stattdessen nicht verwendet werden.",
+    "es": "Ariel utiliza un presupuesto de cristal independiente. Ingresa el total de Ariel que se muestra en tu juego. No se pueden utilizar cristales regulares y Azphel en su lugar.",
+    "pt-BR": "Ariel usa um orçamento de cristal separado. Insira o total de Ariel mostrado no seu jogo. Cristais regulares e Azphel não podem ser usados ​​em seu lugar.",
+    "ru": "Ариэль использует отдельный бюджет кристаллов. Введите сумму Ариэль, указанную в вашей игре. Вместо него нельзя использовать обычные кристаллы и кристаллы Азфель.",
+    "fr": "Ariel utilise un budget de cristaux distinct. Entrez le total Ariel affiché dans votre jeu. Les cristaux ordinaires et Azphel ne peuvent pas être utilisés à sa place."
+  },
+  "랭커 10명이 선택한 장착 스킬 조합 · {0}가지": {
+    "en": "Equipped skill combinations used by 10 ranked players · {0} combinations",
+    "ja": "ランクインプレイヤー10名が使用する装備スキルの組み合わせ・{0}の組み合わせ",
+    "fi": "Varustetut taitoyhdistelmät, joita käyttää 10 rankattua pelaajaa · {0}-yhdistelmät",
+    "fr": "Combinaisons de compétences équipées utilisées par 10 joueurs classés · Combinaisons {0}",
+    "de": "Ausgerüstete Fertigkeitskombinationen, die von 10 Ranglistenspielern verwendet werden · {0}-Kombinationen",
+    "es": "Combinaciones de habilidades equipadas utilizadas por 10 jugadores clasificados · Combinaciones {0}",
+    "pt-BR": "Combinações de habilidades equipadas usadas por 10 jogadores classificados · Combinações {0}",
+    "ru": "Оборудованные комбинации навыков, используемые 10 рейтинговыми игроками · Комбинации {0}"
+  },
+  "같은 장착 스킬을 쓰는 랭커끼리 묶은 목록입니다. 추천 빌드의 종류나 성능 순위가 아닙니다. 위에서 한 명을 골라 장비·스킬·데바니온을 먼저 확인하세요.": {
+    "en": "Players are grouped by their equipped skills. These are not recommendation categories or performance rankings. Select a player above to view their equipment, skills and Daevanion.",
+    "ja": "プレイヤーは装備しているスキルによってグループ化されます。これらは推奨カテゴリーやパフォーマンスランキングではありません。上のプレーヤーを選択すると、その選手の装備、スキル、ディーヴァニオン が表示されます。",
+    "fi": "Pelaajat ryhmitellään heidän varusteltujen taitojensa mukaan. Nämä eivät ole suositusluokkia tai suoritusarvoja. Valitse pelaaja yllä nähdäksesi hänen varusteensa, taitonsa ja Daevanion.",
+    "fr": "Les joueurs sont regroupés selon leurs compétences équipées. Il ne s’agit pas de catégories de recommandations ou de classements de performances. Sélectionnez un joueur ci-dessus pour voir son équipement, ses compétences et son Daevanion.",
+    "de": "Die Spieler werden nach ihren ausgerüsteten Fähigkeiten gruppiert. Dabei handelt es sich nicht um Empfehlungskategorien oder Leistungsrankings. Wählen Sie oben einen Spieler aus, um dessen Ausrüstung, Fähigkeiten und Daevanion anzuzeigen.",
+    "es": "Los jugadores están agrupados según sus habilidades equipadas. Estas no son categorías de recomendación ni clasificaciones de desempeño. Selecciona un jugador arriba para ver su equipo, habilidades y Daevanion.",
+    "pt-BR": "Os jogadores são agrupados por suas habilidades equipadas. Estas não são categorias de recomendação ou classificações de desempenho. Selecione um jogador acima para ver seus equipamentos, habilidades e Daevanion.",
+    "ru": "Игроки сгруппированы по имеющимся у них навыкам. Это не категории рекомендаций или рейтинги эффективности. Выберите игрока выше, чтобы просмотреть его экипировку, навыки и Даэванион."
+  },
+  "개선 중인 계산기입니다.": {
+    "en": "This calculator is still being improved.",
+    "ja": "この計算機はまだ改良中です。",
+    "fi": "Tätä laskinta kehitetään edelleen.",
+    "fr": "Ce calculateur est encore en cours d'amélioration.",
+    "de": "Dieser Rechner wird noch verbessert.",
+    "es": "Esta calculadora aún se está mejorando.",
+    "pt-BR": "Esta calculadora ainda está sendo aprimorada.",
+    "ru": "Этот калькулятор все еще совершенствуется."
+  },
+  "계산 방식과 사용 흐름을 계속 다듬고 있습니다. 불편한 점이나 필요한 기능을 문의로 보내 주세요. 검토해서 더 편하게 사용할 수 있도록 개선하겠습니다.": {
+    "en": "We are refining the calculations and the way this tool works. Send us any problems or feature requests so we can make it easier to use.",
+    "ja": "私たちは計算とこのツールの動作方法を改良中です。使いやすくするために、問題や機能のリクエストをお送りください。",
+    "fi": "Tarkennamme laskelmia ja tämän työkalun toimintaa. Lähetä meille ongelmat tai ominaisuuspyynnöt, jotta voimme helpottaa käyttöä.",
+    "fr": "Nous affinons les calculs et le fonctionnement de cet outil. Envoyez-nous tout problème ou demande de fonctionnalité afin que nous puissions faciliter son utilisation.",
+    "de": "Wir verfeinern die Berechnungen und die Funktionsweise dieses Tools. Senden Sie uns alle Probleme oder Funktionswünsche, damit wir die Nutzung vereinfachen können.",
+    "es": "Estamos perfeccionando los cálculos y la forma en que funciona esta herramienta. Envíenos cualquier problema o solicitud de funciones para que podamos facilitar su uso.",
+    "pt-BR": "Estamos refinando os cálculos e o funcionamento dessa ferramenta. Envie-nos quaisquer problemas ou solicitações de recursos para que possamos facilitar o uso.",
+    "ru": "Мы совершенствуем расчеты и работу этого инструмента. Присылайте нам любые проблемы или пожелания по функциям, чтобы мы могли упростить использование."
+  },
+  "의견 보내기": {
+    "en": "Send feedback",
+    "ja": "フィードバックを送信する",
+    "fi": "Lähetä palautetta",
+    "fr": "Envoyer des commentaires",
+    "de": "Feedback senden",
+    "es": "Enviar comentarios",
+    "ru": "Отправить отзыв",
+    "pt-BR": "Enviar comentários"
+  },
+  "일반 필드 · 사명 · 짧은 전투": {
+    "en": "Open world · Missions · Short fights",
+    "ja": "オープンワールド · ミッション · 短い戦闘",
+    "fr": "Monde ouvert · Missions · Combats courts",
+    "fi": "Avoin maailma · Tehtävät · Lyhyet taistelut",
+    "de": "Offene Welt · Missionen · Kurze Kämpfe",
+    "es": "Mundo abierto · Misiones · Peleas cortas",
+    "pt-BR": "Mundo aberto · Missões · Lutas curtas",
+    "ru": "Открытый мир · Миссии · Короткие бои"
+  },
+  "필드에서는 이동과 짧은 전투를 우선하세요. 회복·생존·충전 기술은 필요할 때 직접 쓰고, 매크로에 모두 넣지 마세요.": {
+    "en": "Prioritize movement and short fights in the open world. Use healing, survival and charged skills when needed rather than adding them all to a macro.",
+    "fi": "Aseta liike ja lyhyet taistelut etusijalle avoimessa maailmassa. Käytä parantamista, selviytymistä ja ladattuja taitoja tarvittaessa sen sijaan, että lisäät ne kaikki makroon.",
+    "ja": "オープンワールドでは移動や短期戦闘を優先しましょう。必要に応じて、ヒーリング、サバイバル、チャージ スキルをすべてマクロに追加するのではなく、使用してください。",
+    "fr": "Privilégiez les mouvements et les combats courts dans le monde ouvert. Utilisez les compétences de guérison, de survie et chargées lorsque cela est nécessaire plutôt que de toutes les ajouter à une macro.",
+    "de": "Priorisieren Sie Bewegung und kurze Kämpfe in der offenen Welt. Nutzen Sie bei Bedarf Heilungs-, Überlebens- und aufgeladene Fähigkeiten, anstatt sie alle einem Makro hinzuzufügen.",
+    "es": "Prioriza el movimiento y las peleas cortas en el mundo abierto. Utilice habilidades de curación, supervivencia y cargadas cuando sea necesario en lugar de agregarlas todas a una macro.",
+    "pt-BR": "Priorize movimentos e lutas curtas no mundo aberto. Use habilidades de cura, sobrevivência e carregadas quando necessário, em vez de adicioná-las todas a uma macro.",
+    "ru": "Отдавайте предпочтение передвижению и коротким боям в открытом мире. При необходимости используйте навыки исцеления, выживания и заряженные навыки, а не добавляйте их все в макрос."
+  },
+  "아래는 이동·회피에 쓰는 기술입니다. 각 기술의 조건을 확인하고 상황에 맞게 사용하세요. 필드 전용 최적 배분이 검증된 것은 아닙니다.": {
+    "en": "These skills help with movement or evasion. Check their conditions and use them as needed. An optimal open-world allocation has not been verified.",
+    "ja": "これらのスキルは移動や回避に役立ちます。状態を確認し、必要に応じてご使用ください。オープンワールドの最適な割り当ては検証されていません。",
+    "fi": "Nämä taidot auttavat liikkumisessa tai väistämisessä. Tarkista niiden ehdot ja käytä niitä tarpeen mukaan. Optimaalista avoimen maailman allokaatiota ei ole vahvistettu.",
+    "fr": "Ces compétences aident au mouvement ou à l’évasion. Vérifiez leurs conditions et utilisez-les au besoin. Une allocation optimale du monde ouvert n’a pas été vérifiée.",
+    "de": "Diese Fähigkeiten helfen bei Bewegung oder Ausweichen. Überprüfen Sie deren Bedingungen und nutzen Sie sie nach Bedarf. Eine optimale Open-World-Zuteilung wurde nicht überprüft.",
+    "es": "Estas habilidades ayudan con el movimiento o la evasión. Consulta sus condiciones y úsalas según sea necesario. No se ha verificado una asignación óptima de mundo abierto.",
+    "pt-BR": "Essas habilidades ajudam no movimento ou na evasão. Verifique suas condições e use-as conforme necessário. Uma alocação ideal de mundo aberto não foi verificada.",
+    "ru": "Эти навыки помогают двигаться или уклоняться. Проверьте их состояние и используйте по мере необходимости. Оптимальное распределение открытого мира не было проверено."
+  },
+  "지역 정보 없는 관측 기록": {
+    "en": "Sightings without area details",
+    "ja": "エリア詳細なしの目撃情報",
+    "fi": "Havainnot ilman aluetietoja",
+    "fr": "Observations sans détails de zone",
+    "de": "Sichtungen ohne Gebietsangaben",
+    "es": "Avistamientos sin detalles del área.",
+    "pt-BR": "Avistamentos sem detalhes da área",
+    "ru": "Наблюдения без подробностей о местности"
+  },
+  "아리엘": {
+    "en": "Ariel",
+    "ja": "アリエル",
+    "fi": "Ariel",
+    "fr": "Ariel",
+    "es": "ariel",
+    "de": "Ariel",
+    "pt-BR": "Ariel",
+    "ru": "Ариэль"
+  },
+  "아리엘은 별도 결정을 사용합니다.": {
+    "en": "Ariel uses separate crystals.",
+    "ja": "アリエルは別個のクリスタルを使用しています。",
+    "fi": "Ariel käyttää erillisiä kiteitä.",
+    "de": "Ariel verwendet separate Kristalle.",
+    "fr": "Ariel utilise des cristaux séparés.",
+    "es": "Ariel usa cristales separados.",
+    "pt-BR": "Ariel usa cristais separados.",
+    "ru": "Ариэль использует отдельные кристаллы."
+  },
+  "PVE 피해 증폭": {
+    "en": "PvE Damage Amplification",
+    "ja": "PvEダメージ増幅",
+    "fi": "PvE-vaurioiden vahvistus",
+    "fr": "Amplification des dégâts PvE",
+    "de": "PvE-Schadensverstärkung",
+    "es": "Amplificación de daño PvE",
+    "pt-BR": "Amplificação de dano PvE",
+    "ru": "Усиление урона в PvE"
+  },
+  "보스 공격력": {
+    "en": "Boss Attack",
+    "ja": "ボスの攻撃",
+    "fi": "Bossin hyökkäys",
+    "fr": "Attaque de boss",
+    "de": "Boss-Angriff",
+    "es": "Ataque del jefe",
+    "pt-BR": "Ataque de chefe",
+    "ru": "Атака босса"
+  },
+  "PvE 생존도 고려": {
+    "en": "PvE with survival in mind",
+    "ja": "サバイバルを念頭に置いた PvE",
+    "fi": "PvE selviytymistä ajatellen",
+    "fr": "PvE avec la survie en tête",
+    "de": "PvE mit Blick aufs Überleben",
+    "es": "PvE pensando en la supervivencia",
+    "ru": "PvE с учетом выживания",
+    "pt-BR": "PvE com a sobrevivência em mente"
+  },
+  "PvE 공격 위주": {
+    "en": "PvE focused on damage",
+    "ja": "ダメージ重視のPvE",
+    "fi": "PvE keskittyi vaurioihin",
+    "fr": "PvE axé sur les dégâts",
+    "es": "PvE centrado en el daño",
+    "pt-BR": "PvE focado em dano",
+    "ru": "PvE ориентировано на урон",
+    "de": "PvE konzentrierte sich auf Schaden"
+  },
+  "PVE 공격력": {
+    "en": "PvE Attack",
+    "ja": "PvE攻撃",
+    "fi": "PvE-hyökkäys",
+    "fr": "Attaque PvE",
+    "es": "Ataque JcE",
+    "de": "PvE-Angriff",
+    "pt-BR": "Ataque PvE",
+    "ru": "PvE-атака"
+  },
+  "PVE 명중": {
+    "en": "PvE Accuracy",
+    "ja": "PvEの精度",
+    "fi": "PvE tarkkuus",
+    "fr": "Précision PvE",
+    "pt-BR": "Precisão PvE",
+    "ru": "PvE-точность",
+    "de": "PvE-Genauigkeit",
+    "es": "Precisión JcE"
+  },
+  "PVE 방어력": {
+    "en": "PvE Defense",
+    "fr": "Défense PvE",
+    "ja": "PvE 防御",
+    "fi": "PvE puolustus",
+    "pt-BR": "Defesa PvE",
+    "de": "PvE-Verteidigung",
+    "es": "Defensa JcE",
+    "ru": "PvE-защита"
+  },
+  "PVE 피해 내성": {
+    "en": "PvE Damage Tolerance",
+    "ja": "PvEダメージ耐性",
+    "fi": "PvE-vaurionsietokyky",
+    "fr": "Tolérance aux dégâts PvE",
+    "de": "PvE-Schadenstoleranz",
+    "ru": "Устойчивость к урону в PvE",
+    "es": "Tolerancia al daño JcE",
+    "pt-BR": "Tolerância a danos PvE"
+  },
+  "PVE 회피": {
+    "en": "PvE Evasion",
+    "ja": "PvE 回避",
+    "fi": "PvE Evasion",
+    "de": "PvE-Ausweichmanöver",
+    "fr": "Évasion PvE",
+    "es": "Evasión JcE",
+    "ru": "PvE-уклонение",
+    "pt-BR": "Evasão PvE"
+  },
+  "보스 방어력": {
+    "en": "Boss Defense",
+    "ja": "ボスの防御",
+    "fi": "Bossin puolustus",
+    "es": "Defensa del jefe",
+    "fr": "Défense du patron",
+    "de": "Boss-Verteidigung",
+    "ru": "Защита Босса",
+    "pt-BR": "Defesa do Chefe"
+  },
+  "보스 피해 내성": {
+    "en": "Boss Damage Tolerance",
+    "ja": "ボスダメージ耐性",
+    "fi": "Bossin vaurionsietokyky",
+    "de": "Boss-Schadenstoleranz",
+    "fr": "Tolérance aux dégâts du boss",
+    "pt-BR": "Tolerância a danos de chefe",
+    "es": "Tolerancia al daño del jefe",
+    "ru": "Терпимость к урону от босса"
+  },
+  "보스 피해 증폭": {
+    "en": "Boss Damage Amplification",
+    "fr": "Amplification des dégâts du boss",
+    "ja": "ボスダメージ増幅",
+    "fi": "Boss Damage Amplification",
+    "de": "Boss-Schadensverstärkung",
+    "es": "Amplificación del daño del jefe",
+    "ru": "Усиление урона от босса",
+    "pt-BR": "Amplificação de Dano de Chefe"
+  },
+  "노드를 눌러 경로를 추가하세요.": {
+    "en": "Select a node to add its path.",
+    "ja": "ノードを選択してそのパスを追加します。",
+    "de": "Wählen Sie einen Knoten aus, um seinen Pfad hinzuzufügen.",
+    "fi": "Valitse solmu lisätäksesi sen polun.",
+    "fr": "Sélectionnez un nœud pour ajouter son chemin.",
+    "es": "Seleccione un nodo para agregar su ruta.",
+    "ru": "Выберите узел, чтобы добавить его путь.",
+    "pt-BR": "Selecione um nó para adicionar seu caminho."
+  },
+  "보드 데이터 정보": {
+    "en": "Board data details",
+    "ja": "ボードデータの詳細",
+    "de": "Details zu den Board-Daten",
+    "fr": "Détails des données du tableau",
+    "fi": "Hallituksen tiedot",
+    "es": "Detalles de los datos del tablero",
+    "pt-BR": "Detalhes dos dados do conselho",
+    "ru": "Подробности данных платы"
+  },
+  "생존에 여유": {
+    "en": "More survivability",
+    "ja": "生存性の向上",
+    "fi": "Lisää selviytymiskykyä",
+    "fr": "Plus de capacité de survie",
+    "de": "Mehr Überlebensfähigkeit",
+    "ru": "Больше живучести",
+    "pt-BR": "Mais capacidade de sobrevivência",
+    "es": "Más capacidad de supervivencia"
+  },
+  "파티·보스전 기준으로 생존도 고려": {
+    "en": "Include survivability for parties and bosses",
+    "ja": "パーティーとボスの生存可能性を含める",
+    "fi": "Sisällytä selviytymiskyky puolueille ja pomoille",
+    "fr": "Inclure la capacité de survie des groupes et des patrons",
+    "es": "Incluir capacidad de supervivencia para partidos y jefes.",
+    "de": "Berücksichtigen Sie die Überlebensfähigkeit von Gruppen und Bossen",
+    "pt-BR": "Inclui capacidade de sobrevivência para grupos e chefes",
+    "ru": "Включите выживаемость для групп и боссов."
+  },
+  "공격 우선": {
+    "en": "Prioritize damage",
+    "ja": "ダメージを優先する",
+    "fi": "Priorisoi vauriot",
+    "fr": "Prioriser les dégâts",
+    "de": "Priorisieren Sie den Schaden",
+    "es": "Priorizar el daño",
+    "pt-BR": "Priorize os danos",
+    "ru": "Приоритизировать ущерб"
+  },
+  "필드·사명에서도 참고할 공격 중심 배분": {
+    "en": "Damage-focused allocation for open-world play and missions",
+    "ja": "オープンワールドのプレイとミッション向けにダメージを重視した配分",
+    "fr": "Allocation axée sur les dégâts pour les jeux et les missions en monde ouvert",
+    "fi": "Vahinkokeskeinen jako avoimen maailman pelaamiseen ja tehtäviin",
+    "es": "Asignación centrada en daños para juegos y misiones en mundo abierto",
+    "ru": "Распределение с учетом урона для игр и миссий в открытом мире",
+    "de": "Schadensorientierte Zuteilung für Open-World-Spiele und Missionen",
+    "pt-BR": "Alocação focada em danos para jogos e missões em mundo aberto"
+  },
+  "검증한 보드 데이터를 표시합니다. 자동 갱신은 서버 반영 후 동작합니다.": {
+    "en": "Showing checked board data. Automatic checks start after the server update.",
+    "fr": "Affichage des données du tableau vérifiées. Les vérifications automatiques démarrent après la mise à jour du serveur.",
+    "ja": "チェックした基板データを表示します。サーバーの更新後に自動チェックが開始されます。",
+    "fi": "Näytetään tarkistetut kortin tiedot. Automaattiset tarkistukset alkavat palvelimen päivityksen jälkeen.",
+    "es": "Mostrando datos del tablero verificados. Las comprobaciones automáticas comienzan después de la actualización del servidor.",
+    "pt-BR": "Mostrando dados verificados do tabuleiro. As verificações automáticas começam após a atualização do servidor.",
+    "ru": "Показаны проверенные данные платы. Автоматические проверки начинаются после обновления сервера.",
+    "de": "Geprüfte Board-Daten werden angezeigt. Automatische Prüfungen beginnen nach dem Server-Update."
+  },
+  "보드 데이터는 6시간마다 자동 확인합니다. 형식이나 비용 검증에 실패하면 마지막 정상 데이터를 유지합니다.": {
+    "en": "Board data is checked every six hours. If format or cost checks fail, the last valid data is kept.",
+    "ja": "ボードデータは 6 時間ごとにチェックされます。フォーマットまたはコストのチェックが失敗した場合、最後の有効なデータが保持されます。",
+    "fr": "Les données du tableau sont vérifiées toutes les six heures. Si les contrôles de format ou de coût échouent, les dernières données valides sont conservées.",
+    "fi": "Lautatiedot tarkistetaan kuuden tunnin välein. Jos muoto- tai kustannustarkistukset epäonnistuvat, viimeiset kelvolliset tiedot säilytetään.",
+    "es": "Los datos de la placa se verifican cada seis horas. Si fallan las comprobaciones de formato o costes, se conservan los últimos datos válidos.",
+    "de": "Die Board-Daten werden alle sechs Stunden überprüft. Wenn Format- oder Kostenprüfungen fehlschlagen, werden die letzten gültigen Daten beibehalten.",
+    "pt-BR": "Os dados da placa são verificados a cada seis horas. Se as verificações de formato ou custo falharem, os últimos dados válidos serão mantidos.",
+    "ru": "Данные платы проверяются каждые шесть часов. Если проверки формата или стоимости не пройдены, сохраняются последние действительные данные."
+  },
+  "PvE: 45레벨 원정 기준입니다. 아래에서 생존과 공격 중 추천 방향을 고르세요.": {
+    "en": "PvE is based on level 45 expeditions. Choose a survivability or damage focus below.",
+    "fr": "Le PvE est basé sur des expéditions de niveau 45. Choisissez ci-dessous un objectif de survie ou de dégâts.",
+    "fi": "PvE perustuu tason 45 tutkimusmatkoihin. Valitse alta selviytymis- tai vauriokohta.",
+    "ja": "PvE はレベル 45 の遠征に基づいています。以下から生存性またはダメージを重視するものを選択してください。",
+    "es": "PvE se basa en expediciones de nivel 45. Elija un enfoque de supervivencia o daño a continuación.",
+    "ru": "PvE основан на экспедициях 45 уровня. Выберите фокус живучести или урона ниже.",
+    "de": "PvE basiert auf Expeditionen der Stufe 45. Wählen Sie unten einen Überlebensfähigkeits- oder Schadensschwerpunkt.",
+    "pt-BR": "PvE é baseado em expedições de nível 45. Escolha um foco de sobrevivência ou dano abaixo."
+  },
+  "① 장비 설명창을 드래그해 자르세요. 미리보기에서 이름과 옵션을 확인하세요.": {
+    "en": "① Drag to crop the item tooltip. Check the name and options in the preview.",
+    "ja": "① ドラッグして装備の説明欄を切り抜き、プレビューで名前とオプションを確認してください。",
+    "fi": "① Rajaa esineen tietoruutu vetämällä. Tarkista nimi ja ominaisuudet esikatselusta.",
+    "fr": "① Faites glisser pour recadrer l’infobulle de l’objet. Vérifiez le nom et les options dans l’aperçu.",
+    "de": "① Ziehe einen Rahmen um den Gegenstands-Tooltip. Prüfe Name und Eigenschaften in der Vorschau.",
+    "es": "① Arrastra para recortar la descripción del objeto. Comprueba el nombre y las opciones en la vista previa.",
+    "pt-BR": "① Arraste para recortar a descrição do item. Confira o nome e as opções na prévia.",
+    "ru": "① Выделите описание предмета перетаскиванием. Проверьте название и параметры в предпросмотре."
   }
 }

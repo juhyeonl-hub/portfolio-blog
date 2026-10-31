@@ -23,6 +23,8 @@ public class ShadowcraftController {
     private static final org.slf4j.Logger log=org.slf4j.LoggerFactory.getLogger(ShadowcraftController.class);
     @org.springframework.beans.factory.annotation.Value("${app.shadowcraft.news-refresh-enabled:false}")
     private boolean newsRefreshEnabled;
+    @org.springframework.beans.factory.annotation.Value("${app.shadowcraft.board-refresh-enabled:true}")
+    private boolean boardRefreshEnabled;
     private final ShadowcraftService service;
     private final ObjectMapper mapper;
     private final HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
@@ -39,8 +41,10 @@ public class ShadowcraftController {
     public ShadowcraftController(ShadowcraftService service,ObjectMapper mapper) { this.service=service; this.mapper=mapper; }
 
     @GetMapping("/api/public/shadowcraft/catalog")
-    public JsonNode catalog(@RequestParam(defaultValue="assassin",name="class") String key) throws Exception {
+    public JsonNode catalog(@RequestParam(defaultValue="assassin",name="class") String key,@RequestParam(defaultValue="1") int schema) throws Exception {
         ObjectNode response = (ObjectNode) service.catalog(key);
+        if(schema<2){var boards=mapper.createArrayNode();for(JsonNode b:response.path("catalog").path("boards"))if(!"conquestcrystal".equals(b.path("pointKind").path("code").asText()))boards.add(b);((ObjectNode)response.path("catalog")).set("boards",boards);}
+        ObjectNode sync=response.has("boardRefresh")?(ObjectNode)response.get("boardRefresh"):mapper.createObjectNode();sync.put("enabled",boardRefreshEnabled).put("intervalHours",6);response.set("boardRefresh",sync);
         response.putObject("newsRefresh").put("enabled", newsRefreshEnabled).put("intervalMinutes", 15);
         return response;
     }

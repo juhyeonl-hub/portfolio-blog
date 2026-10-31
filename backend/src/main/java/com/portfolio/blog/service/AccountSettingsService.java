@@ -120,7 +120,7 @@ public class AccountSettingsService {
         numbers(p.get("base"));numbers(p.get("bonus"));strings(p.get("nodes"),10000,160);strings(p.get("checked"),10000,160);
         var specs=p.path("specs");require(specs.isObject()&&specs.size()<=1000);specs.fields().forEachRemaining(e->{require(e.getKey().length()<=160);strings(e.getValue(),100,160);});
         for(String k:List.of("extraSP","extraStigma","extraCrystal","extraBattle"))if(p.has(k))require(integer(p.get(k),0,9999));
-        for(String k:List.of("pointBudget","confirmedRemaining"))if(p.has(k)){fields(p.get(k),Set.of("sp","stigma","crystal","battle"));numbers(p.get(k));}
+        for(String k:List.of("pointBudget","confirmedRemaining"))if(p.has(k)){fields(p.get(k),Set.of("sp","stigma","crystal","battle","ariel"));numbers(p.get(k));}
         if(p.has("stigmaSkills")){strings(p.get("stigmaSkills"),4,20);Set<String> ids=new HashSet<>();for(JsonNode id:p.get("stigmaSkills"))require(id.asText().matches("[0-9]{1,20}")&&ids.add(id.asText()));}
         for(String k:List.of("ascensionGrade3Confirmed","macroExtra"))if(p.has(k))require(p.get(k).isBoolean());
         if(p.has("confirmedRemainingContext")){

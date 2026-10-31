@@ -23,6 +23,8 @@ public class SecurityConfig {
     private final ApiKeyAuthenticationFilter apiKeyFilter;
 
     private final String extraOrigins;
+    @org.springframework.beans.factory.annotation.Value("${app.cors.allow-localhost:false}")
+    private boolean allowLocalhost;
 
     public SecurityConfig(JwtAuthenticationFilter jwtFilter,
                           ApiKeyAuthenticationFilter apiKeyFilter,
@@ -58,9 +60,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        var origins = new java.util.ArrayList<>(List.of("http://localhost:*", "https://*.vercel.app", "https://juhyeonl.dev", "https://www.juhyeonl.dev"));
-        // ASBC's own domain (and its Cloudflare Pages previews) is added by configuration when it goes live,
-        // e.g. APP_CORS_EXTRA_ORIGINS=https://asbc.example,https://*.asbc-example.pages.dev
+        var origins = new java.util.ArrayList<>(List.of("https://asbc.app", "https://www.asbc.app", "https://juhyeonl.dev", "https://www.juhyeonl.dev"));
+        // Extra preview origins must belong to this project; shared hosting domains are not trusted by default.
+        // Local development opts in explicitly. Production accepts only the listed own domains.
+        if (allowLocalhost) origins.add("http://localhost:*");
         for (String origin : extraOrigins.split(",")) if (!origin.isBlank()) origins.add(origin.trim());
         config.setAllowedOriginPatterns(origins);
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));

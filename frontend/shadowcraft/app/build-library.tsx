@@ -57,7 +57,7 @@ export default function BuildLibraryPanel({classKey, catalog, catalogVersion, pl
   }
   const pendingTotals=pending?totals(catalog,pending.plan):null;
   return <section className="card build-library" aria-label={t('빌드 보관함')}><h2>{t('빌드 보관함')}</h2>
-    <p>{t(member?'현재 계획의 배분·포인트·장비 선택은 계정으로 자동 동기화됩니다.':'현재 계획은 이 브라우저에 자동 저장됩니다. 다른 기기에서도 이어 하려면 로그인하세요.')} <a href="#/account">{t(member?'동기화 상태 보기':'Steam으로 로그인')}</a></p>
+    <p>{t(member?'현재 계획의 배분·포인트·장비 선택은 계정으로 자동 동기화됩니다.':'현재 계획은 이 브라우저에 자동 저장됩니다. 다른 기기에서도 이어 하려면 로그인하세요.')} {member&&<a href="#/account">{t('동기화 상태 보기')}</a>}</p>
     <h3>{t('이 기기 보관함 · 자동 동기화 안 됨')}</h3>
     <p>{t('이 브라우저에 이름을 붙여 최대 20개를 보관할 수 있습니다. 다른 기기로 옮기려면 보관본의 ‘내보내기’를 누르세요. 다른 기기에서 같은 직업을 고른 뒤 ‘저장한 빌드 가져오기’로 파일을 불러오세요.')}</p>
     {error&&<p role="alert">{t(error)}</p>}{message&&<p role="status">{t(message)}</p>}

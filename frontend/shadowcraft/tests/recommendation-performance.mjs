@@ -15,7 +15,9 @@ function check(key,input,run){
  measurements.push({key,ms:Math.round(ms*10)/10});return output;
 }
 for(const profile of classes.CLASSES){
- const c=JSON.parse(readFileSync(`lib/data/catalogs/${profile.key}.json`)),base=planner.emptyPlan(c);
+ const c=JSON.parse(readFileSync(`lib/data/catalogs/${profile.key}.json`));
+ // Keep the approved five-board baseline; Ariel is independently covered by portal-refinement.mjs.
+ c.boards=c.boards.filter(b=>b.pointKind.code!=='conquestcrystal');const base=planner.emptyPlan(c);
  const cases=[
   ['locked',1,'safe',{sp:0,stigma:0,crystal:0,battle:0},false],
   ['leveling',20,'damage',{sp:90,stigma:8,crystal:40,battle:0},false],

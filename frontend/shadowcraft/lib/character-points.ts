@@ -9,9 +9,9 @@ export function characterPoints(c:Catalog,character:any,gearBonus:Record<string,
   return !!board&&board.nodes.filter(n=>!n.autoLearn&&owned.has(n.id)).length===b.openNodeCount;
  });
  const boardsKnown=Array.isArray(character?.nodes)&&!character?.failedBoards?.length&&countsMatch&&[...owned].every(id=>known.has(id));
- const bonus:Record<string,number>={};let crystal=0,battle=0;
+ const bonus:Record<string,number>={};let crystal=0,battle=0,ariel=0;
  for(const b of c.boards)for(const n of b.nodes)if(owned.has(n.id)){
-  if(!n.autoLearn){if(b.pointKind.code==='battlecrystal')battle+=n.pointCost;else crystal+=n.pointCost;}
+  if(!n.autoLearn){if(b.pointKind.code==='battlecrystal')battle+=n.pointCost;else if(b.pointKind.code==='conquestcrystal')ariel+=n.pointCost;else if(b.pointKind.code==='daevanioncrystal')crystal+=n.pointCost;}
   if(n.skill)bonus[n.skill.id]=(bonus[n.skill.id]||0)+(n.skillLevels||0);
  }
  let sp=0,stigma=0,skillsKnown=boardsKnown&&gearBonus!==null&&Array.isArray(character?.skills)&&character.skills.length>0;
@@ -24,9 +24,9 @@ export function characterPoints(c:Catalog,character:any,gearBonus:Record<string,
   if(base<0||!s.learning.some(l=>l.level===base)&&base!==0){skillsKnown=false;continue;}
   const cost=skillCost(s,base);if(s.stigma)stigma+=cost;else sp+=cost;
  }
- return {sp:skillsKnown?sp:null,stigma:skillsKnown?stigma:null,crystal:boardsKnown?crystal:null,battle:boardsKnown?battle:null};
+ return {sp:skillsKnown?sp:null,stigma:skillsKnown?stigma:null,crystal:boardsKnown?crystal:null,battle:boardsKnown?battle:null,ariel:boardsKnown?ariel:null};
 }
-export function pointBalance(total:number,spent:number|null){return spent===null?null:total<spent?null:total-spent;}
+export function pointBalance(total:number|undefined,spent:number|null){return spent===null?null:(total??0)<spent?null:(total??0)-spent;}
 
 // A confirmed game balance is independent of estimated/configured totals.
 export function confirmRemaining(plan:Plan,points:PointBudget,key:keyof PointBudget,remaining:number,spent:number|null):Partial<Plan>|null {

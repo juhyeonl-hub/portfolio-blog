@@ -24,7 +24,7 @@ export function validateShare(value:unknown):SharedBuild {
  if(!record(value)||!only(value,['schema','catalogVersion','plan','guide'])||value.schema!=='a2bc-share-v1'||typeof value.catalogVersion!=='string'||!value.catalogVersion||value.catalogVersion.length>100)throw Error('지원하지 않는 공유 링크 형식입니다.');
  const p=value.plan;
  if(!record(p)||typeof p.classKey!=='string'||!isClassKey(p.classKey)||!only(p,['classKey','level','mode','base','bonus','specs','nodes','checked','character','extraSP','extraStigma','extraCrystal','extraBattle','pointBudget','ascensionGrade3Confirmed','stigmaSkills'])||!validStoredPlan(p,p.classKey)||p.character!==null||!Array.isArray(p.checked)||p.checked.length!==0||!(['extraSP','extraStigma','extraCrystal','extraBattle'] as const).every(k=>integer(p[k]))||!levels(p.base)||!levels(p.bonus)||!ids(p.nodes)||!record(p.specs)||Object.keys(p.specs).length>100||!Object.entries(p.specs).every(([id,list])=>numericId(id)&&ids(list)))throw Error('공유 빌드의 배분 형식이 올바르지 않습니다.');
- if(p.pointBudget!==undefined&&(!record(p.pointBudget)||!only(p.pointBudget,['sp','stigma','crystal','battle'])||!['sp','stigma','crystal','battle'].every(k=>integer((p.pointBudget as Record<string,unknown>)[k]))))throw Error('공유 빌드의 포인트 정보를 읽을 수 없습니다. 보낸 사람에게 새 공유 링크를 요청하세요.');
+ if(p.pointBudget!==undefined&&(!record(p.pointBudget)||!only(p.pointBudget,['sp','stigma','crystal','battle','ariel'])||('ariel' in p.pointBudget&&!integer(p.pointBudget.ariel))||!['sp','stigma','crystal','battle'].every(k=>integer((p.pointBudget as Record<string,unknown>)[k]))))throw Error('공유 빌드의 포인트 정보를 읽을 수 없습니다. 보낸 사람에게 새 공유 링크를 요청하세요.');
  if(value.guide!==undefined)validateGuide(value.guide);
  return value as unknown as SharedBuild;
 }
@@ -35,7 +35,7 @@ export function publicBuild(catalog:Catalog,plan:Plan):SharedBuild {
  const p:Plan={classKey,level:plan.level,mode:plan.mode,extraSP:plan.extraSP,extraStigma:plan.extraStigma,extraCrystal:plan.extraCrystal,extraBattle:plan.extraBattle,base:{},bonus:{},specs:{},nodes:[...plan.nodes],checked:[],character:null};
  for(const skill of catalog.skills){p.base[skill.id]=plan.base[skill.id]??(skill.stigma?0:1);p.bonus[skill.id]=equipmentBonus(plan,skill.id);p.specs[skill.id]=[...(plan.specs[skill.id]||[])];}
  if(plan.stigmaSkills)p.stigmaSkills=[...plan.stigmaSkills];
- if(plan.pointBudget)p.pointBudget={sp:plan.pointBudget.sp,stigma:plan.pointBudget.stigma,crystal:plan.pointBudget.crystal,battle:plan.pointBudget.battle};
+ if(plan.pointBudget)p.pointBudget={sp:plan.pointBudget.sp,stigma:plan.pointBudget.stigma,crystal:plan.pointBudget.crystal,battle:plan.pointBudget.battle,...(plan.pointBudget.ariel!==undefined?{ariel:plan.pointBudget.ariel}:{})};
  if(plan.ascensionGrade3Confirmed!==undefined)p.ascensionGrade3Confirmed=plan.ascensionGrade3Confirmed;
  const shared=validateShare({schema:'a2bc-share-v1',catalogVersion:catalog.version||'미확인',plan:p});
  validateReferences(shared,catalog);return shared;

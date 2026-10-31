@@ -4,7 +4,7 @@ import {planner,recommendBuild} from './modules.mjs';
 const c=JSON.parse(readFileSync('lib/data/catalog.json','utf8'));
 const original=planner.emptyPlan(c);
 const limits={sp:120,stigma:40,crystal:80,battle:15};
-assert.deepEqual(planner.pointLimits(c,{...original,extraSP:999,extraStigma:999,pointBudget:limits}),limits,'manual total must not add level rewards');
+assert.deepEqual(planner.pointLimits(c,{...original,extraSP:999,extraStigma:999,pointBudget:limits}),{...limits,ariel:0},'manual total must not add level rewards');
 assert.equal(planner.pointLimits(c,original).sp,383,'level 45 default includes completed one-time content rewards');
 for(const [level,sp,stigma,crystal,battle] of [[1,0,0,0,0],[12,1,0,1,0],[22,50,3,20,0],[27,80,5,30,0],[37,160,30,80,0],[45,0,0,0,0],[45,1,1,1,1],[45,200,60,136,20],[45,9999,9999,9999,9999]]){
  for(const mode of ['safe','damage','pvp']){

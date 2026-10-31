@@ -19,9 +19,9 @@ class CorsExtraOriginsTest {
 
     @Test
     void configuredOriginsAreAllowedAndOthersRefused() throws Exception {
-        for (String origin : new String[]{"https://asbc.test", "https://preview.asbc-test.pages.dev", "https://juhyeonl.dev", "http://localhost:5173"})
+        for (String origin : new String[]{"https://asbc.test", "https://preview.asbc-test.pages.dev", "https://juhyeonl.dev"})
             mvc.perform(get("/api/health").header("Origin", origin)).andExpect(status().isOk());
-        for (String origin : new String[]{"https://evil.test", "https://asbc.test.evil.test", "http://127.0.0.1:5173"})
+        for (String origin : new String[]{"https://evil.test", "https://asbc.test.evil.test", "http://127.0.0.1:5173", "http://localhost:5173"})
             mvc.perform(get("/api/health").header("Origin", origin)).andExpect(status().isForbidden());
     }
 }

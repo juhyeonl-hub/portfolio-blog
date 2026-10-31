@@ -52,9 +52,10 @@ export function recommendBuild(c:Catalog,p:Plan):Plan {
  const allowed=c.boards.filter(b=>b.requiredLevel<=p.level).map(b=>({...b,nodes:b.nodes.filter(n=>n.requiredLevel<=p.level)}));
  let next=applyRecommended(c,{...p,nodes:allowed.flatMap(b=>b.nodes.filter(n=>n.autoLearn).map(n=>n.id))});
  const selected=new Set(next.nodes),limits=pointLimits(c,p);
- for(const battle of [false,true]){
-  let remaining=battle?limits.battle:limits.crystal;
-  const boards=allowed.filter(b=>(b.pointKind.code==='battlecrystal')===battle);
+ for(const currency of ['daevanioncrystal','battlecrystal','conquestcrystal']){
+  const battle=currency==='battlecrystal';
+  let remaining=battle?limits.battle:currency==='conquestcrystal'?(limits.ariel??0):limits.crystal;
+  const boards=allowed.filter(b=>b.pointKind.code===currency);
   for(let iteration=0;iteration<c.boards.reduce((sum,b)=>sum+b.nodes.length,0);iteration++){
    let best:{ids:string[];cost:number;score:number}|undefined;
    // All candidate paths see the same selected nodes. Refresh after each chosen path.

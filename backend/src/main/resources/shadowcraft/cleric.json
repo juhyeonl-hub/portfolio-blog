@@ -14562,6 +14562,5077 @@
         ]
       },
       {
+        "id": "75",
+        "characterClass": {
+          "code": "cleric",
+          "name": "치유성"
+        },
+        "name": "아리엘",
+        "iconPath": "/images/ui/resource/texture/icon/ut_weapon_sword_1h.webp",
+        "order": 5,
+        "requiredLevel": 45,
+        "pointKind": {
+          "code": "conquestcrystal",
+          "name": "데바니온 결정: 아리엘"
+        },
+        "resetCurrency": {
+          "code": "goldcombined",
+          "name": "키나(통합)"
+        },
+        "buffName": "데바니온 아리엘 효과",
+        "buffDescription": "데바니온 아리엘 활성화로 인한 효과",
+        "rows": 15,
+        "columns": 15,
+        "nodes": [
+          {
+            "id": "750001",
+            "row": 1,
+            "column": 1,
+            "kind": "stat",
+            "grade": "unique",
+            "gradeName": "유일",
+            "name": "PVE 피해 증폭",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 4,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAmplifyDamage",
+              "name": "PVE 피해 증폭",
+              "type": "number",
+              "value": 1.5,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "PvEAmplifyDamage",
+                "name": "PVE 피해 증폭",
+                "type": "number",
+                "value": 1.5,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750002",
+            "row": 1,
+            "column": 2,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750003",
+            "row": 1,
+            "column": 3,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 공격력, PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750007",
+            "row": 1,
+            "column": 7,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750008",
+            "row": 1,
+            "column": 8,
+            "kind": "stat",
+            "grade": "unique",
+            "gradeName": "유일",
+            "name": "PVE 피해 증폭",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 4,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAmplifyDamage",
+              "name": "PVE 피해 증폭",
+              "type": "number",
+              "value": 1.5,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "PvEAmplifyDamage",
+                "name": "PVE 피해 증폭",
+                "type": "number",
+                "value": 1.5,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750009",
+            "row": 1,
+            "column": 9,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "최대 생명력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "HPMax",
+              "name": "생명력",
+              "type": "number",
+              "value": 100,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "HPMax",
+                "name": "생명력",
+                "type": "number",
+                "value": 100,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750011",
+            "row": 1,
+            "column": 11,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 명중, PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750012",
+            "row": 1,
+            "column": 12,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750013",
+            "row": 1,
+            "column": 13,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750014",
+            "row": 1,
+            "column": 14,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750015",
+            "row": 1,
+            "column": 15,
+            "kind": "stat",
+            "grade": "unique",
+            "gradeName": "유일",
+            "name": "PVE 피해 내성",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 4,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDecreaseDamage",
+              "name": "PVE 피해 내성",
+              "type": "number",
+              "value": 1.5,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "PvEDecreaseDamage",
+                "name": "PVE 피해 내성",
+                "type": "number",
+                "value": 1.5,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750016",
+            "row": 2,
+            "column": 1,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750018",
+            "row": 2,
+            "column": 3,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750019",
+            "row": 2,
+            "column": 4,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750020",
+            "row": 2,
+            "column": 5,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750021",
+            "row": 2,
+            "column": 6,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "치명타 저항",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "CriticalResist",
+              "name": "치명타 저항",
+              "type": "number",
+              "value": 10,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "CriticalResist",
+                "name": "치명타 저항",
+                "type": "number",
+                "value": 10,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750022",
+            "row": 2,
+            "column": 7,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750024",
+            "row": 2,
+            "column": 9,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "보스 공격력, 보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750026",
+            "row": 2,
+            "column": 11,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750028",
+            "row": 2,
+            "column": 13,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "치명타",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "Critical",
+              "name": "치명타",
+              "type": "number",
+              "value": 10,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "Critical",
+                "name": "치명타",
+                "type": "number",
+                "value": 10,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750030",
+            "row": 2,
+            "column": 15,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750031",
+            "row": 3,
+            "column": 1,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750032",
+            "row": 3,
+            "column": 2,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "보스 피해 증폭",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAmplifyDamage",
+              "name": "보스 피해 증폭",
+              "type": "number",
+              "value": 1,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAmplifyDamage",
+                "name": "보스 피해 증폭",
+                "type": "number",
+                "value": 1,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750034",
+            "row": 3,
+            "column": 4,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "보스 공격력, 보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750037",
+            "row": 3,
+            "column": 7,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750038",
+            "row": 3,
+            "column": 8,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750039",
+            "row": 3,
+            "column": 9,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750040",
+            "row": 3,
+            "column": 10,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750041",
+            "row": 3,
+            "column": 11,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750042",
+            "row": 3,
+            "column": 12,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750043",
+            "row": 3,
+            "column": 13,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750044",
+            "row": 3,
+            "column": 14,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750045",
+            "row": 3,
+            "column": 15,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 공격력, PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750047",
+            "row": 4,
+            "column": 2,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750049",
+            "row": 4,
+            "column": 4,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750050",
+            "row": 4,
+            "column": 5,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750051",
+            "row": 4,
+            "column": 6,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750052",
+            "row": 4,
+            "column": 7,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 명중, PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750055",
+            "row": 4,
+            "column": 10,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "치명타 저항",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "CriticalResist",
+              "name": "치명타 저항",
+              "type": "number",
+              "value": 10,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "CriticalResist",
+                "name": "치명타 저항",
+                "type": "number",
+                "value": 10,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750057",
+            "row": 4,
+            "column": 12,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "보스 공격력, 보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750059",
+            "row": 4,
+            "column": 14,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750061",
+            "row": 5,
+            "column": 1,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 명중, PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750062",
+            "row": 5,
+            "column": 2,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750063",
+            "row": 5,
+            "column": 3,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750064",
+            "row": 5,
+            "column": 4,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "보스 피해 내성",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDecreaseDamage",
+              "name": "보스 피해 내성",
+              "type": "number",
+              "value": 1,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDecreaseDamage",
+                "name": "보스 피해 내성",
+                "type": "number",
+                "value": 1,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750067",
+            "row": 5,
+            "column": 7,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750070",
+            "row": 5,
+            "column": 10,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750072",
+            "row": 5,
+            "column": 12,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750073",
+            "row": 5,
+            "column": 13,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750074",
+            "row": 5,
+            "column": 14,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "보스 피해 증폭",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAmplifyDamage",
+              "name": "보스 피해 증폭",
+              "type": "number",
+              "value": 1,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAmplifyDamage",
+                "name": "보스 피해 증폭",
+                "type": "number",
+                "value": 1,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750076",
+            "row": 6,
+            "column": 1,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750079",
+            "row": 6,
+            "column": 4,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750081",
+            "row": 6,
+            "column": 6,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "치명타",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "Critical",
+              "name": "치명타",
+              "type": "number",
+              "value": 10,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "Critical",
+                "name": "치명타",
+                "type": "number",
+                "value": 10,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750082",
+            "row": 6,
+            "column": 7,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750083",
+            "row": 6,
+            "column": 8,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "최대 생명력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "HPMax",
+              "name": "생명력",
+              "type": "number",
+              "value": 100,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "HPMax",
+                "name": "생명력",
+                "type": "number",
+                "value": 100,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750084",
+            "row": 6,
+            "column": 9,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 공격력, PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750085",
+            "row": 6,
+            "column": 10,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750087",
+            "row": 6,
+            "column": 12,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750089",
+            "row": 6,
+            "column": 14,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750091",
+            "row": 7,
+            "column": 1,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "최대 정신력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "MPMax",
+              "name": "정신력",
+              "type": "number",
+              "value": 50,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "MPMax",
+                "name": "정신력",
+                "type": "number",
+                "value": 50,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750092",
+            "row": 7,
+            "column": 2,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "보스 공격력, 보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750093",
+            "row": 7,
+            "column": 3,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750094",
+            "row": 7,
+            "column": 4,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 공격력, PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750095",
+            "row": 7,
+            "column": 5,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750096",
+            "row": 7,
+            "column": 6,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750098",
+            "row": 7,
+            "column": 8,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750100",
+            "row": 7,
+            "column": 10,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750101",
+            "row": 7,
+            "column": 11,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "보스 피해 내성",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDecreaseDamage",
+              "name": "보스 피해 내성",
+              "type": "number",
+              "value": 1,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDecreaseDamage",
+                "name": "보스 피해 내성",
+                "type": "number",
+                "value": 1,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750102",
+            "row": 7,
+            "column": 12,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750103",
+            "row": 7,
+            "column": 13,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750104",
+            "row": 7,
+            "column": 14,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 명중, PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750105",
+            "row": 7,
+            "column": 15,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750106",
+            "row": 8,
+            "column": 1,
+            "kind": "stat",
+            "grade": "unique",
+            "gradeName": "유일",
+            "name": "PVE 피해 내성",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 4,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDecreaseDamage",
+              "name": "PVE 피해 내성",
+              "type": "number",
+              "value": 1.5,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "PvEDecreaseDamage",
+                "name": "PVE 피해 내성",
+                "type": "number",
+                "value": 1.5,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750108",
+            "row": 8,
+            "column": 3,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "최대 생명력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "HPMax",
+              "name": "생명력",
+              "type": "number",
+              "value": 100,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "HPMax",
+                "name": "생명력",
+                "type": "number",
+                "value": 100,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750111",
+            "row": 8,
+            "column": 6,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750112",
+            "row": 8,
+            "column": 7,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750113",
+            "row": 8,
+            "column": 8,
+            "kind": "start",
+            "name": "아리엘 - 시작",
+            "subtitle": "주신 아리엘의 힘이 깃든 데바니온 보드입니다.\n빛의 근원과 신성한 힘을 계승합니다.\n핵심 노드 : <unique>PVE 피해 증폭</>, <unique>PVE 피해 내성</>\n보드 시작 레벨 : 45",
+            "iconPath": "/images/ui/resource/texture/icon/ut_class_cleric_large.webp",
+            "autoLearn": true,
+            "requiredLevel": 45,
+            "pointCost": 0,
+            "resetGold": 0,
+            "effectComplete": true
+          },
+          {
+            "id": "750114",
+            "row": 8,
+            "column": 9,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750115",
+            "row": 8,
+            "column": 10,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750118",
+            "row": 8,
+            "column": 13,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "최대 정신력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "MPMax",
+              "name": "정신력",
+              "type": "number",
+              "value": 50,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "MPMax",
+                "name": "정신력",
+                "type": "number",
+                "value": 50,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750120",
+            "row": 8,
+            "column": 15,
+            "kind": "stat",
+            "grade": "unique",
+            "gradeName": "유일",
+            "name": "PVE 피해 내성",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 4,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDecreaseDamage",
+              "name": "PVE 피해 내성",
+              "type": "number",
+              "value": 1.5,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "PvEDecreaseDamage",
+                "name": "PVE 피해 내성",
+                "type": "number",
+                "value": 1.5,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750121",
+            "row": 9,
+            "column": 1,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750122",
+            "row": 9,
+            "column": 2,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 명중, PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750123",
+            "row": 9,
+            "column": 3,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750124",
+            "row": 9,
+            "column": 4,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750125",
+            "row": 9,
+            "column": 5,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "보스 피해 내성",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDecreaseDamage",
+              "name": "보스 피해 내성",
+              "type": "number",
+              "value": 1,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDecreaseDamage",
+                "name": "보스 피해 내성",
+                "type": "number",
+                "value": 1,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750126",
+            "row": 9,
+            "column": 6,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750128",
+            "row": 9,
+            "column": 8,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750130",
+            "row": 9,
+            "column": 10,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750131",
+            "row": 9,
+            "column": 11,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750132",
+            "row": 9,
+            "column": 12,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "보스 공격력, 보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750133",
+            "row": 9,
+            "column": 13,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750134",
+            "row": 9,
+            "column": 14,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 공격력, PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750135",
+            "row": 9,
+            "column": 15,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "최대 생명력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "HPMax",
+              "name": "생명력",
+              "type": "number",
+              "value": 100,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "HPMax",
+                "name": "생명력",
+                "type": "number",
+                "value": 100,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750137",
+            "row": 10,
+            "column": 2,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750139",
+            "row": 10,
+            "column": 4,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750141",
+            "row": 10,
+            "column": 6,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750142",
+            "row": 10,
+            "column": 7,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "보스 공격력, 보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750143",
+            "row": 10,
+            "column": 8,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "최대 정신력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "MPMax",
+              "name": "정신력",
+              "type": "number",
+              "value": 50,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "MPMax",
+                "name": "정신력",
+                "type": "number",
+                "value": 50,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750144",
+            "row": 10,
+            "column": 9,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750145",
+            "row": 10,
+            "column": 10,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "치명타",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "Critical",
+              "name": "치명타",
+              "type": "number",
+              "value": 10,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "Critical",
+                "name": "치명타",
+                "type": "number",
+                "value": 10,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750147",
+            "row": 10,
+            "column": 12,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750150",
+            "row": 10,
+            "column": 15,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750152",
+            "row": 11,
+            "column": 2,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "보스 피해 증폭",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAmplifyDamage",
+              "name": "보스 피해 증폭",
+              "type": "number",
+              "value": 1,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAmplifyDamage",
+                "name": "보스 피해 증폭",
+                "type": "number",
+                "value": 1,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750153",
+            "row": 11,
+            "column": 3,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750154",
+            "row": 11,
+            "column": 4,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750156",
+            "row": 11,
+            "column": 6,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750159",
+            "row": 11,
+            "column": 9,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750162",
+            "row": 11,
+            "column": 12,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "보스 피해 내성",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDecreaseDamage",
+              "name": "보스 피해 내성",
+              "type": "number",
+              "value": 1,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDecreaseDamage",
+                "name": "보스 피해 내성",
+                "type": "number",
+                "value": 1,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750163",
+            "row": 11,
+            "column": 13,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750164",
+            "row": 11,
+            "column": 14,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750165",
+            "row": 11,
+            "column": 15,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 명중, PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750167",
+            "row": 12,
+            "column": 2,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750169",
+            "row": 12,
+            "column": 4,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 공격력, PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750171",
+            "row": 12,
+            "column": 6,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "치명타 저항",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "CriticalResist",
+              "name": "치명타 저항",
+              "type": "number",
+              "value": 10,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "CriticalResist",
+                "name": "치명타 저항",
+                "type": "number",
+                "value": 10,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750174",
+            "row": 12,
+            "column": 9,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 명중, PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750175",
+            "row": 12,
+            "column": 10,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750176",
+            "row": 12,
+            "column": 11,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750177",
+            "row": 12,
+            "column": 12,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750179",
+            "row": 12,
+            "column": 14,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750181",
+            "row": 13,
+            "column": 1,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "보스 공격력, 보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750182",
+            "row": 13,
+            "column": 2,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750183",
+            "row": 13,
+            "column": 3,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750184",
+            "row": 13,
+            "column": 4,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750185",
+            "row": 13,
+            "column": 5,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750186",
+            "row": 13,
+            "column": 6,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750187",
+            "row": 13,
+            "column": 7,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750188",
+            "row": 13,
+            "column": 8,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750189",
+            "row": 13,
+            "column": 9,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750192",
+            "row": 13,
+            "column": 12,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 공격력, PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750194",
+            "row": 13,
+            "column": 14,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "보스 피해 증폭",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAmplifyDamage",
+              "name": "보스 피해 증폭",
+              "type": "number",
+              "value": 1,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAmplifyDamage",
+                "name": "보스 피해 증폭",
+                "type": "number",
+                "value": 1,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750195",
+            "row": 13,
+            "column": 15,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750196",
+            "row": 14,
+            "column": 1,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750198",
+            "row": 14,
+            "column": 3,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "치명타",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "Critical",
+              "name": "치명타",
+              "type": "number",
+              "value": 10,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "Critical",
+                "name": "치명타",
+                "type": "number",
+                "value": 10,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750200",
+            "row": 14,
+            "column": 5,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750202",
+            "row": 14,
+            "column": 7,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 공격력, PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750204",
+            "row": 14,
+            "column": 9,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750205",
+            "row": 14,
+            "column": 10,
+            "kind": "stat",
+            "grade": "legend",
+            "gradeName": "전승",
+            "name": "치명타 저항",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_legend_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 3,
+            "resetGold": 500,
+            "stat": {
+              "key": "CriticalResist",
+              "name": "치명타 저항",
+              "type": "number",
+              "value": 10,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "CriticalResist",
+                "name": "치명타 저항",
+                "type": "number",
+                "value": 10,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750206",
+            "row": 14,
+            "column": 11,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDamageDefense",
+              "name": "PVE 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEDamageDefense",
+                "name": "PVE 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750207",
+            "row": 14,
+            "column": 12,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750208",
+            "row": 14,
+            "column": 13,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750210",
+            "row": 14,
+            "column": 15,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750211",
+            "row": 15,
+            "column": 1,
+            "kind": "stat",
+            "grade": "unique",
+            "gradeName": "유일",
+            "name": "PVE 피해 내성",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 4,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEDecreaseDamage",
+              "name": "PVE 피해 내성",
+              "type": "number",
+              "value": 1.5,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "PvEDecreaseDamage",
+                "name": "PVE 피해 내성",
+                "type": "number",
+                "value": 1.5,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750212",
+            "row": 15,
+            "column": 2,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAddDamage",
+              "name": "PVE 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAddDamage",
+                "name": "PVE 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750213",
+            "row": 15,
+            "column": 3,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEEvasion",
+              "name": "PVE 회피",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750214",
+            "row": 15,
+            "column": 4,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcDefense",
+              "name": "보스 방어력",
+              "type": "number",
+              "value": 30,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750215",
+            "row": 15,
+            "column": 5,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "PVE 명중, PVE 회피",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              },
+              {
+                "key": "PvEEvasion",
+                "name": "PVE 회피",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750217",
+            "row": 15,
+            "column": 7,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "최대 정신력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "MPMax",
+              "name": "정신력",
+              "type": "number",
+              "value": 50,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "MPMax",
+                "name": "정신력",
+                "type": "number",
+                "value": 50,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750218",
+            "row": 15,
+            "column": 8,
+            "kind": "stat",
+            "grade": "unique",
+            "gradeName": "유일",
+            "name": "PVE 피해 증폭",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 4,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAmplifyDamage",
+              "name": "PVE 피해 증폭",
+              "type": "number",
+              "value": 1.5,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "PvEAmplifyDamage",
+                "name": "PVE 피해 증폭",
+                "type": "number",
+                "value": 1.5,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750219",
+            "row": 15,
+            "column": 9,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "PVE 명중",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAccuracy",
+              "name": "PVE 명중",
+              "type": "number",
+              "value": 5,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "PvEAccuracy",
+                "name": "PVE 명중",
+                "type": "number",
+                "value": 5,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750223",
+            "row": 15,
+            "column": 13,
+            "kind": "stat",
+            "grade": "rare",
+            "gradeName": "희귀",
+            "name": "보스 공격력, 보스 방어력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_rare_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 2,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              },
+              {
+                "key": "BossNpcDefense",
+                "name": "보스 방어력",
+                "type": "number",
+                "value": 30,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750224",
+            "row": 15,
+            "column": 14,
+            "kind": "stat",
+            "grade": "common",
+            "gradeName": "일반",
+            "name": "보스 공격력",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_common_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 1,
+            "resetGold": 500,
+            "stat": {
+              "key": "BossNpcAddDamage",
+              "name": "보스 공격력",
+              "type": "number",
+              "value": 3,
+              "format": "{v:0}"
+            },
+            "stats": [
+              {
+                "key": "BossNpcAddDamage",
+                "name": "보스 공격력",
+                "type": "number",
+                "value": 3,
+                "format": "{v:0}"
+              }
+            ],
+            "effectComplete": true
+          },
+          {
+            "id": "750225",
+            "row": 15,
+            "column": 15,
+            "kind": "stat",
+            "grade": "unique",
+            "gradeName": "유일",
+            "name": "PVE 피해 증폭",
+            "iconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_sprite.webp",
+            "dimmedIconPath": "/images/ui/resource/sprite/fwindow_daevanion/ut_fwindow_daevanion_node_unique_disabled_sprite.webp",
+            "autoLearn": false,
+            "requiredLevel": 45,
+            "pointCost": 4,
+            "resetGold": 500,
+            "stat": {
+              "key": "PvEAmplifyDamage",
+              "name": "PVE 피해 증폭",
+              "type": "number",
+              "value": 1.5,
+              "format": "{v:0.##}%"
+            },
+            "stats": [
+              {
+                "key": "PvEAmplifyDamage",
+                "name": "PVE 피해 증폭",
+                "type": "number",
+                "value": 1.5,
+                "format": "{v:0.##}%"
+              }
+            ],
+            "effectComplete": true
+          }
+        ]
+      },
+      {
         "id": "76",
         "characterClass": {
           "code": "cleric",
@@ -19349,7 +24420,9 @@
     "source": "https://aion2.gaming.tools/ko/builds/cleric/pve",
     "baselineVersion": "2.0.7.0",
     "reviewRequired": false,
-    "origin": "bundled"
+    "origin": "bundled",
+    "boardDataCheckedAt": "2026-10-31T00:30:14.344060+00:00",
+    "boardDataSource": "https://aion2.gaming.tools/ko/builds/cleric/pve"
   },
   "history": [
     {

@@ -25,7 +25,7 @@ console.log('PASS manual preservation, character switching and absent level fall
 // Public progression tables agree on these leveling-only totals (2026-10-22).
 for(const [level,sp,stigma,crystal] of [[20,61,0,36],[25,86,3,56],[28,101,6,68],[30,111,8,76],[35,141,13,96],[39,165,17,112],[40,171,19,116],[44,196,27,132]]){
  const p={...planner.emptyPlan(c),level};
- assert.deepEqual(planner.pointLimits(c,p),{sp,stigma,crystal,battle:0});
+ assert.deepEqual(planner.pointLimits(c,p),{sp,stigma,crystal,battle:0,ariel:0});
 }
 console.log('PASS leveling baseline table; no unearned extra points');
 
@@ -33,13 +33,13 @@ console.log('PASS leveling baseline table; no unearned extra points');
 for(const {key:classKey} of classes.CLASSES){
  const catalog=JSON.parse(readFileSync('lib/data/catalogs/'+classKey+'.json','utf8'));
  const minimum={...planner.emptyPlan(catalog),level:39};
- assert.deepEqual(planner.pointLimits(catalog,minimum),{sp:165,stigma:17,crystal:112,battle:0});
+ assert.deepEqual(planner.pointLimits(catalog,minimum),{sp:165,stigma:17,crystal:112,battle:0,ariel:0});
  assert.equal(planner.hasCustomPointBudget(minimum),false);
  const linked={...minimum,character:{profile:{characterLevel:39},skills:[],nodes:[]}};
  assert.deepEqual(planner.pointLimits(catalog,linked),planner.pointLimits(catalog,minimum));
  const personal={...linked,pointBudget:{sp:179,stigma:18,crystal:126,battle:0}};
  assert.equal(planner.hasCustomPointBudget(personal),true);
- assert.deepEqual(planner.pointLimits(catalog,personal),personal.pointBudget);
+ assert.deepEqual(planner.pointLimits(catalog,personal),{...personal.pointBudget,ariel:0});
  assert.deepEqual(planner.pointLimits(catalog,planner.updatePlan(catalog,personal,{pointBudget:undefined,extraSP:0,extraStigma:0,extraCrystal:0,extraBattle:0})),planner.pointLimits(catalog,minimum));
  assert.equal(planner.hasCustomPointBudget({...minimum,extraSP:14}),true,'legacy extras must not be labelled as a minimum');
 }

@@ -1,3 +1,10 @@
 # Same as vercel.json: OCR language data is served pre-compressed.
 /shadowcraft/ocr/lang/*
   Content-Type: application/gzip
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.juhyeonl.dev; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://steamcommunity.com; frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  X-Frame-Options: DENY

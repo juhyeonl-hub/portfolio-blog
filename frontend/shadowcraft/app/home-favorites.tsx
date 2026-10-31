@@ -24,5 +24,5 @@ function MemberFavorites({memberId,onNavigate}:{memberId:string;onNavigate:(tab:
 }
 export default function HomeFavorites({onNavigate}:{onNavigate:(tab:string)=>void}){
  const {t}=useLocale(),member=useMember(),ready=useMemberReady();
- return <section className="home-favorites panel" aria-label={t('즐겨찾기')}><h2><Star size={17}/>{t('즐겨찾기')}</h2>{!ready?<p role="status">{t('로그인 확인 중…')}</p>:member?<MemberFavorites key={member.id} memberId={member.id} onNavigate={onNavigate}/>:<div className="favorites-signin"><p>{t('로그인하고 나만의 즐겨찾기를 만들어 보세요.')}</p><button className="button secondary" onClick={()=>onNavigate('account')}>{t('로그인')}</button></div>}</section>;
+ return <section className="home-favorites panel" aria-label={t('즐겨찾기')}><h2><Star size={17}/>{t('즐겨찾기')}</h2>{!ready?<p role="status">{t('로그인 확인 중…')}</p>:member?<MemberFavorites key={member.id} memberId={member.id} onNavigate={onNavigate}/>:<div className="favorites-signin"><p>{t('로그인하고 나만의 즐겨찾기를 만들어 보세요.')}</p><small>{t('로그인은 화면 위쪽에서 할 수 있습니다.')}</small></div>}</section>;
 }

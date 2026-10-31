@@ -18,5 +18,5 @@ export function recommendPurposeBuild(c:Catalog,p:Plan):Plan{
  // Existing class boss/party priorities are a reference, not an expedition-specific simulation.
  // PvP-only stats cannot help the leveling/PvE target, even as leftover-point filler.
  const catalog=purpose==='pvp'?c:{...c,boards:c.boards.map(b=>({...b,nodes:b.nodes.filter(n=>n.autoLearn||!/^PVP(?:\s|$)/i.test(n.stat?.name||''))}))};
- return recommendBuild(catalog,{...p,mode:PURPOSE_MODES[purpose]});
+ return recommendBuild(catalog,{...p,mode:purpose==='pve'?p.mode:PURPOSE_MODES[purpose]});
 }

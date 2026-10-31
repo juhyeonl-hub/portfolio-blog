@@ -5,7 +5,7 @@ const {characterPoints,pointBalance}=await import(moduleUrl(readFileSync('lib/ch
 const c=JSON.parse(readFileSync('lib/data/catalogs/templar.json','utf8'));
 const d=JSON.parse(readFileSync('tests/fixtures/templar-points-lv36.json','utf8'));
 const p=characterPoints(c,d,{});console.log(p);
-assert.deepEqual(p,{sp:149,stigma:13,crystal:104,battle:0});
+assert.deepEqual(p,{sp:149,stigma:13,crystal:104,battle:0,ariel:0});
 assert.equal(pointBalance(114,p.crystal),10);
 assert.equal(pointBalance(100,p.crystal),null);
 assert.equal(characterPoints(c,{...d,failedBoards:['21']},{}).crystal,null);
@@ -27,8 +27,8 @@ const initial={...planner.emptyPlan(c),classKey:'templar',level:39,character};
 const limits=planner.pointLimits(c,initial);
 const apply=(p,key,n,used)=>planner.updatePlan(c,p,confirmRemaining(p,planner.pointLimits(c,p),key,n,used)||{});
 test('latest local snapshot: unknown skill cost, known 104 crystals',()=>{
- assert.deepEqual(characterPoints(c,character,latest.gearBonus),{sp:null,stigma:null,crystal:104,battle:0});
- assert.deepEqual(characterPoints(c,character,{}),{sp:149,stigma:13,crystal:104,battle:0}); // conditional zero-bonus assumption only
+ assert.deepEqual(characterPoints(c,character,latest.gearBonus),{sp:null,stigma:null,crystal:104,battle:0,ariel:0});
+ assert.deepEqual(characterPoints(c,character,{}),{sp:149,stigma:13,crystal:104,battle:0,ariel:0}); // conditional zero-bonus assumption only
 });
 test('complete bonuses derive total from confirmed balance',()=>{
  const next=apply(initial,'sp',30,149);

@@ -1,7 +1,7 @@
-type Item = {id: string; name: string; kind: string; grade: string; level: number};
+type Item = {id: string; name: string; koName?: string; kind: string; grade: string; level: number};
 type Learning = {level: number; autoLearn: boolean; requiredCharacterLevel: number; skillPoints: number; stigmaPoints: number; ascensionRequirement: string};
 type Description = {text: string; unresolvedValues: number; valueScope?: 'base-client-values'; resolvedReferences?: {reference: string; value: string}[]};
-type Skill = {id: string; name: string; classKey: string; learning?: Learning[]; description?: Description | null; traits?: Description | null};
+type Skill = {id: string; name: string; koName?: string; classKey: string; learning?: Learning[]; description?: Description | null; traits?: Description | null};
 type Recipe = {id: string; itemId: string; outputQuantity: number; category: string; race: string; masteryLevel: number;
   baseRateCurve?: {group: string; rawRates: number[]; scope: 'client-table-estimate'; percentDivisor: 1000000} | null;
   craftType?: 'Common' | 'Succession'; successionCandidateItemIds?: string[];
@@ -28,6 +28,7 @@ export function parseClientIndex(value: unknown): ClientIndex {
       seen.add(row.id);
     }
   }
+  for (const row of [...data.items,...data.skills]) if(row.koName!==undefined&&!text(row.koName)) fail();
   const ids = new Set(data.items.map((i: Item) => i.id));
   for (const i of data.items) if (!text(i.name) || !text(i.kind) || !text(i.grade) || !number(i.level, 0, 10000)) fail();
   const classes = ['assassin', 'gladiator', 'templar', 'ranger', 'elementalist', 'sorcerer', 'cleric', 'chanter'];

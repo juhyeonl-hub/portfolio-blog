@@ -24,7 +24,7 @@ for(const profile of classes.CLASSES){
  const pvp=purpose.changeBuildPurpose(c,input,'pvp');assert.equal(pvp.level,45);assert.deepEqual(pvp.pointBudget,input.pointBudget);
  assert.equal(purpose.changeBuildPurpose(c,input,'pve'),input,'selected purpose is a no-op');
  const low=purpose.changeBuildPurpose(c,{...input,level:20,mode:'pvp'},'leveling');assert.equal(low.level,20);assert.deepEqual(low.pointBudget,input.pointBudget);
- for(const [level,mode,expected] of [[20,'safe','damage'],[45,'damage','safe'],[45,'pvp','pvp']]){
+ for(const [level,mode,expected] of [[20,'safe','damage'],[45,'damage','damage'],[45,'pvp','pvp']]){
   const input={...empty,level,mode,pointBudget:{sp:90,stigma:8,crystal:40,battle:20}};
   const snapshot=JSON.stringify(input),output=purpose.recommendPurposeBuild(c,input);
   assert.equal(JSON.stringify(input),snapshot,'source plan must not mutate');

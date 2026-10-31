@@ -19,7 +19,7 @@ export function changeDraftNode(c:Catalog,p:Plan,b:Board,id:string):Plan {
 }
 export function draftProblems(c:Catalog,p:Plan):string[]{
  const result:string[]=[];const n=totals(c,p);
- if(n.sp>n.spMax||n.stigma>n.stigmaMax||n.crystal>n.crystalMax||n.battle>n.battleMax)result.push('사용 포인트가 총량을 넘습니다. 배분을 줄이거나 총량을 확인하세요.');
+ if(n.sp>n.spMax||n.stigma>n.stigmaMax||n.crystal>n.crystalMax||n.battle>n.battleMax||n.ariel>n.arielMax)result.push('사용 포인트가 총량을 넘습니다. 배분을 줄이거나 총량을 확인하세요.');
  if(c.skills.some(s=>(p.base[s.id]??(s.stigma?0:1))>maxBase(s,p.level,p.ascensionGrade3Confirmed)))result.push('현재 레벨·승급 조건에 맞지 않는 스킬이 있습니다.');
  if((p.stigmaSkills?.length||0)>[22,27,32,37].filter(l=>p.level>=l).length)result.push('사용 가능한 스티그마 칸을 초과했습니다.');
  if(c.boards.some(b=>{const chosen=b.nodes.filter(n=>p.nodes.includes(n.id)&&!n.autoLearn);const linked=connected(b,p.nodes);return chosen.some(n=>b.requiredLevel>p.level||n.requiredLevel>p.level||!linked.includes(n.id));}))result.push('데바니온의 레벨 조건이나 연결 경로를 확인하세요.');

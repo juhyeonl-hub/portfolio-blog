@@ -29,12 +29,12 @@ export default function CharacterPoints({catalog,plan,points,onChange}:{catalog:
  <h3>{t('사용 / 남음 / 총량')}</h3><p>{t('사용은 조회 정보로 계산합니다. 게임에 남은 양을 입력하면, 사용량을 아는 항목의 총량과 추천이 바로 바뀝니다.')}</p>
  {!character&&<p>{t(plan.confirmedRemaining?'직접 입력해 둔 남은 포인트입니다. 같은 캐릭터를 같은 레벨로 다시 조회하면 이 값을 이어서 사용합니다.':'캐릭터를 연결하면 사용량을 확인할 수 있습니다. 지금은 총량으로 추천을 볼 수 있습니다.')}</p>}
  {character&&!sameLevel&&<p>{t('다른 레벨의 목표를 보는 중입니다. 잔여량 입력은 조회한 캐릭터 레벨에서 할 수 있습니다.')}</p>}
- <div className="growth-points-grid">{(['sp','stigma','crystal','battle'] as const).map((key,i)=>{const used=spent[key],remaining=pointBalance(points[key],used),confirmed=plan.confirmedRemaining?.[key];return <div className="growth-point-card" key={key}>
- <b>{t(['스킬 포인트','스티그마 포인트','데바니온 포인트','아스펠 결정'][i])}</b>
+ <div className="growth-points-grid">{(['sp','stigma','crystal','battle','ariel'] as const).map((key,i)=>{const used=spent[key],remaining=pointBalance(points[key],used),confirmed=plan.confirmedRemaining?.[key];return <div className="growth-point-card" key={key}>
+ <b>{t(['스킬 포인트','스티그마 포인트','데바니온 포인트','아스펠 결정','아리엘 결정'][i])}</b>
  <div className="point-metrics">
  <div><span>{t('사용')}</span><strong>{used===null?t(character&&gear===null&&i<2?'장비 확인 중…':'확인 불가'):used}</strong></div>
- <label>{t('남음')}<PointNumber label={t(['남은 스킬 포인트','남은 스티그마 포인트','남은 데바니온 포인트','남은 아스펠 결정'][i])} value={confirmed} disabled={!sameLevel} key={JSON.stringify([character?.region,character?.profile?.serverId,character?.profile?.characterId,character?.profile?.characterLevel,plan.level])} placeholder={t('게임에서 확인')} onValue={value=>{const patch=confirmRemaining(plan,points,key,value,used);if(patch)onChange(patch)}}/></label>
- <label>{t('총량')}<PointNumber label={t(['스킬 포인트','스티그마 포인트','데바니온 포인트','아스펠 결정'][i])} value={points[key]} onValue={value=>onChange({pointBudget:{...points,[key]:value}})}/></label>
+ <label>{t('남음')}<PointNumber label={t(['남은 스킬 포인트','남은 스티그마 포인트','남은 데바니온 포인트','남은 아스펠 결정','남은 아리엘 결정'][i])} value={confirmed} disabled={!sameLevel} key={JSON.stringify([character?.region,character?.profile?.serverId,character?.profile?.characterId,character?.profile?.characterLevel,plan.level])} placeholder={t('게임에서 확인')} onValue={value=>{const patch=confirmRemaining(plan,points,key,value,used);if(patch)onChange(patch)}}/></label>
+ <label>{t('총량')}<PointNumber label={t(['스킬 포인트','스티그마 포인트','데바니온 포인트','아스펠 결정','아리엘 결정'][i])} value={points[key]??0} onValue={value=>onChange({pointBudget:{...points,[key]:value}})}/></label>
  </div>
  {used===null?<small>{t('사용량 미확인: 남은 양은 보존하고, 추천은 입력한 총량으로 계산합니다.')}</small>:sameLevel&&confirmed!==undefined&&remaining!==confirmed?<small>{t('계산한 남은 포인트와 직접 입력한 값이 다릅니다. 추천은 입력한 총량으로 계산합니다.')}</small>:<small>{t('사용: 조회 기반 · 남음: 직접 확인 · 총량: 추천 계산용')}</small>}
  </div>})}</div>

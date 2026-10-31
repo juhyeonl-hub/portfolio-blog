@@ -28,7 +28,7 @@ export function previewRankerBoards(catalog:Catalog,plan:Plan,ranker:Ranker,prof
  // Fit only after validating the complete observed target; failed data must never become an empty plan.
  if(options.fitToBudget)next.nodes=recommendTargetNodes(catalog,plan,next);
  const used=totals(catalog,next);
- if((options.fitToBudget||!options.allowUnavailable)&&(used.crystal>used.crystalMax||used.battle>used.battleMax))throw Error(`내 데바니온 총량이 부족합니다. 필요한 결정 ${used.crystal}, 아스펠 ${used.battle}. 포인트 설정에서 실제 총량을 확인하세요.`);
+ if((options.fitToBudget||!options.allowUnavailable)&&(used.crystal>used.crystalMax||used.battle>used.battleMax||used.ariel>used.arielMax))throw Error(`내 데바니온 총량이 부족합니다. 필요한 결정 ${used.crystal}, 아스펠 ${used.battle}, 아리엘 ${used.ariel}. 포인트 설정에서 실제 총량을 확인하세요.`);
  // Only remove unavailable existing choices; never manufacture a ranker's hidden specializations.
  for(const skill of catalog.skills){const level=finalLevel(catalog,next,skill);next.specs[skill.id]=(plan.specs[skill.id]||[]).filter(id=>skill.specializations.some(s=>s.id===id&&s.requiredParentLevel<=level)).slice(0,slots(skill,level))}
  return next;

@@ -18,6 +18,8 @@ public class ShadowcraftService {
     private final JdbcTemplate jdbc;
     private final Map<String, JsonNode> snapshots = new HashMap<>();
     private final Map<String, JsonNode> profiles = new HashMap<>();
+    private final Map<String,JsonNode> boardRefresh = new java.util.concurrent.ConcurrentHashMap<>();
+    public void boardRefreshResult(String key,boolean ok){var status=mapper.createObjectNode().put("checkedAt",Instant.now().toString()).put("ok",ok);if(ok)status.put("lastSuccess",Instant.now().toString());else if(boardRefresh.containsKey(key)&&boardRefresh.get(key).has("lastSuccess"))status.set("lastSuccess",boardRefresh.get(key).get("lastSuccess"));boardRefresh.put(key,status);}
     public ShadowcraftService(ObjectMapper mapper, JdbcTemplate jdbc) throws Exception {
         this.mapper = mapper; this.jdbc = jdbc;
         for (JsonNode profile : resource("class-profiles.json")) {
@@ -38,13 +40,14 @@ public class ShadowcraftService {
         ObjectNode result = rows.isEmpty() ? snapshots.get(key).deepCopy() : (ObjectNode) mapper.readTree(rows.getFirst());
         List<String> news = jdbc.query("SELECT payload FROM shadowcraft_catalogs WHERE class_key = 'official-news'", (r,n) -> r.getString(1));
         if (!news.isEmpty()) result.set("news", mapper.readTree(news.getFirst()));
+        if(boardRefresh.containsKey(key))result.set("boardRefresh",boardRefresh.get(key));
         return result;
     }
     @Transactional
     public JsonNode update(String key, JsonNode fresh) throws Exception {
         JsonNode profile = profile(key);
         if (fresh == null || !fresh.isObject() || !key.equals(fresh.path("classKey").asText()) || fresh.path("version").asText().isBlank()
-                || !fresh.path("skills").isArray() || fresh.path("skills").size() != 35 || !fresh.path("boards").isArray() || fresh.path("boards").size() != 5
+                || !fresh.path("skills").isArray() || fresh.path("skills").size() != 35 || !fresh.path("boards").isArray() || (fresh.path("boards").size() < 5 || fresh.path("boards").size() > 8)
                 || !fresh.path("characterLevels").isArray()) invalid("원본 스키마 변경 · 반영 중지");
         Set<String> ids = new HashSet<>();
         for (JsonNode skill : fresh.path("skills")) {
@@ -69,11 +72,19 @@ public class ShadowcraftService {
             if (!actual.add(board.path("id").asInt()) || !expected.contains(board.path("id").asInt()) || !board.path("nodes").isArray()
                     || board.path("nodes").size() < 80 || board.path("nodes").size() > 225
                     || !board.path("name").isTextual() || !within(board.path("requiredLevel"), 1, 100)
-                    || !List.of("daevanioncrystal", "battlecrystal").contains(board.path("pointKind").path("code").asText())) invalid("보드 검증 실패");
+                    || !List.of("daevanioncrystal", "battlecrystal", "conquestcrystal").contains(board.path("pointKind").path("code").asText())) invalid("보드 검증 실패");
             boolean hasRoot = false;
+            Set<String> nodeIds = new HashSet<>(),coordinates = new HashSet<>();
             for (JsonNode node : board.path("nodes")) {
                 if (!node.path("id").isTextual() || !node.path("name").isTextual() || !node.path("iconPath").isTextual()
                         || !node.path("autoLearn").isBoolean() || !within(node.path("requiredLevel"), 1, 100)) invalid("노드 형식 검증 실패");
+                if(!node.path("id").asText().matches("\\d{1,20}") || !nodeIds.add(node.path("id").asText()) || !coordinates.add(node.path("row")+","+node.path("column"))
+                        || !node.path("iconPath").asText().matches("/images/[A-Za-z0-9_./-]+") || node.path("iconPath").asText().contains("..")) invalid("노드 식별자 검증 실패");
+                if(node.path("autoLearn").asBoolean()&&node.path("pointCost").asInt()!=0)invalid("시작 노드 비용 검증 실패");
+                if(node.has("stats")){
+                    if(!node.path("stats").isArray()||node.path("stats").size()>10)invalid("능력치 검증 실패");
+                    for(JsonNode stat:node.path("stats"))if(!stat.path("name").isTextual()||!stat.path("format").isTextual()||!stat.path("value").isNumber()||!Double.isFinite(stat.path("value").asDouble()))invalid("능력치 검증 실패");
+                }
                 hasRoot |= node.path("autoLearn").asBoolean();
             }
             if (!hasRoot) invalid("보드 시작 노드 누락");
