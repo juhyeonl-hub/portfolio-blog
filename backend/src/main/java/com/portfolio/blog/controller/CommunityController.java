@@ -1,7 +1,7 @@
 package com.portfolio.blog.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 import com.portfolio.blog.service.ClientAddress;
 import com.portfolio.blog.service.CommunityService;
 import com.portfolio.blog.service.SteamLoginService;
@@ -92,7 +92,7 @@ public class CommunityController {
     private JsonNode body(HttpServletRequest request)throws Exception {
         byte[] bytes=request.getInputStream().readNBytes(32001);
         if(bytes.length>32000)throw new ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE,"입력이 너무 큽니다.");
-        try{return mapper.readTree(bytes);}catch(com.fasterxml.jackson.core.JsonProcessingException e){throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"JSON 형식을 확인하세요.");}
+        try{return mapper.readTree(bytes);}catch(tools.jackson.core.JacksonException e){throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"JSON 형식을 확인하세요.");}
     }
     private ResponseEntity<?> response(Object value){return ResponseEntity.ok().cacheControl(CacheControl.noStore()).body(value);}
     @ExceptionHandler(ResponseStatusException.class)

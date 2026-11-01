@@ -1,6 +1,6 @@
 package com.portfolio.blog.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import com.portfolio.blog.service.AccountSettingsService;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -21,8 +21,8 @@ public class AccountSettingsController {
     public ResponseEntity<?> save(Authentication auth,HttpServletRequest request)throws java.io.IOException {
         byte[] bytes=request.getInputStream().readNBytes(AccountSettingsService.MAX_BYTES+1);
         if(bytes.length>AccountSettingsService.MAX_BYTES)throw new ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE,"설정은 1 MB 이하여야 합니다.");
-        com.fasterxml.jackson.databind.JsonNode input;
-        try{input=mapper.readTree(bytes);}catch(com.fasterxml.jackson.core.JsonProcessingException e){throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"JSON 형식을 확인하세요.");}
+        tools.jackson.databind.JsonNode input;
+        try{input=mapper.readTree(bytes);}catch(tools.jackson.core.JacksonException e){throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"JSON 형식을 확인하세요.");}
         return ResponseEntity.ok().cacheControl(CacheControl.noStore()).body(settings.save(auth.getName(),input));
     }
     @ExceptionHandler(ResponseStatusException.class)

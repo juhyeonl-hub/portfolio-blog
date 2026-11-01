@@ -1,13 +1,14 @@
 import {useEffect,useState} from 'react';
 import {type Catalog,type Plan,type PointBudget} from '@/lib/planner';
-import {characterPoints,pointBalance,confirmRemaining} from '@/lib/character-points';
+import {characterPointReport,pointBalance,confirmRemaining} from '@/lib/character-points';
 import {queryArmory} from '@/lib/armory-client';
 import {useLocale} from './locale';
 import PointNumber from './point-number';
 import './leveling-guide.css';
 export default function CharacterPoints({catalog,plan,points,onChange}:{catalog:Catalog;plan:Plan;points:PointBudget;onChange:(patch:Partial<Plan>)=>void}){
- const {t}=useLocale();const character=plan.character;
- const [gear,setGear]=useState<{source:any;bonus:Record<string,number>|null}|null>(null);
+ const {t,skill:skillName}=useLocale();const character=plan.character;
+ const [gear,setGear]=useState<{source:any;bonus:Record<string,number>|null;failure?:boolean}|null>(null);
+ const [retry,setRetry]=useState(0);
  useEffect(()=>{
   if(!character)return;const abort=new AbortController();setGear(null);
   (async()=>{try{
@@ -21,14 +22,20 @@ export default function CharacterPoints({catalog,plan,points,onChange}:{catalog:
     for(const s of skills||[]){if(!Number.isInteger(s.level)||s.level<0)throw Error('invalid bonus');bonus[String(s.id)]=(bonus[String(s.id)]||0)+s.level;}
    }}
    await Promise.all([worker(),worker()]);if(!abort.signal.aborted)setGear({source:character,bonus});
-  }catch{if(!abort.signal.aborted)setGear({source:character,bonus:null});}})();
+  }catch{if(!abort.signal.aborted){setGear({source:character,bonus:null,failure:true});abort.abort();}}})();
   return()=>abort.abort();
- },[character,catalog.classKey,plan.classKey]);
- const spent=characterPoints(catalog,character,gear&&gear.source===character?gear.bonus:null),sameLevel=!!character&&plan.level===character.profile?.characterLevel;
+ },[character,catalog.classKey,plan.classKey,retry]);
+ const report=characterPointReport(catalog,character,gear&&gear.source===character?gear.bonus:null),spent=report.spent,sameLevel=!!character&&plan.level===character.profile?.characterLevel;
  return <section className="growth-actual-points" aria-label={t('내 캐릭터 포인트')}>
  <h3>{t('사용 / 남음 / 총량')}</h3><p>{t('사용은 조회 정보로 계산합니다. 게임에 남은 양을 입력하면, 사용량을 아는 항목의 총량과 추천이 바로 바뀝니다.')}</p>
  {!character&&<p>{t(plan.confirmedRemaining?'직접 입력해 둔 남은 포인트입니다. 같은 캐릭터를 같은 레벨로 다시 조회하면 이 값을 이어서 사용합니다.':'캐릭터를 연결하면 사용량을 확인할 수 있습니다. 지금은 총량으로 추천을 볼 수 있습니다.')}</p>}
  {character&&!sameLevel&&<p>{t('다른 레벨의 목표를 보는 중입니다. 잔여량 입력은 조회한 캐릭터 레벨에서 할 수 있습니다.')}</p>}
+ {character&&report.reasons.length>0&&<div className="point-diagnostics" role="status"><strong>{t('사용량을 계산하려면 추가 확인이 필요해요')}</strong><ul>
+ {report.reasons.includes('boards')&&<li>{t('데바니온 조회가 일부 빠졌거나 저장된 노드 정보와 다릅니다. 위의 새로 조회를 눌러 주세요.')}</li>}
+ {report.reasons.includes('gear')&&<li>{t(!gear||gear.source!==character?'장비의 스킬 보너스를 확인하고 있어요. 확인이 끝나면 사용량을 다시 계산합니다.':'장비 보너스를 모두 확인하지 못했어요. 다시 확인해도 안 되면 게임에서 총 포인트를 확인해 입력하세요.')}</li>}
+ {report.reasons.includes('skills')&&<li>{t('조회된 스킬 레벨이 일부 없거나 읽을 수 없습니다. 위의 새로 조회를 눌러 주세요.')}</li>}
+ {report.reasons.includes('bonus')&&<li>{t('조회된 스킬 레벨과 보너스가 맞지 않아 사용량을 확정할 수 없어요. 게임의 총 포인트를 입력하면 추천은 계속 볼 수 있어요.')}<span> {report.mismatches.slice(0,3).map(id=>skillName(catalog.skills.find(s=>s.id===id)?.name||id)).join(' · ')}</span></li>}
+ </ul>{gear?.source===character&&gear?.failure&&<button type="button" className="button secondary" onClick={()=>{setGear(null);setRetry(v=>v+1)}}>{t('장비 보너스 다시 확인')}</button>}</div>}
  <div className="growth-points-grid">{(['sp','stigma','crystal','battle','ariel'] as const).map((key,i)=>{const used=spent[key],remaining=pointBalance(points[key],used),confirmed=plan.confirmedRemaining?.[key];return <div className="growth-point-card" key={key}>
  <b>{t(['스킬 포인트','스티그마 포인트','데바니온 포인트','아스펠 결정','아리엘 결정'][i])}</b>
  <div className="point-metrics">

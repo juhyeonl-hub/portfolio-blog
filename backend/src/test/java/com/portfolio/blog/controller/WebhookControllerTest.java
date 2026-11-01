@@ -1,6 +1,6 @@
 package com.portfolio.blog.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import com.portfolio.blog.config.AppProperties;
 import com.portfolio.blog.security.GitHubWebhookVerifier;
 import com.portfolio.blog.service.GitHubSyncService;
@@ -38,7 +38,7 @@ class WebhookControllerTest {
                 syncService,
                 new GitHubWebhookVerifier(appProperties),
                 appProperties,
-                new ObjectMapper());
+                tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build());
     }
 
     @Test

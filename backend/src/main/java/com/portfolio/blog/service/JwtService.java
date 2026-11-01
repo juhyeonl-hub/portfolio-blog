@@ -29,6 +29,7 @@ public class JwtService {
         Date expiry = new Date(now.getTime() + appProperties.getJwt().getExpirationMs());
 
         return Jwts.builder()
+                .json(JwtJson.SERIALIZER)
                 .subject(username)
                 .issuedAt(now)
                 .expiration(expiry)
@@ -51,6 +52,7 @@ public class JwtService {
 
     private Claims parseClaims(String token) {
         return Jwts.parser()
+                .json(JwtJson.DESERIALIZER)
                 .verifyWith(getSigningKey())
                 .build()
                 .parseSignedClaims(token)

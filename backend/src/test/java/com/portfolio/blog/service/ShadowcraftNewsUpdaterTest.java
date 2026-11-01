@@ -1,6 +1,6 @@
 package com.portfolio.blog.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -17,7 +17,7 @@ class ShadowcraftNewsUpdaterTest {
         when(response.statusCode()).thenReturn(200);
         when(response.body()).thenReturn("{\"contentList\":[{\"id\":1,\"title\":\"Official update\"}]}".getBytes());
         when(client.sendAsync(any(HttpRequest.class),org.mockito.ArgumentMatchers.<HttpResponse.BodyHandler<byte[]>>any())).thenReturn(java.util.concurrent.CompletableFuture.completedFuture(response));
-        new ShadowcraftNewsUpdater(service,new ObjectMapper(),client).refresh();
+        new ShadowcraftNewsUpdater(service,tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(),client).refresh();
         verify(service).updateNews(argThat(n->n.path("contentList").isArray()));
         verify(service,never()).update(anyString(),any());
     }
@@ -28,7 +28,7 @@ class ShadowcraftNewsUpdaterTest {
         HttpResponse<byte[]> response=mock(HttpResponse.class);
         when(client.sendAsync(any(HttpRequest.class),org.mockito.ArgumentMatchers.<HttpResponse.BodyHandler<byte[]>>any())).thenReturn(java.util.concurrent.CompletableFuture.completedFuture(response));
         when(response.statusCode()).thenReturn(403);
-        var updater=new ShadowcraftNewsUpdater(service,new ObjectMapper(),client);
+        var updater=new ShadowcraftNewsUpdater(service,tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(),client);
         updater.refresh();
         when(response.statusCode()).thenReturn(200);
         when(response.body()).thenReturn("<html>invalid</html>".getBytes());

@@ -1,6 +1,6 @@
 package com.portfolio.blog.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import com.portfolio.blog.service.OfficialRankingProbe;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

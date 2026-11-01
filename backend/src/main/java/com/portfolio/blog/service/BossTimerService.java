@@ -1,8 +1,8 @@
 package com.portfolio.blog.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,7 +42,7 @@ public class BossTimerService {
         this.mapper = mapper; this.source = source; this.clock = clock; this.enabled = enabled;
         try (var in = getClass().getResourceAsStream("/shadowcraft/servers.json")) {
             JsonNode directory = mapper.readTree(in);
-            directory.fields().forEachRemaining(region -> region.getValue().forEach(s ->
+            directory.properties().iterator().forEachRemaining(region -> region.getValue().forEach(s ->
                 entries.put(s.path("serverId").asInt(), new Entry(region.getKey(), s.path("raceId").asInt()))));
         }
     }
@@ -95,7 +95,7 @@ public class BossTimerService {
             throw new IllegalArgumentException("invalid feed");
         var bosses = root.path("bosses");
         ObjectNode out = mapper.createObjectNode();
-        var records = bosses.fields();
+        var records = bosses.properties().iterator();
         while (records.hasNext()) {
             var record = records.next();
             String id = record.getKey();

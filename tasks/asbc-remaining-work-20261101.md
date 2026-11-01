@@ -1,0 +1,24 @@
+# Remaining ASBC follow-up, excluding frontend automation
+Owner: Codex implementation/QA; Claude allocation and read-only review.
+[Task Goal]: Finish feasible remaining user-approved work: game update review visibility, honest point diagnostics/recovery, evidence-backed macro guidance, Jackson3 migration preserving persisted/API semantics, and actual mobile verification where a physical device is available.
+Base: 618e8c6234bece6defe682a58c3bb99fe0f46111.
+Scope: existing updater/status UI and backend DTO, character-points diagnostics and recovery UI, macro guidance and verified evidence only; Jackson3 imports/config/converters/contracts; relevant tests and 9 locale copy. No frontend CI/automatic test workflow, no new deployment automation, no unreviewed new game rules, no unrelated edits.
+Expected: update failures/review-required reasons visible; manual allocations retained; unknown values never zero; missing-data reasons actionable; unsupported macro combos remain unverified; existing sessions/settings/public builds JSON and DB unchanged across migration.
+Verification: targeted regressions; type/compiler/full relevant suites; old/new PostgreSQL and JSON contracts; desktop/mobile browser interactions; Claude review before scoped releases. Physical device unavailable in initial tool inventory; user asked whether they can verify. Do not count viewport emulation as physical testing.
+Authorization: user explicitly excluded frontend automation and asked all other listed items to proceed. Existing scoped reviewed release authorization persists. Preserve primary/worktree files by initial hashes. No new schedulers or secrets/auth policy changes.
+Last verified: implementation and checks below. Last reviewed: allocation completed; combined read-only review passed, no blocking findings. Next: scoped release and production checks. Physical Android/iPhone: user deferred until after rest; beginner exploration checklist prepared, no more authentication/device requests tonight.
+Artifacts: D:/CodexData/Projects/ASBC/artifacts/remaining-work-20261101/.
+
+## Implemented and verified
+- Existing six-hour updater: safe failure codes, persisted last success, visible review/failure state. Names/icons can refresh only when rules match; changed costs/effects/nodes stay pending and previous rules remain. No new scheduler or frontend automation.
+- Point diagnostics: missing character/boards/gear/skills or mismatch is explained, gear lookup can retry. Unknown usage remains unknown, manual remaining is preserved. Live GreenOrc lookup still could not confirm all gear bonuses; do not claim used skill/stigma figures verified against game.
+- Templar Lv45 PvE: public basic repeat layout from https://aion2.gaming.tools/builds/templar/pve (checked 2026-11-01, source 2.0.9.0), five attack skills, separate basic attack and manual utility keys. No PvP/leveling reuse. Not tested in game.
+- Application JSON, MVC/WebSocket and JJWT bridge moved to Jackson 3.1.7. Flyway 11.14.1 still internally needs Jackson2; patched 2.21.8 retained solely there. HTTP uses only Jackson3 converters, not the Jackson2 application bridge.
+- Backend 125 tests: zero failures/errors/skips. Frontend typecheck, targeted cases, 49 regression suites, lint and production build passed. Final package and build passed.
+- Isolated old/new PostgreSQL upgrade: actual old session cookie, settings, public build and catalog canonical JSON retained; CSRF and protected routes pass; new writes after upgrade pass. Dates/nulls/Unicode/long IDs/JsonNode and real host/guest WebSocket roundtrip pass. No production database used in this test.
+- Dependency scan: 103 resolved backend dependencies, zero OSV advisories at scan; npm full/production audit zero. This is bounded scan evidence, not a claim of no possible security issue.
+- Browser: 1200x900 desktop and 390x844 responsive view; Korean/English macro, PvP/44-level exclusion, manual remaining 30/5 preserved after retry/reload, point blank→370. Injected local-only updater failure/review fixture visibly rendered. Screenshots and JSON results in artifacts.
+- docs/qa/mobile-beginner-20261101.md provides exploratory Android Chrome/iPhone Safari steps with a short failure report format; physical phone and real game macro behavior remain pending. docs/qa/game-data-review-20261101.md documents manual rule approval through the existing admin catalog endpoint.
+
+## Cross-review
+Claude read-only review asbc-remaining-work-review-20261101-1793508243316: process exit 0; execution finished/status0/error null/scope[]. No blocking findings. Did not independently rerun tests or claim physical/game verification. Existing conservative catalog-level reviewRequired remains after some name changes; fine-grained status flags control the public notice. jackson-annotations resolved to one dependency coordinate: [INFO]          \- com.fasterxml.jackson.core:jackson-annotations:jar:2.21:compile.

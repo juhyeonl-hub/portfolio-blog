@@ -1,7 +1,7 @@
 package com.portfolio.blog.controller;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
 import com.portfolio.blog.config.AppProperties;
 import com.portfolio.blog.security.GitHubWebhookVerifier;
 import com.portfolio.blog.service.GitHubSyncService;
@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.Map;
 
 @RestController
@@ -56,7 +55,7 @@ public class WebhookController {
         Map<String, Object> payload;
         try {
             payload = objectMapper.readValue(rawPayload, PAYLOAD_TYPE);
-        } catch (IOException e) {
+        } catch (tools.jackson.core.JacksonException e) {
             return ResponseEntity.badRequest()
                     .body(Map.of("status", "rejected", "reason", "invalid JSON payload"));
         }

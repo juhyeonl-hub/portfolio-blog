@@ -1,5 +1,5 @@
 package com.portfolio.blog.service;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import java.nio.file.*;
@@ -19,17 +19,17 @@ class ShadowcraftBoardUpdaterTest {
   assertThat(subscriber.getBody().toCompletableFuture()).isCompletedExceptionally();verify(subscription).cancel();
  }
  @Test void removedNodesCannotReplaceTheWorkingCatalog()throws Exception{
-  var service=new ShadowcraftService(new ObjectMapper(),mock(JdbcTemplate.class));var current=service.catalog("templar").path("catalog");
-  var boards=current.path("boards").deepCopy();((com.fasterxml.jackson.databind.node.ArrayNode)boards.get(0).path("nodes")).remove(1);
+  var service=new ShadowcraftService(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(),mock(JdbcTemplate.class));var current=service.catalog("templar").path("catalog");
+  var boards=current.path("boards").deepCopy();((tools.jackson.databind.node.ArrayNode)boards.get(0).path("nodes")).remove(1);
   assertThatThrownBy(()->ShadowcraftBoardUpdater.assertCompatible(current,boards)).hasMessage("removed-node-needs-review");
  }
  @Test void realSourceFixturesStayCompatibleWhenProvided()throws Exception{
   var root=System.getProperty("boardFixtures");if(root==null)return;
-  var service=new ShadowcraftService(new ObjectMapper(),mock(JdbcTemplate.class));
+  var service=new ShadowcraftService(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(),mock(JdbcTemplate.class));
   for(var entry:ShadowcraftBoardUpdater.SOURCES.entrySet()){
    var boards=ShadowcraftBoardUpdater.extractBoards(Files.readString(Path.of(root,entry.getKey()+"-upstream.txt")),entry.getValue());
    assertThat(boards.size()).isEqualTo(6);var catalog=service.catalog(entry.getKey()).path("catalog");ShadowcraftBoardUpdater.assertCompatible(catalog,boards);
-   var next=(com.fasterxml.jackson.databind.node.ObjectNode)catalog.deepCopy();next.set("boards",boards);service.update(entry.getKey(),next);
+   var next=(tools.jackson.databind.node.ObjectNode)catalog.deepCopy();next.set("boards",boards);service.update(entry.getKey(),next);
   }
  }
 
@@ -43,40 +43,40 @@ class ShadowcraftBoardUpdaterTest {
   assertThat(ShadowcraftBoardUpdater.extractBoards(new String(response.body(),java.nio.charset.StandardCharsets.UTF_8),"templar").size()).isEqualTo(6);
  }
  @Test void knownNameRefreshKeepsManualRulesAndReportsNewOrChangedSkills()throws Exception{
-  var mapper=new ObjectMapper();var service=new ShadowcraftService(mapper,mock(JdbcTemplate.class));
-  var current=(com.fasterxml.jackson.databind.node.ObjectNode)service.catalog("templar").path("catalog");
-  var source=current.deepCopy();((com.fasterxml.jackson.databind.node.ObjectNode)source.path("skills").get(0)).put("name","확인한 새 이름");
+  var mapper=tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build();var service=new ShadowcraftService(mapper,mock(JdbcTemplate.class));
+  var current=(tools.jackson.databind.node.ObjectNode)service.catalog("templar").path("catalog");
+  var source=current.deepCopy();((tools.jackson.databind.node.ObjectNode)source.path("skills").get(0)).put("name","확인한 새 이름");
   var next=ShadowcraftBoardUpdater.mergeKnownSkillNames(current,source);
   assertThat(next.path("skills").get(0).path("name").asText()).isEqualTo("확인한 새 이름");
   assertThat(next.path("skillDataCheck").path("renamed").asInt()).isEqualTo(1);
   assertThat(current.path("skills").get(0).path("name").asText()).isNotEqualTo("확인한 새 이름");
-  ((com.fasterxml.jackson.databind.node.ObjectNode)source.path("skills").get(1).path("learning").get(1)).put("skillPoints",999);
-  var addition=source.path("skills").get(2).deepCopy();((com.fasterxml.jackson.databind.node.ObjectNode)addition).put("id","99999999");
-  ((com.fasterxml.jackson.databind.node.ArrayNode)source.path("skills")).add(addition);
+  ((tools.jackson.databind.node.ObjectNode)source.path("skills").get(1).path("learning").get(1)).put("skillPoints",999);
+  var addition=source.path("skills").get(2).deepCopy();((tools.jackson.databind.node.ObjectNode)addition).put("id","99999999");
+  ((tools.jackson.databind.node.ArrayNode)source.path("skills")).add(addition);
   next=ShadowcraftBoardUpdater.mergeKnownSkillNames(current,source);
   assertThat(next.path("skills").get(1)).isEqualTo(current.path("skills").get(1));
   assertThat(next.path("skills").size()).isEqualTo(35);
   assertThat(next.path("skillDataCheck").path("changedRules").asInt()).isEqualTo(1);
   assertThat(next.path("skillDataCheck").path("added").asInt()).isEqualTo(1);
   assertThat(next.path("reviewRequired").asBoolean()).isTrue();
-  ((com.fasterxml.jackson.databind.node.ArrayNode)source.path("skills")).remove(2);
+  ((tools.jackson.databind.node.ArrayNode)source.path("skills")).remove(2);
   assertThat(ShadowcraftBoardUpdater.mergeKnownSkillNames(current,source).path("skillDataCheck").path("removed").asInt()).isEqualTo(1);
  }
  @Test void unsafeOrDuplicateSourceSkillsCannotReplaceGoodData()throws Exception{
-  var service=new ShadowcraftService(new ObjectMapper(),mock(JdbcTemplate.class));
-  var current=(com.fasterxml.jackson.databind.node.ObjectNode)service.catalog("templar").path("catalog");var source=current.deepCopy();
-  ((com.fasterxml.jackson.databind.node.ArrayNode)source.path("skills")).add(source.path("skills").get(0).deepCopy());
+  var service=new ShadowcraftService(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(),mock(JdbcTemplate.class));
+  var current=(tools.jackson.databind.node.ObjectNode)service.catalog("templar").path("catalog");var source=current.deepCopy();
+  ((tools.jackson.databind.node.ArrayNode)source.path("skills")).add(source.path("skills").get(0).deepCopy());
   assertThatThrownBy(()->ShadowcraftBoardUpdater.mergeKnownSkillNames(current,source)).hasMessage("skill-identity");
-  source.set("skills",current.path("skills").deepCopy());((com.fasterxml.jackson.databind.node.ObjectNode)source.path("skills").get(0)).put("name","<script>oops</script>");
+  source.set("skills",current.path("skills").deepCopy());((tools.jackson.databind.node.ObjectNode)source.path("skills").get(0)).put("name","<script>oops</script>");
   assertThatThrownBy(()->ShadowcraftBoardUpdater.mergeKnownSkillNames(current,source)).hasMessage("skill-identity");
  }
 
  @Test void observedSkillSourcesAreParsedWithoutExecutingScripts()throws Exception{
   var root=System.getProperty("skillFixtures");if(root==null)return;
-  var service=new ShadowcraftService(new ObjectMapper(),mock(JdbcTemplate.class));
+  var service=new ShadowcraftService(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(),mock(JdbcTemplate.class));
   for(String key:List.of("templar","ranger")){
    var source=ShadowcraftBoardUpdater.extractCatalog(Files.readString(Path.of(root,key+"-source.html")),key);
-   var current=(com.fasterxml.jackson.databind.node.ObjectNode)service.catalog(key).path("catalog");
+   var current=(tools.jackson.databind.node.ObjectNode)service.catalog(key).path("catalog");
    var next=ShadowcraftBoardUpdater.mergeKnownSkillNames(current,source);
    Files.writeString(Path.of(root,key+"-verified-presets.json"),source.path("characters").toPrettyString());
    assertThat(next.path("skills").size()).isEqualTo(35);
@@ -84,4 +84,33 @@ class ShadowcraftBoardUpdaterTest {
   }
  }
 
+ @Test void changedCostsEffectsAndNewBoardsWaitForReview()throws Exception{
+  var service=new ShadowcraftService(tools.jackson.databind.json.JsonMapper.builder().build(),mock(JdbcTemplate.class));
+  var current=(tools.jackson.databind.node.ObjectNode)service.catalog("templar").path("catalog");var before=current.deepCopy();
+  var incoming=current.path("boards").deepCopy();((tools.jackson.databind.node.ObjectNode)incoming.get(0).path("nodes").get(1)).put("pointCost",19);
+  ShadowcraftBoardUpdater.mergeKnownBoards(current,incoming);
+  assertThat(current.path("boards")).isEqualTo(before.path("boards"));assertThat(current.path("boardDataCheck").path("changedRules").asInt()).isEqualTo(1);assertThat(current.path("boardDataCheck").path("needsReview").asBoolean()).isTrue();
+  var addition=incoming.get(0).deepCopy();((tools.jackson.databind.node.ObjectNode)addition).put("id",999);((tools.jackson.databind.node.ArrayNode)incoming).add(addition);
+  ShadowcraftBoardUpdater.mergeKnownBoards(current,incoming);assertThat(current.path("boardDataCheck").path("added").asInt()).isEqualTo(1);assertThat(current.path("boards").size()).isEqualTo(before.path("boards").size());
+ }
+ @Test void sameRulesAllowKnownBoardLabelsWithoutMutatingOtherNodes()throws Exception{
+  var service=new ShadowcraftService(tools.jackson.databind.json.JsonMapper.builder().build(),mock(JdbcTemplate.class));
+  var current=(tools.jackson.databind.node.ObjectNode)service.catalog("templar").path("catalog");var incoming=current.path("boards").deepCopy();
+  ((tools.jackson.databind.node.ObjectNode)incoming.get(0).path("nodes").get(1)).put("name","새 노드 이름");
+  ShadowcraftBoardUpdater.mergeKnownBoards(current,incoming);assertThat(current.path("boards").get(0).path("nodes").get(1).path("name").asText()).isEqualTo("새 노드 이름");assertThat(current.path("boardDataCheck").path("needsReview").asBoolean()).isFalse();
+ }
+ @Test void errorsNeverExposeSourceBodiesOrCredentials(){
+  assertThat(ShadowcraftBoardUpdater.failureCode(new IllegalStateException("secret token body"))).isEqualTo("validation-failed");
+  assertThat(ShadowcraftBoardUpdater.failureCode(new RuntimeException())).isEqualTo("validation-failed");
+  assertThat(ShadowcraftBoardUpdater.failureCode(new RuntimeException(new IllegalArgumentException("response-too-large")))).isEqualTo("response-too-large");
+ }
+ @Test void refreshStatusSurvivesServiceRestartAndReturnsACopy()throws Exception{
+  var jdbc=mock(JdbcTemplate.class);var mapper=tools.jackson.databind.json.JsonMapper.builder().build();var service=new ShadowcraftService(mapper,jdbc);
+  service.boardRefreshResult("templar",true,"review-required");
+  var status=service.catalog("templar").path("boardRefresh");assertThat(status.path("reason").asText()).isEqualTo("review-required");
+  verify(jdbc).update(startsWith("INSERT INTO shadowcraft_catalogs"),eq("board-status-templar"),eq(mapper.writeValueAsString(status)));
+  when(jdbc.query(eq("SELECT payload FROM shadowcraft_catalogs WHERE class_key = ?"),any(org.springframework.jdbc.core.RowMapper.class),eq("board-status-templar"))).thenReturn(List.of(mapper.writeValueAsString(status)));
+  var restarted=new ShadowcraftService(mapper,jdbc);var copy=(tools.jackson.databind.node.ObjectNode)restarted.catalog("templar").path("boardRefresh");copy.put("reason","untrusted-change");
+  restarted.boardRefreshResult("templar",false,"source-unavailable");var failed=restarted.catalog("templar").path("boardRefresh");assertThat(failed.path("lastSuccess")).isEqualTo(status.path("lastSuccess"));assertThat(failed.path("reason").asText()).isEqualTo("source-unavailable");
+ }
 }

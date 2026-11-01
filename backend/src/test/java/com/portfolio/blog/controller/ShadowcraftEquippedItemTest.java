@@ -1,6 +1,6 @@
 package com.portfolio.blog.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import com.portfolio.blog.service.ShadowcraftService;
 import java.util.concurrent.CompletableFuture;
 import java.net.http.*;
@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class ShadowcraftEquippedItemTest {
-    private final ObjectMapper mapper=new ObjectMapper();
+    private final ObjectMapper mapper=tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build();
     private final String input="{\"action\":\"item\",\"class\":\"gladiator\",\"region\":\"eu\",\"server\":\"1304\",\"id\":\"character+id=\",\"itemId\":\"123\",\"slot\":\"1\",\"enchant\":\"15\"}";
     private ShadowcraftController controller(HttpClient client) throws Exception {
         var service=mock(ShadowcraftService.class);when(service.profile("gladiator")).thenReturn(mapper.readTree("{}"));
@@ -24,11 +24,11 @@ class ShadowcraftEquippedItemTest {
     @Test void validatesBeforeNetworking() throws Exception {
         var client=mock(HttpClient.class);var c=controller(client);
         for(String patch:new String[]{"../x","0","-1","10000000000","https://other.test"}){
-            var p=mapper.readTree(input);((com.fasterxml.jackson.databind.node.ObjectNode)p).put("itemId",patch);
+            var p=mapper.readTree(input);((tools.jackson.databind.node.ObjectNode)p).put("itemId",patch);
             assertThat(c.armory(request(p.toString())).getStatusCode().value()).isEqualTo(400);
         }
         for(String key:new String[]{"slot","enchant"})for(String value:new String[]{"-1","100","x"}){
-            var p=(com.fasterxml.jackson.databind.node.ObjectNode)mapper.readTree(input);p.put(key,value);
+            var p=(tools.jackson.databind.node.ObjectNode)mapper.readTree(input);p.put(key,value);
             assertThat(c.armory(request(p.toString())).getStatusCode().value()).isEqualTo(400);
         }
         verifyNoInteractions(client);

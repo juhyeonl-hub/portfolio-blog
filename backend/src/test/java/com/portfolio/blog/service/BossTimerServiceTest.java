@@ -1,11 +1,11 @@
 package com.portfolio.blog.service;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import static org.assertj.core.api.Assertions.*;
 class BossTimerServiceTest {
- final ObjectMapper mapper = new ObjectMapper();
+ final ObjectMapper mapper = tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build();
  final AtomicLong clock = new AtomicLong(1792206000000L);
  String sample = "{\"bosses\":{\"101021\":{\"state\":\"dead\",\"nextSpawn\":1792210000,\"reportedAt\":1792206000,\"confirmed\":true},\"111021\":{\"state\":\"up\",\"reportedAt\":1792206000,\"confirmed\":false}}}";
  @Test void cacheFailureBackoffAndFactionIsolation() throws Exception {
@@ -45,7 +45,7 @@ class BossTimerServiceTest {
  }
  @Test void allBossesPreserveLegacyAndIncludeUnknownIds() throws Exception {
   var root=mapper.readTree(sample);
-  var bosses=(com.fasterxml.jackson.databind.node.ObjectNode)root.path("bosses");
+  var bosses=(tools.jackson.databind.node.ObjectNode)root.path("bosses");
   for(String id:new String[]{"101001","111001","2001","99999"}) bosses.set(id,bosses.path("101021").deepCopy());
   var service=new BossTimerService(mapper,id->root,clock::get,true);
   var response=service.get("eu",1301);

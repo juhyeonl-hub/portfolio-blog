@@ -1,8 +1,8 @@
 package com.portfolio.blog.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
 import com.portfolio.blog.service.ShadowcraftService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
@@ -55,7 +55,7 @@ public class ShadowcraftController {
         byte[] body=request.getInputStream().readNBytes(3_000_001);
         if(body.length>3_000_000) throw new org.springframework.web.server.ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE);
         try { return service.update(key,mapper.readTree(body)); }
-        catch(com.fasterxml.jackson.core.JsonProcessingException e) { throw new org.springframework.web.server.ResponseStatusException(HttpStatus.BAD_REQUEST,"JSON 형식을 확인하세요."); }
+        catch(tools.jackson.core.JacksonException e) { throw new org.springframework.web.server.ResponseStatusException(HttpStatus.BAD_REQUEST,"JSON 형식을 확인하세요."); }
     }
 
     @PutMapping("/api/admin/shadowcraft/news")
@@ -63,7 +63,7 @@ public class ShadowcraftController {
         byte[] body=request.getInputStream().readNBytes(1_000_001);
         if(body.length>1_000_000) throw new org.springframework.web.server.ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE);
         try { return service.updateNews(mapper.readTree(body)); }
-        catch(com.fasterxml.jackson.core.JsonProcessingException e) { throw new org.springframework.web.server.ResponseStatusException(HttpStatus.BAD_REQUEST,"공지 JSON 형식을 확인하세요."); }
+        catch(tools.jackson.core.JacksonException e) { throw new org.springframework.web.server.ResponseStatusException(HttpStatus.BAD_REQUEST,"공지 JSON 형식을 확인하세요."); }
     }
 
     @PostMapping("/api/public/shadowcraft/armory")
@@ -90,7 +90,7 @@ public class ShadowcraftController {
                 JsonNode data=get("https://api-search.plaync.com/aion2global/search/v2/character?keyword="+enc(name)+"&region="+region+"&localeInfo=en-US&page=1&size=20&pcId="+enc(String.join(",",ids))+(server.isEmpty()?"":"&serverId="+server));
                 var characters=mapper.createArrayNode();
                 for(JsonNode entry:data.path("list")) {
-                    ObjectNode item=entry.deepCopy();
+                    ObjectNode item=(ObjectNode) entry.deepCopy();
                     item.put("name",item.path("name").asText().replaceAll("<[^>]*>",""));
                     item.put("characterId",java.net.URLDecoder.decode(item.path("characterId").asText().replace("+","%2B"),StandardCharsets.UTF_8));
                     characters.add(item);
@@ -160,7 +160,7 @@ public class ShadowcraftController {
             }
             return bad("지원하지 않는 조회입니다.");
         } catch(org.springframework.web.server.ResponseStatusException e) { return bad(e.getReason()); }
-        catch(com.fasterxml.jackson.core.JsonProcessingException e) { return bad("조회 입력을 확인하세요."); }
+        catch(tools.jackson.core.JacksonException e) { return bad("조회 입력을 확인하세요."); }
         catch(java.net.http.HttpTimeoutException e) { log.warn("Armory lookup timed out"); return ResponseEntity.status(504).body(Map.of("error","공식 캐릭터 조회 응답이 지연되고 있습니다. 저장된 계획은 유지됩니다. 잠시 후 다시 조회하세요.")); }
         catch(Exception e) { log.warn("Armory lookup failed: {}",e.getClass().getSimpleName()); return ResponseEntity.status(502).body(Map.of("error","공개 전투정보실 조회 실패 · 저장된 계획은 유지됩니다. 잠시 후 다시 시도하세요.")); }
         finally { lookups.release(); }

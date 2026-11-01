@@ -1,8 +1,8 @@
 package com.portfolio.blog.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,24 @@ public class ShadowcraftService {
     private final Map<String, JsonNode> snapshots = new HashMap<>();
     private final Map<String, JsonNode> profiles = new HashMap<>();
     private final Map<String,JsonNode> boardRefresh = new java.util.concurrent.ConcurrentHashMap<>();
-    public void boardRefreshResult(String key,boolean ok){var status=mapper.createObjectNode().put("checkedAt",Instant.now().toString()).put("ok",ok);if(ok)status.put("lastSuccess",Instant.now().toString());else if(boardRefresh.containsKey(key)&&boardRefresh.get(key).has("lastSuccess"))status.set("lastSuccess",boardRefresh.get(key).get("lastSuccess"));boardRefresh.put(key,status);}
+    public void boardRefreshResult(String key,boolean ok){boardRefreshResult(key,ok,ok?"ok":"validation-failed");}
+    public void boardRefreshResult(String key,boolean ok,String reason){
+        profile(key);
+        var status=mapper.createObjectNode().put("checkedAt",Instant.now().toString()).put("ok",ok);
+        status.put("reason",Set.of("ok","review-required","source-unavailable","response-too-large","new-skill-needs-review","removed-node-needs-review","validation-failed","interrupted").contains(reason)?reason:"validation-failed");
+        JsonNode previous=boardStatus(key);
+        if(ok)status.put("lastSuccess",status.path("checkedAt").asText());else if(previous!=null&&previous.has("lastSuccess"))status.set("lastSuccess",previous.get("lastSuccess"));
+        boardRefresh.put(key,status);
+        try{jdbc.update("INSERT INTO shadowcraft_catalogs(class_key,payload) VALUES (?,?) ON CONFLICT(class_key) DO UPDATE SET payload=EXCLUDED.payload","board-status-"+key,mapper.writeValueAsString(status));}
+        catch(RuntimeException e){org.slf4j.LoggerFactory.getLogger(ShadowcraftService.class).warn("Board refresh status could not be persisted; in-memory status retained");}
+    }
+    private JsonNode boardStatus(String key){
+        if(boardRefresh.containsKey(key))return boardRefresh.get(key);
+        try{List<String> rows=jdbc.query("SELECT payload FROM shadowcraft_catalogs WHERE class_key = ?",(r,n)->r.getString(1),"board-status-"+key);
+            if(!rows.isEmpty()){JsonNode value=mapper.readTree(rows.getFirst());if(value.isObject()){boardRefresh.put(key,value);return value;}}}
+        catch(RuntimeException e){org.slf4j.LoggerFactory.getLogger(ShadowcraftService.class).warn("Board refresh status could not be loaded");}
+        return null;
+    }
     public ShadowcraftService(ObjectMapper mapper, JdbcTemplate jdbc) throws Exception {
         this.mapper = mapper; this.jdbc = jdbc;
         for (JsonNode profile : resource("class-profiles.json")) {
@@ -37,10 +54,10 @@ public class ShadowcraftService {
     public JsonNode catalog(String key) throws Exception {
         profile(key);
         List<String> rows = jdbc.query("SELECT payload FROM shadowcraft_catalogs WHERE class_key = ?", (r,n) -> r.getString(1), key);
-        ObjectNode result = rows.isEmpty() ? snapshots.get(key).deepCopy() : (ObjectNode) mapper.readTree(rows.getFirst());
+        ObjectNode result = rows.isEmpty() ? (ObjectNode) snapshots.get(key).deepCopy() : (ObjectNode) mapper.readTree(rows.getFirst());
         List<String> news = jdbc.query("SELECT payload FROM shadowcraft_catalogs WHERE class_key = 'official-news'", (r,n) -> r.getString(1));
         if (!news.isEmpty()) result.set("news", mapper.readTree(news.getFirst()));
-        if(boardRefresh.containsKey(key))result.set("boardRefresh",boardRefresh.get(key));
+        JsonNode status=boardStatus(key);if(status!=null)result.set("boardRefresh",status.deepCopy());
         return result;
     }
     @Transactional
@@ -102,7 +119,7 @@ public class ShadowcraftService {
         JsonNode previous = response.path("catalog");
         boolean changed = false;
         for (String field : List.of("skills","boards","characterLevels","version")) changed |= !previous.path(field).equals(fresh.path(field));
-        ObjectNode next = fresh.deepCopy();
+        ObjectNode next = (ObjectNode) fresh.deepCopy();
         next.put("baselineVersion", previous.path("baselineVersion").asText(previous.path("version").asText()));
         next.put("reviewRequired", previous.path("reviewRequired").asBoolean() || fresh.path("reviewRequired").asBoolean() || changed);
         next.put("origin", "live"); next.put("checkedAt", Instant.now().toString());
@@ -121,7 +138,7 @@ public class ShadowcraftService {
         if (news == null || !news.isObject() || !news.path("contentList").isArray() || news.path("contentList").isEmpty() || news.path("contentList").size() > 100) invalid("공지 형식 변경 · 기존 공지 유지");
         for (JsonNode entry : news.path("contentList"))
             if (!entry.isObject() || entry.path("id").asText().isBlank() || !entry.path("title").isTextual()) invalid("공지 항목 형식 변경 · 기존 공지 유지");
-        ObjectNode next = news.deepCopy();
+        ObjectNode next = (ObjectNode) news.deepCopy();
         next.put("checkedAt", Instant.now().toString());
         jdbc.update("INSERT INTO shadowcraft_catalogs(class_key,payload) VALUES (?,?) ON CONFLICT(class_key) DO UPDATE SET payload=EXCLUDED.payload", "official-news", mapper.writeValueAsString(next));
         return next;

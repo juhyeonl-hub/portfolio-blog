@@ -1,7 +1,7 @@
 package com.portfolio.blog.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 import java.util.*;
 import java.math.BigInteger;
 import java.time.Instant;
@@ -48,16 +48,16 @@ public class AccountSettingsService {
     private JsonNode parse(String raw){try{return mapper.readTree(raw);}catch(Exception e){throw bad();}}
     private ResponseStatusException bad(){return new ResponseStatusException(HttpStatus.BAD_REQUEST,"설정 형식 또는 버전을 확인하세요.");}
     private void require(boolean test){if(!test)throw bad();}
-    private void fields(JsonNode n,Set<String> allowed){require(n!=null&&n.isObject());n.fieldNames().forEachRemaining(k->require(allowed.contains(k)));}
+    private void fields(JsonNode n,Set<String> allowed){require(n!=null&&n.isObject());n.propertyNames().iterator().forEachRemaining(k->require(allowed.contains(k)));}
     private boolean integer(JsonNode n,int min,int max){return n!=null&&n.isIntegralNumber()&&n.canConvertToInt()&&n.intValue()>=min&&n.intValue()<=max;}
     private void strings(JsonNode n,int max,int length){require(n!=null&&n.isArray()&&n.size()<=max);for(var x:n)require(x.isTextual()&&x.textValue().length()<=length);}
-    private void numbers(JsonNode n){require(n!=null&&n.isObject()&&n.size()<=1000);n.fields().forEachRemaining(e->{require(e.getKey().length()<=160);require(integer(e.getValue(),0,9999));});}
+    private void numbers(JsonNode n){require(n!=null&&n.isObject()&&n.size()<=1000);n.properties().iterator().forEachRemaining(e->{require(e.getKey().length()<=160);require(integer(e.getValue(),0,9999));});}
     public void validate(JsonNode input){
         fields(input,Set.of("version","revision","entries"));
         require(integer(input.get("version"),1,1));
         var revision=input.path("revision");require(revision.isIntegralNumber()&&revision.canConvertToLong()&&revision.longValue()>=0&&revision.longValue()<9_007_199_254_740_991L);
         var entries=input.path("entries");require(entries.isObject()&&entries.size()<=256);
-        entries.fields().forEachRemaining(e->{
+        entries.properties().iterator().forEachRemaining(e->{
             String key=e.getKey();var raw=e.getValue();require(raw.isTextual());String value=raw.textValue();
             switch(key){
                 case "asbc-locale" -> require(Set.of("ko","en","ja","fi","fr","de","es","pt-BR","ru").contains(value));
@@ -118,7 +118,7 @@ public class AccountSettingsService {
         fields(p,PLAN_FIELDS);require(CLASSES.contains(classKey));require(p.path("classKey").asText("assassin").equals(classKey));
         require(integer(p.get("level"),1,45));require(Set.of("safe","damage","pvp").contains(p.path("mode").asText()));
         numbers(p.get("base"));numbers(p.get("bonus"));strings(p.get("nodes"),10000,160);strings(p.get("checked"),10000,160);
-        var specs=p.path("specs");require(specs.isObject()&&specs.size()<=1000);specs.fields().forEachRemaining(e->{require(e.getKey().length()<=160);strings(e.getValue(),100,160);});
+        var specs=p.path("specs");require(specs.isObject()&&specs.size()<=1000);specs.properties().iterator().forEachRemaining(e->{require(e.getKey().length()<=160);strings(e.getValue(),100,160);});
         for(String k:List.of("extraSP","extraStigma","extraCrystal","extraBattle"))if(p.has(k))require(integer(p.get(k),0,9999));
         for(String k:List.of("pointBudget","confirmedRemaining"))if(p.has(k)){fields(p.get(k),Set.of("sp","stigma","crystal","battle","ariel"));numbers(p.get(k));}
         if(p.has("pvePreset"))require(p.get("pvePreset").isTextual()&&Set.of("group","single","farm").contains(p.get("pvePreset").asText()));
@@ -150,11 +150,11 @@ public class AccountSettingsService {
         if(t.has("pinnedBosses")){strings(t.get("pinnedBosses"),200,8);for(var id:t.get("pinnedBosses"))require(id.asText().matches("[1-9][0-9]{0,7}"));}
         if(t.has("pinnedSchedules")){strings(t.get("pinnedSchedules"),5,80);for(var id:t.get("pinnedSchedules"))require(Set.of("scheduled:watcher-kaira","scheduled:guardian-nahma","scheduled:executor-tamasa","scheduled:executor-argo","scheduled:executor-kaira").contains(id.asText()));}
         var profiles=t.path("profiles");require(profiles.isObject()&&profiles.size()<=200);
-        profiles.fields().forEachRemaining(e->{require(e.getKey().matches("(eu|nae|naw|la|as):[0-9]{1,8}"));var p=e.getValue();fields(p,Set.of("offset","timeZone","hidden","times"));
+        profiles.properties().iterator().forEachRemaining(e->{require(e.getKey().matches("(eu|nae|naw|la|as):[0-9]{1,8}"));var p=e.getValue();fields(p,Set.of("offset","timeZone","hidden","times"));
             require(p.has("offset")&&(p.get("offset").isNull()||integer(p.get("offset"),-720,840)));
             if(p.has("timeZone"))require(p.get("timeZone").isTextual()&&java.time.ZoneId.getAvailableZoneIds().contains(p.get("timeZone").asText()));
             strings(p.get("hidden"),7,32);for(var id:p.get("hidden"))require(TIMERS.contains(id.asText()));
-            var times=p.path("times");require(times.isObject());times.fields().forEachRemaining(time->{require(TIMERS.contains(time.getKey())&&time.getValue().isTextual());String text=time.getValue().asText();require(text.length()<=300);if(!text.isBlank()){var parts=text.trim().split("[,\\s]+");require(parts.length<=48);for(String part:parts)require(part.matches("([01][0-9]|2[0-3]):[0-5][0-9]"));}});
+            var times=p.path("times");require(times.isObject());times.properties().iterator().forEachRemaining(time->{require(TIMERS.contains(time.getKey())&&time.getValue().isTextual());String text=time.getValue().asText();require(text.length()<=300);if(!text.isBlank()){var parts=text.trim().split("[,\\s]+");require(parts.length<=48);for(String part:parts)require(part.matches("([01][0-9]|2[0-3]):[0-5][0-9]"));}});
         });
     }
 }

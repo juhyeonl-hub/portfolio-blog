@@ -9,11 +9,11 @@ const pointsUrl=moduleUrl(readFileSync('lib/character-points.ts','utf8').replace
 const numberUrl=url(jsx(readFileSync('app/point-number.tsx','utf8').replace("import {useEffect,useState} from 'react';",'const useEffect=()=>{};const useState=value=>[value,x=>{globalThis.__draft=x}];')));
 const {default:PointNumber}=await import(numberUrl);
 let source=readFileSync('app/character-points.tsx','utf8')
- .replace("import {useEffect,useState} from 'react';",'const useEffect=()=>{};const useState=()=>[globalThis.__pointsGear,()=>{}];')
+ .replace("import {useEffect,useState} from 'react';",'const useEffect=()=>{};const useState=value=>[value===0?0:globalThis.__pointsGear,()=>{}];')
  .replace("'@/lib/planner'",JSON.stringify(plannerUrl)).replace("'@/lib/character-points'",JSON.stringify(pointsUrl))
  .replace("'./point-number'",JSON.stringify(numberUrl)).replace("import './leveling-guide.css';",'')
  .replace("import {queryArmory} from '@/lib/armory-client';",'const queryArmory=()=>{throw Error("Unexpected network call")};')
- .replace("import {useLocale} from './locale';",'const useLocale=()=>({t:s=>s});');
+ .replace("import {useLocale} from './locale';",'const useLocale=()=>({t:s=>s,skill:s=>s});');
 const {default:CharacterPoints}=await import(url(jsx(source)));
 const catalog=JSON.parse(readFileSync('lib/data/catalogs/templar.json','utf8'));
 const fixture=JSON.parse(readFileSync('tests/fixtures/templar-points-lv39.json','utf8'));

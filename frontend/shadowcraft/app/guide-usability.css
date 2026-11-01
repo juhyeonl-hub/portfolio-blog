@@ -14,3 +14,7 @@
     word-break: normal;
   }
 }
+
+.board-data-status dl{display:flex;gap:12px 24px;flex-wrap:wrap}.board-data-status dl div{min-width:180px}.board-data-status dd{margin:4px 0;color:var(--muted)}.macro-evidence{line-height:1.65;margin:12px 0}.macro-evidence a{color:var(--accent)}
+
+.macro-evidence time{white-space:nowrap}

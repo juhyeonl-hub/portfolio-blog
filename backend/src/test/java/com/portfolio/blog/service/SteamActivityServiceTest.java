@@ -1,6 +1,6 @@
 package com.portfolio.blog.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.http.*;
@@ -29,7 +29,7 @@ class SteamActivityServiceTest {
             .thenReturn(java.util.concurrent.CompletableFuture.completedFuture(firstResponse))
             .thenReturn(java.util.concurrent.CompletableFuture.completedFuture(failedResponse))
             .thenReturn(java.util.concurrent.CompletableFuture.completedFuture(recoveredResponse));
-        var service=new SteamActivityService(new ObjectMapper(),client,now::get);
+        var service=new SteamActivityService(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(),client,now::get);
         var first=service.current();assertEquals(42,first.players());assertFalse(first.stale());
         service.current();verify(client,times(1)).sendAsync(argThat(r->r.uri().toString().equals(SteamActivityService.SOURCE)),any());
         now.addAndGet(60000);var failed=service.current();assertTrue(failed.stale());assertEquals(first.checkedAt(),failed.checkedAt());assertEquals(42,failed.players());
@@ -41,7 +41,7 @@ class SteamActivityServiceTest {
             var client=mock(HttpClient.class);
             var invalidResponse=response(200,body);
             when(client.sendAsync(any(HttpRequest.class),org.mockito.ArgumentMatchers.<HttpResponse.BodyHandler<byte[]>>any())).thenReturn(java.util.concurrent.CompletableFuture.completedFuture(invalidResponse));
-            var service=new SteamActivityService(new ObjectMapper(),client,()->1000);
+            var service=new SteamActivityService(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(),client,()->1000);
             assertThrows(ResponseStatusException.class,service::current);assertThrows(ResponseStatusException.class,service::current);
             verify(client,times(1)).sendAsync(any(),any());
         }

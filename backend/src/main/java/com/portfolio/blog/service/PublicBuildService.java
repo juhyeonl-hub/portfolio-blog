@@ -1,8 +1,8 @@
 package com.portfolio.blog.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.sql.Timestamp;
@@ -102,7 +102,7 @@ public class PublicBuildService {
         for(JsonNode board:catalog.path("boards"))board.path("nodes").forEach(n->nodes.add(n.path("id").asText()));
         for(String field:List.of("base","bonus","specs")) {
             JsonNode values=p.path(field);if(!values.isObject()||values.size()>100)bad("스킬 배분을 확인하세요.");
-            var entries=values.fields();while(entries.hasNext()){var entry=entries.next();if(!skills.containsKey(entry.getKey()))bad("알 수 없는 스킬입니다.");if(field.equals("specs"))ids(entry.getValue(),skills.get(entry.getKey()));else if(!number(entry.getValue(),0,9999))bad("스킬 레벨을 확인하세요.");}
+            var entries=values.properties().iterator();while(entries.hasNext()){var entry=entries.next();if(!skills.containsKey(entry.getKey()))bad("알 수 없는 스킬입니다.");if(field.equals("specs"))ids(entry.getValue(),skills.get(entry.getKey()));else if(!number(entry.getValue(),0,9999))bad("스킬 레벨을 확인하세요.");}
         }
         ids(p.path("nodes"),nodes);
         if(p.has("pvePreset")&&(!p.get("pvePreset").isTextual()||!Set.of("group","single","farm").contains(p.get("pvePreset").asText())))bad("공개할 빌드의 레벨과 플레이 목적을 확인해 주세요.");
@@ -121,7 +121,7 @@ public class PublicBuildService {
         for(JsonNode value:values)if(!value.isTextual()||!allowed.contains(value.asText())||!seen.add(value.asText()))bad("알 수 없거나 중복된 노드·특화입니다.");
     }
     private static boolean number(JsonNode value,int min,int max){return value.isIntegralNumber()&&value.canConvertToInt()&&value.asInt()>=min&&value.asInt()<=max;}
-    private static void only(JsonNode value,Set<String> keys){if(value==null||!value.isObject())bad("빌드 데이터를 읽을 수 없습니다. 작성 내용을 남겨 두고 빌드를 다시 불러오세요.");value.fieldNames().forEachRemaining(k->{if(!keys.contains(k))bad("빌드에 읽을 수 없는 항목이 있습니다. 빌드 편집 화면에서 다시 저장해 주세요.");});}
+    private static void only(JsonNode value,Set<String> keys){if(value==null||!value.isObject())bad("빌드 데이터를 읽을 수 없습니다. 작성 내용을 남겨 두고 빌드를 다시 불러오세요.");value.propertyNames().iterator().forEachRemaining(k->{if(!keys.contains(k))bad("빌드에 읽을 수 없는 항목이 있습니다. 빌드 편집 화면에서 다시 저장해 주세요.");});}
     private static void validId(String id){if(!id.matches("[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"))bad("빌드 ID를 확인하세요.");}
     private static void bad(String message){throw new ResponseStatusException(HttpStatus.BAD_REQUEST,message);}
 }

@@ -29548,5 +29548,255 @@
     "es": "Eliminado",
     "pt-BR": "Removido",
     "ru": "Удалено"
+  },
+  "사용량을 계산하려면 추가 확인이 필요해요": {
+    "en": "Usage needs another check",
+    "ja": "使用量の計算には追加確認が必要です",
+    "fi": "Käyttömäärä vaatii lisätarkistuksen",
+    "fr": "Le nombre de points utilisés reste à vérifier",
+    "de": "Verbrauchte Punkte müssen noch geprüft werden",
+    "es": "Falta comprobar los puntos usados",
+    "pt-BR": "Os pontos usados precisam de verificação",
+    "ru": "Использованные очки требуют проверки"
+  },
+  "데바니온 조회가 일부 빠졌거나 저장된 노드 정보와 다릅니다. 위의 새로 조회를 눌러 주세요.": {
+    "en": "Some Daevanion data is missing or differs from the known nodes. Use Refresh character above.",
+    "ja": "デバニオン情報が一部欠けているか、登録済みのノードと異なります。上のキャラクター再取得を押してください。",
+    "fi": "Osa Daevanion-tiedoista puuttuu tai poikkeaa tunnetuista solmuista. Päivitä hahmon tiedot yläreunasta.",
+    "fr": "Des données de Daevanion manquent ou diffèrent des nœuds connus. Actualisez le personnage en haut de la page.",
+    "de": "Einige Daevanion-Daten fehlen oder weichen von bekannten Knoten ab. Lade die Charakterdaten oben erneut.",
+    "es": "Faltan datos de Daevanion o difieren de los nodos conocidos. Actualiza el personaje arriba.",
+    "pt-BR": "Faltam dados de Daevanion ou eles diferem dos nós conhecidos. Atualize o personagem no topo.",
+    "ru": "Часть данных Даэваниона отсутствует или отличается от известных узлов. Обновите персонажа кнопкой выше."
+  },
+  "장비의 스킬 보너스를 확인하고 있어요. 확인이 끝나면 사용량을 다시 계산합니다.": {
+    "en": "Checking skill bonuses from equipment. Usage will update when the check finishes.",
+    "ja": "装備のスキルボーナスを確認中です。完了後に使用量を再計算します。",
+    "fi": "Varusteiden taitobonuksia tarkistetaan. Käyttömäärä päivittyy tarkistuksen jälkeen.",
+    "fr": "Vérification des bonus de compétence de l’équipement. Les points utilisés seront ensuite recalculés.",
+    "de": "Fähigkeitsboni der Ausrüstung werden geprüft. Danach wird der Verbrauch neu berechnet.",
+    "es": "Comprobando las bonificaciones de habilidades del equipo. El uso se actualizará al terminar.",
+    "pt-BR": "Verificando bônus de habilidades dos equipamentos. O uso será recalculado ao terminar.",
+    "ru": "Проверяем бонусы умений от снаряжения. После проверки расход обновится."
+  },
+  "장비 보너스를 모두 확인하지 못했어요. 다시 확인해도 안 되면 게임에서 총 포인트를 확인해 입력하세요.": {
+    "en": "Some equipment bonuses could not be checked. Retry, or enter the total points shown in the game.",
+    "ja": "一部の装備ボーナスを確認できませんでした。再確認するか、ゲーム内の合計ポイントを入力してください。",
+    "fi": "Kaikkia varustebonuksia ei voitu tarkistaa. Yritä uudelleen tai syötä pelissä näkyvä pisteiden kokonaismäärä.",
+    "fr": "Certains bonus n’ont pas pu être vérifiés. Réessayez ou saisissez le total des points indiqué en jeu.",
+    "de": "Einige Ausrüstungsboni konnten nicht geprüft werden. Versuche es erneut oder trage die Gesamtpunkte aus dem Spiel ein.",
+    "es": "No se pudieron comprobar todos los bonos del equipo. Reintenta o introduce los puntos totales del juego.",
+    "pt-BR": "Não foi possível verificar todos os bônus. Tente novamente ou informe o total de pontos do jogo.",
+    "ru": "Не удалось проверить все бонусы снаряжения. Повторите попытку или введите общее число очков из игры."
+  },
+  "조회된 스킬 레벨이 일부 없거나 읽을 수 없습니다. 위의 새로 조회를 눌러 주세요.": {
+    "en": "Some skill levels are missing or unreadable. Use Refresh character above.",
+    "ja": "一部のスキルレベルが未取得、または読み取れません。上のキャラクター再取得を押してください。",
+    "fi": "Joitakin taitotasoja puuttuu tai niitä ei voi lukea. Päivitä hahmon tiedot yläreunasta.",
+    "fr": "Certains niveaux de compétence manquent ou sont illisibles. Actualisez le personnage en haut de la page.",
+    "de": "Einige Fähigkeitsstufen fehlen oder sind unlesbar. Lade die Charakterdaten oben erneut.",
+    "es": "Faltan niveles de habilidades o no se pueden leer. Actualiza el personaje arriba.",
+    "pt-BR": "Alguns níveis de habilidades estão ausentes ou ilegíveis. Atualize o personagem no topo.",
+    "ru": "Некоторые уровни умений отсутствуют или не читаются. Обновите персонажа кнопкой выше."
+  },
+  "조회된 스킬 레벨과 보너스가 맞지 않아 사용량을 확정할 수 없어요. 게임의 총 포인트를 입력하면 추천은 계속 볼 수 있어요.": {
+    "en": "Skill levels and bonuses do not match, so usage is unknown. Enter your total points from the game to keep using recommendations.",
+    "ja": "スキルレベルとボーナスが一致せず、使用量を確定できません。ゲーム内の合計ポイントを入力すると、おすすめは引き続き利用できます。",
+    "fi": "Taitotasot ja bonukset eivät täsmää, joten käyttömäärä ei ole tiedossa. Syötä kokonaispisteet pelistä jatkaaksesi suositusten käyttöä.",
+    "fr": "Les niveaux et bonus ne concordent pas : le nombre de points utilisés reste inconnu. Saisissez votre total en jeu pour continuer à utiliser les recommandations.",
+    "de": "Fähigkeitsstufen und Boni stimmen nicht überein; der Verbrauch ist unbekannt. Mit den Gesamtpunkten aus dem Spiel kannst du Empfehlungen weiter nutzen.",
+    "es": "Los niveles y bonos no coinciden, por lo que se desconoce el uso. Introduce tus puntos totales del juego para seguir viendo recomendaciones.",
+    "pt-BR": "Os níveis e bônus não coincidem, então o uso é desconhecido. Informe o total do jogo para continuar usando as recomendações.",
+    "ru": "Уровни умений и бонусы не совпадают, поэтому расход неизвестен. Введите общее число очков из игры, чтобы продолжить пользоваться рекомендациями."
+  },
+  "장비 보너스 다시 확인": {
+    "en": "Retry equipment bonuses",
+    "ja": "装備ボーナスを再確認",
+    "fi": "Tarkista varustebonukset uudelleen",
+    "fr": "Revérifier les bonus d’équipement",
+    "de": "Ausrüstungsboni erneut prüfen",
+    "es": "Reintentar bonos del equipo",
+    "pt-BR": "Verificar bônus novamente",
+    "ru": "Проверить бонусы снова"
+  },
+  "원본 사이트에 연결하지 못했습니다.": {
+    "en": "Could not reach the source site.",
+    "ja": "参照サイトに接続できませんでした。",
+    "fi": "Lähdesivustoon ei saatu yhteyttä.",
+    "fr": "Impossible de joindre le site source.",
+    "de": "Die Quellseite war nicht erreichbar.",
+    "es": "No se pudo conectar con la fuente.",
+    "pt-BR": "Não foi possível acessar a fonte.",
+    "ru": "Не удалось связаться с сайтом-источником."
+  },
+  "원본 데이터 크기가 달라져 자동 반영을 멈췄습니다.": {
+    "en": "The source data exceeded the size limit. Automatic updates were stopped.",
+    "ja": "元データがサイズ上限を超えたため、自動反映を停止しました。",
+    "fi": "Lähdedata ylitti kokorajan. Automaattinen päivitys pysäytettiin.",
+    "fr": "Les données dépassent la taille autorisée. La mise à jour automatique a été arrêtée.",
+    "de": "Die Quelldaten überschreiten das Größenlimit. Die automatische Übernahme wurde gestoppt.",
+    "es": "Los datos superan el límite de tamaño. Se detuvo la actualización automática.",
+    "pt-BR": "Os dados excedem o limite de tamanho. A atualização automática foi interrompida.",
+    "ru": "Данные превысили допустимый размер. Автообновление остановлено."
+  },
+  "새 스킬이나 삭제된 노드가 있어 검토가 필요합니다.": {
+    "en": "New skills or removed nodes need review.",
+    "ja": "新スキルまたは削除されたノードの確認が必要です。",
+    "fi": "Uudet taidot tai poistetut solmut vaativat tarkistuksen.",
+    "fr": "De nouvelles compétences ou des nœuds supprimés doivent être examinés.",
+    "de": "Neue Fähigkeiten oder entfernte Knoten müssen geprüft werden.",
+    "es": "Hay habilidades nuevas o nodos eliminados que requieren revisión.",
+    "pt-BR": "Novas habilidades ou nós removidos precisam de revisão.",
+    "ru": "Новые умения или удалённые узлы требуют проверки."
+  },
+  "원본 데이터 형식이 달라졌거나 검증을 통과하지 못했습니다.": {
+    "en": "The source format changed or did not pass validation.",
+    "ja": "元データの形式が変わったか、検証に失敗しました。",
+    "fi": "Lähdedatan muoto muuttui tai tarkistus epäonnistui.",
+    "fr": "Le format source a changé ou les données n’ont pas passé la validation.",
+    "de": "Das Quellformat hat sich geändert oder die Prüfung ist fehlgeschlagen.",
+    "es": "El formato cambió o los datos no superaron la validación.",
+    "pt-BR": "O formato mudou ou os dados não passaram na validação.",
+    "ru": "Формат источника изменился или данные не прошли проверку."
+  },
+  "게임 데이터 변경 검토 중": {
+    "en": "Game data changes awaiting review",
+    "ja": "ゲームデータの変更を確認中",
+    "fi": "Pelidatan muutokset odottavat tarkistusta",
+    "fr": "Changements des données du jeu à examiner",
+    "de": "Spieldatenänderungen warten auf Prüfung",
+    "es": "Cambios del juego pendientes de revisión",
+    "pt-BR": "Mudanças do jogo aguardando revisão",
+    "ru": "Изменения игровых данных ожидают проверки"
+  },
+  "최근 데이터 확인 실패": {
+    "en": "Latest data check failed",
+    "ja": "最新データの確認に失敗",
+    "fi": "Viimeisin datan tarkistus epäonnistui",
+    "fr": "Échec de la dernière vérification",
+    "de": "Letzte Datenprüfung fehlgeschlagen",
+    "es": "Falló la última comprobación",
+    "pt-BR": "A última verificação falhou",
+    "ru": "Последняя проверка данных не удалась"
+  },
+  "비용·해금·효과 변경은 검토 후 반영합니다. 현재는 마지막으로 검증한 계산을 사용합니다.": {
+    "en": "Changes to costs, unlocks and effects require review. Calculations use the last verified data.",
+    "ja": "コスト・解放条件・効果の変更は確認後に反映します。計算には最後に検証したデータを使います。",
+    "fi": "Kustannusten, avausehtojen ja vaikutusten muutokset tarkistetaan ensin. Laskenta käyttää viimeksi vahvistettua dataa.",
+    "fr": "Les changements de coûts, conditions et effets sont examinés avant application. Les calculs utilisent les dernières données vérifiées.",
+    "de": "Kosten, Freischaltungen und Effekte werden erst nach Prüfung geändert. Berechnet wird mit den zuletzt bestätigten Daten.",
+    "es": "Los costes, desbloqueos y efectos se revisan antes de aplicarlos. Se usan los últimos datos verificados.",
+    "pt-BR": "Custos, desbloqueios e efeitos passam por revisão antes da aplicação. Os cálculos usam os últimos dados verificados.",
+    "ru": "Затраты, условия открытия и эффекты меняются только после проверки. Расчёты используют последние проверенные данные."
+  },
+  "기존 데이터와 내 빌드는 유지됩니다.": {
+    "en": "Existing data and your build are preserved.",
+    "ja": "既存データとビルドは維持されます。",
+    "fi": "Nykyiset tiedot ja buildisi säilyvät.",
+    "fr": "Les données existantes et votre build sont conservés.",
+    "de": "Bisherige Daten und dein Build bleiben erhalten.",
+    "es": "Se conservan los datos existentes y tu build.",
+    "pt-BR": "Os dados existentes e sua build são preservados.",
+    "ru": "Существующие данные и ваша сборка сохраняются."
+  },
+  "6시간마다 원본을 확인합니다. 이름·아이콘만 자동 갱신하며, 비용·효과·새 노드는 검토 후 반영합니다.": {
+    "en": "The source is checked every 6 hours. Only names and icons update automatically; costs, effects and new nodes require review.",
+    "ja": "6時間ごとに元データを確認します。名前とアイコンだけ自動更新し、コスト・効果・新ノードは確認後に反映します。",
+    "fi": "Lähde tarkistetaan 6 tunnin välein. Vain nimet ja kuvakkeet päivittyvät automaattisesti; kustannukset, vaikutukset ja uudet solmut tarkistetaan ensin.",
+    "fr": "La source est vérifiée toutes les 6 heures. Seuls les noms et icônes changent automatiquement ; coûts, effets et nouveaux nœuds nécessitent un examen.",
+    "de": "Die Quelle wird alle 6 Stunden geprüft. Nur Namen und Symbole werden automatisch aktualisiert; Kosten, Effekte und neue Knoten benötigen eine Prüfung.",
+    "es": "La fuente se comprueba cada 6 horas. Solo nombres e iconos se actualizan automáticamente; costes, efectos y nodos nuevos requieren revisión.",
+    "pt-BR": "A fonte é verificada a cada 6 horas. Só nomes e ícones são atualizados automaticamente; custos, efeitos e novos nós exigem revisão.",
+    "ru": "Источник проверяется каждые 6 часов. Автоматически меняются только названия и значки; затраты, эффекты и новые узлы требуют проверки."
+  },
+  "검증한 데이터를 표시합니다. 이 환경에서는 자동 확인이 꺼져 있습니다.": {
+    "en": "Showing verified data. Automatic checks are disabled in this environment.",
+    "ja": "検証済みデータを表示しています。この環境では自動確認が無効です。",
+    "fi": "Näytetään vahvistetut tiedot. Automaattinen tarkistus ei ole käytössä tässä ympäristössä.",
+    "fr": "Données vérifiées affichées. La vérification automatique est désactivée dans cet environnement.",
+    "de": "Geprüfte Daten werden angezeigt. Automatische Prüfungen sind in dieser Umgebung deaktiviert.",
+    "es": "Se muestran datos verificados. Las comprobaciones automáticas están desactivadas en este entorno.",
+    "pt-BR": "Exibindo dados verificados. A verificação automática está desativada neste ambiente.",
+    "ru": "Показаны проверенные данные. Автоматические проверки в этой среде отключены."
+  },
+  "최근 확인": {
+    "en": "Latest check",
+    "ja": "最新の確認",
+    "fi": "Viimeisin tarkistus",
+    "fr": "Dernière vérification",
+    "de": "Letzte Prüfung",
+    "es": "Última comprobación",
+    "pt-BR": "Última verificação",
+    "ru": "Последняя проверка"
+  },
+  "최근 정상 확인": {
+    "en": "Last successful check",
+    "ja": "前回の正常な確認",
+    "fi": "Viimeisin onnistunut tarkistus",
+    "fr": "Dernière vérification réussie",
+    "de": "Letzte erfolgreiche Prüfung",
+    "es": "Última comprobación correcta",
+    "pt-BR": "Última verificação bem-sucedida",
+    "ru": "Последняя успешная проверка"
+  },
+  "검토할 변경: 스킬 {0}개 · 보드 {1}개": {
+    "en": "Changes to review: {0} skills · {1} boards",
+    "ja": "確認待ち：スキル{0}個・ボード{1}個",
+    "fi": "Tarkistettavat muutokset: {0} taitoa · {1} lautaa",
+    "fr": "À examiner : {0} compétences · {1} plateaux",
+    "de": "Zu prüfen: {0} Fähigkeiten · {1} Tafeln",
+    "es": "Por revisar: {0} habilidades · {1} tableros",
+    "pt-BR": "Para revisar: {0} habilidades · {1} tabuleiros",
+    "ru": "На проверке: {0} умений · {1} досок"
+  },
+  "새 데이터가 확인되어도 직접 수정한 배분을 자동으로 바꾸지 않습니다.": {
+    "en": "New data never automatically replaces your edited allocation.",
+    "ja": "新データを確認しても、手動で編集した配分は自動変更しません。",
+    "fi": "Uusi data ei muuta itse muokkaamaasi pistejakoa automaattisesti.",
+    "fr": "Les nouvelles données ne remplacent jamais automatiquement votre répartition modifiée.",
+    "de": "Neue Daten ersetzen deine bearbeitete Verteilung nicht automatisch.",
+    "es": "Los datos nuevos no reemplazan automáticamente tu distribución editada.",
+    "pt-BR": "Novos dados nunca substituem automaticamente sua distribuição editada.",
+    "ru": "Новые данные не заменяют автоматически распределение, которое вы отредактировали."
+  },
+  "공개 가이드의 기본 반복 예시 · 45레벨 PvE": {
+    "en": "Public guide: basic repeat example · level 45 PvE",
+    "ja": "公開ガイドの基本反復例・レベル45 PvE",
+    "fi": "Julkisen oppaan perustoistoesimerkki · tason 45 PvE",
+    "fr": "Guide public : exemple de répétition de base · PvE niveau 45",
+    "de": "Öffentlicher Guide: einfache Wiederholung · PvE ab Stufe 45",
+    "es": "Guía pública: repetición básica · PvE nivel 45",
+    "pt-BR": "Guia público: repetição básica · PvE nível 45",
+    "ru": "Публичный гайд: пример базового повтора · PvE уровня 45"
+  },
+  "게임 내 동작을 검증한 배치는 아닙니다. 쉬운 적에게 먼저 확인하세요.": {
+    "en": "This arrangement has not been verified in game. Try it on an easy enemy first.",
+    "ja": "ゲーム内で動作検証した配置ではありません。まず弱い敵で確認してください。",
+    "fi": "Asettelua ei ole testattu pelissä. Kokeile ensin helppoon viholliseen.",
+    "fr": "Cette disposition n’a pas été vérifiée en jeu. Essayez-la d’abord sur un ennemi facile.",
+    "de": "Diese Anordnung wurde nicht im Spiel geprüft. Teste sie zuerst an einem leichten Gegner.",
+    "es": "Esta distribución no se ha verificado en el juego. Pruébala primero con un enemigo fácil.",
+    "pt-BR": "Esta disposição não foi verificada no jogo. Teste primeiro contra um inimigo fácil.",
+    "ru": "Эта схема не проверена в игре. Сначала попробуйте её на слабом противнике."
+  },
+  "기본 공격은 마우스 왼쪽에 두고 반복 키와 함께 사용합니다. 자동 반복 목록에는 넣지 않습니다.": {
+    "en": "Keep the basic attack on the left mouse button and use it with the repeat key. Do not add it to the repeat list.",
+    "ja": "基本攻撃はマウス左ボタンに置き、反復キーと一緒に使います。反復リストには入れません。",
+    "fi": "Pidä perushyökkäys hiiren vasemmassa painikkeessa ja käytä sitä toistonäppäimen kanssa. Älä lisää sitä toistolistaan.",
+    "fr": "Gardez l’attaque de base sur le clic gauche et utilisez-la avec la touche de répétition. Ne l’ajoutez pas à la liste répétée.",
+    "de": "Lass den Basisangriff auf der linken Maustaste und nutze ihn mit der Wiederholungstaste. Er gehört nicht in die Wiederholungsliste.",
+    "es": "Deja el ataque básico en el botón izquierdo y úsalo con la tecla de repetición. No lo añadas a la lista repetida.",
+    "pt-BR": "Mantenha o ataque básico no botão esquerdo e use-o junto com a tecla de repetição. Não o adicione à lista repetida.",
+    "ru": "Оставьте базовую атаку на левой кнопке мыши и используйте вместе с клавишей повтора. Не добавляйте её в список повтора."
+  },
+  "반복 입력: 1 → 2 → 1 → 2. 도발·보호기·충전기는 상황에 맞춰 직접 사용하세요.": {
+    "en": "Repeat input: 1 → 2 → 1 → 2. Use taunts, protection and charge skills manually as needed.",
+    "ja": "反復入力：1 → 2 → 1 → 2。挑発・防御・チャージ技は状況に応じて手動で使ってください。",
+    "fi": "Toistosyöte: 1 → 2 → 1 → 2. Käytä provosointi-, suoja- ja lataustaitoja itse tilanteen mukaan.",
+    "fr": "Entrée répétée : 1 → 2 → 1 → 2. Utilisez provocations, protections et compétences chargées manuellement selon la situation.",
+    "de": "Wiederholung: 1 → 2 → 1 → 2. Nutze Spott, Schutz und aufladbare Fähigkeiten je nach Situation manuell.",
+    "es": "Repetición: 1 → 2 → 1 → 2. Usa provocaciones, protección y habilidades cargadas manualmente cuando haga falta.",
+    "pt-BR": "Repetição: 1 → 2 → 1 → 2. Use provocações, proteção e habilidades carregadas manualmente conforme necessário.",
+    "ru": "Повтор: 1 → 2 → 1 → 2. Провокацию, защиту и заряжаемые умения применяйте вручную по ситуации."
   }
 }

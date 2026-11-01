@@ -1,6 +1,6 @@
 package com.portfolio.blog.controller;
 
-import com.fasterxml.jackson.databind.*;
+import tools.jackson.databind.*;
 import com.portfolio.blog.service.SteamOpenIdVerifier;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
@@ -41,7 +41,7 @@ class SteamLoginControllerTest {
  String callback(Map<String,String> p)throws Exception{var r=get(API+"/callback");p.forEach(r::param);if(browser!=null)r.cookie(browser);return mvc.perform(r).andExpect(status().isFound()).andExpect(header().string("Cache-Control","no-store")).andReturn().getResponse().getHeader("Location");}
  String code(String url,String kind){assertThat(url).startsWith("https://juhyeonl.dev/lab/shadowcraft/#"+kind+"=");return url.substring(url.indexOf('=')+1);}
  // Test helper extracts HttpOnly cookie only to retain existing legacy-bearer authorization assertions.
- JsonNode postJson(String path,Map<String,String> body,int expected)throws Exception{var req=post(path);if(browser!=null)req.cookie(browser);var res=mvc.perform(req.with(r->{r.setRemoteAddr(address);return r;}).contentType("application/json").content(mapper.writeValueAsString(body))).andExpect(status().is(expected)).andExpect(header().string("Cache-Control","no-store")).andReturn().getResponse();var json=mapper.readTree(res.getContentAsString());if(json!=null&&json.has("member")){assertThat(json.has("token")).isFalse();var c=res.getCookie("__Host-asbc_session");assertThat(c).isNotNull();assertThat(c.isHttpOnly()).isTrue();((com.fasterxml.jackson.databind.node.ObjectNode)json).put("token",c.getValue());}return json;}
+ JsonNode postJson(String path,Map<String,String> body,int expected)throws Exception{var req=post(path);if(browser!=null)req.cookie(browser);var res=mvc.perform(req.with(r->{r.setRemoteAddr(address);return r;}).contentType("application/json").content(mapper.writeValueAsString(body))).andExpect(status().is(expected)).andExpect(header().string("Cache-Control","no-store")).andReturn().getResponse();var json=mapper.readTree(res.getContentAsString());if(json!=null&&json.has("member")){assertThat(json.has("token")).isFalse();var c=res.getCookie("__Host-asbc_session");assertThat(c).isNotNull();assertThat(c.isHttpOnly()).isTrue();((tools.jackson.databind.node.ObjectNode)json).put("token",c.getValue());}return json;}
  JsonNode member(String name)throws Exception{return postJson("/api/community/auth/register",Map.of("username",name,"password","testPassword123!"),200);}
  String link(String token)throws Exception{var res=mvc.perform(post(API+"/link").header("Authorization","Bearer "+token)).andExpect(status().isOk()).andReturn().getResponse();browser=res.getCookie("asbc_steam");assertThat(browser).isNotNull();return mapper.readTree(res.getContentAsString()).path("url").asText();}
  @Test void startParametersAndLinkProtection()throws Exception{

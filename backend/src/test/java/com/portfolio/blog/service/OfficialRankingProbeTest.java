@@ -1,6 +1,6 @@
 package com.portfolio.blog.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import java.net.http.HttpClient;
@@ -24,14 +24,14 @@ class OfficialRankingProbeTest {
     }
 
     @Test void beforeFirstProbeStatusIsUnknown() {
-        var status = new OfficialRankingProbe(new ObjectMapper(), mock(HttpClient.class)).status();
+        var status = new OfficialRankingProbe(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(), mock(HttpClient.class)).status();
         assertTrue(status.get("checkedAt").isNull());
         assertTrue(status.get("failed").asBoolean());
         for (String kind : OfficialRankingProbe.kinds()) assertFalse(status.path("published").path(kind).asBoolean(true));
     }
 
     @Test void emptyListsMeanNotPublished() throws Exception {
-        var probe = new OfficialRankingProbe(new ObjectMapper(), client(200, "{\"friendRankingList\":null,\"myRanking\":null,\"rankingList\":[],\"season\":null}".getBytes()));
+        var probe = new OfficialRankingProbe(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(), client(200, "{\"friendRankingList\":null,\"myRanking\":null,\"rankingList\":[],\"season\":null}".getBytes()));
         probe.probe();
         var status = probe.status();
         assertFalse(status.get("checkedAt").isNull());
@@ -43,7 +43,7 @@ class OfficialRankingProbeTest {
 
     @Test void anyRowsMarkThatKindPublishedWithoutStoringThem() throws Exception {
         var rows = "{\"rankingList\":[{\"rank\":1,\"characterId\":\"abc\",\"characterName\":\"Someone\",\"classId\":17,\"point\":1234}],\"season\":{\"id\":1}}";
-        var probe = new OfficialRankingProbe(new ObjectMapper(), client(200, rows.getBytes()));
+        var probe = new OfficialRankingProbe(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(), client(200, rows.getBytes()));
         probe.probe();
         var status = probe.status();
         for (String kind : OfficialRankingProbe.kinds()) assertTrue(status.path("published").path(kind).asBoolean(false));
@@ -52,23 +52,23 @@ class OfficialRankingProbeTest {
     }
 
     @Test void failuresAndMalformedBodiesAreCountedAsFailedNotPublished() throws Exception {
-        var probe = new OfficialRankingProbe(new ObjectMapper(), client(503, "down".getBytes()));
+        var probe = new OfficialRankingProbe(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(), client(503, "down".getBytes()));
         probe.probe();
         assertTrue(probe.status().get("failed").asBoolean());
         assertFalse(probe.status().path("published").path("abyss").asBoolean(true));
-        var malformed = new OfficialRankingProbe(new ObjectMapper(), client(200, "<html>challenge</html>".getBytes()));
+        var malformed = new OfficialRankingProbe(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(), client(200, "<html>challenge</html>".getBytes()));
         malformed.probe();
         assertTrue(malformed.status().get("failed").asBoolean());
-        var wrongShape = new OfficialRankingProbe(new ObjectMapper(), client(200, "{\"rankingList\":\"no\"}".getBytes()));
+        var wrongShape = new OfficialRankingProbe(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(), client(200, "{\"rankingList\":\"no\"}".getBytes()));
         wrongShape.probe();
         assertTrue(wrongShape.status().get("failed").asBoolean());
         assertFalse(wrongShape.status().path("published").path("arenaOfSolitude").asBoolean(true));
     }
 
     @Test void statusIsACopy() throws Exception {
-        var probe = new OfficialRankingProbe(new ObjectMapper(), client(200, "{\"rankingList\":[]}".getBytes()));
+        var probe = new OfficialRankingProbe(tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build(), client(200, "{\"rankingList\":[]}".getBytes()));
         probe.probe();
-        ((com.fasterxml.jackson.databind.node.ObjectNode) probe.status()).put("failed", true);
+        ((tools.jackson.databind.node.ObjectNode) probe.status()).put("failed", true);
         assertFalse(probe.status().get("failed").asBoolean());
     }
 }

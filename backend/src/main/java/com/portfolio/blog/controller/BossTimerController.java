@@ -1,6 +1,6 @@
 package com.portfolio.blog.controller;
 import com.portfolio.blog.service.BossTimerService;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.ObjectNode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @RestController

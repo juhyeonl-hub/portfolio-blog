@@ -19,8 +19,8 @@
 
     <properties>
         <java.version>21</java.version>
-        <!-- Preserve the patched Jackson 2 line while retaining the existing JSON contracts.
-             The remaining platform versions come from the supported Boot 4 BOM. -->
+        <!-- Flyway 11 still uses Jackson 2 internally; preserve its patched version.
+             Application HTTP, storage, WebSocket and JWT JSON use Jackson 3. -->
         <jackson-2-bom.version>2.21.8</jackson-2-bom.version>
     </properties>
 
@@ -29,28 +29,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-jackson</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-jackson</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- Official compatibility module: controllers and persisted JSON still use Jackson 2. -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-jackson2</artifactId>
         </dependency>
 
         <!-- Security -->
@@ -100,12 +82,6 @@
             <version>0.12.7</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId>
-            <version>0.12.7</version>
-            <scope>runtime</scope>
-        </dependency>
 
         <!-- TOTP (Google Authenticator) -->
         <dependency>
@@ -118,12 +94,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-jackson-test</artifactId>
-                </exclusion>
-            </exclusions>
             <scope>test</scope>
         </dependency>
         <dependency>

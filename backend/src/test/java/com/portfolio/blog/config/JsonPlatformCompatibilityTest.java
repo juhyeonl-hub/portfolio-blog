@@ -1,7 +1,7 @@
 package com.portfolio.blog.config;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-/** Protect the Jackson 2 API/storage contract while the framework uses the Boot 4 platform. */
+/** Preserve existing API/storage JSON while using Jackson 3 throughout the application. */
 @SpringBootTest @AutoConfigureMockMvc @ActiveProfiles("test")
 @Import(JsonPlatformCompatibilityTest.Fixture.class)
 class JsonPlatformCompatibilityTest {
@@ -30,9 +30,9 @@ class JsonPlatformCompatibilityTest {
  @Autowired MockMvc mvc;
  @Test void existingMapperIsTheOnlyJsonConverterFamily(){
   var converters=adapter.getMessageConverters().stream().map(x->x.getClass().getName()).filter(x->x.contains("Jackson")).toList();
-  assertThat(converters).isNotEmpty().allMatch(x->x.contains("Jackson2"));
-  assertThat(org.springframework.util.ClassUtils.isPresent("tools.jackson.databind.JsonNode",getClass().getClassLoader())).isFalse();
-  assertThat(mapper.getClass().getName()).isEqualTo("com.fasterxml.jackson.databind.ObjectMapper");
+  assertThat(converters).contains("org.springframework.http.converter.json.JacksonJsonHttpMessageConverter").noneMatch(x->x.contains("Jackson2"));
+  // Flyway 11 retains an internal Jackson 2 dependency, but no Jackson 2 HTTP converter.
+  assertThat(mapper.getClass().getName()).isEqualTo("tools.jackson.databind.json.JsonMapper");
  }
  @Test void persistedDatesNullsAndLongIdsKeepTheirWireFormat()throws Exception{
   var data=new LinkedHashMap<String,Object>();data.put("name","미쿠 · Ariel");data.put("empty",null);data.put("instant",Instant.parse("2026-10-31T10:00:00Z"));data.put("local",LocalDateTime.parse("2026-10-31T10:00:00"));data.put("ids",List.of(76561191234567890L));

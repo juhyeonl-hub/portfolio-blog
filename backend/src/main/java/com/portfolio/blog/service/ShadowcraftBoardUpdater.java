@@ -1,12 +1,12 @@
 package com.portfolio.blog.service;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.StreamReadConstraints;
-import com.fasterxml.jackson.core.StreamReadFeature;
-import com.fasterxml.jackson.core.json.JsonReadFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.core.json.JsonFactory;
+import tools.jackson.core.StreamReadConstraints;
+import tools.jackson.core.StreamReadFeature;
+import tools.jackson.core.json.JsonReadFeature;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -30,10 +30,10 @@ public class ShadowcraftBoardUpdater {
     static final int LIMIT=5_000_000;
     private final ShadowcraftService service;
     private final HttpClient client=HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).version(HttpClient.Version.HTTP_1_1).followRedirects(HttpClient.Redirect.NEVER).build();
-    private static final ObjectMapper STATIC_JSON=new ObjectMapper(JsonFactory.builder()
-            .enable(JsonReadFeature.ALLOW_UNQUOTED_FIELD_NAMES).enable(JsonReadFeature.ALLOW_SINGLE_QUOTES)
+    private static final ObjectMapper STATIC_JSON=tools.jackson.databind.json.JsonMapper.builder(JsonFactory.builder()
+            .enable(JsonReadFeature.ALLOW_UNQUOTED_PROPERTY_NAMES).enable(JsonReadFeature.ALLOW_SINGLE_QUOTES)
             .enable(StreamReadFeature.STRICT_DUPLICATE_DETECTION)
-            .streamReadConstraints(StreamReadConstraints.builder().maxNestingDepth(70).maxStringLength(250_000).maxNumberLength(20).build()).build());
+            .streamReadConstraints(StreamReadConstraints.builder().maxNestingDepth(70).maxStringLength(250_000).maxNumberLength(20).build()).build()).build();
     public ShadowcraftBoardUpdater(ShadowcraftService service){this.service=service;}
 
     @Scheduled(fixedDelayString="${app.shadowcraft.board-refresh-ms:21600000}",initialDelayString="${app.shadowcraft.board-initial-delay-ms:90000}")
@@ -52,12 +52,12 @@ public class ShadowcraftBoardUpdater {
                 JsonNode payload=extractCatalog(new String(body,StandardCharsets.UTF_8),entry.getValue());
                 JsonNode boards=payload.path("boards");
                 assertCompatible(current,boards);
-                ObjectNode next=mergeKnownSkillNames(current,payload);next.set("boards",boards);
+                ObjectNode next=mergeKnownSkillNames(current,payload);mergeKnownBoards(next,boards);
                 next.put("sourceSnapshotSha256",java.util.HexFormat.of().formatHex(java.security.MessageDigest.getInstance("SHA-256").digest(body)));
                 next.put("boardDataCheckedAt",Instant.now().toString());next.put("boardDataSource",request.uri().toString());
-                service.update(key,next);service.boardRefreshResult(key,true);
-            }catch(InterruptedException e){Thread.currentThread().interrupt();service.boardRefreshResult(key,false);return;}
-            catch(Exception e){service.boardRefreshResult(key,false);}
+                service.update(key,next);service.boardRefreshResult(key,true,next.path("skillDataCheck").path("needsReview").asBoolean()||next.path("boardDataCheck").path("needsReview").asBoolean()?"review-required":"ok");
+            }catch(InterruptedException e){Thread.currentThread().interrupt();service.boardRefreshResult(key,false,"interrupted");return;}
+            catch(Exception e){service.boardRefreshResult(key,false,failureCode(e));}
         }
     }
 
@@ -107,7 +107,7 @@ public class ShadowcraftBoardUpdater {
             if(!id.matches("[1-9][0-9]{0,14}")||source.put(id,skill)!=null||!skill.path("name").isTextual()||skill.path("name").asText().isBlank()
                     ||skill.path("name").asText().length()>200||skill.path("name").asText().matches("(?s).*[<>\\p{Cntrl}].*"))throw new IllegalArgumentException("skill-identity");
         }
-        ObjectNode next=current.deepCopy();int changedRules=0,removed=0,renamed=0;
+        ObjectNode next=(ObjectNode) current.deepCopy();int changedRules=0,removed=0,renamed=0;
         Set<String> known=new HashSet<>();
         for(JsonNode skill:next.path("skills")){
             String id=skill.path("id").asText();known.add(id);JsonNode incoming=source.get(id);
@@ -122,6 +122,39 @@ public class ShadowcraftBoardUpdater {
         var status=next.putObject("skillDataCheck");status.put("checkedAt",Instant.now().toString()).put("renamed",renamed).put("changedRules",changedRules).put("added",added).put("removed",removed).put("needsReview",needsReview);
         if(needsReview)next.put("reviewRequired",true);
         return next;
+    }
+
+    /** Names/icons are presentation data. New nodes, costs, effects and layout changes stay pending review. */
+    static void mergeKnownBoards(ObjectNode next,JsonNode incoming){
+        int changed=0,added=0,removed=0;var ids=new HashSet<String>();var changes=next.arrayNode();
+        for(JsonNode source:incoming){
+            String id=source.path("id").asText();if(!ids.add(id))throw new IllegalArgumentException("duplicate-board");
+            JsonNode existing=null;for(JsonNode board:next.path("boards"))if(id.equals(board.path("id").asText()))existing=board;
+            if(existing==null){added++;changes.add(id);continue;}
+            if(!boardRules(existing).equals(boardRules(source))){changed++;changes.add(id);continue;}
+            ((ObjectNode)existing).set("name",source.path("name"));
+            var names=new HashMap<String,JsonNode>();source.path("nodes").forEach(n->names.put(n.path("id").asText(),n));
+            for(JsonNode node:existing.path("nodes")){JsonNode fresh=names.get(node.path("id").asText());for(String field:List.of("name","iconPath"))if(fresh.has(field))((ObjectNode)node).set(field,fresh.get(field));}
+        }
+        for(JsonNode board:next.path("boards"))if(!ids.contains(board.path("id").asText())){removed++;changes.add(board.path("id").asText());}
+        boolean review=changed+added+removed>0;
+        var check=next.putObject("boardDataCheck");check.put("checkedAt",Instant.now().toString()).put("changedRules",changed).put("added",added).put("removed",removed).put("needsReview",review);check.set("boardIds",changes);
+        if(review)next.put("reviewRequired",true);
+    }
+    private static JsonNode boardRules(JsonNode value){
+        JsonNode copy=value.deepCopy();stripBoardLabels(copy);return copy;
+    }
+    private static void stripBoardLabels(JsonNode value){
+        if(value.isObject()){((ObjectNode)value).remove("name");((ObjectNode)value).remove("iconPath");}
+        if((value.isObject()||value.isArray()))for(JsonNode child:value)stripBoardLabels(child);
+    }
+    static String failureCode(Throwable error){
+        for(Throwable e=error;e!=null;e=e.getCause()){
+            if(e instanceof java.net.http.HttpTimeoutException||e instanceof TimeoutException)return "source-unavailable";
+            String message=e.getMessage();
+            if(message!=null&&List.of("source-unavailable","response-too-large","new-skill-needs-review","removed-node-needs-review").contains(message))return message;
+        }
+        return "validation-failed";
     }
 
     static void assertCompatible(JsonNode current,JsonNode boards){

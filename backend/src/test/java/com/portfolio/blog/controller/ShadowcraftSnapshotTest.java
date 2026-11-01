@@ -1,5 +1,5 @@
 package com.portfolio.blog.controller;
-import com.fasterxml.jackson.databind.*;
+import tools.jackson.databind.*;
 import com.portfolio.blog.service.ShadowcraftService;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 class ShadowcraftSnapshotTest {
- final ObjectMapper mapper=new ObjectMapper();
+ final ObjectMapper mapper=tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build();
  final String first="aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",second="bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb";
  @SuppressWarnings("unchecked") HttpResponse<byte[]> response(String text){var r=(HttpResponse<byte[]>)mock(HttpResponse.class);when(r.statusCode()).thenReturn(200);when(r.body()).thenReturn(text.getBytes(StandardCharsets.UTF_8));return r;}
  ShadowcraftController controller(HttpClient client)throws Exception{var s=mock(ShadowcraftService.class);when(s.profile("gladiator")).thenReturn(mapper.readTree("{}"));var c=new ShadowcraftController(s,mapper);ReflectionTestUtils.setField(c,"client",client);return c;}

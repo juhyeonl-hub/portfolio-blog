@@ -1,7 +1,7 @@
 package com.portfolio.blog.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
 import com.sun.net.httpserver.HttpServer;
 import java.net.InetSocketAddress;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -22,7 +22,7 @@ class ShadowcraftLookupLatencyTest {
         });
         server.start();
         try {
-            var controller=new ShadowcraftController(null,new ObjectMapper());
+            var controller=new ShadowcraftController(null,tools.jackson.databind.json.JsonMapper.builder().configureForJackson2().build());
             var get=ShadowcraftController.class.getDeclaredMethod("get",String.class);
             get.setAccessible(true);
             String url="http://127.0.0.1:"+server.getAddress().getPort()+"/profile";
