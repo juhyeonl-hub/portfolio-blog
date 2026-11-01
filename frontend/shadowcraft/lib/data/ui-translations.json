@@ -29798,5 +29798,115 @@
     "es": "Repetición: 1 → 2 → 1 → 2. Usa provocaciones, protección y habilidades cargadas manualmente cuando haga falta.",
     "pt-BR": "Repetição: 1 → 2 → 1 → 2. Use provocações, proteção e habilidades carregadas manualmente conforme necessário.",
     "ru": "Повтор: 1 → 2 → 1 → 2. Провокацию, защиту и заряжаемые умения применяйте вручную по ситуации."
+  },
+  "데바니온 상점 구매 체크": {
+    "en": "Daevanion shop purchases",
+    "ja": "デバニオンのショップ購入",
+    "fi": "Daevanion-ostot kaupoista",
+    "fr": "Achats de Daevanion en boutique",
+    "de": "Daevanion-Käufe in Shops",
+    "es": "Compras de Daevanion en tiendas",
+    "pt-BR": "Compras de Daevanion nas lojas",
+    "ru": "Покупки Даэваниона в магазинах"
+  },
+  "끝까지 구매한 상점을 체크하면 데바니온 총량을 맞춰 줍니다.": {
+    "en": "Check a shop after buying all its Daevanion Crystals to calculate your total.",
+    "ja": "デバニオンをすべて購入したショップにチェックすると、合計を計算します。",
+    "fi": "Merkitse kauppa, kun olet ostanut kaikki sen Daevanion-kristallit. Kokonaismäärä lasketaan niiden perusteella.",
+    "fr": "Cochez une boutique après y avoir acheté tous les cristaux de Daevanion pour calculer votre total.",
+    "de": "Markiere einen Shop, nachdem du dort alle Daevanion-Kristalle gekauft hast, um deine Gesamtmenge zu berechnen.",
+    "es": "Marca una tienda tras comprar todos sus cristales de Daevanion para calcular tu total.",
+    "pt-BR": "Marque uma loja após comprar todos os seus cristais de Daevanion para calcular o total.",
+    "ru": "Отметьте магазин после покупки всех его кристаллов Даэваниона, чтобы рассчитать общее количество."
+  },
+  "슈고 페스타 · 데바니온 구매 완료": {
+    "en": "Shugo Festival · all Daevanion purchased",
+    "ja": "シュゴフェスタ · デバニオン購入済み",
+    "fi": "Shugo Festival · kaikki Daevanion-kristallit ostettu",
+    "fr": "Festival Shugo · tous les Daevanion achetés",
+    "de": "Shugo-Festival · alle Daevanion gekauft",
+    "es": "Festival Shugo · todos los Daevanion comprados",
+    "pt-BR": "Festival Shugo · todos os Daevanion comprados",
+    "ru": "Фестиваль Шуго · весь Даэванион куплен"
+  },
+  "악몽 · 데바니온 구매 완료": {
+    "en": "Nightmare · all Daevanion purchased",
+    "ja": "悪夢 · デバニオン購入済み",
+    "fi": "Nightmare · kaikki Daevanion-kristallit ostettu",
+    "fr": "Cauchemar · tous les Daevanion achetés",
+    "de": "Albtraum · alle Daevanion gekauft",
+    "es": "Pesadilla · todos los Daevanion comprados",
+    "pt-BR": "Pesadelo · todos os Daevanion comprados",
+    "ru": "Кошмар · весь Даэванион куплен"
+  },
+  "체크 기준: 기본 {0} + 상점 {1} = 총 {2}포인트": {
+    "en": "Checked estimate: base {0} + shops {1} = {2} points",
+    "ja": "チェックによる計算：基本 {0} + ショップ {1} = 合計 {2} ポイント",
+    "fi": "Valintojen arvio: perusmäärä {0} + kaupat {1} = {2} pistettä",
+    "fr": "Estimation cochée : base {0} + boutiques {1} = {2} points",
+    "de": "Berechnung der Auswahl: Basis {0} + Shops {1} = {2} Punkte",
+    "es": "Cálculo de selección: base {0} + tiendas {1} = {2} puntos",
+    "pt-BR": "Cálculo da seleção: base {0} + lojas {1} = {2} pontos",
+    "ru": "Расчёт по отметкам: база {0} + магазины {1} = {2} очков"
+  },
+  "기본 316은 45레벨·지역 퀘스트·자기 진영 봉인던전 완료 기준입니다.": {
+    "en": "The base of 316 assumes level 45, regional quests and your faction’s sealed dungeons are complete.",
+    "ja": "基本の316は、レベル45・地域クエスト・自分の種族の封印ダンジョンを完了した場合です。",
+    "fi": "Perusmäärä 316 edellyttää tasoa 45 sekä alueellisten tehtävien ja oman ryhmittymän suljettujen luolastojen suorittamista.",
+    "fr": "La base de 316 suppose le niveau 45, les quêtes régionales et les donjons scellés de votre faction terminés.",
+    "de": "Die Basis von 316 setzt Stufe 45 sowie abgeschlossene regionale Quests und versiegelte Dungeons deiner Fraktion voraus.",
+    "es": "La base de 316 supone nivel 45, misiones regionales y mazmorras selladas de tu facción completadas.",
+    "pt-BR": "A base de 316 considera nível 45, missões regionais e masmorras seladas da sua facção concluídas.",
+    "ru": "База 316 предполагает 45-й уровень, завершённые региональные задания и запечатанные подземелья вашей фракции."
+  },
+  "레벨링 중에는 레벨 보상에 체크한 상점 구매분만 더합니다.": {
+    "en": "While leveling, only level rewards and the checked shop purchases are included.",
+    "ja": "レベリング中は、レベル報酬とチェックしたショップの購入分だけを計算します。",
+    "fi": "Tasoa nostettaessa mukaan lasketaan vain tasopalkinnot ja valitut kauppaostot.",
+    "fr": "Pendant la progression, seules les récompenses de niveau et les boutiques cochées sont comptées.",
+    "de": "Beim Leveln werden nur Stufenbelohnungen und markierte Shop-Käufe berücksichtigt.",
+    "es": "Al subir de nivel, solo se cuentan las recompensas de nivel y las tiendas marcadas.",
+    "pt-BR": "Durante a evolução, apenas as recompensas de nível e as lojas marcadas entram no cálculo.",
+    "ru": "При прокачке учитываются только награды за уровни и отмеченные покупки в магазинах."
+  },
+  "일부만 구매했거나 내실이 덜 끝났다면 위의 데바니온 총량을 직접 수정하세요. 아리엘·아스펠은 별도입니다.": {
+    "en": "If you bought only some crystals or have unfinished progression, edit the Daevanion total above. Ariel and Azphel are separate.",
+    "ja": "一部のみ購入した場合や未完了のコンテンツがある場合は、上のデバニオン合計を直接修正してください。アリエルとアスフェルは別枠です。",
+    "fi": "Jos ostit vain osan kristalleista tai eteneminen on kesken, muokkaa Daevanion-pisteiden kokonaismäärää yllä. Ariel ja Azphel ovat erillisiä.",
+    "fr": "Si vos achats ou votre progression sont incomplets, modifiez le total de Daevanion ci-dessus. Ariel et Azphel sont séparés.",
+    "de": "Wenn du nur einen Teil gekauft oder noch nicht alles abgeschlossen hast, ändere die Daevanion-Gesamtmenge oben. Ariel und Azphel sind separat.",
+    "es": "Si compraste solo una parte o te queda contenido pendiente, edita el total de Daevanion de arriba. Ariel y Azphel se cuentan aparte.",
+    "pt-BR": "Se comprou apenas parte dos cristais ou ainda tem conteúdo pendente, edite o total de Daevanion acima. Ariel e Azphel são separados.",
+    "ru": "Если вы купили только часть кристаллов или завершили не весь контент, измените общее количество Даэваниона выше. Ариэль и Азфэль считаются отдельно."
+  },
+  "기존 총량에는 상점 구매분이 포함돼 있을 수 있어 그대로 두었습니다. 체크한 내역으로 다시 맞출까요?": {
+    "en": "Your current total may already include shop purchases, so it has been kept. Replace it with the checked estimate?",
+    "ja": "現在の合計にはショップ購入分が含まれている可能性があるため、変更していません。チェック内容で計算し直しますか？",
+    "fi": "Nykyinen kokonaismäärä saattaa jo sisältää kauppaostot, joten se säilytettiin. Korvataanko se valintojen arviolla?",
+    "fr": "Votre total peut déjà inclure les achats en boutique : il a donc été conservé. Le remplacer par cette estimation ?",
+    "de": "Deine aktuelle Gesamtmenge enthält möglicherweise bereits Shop-Käufe und wurde beibehalten. Durch die berechnete Menge ersetzen?",
+    "es": "Tu total puede incluir ya las compras en tiendas, por lo que se ha conservado. ¿Quieres sustituirlo por este cálculo?",
+    "pt-BR": "Seu total pode já incluir compras nas lojas, então ele foi mantido. Quer substituí-lo pelo cálculo da seleção?",
+    "ru": "Текущее количество может уже включать покупки в магазинах, поэтому оно сохранено. Заменить его расчётом по отметкам?"
+  },
+  "총량을 {0}으로 맞추기": {
+    "en": "Set total to {0}",
+    "ja": "合計を{0}にする",
+    "fi": "Aseta kokonaismääräksi {0}",
+    "fr": "Définir le total à {0}",
+    "de": "Gesamtmenge auf {0} setzen",
+    "es": "Fijar el total en {0}",
+    "pt-BR": "Definir total como {0}",
+    "ru": "Установить количество: {0}"
+  },
+  "현재 값 유지": {
+    "en": "Keep current value",
+    "ja": "現在の値を維持",
+    "fi": "Säilytä nykyinen arvo",
+    "fr": "Garder la valeur actuelle",
+    "de": "Aktuellen Wert behalten",
+    "es": "Mantener el valor actual",
+    "pt-BR": "Manter valor atual",
+    "ru": "Оставить текущее значение"
   }
 }

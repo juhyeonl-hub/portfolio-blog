@@ -15,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 public class AccountSettingsService {
     public static final int MAX_BYTES = 1_000_000;
     private static final Set<String> CLASSES = Set.of("assassin","gladiator","templar","ranger","sorcerer","elementalist","cleric","chanter");
-    private static final Set<String> PLAN_FIELDS = Set.of("classKey","level","mode","base","bonus","specs","nodes","checked","extraSP","extraStigma","extraCrystal","extraBattle","pointBudget","confirmedRemaining","confirmedRemainingContext","ascensionGrade3Confirmed","stigmaSkills","pvePreset","macroExtra","character","gear");
+    private static final Set<String> PLAN_FIELDS = Set.of("classKey","level","mode","base","bonus","specs","nodes","checked","extraSP","extraStigma","extraCrystal","extraBattle","pointBudget","confirmedRemaining","confirmedRemainingContext","ascensionGrade3Confirmed","stigmaSkills","pvePreset","macroExtra","daevanionPurchases","character","gear");
     private static final Set<String> TIMERS = Set.of("shugo","invasion","rift","gartua","lagta","kashapa","tartan");
     private final JdbcTemplate jdbc;
     private final ObjectMapper mapper;
@@ -124,6 +124,10 @@ public class AccountSettingsService {
         if(p.has("pvePreset"))require(p.get("pvePreset").isTextual()&&Set.of("group","single","farm").contains(p.get("pvePreset").asText()));
         if(p.has("stigmaSkills")){strings(p.get("stigmaSkills"),4,20);Set<String> ids=new HashSet<>();for(JsonNode id:p.get("stigmaSkills"))require(id.asText().matches("[0-9]{1,20}")&&ids.add(id.asText()));}
         for(String k:List.of("ascensionGrade3Confirmed","macroExtra"))if(p.has(k))require(p.get(k).isBoolean());
+        if(p.has("daevanionPurchases")){
+            var purchases=p.get("daevanionPurchases");fields(purchases,Set.of("shugo","nightmare"));
+            require(purchases.size()==2&&purchases.path("shugo").isBoolean()&&purchases.path("nightmare").isBoolean());
+        }
         if(p.has("confirmedRemainingContext")){
             var c=p.get("confirmedRemainingContext");fields(c,Set.of("region","serverId","characterId","level"));
             require(Set.of("eu","nae","naw","la","as").contains(c.path("region").asText()));

@@ -8,7 +8,13 @@ const url=source=>'data:text/javascript;base64,'+Buffer.from(source).toString('b
 const pointsUrl=moduleUrl(readFileSync('lib/character-points.ts','utf8').replace("'./planner'",JSON.stringify(plannerUrl)));
 const numberUrl=url(jsx(readFileSync('app/point-number.tsx','utf8').replace("import {useEffect,useState} from 'react';",'const useEffect=()=>{};const useState=value=>[value,x=>{globalThis.__draft=x}];')));
 const {default:PointNumber}=await import(numberUrl);
+const shopsUrl=url(jsx(readFileSync('app/daevanion-purchases.tsx','utf8')
+ .replace("import {useState} from 'react';",'const useState=value=>[value,()=>{}];')
+ .replace("'@/lib/planner'",JSON.stringify(plannerUrl))
+ .replace("import {useLocale} from './locale';",'const useLocale=()=>({t:s=>s});')
+ .replace("import './daevanion-purchases.css';",'')));
 let source=readFileSync('app/character-points.tsx','utf8')
+ .replace("'./daevanion-purchases'",JSON.stringify(shopsUrl))
  .replace("import {useEffect,useState} from 'react';",'const useEffect=()=>{};const useState=value=>[value===0?0:globalThis.__pointsGear,()=>{}];')
  .replace("'@/lib/planner'",JSON.stringify(plannerUrl)).replace("'@/lib/character-points'",JSON.stringify(pointsUrl))
  .replace("'./point-number'",JSON.stringify(numberUrl)).replace("import './leveling-guide.css';",'')

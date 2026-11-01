@@ -8,7 +8,7 @@ export const MAX_SETTINGS_BYTES=1_000_000;
 export const SAVE_DELAY_MS=800;
 export class SettingsSizeLimit extends Error{}
 const classes=['assassin','gladiator','templar','ranger','sorcerer','elementalist','cleric','chanter'];
-const planFields=['classKey','level','mode','base','bonus','specs','nodes','checked','extraSP','extraStigma','extraCrystal','extraBattle','pointBudget','confirmedRemaining','confirmedRemainingContext','ascensionGrade3Confirmed','stigmaSkills','pvePreset','macroExtra'] as const;
+const planFields=['classKey','level','mode','base','bonus','specs','nodes','checked','extraSP','extraStigma','extraCrystal','extraBattle','pointBudget','confirmedRemaining','confirmedRemainingContext','ascensionGrade3Confirmed','stigmaSkills','pvePreset','macroExtra','daevanionPurchases'] as const;
 export type Entries=Record<string,string>;
 export type SettingsDocument={version:number;revision:number;entries:Entries;updatedAt?:string};
 type MapEdits=Record<string,Record<string,boolean>>;
@@ -37,9 +37,9 @@ export function projectSetting(key:string,raw:string):string {
   if(!validStoredPlan(value,planClass(key)))throw Error('Invalid plan');
   const out:Record<string,unknown>={character:null};
   for(const field of planFields)if(value[field]!==undefined)out[field]=value[field];
-  // Bind game-confirmed balances to the selected public character, not its full fetched response/history.
+  // Bind game-confirmed balances and shop checks to the selected public character, not its full fetched response/history.
   const c=value.character;
-  if(value.confirmedRemaining&&c?.profile&&['eu','nae','naw','la','as'].includes(c.region)&&/^\d{1,8}$/.test(String(c.profile.serverId))&&typeof c.profile.characterId==='string'&&c.profile.characterId.length>0&&c.profile.characterId.length<=160&&Number.isInteger(c.profile.characterLevel)&&c.profile.characterLevel>=1&&c.profile.characterLevel<=45)
+  if((value.confirmedRemaining||value.daevanionPurchases)&&c?.profile&&['eu','nae','naw','la','as'].includes(c.region)&&/^\d{1,8}$/.test(String(c.profile.serverId))&&typeof c.profile.characterId==='string'&&c.profile.characterId.length>0&&c.profile.characterId.length<=160&&Number.isInteger(c.profile.characterLevel)&&c.profile.characterLevel>=1&&c.profile.characterLevel<=45)
    out.confirmedRemainingContext={region:c.region,serverId:String(c.profile.serverId),characterId:c.profile.characterId,level:c.profile.characterLevel};
   // Keep functional equipment choices/bonuses, but not user-written names or notes.
   if(value.gear)out.gear={mode:value.gear.mode,items:value.gear.items.map((i:Record<string,unknown>,n:number)=>({id:String(n),name:'',note:'',slot:i.slot,owned:i.owned,current:i.current,target:i.target,bonuses:i.bonuses}))};

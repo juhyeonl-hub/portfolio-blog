@@ -7,7 +7,8 @@ export type Catalog={boardDataCheck?:{checkedAt:string;needsReview:boolean;chang
 export type PointBudget={sp:number;stigma:number;crystal:number;battle:number;ariel?:number};
 export type GearItem={id:string;name:string;slot:string;owned:boolean;current:boolean;target:boolean;bonuses:Record<string,number>;note:string};
 export type Gear={mode:"manual"|"current"|"target";items:GearItem[]};
-export type Plan={pvePreset?:PvePreset;stigmaSkills?:string[];confirmedRemainingContext?:{region:string;serverId:string;characterId:string;level:number};ascensionGrade3Confirmed?:boolean;searchPrefs?:{region:string;server:string;name:string};recentCharacters?:import('./plan-memory').RecentCharacter[];macroExtra?:boolean;gear?:Gear;classKey?:string;pointBudget?:PointBudget;confirmedRemaining?:Partial<PointBudget>;level:number;extraSP:number;extraStigma:number;extraCrystal:number;extraBattle:number;mode:'safe'|'damage'|'pvp';base:Record<string,number>;bonus:Record<string,number>;specs:Record<string,string[]>;nodes:string[];checked:string[];character:any|null;};
+export type DaevanionPurchases={shugo:boolean;nightmare:boolean};
+export type Plan={daevanionPurchases?:DaevanionPurchases;pvePreset?:PvePreset;stigmaSkills?:string[];confirmedRemainingContext?:{region:string;serverId:string;characterId:string;level:number};ascensionGrade3Confirmed?:boolean;searchPrefs?:{region:string;server:string;name:string};recentCharacters?:import('./plan-memory').RecentCharacter[];macroExtra?:boolean;gear?:Gear;classKey?:string;pointBudget?:PointBudget;confirmedRemaining?:Partial<PointBudget>;level:number;extraSP:number;extraStigma:number;extraCrystal:number;extraBattle:number;mode:'safe'|'damage'|'pvp';base:Record<string,number>;bonus:Record<string,number>;specs:Record<string,string[]>;nodes:string[];checked:string[];character:any|null;};
 export const CORE=['13350000','13130000','13010000'];
 export const MOVEMENT=['13070000','13360000','13050000','13220000','13280000','13700000','13140000'];
 export const MANUAL=['13070000','13360000','13050000','13220000','13260000','13340000'];
@@ -43,12 +44,17 @@ export function updatePlan(c:Catalog,p:Plan,patch:Partial<Plan>):Plan {
  // Confirmations belong to the actual snapshot, not the hypothetical target level/budget.
  const confirmation=p.confirmedRemainingContext;
  const sameSyncedConfirmation=confirmation&&patch.character&&String(patch.character.profile?.characterId)===confirmation.characterId&&String(patch.character.profile?.serverId)===confirmation.serverId&&patch.character.region===confirmation.region&&patch.character.profile?.characterLevel===confirmation.level;
- const switched=patch.character && !sameSyncedConfirmation && (['characterId','serverId'].some(k=>String(patch.character.profile?.[k])!==String(p.character?.profile?.[k]))||patch.character.region!==p.character?.region);
+ const sameSyncedPurchases=p.daevanionPurchases&&confirmation&&patch.character&&String(patch.character.profile?.characterId)===confirmation.characterId&&String(patch.character.profile?.serverId)===confirmation.serverId&&patch.character.region===confirmation.region;
+ const switched=patch.character && !sameSyncedConfirmation && !sameSyncedPurchases && (['characterId','serverId'].some(k=>String(patch.character.profile?.[k])!==String(p.character?.profile?.[k]))||patch.character.region!==p.character?.region);
  if(Object.prototype.hasOwnProperty.call(patch,'character')&&(patch.character===null||(!sameSyncedConfirmation&&(switched||patch.character?.profile?.characterLevel!==p.character?.profile?.characterLevel)))){next.confirmedRemaining=undefined;next.confirmedRemainingContext=undefined;}
  if((patch.level!==undefined&&patch.level!==p.level)||switched){
   if(!Object.prototype.hasOwnProperty.call(patch,'pointBudget'))next.pointBudget=undefined;
   for(const key of ['extraSP','extraStigma','extraCrystal','extraBattle'] as const)if(patch[key]===undefined)next[key]=0;
  }
+ // Purchase checks describe a calculated total, never an extra amount added to a manual total.
+ if(switched||patch.character===null)next.daevanionPurchases=undefined;
+ if(Object.prototype.hasOwnProperty.call(patch,'pointBudget')&&!Object.prototype.hasOwnProperty.call(patch,'daevanionPurchases')&&(patch.pointBudget===undefined||patch.pointBudget.crystal!==pointLimits(c,p).crystal))next.daevanionPurchases=undefined;
+ if(patch.level!==undefined&&patch.level!==p.level&&next.daevanionPurchases&&!Object.prototype.hasOwnProperty.call(patch,'pointBudget'))next.pointBudget={...pointLimits(c,next),crystal:daevanionPurchaseTotal(c,next,next.daevanionPurchases)};
  // Recompute only when the effective level or recommendation mode changes.
  if(!patch.specs){next.specs={...p.specs};for(const s of c.skills)if(finalLevel(c,p,s)!==finalLevel(c,next,s)||p.mode!==next.mode)next.specs[s.id]=recommendSpecs(s,finalLevel(c,next,s),next.mode,recommendationProfile(next.classKey,next));}
  return next;
@@ -77,6 +83,13 @@ export function pointLimits(c:Catalog,p:Plan):PointBudget {
  const fallback={sp:level.skillPoints+completion+(p.extraSP||0),stigma:level.stigmaPoints+(p.extraStigma||0),crystal:(level.daevanionPoints.find((d:any)=>d.kind==='daevanioncrystal')?.amount||0)+completion+(p.extraCrystal||0),battle:p.extraBattle||0,ariel:0};
  return Object.fromEntries((['sp','stigma','crystal','battle','ariel'] as const).map(k=>[k,cleanPoints(p.pointBudget?.[k]??fallback[k])])) as PointBudget;
 }
+// Global shop limits: Festival 10+10+15+15, Nightmare 50 (checked 2026-11-01).
+// NPC Centuryroot stock has no verified live location and is deliberately excluded.
+export const DAEVANION_SHOP_POINTS={shugo:50,nightmare:50} as const;
+export function daevanionPurchaseBase(c:Catalog,p:Plan){return pointLimits(c,{...p,pointBudget:undefined,extraSP:0,extraStigma:0,extraCrystal:0,extraBattle:0}).crystal;}
+export function daevanionPurchaseTotal(c:Catalog,p:Plan,shops:DaevanionPurchases){return daevanionPurchaseBase(c,p)+(shops.shugo?DAEVANION_SHOP_POINTS.shugo:0)+(shops.nightmare?DAEVANION_SHOP_POINTS.nightmare:0);}
+export function daevanionPurchasePatch(c:Catalog,p:Plan,shops:DaevanionPurchases):Partial<Plan>{return {daevanionPurchases:{...shops},pointBudget:{...pointLimits(c,p),crystal:daevanionPurchaseTotal(c,p,shops)}};}
+export function canApplyDaevanionPurchases(c:Catalog,p:Plan){const total=pointLimits(c,p).crystal;return total===daevanionPurchaseTotal(c,p,p.daevanionPurchases||{shugo:false,nightmare:false});}
 export function totals(c:Catalog,p:Plan){const cap=pointLimits(c,p);const cost=(currency:string)=>c.boards.filter(b=>b.pointKind.code===currency).flatMap(b=>b.nodes).filter(n=>p.nodes.includes(n.id)).reduce((sum,n)=>sum+n.pointCost,0);return {sp:c.skills.filter(s=>!s.stigma).reduce((a,s)=>a+skillCost(s,p.base[s.id]??1),0),spMax:cap.sp,stigma:c.skills.filter(s=>s.stigma&&equipped(p).includes(s.id)).reduce((a,s)=>a+skillCost(s,p.base[s.id]??0),0),stigmaMax:cap.stigma,crystal:cost('daevanioncrystal'),crystalMax:cap.crystal,battle:cost('battlecrystal'),battleMax:cap.battle,ariel:cost('conquestcrystal'),arielMax:cap.ariel??0}}
 export function recommendSpecs(s:Skill,lv:number,mode:string,profile?:ClassProfile){const n=slots(s,lv);let order:number[]=[];if(profile?.specPriority[s.id])order=profile.specPriority[s.id];else if(s.id==='13350000')order=lv>=16?[4,3,mode==='safe'?0:2]:[3,mode==='safe'?0:2,1];else if(s.id==='13130000')order=[lv>=16?4:2,2,1];else if(s.id==='13010000')order=[4,3,2,0];else if(s.id==='13100000')order=[1,3,2];else if(s.id==='13060000')order=[4,0,1];else if(s.id==='13070000')order=[1];else if(s.id==='13360000')order=[0,1];else if(s.id==='13050000')order=[1,3];else if(s.id==='13260000')order=[4,2,3];else if(s.id==='13340000')order=[4,3,1];else order=profile?.specPriority[s.id]||CLASSES.map(p=>p.specPriority[s.id]).find(Boolean)||[0,1,2,3,4];return [...new Set(order)].map(i=>s.specializations[i]).filter(x=>x&&x.requiredParentLevel<=lv).slice(0,n).map(x=>x.id)}
 // A transparent priority recommendation, not a combat/DPS simulation.

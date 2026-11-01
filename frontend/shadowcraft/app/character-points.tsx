@@ -4,6 +4,7 @@ import {characterPointReport,pointBalance,confirmRemaining} from '@/lib/characte
 import {queryArmory} from '@/lib/armory-client';
 import {useLocale} from './locale';
 import PointNumber from './point-number';
+import DaevanionPurchasesPanel from './daevanion-purchases';
 import './leveling-guide.css';
 export default function CharacterPoints({catalog,plan,points,onChange}:{catalog:Catalog;plan:Plan;points:PointBudget;onChange:(patch:Partial<Plan>)=>void}){
  const {t,skill:skillName}=useLocale();const character=plan.character;
@@ -45,6 +46,7 @@ export default function CharacterPoints({catalog,plan,points,onChange}:{catalog:
  </div>
  {used===null?<small>{t('사용량 미확인: 남은 양은 보존하고, 추천은 입력한 총량으로 계산합니다.')}</small>:sameLevel&&confirmed!==undefined&&remaining!==confirmed?<small>{t('계산한 남은 포인트와 직접 입력한 값이 다릅니다. 추천은 입력한 총량으로 계산합니다.')}</small>:<small>{t('사용: 조회 기반 · 남음: 직접 확인 · 총량: 추천 계산용')}</small>}
  </div>})}</div>
+ <DaevanionPurchasesPanel catalog={catalog} plan={plan} onChange={onChange}/>
  <details><summary>{t('포인트 계산 기준과 확인되지 않은 값')}</summary><p>{t('‘남음’은 게임에서 확인해 직접 입력한 값입니다. 다시 조회하거나 총량을 바꿔도 이 입력값은 유지합니다. 조회 정보로 계산한 수치는 게임과 다를 수 있습니다.')}</p>
  <p>{t('스킬 사용량은 실제 최종 레벨에서 조회한 데바니온·장비 스킬 보너스를 뺀 계산값입니다. 다른 보너스나 조회 지연이 있으면 게임과 다를 수 있습니다.')}</p></details>
  </section>;
