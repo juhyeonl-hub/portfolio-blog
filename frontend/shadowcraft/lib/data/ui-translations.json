@@ -30078,5 +30078,155 @@
     "es": "Consulta en espera…",
     "pt-BR": "Consulta em espera…",
     "ru": "Ожидание запроса…"
+  },
+  "좌클릭": {
+    "en": "Left click",
+    "ja": "左クリック",
+    "fi": "Vasen napsautus",
+    "fr": "Clic gauche",
+    "de": "Linksklick",
+    "es": "Clic izquierdo",
+    "pt-BR": "Clique esquerdo",
+    "ru": "ЛКМ"
+  },
+  "PC · AION2 조작 모드 기준": {
+    "en": "PC · AION2 control mode",
+    "ja": "PC · AION2操作モード基準",
+    "fi": "PC · AION2-ohjaustila",
+    "fr": "PC · Mode de contrôle AION2",
+    "de": "PC · AION2-Steuerungsmodus",
+    "es": "PC · Modo de control AION2",
+    "pt-BR": "PC · Modo de controle AION2",
+    "ru": "ПК · Режим управления AION2"
+  },
+  "AION1 조작 모드용 배치가 아닙니다. 좌클릭은 고정이며 다른 키로 옮기지 않습니다.": {
+    "en": "This layout is not for AION1 control mode. Left click is fixed and is not moved to another key.",
+    "ja": "AION1操作モード用の配置ではありません。左クリックは固定で、他のキーには移しません。",
+    "fi": "Tämä asettelu ei ole AION1-ohjaustilalle. Vasen napsautus on kiinteä, eikä sitä siirretä toiselle näppäimelle.",
+    "fr": "Cette disposition ne concerne pas le mode AION1. Le clic gauche est fixe et ne se déplace pas sur une autre touche.",
+    "de": "Diese Belegung gilt nicht für den AION1-Modus. Linksklick ist fest und wird keiner anderen Taste zugewiesen.",
+    "es": "Esta distribución no es para el modo AION1. El clic izquierdo es fijo y no se mueve a otra tecla.",
+    "pt-BR": "Esta disposição não é para o modo AION1. O clique esquerdo é fixo e não é movido para outra tecla.",
+    "ru": "Эта раскладка не для режима AION1. ЛКМ закреплена и не переносится на другую клавишу."
+  },
+  "일반 키의 세로줄은 맨 아래 0행부터 위로 확인합니다. 아래 키는 배치 예시입니다.": {
+    "en": "Read each regular-key column upward from row 0. The keys below are an example layout.",
+    "ja": "通常キーの縦列は最下段の0行から上へ確認します。以下のキーは配置例です。",
+    "fi": "Lue tavallisen näppäimen sarake alhaalta riviltä 0 ylöspäin. Alla olevat näppäimet ovat esimerkki.",
+    "fr": "Lisez chaque colonne depuis la ligne 0 vers le haut. Les touches ci-dessous sont un exemple.",
+    "de": "Jede normale Tastenspalte wird von Zeile 0 nach oben gelesen. Die Tasten unten sind ein Beispiel.",
+    "es": "Lee cada columna desde la fila 0 hacia arriba. Las teclas de abajo son un ejemplo.",
+    "pt-BR": "Leia cada coluna de baixo para cima, a partir da linha 0. As teclas abaixo são um exemplo.",
+    "ru": "Читайте столбец обычной клавиши снизу вверх, начиная с ряда 0. Клавиши ниже — пример раскладки."
+  },
+  "좌클릭 · 고정 슬롯": {
+    "en": "Left click · Fixed slot",
+    "ja": "左クリック · 固定スロット",
+    "fi": "Vasen napsautus · Kiinteä paikka",
+    "fr": "Clic gauche · Emplacement fixe",
+    "de": "Linksklick · Fester Platz",
+    "es": "Clic izquierdo · Ranura fija",
+    "pt-BR": "Clique esquerdo · Espaço fixo",
+    "ru": "ЛКМ · Фиксированная ячейка"
+  },
+  "다른 키로 이동 불가": {
+    "en": "Cannot move to another key",
+    "ja": "他のキーへ移動不可",
+    "fi": "Ei voi siirtää toiselle näppäimelle",
+    "fr": "Impossible de déplacer vers une autre touche",
+    "de": "Nicht auf eine andere Taste verschiebbar",
+    "es": "No se puede mover a otra tecla",
+    "pt-BR": "Não pode ser movido para outra tecla",
+    "ru": "Нельзя перенести на другую клавишу"
+  },
+  "번호 순서대로 키를 등록하세요. 큰 아이콘은 해당 키의 0행 스킬입니다.": {
+    "en": "Register the keys in numbered order. The large icon is that key’s row-0 skill.",
+    "ja": "番号順にキーを登録してください。大きなアイコンはそのキーの0行のスキルです。",
+    "fi": "Lisää näppäimet numerojärjestyksessä. Iso kuvake on näppäimen rivin 0 taito.",
+    "fr": "Ajoutez les touches dans l’ordre numéroté. La grande icône représente la compétence de la ligne 0.",
+    "de": "Trage die Tasten in nummerierter Reihenfolge ein. Das große Symbol zeigt die Fertigkeit in Zeile 0.",
+    "es": "Registra las teclas en orden numérico. El icono grande muestra la habilidad de la fila 0.",
+    "pt-BR": "Registre as teclas na ordem numerada. O ícone grande mostra a habilidade da linha 0.",
+    "ru": "Добавляйте клавиши по номерам. Крупный значок — умение ряда 0 этой клавиши."
+  },
+  "고정": {
+    "en": "Fixed",
+    "ja": "固定",
+    "fi": "Kiinteä",
+    "fr": "Fixe",
+    "de": "Fest",
+    "es": "Fijo",
+    "pt-BR": "Fixo",
+    "ru": "Закреплено"
+  },
+  "세로줄 · 0행부터": {
+    "en": "Column · From row 0",
+    "ja": "縦列 · 0行から",
+    "fi": "Sarake · Riviltä 0",
+    "fr": "Colonne · Depuis la ligne 0",
+    "de": "Spalte · Ab Zeile 0",
+    "es": "Columna · Desde la fila 0",
+    "pt-BR": "Coluna · A partir da linha 0",
+    "ru": "Столбец · С ряда 0"
+  },
+  "지연": {
+    "en": "Delay",
+    "ja": "遅延",
+    "fi": "Viive",
+    "fr": "Délai",
+    "de": "Verzögerung",
+    "es": "Retardo",
+    "pt-BR": "Atraso",
+    "ru": "Задержка"
+  },
+  "게임 설정값": {
+    "en": "In-game setting",
+    "ja": "ゲーム内の設定値",
+    "fi": "Pelin asetus",
+    "fr": "Réglage du jeu",
+    "de": "Einstellung im Spiel",
+    "es": "Ajuste del juego",
+    "pt-BR": "Configuração do jogo",
+    "ru": "Настройка в игре"
+  },
+  "세로줄의 스킬은 사용 가능 여부에 따라 실행되며, 모두 연속 실행되는 콤보가 아닙니다.": {
+    "en": "Skills in a column execute when available; this is not a combo that executes every skill in sequence.",
+    "ja": "縦列のスキルは使用可能なものが実行され、すべてが連続発動するコンボではありません。",
+    "fi": "Sarakkeen taitoja käytetään saatavuuden mukaan. Tämä ei ole kaikkien taitojen peräkkäinen yhdistelmä.",
+    "fr": "Les compétences de la colonne se déclenchent selon leur disponibilité, pas toutes à la suite comme un combo.",
+    "de": "Fertigkeiten einer Spalte werden je nach Verfügbarkeit ausgeführt, nicht alle nacheinander als Kombo.",
+    "es": "Las habilidades de la columna se ejecutan según disponibilidad; no es un combo que ejecute todas en secuencia.",
+    "pt-BR": "As habilidades da coluna são executadas conforme disponíveis; não é um combo que executa todas em sequência.",
+    "ru": "Умения столбца выполняются по доступности, а не все подряд как комбо."
+  },
+  "10ms는 기존 예시의 시작값입니다. 실제 게임에서 확인하세요.": {
+    "en": "10 ms is the starting value from the existing example. Check it in game.",
+    "ja": "10msは既存例の開始値です。実際のゲームで確認してください。",
+    "fi": "10 ms on aiemman esimerkin aloitusarvo. Tarkista se pelissä.",
+    "fr": "10 ms est la valeur de départ de l’exemple existant. Vérifiez en jeu.",
+    "de": "10 ms ist der Startwert des bisherigen Beispiels. Prüfe ihn im Spiel.",
+    "es": "10 ms es el valor inicial del ejemplo existente. Compruébalo en el juego.",
+    "pt-BR": "10 ms é o valor inicial do exemplo existente. Confira no jogo.",
+    "ru": "10 мс — начальное значение из прежнего примера. Проверьте его в игре."
+  },
+  "직접 사용은 1~4·Q·E부터, 매크로는 5~8에 배치합니다. 세로줄은 0행부터 위로 확인하세요.": {
+    "en": "Manual skills start on 1–4, Q and E; macros use 5–8. Read columns upward from row 0.",
+    "ja": "手動スキルは1～4・Q・Eから、マクロは5～8に配置します。縦列は0行から上へ確認してください。",
+    "fi": "Manuaaliset taidot alkavat näppäimistä 1–4, Q ja E; makrot käyttävät 5–8. Lue sarakkeet riviltä 0 ylöspäin.",
+    "fr": "Les compétences manuelles commencent sur 1–4, Q et E ; les macros utilisent 5–8. Lisez les colonnes depuis la ligne 0 vers le haut.",
+    "de": "Manuelle Fertigkeiten beginnen auf 1–4, Q und E; Makros verwenden 5–8. Lies die Spalten ab Zeile 0 nach oben.",
+    "es": "Las habilidades manuales empiezan en 1–4, Q y E; las macros usan 5–8. Lee las columnas desde la fila 0 hacia arriba.",
+    "pt-BR": "As habilidades manuais começam em 1–4, Q e E; macros usam 5–8. Leia as colunas de baixo para cima, a partir da linha 0.",
+    "ru": "Ручные умения начинаются с 1–4, Q и E; макросы используют 5–8. Читайте столбцы от ряда 0 вверх."
+  },
+  "게임의 스킬 설명에서 발동 조건을 확인한 뒤 직접 사용하세요.": {
+    "en": "Check the activation conditions in the in-game skill description, then use it manually.",
+    "ja": "ゲーム内のスキル説明で発動条件を確認し、手動で使用してください。",
+    "fi": "Tarkista aktivointiehdot pelin taitokuvauksesta ja käytä taitoa käsin.",
+    "fr": "Vérifiez les conditions dans la description en jeu, puis utilisez la compétence manuellement.",
+    "de": "Prüfe die Auslösebedingungen in der Fertigkeitsbeschreibung im Spiel und nutze sie manuell.",
+    "es": "Comprueba las condiciones en la descripción del juego y úsala manualmente.",
+    "pt-BR": "Confira as condições na descrição da habilidade no jogo e use-a manualmente.",
+    "ru": "Проверьте условия активации в описании умения в игре и используйте его вручную."
   }
 }
