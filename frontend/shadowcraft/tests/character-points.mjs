@@ -74,3 +74,5 @@ test('target-level changes preserve actual balance; actual level/identity change
  assert.equal(planner.updatePlan(c,p,{level:45}).confirmedRemaining.sp,30);
  for(const changed of [null,{...character,region:'kr'},{...character,profile:{...character.profile,serverId:'other'}},{...character,profile:{...character.profile,characterId:'other'}},{...character,profile:{...character.profile,characterLevel:40}}])assert.equal(planner.updatePlan(c,p,{character:changed}).confirmedRemaining,undefined);
 });
+
+await import('./point-gear.mjs');

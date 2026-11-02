@@ -1,0 +1,11 @@
+.mobile-detail-notice,.mobile-node-actions{display:none}
+@media (max-width:600px), (hover:none) and (pointer:coarse) and (max-width:932px) {
+ /* Hide touch-triggered descriptions, including sticky/fixed focus tooltips. */
+ .eq-tip,.skill-tip,.inline-equipment-details,.equipment-mobile-action,.phone-node-details{display:none!important}
+ .mobile-detail-notice{display:block;border:1px solid #385165;border-radius:10px;padding:12px 14px;margin:12px 0 18px;background:#15232e;color:#c2d9e8;font-size:13px;line-height:1.6}
+ .mobile-detail-notice strong{color:#b1e6fa}.mobile-detail-notice p{margin:4px 0 0}
+ .mobile-node-actions{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 12px;padding:12px;margin:12px 0;border:1px solid #385165;border-radius:10px;background:#15232e;min-width:0}
+ .mobile-node-actions strong{overflow-wrap:anywhere;font-size:14px}.mobile-node-actions>span{font-size:12px;color:#bfd3df}
+ .mobile-node-actions>.button,.mobile-node-actions>p{grid-column:1/-1;margin:0;min-height:44px}
+ .mobile-node-actions>p{min-height:0;font-size:12px}
+}

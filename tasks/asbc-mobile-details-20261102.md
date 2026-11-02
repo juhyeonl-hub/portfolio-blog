@@ -1,0 +1,10 @@
+# Phone detail presentation — 2026-11-02
+Owner: Claude allocation; Codex implementation/QA.
+[Task Goal]: Honor iPhone15ProMax feedback: remove distracting lower item/node descriptions on phones and recommend PC.
+Scope: responsive presentation only; hide item/skill hover tips and long inline equipment detail panel, suppress scroll-to-hidden-panel, mobile PC notice in workshop/readers; selected node name/cost/actions moved above board. Desktop retains full panels. No gameplay, persistence, auth or existing point-gear changes altered.
+Expected:430px portrait hides details and shows notice; coarse touch landscape up to932px uses same policy; fine-pointer932px and desktop1280 retain details. Node apply/remove remain usable without scrolling to lower sidebar. Existing selections/points remain unchanged until explicit actions.
+Base: c438cdc plus prior uncommitted point-gear scope (preserved).
+Allocation: asbc-mobile-details-20261102-plan-1793654546237 status0/error null/empty write scope. Codex implements presentation. Claude suggested keeping inline details; user explicitly requests hiding phone item details, so panel is hidden on phone and its auto-scroll disabled; desktop full editing retained. Node controls remain in compact phone toolbar.
+Verification PASS: typecheck:shadowcraft; localization (74 screens / 8 locales); navigation; build-editor (all 8 classes); build:asbc; lint/postlint toolchain; git diff --check. Browser 430x932: notice shown, no horizontal overflow, long node/item details and mobile detail actions hidden, compact node add/remove works; repeated equipment click keeps scrollY4599 and focus on slot. Desktop1280x900: notice hidden and equipment details display:block. Console errors: none. Coarse-touch landscape rule is implemented but not device-emulated; no physical iPhone test. Screenshots and build/lint logs: D:/CodexData/Projects/ASBC/artifacts/mobile-details-20261102.
+Last reviewed: allocation only; low-impact display changes do not require another cross-review.
+Completed locally; ready for review/release. No commit/push/deploy performed in this task.

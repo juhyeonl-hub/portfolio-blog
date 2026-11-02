@@ -1,3 +1,4 @@
+import {phoneDetailsHidden} from './mobile-detail-notice';
 import './equipment-guidance.css';
 import {useEffect,useRef,useState,useSyncExternalStore} from 'react';
 import {rankerText} from '../lib/ranker-comparison-text';
@@ -67,11 +68,12 @@ export default function MyRankerComparison({catalog,plan,ranker,live,store,onCon
  const [index,setIndex]=useState<ItemIndex|null>(null),[slot,setSlot]=useState<number|null>(null);
  function cancelHover(){if(hoverTimer.current!==null){clearTimeout(hoverTimer.current);hoverTimer.current=null;}}
  function showHover(value:number){
-  if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  if(phoneDetailsHidden()||!window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;
   cancelHover();hoverTimer.current=setTimeout(()=>{setSlot(value);hoverTimer.current=null;},140);
  }
  function showDetails(){
-  requestAnimationFrame(()=>{detailPanel.current?.scrollIntoView({block:'start',behavior:'auto'});detailPanel.current?.focus({preventScroll:true});});
+  if(phoneDetailsHidden())return;
+  requestAnimationFrame(()=>{if(phoneDetailsHidden())return;detailPanel.current?.scrollIntoView({block:'start',behavior:'auto'});detailPanel.current?.focus({preventScroll:true});});
  }
  function inspect(value:number){
   cancelHover();setSlot(value);
@@ -91,7 +93,7 @@ export default function MyRankerComparison({catalog,plan,ranker,live,store,onCon
  const pending=store?[...store.entries.values()].filter(e=>e.status==='queued'||e.status==='loading').length:0;
  return <section className="my-ranker-comparison" aria-label={t('내 캐릭터와 랭커 비교')}>
   <h3>{t('내 캐릭터와 랭커 비교')}</h3>
-  <p>{rankerText(locale,'inlineGearHint')}</p>
+  <p className="phone-node-details">{rankerText(locale,'inlineGearHint')}</p>
   <p className="subtle">{t('판단 기준: {0} · {1}. 레벨 비교는 글로벌 아이템 자료 기준이며 랭커의 옵션을 정답으로 취급하지 않습니다.',[t(catalog.className||catalog.classKey||''),t(MODE_NAMES[plan.mode])])}</p>
   {!identity&&(onConnect?<button className="button primary" onClick={onConnect}>{t('내 캐릭터 연결하고 비교')}</button>:<p role="status">{t('빌드 화면에서 내 캐릭터를 먼저 연결하세요.')}</p>)}
   {store&&<p className="subtle equipment-snapshot-status" role="status">{rankerText(locale,pending?'optionsPreparing':'optionsReady')} · {complete} / {store.entries.size}<br/>{rankerText(locale,'optionsSnapshot')}</p>}

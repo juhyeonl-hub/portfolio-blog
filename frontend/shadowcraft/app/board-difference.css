@@ -1,0 +1,19 @@
+/* Same green/orange/red semantics as the ranker guide; symbols avoid color-only meaning. */
+.board-difference-summary{margin:14px 0;padding:16px;border:1px solid #41516a;border-radius:10px;background:#151d29}
+.board-difference-legend{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.board-difference-legend>span{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid currentColor;border-radius:7px;font-size:13px}
+.board-difference-legend .keep{color:#91efbd}.board-difference-legend .add{color:#ffd095}.board-difference-legend .remove{color:#ffaaaa}
+.board-difference-legend b{font-size:20px;line-height:1}.board-difference-legend strong{padding-left:8px}
+.board-difference-summary p{font-size:13px;line-height:1.7}.board-difference-selected{margin-top:10px!important;color:#f2f5ff!important}
+.board-comparing .board-node[data-difference]{opacity:1;filter:none;box-shadow:none;border-width:2px}
+.board-comparing .board-node[data-difference=keep]{border-color:#69e69e;box-shadow:0 0 0 1px #69e69e;background:#133a2b}
+.board-comparing .board-node[data-difference=add]{border-color:#ffb34f;box-shadow:0 0 0 1px #ffb34f;background:#503410}
+.board-comparing .board-node[data-difference=remove]{border-color:#ff727e;border-style:dashed;box-shadow:0 0 0 1px #ff727e;background:#491b27}
+.board-comparing .board-node[data-difference=empty]{opacity:.28;filter:grayscale(1)}
+.board-comparing .board-node[data-difference] img{opacity:.8;filter:none}
+.board-comparing .board-node[data-difference].focused{outline:3px solid white;outline-offset:3px;z-index:4}
+.board-comparing .board-node[data-difference].search-dim{opacity:.2}
+.board-comparing .board-node[data-difference].search-hit{outline:3px solid #fff;outline-offset:2px}
+.board-difference-badge{position:absolute;right:-5px;top:-7px;width:19px;height:19px;border-radius:5px;display:grid;place-items:center;font:bold 16px/1 sans-serif;z-index:2;color:#071410;background:#69e69e;border:1px solid #0e1017}
+[data-difference=add] .board-difference-badge{background:#ffb34f;color:#251600}[data-difference=remove] .board-difference-badge{background:#ff727e;color:#290710}
+@media(max-width:600px){.board-difference-summary{padding:12px}.board-difference-legend{gap:7px}.board-difference-legend>span{font-size:12px;padding:7px 9px}.board-difference-badge{width:16px;height:16px;font-size:14px;right:-3px;top:-5px}}

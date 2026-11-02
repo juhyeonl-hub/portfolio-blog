@@ -2,30 +2,24 @@ import {useEffect,useState} from 'react';
 import {type Catalog,type Plan,type PointBudget} from '@/lib/planner';
 import {characterPointReport,pointBalance,confirmRemaining} from '@/lib/character-points';
 import {queryArmory} from '@/lib/armory-client';
+import {createPointGear,pointGearState,type PointGearFailure} from '@/lib/point-gear';
 import {useLocale} from './locale';
 import PointNumber from './point-number';
 import DaevanionPurchasesPanel from './daevanion-purchases';
 import './leveling-guide.css';
 export default function CharacterPoints({catalog,plan,points,onChange}:{catalog:Catalog;plan:Plan;points:PointBudget;onChange:(patch:Partial<Plan>)=>void}){
  const {t,skill:skillName}=useLocale();const character=plan.character;
- const [gear,setGear]=useState<{source:any;bonus:Record<string,number>|null;failure?:boolean}|null>(null);
- const [retry,setRetry]=useState(0);
+ const [gear,setGear]=useState<{source:any;bonus:Record<string,number>|null;failure?:boolean;loading?:boolean;completed?:number;total?:number;errors?:PointGearFailure[];retry?:()=>void}|null>(null);
  useEffect(()=>{
-  if(!character)return;const abort=new AbortController();setGear(null);
-  (async()=>{try{
-   if(!Array.isArray(character.equipment))throw Error('missing equipment');
-   const bonus:Record<string,number>={};const items=[...character.equipment];
-   async function worker(){while(items.length){const item=items.shift();if(!item)break;
-    const d=await queryArmory({action:'item',class:catalog.classKey||plan.classKey||'assassin',region:character.region||'eu',server:String(character.profile.serverId),id:character.profile.characterId,itemId:String(item.id),slot:String(item.slotPos),enchant:String(item.enchantLevel)},abort.signal);
-    if(d.item?.id!==item.id||d.item?.enchantLevel!==item.enchantLevel||d.slotPos!==item.slotPos||d.characterId!==character.profile.characterId)throw Error('changed equipment');
-    const skills=d.item.subSkills;
-    if(!Array.isArray(skills)&&d.item.subSkillCountMax!==0)throw Error('unknown bonuses');
-    for(const s of skills||[]){if(!Number.isInteger(s.level)||s.level<0)throw Error('invalid bonus');bonus[String(s.id)]=(bonus[String(s.id)]||0)+s.level;}
-   }}
-   await Promise.all([worker(),worker()]);if(!abort.signal.aborted)setGear({source:character,bonus});
-  }catch{if(!abort.signal.aborted){setGear({source:character,bonus:null,failure:true});abort.abort();}}})();
-  return()=>abort.abort();
- },[character,catalog.classKey,plan.classKey,retry]);
+  if(!character){setGear(null);return;}
+  const lookup=createPointGear(character,catalog.classKey||plan.classKey||'assassin',queryArmory);
+  if(!lookup){setGear({source:character,bonus:null,failure:true,loading:false});return;}
+  const retry=()=>{for(const [key,entry] of lookup.store.entries)if(entry.status==='error')lookup.store.retry(key);};
+  const refresh=()=>setGear({source:character,...pointGearState(lookup),retry});
+  const unsubscribe=lookup.store.subscribe(refresh);refresh();
+  queueMicrotask(()=>lookup.store.start());
+  return()=>{unsubscribe();lookup.store.dispose();};
+ },[character,catalog.classKey,plan.classKey]);
  const report=characterPointReport(catalog,character,gear&&gear.source===character?gear.bonus:null),spent=report.spent,sameLevel=!!character&&plan.level===character.profile?.characterLevel;
  return <section className="growth-actual-points" aria-label={t('내 캐릭터 포인트')}>
  <h3>{t('사용 / 남음 / 총량')}</h3><p>{t('사용은 조회 정보로 계산합니다. 게임에 남은 양을 입력하면, 사용량을 아는 항목의 총량과 추천이 바로 바뀝니다.')}</p>
@@ -33,14 +27,19 @@ export default function CharacterPoints({catalog,plan,points,onChange}:{catalog:
  {character&&!sameLevel&&<p>{t('다른 레벨의 목표를 보는 중입니다. 잔여량 입력은 조회한 캐릭터 레벨에서 할 수 있습니다.')}</p>}
  {character&&report.reasons.length>0&&<div className="point-diagnostics" role="status"><strong>{t('사용량을 계산하려면 추가 확인이 필요해요')}</strong><ul>
  {report.reasons.includes('boards')&&<li>{t('데바니온 조회가 일부 빠졌거나 저장된 노드 정보와 다릅니다. 위의 새로 조회를 눌러 주세요.')}</li>}
- {report.reasons.includes('gear')&&<li>{t(!gear||gear.source!==character?'장비의 스킬 보너스를 확인하고 있어요. 확인이 끝나면 사용량을 다시 계산합니다.':'장비 보너스를 모두 확인하지 못했어요. 다시 확인해도 안 되면 게임에서 총 포인트를 확인해 입력하세요.')}</li>}
+ {report.reasons.includes('gear')&&<li>{t(!gear||gear.source!==character||gear.loading?'장비의 스킬 보너스를 확인하고 있어요. 확인이 끝나면 사용량을 다시 계산합니다.':'장비 보너스를 모두 확인하지 못했어요. 다시 확인해도 안 되면 게임에서 총 포인트를 확인해 입력하세요.')}</li>}
  {report.reasons.includes('skills')&&<li>{t('조회된 스킬 레벨이 일부 없거나 읽을 수 없습니다. 위의 새로 조회를 눌러 주세요.')}</li>}
  {report.reasons.includes('bonus')&&<li>{t('조회된 스킬 레벨과 보너스가 맞지 않아 사용량을 확정할 수 없어요. 게임의 총 포인트를 입력하면 추천은 계속 볼 수 있어요.')}<span> {report.mismatches.slice(0,3).map(id=>skillName(catalog.skills.find(s=>s.id===id)?.name||id)).join(' · ')}</span></li>}
- </ul>{gear?.source===character&&gear?.failure&&<button type="button" className="button secondary" onClick={()=>{setGear(null);setRetry(v=>v+1)}}>{t('장비 보너스 다시 확인')}</button>}</div>}
+ </ul>{gear&&gear.source===character&&<>
+ {gear.total!==undefined&&<p>{t('장비 보너스 확인: {0}/{1}개',[gear.completed,gear.total])}</p>}
+ {!!gear.errors?.length&&<ul>{gear.errors.map(item=><li key={item.key}>{item.name||t('장비 부위 {0}',[item.slot])} · {t(item.reason==='missing'?'공식 응답에 스킬 보너스가 없습니다. 0으로 계산하지 않습니다.':item.reason==='changed'?'장비 정보가 달라졌습니다. 위의 새로 조회를 눌러 주세요.':item.reason==='invalid'?'장비 보너스 형식을 확인할 수 없습니다.':'장비 조회에 실패했습니다. 잠시 후 다시 확인하세요.')}</li>)}</ul>}
+ {gear.failure&&gear.retry&&<button type="button" className="button secondary" disabled={gear.loading} onClick={gear.retry}>{t('장비 보너스 다시 확인')}</button>}
+ {gear.failure&&!gear.retry&&<p>{t('장비 정보가 달라졌습니다. 위의 새로 조회를 눌러 주세요.')}</p>}
+ </>}</div>}
  <div className="growth-points-grid">{(['sp','stigma','crystal','battle','ariel'] as const).map((key,i)=>{const used=spent[key],remaining=pointBalance(points[key],used),confirmed=plan.confirmedRemaining?.[key];return <div className="growth-point-card" key={key}>
  <b>{t(['스킬 포인트','스티그마 포인트','데바니온 포인트','아스펠 결정','아리엘 결정'][i])}</b>
  <div className="point-metrics">
- <div><span>{t('사용')}</span><strong>{used===null?t(character&&gear===null&&i<2?'장비 확인 중…':'확인 불가'):used}</strong></div>
+ <div><span>{t('사용')}</span><strong>{used===null?t(character&&(!gear||gear.source!==character||gear.loading)&&i<2?'장비 확인 중…':'확인 불가'):used}</strong></div>
  <label>{t('남음')}<PointNumber label={t(['남은 스킬 포인트','남은 스티그마 포인트','남은 데바니온 포인트','남은 아스펠 결정','남은 아리엘 결정'][i])} value={confirmed} disabled={!sameLevel} key={JSON.stringify([character?.region,character?.profile?.serverId,character?.profile?.characterId,character?.profile?.characterLevel,plan.level])} placeholder={t('게임에서 확인')} onValue={value=>{const patch=confirmRemaining(plan,points,key,value,used);if(patch)onChange(patch)}}/></label>
  <label>{t('총량')}<PointNumber label={t(['스킬 포인트','스티그마 포인트','데바니온 포인트','아스펠 결정','아리엘 결정'][i])} value={points[key]??0} onValue={value=>onChange({pointBudget:{...points,[key]:value}})}/></label>
  </div>

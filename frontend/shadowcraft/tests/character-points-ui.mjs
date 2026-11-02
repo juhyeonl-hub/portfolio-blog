@@ -14,6 +14,7 @@ const shopsUrl=url(jsx(readFileSync('app/daevanion-purchases.tsx','utf8')
  .replace("import {useLocale} from './locale';",'const useLocale=()=>({t:s=>s});')
  .replace("import './daevanion-purchases.css';",'')));
 let source=readFileSync('app/character-points.tsx','utf8')
+ .replace("import {createPointGear,pointGearState,type PointGearFailure} from '@/lib/point-gear';",'const createPointGear=()=>null;const pointGearState=()=>({});')
  .replace("'./daevanion-purchases'",JSON.stringify(shopsUrl))
  .replace("import {useEffect,useState} from 'react';",'const useEffect=()=>{};const useState=value=>[value===0?0:globalThis.__pointsGear,()=>{}];')
  .replace("'@/lib/planner'",JSON.stringify(plannerUrl)).replace("'@/lib/character-points'",JSON.stringify(pointsUrl))
@@ -25,7 +26,7 @@ const catalog=JSON.parse(readFileSync('lib/data/catalogs/templar.json','utf8'));
 const fixture=JSON.parse(readFileSync('tests/fixtures/templar-points-lv39.json','utf8'));
 const initial={...planner.emptyPlan(catalog),level:39,character:fixture.character};
 function flatten(el){if(el==null||typeof el==='boolean')return [];if(Array.isArray(el))return el.flatMap(flatten);return [el,...(typeof el==='object'?flatten(typeof el.type==='function'?el.type(el.props):el.props?.children):[])];}
-function render(plan,bonus=null){globalThis.__pointsGear={source:plan.character,bonus};let next=plan;const tree=CharacterPoints({catalog,plan,points:planner.pointLimits(catalog,plan),onChange:patch=>{next=planner.updatePlan(catalog,plan,patch)}});const els=flatten(tree),inputs=els.filter(x=>x?.type==='input');return {els,inputs,change:(label,value)=>{inputs.find(x=>x.props['aria-label']===label).props.onChange({target:{value}});return next;}};}
+function render(plan,bonus=null,extra={}){globalThis.__pointsGear={source:plan.character,bonus,...extra};let next=plan;const tree=CharacterPoints({catalog,plan,points:planner.pointLimits(catalog,plan),onChange:patch=>{next=planner.updatePlan(catalog,plan,patch)}});const els=flatten(tree),inputs=els.filter(x=>x?.type==='input');return {els,inputs,change:(label,value)=>{inputs.find(x=>x.props['aria-label']===label).props.onChange({target:{value}});return next;}};}
 test('unknown usage retains entered balance without inventing a total',()=>{
  const view=render(initial);const next=view.change('남은 스킬 포인트','30');assert.equal(next.confirmedRemaining.sp,30);assert.equal(next.pointBudget,undefined);
  assert.equal(render(next).inputs[0].props.value,'30');
@@ -68,3 +69,16 @@ test('number draft stays blank while editing, restores on blur and supports Ente
  let blurred=false;el.props.onKeyDown({key:'Enter',currentTarget:{blur:()=>{blurred=true}}});assert.ok(blurred);
 });
 delete globalThis.__pointsGear;delete globalThis.__draft;
+
+// One missing item is actionable, but never renders an invented usage figure.
+test('per-item diagnostics and explicit retry preserve the plan',()=>{
+ let retries=0;const view=render(initial,null,{failure:true,completed:17,total:20,loading:false,errors:[{key:'coat',name:'Vakron Breastplate',slot:5,reason:'missing'}],retry:()=>{retries++}});
+ assert.ok(view.els.includes('Vakron Breastplate'));
+ assert.ok(view.els.includes('공식 응답에 스킬 보너스가 없습니다. 0으로 계산하지 않습니다.'));
+ const retry=view.els.find(x=>x?.type==='button'&&x.props.children==='장비 보너스 다시 확인');
+ assert.equal(retry.props.disabled,false);retry.props.onClick();assert.equal(retries,1);
+ assert.equal(view.change('남은 스킬 포인트','30').pointBudget,undefined);
+ const loading=render(initial,null,{failure:true,loading:true,retry:()=>{}});
+ assert.equal(loading.els.find(x=>x?.type==='button'&&x.props.children==='장비 보너스 다시 확인').props.disabled,true);
+ assert.ok(loading.els.includes('장비 확인 중…'));
+});

@@ -2,13 +2,13 @@ import type {EquippedDetail} from './equipment-advice';
 export type EquipmentIdentity={id:string;server:string;region:string};
 export type EquipmentItem={id:number;slotPos:number;enchantLevel:number};
 export type EquipmentTask={key:string;identity:EquipmentIdentity;item:EquipmentItem};
-export type EquipmentOption={status:'queued'|'loading'|'ready'|'error';detail?:EquippedDetail;checkedAt?:string;error?:string};
+export type EquipmentOption<T=EquippedDetail>={status:'queued'|'loading'|'ready'|'error';detail?:T;checkedAt?:string;error?:string};
 export function equipmentKey(identity:EquipmentIdentity|null,item:EquipmentItem|undefined){
  return identity&&item?JSON.stringify([identity.region,identity.server,identity.id,item.slotPos,item.id,item.enchantLevel]):'';
 }
 // One comparison owns this queue. Never put actual rolls in a global/browser-persistent cache.
-export class EquipmentOptions {
- readonly entries=new Map<string,EquipmentOption>();
+export class EquipmentOptions<T=EquippedDetail> {
+ readonly entries=new Map<string,EquipmentOption<T>>();
  readonly tasks=new Map<string,EquipmentTask>();
  readonly controller=new AbortController();
  private queue:string[]=[];
@@ -19,7 +19,7 @@ export class EquipmentOptions {
  private revision=0;
  readonly subscribe=(listener:()=>void)=>{this.listeners.add(listener);return()=>{this.listeners.delete(listener);};};
  readonly getVersion=()=>this.revision;
- constructor(tasks:EquipmentTask[],private fetchItem:(task:EquipmentTask,signal:AbortSignal)=>Promise<EquippedDetail>){
+ constructor(tasks:EquipmentTask[],private fetchItem:(task:EquipmentTask,signal:AbortSignal)=>Promise<T>){
   for(const task of tasks)if(!this.tasks.has(task.key)){this.tasks.set(task.key,task);this.entries.set(task.key,{status:'queued'});this.queue.push(task.key);}
  }
  private changed(){if(!this.disposed){this.revision++;for(const fn of this.listeners)fn();}}

@@ -29908,5 +29908,145 @@
     "es": "Mantener el valor actual",
     "pt-BR": "Manter valor atual",
     "ru": "Оставить текущее значение"
+  },
+  "장비 보너스 확인: {0}/{1}개": {
+    "en": "Equipment bonuses checked: {0}/{1}",
+    "ja": "装備ボーナス確認: {0}/{1}件",
+    "fi": "Varustebonukset tarkistettu: {0}/{1}",
+    "fr": "Bonus vérifiés : {0}/{1} équipements",
+    "de": "Ausrüstungsboni geprüft: {0}/{1}",
+    "es": "Bonificaciones revisadas: {0}/{1}",
+    "pt-BR": "Bônus de equipamento verificados: {0}/{1}",
+    "ru": "Проверены бонусы снаряжения: {0}/{1}"
+  },
+  "장비 부위 {0}": {
+    "en": "Equipment slot {0}",
+    "ja": "装備部位 {0}",
+    "fi": "Varustepaikka {0}",
+    "fr": "Emplacement {0}",
+    "de": "Ausrüstungsplatz {0}",
+    "es": "Ranura de equipo {0}",
+    "pt-BR": "Espaço de equipamento {0}",
+    "ru": "Слот снаряжения {0}"
+  },
+  "공식 응답에 스킬 보너스가 없습니다. 0으로 계산하지 않습니다.": {
+    "en": "The official response omits skill bonuses. They are not counted as zero.",
+    "ja": "公式応答にスキルボーナスがありません。0として計算しません。",
+    "fi": "Virallisesta vastauksesta puuttuvat taitobonukset. Niitä ei lasketa nollaksi.",
+    "fr": "La réponse officielle ne contient pas les bonus de compétence. Ils ne sont pas comptés comme nuls.",
+    "de": "In der offiziellen Antwort fehlen Fertigkeitsboni. Sie werden nicht als null gewertet.",
+    "es": "La respuesta oficial omite las bonificaciones de habilidad. No se cuentan como cero.",
+    "pt-BR": "A resposta oficial omite os bônus de habilidade. Eles não são considerados zero.",
+    "ru": "В официальном ответе нет бонусов умений. Они не считаются нулевыми."
+  },
+  "장비 정보가 달라졌습니다. 위의 새로 조회를 눌러 주세요.": {
+    "en": "Equipment information differs. Use Refresh character above.",
+    "ja": "装備情報が異なります。上の再取得を押してください。",
+    "fi": "Varustetiedot eroavat. Päivitä hahmotiedot yllä olevasta painikkeesta.",
+    "fr": "Les informations d’équipement diffèrent. Actualisez le personnage ci-dessus.",
+    "de": "Die Ausrüstungsdaten stimmen nicht überein. Aktualisiere oben den Charakter.",
+    "es": "Los datos de equipo no coinciden. Actualiza el personaje arriba.",
+    "pt-BR": "Os dados de equipamento diferem. Atualize o personagem acima.",
+    "ru": "Данные снаряжения отличаются. Обновите персонажа кнопкой выше."
+  },
+  "장비 보너스 형식을 확인할 수 없습니다.": {
+    "en": "The equipment bonus format could not be verified.",
+    "ja": "装備ボーナスの形式を確認できません。",
+    "fi": "Varustebonuksen muotoa ei voitu varmistaa.",
+    "fr": "Le format des bonus d’équipement n’a pas pu être vérifié.",
+    "de": "Das Format der Ausrüstungsboni konnte nicht geprüft werden.",
+    "es": "No se pudo verificar el formato de las bonificaciones.",
+    "pt-BR": "Não foi possível verificar o formato dos bônus de equipamento.",
+    "ru": "Не удалось проверить формат бонусов снаряжения."
+  },
+  "장비 조회에 실패했습니다. 잠시 후 다시 확인하세요.": {
+    "en": "Equipment lookup failed. Try again shortly.",
+    "ja": "装備の取得に失敗しました。しばらくしてから再試行してください。",
+    "fi": "Varusteiden haku epäonnistui. Yritä hetken kuluttua uudelleen.",
+    "fr": "La recherche d’équipement a échoué. Réessayez dans un instant.",
+    "de": "Die Ausrüstungsabfrage ist fehlgeschlagen. Versuche es gleich erneut.",
+    "es": "La consulta de equipo falló. Inténtalo de nuevo en un momento.",
+    "pt-BR": "A consulta de equipamento falhou. Tente novamente em instantes.",
+    "ru": "Не удалось загрузить снаряжение. Повторите попытку чуть позже."
+  },
+  "모바일 이용 안내": {
+    "en": "Mobile viewing",
+    "ja": "モバイル利用案内",
+    "fi": "Mobiilikäyttö",
+    "fr": "Utilisation sur mobile",
+    "de": "Mobile Nutzung",
+    "es": "Uso en móvil",
+    "pt-BR": "Uso no celular",
+    "ru": "Мобильная версия"
+  },
+  "자세한 확인은 PC에서": {
+    "en": "Use a PC for details",
+    "ja": "詳しい確認はPCで",
+    "fi": "Katso tarkemmat tiedot tietokoneella",
+    "fr": "Consultez les détails sur PC",
+    "de": "Details am PC ansehen",
+    "es": "Consulta los detalles en PC",
+    "pt-BR": "Veja os detalhes no PC",
+    "ru": "Подробности — на ПК"
+  },
+  "모바일에서는 아이템·스킬·노드의 상세 설명을 생략합니다. 자세한 비교와 빌드 편집은 PC 이용을 권장합니다.": {
+    "en": "Detailed item, skill and node descriptions are hidden on phones. We recommend a PC for detailed comparisons and build editing.",
+    "ja": "モバイルではアイテム・スキル・ノードの詳細説明を省略します。詳しい比較やビルド編集にはPCの利用をおすすめします。",
+    "fi": "Esineiden, taitojen ja solmujen tarkat kuvaukset piilotetaan puhelimessa. Suosittelemme tietokonetta tarkkaan vertailuun ja buildin muokkaamiseen.",
+    "fr": "Les descriptions détaillées des objets, compétences et nœuds sont masquées sur mobile. Nous recommandons un PC pour les comparaisons détaillées et la modification des builds.",
+    "de": "Detaillierte Beschreibungen von Gegenständen, Fertigkeiten und Knoten sind auf dem Handy ausgeblendet. Für genaue Vergleiche und die Build-Bearbeitung empfehlen wir einen PC.",
+    "es": "Las descripciones detalladas de objetos, habilidades y nodos se ocultan en el móvil. Recomendamos un PC para comparar en detalle y editar builds.",
+    "pt-BR": "As descrições detalhadas de itens, habilidades e nós ficam ocultas no celular. Recomendamos um PC para comparações detalhadas e edição de builds.",
+    "ru": "Подробные описания предметов, умений и узлов скрыты на телефоне. Для подробного сравнения и редактирования билдов рекомендуем ПК."
+  },
+  "내 캐릭터와 계획 비교": {
+    "en": "My character vs plan",
+    "ja": "キャラクターと計画の比較",
+    "fi": "Hahmon ja suunnitelman vertailu",
+    "fr": "Personnage et plan",
+    "de": "Charakter und Plan vergleichen",
+    "es": "Mi personaje y el plan",
+    "pt-BR": "Meu personagem e o plano",
+    "ru": "Персонаж и план"
+  },
+  "추가로 찍을 노드": {
+    "en": "Nodes to add",
+    "ja": "追加するノード",
+    "fi": "Lisättävät solmut",
+    "fr": "Nœuds à ajouter",
+    "de": "Hinzuzufügende Knoten",
+    "es": "Nodos por añadir",
+    "pt-BR": "Nós para adicionar",
+    "ru": "Узлы для добавления"
+  },
+  "계획과 다른 노드 · 해제 검토": {
+    "en": "Outside the plan · review removal",
+    "ja": "計画にないノード · 解除を検討",
+    "fi": "Suunnitelman ulkopuolella · harkitse poistoa",
+    "fr": "Hors du plan · retrait à examiner",
+    "de": "Außerhalb des Plans · Entfernen prüfen",
+    "es": "Fuera del plan · revisar eliminación",
+    "pt-BR": "Fora do plano · avaliar remoção",
+    "ru": "Вне плана · рассмотреть сброс"
+  },
+  "계획에 없는 미선택 노드": {
+    "en": "Unselected and outside the plan",
+    "ja": "未選択・計画にないノード",
+    "fi": "Valitsematon, ei suunnitelmassa",
+    "fr": "Non sélectionné et hors du plan",
+    "de": "Nicht gewählt und außerhalb des Plans",
+    "es": "Sin seleccionar y fuera del plan",
+    "pt-BR": "Não selecionado e fora do plano",
+    "ru": "Не выбран и вне плана"
+  },
+  "빨간 노드는 현재 찍었지만 이 계획에는 없는 노드입니다. 다른 빌드에서도 불필요하다는 뜻은 아닙니다.": {
+    "en": "Red nodes are currently allocated but absent from this plan. They may still be useful in other builds.",
+    "ja": "赤いノードは取得済みですが、この計画には含まれません。他のビルドでも不要とは限りません。",
+    "fi": "Punaiset solmut on avattu, mutta ne eivät kuulu tähän suunnitelmaan. Ne voivat olla hyödyllisiä muissa kokoonpanoissa.",
+    "fr": "Les nœuds rouges sont acquis mais absents de ce plan. Ils peuvent être utiles dans d’autres configurations.",
+    "de": "Rote Knoten sind bereits gewählt, fehlen aber in diesem Plan. In anderen Builds können sie sinnvoll sein.",
+    "es": "Los nodos rojos están asignados pero no figuran en este plan. Pueden servir en otras configuraciones.",
+    "pt-BR": "Os nós vermelhos já foram alocados, mas não fazem parte deste plano. Podem ser úteis em outras builds.",
+    "ru": "Красные узлы уже открыты, но отсутствуют в этом плане. Они могут быть полезны в других сборках."
   }
 }

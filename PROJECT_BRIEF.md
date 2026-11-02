@@ -1065,3 +1065,22 @@ See tasks/asbc-portal-refinement-20261031.md. Expected responsive, readable sequ
 User requested investigation and resolution of security issues while reviewing the UI. Audit authentication/session and ownership boundaries, hostile input/proxy fetching, dependencies and production operations; preserve other changes and user data. Track evidence and negative regression tests in tasks/asbc-security-hardening-20261031.md; use readonly Claude review for security changes.
 
 User approved the reviewed44-file security-only main commit/push and backend/web release on2026-10-31 (“이번 보안 변경만 운영에 배포”). Authentication hardening, compatible dependency patches and privacy disclosures only; unrelated302paths preserved.
+
+
+## 2026-11-02: recommendation verification and point lookup recovery
+[Task Goal]: Verify all class field/solo presets already released and improve per-item point-bonus diagnostics/retry without guessing missing bonuses or changing saved allocations. See tasks/asbc-presets-usage-20261102.md.
+
+Completed: all8class recommendation tests and6class browser selections passed; per-item bonus diagnostics and failed-only retry implemented; full frontend suite/typecheck/build/lint and Claude read-only review passed (minor error-classification finding corrected and retested). Upstream3missing bonuses remain unknown. No commit/push/deploy.
+
+## 2026-11-02: phone detail presentation
+[Task Goal]: Hide distracting phone item/skill/node detail panels and recommend PC, retaining compact node controls above the board and full desktop details. Preserve prior point-gear work. See tasks/asbc-mobile-details-20261102.md.
+
+Completed locally: mobile detail suppression/PC notice and compact node controls; responsive portrait/desktop browser QA, typecheck, relevant regressions, build and lint passed. Physical iPhone/coarse landscape not tested. No commit/push/deploy.
+
+[Task Goal] 2026-11-02: Fix stat-only equipment falsely blocking point recognition; see tasks/asbc-point-source-20261102.md.
+
+Point recognition root cause corrected: max possible skill effects was confused with required actual rolls. Complete stat-only equipment is now recognized; latest official GreenOrc snapshot20/20, SP383/stigma30. Prior upstream-missing diagnosis superseded.
+
+[Task Goal] 2026-11-02: Main Daevanion board actual/plan difference visibility with ranker-like colors and symbols. See tasks/asbc-board-visibility-20261102.md.
+
+Completed locally: ranker-style green check/orange plus/red minus main board comparison with counts, labels and dim irrelevant nodes. Desktop/mobile QA and build/lint passed. No deploy.
