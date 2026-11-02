@@ -1,6 +1,6 @@
 import {EquipmentOptions,equipmentKey,type EquipmentTask} from './equipment-options';
 export type GearBonus=Record<string,number>;
-export type PointGearFailure={key:string;name:string;slot:number;reason:'missing'|'changed'|'invalid'|'network'};
+export type PointGearFailure={key:string;name:string;slot:number;reason:'missing'|'changed'|'invalid'|'network'|'busy'};
 const fail=(reason:string):never=>{throw Error(reason)};
 /** Official armory omits subSkills when all soul-bind properties are ordinary stats.
  * subSkillCountMax is a possible maximum, not the number of equipped skill rolls.
@@ -39,9 +39,9 @@ export function createPointGear(character:any,classKey:string,query:(params:Reco
  const store=new EquipmentOptions<GearBonus>(tasks,async(task,signal)=>{
   let result:any;
   try{result=await query({action:'item',class:classKey,...identity,itemId:String(task.item.id),slot:String(task.item.slotPos),enchant:String(task.item.enchantLevel)},signal)}
-  catch(error){throw Object.assign(Error((error as any)?.status===400?'changed':'network'),{status:(error as any)?.status});}
+  catch(error){throw Object.assign(Error((error as any)?.status===429?'busy':(error as any)?.status===400?'changed':'network'),{status:(error as any)?.status,retryAfterMs:(error as any)?.retryAfterMs});}
   return readPointGear(result,task);
- });
+ },2);
  return {store,names};
 }
 export function pointGearState(lookup:NonNullable<ReturnType<typeof createPointGear>>){
@@ -50,9 +50,9 @@ export function pointGearState(lookup:NonNullable<ReturnType<typeof createPointG
   if(entry.status==='ready'){
    completed++;for(const [id,level] of Object.entries(entry.detail!))bonus[id]=(bonus[id]||0)+level;
   }else if(entry.status==='error'){
-   const reason=['missing','changed','invalid'].includes(entry.error||'')?entry.error as PointGearFailure['reason']:'network';
+   const reason=['missing','changed','invalid','busy'].includes(entry.error||'')?entry.error as PointGearFailure['reason']:'network';
    errors.push({key,name:lookup.names.get(key)||'',slot:lookup.store.tasks.get(key)!.item.slotPos,reason});
   }else loading=true;
  }
- return {bonus:completed===lookup.store.entries.size?bonus:null,completed,total:lookup.store.entries.size,loading,errors,failure:errors.length>0};
+ return {bonus:completed===lookup.store.entries.size?bonus:null,completed,total:lookup.store.entries.size,loading,errors,failure:errors.length>0,retryAt:lookup.store.retryAt};
 }

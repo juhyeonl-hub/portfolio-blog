@@ -21,7 +21,14 @@ for(const skills of [[{id:12010000,level:-1}],[{id:12010000,level:NaN}],[{id:'12
 const zero=response(p);delete zero.item.subSkills;zero.item.subSkillCountMax=0;assert.deepEqual(readPointGear(zero,task),{});
 zero.item.subSkills='invalid';for(const max of [0,4]){zero.item.subSkillCountMax=max;assert.throws(()=>readPointGear(zero,task),/invalid/);}
 for(const equipment of [null,[character.equipment[0],character.equipment[0]],[{id:1,slotPos:0,enchantLevel:1}]])assert.equal(createPointGear({...character,equipment},'templar',()=>{}),null);
-let calls=0;const busy=createPointGear(character,'templar',async()=>{calls++;throw Object.assign(Error('busy'),{status:429});});busy.store.start();await settle(busy);assert.equal(calls,2);assert.equal(pointGearState(busy).errors.length,3);assert.equal(pointGearState(busy).bonus,null);
+const {mock}=await import('node:test');mock.timers.enable({apis:['setTimeout','Date'],now:1000});
+let calls=0;const busy=createPointGear(character,'templar',async()=>{calls++;throw Object.assign(Error('busy'),{status:429,retryAfterMs:60000});});
+const flush=async()=>{for(let i=0;i<12;i++)await new Promise(r=>setImmediate(r));};
+busy.store.start();await flush();assert.equal(calls,2);assert.equal(pointGearState(busy).retryAt,61000);assert.equal(pointGearState(busy).errors.length,0);assert.equal(pointGearState(busy).bonus,null);
+mock.timers.tick(59999);await flush();assert.equal(calls,2);
+mock.timers.tick(1);await flush();assert.equal(calls,4);
+mock.timers.tick(60000);await flush();assert.equal(calls,6);assert.equal(pointGearState(busy).errors.length,3);assert(pointGearState(busy).errors.every(e=>e.reason==='busy'));assert.equal(pointGearState(busy).loading,false);
+mock.timers.reset();
 let finish;const cancelled=createPointGear({...character,equipment:[character.equipment[0]]},'templar',p=>new Promise(r=>{finish=()=>r(response(p));}));cancelled.store.start();await new Promise(r=>setImmediate(r));cancelled.store.dispose();finish();await new Promise(r=>setImmediate(r));assert.equal(pointGearState(cancelled).bonus,null);
 const fresh=createPointGear(character,'templar',async p=>response(p));assert.equal(pointGearState(fresh).bonus,null);fresh.store.start();await settle(fresh);assert.deepEqual(pointGearState(fresh).bonus,{},'new snapshot discards previous bonuses');
 console.log('PASS point gear: omissions, strict identity/roll validation, two workers, named failures, retry only failed items, rate limit, cancellation and fresh snapshots');

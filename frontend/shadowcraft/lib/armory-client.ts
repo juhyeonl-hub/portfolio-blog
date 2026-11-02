@@ -10,6 +10,12 @@ export async function queryArmory(params: Record<string, string>, signal?: Abort
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify(params), signal: controller.signal,
     });
+    const retryHeader=response.headers.get('retry-after')?.trim();
+    const seconds=retryHeader?Number(retryHeader):NaN;
+    const date=retryHeader?Date.parse(retryHeader):NaN;
+    const retryAfterMs=Number.isFinite(seconds)&&seconds>=0?Math.max(1000,seconds*1000):Number.isFinite(date)?Math.max(1000,date-Date.now()):60000;
+    // Keep status even for an HTML/proxy429 so consumers can wait instead of calling it an item failure.
+    if(response.status===429)throw Object.assign(new Error('조회가 많습니다. 잠시 후 다시 시도하세요.'),{status:429,retryAfterMs});
     if (!response.headers.get('content-type')?.includes('application/json')) {
       throw new Error('캐릭터 정보를 불러오지 못했습니다. 페이지를 새로고침한 뒤 다시 검색해 주세요.');
     }

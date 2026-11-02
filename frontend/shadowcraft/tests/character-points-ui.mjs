@@ -82,3 +82,12 @@ test('per-item diagnostics and explicit retry preserve the plan',()=>{
  assert.equal(loading.els.find(x=>x?.type==='button'&&x.props.children==='장비 보너스 다시 확인').props.disabled,true);
  assert.ok(loading.els.includes('장비 확인 중…'));
 });
+
+test('rate-limited pending items show waiting without false per-item failures',()=>{
+ const view=render(initial,null,{loading:true,retryAt:Date.now()+60000,completed:1,total:25,errors:[]});
+ assert.ok(view.els.includes('조회 요청이 많아 잠시 대기 중입니다. 확인한 장비는 유지하고 자동으로 이어서 조회합니다.'));
+ assert.ok(view.els.includes('조회 대기 중…'));
+ assert.ok(!view.els.includes('장비 조회에 실패했습니다. 잠시 후 다시 확인하세요.'));
+ const exhausted=render(initial,null,{failure:true,loading:false,errors:[{key:'rate',name:'Item',slot:1,reason:'busy'}],retry:()=>{}});
+ assert.ok(exhausted.els.includes('조회 제한으로 보류됐습니다. 잠시 후 다시 확인하세요.'));
+});

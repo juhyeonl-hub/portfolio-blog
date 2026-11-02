@@ -29,3 +29,17 @@ let never=0;globalThis.fetch=async()=>{never++;return Response.json({});};const 
 globalThis.fetch=async()=>Response.json({error:'busy'},{status:429});await assert.rejects(client.queryArmory({}),e=>e.status===429);
 assert.notEqual(equipmentKey({...owner,id:'other'},tasks[0].item),tasks[0].key);assert.notEqual(equipmentKey(owner,{...tasks[0].item,slotPos:99}),tasks[0].key);
 console.log('PASS: bounded prefetch, dedupe, hover/revisit reuse, new-snapshot freshness, cancellation, per-item retry, rate-limit stop, identity separation');
+
+// Point queues preserve successes, group simultaneous429s and honor the server cooldown.
+const {mock}=await import('node:test');mock.timers.enable({apis:['setTimeout','Date'],now:1000});
+const counts=new Map();let blocked=true;
+const resumable=new EquipmentOptions(tasks,async task=>{counts.set(task.key,(counts.get(task.key)||0)+1);if(blocked&&task.key!==tasks[0].key)throw Object.assign(Error('busy'),{status:429,retryAfterMs:60000});return {value:7};},2);
+const flush=async()=>{for(let i=0;i<12;i++)await tick();};
+resumable.start();await flush();assert.equal(resumable.entries.get(tasks[0].key).status,'ready');assert.equal(resumable.retryAt,61000);assert(![...resumable.entries.values()].some(e=>e.status==='error'));const callsBefore=[...counts.values()].reduce((a,b)=>a+b,0);
+mock.timers.tick(59999);await flush();assert.equal([...counts.values()].reduce((a,b)=>a+b,0),callsBefore);
+blocked=false;mock.timers.tick(1);await flush();assert([...resumable.entries.values()].every(e=>e.status==='ready'));assert.equal(counts.get(tasks[0].key),1);assert.equal(resumable.retryAt,null);
+let stopCalls=0;const stop=new EquipmentOptions(tasks,async()=>{stopCalls++;throw Object.assign(Error('busy'),{status:429,retryAfterMs:60000});},2);stop.start();await flush();stop.dispose();mock.timers.tick(60000);await flush();assert.equal(stopCalls,2);assert.equal(stop.retryAt,null);
+const huge=new EquipmentOptions(tasks,async()=>{throw Object.assign(Error('busy'),{status:429,retryAfterMs:2147483648});},2);huge.start();await flush();assert.equal(huge.retryAt,null);assert([...huge.entries.values()].every(e=>e.status==='error'));
+globalThis.fetch=async()=>new Response('busy',{status:429,headers:{'Content-Type':'text/html','Retry-After':'90'}});await assert.rejects(client.queryArmory({}),e=>e.status===429&&e.retryAfterMs===90000);
+globalThis.fetch=async()=>Response.json({error:'busy'},{status:429,headers:{'Retry-After':new Date(Date.now()+120000).toUTCString()}});await assert.rejects(client.queryArmory({}),e=>e.status===429&&e.retryAfterMs===120000);
+mock.timers.reset();console.log('PASS rate-limit cooldown: preserved successes, deferred pending requests, exact deadline, cancellation, overflow guard, JSON/HTML Retry-After');

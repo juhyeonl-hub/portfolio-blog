@@ -30048,5 +30048,35 @@
     "es": "Los nodos rojos están asignados pero no figuran en este plan. Pueden servir en otras configuraciones.",
     "pt-BR": "Os nós vermelhos já foram alocados, mas não fazem parte deste plano. Podem ser úteis em outras builds.",
     "ru": "Красные узлы уже открыты, но отсутствуют в этом плане. Они могут быть полезны в других сборках."
+  },
+  "조회 요청이 많아 잠시 대기 중입니다. 확인한 장비는 유지하고 자동으로 이어서 조회합니다.": {
+    "en": "Waiting for the lookup limit to reset. Confirmed equipment is kept and lookup will resume automatically.",
+    "ja": "照会制限の解除を待っています。確認済みの装備を保持し、自動で再開します。",
+    "fi": "Odotetaan hakurajan palautumista. Vahvistetut varusteet säilyvät ja haku jatkuu automaattisesti.",
+    "fr": "En attente de la réinitialisation de la limite. Les équipements confirmés sont conservés et la recherche reprendra automatiquement.",
+    "de": "Warten auf das Zurücksetzen des Abfragelimits. Bestätigte Ausrüstung bleibt erhalten; die Abfrage wird automatisch fortgesetzt.",
+    "es": "Esperando a que se restablezca el límite. Se conserva el equipo confirmado y la consulta se reanudará automáticamente.",
+    "pt-BR": "Aguardando a liberação do limite. O equipamento confirmado é mantido e a consulta continuará automaticamente.",
+    "ru": "Ожидание сброса лимита запросов. Проверенное снаряжение сохранено; запросы продолжатся автоматически."
+  },
+  "조회 제한으로 보류됐습니다. 잠시 후 다시 확인하세요.": {
+    "en": "Paused by the lookup limit. Try again later.",
+    "ja": "照会制限により保留中です。しばらくしてから再確認してください。",
+    "fi": "Hakuraja keskeytti tarkistuksen. Yritä myöhemmin uudelleen.",
+    "fr": "Suspendu par la limite de requêtes. Réessayez plus tard.",
+    "de": "Wegen des Abfragelimits ausgesetzt. Bitte später erneut versuchen.",
+    "es": "Pendiente por el límite de consultas. Inténtalo más tarde.",
+    "pt-BR": "Pausado pelo limite de consultas. Tente novamente mais tarde.",
+    "ru": "Приостановлено из-за лимита запросов. Повторите позже."
+  },
+  "조회 대기 중…": {
+    "en": "Waiting to resume…",
+    "ja": "照会待機中…",
+    "fi": "Odotetaan hakua…",
+    "fr": "En attente…",
+    "de": "Abfrage wartet…",
+    "es": "Consulta en espera…",
+    "pt-BR": "Consulta em espera…",
+    "ru": "Ожидание запроса…"
   }
 }

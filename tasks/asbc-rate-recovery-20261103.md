@@ -1,0 +1,15 @@
+# Equipment rate-limit recovery — 2026-11-03
+Owner: Codex temporary coordination; Claude 불가로 Codex 임시 조율 (allocation120s timeout, status143). Review required before release.
+Goal: fix1/25 misleading failures when querying 미쿠. Screenshot names match exact EU2311 Ranger25equipment. Direct official replay25/25/no errors, SP383/stigma0/crystal0/battle8 at current snapshot; not a parsing failure. Specific original HTTP status not captured from user browser. Code confirms429 stops entire queue and marks not-requested entries network errors; consistent with screenshot. ApiRequestGuard40/min/client and global120/min/8parallel preserved.
+Scope: preserve Retry-After/status, opt-in bounded cooldown/resume in EquipmentOptions only for point reader, waiting/busy UI and translations, fake-clock tests. No security/rate-limit changes. No persistent gear cache.
+Expected: partial successes retained, pending items queued during cooldown, max2automatic pause rounds, canceled/old character never resumes, server Retry-After respected, exhausted retry distinctly rate-limited with manual recovery, default comparison queue behavior retained.
+Base6be7d0c; prior release task/collaboration preserved.
+Verification pending. Release authorization: user requested deploy equipment-point fix in preceding turn; same issue recovery within scope, peer review before production.
+
+Implemented: opt-in point queue2 cooldown rounds, successful items retained;429 respects Retry-After numeric/date (including non-JSON response); cancellation clears timer; concurrent429s share a round and extend deadline; >timer-range wait is manual. Default detail queue unchanged. Specific waiting and exhausted-rate-limit labels in8locales. Targeted queue/parser/component10tests/localization passed. Node MockTimers experimental warning expected. Typecheck/build/browser/review pending.
+
+## Final verification / release gate
+Targeted queue/parser/UI10tests, full test:shadowcraft suite, typecheck, lint, isolated production build and SEO PASS. Typecheck initially found2nullable gear guards; fixed optional access before final review; intentionally canceled initial reviewer to avoid simultaneous edits. MockTimers experimental and existing Vite chunk/time warnings retained.
+Official 미쿠25/25 response replay succeeds. Local browser fixture injected429 with10-second Retry-After: waiting notice/no false failure list, automatic recovery25distinct slots after10.049seconds; confirmed SP383/stigma0/crystal0/battle8 snapshot, no console errors. Other local backend routes unavailable; no production rate-limit load test performed.
+Review final300s attempt timed out empty; single600s retry finished status0/error null/scope[] PASS: asbc-rate-recovery-20261103-review-retry-1793659306422. Accepted note: non-opt-in detail queue now correctly recognizes HTML429 and stops pending requests instead of generic refresh error. Server protections unchanged.
+Prepared10file release; existing302primaryfiles and previous untracked release note preserved. Source and isolated build hashes matched. Release results live in artifacts/rate-recovery-20261103/result.json after deployment.

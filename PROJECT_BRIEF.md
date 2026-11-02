@@ -1084,3 +1084,7 @@ Point recognition root cause corrected: max possible skill effects was confused 
 [Task Goal] 2026-11-02: Main Daevanion board actual/plan difference visibility with ranker-like colors and symbols. See tasks/asbc-board-visibility-20261102.md.
 
 Completed locally: ranker-style green check/orange plus/red minus main board comparison with counts, labels and dim irrelevant nodes. Desktop/mobile QA and build/lint passed. No deploy.
+
+[Task Goal]2026-11-03: preserve equipment lookup progress and recover safely from429 for 미쿠25-item lookup; keep server protections. See tasks/asbc-rate-recovery-20261103.md.
+
+Rate-limit recovery verified: actual 미쿠25items parse; local429 browser test waits then resumes automatically. Full tests/typecheck/lint/build/SEO and Claude peer review PASS. Same authorized equipment-point release follow-up.
