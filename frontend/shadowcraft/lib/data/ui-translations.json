@@ -30818,5 +30818,255 @@
     "es": "Revisa invocación, retirada y objetivo coordinado; usa buffs según ataque o defensa.",
     "pt-BR": "Confira invocação, dispensa e alvo coordenado; use buffs conforme ataque ou defesa.",
     "ru": "Проверяйте призыв, отмену и цель совместной атаки; усиления используйте для нужного момента атаки или обороны."
+  },
+  "근거와 검증 범위": {
+    "en": "Evidence and verification scope",
+    "ja": "根拠と検証範囲",
+    "fi": "Lähteet ja tarkistuksen laajuus",
+    "fr": "Sources et portée de la vérification",
+    "de": "Quellen und Prüfumfang",
+    "es": "Fuentes y alcance de verificación",
+    "pt-BR": "Fontes e escopo da verificação",
+    "ru": "Источники и объём проверки"
+  },
+  "참고 배치 · 실전 검증 전": {
+    "en": "Reference layout · combat testing pending",
+    "ja": "参考配置・実戦検証前",
+    "fi": "Esimerkkiasettelu · taistelutesti odottaa",
+    "fr": "Disposition indicative · test en combat en attente",
+    "de": "Beispielbelegung · Kampftest ausstehend",
+    "es": "Distribución orientativa · pendiente de prueba en combate",
+    "pt-BR": "Distribuição de referência · teste em combate pendente",
+    "ru": "Пример раскладки · проверка в бою ожидается"
+  },
+  "실제 전투의 실행 순서·지연·피해량은 아직 확인하지 않았습니다.": {
+    "en": "Execution order, delays and damage have not yet been tested in combat.",
+    "ja": "実戦での実行順・遅延・ダメージはまだ確認していません。",
+    "fi": "Suoritusjärjestystä, viiveitä ja vahinkoa ei ole vielä testattu taistelussa.",
+    "fr": "L’ordre d’exécution, les délais et les dégâts n’ont pas encore été testés en combat.",
+    "de": "Ausführungsreihenfolge, Verzögerungen und Schaden wurden noch nicht im Kampf getestet.",
+    "es": "El orden de ejecución, los retardos y el daño aún no se han probado en combate.",
+    "pt-BR": "A ordem de execução, os atrasos e o dano ainda não foram testados em combate.",
+    "ru": "Порядок выполнения, задержки и урон ещё не проверены в бою."
+  },
+  "확인한 근거와 게임에서 확인할 항목": {
+    "en": "Evidence reviewed and in-game checks",
+    "ja": "確認した根拠とゲーム内の確認項目",
+    "fi": "Tarkistetut lähteet ja pelissä tehtävät tarkistukset",
+    "fr": "Sources examinées et vérifications en jeu",
+    "de": "Geprüfte Quellen und Prüfungen im Spiel",
+    "es": "Fuentes revisadas y comprobaciones en el juego",
+    "pt-BR": "Fontes revisadas e verificações no jogo",
+    "ru": "Изученные источники и проверки в игре"
+  },
+  "스킬 정보·배치 대조": {
+    "en": "Skill data and layout review",
+    "ja": "スキル情報・配置の照合",
+    "fi": "Taitotietojen ja asettelun tarkistus",
+    "fr": "Vérification des compétences et de la disposition",
+    "de": "Abgleich von Fähigkeitsdaten und Belegung",
+    "es": "Revisión de habilidades y distribución",
+    "pt-BR": "Revisão de habilidades e distribuição",
+    "ru": "Сверка данных умений и раскладки"
+  },
+  "스킬 연결과 키 중복을 점검했습니다. 실전 성능 검증은 아닙니다.": {
+    "en": "Skill references and key conflicts were checked. Combat performance was not tested.",
+    "ja": "スキルの参照とキーの重複を点検しました。実戦性能の検証ではありません。",
+    "fi": "Taitoviittaukset ja näppäinristiriidat tarkistettiin. Taistelutehoa ei testattu.",
+    "fr": "Les références des compétences et les conflits de touches ont été vérifiés. Les performances en combat n’ont pas été testées.",
+    "de": "Fähigkeitsverweise und Tastenkonflikte wurden geprüft. Die Kampfleistung wurde nicht getestet.",
+    "es": "Se revisaron las referencias de habilidades y los conflictos de teclas. No se probó el rendimiento en combate.",
+    "pt-BR": "As referências de habilidades e os conflitos de teclas foram verificados. O desempenho em combate não foi testado.",
+    "ru": "Ссылки на умения и конфликты клавиш проверены. Эффективность в бою не проверялась."
+  },
+  "추천 근거": {
+    "en": "Recommendation source",
+    "ja": "おすすめの根拠",
+    "fi": "Suosituksen lähde",
+    "fr": "Source de la recommandation",
+    "de": "Quelle der Empfehlung",
+    "es": "Fuente de la recomendación",
+    "pt-BR": "Fonte da recomendação",
+    "ru": "Источник рекомендации"
+  },
+  "좌클릭·조작 방식 근거": {
+    "en": "Left-click and control evidence",
+    "ja": "左クリック・操作方式の根拠",
+    "fi": "Vasemman painikkeen ja ohjauksen lähde",
+    "fr": "Source du clic gauche et des commandes",
+    "de": "Beleg für Linksklick und Steuerung",
+    "es": "Fuente del clic izquierdo y los controles",
+    "pt-BR": "Fonte do clique esquerdo e dos controles",
+    "ru": "Источник для ЛКМ и управления"
+  },
+  "궁성 제공 화면 · AION2 모드와 고정 좌클릭만 대조": {
+    "en": "Provided Ranger screenshot · only AION2 mode and fixed left-click compared",
+    "ja": "提供された弓星の画面・AION2モードと固定左クリックのみ照合",
+    "fi": "Saatu Ranger-kuvakaappaus · vain AION2-tila ja kiinteä vasen painike verrattu",
+    "fr": "Capture fournie du Ranger · seuls le mode AION2 et le clic gauche fixe ont été comparés",
+    "de": "Bereitgestelltes Ranger-Bild · nur AION2-Modus und fester Linksklick abgeglichen",
+    "es": "Captura de Ranger proporcionada · solo se compararon el modo AION2 y el clic izquierdo fijo",
+    "pt-BR": "Captura de Ranger fornecida · apenas o modo AION2 e o clique esquerdo fixo foram comparados",
+    "ru": "Предоставленный снимок Ranger · сверены только режим AION2 и фиксированная ЛКМ"
+  },
+  "사이트 스킬 배치 기반 · 게임 화면 대조 전": {
+    "en": "Based on site skill bindings · game screen comparison pending",
+    "ja": "サイトのスキル配置に基づく・ゲーム画面の照合前",
+    "fi": "Sivuston taitosidonnat · pelinäkymän vertailu odottaa",
+    "fr": "Basé sur les affectations du site · comparaison avec le jeu en attente",
+    "de": "Auf Website-Belegung basierend · Abgleich mit Spielansicht ausstehend",
+    "es": "Basado en las asignaciones del sitio · comparación con el juego pendiente",
+    "pt-BR": "Baseado nas atribuições do site · comparação com o jogo pendente",
+    "ru": "На основе раскладки сайта · сверка с экраном игры ожидается"
+  },
+  "반복 배치 근거": {
+    "en": "Repeat layout source",
+    "ja": "反復配置の根拠",
+    "fi": "Toistoasettelun lähde",
+    "fr": "Source de la disposition répétée",
+    "de": "Quelle der Wiederholungsbelegung",
+    "es": "Fuente de la distribución repetida",
+    "pt-BR": "Fonte da distribuição repetida",
+    "ru": "Источник повторяемой раскладки"
+  },
+  "사이트에서 구성한 참고 예시 · 게임 화면과 동일한 배치가 아닙니다.": {
+    "en": "Site-designed example · not an exact copy of the game screenshot.",
+    "ja": "サイトで構成した参考例・ゲーム画面と同じ配置ではありません。",
+    "fi": "Sivustolla laadittu esimerkki · ei pelin kuvakaappauksen tarkka kopio.",
+    "fr": "Exemple conçu sur le site · ce n’est pas une copie exacte de la capture du jeu.",
+    "de": "Auf der Website erstelltes Beispiel · keine exakte Kopie des Spielbilds.",
+    "es": "Ejemplo diseñado en el sitio · no es una copia exacta de la captura del juego.",
+    "pt-BR": "Exemplo criado no site · não é uma cópia exata da captura do jogo.",
+    "ru": "Пример, составленный на сайте · не точная копия снимка игры."
+  },
+  "파티·솔로·필드는 투자·특화 우선순위가 다릅니다. 매크로는 공통 참고 배치입니다.": {
+    "en": "Party, solo and field presets use different investment and specialization priorities. They share the same reference macro layout.",
+    "ja": "パーティー・ソロ・フィールドでは配分・特化の優先順位が異なります。マクロは共通の参考配置です。",
+    "fi": "Ryhmä-, soolo- ja kenttäasetuksissa on eri piste- ja erikoistumispainotukset. Makron esimerkkiasettelu on yhteinen.",
+    "fr": "Les priorités de points et de spécialisation diffèrent entre groupe, solo et terrain. La disposition indicative de macro est commune.",
+    "de": "Gruppen-, Solo- und Feldvorlagen haben unterschiedliche Punkte- und Spezialisierungsprioritäten. Die Makro-Beispielbelegung ist gemeinsam.",
+    "es": "Los ajustes de grupo, solo y campo tienen distintas prioridades de inversión y especialización. Comparten la distribución de macro orientativa.",
+    "pt-BR": "Os perfis de grupo, solo e campo têm prioridades diferentes de investimento e especialização. A distribuição de macro de referência é compartilhada.",
+    "ru": "Приоритеты очков и специализаций для группы, соло и поля различаются. Пример раскладки макроса общий."
+  },
+  "게임에서 조작 모드, 배운 스킬과 선택한 스티그마를 먼저 맞추세요.": {
+    "en": "First match the control mode, learned skills and selected Stigmas in the game.",
+    "ja": "まずゲーム内で操作モード・習得スキル・選択スティグマを合わせてください。",
+    "fi": "Tarkista ensin pelin ohjaustila, opitut taidot ja valitut Stigmat.",
+    "fr": "Vérifiez d’abord le mode de contrôle, les compétences apprises et les Stigmas sélectionnés en jeu.",
+    "de": "Gleiche zuerst Steuerungsmodus, erlernte Fähigkeiten und gewählte Stigmas im Spiel ab.",
+    "es": "Primero comprueba el modo de control, las habilidades aprendidas y los Estigmas elegidos en el juego.",
+    "pt-BR": "Primeiro confira o modo de controle, as habilidades aprendidas e os Estigmas selecionados no jogo.",
+    "ru": "Сначала сверьте режим управления, изученные умения и выбранные стигмы в игре."
+  },
+  "쉬운 적에게 실행과 중단을 확인한 뒤 사용하세요. 확인 전에는 버프·이동·생존기를 한꺼번에 묶지 마세요.": {
+    "en": "Test execution and stopping on an easy enemy first. Until checked, do not bundle buffs, movement and survival skills together.",
+    "ja": "弱い敵で実行と停止を確認してから使ってください。確認前にバフ・移動・生存スキルをまとめないでください。",
+    "fi": "Testaa suoritus ja pysäytys ensin helpolla vihollisella. Älä yhdistä tehosteita, liikkeitä ja selviytymistaitoja ennen tarkistusta.",
+    "fr": "Testez d’abord l’exécution et l’arrêt sur un ennemi facile. Avant vérification, ne regroupez pas buffs, déplacements et survie.",
+    "de": "Teste Ausführung und Abbruch zuerst an einem leichten Gegner. Bündele Buffs, Bewegung und Überlebensfähigkeiten erst nach Prüfung.",
+    "es": "Prueba primero la ejecución y la detención con un enemigo fácil. Hasta comprobarlo, no agrupes mejoras, movimiento y supervivencia.",
+    "pt-BR": "Teste primeiro a execução e a interrupção contra um inimigo fácil. Até verificar, não agrupe buffs, movimento e sobrevivência.",
+    "ru": "Сначала проверьте выполнение и остановку на слабом враге. До проверки не объединяйте усиления, перемещение и выживание."
+  },
+  "넘어짐·그로기 조건부 공격이 조건 없이 실행되는 것으로 오해하지 마세요.": {
+    "en": "Attacks requiring knockdown or stagger do not execute without those conditions.",
+    "ja": "転倒・グロッキー条件の攻撃は、条件なしでは発動しません。",
+    "fi": "Kaatamista tai horjutusta vaativat hyökkäykset eivät toimi ilman ehtojaan.",
+    "fr": "Les attaques exigeant un renversement ou un stagger ne s’exécutent pas sans ces conditions.",
+    "de": "Angriffe mit Niederschlags- oder Taumelbedingung werden ohne diese nicht ausgeführt.",
+    "es": "Los ataques que requieren derribo o stagger no se ejecutan sin esas condiciones.",
+    "pt-BR": "Ataques que exigem derrubada ou stagger não são executados sem essas condições.",
+    "ru": "Атаки, требующие сбивания с ног или ошеломления, не выполняются без этих условий."
+  },
+  "공개 반복 예시와 별개로 도발·막기·파티 보호 타이밍을 확인하세요.": {
+    "en": "Check taunt, block and party-protection timing separately from the public repeat example.",
+    "ja": "公開された反復例とは別に、挑発・防御・パーティー保護のタイミングを確認してください。",
+    "fi": "Tarkista provosoinnin, torjunnan ja ryhmän suojauksen ajoitus erikseen julkisesta toistoesimerkistä.",
+    "fr": "Vérifiez séparément le timing de provocation, de blocage et de protection du groupe.",
+    "de": "Prüfe Spott-, Block- und Gruppenschutz-Timing unabhängig vom öffentlichen Wiederholungsbeispiel.",
+    "es": "Comprueba por separado el momento de provocar, bloquear y proteger al grupo.",
+    "pt-BR": "Confira separadamente o momento de provocar, bloquear e proteger o grupo.",
+    "ru": "Отдельно от публичного примера проверьте момент провокации, блока и защиты группы."
+  },
+  "그로기·감속·속박 조건부 공격과 충전 중 회피를 확인하세요.": {
+    "en": "Check attacks requiring stagger, slow or root, and dodging during charging.",
+    "ja": "グロッキー・減速・束縛条件の攻撃とチャージ中の回避を確認してください。",
+    "fi": "Tarkista horjutusta, hidastusta tai juurrutusta vaativat hyökkäykset sekä väistäminen latauksen aikana.",
+    "fr": "Vérifiez les attaques exigeant stagger, ralentissement ou immobilisation, et l’esquive pendant la charge.",
+    "de": "Prüfe Angriffe mit Taumel-, Verlangsamungs- oder Wurzelbedingung und Ausweichen beim Aufladen.",
+    "es": "Comprueba los ataques que requieren stagger, ralentización o inmovilización y la esquiva durante la carga.",
+    "pt-BR": "Confira os ataques que exigem stagger, lentidão ou imobilização e a esquiva durante o carregamento.",
+    "ru": "Проверьте атаки с условиями ошеломления, замедления или обездвиживания и уклонение во время зарядки."
+  },
+  "치명타 후속기·문양 조건과 기습 포함 여부를 확인하세요. 지연값은 직접 시험하세요.": {
+    "en": "Check critical-hit follow-ups, insignia conditions and whether Ambush is included. Test delays yourself.",
+    "ja": "クリティカル後続技・紋様条件・奇襲の有無を確認し、遅延値は実際に試してください。",
+    "fi": "Tarkista kriittisen osuman jatkotaidot, merkkiehdot ja Ambush-valinta. Testaa viiveet itse.",
+    "fr": "Vérifiez les enchaînements après critique, les conditions d’insignes et l’inclusion d’Ambush. Testez les délais.",
+    "de": "Prüfe Krit-Folgefähigkeiten, Insignienbedingungen und ob Ambush enthalten ist. Teste Verzögerungen selbst.",
+    "es": "Comprueba los ataques tras crítico, las condiciones de insignias y si se incluye Ambush. Prueba los retardos.",
+    "pt-BR": "Confira os ataques após crítico, as condições de insígnias e se Ambush está incluído. Teste os atrasos.",
+    "ru": "Проверьте продолжения после критического удара, условия знаков и включение Ambush. Задержки испытайте сами."
+  },
+  "정령의 소환·해제, 협공 대상과 원소 중첩 조건을 확인하세요.": {
+    "en": "Check spirit summoning and dismissal, coordinated-attack targets and elemental stack conditions.",
+    "ja": "精霊の召喚・解除、協攻対象と元素スタック条件を確認してください。",
+    "fi": "Tarkista henkien kutsuminen ja poistaminen, yhteishyökkäyksen kohde ja elementtipinojen ehdot.",
+    "fr": "Vérifiez l’invocation et le renvoi des esprits, les cibles d’attaque coordonnée et les cumuls élémentaires.",
+    "de": "Prüfe Geisterbeschwörung und Entlassung, Ziele koordinierter Angriffe und Elementarstapel.",
+    "es": "Comprueba la invocación y retirada de espíritus, los objetivos coordinados y las acumulaciones elementales.",
+    "pt-BR": "Confira a invocação e dispensa de espíritos, os alvos coordenados e os acúmulos elementais.",
+    "ru": "Проверьте призыв и отзыв духов, цели совместных атак и условия накопления стихий."
+  },
+  "화염 표식 조건부 공격과 충전 중 회피를 확인하세요.": {
+    "en": "Check attacks requiring Fire Mark and dodging during charging.",
+    "ja": "炎の刻印が条件の攻撃とチャージ中の回避を確認してください。",
+    "fi": "Tarkista Fire Mark -merkkiä vaativat hyökkäykset ja väistäminen latauksen aikana.",
+    "fr": "Vérifiez les attaques exigeant Fire Mark et l’esquive pendant la charge.",
+    "de": "Prüfe Angriffe mit Fire-Mark-Bedingung und Ausweichen beim Aufladen.",
+    "es": "Comprueba los ataques que requieren Fire Mark y la esquiva durante la carga.",
+    "pt-BR": "Confira os ataques que exigem Fire Mark e a esquiva durante o carregamento.",
+    "ru": "Проверьте атаки с условием Fire Mark и уклонение во время зарядки."
+  },
+  "공격 중에도 회복·해제·부활을 필요한 순간에 사용할 수 있는지 확인하세요.": {
+    "en": "Check that healing, cleansing and revival remain usable when needed during attacks.",
+    "ja": "攻撃中でも必要な時に回復・解除・復活を使えるか確認してください。",
+    "fi": "Tarkista, että parannus, puhdistus ja elvytys ovat käytettävissä myös hyökkäysten aikana.",
+    "fr": "Vérifiez que soins, dissipation et résurrection restent disponibles pendant les attaques.",
+    "de": "Prüfe, ob Heilung, Reinigung und Wiederbelebung während Angriffen bei Bedarf nutzbar bleiben.",
+    "es": "Comprueba que puedas sanar, disipar y revivir cuando sea necesario durante los ataques.",
+    "pt-BR": "Confira se é possível curar, remover efeitos e reviver quando necessário durante os ataques.",
+    "ru": "Проверьте, доступны ли лечение, снятие эффектов и воскрешение в нужный момент во время атак."
+  },
+  "파티 효과 중복과 회복·보호막 사용 시점을 확인하세요.": {
+    "en": "Check overlapping party effects and the timing of heals and shields.",
+    "ja": "パーティー効果の重複と回復・シールドの使用タイミングを確認してください。",
+    "fi": "Tarkista ryhmävaikutusten päällekkäisyys sekä parannuksen ja suojakilpien ajoitus.",
+    "fr": "Vérifiez le cumul des effets de groupe et le timing des soins et boucliers.",
+    "de": "Prüfe überlappende Gruppeneffekte sowie Heilungs- und Schild-Timing.",
+    "es": "Comprueba la superposición de efectos de grupo y el momento de curas y escudos.",
+    "pt-BR": "Confira a sobreposição de efeitos de grupo e o momento de curas e escudos.",
+    "ru": "Проверьте наложение групповых эффектов и время применения лечения и щитов."
+  },
+  "이 목적에 사용할 반복 배치 예시가 없습니다. 아래 기술을 개별 키로 사용하세요.": {
+    "en": "No repeat-layout example is provided for this purpose. Use the skills below on individual keys.",
+    "ja": "この目的の反復配置例はありません。以下のスキルは個別のキーで使ってください。",
+    "fi": "Tälle tarkoitukselle ei ole toistoasetteluesimerkkiä. Käytä alla olevia taitoja erillisillä näppäimillä.",
+    "fr": "Aucun exemple de disposition répétée n’est proposé pour cet objectif. Utilisez les compétences ci-dessous sur des touches distinctes.",
+    "de": "Für diesen Zweck gibt es kein Wiederholungsbeispiel. Nutze die folgenden Fähigkeiten auf einzelnen Tasten.",
+    "es": "No hay ejemplo de distribución repetida para este objetivo. Usa las habilidades siguientes en teclas individuales.",
+    "pt-BR": "Não há exemplo de distribuição repetida para este objetivo. Use as habilidades abaixo em teclas individuais.",
+    "ru": "Для этой цели нет примера повторяемой раскладки. Используйте умения ниже на отдельных клавишах."
+  },
+  "이 목적의 고정 사용 순서를 제안하지 않습니다. 아래 상황별 사용법을 참고하세요.": {
+    "en": "No fixed sequence is suggested for this purpose. See the situational guidance below.",
+    "ja": "この目的の固定使用順は提案しません。以下の状況別の使い方を参考にしてください。",
+    "fi": "Tälle tarkoitukselle ei ehdoteta kiinteää järjestystä. Katso tilannekohtaiset ohjeet alta.",
+    "fr": "Aucun ordre fixe n’est proposé pour cet objectif. Consultez les conseils selon la situation ci-dessous.",
+    "de": "Für diesen Zweck wird keine feste Reihenfolge vorgeschlagen. Beachte die situationsbezogenen Hinweise unten.",
+    "es": "No se propone una secuencia fija para este objetivo. Consulta las indicaciones situacionales de abajo.",
+    "pt-BR": "Não é sugerida uma sequência fixa para este objetivo. Consulte as orientações situacionais abaixo.",
+    "ru": "Для этой цели фиксированный порядок не предлагается. См. рекомендации по ситуации ниже."
   }
 }

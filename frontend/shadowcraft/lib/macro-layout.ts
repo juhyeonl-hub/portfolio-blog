@@ -1,8 +1,9 @@
 import type {ClassProfile} from './classes';
 import {TEMPLAR_BASIC,templarBasicAvailable} from './macro-evidence';
 
-// Fixed basic attacks: existing slot-0 profile bindings, Templar evidence, and
-// Ranger screenshot supplied by the user (AION2 control mode, 2026-11-03).
+// Fixed basic evidence: Ranger14020000 user AION2 configuration screenshot (2026-11-03);
+// Templar12010000 public guide (2026-11-01); other6 classes use internal profile bindings.
+// None of these establish live execution, timing or DPS; Ranger repeat columns are site-derived.
 export const FIXED_LEFT:Readonly<Record<string,string>>={gladiator:'11020000',templar:'12010000',ranger:'14020000',assassin:'13010000',elementalist:'16010000',sorcerer:'15210000',cleric:'17010000',chanter:'18010000'};
 export const QUICK_KEYS=['1','2','3','4','5','6','7','8','Q','E'] as const;
 export type MacroInput={key:string;skills:string[];fixed:boolean};

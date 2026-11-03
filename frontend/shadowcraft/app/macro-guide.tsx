@@ -1,15 +1,16 @@
+import BuildEvidence from './build-evidence';
 import './macro-guide.css';
 import ManualSkillGuide from './manual-skill-guide';
 import {TEMPLAR_BASIC} from '../lib/macro-evidence';
 import {macroLayout,QUICK_KEYS} from '../lib/macro-layout';
 import {useState} from 'react';
 import type {Catalog} from '../lib/planner';
-import type {ClassProfile} from '../lib/classes';
+import type {ClassProfile,PvePreset} from '../lib/classes';
 import purposes from '../lib/data/manual-skill-purpose.json';
 import {SkillHover} from './skill-tip';
 import {useLocale} from './locale';
 const purpose=purposes as Record<string,string>;
-export default function MacroGuide({profile,catalog,extra=false,onExtra,purpose:context='pve'}:{profile:ClassProfile;catalog:Catalog;extra?:boolean;purpose?:'pve'|'pvp'|'leveling';onExtra?:(value:boolean)=>void}){
+export default function MacroGuide({profile,catalog,extra=false,onExtra,purpose:context='pve',pvePreset='group'}:{profile:ClassProfile;catalog:Catalog;extra?:boolean;pvePreset?:PvePreset;purpose?:'pve'|'pvp'|'leveling';onExtra?:(value:boolean)=>void}){
  const {t,skill:skillName}=useLocale();const [chosen,setChosen]=useState('');
  const {fixedId,templar,columns,steps,manual,manualKeys}=macroLayout(profile,new Set(catalog.skills.map(s=>s.id)),context,extra);
  const capacity=manualKeys.length;
@@ -22,6 +23,7 @@ export default function MacroGuide({profile,catalog,extra=false,onExtra,purpose:
  return <section className="visual-macro">
   <h2>{t('게임 퀵슬롯 배치 예시')}</h2>
   <div className="macro-control-basis"><strong>{t('PC · AION2 조작 모드 기준')}</strong><p>{t('AION1 조작 모드용 배치가 아닙니다. 좌클릭은 고정이며 다른 키로 옮기지 않습니다.')}</p></div>
+  <BuildEvidence profile={profile} context={context} preset={pvePreset} macro/>
   <p>{t('직접 사용은 1~4·Q·E부터, 매크로는 5~8에 배치합니다. 세로줄은 0행부터 위로 확인하세요.')}</p>
   {templar&&<p className="macro-evidence"><a href={TEMPLAR_BASIC.source} target="_blank" rel="noreferrer">{t('공개 가이드의 기본 반복 예시 · 45레벨 PvE')}</a> · <time dateTime={TEMPLAR_BASIC.checkedAt}>{TEMPLAR_BASIC.checkedAt}</time><br/>{t('게임 내 동작을 검증한 배치는 아닙니다. 쉬운 적에게 먼저 확인하세요.')}</p>}
   <div className="game-macro-workbench">
@@ -46,7 +48,7 @@ export default function MacroGuide({profile,catalog,extra=false,onExtra,purpose:
        {input.skills.length>1&&<div className="macro-column-preview"><small>{t('세로줄 · 0행부터')}</small><div>{input.skills.map((id,i)=><span className="macro-column-node" key={id}>{i>0&&<b aria-hidden="true">↑</b>}{icon(id)}<small>{i}</small></span>)}</div></div>}
        {step<steps.length-1&&<div className="macro-step-delay"><span>{t('지연')}</span><b>{profile.key==='assassin'?'10 ms':t('게임 설정값')}</b><span aria-hidden="true">↓</span></div>}
       </div></li>;
-     })}</ol><p className="subtle">{t('세로줄의 스킬은 사용 가능 여부에 따라 실행되며, 모두 연속 실행되는 콤보가 아닙니다.')}</p></>:<p className="macro-unverified">{t('이 직업은 검증된 반복 배치가 없어 자동 공격 배치를 제안하지 않습니다. 아래 기술을 개별 키로 사용하세요.')}</p>}
+     })}</ol><p className="subtle">{t('세로줄의 스킬은 사용 가능 여부에 따라 실행되며, 모두 연속 실행되는 콤보가 아닙니다.')}</p></>:<p className="macro-unverified">{t('이 목적에 사용할 반복 배치 예시가 없습니다. 아래 기술을 개별 키로 사용하세요.')}</p>}
     {profile.key==='assassin'&&<p>{t('10ms는 기존 예시의 시작값입니다. 실제 게임에서 확인하세요.')}</p>}
     {profile.key==='assassin'&&onExtra&&<label className="toggle-line"><input type="checkbox" checked={extra} onChange={e=>onExtra(e.target.checked)}/>{t('기습도 반복에 포함')}</label>}
     <p className="subtle">{t('이동·회복·충전·생존 기술은 반복 공격 세로줄에 넣지 마세요. 쉬운 적에게 먼저 시험하고 위험하면 매크로 키를 놓으세요.')}</p>

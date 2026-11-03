@@ -1,3 +1,4 @@
+import BuildEvidence from './build-evidence';
 import {classProfile,type PvePreset} from '@/lib/classes';
 import type {Catalog,Plan} from '@/lib/planner';
 import {pveText,pveActivityGuides} from '@/lib/pve-direction-text';
@@ -11,7 +12,7 @@ export default function PveDirection({plan,onChange}:{plan:Plan;onChange:(patch:
  {choices.map(choice=><button type="button" key={choice} disabled={choice!=='group'&&!profile.pvePresets?.[choice]} aria-pressed={choice===selected} onClick={()=>onChange({pvePreset:choice,mode:choice==='group'?'safe':'damage',specs:plan.specs})}><strong>{pveText(locale,choice)}</strong><span>{pveText(locale,choice==='group'?'groupHelp':choice==='single'?'singleHelp':'farmHelp')}</span></button>)}</div>
  {!profile.pvePresets&&<p>{pveText(locale,'pending')}</p>}
  {profile.pvePresetSource&&<p className="subtle"><a href={profile.pvePresetSource.url} target="_blank" rel="noreferrer">{pveText(locale,'reference')}</a> · {profile.pvePresetSource.checkedAt}</p>}
- <p className="subtle">{pveText(locale,'shared')}</p></section>;
+ <p className="subtle">{pveText(locale,'shared')}</p><BuildEvidence profile={profile} preset={selected}/></section>;
 }
 export function PveActivityGuide({catalog,plan}:{catalog:Catalog;plan:Plan}){
  const {locale,skill}=useLocale(),profile=classProfile(plan.classKey);

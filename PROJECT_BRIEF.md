@@ -1088,3 +1088,8 @@ Completed locally: ranker-style green check/orange plus/red minus main board com
 [Task Goal]2026-11-03: preserve equipment lookup progress and recover safely from429 for 미쿠25-item lookup; keep server protections. See tasks/asbc-rate-recovery-20261103.md.
 
 Rate-limit recovery verified: actual 미쿠25items parse; local429 browser test waits then resumes automatically. Full tests/typecheck/lint/build/SEO and Claude peer review PASS. Same authorized equipment-point release follow-up.
+
+## 2026-11-03: ASBC gameplay evidence scope
+User approved per-class/preset audit and explicit validation status. Screenshots establish configuration only; live execution, latency and DPS remain unverified. Task and acceptance criteria: tasks/asbc-gameplay-evidence-20261103.md. Preserve existing recommendations unless a concrete consistency error is demonstrated.
+
+Gameplay evidence audit result: 24preset consistency cells and72contextual renders passed; all8class UI/context/mobile checks passed; Claude read-only review APPROVE. Status UI implemented locally, no new commit/push/deploy. User has no combat recording yet and requested a test procedure; actual gameplay remains pending.

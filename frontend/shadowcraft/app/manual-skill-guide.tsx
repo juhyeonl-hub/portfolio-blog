@@ -21,7 +21,7 @@ export default function ManualSkillGuide({profile,catalog,manualSlots,columns,fi
  return <section className="manual-usage-guide" aria-label={t('수동 스킬 사용 가이드')}>
   <h2>{t('수동 스킬 사용 가이드')}</h2>
   <p>{t('아이콘과 키를 보고 사용 시점을 확인하세요. 아래 흐름은 모든 스킬을 차례대로 누르는 고정 콤보가 아닙니다.')}</p>
-  {displayedFlow.length>0?<><h3>{t(flow.length?'PvE 보스전 사용 흐름':'살성 · 조건별 사용 예시')}</h3><ol className={flow.length?'manual-use-flow':'manual-use-flow manual-conditional-flow'}>{displayedFlow.map((stage,index)=><li key={index}><span className="manual-flow-number">{flow.length?index+1:'•'}</span><div><h4>{t(stage.title)}</h4><p>{t(stage.body)}</p><div className="manual-flow-icons">{stage.ids.map(tag)}</div></div></li>)}</ol></>:<p className="macro-unverified">{t('이 목적에 대해 검증된 고정 순서는 없습니다. 아래 상황별 사용법을 참고하세요.')}</p>}
+  {displayedFlow.length>0?<><h3>{t(flow.length?'PvE 보스전 사용 흐름':'살성 · 조건별 사용 예시')}</h3><ol className={flow.length?'manual-use-flow':'manual-use-flow manual-conditional-flow'}>{displayedFlow.map((stage,index)=><li key={index}><span className="manual-flow-number">{flow.length?index+1:'•'}</span><div><h4>{t(stage.title)}</h4><p>{t(stage.body)}</p><div className="manual-flow-icons">{stage.ids.map(tag)}</div></div></li>)}</ol></>:<p className="macro-unverified">{t('이 목적의 고정 사용 순서를 제안하지 않습니다. 아래 상황별 사용법을 참고하세요.')}</p>}
   <div className="manual-usage-cards">{bindings.map(binding=>{
    const skill=catalog.skills.find(s=>s.id===binding.id);if(!skill)return null;
    const stageIndex=flow.findIndex(stage=>stage.ids.includes(binding.id));
@@ -38,7 +38,7 @@ export default function ManualSkillGuide({profile,catalog,manualSlots,columns,fi
   <h2>{t('어떤 방식으로 사용할까요?')}</h2>
   {CLASS_MACRO_ADVICE[profile.key]&&<p className="macro-method-advice macro-class-advice"><strong>{t(profile.name)}</strong> · {t(CLASS_MACRO_ADVICE[profile.key])}</p>}
   <div className="macro-method-comparison">
-   <article className="macro-method-current"><h3>{t('수동 병행 · 현재 배치')}</h3><p>{columns.length?t('반복 공격은 매크로로, 수동으로 표시된 버프·대응기는 필요한 순간에 직접 사용합니다.'):t('이 직업은 검증된 반복 배치가 없어 자동 공격 배치를 제안하지 않습니다. 아래 기술을 개별 키로 사용하세요.')}</p><p>{t('보스 패턴에 맞춰 버프와 대응기를 아낄 수 있습니다. 직접 눌러야 할 키는 늘어납니다.')}</p></article>
+   <article className="macro-method-current"><h3>{t('수동 병행 · 현재 배치')}</h3><p>{columns.length?t('반복 공격은 매크로로, 수동으로 표시된 버프·대응기는 필요한 순간에 직접 사용합니다.'):t('이 목적에 사용할 반복 배치 예시가 없습니다. 아래 기술을 개별 키로 사용하세요.')}</p><p>{t('보스 패턴에 맞춰 버프와 대응기를 아낄 수 있습니다. 직접 눌러야 할 키는 늘어납니다.')}</p></article>
    <article><h3>{t('공격·버프 통합 · 편의성 우선')}</h3><p>{t('조작은 줄지만, 버프를 원하지 않는 시점에 소모할 수 있습니다. 모든 스킬을 넣는 배치는 검증되지 않았습니다.')}</p><p>{t('충전·이동·생존기는 수동으로 남기는 것을 권장합니다.')}</p></article>
   </div>
   <p className="macro-method-advice">{t('익숙해지는 동안에는 현재 수동 병행 방식을 권장합니다. 편의성이 중요하다면 일반 공격부터 묶고 버프는 하나씩 시험하세요.')}</p>
