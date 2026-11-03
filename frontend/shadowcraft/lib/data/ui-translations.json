@@ -6900,14 +6900,14 @@
     "ru": "Накопление 5 зарядов «Знаков» (Insignia)"
   },
   "문양 보충": {
-    "en": "Replenishes Insignias",
-    "ja": "紋様を補充",
-    "fi": "Täydentää tunnusmerkkejä",
-    "fr": "Restaure les Insignes",
-    "de": "Füllt Insignien auf",
-    "es": "Repone Insignias",
-    "pt-BR": "Repõe Insígnias",
-    "ru": "Восполнение «Знаков»"
+    "en": "Insignia refill",
+    "ja": "刻印の補充",
+    "fi": "Merkkien täydentäminen",
+    "fr": "Recharge des marques",
+    "de": "Zeichen auffüllen",
+    "es": "Reponer marcas",
+    "pt-BR": "Repor marcas",
+    "ru": "Пополнение меток"
   },
   "문양 소모 · 핵심 피해": {
     "en": "Consumes Insignias · Core damage",
@@ -30468,5 +30468,355 @@
     "es": "Esta comparación ayuda a elegir un enfoque. No cambia la distribución actual ni los ajustes del juego.",
     "pt-BR": "Esta comparação ajuda a escolher uma abordagem. Não altera as teclas atuais nem as configurações do jogo.",
     "ru": "Сравнение помогает выбрать способ игры. Оно не меняет текущую раскладку и настройки игры."
+  },
+  "행동 불가가 아닐 때는 다음 제어에 대비해 아끼세요.": {
+    "en": "Save it for the next disabling effect when you are not incapacitated.",
+    "ja": "行動不能でない時は次の制御に備えて温存してください。",
+    "fi": "Säästä seuraavaa lamaannuttavaa vaikutusta varten, kun et ole toimintakyvytön.",
+    "fr": "Gardez-la pour le prochain contrôle si vous pouvez encore agir.",
+    "de": "Spare sie für den nächsten Kontrollverlust auf, solange du handeln kannst.",
+    "es": "Resérvala para el próximo control si aún puedes actuar.",
+    "pt-BR": "Guarde para o próximo controle se ainda puder agir.",
+    "ru": "Если можете действовать, приберегите на следующий эффект контроля."
+  },
+  "발동 조건이나 사용 가능 표시가 없으면 반복해서 누르지 마세요.": {
+    "en": "Do not repeatedly press it without its trigger condition or availability indicator.",
+    "ja": "発動条件や使用可能表示がなければ連打しないでください。",
+    "fi": "Älä paina toistuvasti ilman aktivointiehtoa tai saatavuusilmaisinta.",
+    "fr": "Ne la pressez pas en boucle sans condition de déclenchement ou indicateur de disponibilité.",
+    "de": "Drücke sie nicht wiederholt ohne Auslösebedingung oder Verfügbarkeitsanzeige.",
+    "es": "No la pulses repetidamente sin la condición o indicador de disponibilidad.",
+    "pt-BR": "Não pressione repetidamente sem a condição ou indicação de disponibilidade.",
+    "ru": "Не нажимайте повторно без условия активации или индикатора доступности."
+  },
+  "공격이 닿기 전까지 아끼고, 회피가 필요한 공격은 회피를 우선하세요.": {
+    "en": "Save it until an attack is about to connect; prioritize dodging attacks that require it.",
+    "ja": "攻撃が当たる直前まで温存し、回避が必要な攻撃は回避を優先してください。",
+    "fi": "Säästä osuman edelle; väistä hyökkäykset, jotka vaativat väistöä.",
+    "fr": "Gardez-la pour juste avant l’impact et privilégiez l’esquive quand elle est nécessaire.",
+    "de": "Spare sie bis kurz vor dem Treffer; weiche Angriffen aus, die Ausweichen erfordern.",
+    "es": "Resérvala hasta antes del impacto y esquiva los ataques que lo requieran.",
+    "pt-BR": "Guarde até antes do impacto e esquive dos ataques que exigirem isso.",
+    "ru": "Приберегите до момента перед ударом; если нужно уклонение, уклоняйтесь."
+  },
+  "적이 범위 밖이거나 곧 흩어지면 위치와 타이밍을 다시 잡으세요.": {
+    "en": "Reposition and retime it if enemies are out of range or about to scatter.",
+    "ja": "敵が範囲外や散開直前なら位置とタイミングを調整してください。",
+    "fi": "Säädä paikkaa ja ajoitusta, jos viholliset ovat kantaman ulkopuolella tai hajaantumassa.",
+    "fr": "Repositionnez-vous et ajustez le moment si les ennemis sont hors de portée ou se dispersent.",
+    "de": "Passe Position und Timing an, wenn Gegner außer Reichweite sind oder sich gleich verteilen.",
+    "es": "Ajusta posición y momento si los enemigos están fuera del área o se dispersarán.",
+    "pt-BR": "Ajuste posição e momento se os inimigos estiverem fora da área ou forem se dispersar.",
+    "ru": "Измените позицию и момент, если враги вне области или скоро разойдутся."
+  },
+  "회복·해제가 필요하지 않다면 다음 피해 구간을 위해 남겨 두세요.": {
+    "en": "Save it for the next damage phase if healing or cleansing is not needed.",
+    "ja": "回復や解除が不要なら次の被ダメージ区間に備えて温存してください。",
+    "fi": "Säästä seuraavaan vahinkovaiheeseen, jos parannusta tai puhdistusta ei tarvita.",
+    "fr": "Gardez-la pour les prochains dégâts si soin ou dissipation ne sont pas nécessaires.",
+    "de": "Spare sie für die nächste Schadensphase, wenn Heilung oder Reinigung unnötig ist.",
+    "es": "Resérvala para el próximo daño si no necesitas curar ni limpiar efectos.",
+    "pt-BR": "Guarde para o próximo dano se cura ou remoção de efeitos não forem necessárias.",
+    "ru": "Приберегите для следующих ударов, если лечение или снятие эффектов не нужны."
+  },
+  "지속 회복이 남아 있으면 남은 시간과 다음 피해 구간을 확인하세요.": {
+    "en": "Check the remaining healing-over-time duration and next damage phase before refreshing it.",
+    "ja": "継続回復が残っているなら残り時間と次の被ダメージ区間を確認してください。",
+    "fi": "Tarkista jatkuvan parannuksen jäljellä oleva aika ja seuraava vahinkovaihe.",
+    "fr": "Vérifiez la durée du soin continu restant et les prochains dégâts.",
+    "de": "Prüfe die Restdauer der laufenden Heilung und die nächste Schadensphase.",
+    "es": "Comprueba la duración restante de la curación continua y el próximo daño.",
+    "pt-BR": "Confira a duração restante da cura contínua e o próximo dano.",
+    "ru": "Проверьте оставшееся время периодического лечения и следующую фазу урона."
+  },
+  "위협이 안정적이고 약화 효과도 유지 중이면 다음 대응 시점을 확인하세요.": {
+    "en": "If threat is stable and the debuff is active, plan the next moment to respond.",
+    "ja": "脅威が安定し弱化効果も維持されているなら次の対応時点を確認してください。",
+    "fi": "Jos uhka on vakaa ja heikennys aktiivinen, suunnittele seuraava reagointihetki.",
+    "fr": "Si la menace est stable et l’affaiblissement actif, préparez la prochaine réaction.",
+    "de": "Bei stabiler Bedrohung und aktivem Debuff plane den nächsten Einsatz.",
+    "es": "Si la amenaza es estable y el debilitamiento sigue activo, planea la próxima respuesta.",
+    "pt-BR": "Se a ameaça estiver estável e o enfraquecimento ativo, planeje a próxima resposta.",
+    "ru": "Если угроза стабильна и ослабление действует, планируйте следующий момент реакции."
+  },
+  "당겨 온 적이 파티를 위험하게 만들면 사용하지 마세요.": {
+    "en": "Do not use it if pulling the enemy would endanger the party.",
+    "ja": "引き寄せるとパーティが危険になる敵には使わないでください。",
+    "fi": "Älä käytä, jos vihollisen vetäminen vaarantaisi ryhmän.",
+    "fr": "Ne l’utilisez pas si attirer l’ennemi met le groupe en danger.",
+    "de": "Nutze sie nicht, wenn das Heranziehen die Gruppe gefährdet.",
+    "es": "No la uses si atraer al enemigo pondrá en peligro al grupo.",
+    "pt-BR": "Não use se puxar o inimigo colocar o grupo em risco.",
+    "ru": "Не используйте, если притянутый враг поставит группу под угрозу."
+  },
+  "자원이 충분하면 소비할 공격과 다음 보충 시점을 먼저 확인하세요.": {
+    "en": "If resources are sufficient, check the next spender and refill timing first.",
+    "ja": "資源が十分なら消費する攻撃と次の補充時点を先に確認してください。",
+    "fi": "Jos resursseja on tarpeeksi, tarkista seuraava kuluttava hyökkäys ja täydennyshetki.",
+    "fr": "Si les ressources suffisent, vérifiez la prochaine dépense et le moment de recharge.",
+    "de": "Bei genügend Ressourcen prüfe zuerst den nächsten Verbrauch und Nachschub.",
+    "es": "Si tienes recursos suficientes, revisa el próximo gasto y cuándo reponer.",
+    "pt-BR": "Se houver recursos suficientes, confira o próximo gasto e quando repor.",
+    "ru": "Если ресурсов достаточно, проверьте следующую затратную атаку и момент пополнения."
+  },
+  "그로기 상태나 사용 가능 표시가 없을 때는 아껴 두세요.": {
+    "en": "Hold it when there is no stagger state or availability indicator.",
+    "ja": "グロッキー状態や使用可能表示がない時は温存してください。",
+    "fi": "Säästä, jos horjutustilaa tai saatavuusilmaisinta ei ole.",
+    "fr": "Gardez-la sans état de déséquilibre ou indicateur de disponibilité.",
+    "de": "Spare sie ohne Taumelzustand oder Verfügbarkeitsanzeige auf.",
+    "es": "Resérvala si no hay estado de tambaleo ni indicador de disponibilidad.",
+    "pt-BR": "Guarde se não houver estado de desequilíbrio ou indicador de disponibilidade.",
+    "ru": "Приберегите, если нет состояния ошеломления или индикатора доступности."
+  },
+  "후방을 잡으려다 위험해지면 위치 이동보다 생존을 우선하세요.": {
+    "en": "Prioritize survival over moving behind the target if doing so is dangerous.",
+    "ja": "背後を取るのが危険なら移動より生存を優先してください。",
+    "fi": "Aseta selviytyminen selustaan siirtymisen edelle, jos siirtyminen on vaarallista.",
+    "fr": "Privilégiez la survie si passer derrière la cible est dangereux.",
+    "de": "Überleben geht vor, wenn der Weg hinter das Ziel gefährlich ist.",
+    "es": "Prioriza sobrevivir si colocarte detrás del objetivo es peligroso.",
+    "pt-BR": "Priorize sobreviver se ir para trás do alvo for perigoso.",
+    "ru": "Выживание важнее выхода за спину, если перемещение опасно."
+  },
+  "소환이 유지 중일 때는 해제되지 않도록 반복 입력을 피하세요.": {
+    "en": "Avoid repeated inputs while the summon is active so you do not dismiss it.",
+    "ja": "召喚中は解除しないよう繰り返し入力を避けてください。",
+    "fi": "Vältä toistuvia painalluksia aktiivisen kutsun aikana, ettet peru sitä.",
+    "fr": "Évitez les pressions répétées pendant l’invocation pour ne pas la révoquer.",
+    "de": "Vermeide wiederholte Eingaben bei aktiver Beschwörung, um sie nicht zu entlassen.",
+    "es": "Evita pulsaciones repetidas mientras la invocación está activa para no retirarla.",
+    "pt-BR": "Evite comandos repetidos com a invocação ativa para não dispensá-la.",
+    "ru": "Не нажимайте повторно при активном призыве, чтобы не отменить его."
+  },
+  "이미 소환되어 있으면 남은 상태를 확인하고 재사용하세요.": {
+    "en": "If already summoned, check its current state before using it again.",
+    "ja": "召喚済みなら残りの状態を確認してから再使用してください。",
+    "fi": "Jos kutsu on jo aktiivinen, tarkista sen tila ennen uutta käyttöä.",
+    "fr": "Si déjà invoqué, vérifiez son état avant de réutiliser.",
+    "de": "Prüfe bei aktiver Beschwörung ihren Zustand vor erneutem Einsatz.",
+    "es": "Si ya está invocado, revisa su estado antes de volver a usarlo.",
+    "pt-BR": "Se já estiver invocado, confira o estado antes de usar novamente.",
+    "ru": "Если призыв уже действует, проверьте его состояние перед повторным применением."
+  },
+  "같은 계열의 파티 효과가 유지 중이면 중복 여부를 먼저 확인하세요.": {
+    "en": "Check stacking restrictions first if a similar party effect is already active.",
+    "ja": "同系統のパーティ効果が維持中なら重複の可否を先に確認してください。",
+    "fi": "Tarkista kasautumisrajoitukset, jos vastaava ryhmävaikutus on jo aktiivinen.",
+    "fr": "Vérifiez le cumul si un effet de groupe similaire est actif.",
+    "de": "Prüfe die Stapelbarkeit, wenn ein ähnlicher Gruppeneffekt aktiv ist.",
+    "es": "Comprueba si se acumulan cuando ya hay un efecto de grupo similar activo.",
+    "pt-BR": "Confira se acumulam quando um efeito de grupo semelhante já estiver ativo.",
+    "ru": "Если похожий эффект группы уже действует, сначала проверьте совместимость."
+  },
+  "되살린 파티원이 바로 위험해질 상황이면 안전한 시점을 기다리세요.": {
+    "en": "Wait for a safer moment if the revived party member would immediately be in danger.",
+    "ja": "蘇生した仲間がすぐ危険になる状況なら安全な時点を待ってください。",
+    "fi": "Odota turvallisempaa hetkeä, jos elvytetty ryhmäläinen joutuisi heti vaaraan.",
+    "fr": "Attendez un moment sûr si le membre ressuscité serait immédiatement en danger.",
+    "de": "Warte auf einen sicheren Moment, wenn das wiederbelebte Mitglied sofort gefährdet wäre.",
+    "es": "Espera un momento seguro si el aliado revivido estará en peligro inmediato.",
+    "pt-BR": "Espere um momento seguro se o aliado revivido ficar em perigo imediato.",
+    "ru": "Дождитесь безопасного момента, если воскрешённый союзник сразу окажется в опасности."
+  },
+  "회복·방어 효과가 필요한 구간을 고려해 사용 시점을 고르세요.": {
+    "en": "Time it around phases where healing or defensive effects are needed.",
+    "ja": "回復や防御効果が必要な区間を考えて使用時点を選んでください。",
+    "fi": "Ajoita käyttö vaiheisiin, joissa tarvitaan parannusta tai puolustusta.",
+    "fr": "Choisissez le moment selon les phases nécessitant soin ou défense.",
+    "de": "Plane den Einsatz für Phasen, die Heilung oder Schutz erfordern.",
+    "es": "Elige el momento según las fases que requieran curación o defensa.",
+    "pt-BR": "Escolha o momento conforme as fases que precisem de cura ou defesa.",
+    "ru": "Выбирайте момент с учётом фаз, где нужны лечение или защита."
+  },
+  "협공에 맞는 정령과 공격 대상을 확인한 뒤 사용하세요.": {
+    "en": "Check the spirit and attack target for the coordinated attack before using it.",
+    "ja": "協攻に合う精霊と攻撃対象を確認してから使ってください。",
+    "fi": "Tarkista yhteishyökkäykseen sopiva henki ja kohde ennen käyttöä.",
+    "fr": "Vérifiez l’esprit et la cible de l’attaque coordonnée avant utilisation.",
+    "de": "Prüfe Geist und Ziel für den koordinierten Angriff vor dem Einsatz.",
+    "es": "Revisa el espíritu y objetivo del ataque coordinado antes de usarlo.",
+    "pt-BR": "Confira o espírito e alvo do ataque coordenado antes de usar.",
+    "ru": "Перед применением проверьте духа и цель совместной атаки."
+  },
+  "파티 회복이 급하면 공격보다 회복·해제를 우선하세요.": {
+    "en": "Prioritize healing and cleansing over attacking when the party urgently needs healing.",
+    "ja": "パーティの回復が急務なら攻撃より回復や解除を優先してください。",
+    "fi": "Kiireellisessä ryhmäparannuksessa aseta parannus ja puhdistus hyökkäyksen edelle.",
+    "fr": "Privilégiez soin et dissipation si le groupe a besoin de soins urgents.",
+    "de": "Bei dringendem Heilbedarf gehen Heilung und Reinigung vor Angriffen.",
+    "es": "Prioriza curar y limpiar efectos si el grupo necesita curación urgente.",
+    "pt-BR": "Priorize cura e remoção de efeitos se o grupo precisar de cura urgente.",
+    "ru": "При срочной нужде группы в лечении отдайте приоритет лечению и снятию эффектов."
+  },
+  "살성 · 조건별 사용 예시": {
+    "en": "Assassin · Conditional usage examples",
+    "ja": "アサシン · 条件別の使用例",
+    "fi": "Assassin · Tilannekohtaiset esimerkit",
+    "fr": "Assassin · Exemples selon les conditions",
+    "de": "Assassine · Bedingte Einsatzbeispiele",
+    "es": "Asesino · Ejemplos según condiciones",
+    "pt-BR": "Assassino · Exemplos por condição",
+    "ru": "Убийца · Примеры по условиям"
+  },
+  "조건별 사용 · {0}": {
+    "en": "Conditional use · {0}",
+    "ja": "条件別使用 · {0}",
+    "fi": "Tilannekohtainen käyttö · {0}",
+    "fr": "Usage conditionnel · {0}",
+    "de": "Bedingter Einsatz · {0}",
+    "es": "Uso condicional · {0}",
+    "pt-BR": "Uso condicional · {0}",
+    "ru": "Применение по условию · {0}"
+  },
+  "안전한 접근": {
+    "en": "Safe approach",
+    "ja": "安全な接近",
+    "fi": "Turvallinen lähestyminen",
+    "fr": "Approche sûre",
+    "de": "Sicheres Annähern",
+    "es": "Acercamiento seguro",
+    "pt-BR": "Aproximação segura",
+    "ru": "Безопасное сближение"
+  },
+  "후방·그로기 기회": {
+    "en": "Back-attack and stagger opportunities",
+    "ja": "背後・グロッキーの機会",
+    "fi": "Selusta- ja horjutustilaisuudet",
+    "fr": "Occasions de dos ou de déséquilibre",
+    "de": "Rückenangriff und Taumelfenster",
+    "es": "Oportunidades por detrás y tambaleo",
+    "pt-BR": "Oportunidades pelas costas e desequilíbrio",
+    "ru": "Моменты для удара в спину и ошеломления"
+  },
+  "위험 대응": {
+    "en": "React to danger",
+    "ja": "危険への対応",
+    "fi": "Vaaroihin reagointi",
+    "fr": "Réaction au danger",
+    "de": "Auf Gefahr reagieren",
+    "es": "Responder al peligro",
+    "pt-BR": "Reagir ao perigo",
+    "ru": "Реакция на опасность"
+  },
+  "이동할 위치가 안전할 때 접근기를 골라 사용하세요.": {
+    "en": "Choose an approach skill when the destination is safe.",
+    "ja": "移動先が安全な時に接近スキルを選んで使ってください。",
+    "fi": "Valitse lähestymistaito, kun määränpää on turvallinen.",
+    "fr": "Choisissez une compétence d’approche si la destination est sûre.",
+    "de": "Wähle eine Annäherungsfertigkeit, wenn der Zielort sicher ist.",
+    "es": "Elige una habilidad de acercamiento si el destino es seguro.",
+    "pt-BR": "Escolha uma habilidade de aproximação se o destino for seguro.",
+    "ru": "Выбирайте умение сближения, когда место назначения безопасно."
+  },
+  "돌진·막기·조건부 후속기는 직접 판단하고, 공격 강화는 집중 공격 직전에 사용하세요.": {
+    "en": "Manage rushes, blocks and conditional follow-ups manually; use attack buffs just before a burst.",
+    "ja": "突進・防御・条件付き追撃は手動で判断し、攻撃強化は集中攻撃の直前に使ってください。",
+    "fi": "Hallitse ryntäykset, torjunnat ja ehdolliset jatkot käsin; vahvista hyökkäystä juuri ennen iskuryöppyä.",
+    "fr": "Gérez charges, blocages et enchaînements conditionnels manuellement ; activez les buffs avant l’offensive.",
+    "de": "Steuere Anstürme, Blocks und bedingte Folgeangriffe manuell; nutze Angriffsbuffs vor dem Burst.",
+    "es": "Gestiona cargas, bloqueos y seguimientos manualmente; usa buffs antes de concentrar ataques.",
+    "pt-BR": "Gerencie investidas, bloqueios e sequências condicionais manualmente; use buffs antes da ofensiva.",
+    "ru": "Рывки, блоки и условные продолжения контролируйте вручную; усиления атаки — перед серией ударов."
+  },
+  "도발·보호막·포획·충전기는 수동으로 관리하세요. 파티 보호가 공격 순서보다 우선입니다.": {
+    "en": "Manage taunts, shields, pulls and charges manually. Protecting the party takes priority over attack order.",
+    "ja": "挑発・シールド・捕獲・チャージは手動で管理してください。攻撃順序よりパーティ保護が優先です。",
+    "fi": "Hallitse provosoinnit, suojat, vedot ja lataukset käsin. Ryhmän suojaaminen ohittaa hyökkäysjärjestyksen.",
+    "fr": "Gérez provocations, boucliers, attractions et charges manuellement. Protéger le groupe prime sur l’ordre d’attaque.",
+    "de": "Steuere Spott, Schilde, Heranziehen und Aufladen manuell. Gruppenschutz geht vor Angriffsreihenfolge.",
+    "es": "Gestiona provocaciones, escudos, atracciones y cargas manualmente. Proteger al grupo es prioritario.",
+    "pt-BR": "Gerencie provocações, escudos, puxões e cargas manualmente. Proteger o grupo é prioridade.",
+    "ru": "Провокации, щиты, притягивание и зарядку контролируйте вручную. Защита группы важнее ротации."
+  },
+  "위치 이동·문양 보충·후방 공격·그로기 기회를 직접 판단하세요. 위험한 위치로 자동 진입하지 않게 하세요.": {
+    "en": "Judge repositioning, insignia refills, back attacks and stagger openings yourself. Avoid automatic entry into danger.",
+    "ja": "位置移動・刻印補充・背後攻撃・グロッキーの機会を手動で判断し、危険な場所への自動進入を避けてください。",
+    "fi": "Arvioi siirtyminen, merkkien täydennys, selustahyökkäykset ja horjutusikkunat itse. Vältä automaattista siirtymistä vaaraan.",
+    "fr": "Décidez des déplacements, marques, attaques de dos et ouvertures de déséquilibre. Évitez d’entrer automatiquement en danger.",
+    "de": "Beurteile Position, Zeichen, Rückenangriffe und Taumelfenster selbst. Vermeide automatisches Eindringen in Gefahr.",
+    "es": "Decide posición, marcas, ataques por detrás y ventanas de tambaleo. Evita entrar automáticamente en peligro.",
+    "pt-BR": "Decida posição, marcas, ataques pelas costas e aberturas de desequilíbrio. Evite entrar automaticamente em perigo.",
+    "ru": "Сами оценивайте позицию, метки, атаки в спину и окна ошеломления. Избегайте автоматического входа в опасную зону."
+  },
+  "충전 시간·제어 대상·지속 범위의 위치를 직접 판단하고, 공격 버프는 집중 공격에 맞추세요.": {
+    "en": "Judge charge time, control targets and persistent-area placement manually; align attack buffs with bursts.",
+    "ja": "チャージ時間・制御対象・持続範囲の位置を手動で判断し、攻撃バフは集中攻撃に合わせてください。",
+    "fi": "Arvioi latausaika, hallintakohteet ja jatkuvien alueiden sijoitus käsin; ajoita vahvistukset iskuryöppyyn.",
+    "fr": "Gérez charge, cibles de contrôle et zones persistantes ; alignez les buffs sur l’offensive.",
+    "de": "Beurteile Ladezeit, Kontrollziele und dauerhafte Flächen manuell; plane Buffs für den Burst.",
+    "es": "Decide tiempo de carga, objetivos de control y áreas persistentes; ajusta buffs a la ofensiva.",
+    "pt-BR": "Decida tempo de carga, alvos de controle e áreas persistentes; alinhe buffs com a ofensiva.",
+    "ru": "Вручную оценивайте зарядку, цели контроля и длительные области; усиления совмещайте с серией атак."
+  },
+  "파티 회복·해제·부활을 우선하고, 공격은 회복에 여유가 있을 때 사용하세요.": {
+    "en": "Prioritize party healing, cleansing and resurrection; attack when healing demands allow.",
+    "ja": "パーティの回復・解除・蘇生を優先し、回復に余裕がある時に攻撃してください。",
+    "fi": "Aseta ryhmäparannus, puhdistus ja elvytys etusijalle; hyökkää kun parannustarve sallii.",
+    "fr": "Privilégiez soin, dissipation et résurrection du groupe ; attaquez quand les soins le permettent.",
+    "de": "Heilung, Reinigung und Wiederbelebung gehen vor; greife an, wenn der Heilbedarf es zulässt.",
+    "es": "Prioriza curación, limpieza y resurrección del grupo; ataca cuando la curación lo permita.",
+    "pt-BR": "Priorize cura, remoção de efeitos e ressurreição do grupo; ataque quando a cura permitir.",
+    "ru": "Лечение, снятие эффектов и воскрешение группы важнее; атакуйте, когда позволяет нагрузка на лечение."
+  },
+  "파티 효과의 중복을 확인하고, 회복·보호막·공격 지원은 파티 상황에 맞춰 직접 사용하세요.": {
+    "en": "Check overlapping party effects; use healing, shields and offensive support manually as the party needs them.",
+    "ja": "パーティ効果の重複を確認し、回復・シールド・攻撃支援はパーティ状況に合わせて手動で使ってください。",
+    "fi": "Tarkista päällekkäiset ryhmävaikutukset; paranna, suojaa ja tue hyökkäystä käsin ryhmän tarpeen mukaan.",
+    "fr": "Vérifiez les effets de groupe en double ; gérez soins, boucliers et soutien offensif selon les besoins.",
+    "de": "Prüfe überlappende Gruppeneffekte; setze Heilung, Schilde und Angriffshilfe passend zur Gruppe manuell ein.",
+    "es": "Comprueba efectos de grupo duplicados; usa curación, escudos y apoyo ofensivo según la situación.",
+    "pt-BR": "Confira efeitos de grupo sobrepostos; use cura, escudos e apoio ofensivo conforme a situação.",
+    "ru": "Проверяйте перекрывающиеся эффекты группы; вручную применяйте лечение, щиты и поддержку атаки по ситуации."
+  },
+  "문양이 부족할 때 보충 기술을 사용하고 문양 소비 공격을 이어가세요.": {
+    "en": "When low on insignias, use a replenishing skill before an insignia spender.",
+    "ja": "刻印が足りない時は補充スキルを使い、刻印消費攻撃につなげてください。",
+    "fi": "Täydennä vähäisiä merkkejä ennen niitä kuluttavaa hyökkäystä.",
+    "fr": "Si les marques manquent, rechargez-les avant une attaque qui les consomme.",
+    "de": "Fülle fehlende Zeichen vor einem Angriff auf, der sie verbraucht.",
+    "es": "Si faltan marcas, repón antes de un ataque que las consuma.",
+    "pt-BR": "Se faltarem marcas, reponha antes de um ataque que as consuma.",
+    "ru": "При нехватке меток пополните их перед атакой, которая их расходует."
+  },
+  "후방이 안전할 때 후방 공격을, 적이 그로기일 때 전용 공격을 선택하세요.": {
+    "en": "Choose a back attack when the rear is safe, or a stagger-only attack when the enemy is staggered.",
+    "ja": "背後が安全なら背面攻撃、敵がグロッキーなら専用攻撃を選んでください。",
+    "fi": "Valitse selustahyökkäys turvallisesta selustasta tai horjutushyökkäys horjutettuun viholliseen.",
+    "fr": "Choisissez une attaque de dos si la position est sûre, ou une attaque dédiée si l’ennemi est déséquilibré.",
+    "de": "Wähle einen Rückenangriff bei sicherer Position oder einen speziellen Angriff bei taumelndem Gegner.",
+    "es": "Elige un ataque por detrás si es seguro o uno exclusivo de tambaleo si el enemigo está en ese estado.",
+    "pt-BR": "Escolha um ataque pelas costas se for seguro ou um exclusivo de desequilíbrio se o inimigo estiver nesse estado.",
+    "ru": "Выбирайте удар в спину при безопасной позиции или специальную атаку по ошеломлённому врагу."
+  },
+  "위험하면 순서와 관계없이 회피하고, 행동 불가는 해제 기술로 대응하세요.": {
+    "en": "Dodge danger regardless of order, and use a release skill for incapacitation.",
+    "ja": "危険なら順序に関係なく回避し、行動不能には解除スキルで対応してください。",
+    "fi": "Väistä vaarassa järjestyksestä riippumatta ja poista lamaannus vapautustaidolla.",
+    "fr": "Esquivez sans attendre votre tour et utilisez une libération en cas d’incapacité.",
+    "de": "Weiche unabhängig von der Reihenfolge aus und nutze eine Befreiung bei Handlungsunfähigkeit.",
+    "es": "Esquiva sin importar el orden y usa una liberación ante incapacidad.",
+    "pt-BR": "Esquive independentemente da ordem e use uma liberação contra incapacidade.",
+    "ru": "Уклоняйтесь вне зависимости от порядка; при потере контроля используйте освобождение."
+  },
+  "이동 방향과 충전 시간을 직접 판단하고, 공격 버프는 안전한 공격 시간에 맞추세요.": {
+    "en": "Judge movement direction and charge timing manually; align attack buffs with safe attack windows.",
+    "ja": "移動方向とチャージ時間を手動で判断し、攻撃バフは安全な攻撃時間に合わせてください。",
+    "fi": "Arvioi liikesuunta ja latausaika käsin; ajoita hyökkäysvahvistukset turvalliseen hetkeen.",
+    "fr": "Gérez direction et durée de charge ; alignez les buffs sur une fenêtre d’attaque sûre.",
+    "de": "Beurteile Bewegungsrichtung und Ladezeit manuell; nutze Buffs in sicheren Angriffsfenstern.",
+    "es": "Decide dirección y tiempo de carga; ajusta los buffs a ventanas de ataque seguras.",
+    "pt-BR": "Decida direção e tempo de carga; alinhe os buffs com janelas de ataque seguras.",
+    "ru": "Вручную оценивайте направление движения и зарядку; усиления совмещайте с безопасными окнами атаки."
+  },
+  "정령의 소환·해제와 협공 대상을 확인하고, 강화 효과는 공격·방어가 필요한 순간에 맞추세요.": {
+    "en": "Check spirit summoning, dismissal and coordinated targets; time buffs for offensive or defensive needs.",
+    "ja": "精霊の召喚・解除と協攻対象を確認し、強化効果は攻撃・防御が必要な時に合わせてください。",
+    "fi": "Tarkista hengen kutsu, peruminen ja yhteiskohde; ajoita vahvistukset hyökkäys- tai puolustustarpeeseen.",
+    "fr": "Vérifiez invocation, révocation et cible coordonnée ; utilisez les buffs selon les besoins offensifs ou défensifs.",
+    "de": "Prüfe Beschwörung, Entlassung und koordiniertes Ziel; plane Buffs für Angriff oder Verteidigung.",
+    "es": "Revisa invocación, retirada y objetivo coordinado; usa buffs según ataque o defensa.",
+    "pt-BR": "Confira invocação, dispensa e alvo coordenado; use buffs conforme ataque ou defesa.",
+    "ru": "Проверяйте призыв, отмену и цель совместной атаки; усиления используйте для нужного момента атаки или обороны."
   }
 }
