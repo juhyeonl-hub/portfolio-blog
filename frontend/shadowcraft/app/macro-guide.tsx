@@ -1,4 +1,5 @@
 import './macro-guide.css';
+import ManualSkillGuide from './manual-skill-guide';
 import {TEMPLAR_BASIC} from '../lib/macro-evidence';
 import {macroLayout,QUICK_KEYS} from '../lib/macro-layout';
 import {useState} from 'react';
@@ -51,5 +52,6 @@ export default function MacroGuide({profile,catalog,extra=false,onExtra,purpose:
     <p className="subtle">{t('이동·회복·충전·생존 기술은 반복 공격 세로줄에 넣지 마세요. 쉬운 적에게 먼저 시험하고 위험하면 매크로 키를 놓으세요.')}</p>
    </aside>
   </div>
+  <ManualSkillGuide profile={profile} catalog={catalog} manualSlots={manualSlots} columns={columns} fixedId={fixedId} context={context}/>
  </section>;
 }

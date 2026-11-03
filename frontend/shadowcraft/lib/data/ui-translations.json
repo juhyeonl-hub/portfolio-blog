@@ -30228,5 +30228,245 @@
     "es": "Comprueba las condiciones en la descripción del juego y úsala manualmente.",
     "pt-BR": "Confira as condições na descrição da habilidade no jogo e use-a manualmente.",
     "ru": "Проверьте условия активации в описании умения в игре и используйте его вручную."
+  },
+  "수동 스킬 사용 가이드": {
+    "en": "Manual skill guide",
+    "ja": "手動スキルの使い方",
+    "fi": "Manuaalisten taitojen opas",
+    "fr": "Guide des compétences manuelles",
+    "de": "Anleitung für manuelle Fertigkeiten",
+    "es": "Guía de habilidades manuales",
+    "pt-BR": "Guia de habilidades manuais",
+    "ru": "Руководство по ручным умениям"
+  },
+  "아이콘과 키를 보고 사용 시점을 확인하세요. 아래 흐름은 모든 스킬을 차례대로 누르는 고정 콤보가 아닙니다.": {
+    "en": "Use the icons and keys to identify when to act. The flow below is not a fixed combo requiring every skill in order.",
+    "ja": "アイコンとキーで使用タイミングを確認してください。以下は全スキルを順に押す固定コンボではありません。",
+    "fi": "Tarkista käyttöhetket kuvakkeista ja näppäimistä. Alla oleva kulku ei ole kaikkien taitojen kiinteä yhdistelmä.",
+    "fr": "Repérez les moments d’utilisation avec les icônes et touches. Le déroulement ci-dessous n’est pas un combo fixe de toutes les compétences.",
+    "de": "Symbole und Tasten zeigen dir, wann du handeln solltest. Der Ablauf ist keine feste Kombo aller Fertigkeiten.",
+    "es": "Consulta los iconos y teclas para saber cuándo actuar. El esquema no es un combo fijo de todas las habilidades.",
+    "pt-BR": "Veja os ícones e teclas para saber quando agir. O fluxo não é um combo fixo com todas as habilidades.",
+    "ru": "Сверяйте значки и клавиши с моментом применения. Это не фиксированное комбо из всех умений подряд."
+  },
+  "PvE 보스전 사용 흐름": {
+    "en": "PvE boss encounter flow",
+    "ja": "PvEボス戦での使用の流れ",
+    "fi": "PvE-pomotaistelun kulku",
+    "fr": "Déroulement contre un boss PvE",
+    "de": "Ablauf im PvE-Bosskampf",
+    "es": "Secuencia en jefes PvE",
+    "pt-BR": "Fluxo contra chefes PvE",
+    "ru": "Порядок действий против босса PvE"
+  },
+  "이 목적에 대해 검증된 고정 순서는 없습니다. 아래 상황별 사용법을 참고하세요.": {
+    "en": "No verified fixed sequence is available for this purpose. Refer to the situational guidance below.",
+    "ja": "この用途で検証済みの固定順序はありません。以下の状況別の使い方を参考にしてください。",
+    "fi": "Tälle tarkoitukselle ei ole varmistettua kiinteää järjestystä. Katso alla olevat tilanneohjeet.",
+    "fr": "Aucune séquence fixe vérifiée pour cet usage. Consultez les conseils selon la situation ci-dessous.",
+    "de": "Für diesen Zweck liegt keine geprüfte feste Reihenfolge vor. Beachte die situationsbezogenen Hinweise unten.",
+    "es": "No hay una secuencia fija verificada para este objetivo. Consulta las indicaciones por situación.",
+    "pt-BR": "Não há sequência fixa verificada para este objetivo. Consulte as orientações por situação abaixo.",
+    "ru": "Для этой цели нет проверенной фиксированной последовательности. Используйте рекомендации по ситуации ниже."
+  },
+  "별도 키 지정": {
+    "en": "Assign a key",
+    "ja": "個別キー設定",
+    "fi": "Määritä näppäin",
+    "fr": "Attribuer une touche",
+    "de": "Taste zuweisen",
+    "es": "Asignar tecla",
+    "pt-BR": "Atribuir tecla",
+    "ru": "Назначить клавишу"
+  },
+  "{0}행 · {1}키 세로줄 · 별도 키 지정 필요": {
+    "en": "Row {0} · Key {1} column · Assign a separate key",
+    "ja": "{0}行 · {1}キーの縦列 · 個別キー設定が必要",
+    "fi": "Rivi {0} · Näppäimen {1} sarake · Määritä erillinen näppäin",
+    "fr": "Ligne {0} · Colonne de la touche {1} · Attribuer une touche distincte",
+    "de": "Zeile {0} · Spalte der Taste {1} · Separate Taste zuweisen",
+    "es": "Fila {0} · Columna de la tecla {1} · Asigna una tecla aparte",
+    "pt-BR": "Linha {0} · Coluna da tecla {1} · Atribua uma tecla separada",
+    "ru": "Ряд {0} · Столбец клавиши {1} · Назначьте отдельную клавишу"
+  },
+  "사용 시점": {
+    "en": "When to use",
+    "ja": "使用タイミング",
+    "fi": "Käyttöhetki",
+    "fr": "Quand utiliser",
+    "de": "Wann einsetzen",
+    "es": "Cuándo usar",
+    "pt-BR": "Quando usar",
+    "ru": "Когда применять"
+  },
+  "사용 순서": {
+    "en": "Usage order",
+    "ja": "使用順序",
+    "fi": "Käyttöjärjestys",
+    "fr": "Ordre d’utilisation",
+    "de": "Einsatzreihenfolge",
+    "es": "Orden de uso",
+    "pt-BR": "Ordem de uso",
+    "ru": "Порядок применения"
+  },
+  "{0}단계 · {1}": {
+    "en": "Step {0} · {1}",
+    "ja": "手順{0} · {1}",
+    "fi": "Vaihe {0} · {1}",
+    "fr": "Étape {0} · {1}",
+    "de": "Schritt {0} · {1}",
+    "es": "Paso {0} · {1}",
+    "pt-BR": "Etapa {0} · {1}",
+    "ru": "Этап {0} · {1}"
+  },
+  "상황이 생겼을 때": {
+    "en": "When the situation calls for it",
+    "ja": "必要な状況になった時",
+    "fi": "Tilanteen vaatiessa",
+    "fr": "Selon la situation",
+    "de": "Wenn die Situation es erfordert",
+    "es": "Cuando la situación lo requiera",
+    "pt-BR": "Quando a situação exigir",
+    "ru": "Когда требует ситуация"
+  },
+  "아껴야 할 때": {
+    "en": "When to hold",
+    "ja": "温存する場面",
+    "fi": "Milloin säästää",
+    "fr": "Quand garder en réserve",
+    "de": "Wann aufsparen",
+    "es": "Cuándo reservar",
+    "pt-BR": "Quando guardar",
+    "ru": "Когда приберечь"
+  },
+  "이동할 방향이 위험하면 먼저 방향을 바꾸세요.": {
+    "en": "Change direction first if the destination is dangerous.",
+    "ja": "移動先が危険なら先に方向を変えてください。",
+    "fi": "Vaihda ensin suuntaa, jos määränpää on vaarallinen.",
+    "fr": "Changez d’abord de direction si la destination est dangereuse.",
+    "de": "Wechsle zuerst die Richtung, wenn das Ziel gefährlich ist.",
+    "es": "Cambia primero de dirección si el destino es peligroso.",
+    "pt-BR": "Mude a direção primeiro se o destino for perigoso.",
+    "ru": "Если направление движения опасно, сначала измените его."
+  },
+  "회피가 급하면 충전보다 생존을 우선하세요.": {
+    "en": "If you must dodge now, prioritize survival over charging.",
+    "ja": "回避が急務ならチャージより生存を優先してください。",
+    "fi": "Jos väistö on kiireellinen, aseta selviytyminen lataamisen edelle.",
+    "fr": "Si vous devez esquiver immédiatement, privilégiez la survie à la charge.",
+    "de": "Wenn du sofort ausweichen musst, geht Überleben vor Aufladen.",
+    "es": "Si debes esquivar ya, prioriza sobrevivir sobre cargar.",
+    "pt-BR": "Se precisar esquivar agora, priorize sobreviver em vez de carregar.",
+    "ru": "Если нужно срочно уклониться, выживание важнее зарядки."
+  },
+  "적이 곧 죽거나 공격할 수 없는 구간이 오면 다음 기회까지 아끼세요.": {
+    "en": "Save it for the next opportunity if the enemy is about to die or become unavailable to attack.",
+    "ja": "敵がすぐ倒れる、または攻撃できない区間に入るなら次の機会まで温存してください。",
+    "fi": "Säästä seuraavaan tilaisuuteen, jos vihollinen kuolee pian tai siihen ei voi kohta hyökätä.",
+    "fr": "Gardez-la pour plus tard si l’ennemi va mourir ou ne pourra bientôt plus être attaqué.",
+    "de": "Spare sie auf, wenn der Gegner gleich stirbt oder bald nicht angreifbar ist.",
+    "es": "Resérvala si el enemigo está por morir o entrará en una fase en la que no puedas atacar.",
+    "pt-BR": "Guarde para depois se o inimigo estiver prestes a morrer ou ficar indisponível para atacar.",
+    "ru": "Приберегите до следующего момента, если враг скоро погибнет или станет недоступен для атак."
+  },
+  "공격 순서에 억지로 끼워 넣지 말고, 필요한 제어·대응 상황에 사용하세요.": {
+    "en": "Use it when control or a reaction is needed, rather than forcing it into the attack sequence.",
+    "ja": "攻撃順序に無理に入れず、制御や対応が必要な時に使用してください。",
+    "fi": "Käytä hallintaan tai reagointiin tarvittaessa; älä pakota sitä hyökkäysjärjestykseen.",
+    "fr": "Utilisez-la pour contrôler ou réagir au besoin, sans la forcer dans la séquence d’attaque.",
+    "de": "Setze sie bei Bedarf zur Kontrolle oder Reaktion ein, statt sie in die Angriffsfolge zu zwängen.",
+    "es": "Úsala cuando necesites control o reaccionar, sin forzarla en la secuencia de ataque.",
+    "pt-BR": "Use quando precisar de controle ou reação, sem forçar na sequência de ataque.",
+    "ru": "Применяйте для контроля или реакции по необходимости, не вставляйте принудительно в ротацию."
+  },
+  "어떤 방식으로 사용할까요?": {
+    "en": "Which approach should you use?",
+    "ja": "どの使い方を選びますか？",
+    "fi": "Minkä käyttötavan valitset?",
+    "fr": "Quelle approche choisir ?",
+    "de": "Welche Spielweise passt?",
+    "es": "¿Qué enfoque elegir?",
+    "pt-BR": "Qual abordagem escolher?",
+    "ru": "Какой способ выбрать?"
+  },
+  "수동 병행 · 현재 배치": {
+    "en": "Manual-assisted · Current layout",
+    "ja": "手動併用 · 現在の配置",
+    "fi": "Manuaalinen tuki · Nykyinen asettelu",
+    "fr": "Mode mixte · Disposition actuelle",
+    "de": "Manuell ergänzt · Aktuelle Belegung",
+    "es": "Uso mixto · Distribución actual",
+    "pt-BR": "Uso misto · Disposição atual",
+    "ru": "С ручным управлением · Текущая раскладка"
+  },
+  "반복 공격은 매크로로, 수동으로 표시된 버프·대응기는 필요한 순간에 직접 사용합니다.": {
+    "en": "Use the macro for repeat attacks and trigger buffs and reactions marked manual when needed.",
+    "ja": "反復攻撃はマクロで、手動表示のバフや対応スキルは必要な時に直接使います。",
+    "fi": "Käytä makroa toistuviin hyökkäyksiin ja manuaalisiksi merkittyjä vahvistuksia ja reaktioita tarvittaessa.",
+    "fr": "Utilisez la macro pour les attaques répétées et déclenchez au besoin les buffs et réactions indiqués manuels.",
+    "de": "Nutze das Makro für wiederholte Angriffe und löse als manuell markierte Buffs und Reaktionen bei Bedarf aus.",
+    "es": "Usa la macro para ataques repetidos y activa los buffs y reacciones marcados como manuales cuando haga falta.",
+    "pt-BR": "Use a macro para ataques repetidos e ative os buffs e reações marcados como manuais quando necessário.",
+    "ru": "Повторные атаки выполняйте макросом, а усиления и реакции с пометкой ручного применения — по необходимости."
+  },
+  "보스 패턴에 맞춰 버프와 대응기를 아낄 수 있습니다. 직접 눌러야 할 키는 늘어납니다.": {
+    "en": "You can save buffs and reactions for boss mechanics, but must press more keys yourself.",
+    "ja": "ボスの行動に合わせてバフや対応スキルを温存できますが、手動操作は増えます。",
+    "fi": "Voit säästää vahvistukset ja reaktiot pomon mekaniikkoihin, mutta painat itse useampia näppäimiä.",
+    "fr": "Vous pouvez réserver buffs et réactions aux mécaniques du boss, au prix de plus de touches manuelles.",
+    "de": "Du kannst Buffs und Reaktionen für Bossmechaniken aufsparen, musst aber mehr Tasten selbst drücken.",
+    "es": "Puedes reservar buffs y respuestas para las mecánicas del jefe, pero tendrás más teclas que pulsar.",
+    "pt-BR": "Você pode guardar buffs e respostas para mecânicas do chefe, mas terá mais teclas para apertar.",
+    "ru": "Можно приберечь усиления и реакции под механики босса, но придётся нажимать больше клавиш."
+  },
+  "공격·버프 통합 · 편의성 우선": {
+    "en": "Attacks + buffs together · Convenience first",
+    "ja": "攻撃・バフ統合 · 操作の簡単さ優先",
+    "fi": "Hyökkäykset ja vahvistukset yhdessä · Helppous ensin",
+    "fr": "Attaques et buffs groupés · Simplicité",
+    "de": "Angriffe + Buffs zusammen · Komfort zuerst",
+    "es": "Ataques y buffs juntos · Comodidad",
+    "pt-BR": "Ataques e buffs juntos · Conveniência",
+    "ru": "Атаки и усиления вместе · Удобство"
+  },
+  "조작은 줄지만, 버프를 원하지 않는 시점에 소모할 수 있습니다. 모든 스킬을 넣는 배치는 검증되지 않았습니다.": {
+    "en": "Fewer inputs, but buffs may be spent at unwanted times. A layout including every skill has not been verified.",
+    "ja": "操作は減りますが、望まないタイミングでバフを消費する場合があります。全スキルを入れる配置は未検証です。",
+    "fi": "Painalluksia on vähemmän, mutta vahvistuksia voi kulua väärään aikaan. Kaikki taidot sisältävää asettelua ei ole varmistettu.",
+    "fr": "Moins de commandes, mais les buffs peuvent partir au mauvais moment. Une disposition regroupant toutes les compétences n’a pas été vérifiée.",
+    "de": "Weniger Eingaben, aber Buffs können zum falschen Zeitpunkt verbraucht werden. Eine Belegung mit allen Fertigkeiten ist nicht geprüft.",
+    "es": "Menos pulsaciones, pero puedes gastar buffs en momentos no deseados. No se ha verificado una distribución con todas las habilidades.",
+    "pt-BR": "Menos comandos, mas os buffs podem ser gastos em momentos indesejados. Uma disposição com todas as habilidades não foi verificada.",
+    "ru": "Нажатий меньше, но усиления могут сработать не вовремя. Раскладка со всеми умениями не проверена."
+  },
+  "충전·이동·생존기는 수동으로 남기는 것을 권장합니다.": {
+    "en": "We recommend keeping charged, movement and survival skills manual.",
+    "ja": "チャージ・移動・生存スキルは手動のままを推奨します。",
+    "fi": "Suosittelemme pitämään lataus-, liike- ja selviytymistaidot manuaalisina.",
+    "fr": "Nous recommandons de garder les compétences de charge, déplacement et survie manuelles.",
+    "de": "Lade-, Bewegungs- und Überlebensfertigkeiten solltest du manuell lassen.",
+    "es": "Recomendamos mantener manuales las habilidades de carga, movimiento y supervivencia.",
+    "pt-BR": "Recomendamos manter manuais as habilidades de carga, movimento e sobrevivência.",
+    "ru": "Рекомендуем оставить заряжаемые умения, перемещения и выживание ручными."
+  },
+  "익숙해지는 동안에는 현재 수동 병행 방식을 권장합니다. 편의성이 중요하다면 일반 공격부터 묶고 버프는 하나씩 시험하세요.": {
+    "en": "Start with the current manual-assisted approach. If convenience matters most, group regular attacks first and test buffs one at a time.",
+    "ja": "慣れるまでは現在の手動併用を推奨します。簡単さを重視するなら通常攻撃からまとめ、バフは一つずつ試してください。",
+    "fi": "Aloita nykyisellä manuaalisesti tuetulla tavalla. Jos helppous on tärkeintä, yhdistä tavalliset hyökkäykset ensin ja kokeile vahvistuksia yksitellen.",
+    "fr": "Commencez par le mode mixte actuel. Pour plus de simplicité, groupez les attaques ordinaires puis testez les buffs un par un.",
+    "de": "Beginne mit der aktuellen manuell ergänzten Spielweise. Für mehr Komfort bündele zuerst normale Angriffe und teste Buffs einzeln.",
+    "es": "Empieza con el uso mixto actual. Si priorizas la comodidad, agrupa ataques normales primero y prueba los buffs uno a uno.",
+    "pt-BR": "Comece com o uso misto atual. Se priorizar conveniência, agrupe ataques comuns primeiro e teste buffs um por um.",
+    "ru": "Начните с текущего способа с ручным управлением. Если важнее удобство, сначала объедините обычные атаки и проверяйте усиления по одному."
+  },
+  "이 비교는 방식 선택을 위한 안내입니다. 현재 키 배치나 게임 설정을 바꾸지 않습니다.": {
+    "en": "This comparison helps you choose an approach. It does not change the current key layout or game settings.",
+    "ja": "この比較は使い方を選ぶための案内です。現在のキー配置やゲーム設定は変わりません。",
+    "fi": "Vertailu auttaa valitsemaan käyttötavan. Se ei muuta nykyistä näppäinasettelua tai pelin asetuksia.",
+    "fr": "Cette comparaison aide à choisir une approche. Elle ne modifie ni les touches actuelles ni les réglages du jeu.",
+    "de": "Dieser Vergleich hilft bei der Wahl. Er ändert weder die aktuelle Tastenbelegung noch Spieleinstellungen.",
+    "es": "Esta comparación ayuda a elegir un enfoque. No cambia la distribución actual ni los ajustes del juego.",
+    "pt-BR": "Esta comparação ajuda a escolher uma abordagem. Não altera as teclas atuais nem as configurações do jogo.",
+    "ru": "Сравнение помогает выбрать способ игры. Оно не меняет текущую раскладку и настройки игры."
   }
 }
